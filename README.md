@@ -1,6 +1,10 @@
 # Agile Facilitation Toolkit
 
-Printable boards and facilitator guides for teams and facilitators. Open `index.html` to browse everything.
+Printable boards and facilitator guides for teams and facilitators.
+
+**Live site:** https://eparker71.github.io/my_agile_tools/
+
+To browse everything locally, open `index.html`.
 
 Each board comes as:
 - **`.html`**: view in a browser or print. Boards print at A3 landscape; guides print at A4 portrait.
