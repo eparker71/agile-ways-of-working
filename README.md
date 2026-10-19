@@ -20,6 +20,7 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | Retro: The 4 Ls | `retro-board-4ls-sprint`, `-quarter` | `facilitator-guide-retro-4ls.html` |
 | Retro: Mad · Sad · Glad | `retro-board-mad-sad-glad-sprint`, `-quarter` | `facilitator-guide-retro-mad-sad-glad.html` |
 | Retro: Sailboat | `retro-board-sailboat-sprint`, `-quarter` | `facilitator-guide-retro-sailboat.html` |
+| Scrum Master & Agile Coach Cheat Sheet | `scrum-master-agile-coach-cheat-sheet.html` (two-sided A3, print double-sided) | Self-documenting reference; links to every board |
 
 Each guide covers: when to use the tool, an at-a-glance summary, a prep checklist, a timed run-sheet (with sprint and quarter timings for retros), prompts for each section of the board, facilitation tips, common pitfalls, follow-up, and how the tool fits the rest of the toolkit.
 
@@ -38,6 +39,6 @@ python3 _generator/build_guides.py   # all guides except Marginal Gains
 
 - `build_boards.py` holds the shared visual components (header, panels, sticky zones, action cards, footer). Retro boards are built for each horizon in the `("sprint", "quarter")` list at the bottom.
 - `build_guides.py` holds each guide's content in the `GUIDES` list. It copies its styling from `facilitator-guide-marginal-gains.html`.
-- These files are hand-written and are not overwritten by the scripts: the Marginal Gains boards, `facilitator-guide-marginal-gains.html` and `index.html`.
+- These files are hand-written and are not overwritten by the scripts: the Marginal Gains boards, `facilitator-guide-marginal-gains.html`, `scrum-master-agile-coach-cheat-sheet.html` and `index.html`.
 
 When you add a new board, also add a guide entry to `GUIDES` and a card to `index.html`.

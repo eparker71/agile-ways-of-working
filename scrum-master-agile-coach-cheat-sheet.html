@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scrum Master &amp; Agile Coach Cheat Sheet</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#64748B; --rule:#E2E8F0;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:12.5px;line-height:1.45;padding:24px 16px;}
+a{color:inherit;}
+
+/* one sheet = A3 landscape at 96 dpi */
+.sheet{width:1587px;height:1123px;margin:0 auto 24px;background:linear-gradient(#F8FAFC,#EFF6FF);
+  box-shadow:0 12px 40px rgba(0,0,0,.22);display:flex;flex-direction:column;overflow:hidden;}
+.head{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:16px 22px 14px;position:relative;flex:none;}
+.head h1{font:400 34px/1 var(--serif);margin:0 0 6px;}
+.head p{margin:0;color:#94A3B8;font-size:12.5px;}
+.head .side{position:absolute;right:22px;top:14px;text-align:right;}
+.badge{font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;display:inline-block;}
+.head .side div{font:500 9px var(--mono);letter-spacing:.14em;color:#64748B;margin-top:12px;}
+.body>*{min-width:0;}
+.body{flex:1;min-height:0;display:grid;gap:12px;padding:12px 20px;}
+.foot{flex:none;display:flex;justify-content:space-between;gap:16px;padding:0 20px 10px;font:8px var(--mono);letter-spacing:.08em;color:#94A3B8;}
+.foot .fq{font:italic 13px var(--serif);color:var(--ink);letter-spacing:0;}
+
+.s1{grid-template-columns:1fr 1.3fr 1.3fr 1fr;grid-template-rows:auto 1fr auto;
+  grid-template-areas:"stances events events questions" "stances artifacts artifacts questions" "moves moves moves moves";}
+.s2{grid-template-columns:1.15fr 1.15fr 1fr 1fr;grid-template-rows:auto 1fr auto;
+  grid-template-areas:"anti anti flow flow" "anti anti tuck tuck" "decide decide beyond toolkit";}
+
+.panel{background:var(--l);border:1.5px solid color-mix(in srgb,var(--d) 18%,transparent);border-radius:10px;overflow:hidden;
+  display:flex;flex-direction:column;min-height:0;box-shadow:0 2px 8px rgba(0,0,0,.07);}
+.panel>h2{margin:0;background:var(--d);color:#fff;font:600 14px var(--sans);padding:9px 14px;display:flex;align-items:center;gap:9px;flex:none;}
+.panel>h2 .n{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.18);font-size:10.5px;display:inline-flex;align-items:center;justify-content:center;}
+.panel>h2 small{margin-left:auto;font:500 8.5px var(--mono);letter-spacing:.1em;opacity:.65;text-transform:uppercase;}
+.pb{padding:10px 14px 12px;color:var(--d);flex:1;min-height:0;}
+.pb p{margin:0 0 6px;}
+.q{font:italic 18px/1.2 var(--serif);margin:0 0 8px;color:var(--d);}
+.lbl{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;opacity:.75;display:block;margin:0 0 3px;}
+
+/* white sub-cards inside panels */
+.cards{display:grid;gap:7px;}
+.card{background:rgba(255,255,255,.78);border-radius:6px;padding:9px 12px;border:1px solid color-mix(in srgb,var(--d) 12%,transparent);}
+.card b{display:block;font-size:13px;margin-bottom:1px;}
+.card i{display:block;font-style:normal;opacity:.8;}
+.card .ask{font:italic 14.5px/1.25 var(--serif);opacity:1;margin-top:2px;}
+
+table{width:100%;border-collapse:collapse;}
+th{font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;text-align:left;padding:6px 9px;border-bottom:1.5px solid color-mix(in srgb,var(--d) 30%,transparent);}
+td{padding:8px 9px;vertical-align:top;border-bottom:1px solid color-mix(in srgb,var(--d) 12%,transparent);}
+tr:last-child td{border-bottom:none;}
+td:first-child{font-weight:600;white-space:nowrap;}
+td.tb{font:500 11px var(--mono);white-space:nowrap;}
+.bad{color:#991B1B;}
+
+ul{margin:0;padding-left:15px;}
+li{margin-bottom:2px;}
+.qgroups{display:grid;gap:8px;align-content:space-between;}
+.qgroups ul{list-style:none;padding:0;}
+.qgroups li{font:italic 15px/1.3 var(--serif);padding-left:11px;position:relative;margin-bottom:1px;}
+.qgroups li::before{content:"";position:absolute;left:0;top:.6em;width:4px;height:4px;border-radius:50%;background:currentColor;opacity:.5;}
+
+.chips{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;}
+.chip{background:#fff;border-radius:8px;padding:8px 10px;border:1px solid var(--rule);border-top:3px solid var(--accent);color:var(--ink);}
+.chip b{display:block;font-size:13px;margin-bottom:2px;}
+.chip span{color:var(--muted);}
+
+.stages{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.stage{background:rgba(255,255,255,.78);border-radius:6px;padding:11px 13px;position:relative;}
+.stage b{font-size:14px;}
+.stage .lbl{margin-top:5px;}
+.arrowrow{display:flex;justify-content:space-between;font:500 8.5px var(--mono);letter-spacing:.1em;opacity:.6;margin:6px 2px 0;text-transform:uppercase;}
+
+.poker{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:3px 0 8px;}
+.poker div{background:#fff;border-radius:5px;text-align:center;padding:5px 2px;border:1px solid color-mix(in srgb,var(--d) 15%,transparent);}
+.poker b{display:block;font:600 14px var(--sans);}
+.poker span{font-size:10px;}
+.pyr{display:flex;flex-direction:column;align-items:center;gap:3px;margin-top:3px;}
+.pyr div{background:var(--d);color:#fff;text-align:center;padding:4px 6px;border-radius:3px;font-size:11px;}
+.pyr div:nth-child(1){width:44%;opacity:.55}.pyr div:nth-child(2){width:58%;opacity:.65}.pyr div:nth-child(3){width:72%;opacity:.75}
+.pyr div:nth-child(4){width:86%;opacity:.87}.pyr div:nth-child(5){width:100%;}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.cols3{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:12px;}
+.tk li{margin-bottom:5px;}
+.tk a{font-weight:600;text-decoration:none;border-bottom:1px solid color-mix(in srgb,currentColor 35%,transparent);}
+
+@media (max-width:1640px){
+  .sheet{width:auto;height:auto;max-width:1100px;}
+  .body,.s1,.s2{grid-template-columns:1fr 1fr;grid-template-rows:none;
+    grid-template-areas:none;}
+  .body>*{grid-area:auto !important;}
+  .wide{grid-column:1 / -1 !important;}
+  .chips{grid-template-columns:repeat(4,1fr);}
+}
+@media (max-width:720px){
+  body{padding:16px 0;}
+  .sheet{max-width:100%;}
+  .head h1{font-size:28px;}
+  .panel>h2 small{display:none;}
+  .tbl table{min-width:620px;}
+  .cards[style]{grid-template-columns:1fr !important;}
+  .body,.s1,.s2{grid-template-columns:1fr;padding:12px 16px;}
+  .head .side{position:static;text-align:left;margin-top:10px;}
+  .chips,.stages,.cols2,.cols3{grid-template-columns:1fr 1fr;}
+  .poker{grid-template-columns:repeat(4,1fr);}
+  .tbl{overflow-x:auto;}
+  .stages,.chips{grid-template-columns:1fr 1fr;}
+}
+@media print{
+  @page{size:A3 landscape;margin:0;}
+  html,body{background:none;}
+  body{padding:0;}
+  .sheet{width:420mm;height:297mm;margin:0;box-shadow:none;break-after:page;}
+  .sheet:last-child{break-after:auto;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+
+<!-- =============================== SIDE 1 =============================== -->
+<section class="sheet">
+  <header class="head">
+    <h1>Scrum Master &amp; Agile Coach Cheat Sheet</h1>
+    <p>Stances, events, questions and facilitation moves to keep within reach.</p>
+    <div class="side"><span class="badge">PRODUCT OPERATING MODEL 2.0</span><div>SIDE 1 OF 2 · THE STANCES &amp; THE EVENTS</div></div>
+  </header>
+
+  <div class="body s1">
+    <section class="panel" style="grid-area:stances;--d:#581C87;--l:#EDE9FE">
+      <h2><span class="n">1</span>Coaching Stances<small>Pick on purpose</small></h2>
+      <div class="pb">
+        <p class="q">Which stance does this moment need?</p>
+        <div class="cards">
+          <div class="card"><b>Teacher</b><i>The team lacks knowledge of a practice or of Scrum itself.</i><span class="ask">“Would it help if I explained how this usually works?”</span></div>
+          <div class="card"><b>Mentor</b><i>Someone is growing into a role, and your experience helps.</i><span class="ask">“Here's what I've seen work. What fits you?”</span></div>
+          <div class="card"><b>Facilitator</b><i>The group needs a good process for a conversation or decision.</i><span class="ask">“How should we use this time together?”</span></div>
+          <div class="card"><b>Coach</b><i>The answer lives with them. Your job is to help them find it.</i><span class="ask">“What options do you see?”</span></div>
+          <div class="card"><b>Observer</b><i>The team is capable. Step back and let them own it.</i><span class="ask">“What would happen if I said nothing?”</span></div>
+        </div>
+        <p style="margin-top:8px;opacity:.8">Default to <b>coach</b> and <b>observer</b>. Teach only when asked or when the team is truly stuck.</p>
+      </div>
+    </section>
+
+    <section class="panel wide" style="grid-area:events;--d:#1E3A8A;--l:#DBEAFE">
+      <h2><span class="n">2</span>Scrum Events at a Glance<small>Timeboxes for a 1-month sprint · shorter sprints scale down</small></h2>
+      <div class="pb tbl">
+        <table>
+          <thead><tr><th>Event</th><th>Timebox</th><th>Purpose</th><th>Output</th><th>Warning sign</th></tr></thead>
+          <tbody>
+            <tr><td>Sprint</td><td class="tb">≤ 1 month</td><td>Container for all the work toward the Sprint Goal</td><td>A usable, Done increment</td><td class="bad">Goal changes mid-sprint; scope keeps growing</td></tr>
+            <tr><td>Sprint Planning</td><td class="tb">≤ 8 h</td><td>Why this sprint? What can be Done? How will we do it?</td><td>Sprint Goal + Sprint Backlog</td><td class="bad">Planning is just dragging tickets in, with no goal</td></tr>
+            <tr><td>Daily Scrum</td><td class="tb">15 min</td><td>Inspect progress toward the Sprint Goal, adapt the plan</td><td>An updated plan for the next 24 h</td><td class="bad">Status report to the SM; no one mentions the goal</td></tr>
+            <tr><td>Sprint Review</td><td class="tb">≤ 4 h</td><td>Inspect the increment with stakeholders, adapt the backlog</td><td>A revised Product Backlog</td><td class="bad">A one-way demo with no feedback or backlog change</td></tr>
+            <tr><td>Retrospective</td><td class="tb">≤ 3 h</td><td>Inspect how we work: people, process, tools, Done</td><td>Improvements for the next sprint</td><td class="bad">Same issues every time; actions never happen</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel wide" style="grid-area:artifacts;--d:#065F46;--l:#D1FAE5">
+      <h2><span class="n">3</span>Artifacts &amp; Their Commitments<small>Each artifact has one commitment</small></h2>
+      <div class="pb">
+        <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+          <div class="card"><span class="lbl">Product Backlog</span><b>→ Product Goal</b><i>The long-term objective the backlog serves. Ordered and refined, and owned by the Product Owner.</i><span class="ask">“Which item moves us closest to the Product Goal?”</span></div>
+          <div class="card"><span class="lbl">Sprint Backlog</span><b>→ Sprint Goal</b><i>The single objective for the sprint. Owned by the Developers, and flexible in scope, not in goal.</i><span class="ask">“If we only finish half, what must be in it?”</span></div>
+          <div class="card"><span class="lbl">Increment</span><b>→ Definition of Done</b><i>The quality bar every increment meets. Work that isn't Done isn't released or reviewed.</i><span class="ask">“Could we release this today?”</span></div>
+        </div>
+        <div class="cols2" style="margin-top:9px">
+          <div><span class="lbl">Accountabilities</span><b>Product Owner</b> maximises value and orders the backlog · <b>Developers</b> build a Done increment and own the plan · <b>Scrum Master</b> makes Scrum effective for the team and the organisation.</div>
+          <div><span class="lbl">Pillars &amp; values</span><b>Transparency → Inspection → Adaptation.</b> Commitment · Focus · Openness · Respect · Courage. When a pillar breaks, ask which value is missing.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" style="grid-area:questions;--d:#9A3412;--l:#FFEDD5">
+      <h2><span class="n">4</span>Powerful Questions<small>Open &amp; curious</small></h2>
+      <div class="pb qgroups">
+        <div><span class="lbl">When the team is stuck</span><ul><li>What have you already tried?</li><li>What's the smallest next step?</li><li>What would you do if you knew it couldn't fail?</li><li>Who could help with this?</li></ul></div>
+        <div><span class="lbl">Clarifying goals</span><ul><li>What does success look like?</li><li>How will we know we're done?</li><li>Why does this matter to the customer?</li></ul></div>
+        <div><span class="lbl">In conflict</span><ul><li>What do you both agree on?</li><li>What's the need behind that position?</li><li>What would a good outcome be for everyone?</li></ul></div>
+        <div><span class="lbl">After a setback</span><ul><li>What did we learn?</li><li>What was within our control?</li><li>What would we do differently next time?</li></ul></div>
+        <div><span class="lbl">In a 1:1</span><ul><li>What's on your mind?</li><li>And what else?</li><li>What do you want from me?</li><li>What was most useful today?</li></ul></div>
+      </div>
+    </section>
+
+    <section class="panel wide" style="grid-area:moves;--d:#1E293B;--l:#F1F5F9">
+      <h2><span class="n">5</span>Facilitation Moves<small>Reach for these when a conversation needs structure</small></h2>
+      <div class="pb">
+        <div class="chips">
+          <div class="chip"><b>Silent writing</b><span>Before discussion, so every voice gets on the wall.</span></div>
+          <div class="chip"><b>1-2-4-All</b><span>Alone, pairs, fours, then all. Fast, inclusive idea generation.</span></div>
+          <div class="chip"><b>Dot voting</b><span>3 dots each to prioritise quickly and visibly.</span></div>
+          <div class="chip"><b>Fist of five</b><span>Check confidence or agreement. Explore any 1s and 2s.</span></div>
+          <div class="chip"><b>Timebox</b><span>A visible timer keeps energy and focus.</span></div>
+          <div class="chip"><b>Parking lot</b><span>Capture off-topic items without losing them.</span></div>
+          <div class="chip"><b>Round-robin</b><span>Everyone speaks in turn when a few voices dominate.</span></div>
+          <div class="chip"><b>ROTI</b><span>Return on time invested, 1–5. Close every session with it.</span></div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer class="foot"><span class="fq">“The Scrum Master is accountable for the Scrum Team's effectiveness.”</span><span>Scrum Guide 2020 · Kanban Guide · Coaching Agile Teams · POM 2.0</span></footer>
+</section>
+
+<!-- =============================== SIDE 2 =============================== -->
+<section class="sheet">
+  <header class="head">
+    <h1>Diagnose &amp; Improve</h1>
+    <p>Spot anti-patterns, read flow, support team growth, and coach beyond the team.</p>
+    <div class="side"><span class="badge">PRODUCT OPERATING MODEL 2.0</span><div>SIDE 2 OF 2 · DIAGNOSING &amp; IMPROVING</div></div>
+  </header>
+
+  <div class="body s2">
+    <section class="panel wide" style="grid-area:anti;--d:#991B1B;--l:#FEE2E2">
+      <h2><span class="n">6</span>Anti-Patterns → What to Try<small>Experiment, don't impose</small></h2>
+      <div class="pb tbl">
+        <table>
+          <thead><tr><th>You notice…</th><th>Try…</th></tr></thead>
+          <tbody>
+            <tr><td>Daily Scrum is a status report to you</td><td>Step out of the centre or stay silent. Walk the board right to left. Ask “How are we tracking toward the Sprint Goal?”</td></tr>
+            <tr><td>The Sprint Goal is a list of tickets</td><td>Ask “Why does this sprint matter?” Write one outcome sentence and use it to decide scope trade-offs.</td></tr>
+            <tr><td>Retro actions never happen</td><td>Cap actions at 1–3, each with an owner, put them in the Sprint Backlog, and review them first at the next retro.</td></tr>
+            <tr><td>The Product Owner is unavailable</td><td>Agree regular PO time. Make the cost of waiting visible. Coach the PO on delegating to the team.</td></tr>
+            <tr><td>Review is a demo with no feedback</td><td>Invite real users. Ask questions, not for applause. Update the backlog live in the room.</td></tr>
+            <tr><td>Work carries over every sprint</td><td>Limit WIP. Split items smaller. Watch work item age, and swarm on the oldest item.</td></tr>
+            <tr><td>“Done” means “dev done”</td><td>Strengthen the Definition of Done to include test and deploy. Make undone work visible.</td></tr>
+            <tr><td>The team keeps waiting on others</td><td>Visualise dependencies. Raise them at Scrum of Scrums or ART Sync. Look for ways to cut the dependency.</td></tr>
+            <tr><td>The SM is the team's secretary</td><td>Hand events and tools back to the team. Make your coaching work visible, and say no to admin.</td></tr>
+            <tr><td>Silence in retros</td><td>Change the format. Use silent writing and a safety check (1–5). Ask what would make it safe to speak.</td></tr>
+            <tr><td>Estimates used as commitments</td><td>Talk about forecasts and ranges. Use throughput to forecast instead of debating points.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel wide" style="grid-area:flow;--d:#0C4A6E;--l:#E0F2FE">
+      <h2><span class="n">7</span>Flow Metrics<small>Use to learn, never to judge</small></h2>
+      <div class="pb">
+        <div class="cards" style="grid-template-columns:repeat(4,1fr)">
+          <div class="card"><span class="lbl">WIP</span><b>Items started, not finished</b><i>High WIP means slow flow. Stop starting, start finishing.</i></div>
+          <div class="card"><span class="lbl">Throughput</span><b>Items finished per week</b><i>Use it to forecast. “How many?” and “When?”</i></div>
+          <div class="card"><span class="lbl">Work item age</span><b>Time since an item started</b><i>An early warning. Discuss the oldest item at the Daily Scrum.</i></div>
+          <div class="card"><span class="lbl">Cycle time</span><b>Start → done, per item</b><i>Use the 85th percentile for a forecast: “85% of items finish in 6 days or less.”</i></div>
+        </div>
+        <p style="margin-top:8px"><b>Don't</b> compare teams, set individual targets, or turn metrics into goals. Once a measure becomes a target, it stops being a good measure (Goodhart's law).</p>
+      </div>
+    </section>
+
+    <section class="panel wide" style="grid-area:tuck;--d:#14532D;--l:#DCFCE7">
+      <h2><span class="n">8</span>Team Development<small>Tuckman · your stance shifts as the team grows</small></h2>
+      <div class="pb">
+        <div class="stages">
+          <div class="stage"><b>Forming</b><span class="lbl">Looks like</span>Polite, unclear roles, depends on the leader<span class="lbl">You</span>Teach and set structure. Agree working agreements and a Definition of Done.</div>
+          <div class="stage"><b>Storming</b><span class="lbl">Looks like</span>Conflict, pushback, frustration<span class="lbl">You</span>Facilitate conflict and make disagreement safe. Return to agreements.</div>
+          <div class="stage"><b>Norming</b><span class="lbl">Looks like</span>Shared ways of working, growing trust<span class="lbl">You</span>Coach. Step back, strengthen ownership, raise the bar.</div>
+          <div class="stage"><b>Performing</b><span class="lbl">Looks like</span>Self-managing, high trust, delivering<span class="lbl">You</span>Observe. Offer stretch goals, and protect the team from disruption.</div>
+        </div>
+        <div class="arrowrow"><span>Teacher</span><span>→ Facilitator</span><span>→ Coach</span><span>→ Observer</span></div>
+        <p style="margin:6px 0 0;opacity:.85">Any change in membership resets the cycle. Expect some forming again, and plan for it.</p>
+        <span class="lbl" style="margin-top:12px">Signals of a healthy team · check these in 1:1s and retros</span>
+        <div class="cards" style="grid-template-columns:repeat(5,1fr)">
+          <div class="card"><b>Safe to speak</b><i>People raise bad news and ask for help early.</i></div>
+          <div class="card"><b>One clear goal</b><i>Everyone can state the Sprint Goal without looking.</i></div>
+          <div class="card"><b>Healthy conflict</b><i>Ideas get challenged, and people don't get attacked.</i></div>
+          <div class="card"><b>Swarming</b><i>People help finish work rather than starting more.</i></div>
+          <div class="card"><b>Owning Done</b><i>The team holds itself to the Definition of Done.</i></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel wide" style="grid-area:decide;--d:#92400E;--l:#FEF3C7">
+      <h2><span class="n">9</span>Decisions &amp; Conflict<small>Make how we decide explicit</small></h2>
+      <div class="pb cols3">
+        <div>
+          <span class="lbl">Delegation poker · who decides?</span>
+          <div class="poker">
+            <div><b>1</b><span>Tell</span></div><div><b>2</b><span>Sell</span></div><div><b>3</b><span>Consult</span></div><div><b>4</b><span>Agree</span></div>
+            <div><b>5</b><span>Advise</span></div><div><b>6</b><span>Inquire</span></div><div><b>7</b><span>Delegate</span></div>
+          </div>
+          <p>Agree the level for recurring decisions (tools, hiring, architecture) and post it as a delegation board.</p>
+        </div>
+        <div>
+          <span class="lbl">Fast agreement</span>
+          <p><b>Decider:</b> the proposer states one clear proposal, then everyone votes at once: <b>yes</b>, <b>support it</b> or <b>no</b>.</p>
+          <p>For any <b>no</b>, ask “What would it take to get you in?” Then adjust and re-vote, or drop it.</p>
+          <p><b>Disagree &amp; commit:</b> once a decision is made, everyone supports it, and it gets reviewed on a set date.</p>
+        </div>
+        <div>
+          <span class="lbl">Five dysfunctions · fix from the bottom</span>
+          <div class="pyr"><div>Inattention to results</div><div>Avoidance of accountability</div><div>Lack of commitment</div><div>Fear of conflict</div><div>Absence of trust</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" style="grid-area:beyond;--d:#1E3A8A;--l:#DBEAFE">
+      <h2><span class="n">10</span>Beyond the Team<small>Coaching the system</small></h2>
+      <div class="pb">
+        <span class="lbl">ART events</span>
+        <p><b>PI Planning</b> · <b>ART Sync</b> / Scrum of Scrums · <b>System Demo</b> · <b>Inspect &amp; Adapt</b>. Help teams turn shared impediments into improvement items.</p>
+        <span class="lbl">Coach the system</span>
+        <p>Map the value stream, visualise dependencies across teams, and measure flow end-to-end, not just within a team.</p>
+        <span class="lbl">Influence leaders</span>
+        <p>Bring data and frame it in business outcomes. Propose small experiments. Make impediments visible and ask for one decision.</p>
+      </div>
+    </section>
+
+    <section class="panel" style="grid-area:toolkit;--d:#9A3412;--l:#FFEDD5">
+      <h2><span class="n">11</span>Your Toolkit<small>Which board when</small></h2>
+      <div class="pb tk">
+        <ul>
+          <li><a href="team-health-check-board.html">Team Health Check</a>: every PI, to diagnose and spot trends</li>
+          <li><a href="marginal-gains-workshop-board-sprint.html">Marginal Gains</a>: to find friction across the whole system</li>
+          <li><a href="experiment-canvas.html">1% Experiment Canvas</a>: to make one idea testable</li>
+          <li><a href="retro-board-start-stop-continue-sprint.html">Retro Kit</a>: rotate Start·Stop·Continue, 4 Ls, Mad·Sad·Glad, Sailboat</li>
+          <li><a href="lean-coffee-board.html">Lean Coffee</a>: open, participant-led conversations</li>
+        </ul>
+        <p style="margin-top:6px;opacity:.8">Every board has a facilitator guide. See <a href="index.html">index.html</a>.</p>
+      </div>
+    </section>
+  </div>
+  <footer class="foot"><span class="fq">“Stop starting, start finishing.”</span><span>Tuckman · Lencioni · Management 3.0 · Core Protocols · SAFe ART events · POM 2.0</span></footer>
+</section>
+
+</body>
+</html>
