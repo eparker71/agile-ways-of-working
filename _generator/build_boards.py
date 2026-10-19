@@ -1472,6 +1472,492 @@ def build_sprint_review():
                 "feedback, changes in context, backlog changes (add, change, remove), and next steps.", "\n".join(b))
 
 
+# ---------------------------------------------------------------- project & program helpers
+
+PROJECT_TAG = "Run a Project · Stakeholders · Forecasts · Risks"
+PROGRAM_TAG = "Coordinate Teams · Shared Outcomes · Manage Dependencies"
+
+
+def rot_label(x, y, s, fill=INK):
+    return (f'<text transform="translate({x:g},{y:g}) rotate(-90)" text-anchor="middle" font-family="{MONO}" '
+            f'font-size="9" font-weight="600" fill="{fill}" letter-spacing=".12em">{escape(s)}</text>')
+
+
+def quad_grid(gx0, gy0, gx1, gy1, quads, x_lo, x_hi, x_name, y_name):
+    """2×2 grid. quads: (name, sub, color) for top-left, top-right, bottom-left, bottom-right."""
+    mx, my = (gx0 + gx1) / 2, (gy0 + gy1) / 2
+    out = []
+    for (qx, qy), (name, sub, (dk, lt)) in zip([(gx0, gy0), (mx, gy0), (gx0, my), (mx, my)], quads):
+        out.append(R(qx + 2, qy + 2, mx - gx0 - 4, my - gy0 - 4, lt, 6))
+        out.append(R(qx + 2, qy + 2, mx - gx0 - 4, my - gy0 - 4, "url(#dots)", 6))
+        out.append(T(qx + 16, qy + 28, name, 15, dk, weight=600))
+        out.append(T(qx + 16, qy + 46, sub, 10, dk, op=".75"))
+    out += [L(gx0, gy1, gx1, gy1, INK, 1.5), L(gx0, gy0, gx0, gy1, INK, 1.5),
+            T(gx0, gy1 + 22, x_lo, 9, MUTED, MONO, ls=".12em"),
+            T(gx1, gy1 + 22, x_hi, 9, MUTED, MONO, anchor="end", ls=".12em"),
+            T(mx, gy1 + 22, x_name, 9, INK, MONO, weight=600, anchor="middle", ls=".12em"),
+            rot_label(gx0 - 22, my, y_name)]
+    return "".join(out)
+
+
+def slider(x, y, w, name, color, lo="FLEX", hi="FIXED"):
+    out = [T(x, y + 4, name, 12, color, weight=600),
+           T(x + 120, y + 4, lo, 8.5, color, MONO, op=".6", ls=".1em"),
+           T(x + w, y + 4, hi, 8.5, color, MONO, anchor="end", op=".6", ls=".1em")]
+    tx0, tx1 = x + 162, x + w - 50
+    out.append(L(tx0, y, tx1, y, color, 2, ' stroke-opacity=".25"'))
+    for i in range(5):
+        cx = tx0 + i * (tx1 - tx0) / 4
+        out.append(f'<circle cx="{cx:g}" cy="{y}" r="8" fill="white" stroke="{color}" stroke-opacity=".5" stroke-width="1.5"/>')
+    return "".join(out)
+
+
+def kanban_cols(x, y, w, h, names, color, gap=10):
+    """Labelled sticky columns inside a panel body. names: (title, sub)."""
+    cw = (w - (len(names) - 1) * gap) / len(names)
+    out = []
+    for i, (name, sub) in enumerate(names):
+        cx = x + i * (cw + gap)
+        out.append(T(cx + 6, y + 14, name, 13, color, weight=600))
+        out.append(T(cx + 6, y + 30, sub, 9.5, color, op=".7"))
+        out.append(sticky_zone(cx, y + 40, cw, h - 40, color, "Stickies", chips=(YELLOW,)))
+    return "".join(out)
+
+
+# ---------------------------------------------------------------- project kickoff
+
+def build_project_kickoff():
+    b = [header("Project Kickoff",
+                "Agree why the project exists, what's in and out, what can flex, and who's involved, before the first iteration.",
+                "Run a Project · Inception · Scope In & Out · Trade-off Sliders · First Milestones",
+                header_fields(["Project", "Sponsor"]))]
+
+    y, h = 148, 260
+    x, w = 24, 808
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 1, "Why Are We Here?", PURPLE, "THE PROBLEM AND THE OUTCOME"))
+    for i, lead in enumerate(["We're doing this because…", "Success looks like…"]):
+        ly = y + 96 + i * 80
+        b.append(T(x + 18, ly, lead, 19, d, SERIF, italic=True))
+        b.append(L(x + 270, ly + 3, x + w - 18, ly + 3, d, 1, ' stroke-opacity=".25"'))
+        b.append(L(x + 18, ly + 38, x + w - 18, ly + 38, d, 1, ' stroke-opacity=".25"'))
+
+    x, w = 846, 810
+    b.append(panel(x, y, w, h, 2, "Scope", BLUE, "SAYING WHAT'S OUT MATTERS AS MUCH AS WHAT'S IN"))
+    hw = (w - 46) / 2
+    for i, (name, col) in enumerate([("In scope", EMERALD), ("Out of scope", RED)]):
+        cx = x + 18 + i * (hw + 10)
+        b.append(T(cx, y + 80, name, 13, col[0], weight=600))
+        b.append(lines(cx, y + 110, cx + hw, 5, 28))
+
+    y, h = 422, 300
+    x, w = 24, 808
+    d = ORANGE[0]
+    b.append(panel(x, y, w, h, 3, "Trade-off Sliders", ORANGE, "ONLY ONE CAN BE FULLY FIXED"))
+    b.append(T(x + 18, y + 78, "Mark one dot per row. If everything is fixed, nothing can give when plans change.",
+               10.5, d, italic=True, op=".75"))
+    for i, name in enumerate(["Scope", "Time", "Budget", "Quality", "Team size"]):
+        b.append(slider(x + 18, y + 116 + i * 38, w - 36, name, d))
+
+    x, w = 846, 397
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 4, "Constraints & Givens", SLATE))
+    b.append(bullets(x + 22, y + 74, ["Fixed dates, regulations, budgets", "Technology and platform choices"], d))
+    b.append(lines(x + 18, y + 136, x + w - 18, 6, 28))
+
+    x = 1257
+    d = SKY[0]
+    b.append(panel(x, y, w, h, 5, "People & Roles", SKY))
+    for i, f in enumerate(["Sponsor:", "Product owner:", "Delivery lead:", "Team(s):", "Key experts:", "Decision forum:"]):
+        b.append(field(x + 18, y + 88 + i * 34, f, x + w - 18, d))
+
+    y, h = 736, 324
+    x, w = 24, 534
+    d = RED[0]
+    b.append(panel(x, y, w, h, 6, "What Keeps Us Up at Night", RED, "TOP RISKS"))
+    b.append(bullets(x + 22, y + 74, ["What could stop or derail this?", "Move the big ones to the RAID Log"], d))
+    b.append(dashed(x + 10, x + w - 10, y + 110, d))
+    b.append(sticky_zone(x + 10, y + 116, w - 20, h - 128, d, chips=(YELLOW, PINK_ST)))
+
+    x = 572
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 7, "First Milestones", FOREST, "OUTCOMES, NOT TASKS"))
+    b.append(table(x + 18, y + 84, [("Milestone", 170), ("Outcome", 210), ("Target", w - 36 - 380)], 6, d, 34))
+
+    x, w = 1120, 536
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 8, "Next Steps", EMERALD))
+    for i, m in enumerate(["Team Charter for each team", "Product Vision Board", "Stakeholder Map",
+                           "Prioritised backlog and first slice", "Release Forecast", "RAID Log set up"]):
+        b.append(checkbox(x + 18, y + 86 + i * 30, m, d, 11))
+    b.append(field(x + 18, y + 284, "Next review of this board:", x + w - 18, d))
+
+    b.append(footer("What problem are we solving, and for whom?",
+                    "If we had to cut half the scope, what would we keep?", PROJECT_TAG))
+    write_board("project-kickoff-board", "Project Kickoff",
+                "A3 landscape project kickoff board: why we're here, scope in and out, trade-off sliders, constraints, "
+                "people and roles, top risks, first milestones, and next steps.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- stakeholder map
+
+def build_stakeholder_map():
+    b = [header("Stakeholder Map",
+                "See who affects or is affected by the work, how much they care, and how you'll keep each of them involved.",
+                "Run a Project · Influence vs. Interest · Engagement · Communication Plan",
+                legend([("sticky", YELLOW, "Yellow Sticky = Stakeholder"), ("sticky", PINK_ST, "Pink Sticky = Concern / Blocker")]))]
+
+    x, y, w, h = 24, 148, 900, 620
+    b.append(panel(x, y, w, h, 1, "Influence vs. Interest", BLUE, "ONE STICKY PER PERSON OR GROUP"))
+    b.append(quad_grid(x + 54, y + 70, x + w - 18, y + h - 52,
+                       [("Keep Satisfied", "High influence · low interest · consult on what matters to them", AMBER),
+                        ("Manage Closely", "High influence · high interest · involve in key decisions", RED),
+                        ("Monitor", "Low influence · low interest · light-touch updates", SLATE),
+                        ("Keep Informed", "Low influence · high interest · regular updates, invite feedback", EMERALD)],
+                       "LOW INTEREST", "HIGH INTEREST", "INTEREST →", "INFLUENCE →"))
+
+    x, w = 938, 718
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 2, "Stakeholder Register", PURPLE, "WHAT THEY WANT AND HOW WE ENGAGE"))
+    b.append(table(x + 18, y + 84, [("Stakeholder", 150), ("Wants / worries", 230), ("How & how often", 190),
+                                    ("Owner", w - 36 - 570)], 14, d, 36))
+
+    y, h = 782, 278
+    x, w = 24, 1082
+    d = SKY[0]
+    b.append(panel(x, y, w, h, 3, "Communication Plan", SKY, "RIGHT MESSAGE · RIGHT PEOPLE · RIGHT RHYTHM"))
+    b.append(table(x + 18, y + 84, [("Audience", 210), ("What they need", 300), ("Format", 190), ("Frequency", 170),
+                                    ("Owner", w - 36 - 870)], 5, d, 34))
+
+    x, w = 1120, 536
+    d = RED[0]
+    b.append(panel(x, y, w, h, 4, "Watch-outs", RED))
+    b.append(bullets(x + 22, y + 74, ["Who could block this, and why?", "Who is missing from the map?"], d))
+    b.append(dashed(x + 10, x + w - 10, y + 110, d))
+    b.append(sticky_zone(x + 10, y + 116, w - 20, h - 128, d, chips=(PINK_ST,)))
+
+    b.append(footer("Who will be affected by this, and have we asked them?",
+                    "Who could stop this, and what do they need from us?", PROJECT_TAG))
+    write_board("stakeholder-map-board", "Stakeholder Map",
+                "A3 landscape stakeholder map: influence vs. interest grid, stakeholder register, communication plan, "
+                "and watch-outs.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- release forecast
+
+def build_release_forecast():
+    b = [header("Release Forecast & Burn-up",
+                "Answer “when will it be done?” with a range, based on how fast the team actually finishes work.",
+                "Run a Project · Burn-up Chart · Throughput Forecasting · Ranges, Not Single Dates",
+                header_fields(["Release / scope", "Forecast date"]))]
+
+    x, y, w, h = 24, 148, 1082, 600
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 1, "Burn-up Chart", BLUE, "PLOT AFTER EVERY ITERATION"))
+    cx0, cy0, cx1, cy1 = x + 80, y + 76, x + w - 24, y + h - 72
+    b.append(R(cx0, cy0, cx1 - cx0, cy1 - cy0, "white", 4, f' stroke="{RULE}"'))
+    n = 12
+    for i in range(1, n):
+        gx = cx0 + i * (cx1 - cx0) / n
+        b.append(L(gx, cy0, gx, cy1, RULE, 1))
+    for j in range(1, 8):
+        gy = cy0 + j * (cy1 - cy0) / 8
+        b.append(L(cx0, gy, cx1, gy, RULE, 1))
+        b.append(L(cx0 - 40, gy, cx0 - 8, gy, WRITE, 1))
+    for i in range(n):
+        b.append(T(cx0 + (i + 0.5) * (cx1 - cx0) / n, cy1 + 18, str(i + 1), 10, MUTED, MONO, anchor="middle"))
+    b.append(L(cx0, cy1, cx1, cy1, INK, 1.5))
+    b.append(L(cx0, cy0, cx0, cy1, INK, 1.5))
+    b.append(T((cx0 + cx1) / 2, cy1 + 36, "ITERATION →", 9, INK, MONO, weight=600, anchor="middle", ls=".12em"))
+    b.append(rot_label(x + 22, (cy0 + cy1) / 2, "WORK DONE (ITEMS) →"))
+    ly = y + h - 18
+    for i, (lab, col, dash) in enumerate([("Total scope", PURPLE[0], ' stroke-dasharray="7,4"'), ("Done", EMERALD[0], ""),
+                                          ("Forecast range (fast / slow)", AMBER[0], ' stroke-dasharray="2,4"')]):
+        lx = cx0 + i * 240
+        b.append(L(lx, ly - 4, lx + 34, ly - 4, col, 2.5, dash))
+        b.append(T(lx + 42, ly, lab, 10.5, INK))
+
+    x, w = 1120, 536
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 2, "Throughput Data", EMERALD, "ITEMS FINISHED PER ITERATION"))
+    b.append(table(x + 18, y + 84, [("Iteration", 110), ("Done", 110), ("Added", 110), ("Total scope", w - 36 - 330)], 10, d, 34))
+    for i, f in enumerate(["Average per iteration:", "Slowest 3, average:", "Fastest 3, average:"]):
+        b.append(field(x + 18, y + 470 + i * 36, f, x + w - 18, d))
+
+    y, h = 762, 298
+    x, w = 24, 808
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 3, "The Forecast", AMBER, "REMAINING / RATE = ITERATIONS LEFT"))
+    b.append(field(x + 18, y + 88, "Remaining items (incl. expected growth):", x + 420, d))
+    b.append(table(x + 18, y + 136, [("Scenario", 160), ("Rate / iteration", 180), ("Iterations left", 180),
+                                     ("Date", w - 36 - 520)], 3, d, 36))
+    for i, s in enumerate(["Slow", "Likely", "Fast"]):
+        b.append(T(x + 24, y + 136 + 36 * (i + 1) - 2, s, 11, d, weight=600))
+
+    x, w = 846, 810
+    d = RED[0]
+    b.append(panel(x, y, w, h, 4, "What Would Change It", RED, "UPDATE THE FORECAST WHEN THESE MOVE"))
+    b.append(bullets(x + 22, y + 74, ["Scope growth · team changes · dependencies · item size changing",
+                                      "Share the range and the assumptions, not just the likely date"], d))
+    b.append(dashed(x + 10, x + w - 10, y + 110, d))
+    b.append(sticky_zone(x + 10, y + 116, w - 20, h - 172, d, chips=(YELLOW, PINK_ST)))
+    b.append(field(x + 18, y + h - 22, "Next forecast update:", x + w - 18, d))
+
+    b.append(footer("When will it be done? Here's the range, and here's what it depends on.",
+                    "What would have to be true for the fast forecast to happen?", PROJECT_TAG))
+    write_board("release-forecast-board", "Release Forecast & Burn-up",
+                "A3 landscape release forecast board: burn-up chart grid, throughput data table, slow / likely / fast "
+                "forecast, and the factors that would change it.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- RAID log
+
+def build_raid_log():
+    b = [header("RAID Log",
+                "Keep the project's risks, assumptions, issues and dependencies visible, owned and reviewed.",
+                "Run a Project · Risks · Assumptions · Issues · Dependencies · Review Every Iteration",
+                header_fields(["Project", "Last reviewed"]))]
+    w, h = 808, 449
+    blocks = [
+        (24, 148, "R", "Risks", RED, "MIGHT HAPPEN · RESPONSE: AVOID · REDUCE · TRANSFER · ACCEPT",
+         [("Risk", 250), ("Likelihood", 92), ("Impact", 80), ("Response", 216), ("Owner", w - 36 - 638)]),
+        (846, 148, "A", "Assumptions", AMBER, "BELIEVED TRUE · NOT YET PROVEN",
+         [("Assumption", 300), ("How we'll test it", 250), ("By when", 88), ("Owner", w - 36 - 638)]),
+        (24, 611, "I", "Issues", ORANGE, "HAPPENING NOW",
+         [("Issue", 250), ("Impact", 150), ("Action", 196), ("Owner", 80), ("Due", w - 36 - 676)]),
+        (846, 611, "D", "Dependencies", BLUE, "WE NEED FROM OTHERS · OTHERS NEED FROM US",
+         [("Dependency", 240), ("From → to", 150), ("Needed by", 100), ("Status", 100), ("Owner", w - 36 - 590)]),
+    ]
+    for x, y, letter, title, color, note, cols in blocks:
+        b.append(panel(x, y, w, h, letter, title, color, note))
+        b.append(table(x + 18, y + 84, cols, 10, color[0], 34))
+
+    b.append(footer("What's the risk we're not talking about?",
+                    "Which assumption, if wrong, would hurt us most?", PROJECT_TAG))
+    write_board("raid-log-board", "RAID Log",
+                "A3 landscape RAID log: tables for risks, assumptions, issues and dependencies, each with an owner.",
+                "\n".join(b))
+
+
+# ---------------------------------------------------------------- cross-team planning
+
+def build_cross_team_planning():
+    b = [header("Cross-Team Planning",
+                "Plan a period of work across several teams: shared objectives, each team's plan, milestones and risks.",
+                "Coordinate Teams · Big-Room Planning (SAFe: PI Planning) · Shared Objectives · Team Plans",
+                header_fields(["Group", "Planning period"]))]
+
+    y, h = 148, 236
+    x, w = 24, 808
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 1, "Shared Objectives", PURPLE, "WHAT WE'LL ACHIEVE TOGETHER"))
+    b.append(table(x + 18, y + 84, [("Objective", 420), ("Value (1–10)", 120), ("Teams", w - 36 - 540)], 4, d, 34))
+
+    x, w = 846, 810
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 2, "Context & Constraints", SLATE))
+    for i, f in enumerate(["Product vision / goal:", "Fixed dates & events:", "Capacity changes (holidays, hiring):",
+                           "Platform or architecture changes:"]):
+        b.append(field(x + 18, y + 90 + i * 36, f, x + w - 18, d))
+
+    # 3 team plans grid
+    x, y, w, h = 24, 398, 1632, 500
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 3, "Team Plans", BLUE, "ONE ROW PER TEAM · STICKIES IN THE ITERATION THEY'LL BE DONE"))
+    gx0, gy0 = x + 14, y + 64
+    label_w, risk_w = 170, 230
+    it_w = (w - 28 - label_w - risk_w) / 5
+    heads = [f"ITERATION {i + 1}" for i in range(5)]
+    for i, hd in enumerate(heads):
+        cx = gx0 + label_w + i * it_w
+        b.append(T(cx + 10, gy0 + 14, hd, 9, d, MONO, weight=600, ls=".12em"))
+        b.append(L(cx + 10, gy0 + 30, cx + it_w - 10, gy0 + 30, WRITE, 1))
+    b.append(T(gx0 + label_w + 5 * it_w + 10, gy0 + 14, "RISKS & NEEDS", 9, RED[0], MONO, weight=600, ls=".12em"))
+    rows = ["Milestones"] + [f"Team {i}" for i in range(1, 6)]
+    rh = (h - 64 - 44 - 12) / 6
+    for r, name in enumerate(rows):
+        ry = gy0 + 44 + r * rh
+        is_ms = r == 0
+        b.append(R(gx0, ry, label_w - 8, rh - 6, "white" if not is_ms else AMBER[1], 6,
+                   f' stroke="{d}" stroke-opacity=".15"'))
+        b.append(T(gx0 + 12, ry + 22, name, 12, AMBER[0] if is_ms else d, weight=600))
+        if not is_ms:
+            b.append(L(gx0 + 12, ry + rh - 18, gx0 + label_w - 20, ry + rh - 18, WRITE, 1))
+        for i in range(5):
+            cx = gx0 + label_w + i * it_w
+            if is_ms:
+                mx = cx + it_w / 2
+                b.append(f'<path d="M{mx:g},{ry + 8:g} l9,9 -9,9 -9,-9 z" fill="none" stroke="{AMBER[0]}" stroke-opacity=".5" stroke-width="1.5"/>')
+            else:
+                b.append(R(cx + 4, ry, it_w - 8, rh - 6, "url(#dots)", 4,))
+                b.append(R(cx + 4, ry, it_w - 8, rh - 6, "white", 4, f' fill-opacity=".45" stroke="{d}" stroke-opacity=".12"'))
+        rx = gx0 + label_w + 5 * it_w
+        b.append(R(rx + 4, ry, risk_w - 4, rh - 6, RED[1], 4, f' stroke="{RED[0]}" stroke-opacity=".15"'))
+
+    y, h = 912, 148
+    x, w = 24, 534
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 4, "Confidence Vote", FOREST, "FIST OF FIVE"))
+    for i in range(5):
+        cx = x + 60 + i * 100
+        b.append(f'<circle cx="{cx}" cy="{y + 94}" r="16" fill="white" stroke="{d}" stroke-opacity=".5" stroke-width="1.5"/>')
+        b.append(T(cx, y + 100, str(i + 1), 13, d, weight=600, anchor="middle"))
+    b.append(T(x + 18, y + 134, "Anyone at 1–2? Explore, adjust the plan, re-vote.", 10, d, italic=True, op=".75"))
+
+    x = 572
+    d = RED[0]
+    b.append(panel(x, y, w, h, 5, "Risks to the Plan", RED))
+    b.append(lines(x + 18, y + 86, x + w - 18, 3, 24))
+
+    x, w = 1120, 536
+    d = SKY[0]
+    b.append(panel(x, y, w, h, 6, "Capacity Split", SKY, "AGREE IT UP FRONT"))
+    for i, f in enumerate(["Features %:", "Tech debt & enablers %:", "Unplanned buffer %:"]):
+        b.append(field(x + 18, y + 84 + i * 26, f, x + w - 18, d))
+
+    b.append(footer("What will we achieve together that no team could achieve alone?",
+                    "Which dependency, if it slips, takes the plan with it?", PROGRAM_TAG))
+    write_board("cross-team-planning-board", "Cross-Team Planning",
+                "A3 landscape cross-team planning board: shared objectives, context and constraints, a team-by-iteration "
+                "plan with milestones and risks, a confidence vote, risks to the plan, and the capacity split.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- dependency map
+
+def build_dependency_map():
+    b = [header("Dependency Map",
+                "Make cross-team dependencies visible: who needs what from whom, by when, and which ones are at risk.",
+                "Coordinate Teams · Dependency Board · Red String · Reduce, Don't Just Manage",
+                legend([("sticky", YELLOW, "Yellow = Work item"), ("sticky", BLUE_ST, "Blue = Dependency"),
+                        ("sticky", PINK_ST, "Pink = At risk"), ("dot", RED[0], "Red string = link")]))]
+
+    x, y, w, h = 24, 148, 1632, 600
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 1, "Dependency Board", BLUE, "PLACE THE ITEM WHERE IT'S NEEDED · LINK IT TO WHO PROVIDES IT"))
+    gx0, gy0 = x + 14, y + 64
+    label_w = 170
+    cols = [f"ITERATION {i + 1}" for i in range(5)] + ["LATER"]
+    it_w = (w - 28 - label_w) / len(cols)
+    for i, hd in enumerate(cols):
+        cx = gx0 + label_w + i * it_w
+        b.append(T(cx + 10, gy0 + 14, hd, 9, d, MONO, weight=600, ls=".12em"))
+    rows = [f"Team {i}" for i in range(1, 7)]
+    rh = (h - 64 - 28 - 12) / len(rows)
+    for r, name in enumerate(rows):
+        ry = gy0 + 28 + r * rh
+        b.append(R(gx0, ry, label_w - 8, rh - 6, "white", 6, f' stroke="{d}" stroke-opacity=".15"'))
+        b.append(T(gx0 + 12, ry + 22, name, 12, d, weight=600))
+        b.append(L(gx0 + 12, ry + rh - 18, gx0 + label_w - 20, ry + rh - 18, WRITE, 1))
+        for i in range(len(cols)):
+            cx = gx0 + label_w + i * it_w
+            b.append(R(cx + 4, ry, it_w - 8, rh - 6, "url(#dots)", 4))
+            b.append(R(cx + 4, ry, it_w - 8, rh - 6, "white", 4, f' fill-opacity=".45" stroke="{d}" stroke-opacity=".12"'))
+
+    y, h = 762, 298
+    x, w = 24, 1082
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 2, "Dependency Register", PURPLE, "ONE ROW PER DEPENDENCY"))
+    b.append(table(x + 18, y + 84, [("#", 40), ("Needed by", 150), ("Provided by", 150), ("What", 330), ("By when", 120),
+                                    ("Status", 130), ("Owner", w - 36 - 920)], 5, d, 34))
+    b.append(T(x + 18, y + h - 16, "Status: agreed · at risk · blocked · done", 9, d, MONO, op=".6", ls=".08em"))
+
+    x, w = 1120, 536
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 3, "Reduce Dependencies", FOREST, "BEST DEPENDENCY = NO DEPENDENCY"))
+    for i, m in enumerate(["Could the team do it themselves (skills, access)?", "Could we re-order the work so it's needed later?",
+                           "Could a stub, mock or contract unblock us?", "Does it keep happening? Change team boundaries"]):
+        b.append(checkbox(x + 18, y + 86 + i * 30, m, d, 11))
+    b.append(field(x + 18, y + 230, "Top dependency to remove:", x + w - 18, d))
+    b.append(field(x + 18, y + 264, "Owner:", x + w - 18, d))
+
+    b.append(footer("Who are we waiting on, and do they know?",
+                    "Which dependency could we remove instead of managing?", PROGRAM_TAG))
+    write_board("dependency-map-board", "Dependency Map",
+                "A3 landscape dependency map: a team-by-iteration dependency board, a dependency register, and ways to "
+                "reduce dependencies.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- OKRs
+
+def build_okr():
+    b = [header("Objectives & Key Results",
+                "Agree a few ambitious outcomes, how you'll measure them, and the bets teams will make to move them.",
+                "Coordinate Teams · OKRs · Outcomes Over Output · Confidence Check-ins",
+                header_fields(["Group / team", "Period"]))]
+
+    x, y, w, h = 24, 148, 1632, 120
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, None, "Focus for This Period", SLATE, "WHY THESE OBJECTIVES, AND WHY NOW?"))
+    b.append(L(x + 18, y + 92, x + w - 18, y + 92, WRITE))
+
+    y, h, w = 282, 600, 534
+    for i, color in enumerate([PURPLE, BLUE, EMERALD]):
+        x = 24 + i * 548
+        w_ = w if i < 2 else 536
+        d = color[0]
+        b.append(panel(x, y, w_, h, i + 1, f"Objective {i + 1}", color, "QUALITATIVE · INSPIRING"))
+        b.append(T(x + 18, y + 94, "We will…", 19, d, SERIF, italic=True))
+        b.append(L(x + 110, y + 97, x + w_ - 18, y + 97, d, 1, ' stroke-opacity=".25"'))
+        b.append(L(x + 18, y + 132, x + w_ - 18, y + 132, d, 1, ' stroke-opacity=".25"'))
+        b.append(T(x + 18, y + 172, "KEY RESULTS · MEASURABLE OUTCOMES", 9, d, MONO, weight=600, ls=".12em"))
+        b.append(table(x + 18, y + 200, [("Key result", 230), ("Start", 70), ("Target", 70), ("Conf.", w_ - 36 - 370)], 3, d, 34))
+        b.append(field(x + 18, y + 342, "Teams contributing:", x + w_ - 18, d))
+        b.append(T(x + 18, y + 382, "Initiatives: the bets we'll make", 11, d, weight=600))
+        b.append(sticky_zone(x + 10, y + 392, w_ - 20, h - 404, d, chips=(YELLOW,)))
+
+    y, h = 896, 164
+    x, w = 24, 808
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 4, "Check-in Rhythm", AMBER, "CONFIDENCE 1–10 · SCORE 0–1.0 AT THE END"))
+    for i, f in enumerate(["Weekly confidence check:", "Mid-period review:", "End-of-period scoring:"]):
+        b.append(field(x + 18, y + 84 + i * 28, f, x + w - 18, d))
+
+    x, w = 846, 810
+    d = RED[0]
+    b.append(panel(x, y, w, h, 5, "Not Doing This Period", RED, "FOCUS MEANS SAYING NO"))
+    b.append(lines(x + 18, y + 90, x + w - 18, 3, 26))
+
+    b.append(footer("If we achieved only one of these, which would matter most?",
+                    "How will we know, without asking anyone, that we've succeeded?", PROGRAM_TAG))
+    write_board("okr-board", "Objectives & Key Results",
+                "A3 landscape OKR board: focus statement, three objectives each with key results, confidence and "
+                "initiatives, a check-in rhythm, and a not-doing list.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- cross-team sync
+
+def build_cross_team_sync():
+    b = [header("Cross-Team Sync",
+                "A short, regular check across teams: progress toward shared objectives, dependencies, and what's blocking whom.",
+                "Coordinate Teams · Scrum of Scrums · Cross-Team Impediments · 15–30 Minutes",
+                header_fields(["Group", "Date"]))]
+
+    x, y, w, h = 24, 148, 1632, 460
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 1, "Team Updates", BLUE, "ONE PERSON PER TEAM · ABOUT 2 MINUTES EACH"))
+    b.append(table(x + 18, y + 84, [("Team", 150), ("Progress toward shared objectives", 380), ("Next up", 280),
+                                    ("Blocked by / needs", 300), ("Dependencies at risk", 300),
+                                    ("Conf. 1–5", w - 36 - 1410)], 6, d, 58))
+
+    x, y, w, h = 24, 622, 1082, 438
+    d = ORANGE[0]
+    b.append(panel(x, y, w, h, 2, "Cross-Team Impediments", ORANGE, "PROBLEMS NO SINGLE TEAM CAN SOLVE"))
+    b.append(kanban_cols(x + 10, y + 64, w - 20, h - 76,
+                         [("New", "Raised today"), ("Being worked", "Has an owner and a next step"),
+                          ("Resolved", "Say what fixed it")], d))
+
+    x, w = 1120, 536
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 3, "Decisions & Actions", FOREST))
+    b.append(table(x + 18, y + 84, [("Decision / action", 290), ("Owner", 110), ("Due", w - 36 - 400)], 9, d, 34))
+
+    b.append(footer("What's blocking another team that we could help with today?",
+                    "Are we still on track for the shared objectives?", PROGRAM_TAG))
+    write_board("cross-team-sync-board", "Cross-Team Sync",
+                "A3 landscape cross-team sync board: team updates table, cross-team impediments (new, being worked, "
+                "resolved), and decisions and actions.", "\n".join(b))
+
+
 if __name__ == "__main__":
     for horizon in ("sprint", "quarter"):
         build_retros(horizon)
@@ -1488,3 +1974,11 @@ if __name__ == "__main__":
     build_prioritisation()
     build_sprint_planning()
     build_sprint_review()
+    build_project_kickoff()
+    build_stakeholder_map()
+    build_release_forecast()
+    build_raid_log()
+    build_cross_team_planning()
+    build_dependency_map()
+    build_okr()
+    build_cross_team_sync()

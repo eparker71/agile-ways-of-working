@@ -33,6 +33,14 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | Prioritisation Board | `prioritisation-board` | `facilitator-guide-prioritisation.html` |
 | Sprint Planning | `sprint-planning-board` | `facilitator-guide-sprint-planning.html` |
 | Sprint Review | `sprint-review-board` | `facilitator-guide-sprint-review.html` |
+| Project Kickoff | `project-kickoff-board` | `facilitator-guide-project-kickoff.html` |
+| Stakeholder Map | `stakeholder-map-board` | `facilitator-guide-stakeholder-map.html` |
+| Release Forecast & Burn-up | `release-forecast-board` | `facilitator-guide-release-forecast.html` |
+| RAID Log | `raid-log-board` | `facilitator-guide-raid-log.html` |
+| Objectives & Key Results | `okr-board` | `facilitator-guide-okr.html` |
+| Cross-Team Planning | `cross-team-planning-board` | `facilitator-guide-cross-team-planning.html` |
+| Dependency Map | `dependency-map-board` | `facilitator-guide-dependency-map.html` |
+| Cross-Team Sync | `cross-team-sync-board` | `facilitator-guide-cross-team-sync.html` |
 | Scrum Master & Agile Coach Cheat Sheet | `scrum-master-agile-coach-cheat-sheet.html` (two-sided A3, print double-sided) | Self-documenting reference; links to every board |
 | Jira Cheat Sheet | `jira-cheat-sheet.html` (one-sided A3, Jira Cloud) | Self-documenting reference; companion to the cheat sheet above |
 
@@ -50,6 +58,11 @@ The toolkit follows the agile lifecycle and doesn't assume any one framework:
 | Build in iterations | Sprint Planning, Example Mapping, the cheat sheets |
 | Review | Sprint Review |
 | Reflect and improve | Retrospective Kit, Team Health Check, Marginal Gains Workshop, 1% Experiment Canvas |
+
+Two further sets sit around that loop:
+
+- **Run a project:** Project Kickoff, Stakeholder Map, Release Forecast & Burn-up, RAID Log.
+- **Coordinate teams (program level):** Objectives & Key Results, Cross-Team Planning, Dependency Map, Cross-Team Sync.
 
 **Diagnose** (Team Health Check) → **Explore** (Marginal Gains Workshop) → **Experiment** (1% Experiment Canvas) → **Reflect** (Retrospective Kit), then back round again. Lean Coffee is a general-purpose facilitation format that can be used at any point.
 
