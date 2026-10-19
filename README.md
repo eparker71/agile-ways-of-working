@@ -37,6 +37,8 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | Stakeholder Map | `stakeholder-map-board` | `facilitator-guide-stakeholder-map.html` |
 | Release Forecast & Burn-up | `release-forecast-board` | `facilitator-guide-release-forecast.html` |
 | RAID Log | `raid-log-board` | `facilitator-guide-raid-log.html` |
+| Pre-mortem | `pre-mortem-board` | `facilitator-guide-pre-mortem.html` |
+| Root Cause Analysis | `root-cause-board` | `facilitator-guide-root-cause.html` |
 | Objectives & Key Results | `okr-board` | `facilitator-guide-okr.html` |
 | Cross-Team Planning | `cross-team-planning-board` | `facilitator-guide-cross-team-planning.html` |
 | Dependency Map | `dependency-map-board` | `facilitator-guide-dependency-map.html` |
@@ -64,11 +66,11 @@ The toolkit follows the agile lifecycle and doesn't assume any one framework:
 | Plan | Prioritisation Board, then the break-down tools below |
 | Build in iterations | Sprint Planning, Example Mapping, the cheat sheets |
 | Review | Sprint Review |
-| Reflect and improve | Retrospective Kit, Team Health Check, Marginal Gains Workshop, 1% Experiment Canvas |
+| Reflect and improve | Retrospective Kit, Team Health Check, Marginal Gains Workshop, 1% Experiment Canvas, Root Cause Analysis |
 
 Two further sets sit around that loop:
 
-- **Run a project:** Project Kickoff, Stakeholder Map, Release Forecast & Burn-up, RAID Log.
+- **Run a project:** Project Kickoff, Stakeholder Map, Pre-mortem, Release Forecast & Burn-up, RAID Log.
 - **Coordinate teams (program level):** Objectives & Key Results, Cross-Team Planning, Dependency Map, Cross-Team Sync.
 - **Manage flow:** Kanban Board Design, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Skills Matrix, Impediments Board, Pairing & Mobbing.
 

@@ -2479,6 +2479,142 @@ def build_pairing_mobbing():
                 "this week's pairs, and a quick retro.", "\n".join(b))
 
 
+# ---------------------------------------------------------------- pre-mortem
+
+def build_pre_mortem():
+    b = [header("Pre-mortem",
+                "Imagine the work has already failed, explain why, then act now to prevent the most likely causes.",
+                "Run a Project · Inspired by Gary Klein's Pre-mortem · Prospective Hindsight · Risks Before They Happen",
+                legend([("sticky", PINK_ST, "Pink Sticky = Why it failed"), ("dot", ACCENT, "Dot = Vote (3 per person)")]))]
+
+    x, y, w, h = 24, 148, 1632, 170
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 1, "The Scenario", PURPLE, "READ IT ALOUD · SPEAK AS IF IT HAS ALREADY HAPPENED"))
+    b.append(T(x + 18, y + 100, "It's", 22, d, SERIF, italic=True))
+    b.append(L(x + 60, y + 103, x + 240, y + 103, d, 1.2, ' stroke-opacity=".4"'))
+    b.append(T(x + 250, y + 100, "and this has failed badly. What went wrong?", 22, d, SERIF, italic=True))
+    b.append(field(x + 18, y + 146, "Project, plan or release:", x + 800, d))
+    b.append(field(x + 830, y + 146, "Failure looks like:", x + w - 18, d))
+
+    y, h = 332, 410
+    x, w = 24, 1082
+    d = RED[0]
+    b.append(panel(x, y, w, h, 2, "Why It Failed", RED, "SILENT WRITING FIRST · ONE REASON PER STICKY"))
+    b.append(bullets(x + 22, y + 74, ["Everyone writes alone for 5 minutes, in the past tense: “We lost our key supplier”",
+                                      "Think wide: people, tech, customers, money, dependencies, decisions"], d))
+    b.append(dashed(x + 10, x + w - 10, y + 110, d))
+    b.append(sticky_zone(x + 10, y + 116, w - 20, h - 128, d, "Pink stickies, clustered by theme", chips=(PINK_ST,)))
+
+    x, w = 1120, 536
+    d = ORANGE[0]
+    b.append(panel(x, y, w, h, 3, "Top Risks", ORANGE, "AFTER DOT VOTING"))
+    b.append(table(x + 18, y + 84, [("#", 34), ("Reason", 240), ("Likely", 70), ("Impact", 70), ("Votes", w - 36 - 414)], 8, d, 36))
+
+    y, h = 756, 304
+    x, w = 24, 1082
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 4, "Prevent or Detect", FOREST, "FOR EACH TOP RISK"))
+    b.append(table(x + 18, y + 84, [("Top risk", 250), ("We'll prevent it by…", 330), ("Early warning sign", 280),
+                                    ("Owner", w - 36 - 860)], 5, d, 36))
+
+    x, w = 1120, 536
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 5, "Next Steps", EMERALD))
+    for i, m in enumerate(["Top risks added to the RAID Log", "Prevention actions added to the backlog",
+                           "Warning signs visible on the team board", "Plan or scope changed where needed",
+                           "Re-run before the next big milestone"]):
+        b.append(checkbox(x + 18, y + 88 + i * 30, m, d, 11))
+    b.append(field(x + 18, y + 260, "Review these risks on:", x + w - 18, d))
+
+    b.append(footer("It's six months from now and this has failed. What happened?",
+                    "Which of these are we quietly hoping won't happen?", PROJECT_TAG))
+    write_board("pre-mortem-board", "Pre-mortem",
+                "A3 landscape pre-mortem board: the failure scenario, reasons it failed, top risks after dot voting, "
+                "prevention and early warning signs, and next steps.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- root cause
+
+def build_root_cause():
+    b = [header("Root Cause Analysis",
+                "Dig beneath a recurring problem with a fishbone and 5 Whys, check the cause, and test a fix.",
+                "Improve · Fishbone (Ishikawa) Diagram · 5 Whys · Fix the System, Not the Person",
+                header_fields(["Team", "Date"]))]
+
+    x, y, w, h = 24, 148, 1632, 130
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 1, "The Problem", SLATE, "FACTS, NOT BLAME"))
+    b.append(field(x + 18, y + 82, "What happened:", x + 800, d))
+    b.append(field(x + 830, y + 82, "When, where, how often:", x + w - 18, d))
+    b.append(field(x + 18, y + 110, "Impact:", x + w - 18, d))
+
+    # 2 fishbone
+    x, y, w, h = 24, 292, 1082, 470
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 2, "Fishbone", BLUE, "STICKIES ON THE BONE THEY BELONG TO"))
+    top, bot = y + 64, y + h - 14
+    spine = (top + bot) / 2
+    hx0 = x + w - 200
+    b.append(R(x + 10, top, w - 20, bot - top, "url(#dots)", 6))
+    b.append(L(x + 40, spine, hx0, spine, d, 3))
+    b.append(f'<path d="M{hx0 - 14:g},{spine - 8:g} L{hx0:g},{spine:g} L{hx0 - 14:g},{spine + 8:g}" fill="none" stroke="{d}" stroke-width="3"/>')
+    b.append(R(hx0 + 6, spine - 60, 176, 120, "white", 8, f' stroke="{d}" stroke-opacity=".5" stroke-width="1.5"'))
+    b.append(T(hx0 + 22, spine - 34, "PROBLEM", 9, d, MONO, weight=600, ls=".12em"))
+    b.append(lines(hx0 + 22, spine - 4, hx0 + 166, 3, 24))
+    cats_top = ["People & Skills", "Process", "Tools & Tech"]
+    cats_bot = ["Environment", "Information", "Requirements"]
+    for i in range(3):
+        bx = x + 270 + i * 230
+        for cats, end_y, sign in ((cats_top, top + 50, -1), (cats_bot, bot - 50, 1)):
+            b.append(L(bx, spine, bx - 130, end_y, d, 2, ' stroke-opacity=".6"'))
+            ly = end_y - 26 if sign < 0 else end_y + 8
+            b.append(R(bx - 230, ly, 200, 26, d, 5))
+            b.append(T(bx - 130, ly + 17, cats[i], 11, "white", weight=600, anchor="middle"))
+
+    # 3 five whys
+    x, w = 1120, 536
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 3, "5 Whys", PURPLE, "ASK WHY UNTIL YOU REACH A CAUSE YOU CAN FIX"))
+    for i in range(5):
+        ry = y + 84 + i * 66
+        b.append(T(x + 18, ry, f"Why {i + 1}?", 12, d, weight=600))
+        b.append(L(x + 90, ry + 3, x + w - 18, ry + 3, WRITE))
+        b.append(L(x + 18, ry + 30, x + w - 18, ry + 30, WRITE))
+        if i < 4:
+            b.append(T(x + 30, ry + 52, "↓", 12, d, op=".5"))
+    b.append(R(x + 14, y + h - 66, w - 28, 52, PURPLE[1], 6, f' stroke="{d}" stroke-opacity=".4" stroke-width="1.5"'))
+    b.append(field(x + 28, y + h - 34, "Root cause:", x + w - 28, d, 12))
+
+    y, h = 776, 284
+    x, w = 24, 534
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 4, "Check the Cause", AMBER, "BEFORE YOU FIX IT"))
+    for i, m in enumerate(["If we fixed this, would the problem stop?", "Do we have evidence, not just opinion?",
+                           "Is it about the system, not a person?", "Is it within our control or influence?",
+                           "Would it explain other problems too?"]):
+        b.append(checkbox(x + 18, y + 88 + i * 32, m, d, 11))
+    b.append(T(x + 18, y + 256, "Any “no”? Ask why again, or test another branch.", 10.5, d, italic=True, op=".75"))
+
+    x = 572
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 5, "Countermeasures", FOREST, "SMALL, TESTABLE FIXES"))
+    b.append(table(x + 18, y + 84, [("Action", 280), ("Owner", 100), ("By when", w - 36 - 380)], 5, d, 36))
+
+    x, w = 1120, 536
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 6, "Did It Work?", EMERALD))
+    for i, f in enumerate(["We'll measure:", "Baseline:", "Check on:", "Result:"]):
+        b.append(field(x + 18, y + 90 + i * 40, f, x + w - 18, d))
+    for j, lab in enumerate(["Fixed", "Better", "No change"]):
+        b.append(checkbox(x + 18 + j * 120, y + 256, lab, d, 11))
+
+    b.append(footer("Why does this keep happening, and what in our system lets it?",
+                    "If we fixed the cause, what else would get better?", FOOT_TAG))
+    write_board("root-cause-board", "Root Cause Analysis",
+                "A3 landscape root cause board: problem statement, a six-bone fishbone diagram, 5 Whys, a cause check, "
+                "countermeasures, and a check that the fix worked.", "\n".join(b))
+
+
 if __name__ == "__main__":
     for horizon in ("sprint", "quarter"):
         build_retros(horizon)
@@ -2510,3 +2646,5 @@ if __name__ == "__main__":
     build_skills_matrix()
     build_impediments()
     build_pairing_mobbing()
+    build_pre_mortem()
+    build_root_cause()

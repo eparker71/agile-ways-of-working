@@ -1624,6 +1624,114 @@ FLOW_GUIDES += [
 GUIDES += FLOW_GUIDES
 
 
+GUIDES += [
+    # -------------------------------------------------------------- pre-mortem
+    dict(
+        slug="pre-mortem",
+        title="Pre-mortem Guide",
+        subtitle="How to surface the risks people are quietly worried about, by imagining the work has already failed.",
+        tag="Facilitator Run-Sheet · Run a Project · Inspired by Gary Klein's Pre-mortem",
+        boards=[("Open board", "pre-mortem-board.html"), ("SVG", "pre-mortem-board.svg")],
+        lede="It's six months from now and this has failed. What happened?",
+        intro=("Asking “what could go wrong?” gets polite, cautious answers. A pre-mortem, developed by psychologist Gary "
+               "Klein, asks the group to imagine the project <b>has already failed</b> and explain why. This <b>prospective "
+               "hindsight</b> makes it safe to voice worries, and it surfaces far more risks. The group then votes on the most "
+               "likely causes and agrees how to <b>prevent</b> them, or at least <b>detect</b> them early."),
+        glance=[("Duration", "45–60 min"), ("Group", "Team, PO, sponsor,<br>key stakeholders"),
+                ("Use when", "Before a project, release<br>or big decision"), ("Output", "Top risks with<br>prevention &amp; signals")],
+        before=["Print the board at A3, or load the SVG as a digital background",
+                "Make sure everyone understands the plan being tested: share it beforehand",
+                "Pink stickies, markers and dot stickers (3 per person)",
+                "Invite people with different views, including sceptics",
+                "Bring the RAID Log so top risks can be added straight away"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–5", "1 · The Scenario", "Fill in a date in the future. Read the scenario aloud: “It's that date and this has failed badly.”"),
+                ("5–15", "2 · Why It Failed (silent)", "Everyone writes reasons alone, one per sticky, in the past tense. No discussion yet."),
+                ("15–30", "Share & cluster", "Go round the room, one sticky at a time, until all are up. Cluster similar reasons."),
+                ("30–35", "Dot vote", "Three dots each, on the reasons most likely to actually happen."),
+                ("35–40", "3 · Top Risks", "Write the top 5–8 in the table with votes, likelihood and impact."),
+                ("40–55", "4 · Prevent or Detect", "For each top risk, agree a prevention, an early warning sign and an owner."),
+                ("55–60", "5 · Next Steps", "Tick off the follow-ups and set a review date.")],
+        sections_title="Making each section strong",
+        sections_intro="Quality checks for each part of the board.",
+        sections=[("1 · The Scenario", PURPLE, ["A specific future date", "Failure is described concretely"]),
+                  ("2 · Why It Failed", RED, ["Written in the past tense", "Silent writing first", "Wide range of causes"]),
+                  ("3 · Top Risks", ORANGE, ["Chosen by vote", "Likelihood and impact noted"]),
+                  ("4 · Prevent or Detect", FOREST, ["A real prevention or a clear warning sign", "Every risk has an owner"]),
+                  ("5 · Next Steps", EMERALD, ["Risks reach the RAID Log", "A review date is set"])],
+        tips=[("Past tense matters", "“We lost our key engineer” feels more real than “we might lose someone”, and gets better answers."),
+              ("Silent first", "Writing alone stops the most senior or loudest person shaping everyone's thinking."),
+              ("Welcome the uncomfortable", "The most valuable reasons are often about decisions, leadership or politics. Thank people for them."),
+              ("Not just doom", "Close by focusing on what you'll do. The goal is a better plan, not a gloomy team."),
+              ("Prevent or detect", "If a risk can't be prevented, agree the early warning sign that would tell you it's happening."),
+              ("Repeat it", "Run a short pre-mortem again before each big milestone.")],
+        pitfalls=("discussing reasons before everyone has written; the sponsor dismissing reasons in the room; only listing "
+                  "technical risks; no owners for actions; not feeding risks into the RAID Log or the plan."),
+        after=[("Straight away", "Add the top risks to the RAID Log and the prevention actions to the backlog."),
+               ("This week", "Put the early warning signs where the team will notice them."),
+               ("Each iteration", "Check the warning signs at the review or retro."),
+               ("Before milestones", "Run a quick pre-mortem again on the next phase.")],
+        toolkit=PROJECT_TOOLKIT,
+        foot="“Which of these are we quietly hoping won't happen?”",
+    ),
+
+    # -------------------------------------------------------------- root cause
+    dict(
+        slug="root-cause",
+        title="Root Cause Analysis Guide",
+        subtitle="How to dig beneath a recurring problem with a fishbone diagram and 5 Whys, check the cause, and test a fix.",
+        tag="Facilitator Run-Sheet · Improve · Fishbone (Ishikawa) · 5 Whys",
+        boards=[("Open board", "root-cause-board.html"), ("SVG", "root-cause-board.svg")],
+        lede="Why does this keep happening, and what in our system lets it?",
+        intro=("When the same problem keeps coming back, fixing the symptom isn't enough. The board combines two classic "
+               "techniques. The <b>fishbone</b> (Ishikawa) diagram explores possible causes across six categories, so the group "
+               "looks wide before going deep. <b>5 Whys</b>, from the Toyota Production System, then follows the most likely "
+               "branch down to a cause you can fix. A quick <b>check</b> makes sure it really is the root cause, and the "
+               "countermeasures are treated as experiments."),
+        glance=[("Duration", "60–90 min"), ("Group", "The people closest<br>to the problem"),
+                ("Use when", "A problem recurs, or<br>a retro keeps raising it"), ("Output", "A checked root cause<br>&amp; a tested fix")],
+        before=["Print the board at A3, or load the SVG as a digital background",
+                "Collect facts about the problem: when, where, how often, and its impact",
+                "Invite the people who experience the problem, not just those who manage it",
+                "Yellow stickies and markers",
+                "Agree up front that this is about the system, not about blaming a person"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–10", "1 · The Problem", "Write a factual problem statement. Agree when, where and how often it happens, and its impact."),
+                ("10–35", "2 · Fishbone", "Brainstorm possible causes onto the six bones. Aim for breadth: every category gets at least one sticky."),
+                ("35–40", "Pick a branch", "Dot-vote the most likely cause on the fishbone. That's the starting point for the Whys."),
+                ("40–55", "3 · 5 Whys", "Ask “why?” of that cause, writing each answer. Stop when you reach something you can change."),
+                ("55–65", "4 · Check the Cause", "Run the checklist. Any “no”? Ask why again, or try another branch."),
+                ("65–80", "5 · Countermeasures", "Agree small, testable fixes with owners and dates."),
+                ("80–90", "6 · Did It Work?", "Agree what you'll measure, the baseline, and when you'll check.")],
+        sections_title="Using each part well",
+        sections_intro="What good looks like on each part of the board.",
+        sections=[("1 · The Problem", SLATE, ["Facts, not opinions", "No names or blame", "Impact is clear"]),
+                  ("2 · Fishbone", BLUE, ["Every bone considered", "Causes, not solutions"]),
+                  ("3 · 5 Whys", PURPLE, ["Each answer is evidence-based", "Stop at something you can change", "It may take 3 or 7 whys"]),
+                  ("4 · Check the Cause", AMBER, ["All boxes ticked", "Would explain the problem fully"]),
+                  ("5 · Countermeasures", FOREST, ["Small and testable", "Owned and dated"]),
+                  ("6 · Did It Work?", EMERALD, ["Measured against a baseline", "Checked on the date"])],
+        tips=[("Wide, then deep", "Fill the fishbone before asking why, so you don't chase the first idea that comes up."),
+              ("System, not person", "If a “why” lands on a person, ask why the system allowed it. People act sensibly in their context."),
+              ("Five is a guide", "Stop when you reach a cause you can change. Sometimes that's three whys, sometimes seven."),
+              ("Evidence beats opinion", "Check each answer against data where you can. Guesses lead to the wrong fix."),
+              ("Several roots are normal", "Complex problems often have more than one cause. Pick the one with the most leverage."),
+              ("Fix as an experiment", "Treat countermeasures like the 1% Experiment Canvas: measure, then persevere or pivot.")],
+        pitfalls=("blaming a person; jumping to a solution in the first five minutes; following only one branch; stopping at a "
+                  "symptom; answers based on opinion; fixing without measuring whether it worked."),
+        after=[("Straight away", "Add the countermeasures to the backlog and share the board with those affected."),
+               ("Next retro", "Report progress on the countermeasures."),
+               ("On the check date", "Measure against the baseline and fill in Did It Work?"),
+               ("If it didn't work", "Go back to the fishbone and try the next most likely branch.")],
+        toolkit=("Root cause analysis pairs with the improvement tools: bring recurring retro themes or the biggest cluster from "
+                 "<a href=\"facilitator-guide-blocker-clustering.html\">Blocker Clustering</a> here, then test the fix with the "
+                 "<a href=\"facilitator-guide-experiment-canvas.html\">1% Experiment Canvas</a>. Use the "
+                 "<a href=\"facilitator-guide-impediments.html\">Impediments Board</a> to escalate causes the team can't fix alone."),
+        foot="“If we fixed the cause, what else would get better?”",
+    ),
+]
+
+
 # ------------------------------------------------------------------ rendering
 
 def guide_css():
