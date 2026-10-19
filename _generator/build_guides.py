@@ -1266,6 +1266,364 @@ PP_GUIDES = [
 GUIDES += PP_GUIDES
 
 
+FLOW_TOOLKIT = ("The flow pack works as a set. <a href=\"facilitator-guide-kanban-board-design.html\">Kanban Board Design</a> makes "
+                "the workflow visible and limits WIP. <a href=\"facilitator-guide-ageing-wip.html\">Ageing WIP &amp; SLE</a> shows which "
+                "items are at risk and sets the swarm triggers used in <a href=\"facilitator-guide-buffering-swarming.html\">Buffering "
+                "&amp; Swarming</a>. <a href=\"facilitator-guide-blocker-clustering.html\">Blocker Clustering</a> finds why work gets "
+                "stuck, and the <a href=\"facilitator-guide-skills-matrix.html\">Skills Matrix</a> shows who can swarm. Bring the results "
+                "to retrospectives and the Team Health Check.")
+
+FLOW_GUIDES = [
+    # -------------------------------------------------------------- buffering & swarming
+    dict(
+        slug="buffering-swarming",
+        title="Buffering & Swarming Guide",
+        subtitle="How to size a capacity buffer from real data, agree swarm triggers, and make swarming a team habit.",
+        tag="Facilitator Run-Sheet · Manage Flow · Capacity Buffer · Swarm Triggers",
+        boards=[("Open board", "buffering-swarming-board.html"), ("SVG", "buffering-swarming-board.svg")],
+        lede="What would we stop starting so we could finish this?",
+        intro=("Two habits keep work flowing when reality interrupts the plan. <b>Buffering</b> means deliberately leaving part "
+               "of the team's capacity unplanned, sized from how much unplanned work actually arrives, so surprises don't wreck "
+               "the plan. <b>Swarming</b> means that when an item is blocked, ageing or critical, people stop starting new work and "
+               "gather on it until it's done. The board helps the team size the buffer, agree its rules, set clear triggers, "
+               "agree how a swarm works, and learn from each one."),
+        glance=[("Duration", "60–75 min to set up<br>10 min each retro"), ("Group", "The whole team,<br>PO included"),
+                ("Use when", "Plans keep breaking,<br>or work stalls"), ("Output", "A buffer, rules<br>&amp; swarm triggers")],
+        before=["Print the board at A3, or load the SVG as a digital background",
+                "Pull data for the last five iterations: planned capacity and unplanned work (items, points or hours)",
+                "If you have them, bring cycle time percentiles from the Ageing WIP board",
+                "Bring the Skills Matrix if the team has one: it shows who can help in a swarm",
+                "Agree with the PO in advance that a buffer is a planning tool, not idle time"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–15", "1 · Unplanned Work History", "Fill in the table from the data. Work out the average % unplanned. Discuss what kinds of work it was."),
+                ("15–25", "2 · Size the Buffer", "Start with the average % unplanned as the buffer. Agree what it protects."),
+                ("25–35", "3 · Buffer Rules", "Agree what counts as unplanned, who decides to use the buffer, and what happens if it runs out or isn't used."),
+                ("35–50", "4 · Swarm Triggers", "Tick the triggers that fit and fill in the thresholds. Use your 85% SLE for the age trigger."),
+                ("50–65", "5 · How We Swarm", "Walk through the five steps. Agree who calls a swarm, and how people join. Add notes to each step."),
+                ("65–75", "Close", "Agree to try it for two iterations, logging every swarm, then review at the retro.")],
+        sections_title="Making each section strong",
+        sections_intro="Quality checks for each part of the board.",
+        sections=[("1 · Unplanned Work History", BLUE, ["Based on data, not memory", "Types of unplanned work noted"]),
+                  ("2 · Size the Buffer", EMERALD, ["Starts from the real average", "Clear what it's for"]),
+                  ("3 · Buffer Rules", SLATE, ["Unused buffer goes to improvement or the next item", "Running out triggers a conversation"]),
+                  ("4 · Swarm Triggers", RED, ["Specific thresholds", "Linked to the SLE", "Few enough to remember"]),
+                  ("5 · How We Swarm", ORANGE, ["Anyone can call a swarm", "Just enough people join", "Finishing beats starting"]),
+                  ("6 · Swarm Log", PURPLE, ["Every swarm recorded", "Learning captured"]),
+                  ("7 · Iteration Check", FOREST, ["Buffer adjusted from use", "Did swarms help?"])],
+        tips=[("Buffers aren't slack", "A buffer is planned capacity for work you know will come. Unused, it goes to improvement or the next item."),
+              ("Size from data", "If 20% of the team's time goes on unplanned work, planning for 100% guarantees a missed plan."),
+              ("Swarm on the oldest", "When in doubt, swarm on the item that has been open longest, not the newest."),
+              ("Stop starting first", "The first step of a swarm is to not pick up anything new. That alone frees people up."),
+              ("Not everyone, every time", "A swarm needs enough people to finish the item, not the whole team crowded round."),
+              ("Ask why it needed a swarm", "Frequent swarms point to a cause: big items, missing skills, or blockers. Use Blocker Clustering.")],
+        pitfalls=("a buffer that managers fill with extra features; triggers so vague nobody acts; swarming on everything; "
+                  "the same expert always rescuing; never logging swarms, so nothing is learned; swarming without stopping new work."),
+        after=[("Straight away", "Put the triggers and swarm steps on the team board where everyone can see them."),
+               ("Every day", "At the daily sync, check: has anything hit a trigger? Call the swarm then."),
+               ("Every retro", "Run the iteration check: buffer used, swarms, did they help? Adjust the buffer."),
+               ("Over time", "If the same skill always needs the same person, update the Skills Matrix and learning plan.")],
+        toolkit=FLOW_TOOLKIT,
+        foot="“How much of our plan is really for surprises?”",
+    ),
+
+    # -------------------------------------------------------------- kanban board design
+    dict(
+        slug="kanban-board-design",
+        title="Kanban Board Design Guide",
+        subtitle="How to design a board that shows how work really flows, with WIP limits, exit policies and classes of service.",
+        tag="Facilitator Run-Sheet · Manage Flow · Visualise · Limit WIP · Explicit Policies",
+        boards=[("Open board", "kanban-board-design.html"), ("SVG", "kanban-board-design.svg")],
+        lede="Where does work wait, and is that visible on our board?",
+        intro=("Most team boards show “To do, Doing, Done”, which hides where work actually waits. Good board design starts "
+               "from the team's <b>real workflow</b>, including the <b>queues</b> between steps, then adds <b>WIP limits</b> so the "
+               "team finishes before starting, and explicit <b>exit policies</b> so everyone knows when an item can move. "
+               "<b>Classes of service</b> make it clear how urgent and date-driven work is handled. The practices come from the "
+               "Kanban Method (David J. Anderson) and the Kanban Guide."),
+        glance=[("Duration", "90–120 min"), ("Group", "The whole team,<br>PO included"),
+                ("Use when", "A new board, or the<br>board doesn't help"), ("Output", "A board design<br>&amp; written policies")],
+        before=["Print the board at A3, or load the SVG as a digital background",
+                "Take a photo or export of the current board",
+                "Pick 3–5 recently finished items to trace through the workflow",
+                "Bring cycle time and throughput data if you have it",
+                "Sticky notes and markers; the team's Definition of Done"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–20", "Trace real work", "Walk recent items from request to done. Write every step and every place they waited."),
+                ("20–45", "1 · Workflow Columns", "Turn those steps into columns, left to right. Mark each as active work or a queue. Write the exit policy for each."),
+                ("45–60", "WIP limits", "Set a limit for each in-progress column. A useful start is the number of people who work in it, then lower it over time."),
+                ("60–80", "2 · Classes of Service", "Agree when each class applies, how it's treated, and how many items of each can be in progress."),
+                ("80–95", "3 · Policies · 4 · Cards", "Fill in the board policies, decide what each card shows, and whether you need swimlanes."),
+                ("95–110", "5 · Metrics · Close", "Pick the flow metrics you'll track. Agree when to review the design (usually at retros).")],
+        sections_title="Making each part strong",
+        sections_intro="Quality checks for each part of the design.",
+        sections=[("1 · Workflow Columns", BLUE, ["Matches real steps", "Queues are visible", "Each has an exit policy"]),
+                  ("WIP limits", ORANGE, ["Every in-progress column has one", "Low enough to cause conversations"]),
+                  ("2 · Classes of Service", PURPLE, ["Expedite is rare and limited", "Fixed-date work is visible early"]),
+                  ("3 · Board Policies", SLATE, ["Pull, don't push", "Blocked items are obvious", "Written on the board"]),
+                  ("4 · Cards & Swimlanes", SKY, ["Age is visible on each card", "Few or no swimlanes"]),
+                  ("5 · Flow Metrics", FOREST, ["Two or three, reviewed regularly", "Used to learn, not to judge"])],
+        tips=[("Model what is, not what should be", "Start with the real workflow, including the awkward parts. Improve it later."),
+              ("Show the queues", "Waiting is usually most of the elapsed time. A “Waiting for review” column makes it visible."),
+              ("WIP limits are a conversation", "When a column is full, the question is “how can I help finish something?”"),
+              ("Expedite sparingly", "If everything is expedite, nothing is. Limit it to one item at a time."),
+              ("Make age visible", "Show days in progress on each card so ageing work stands out."),
+              ("Evolve the board", "Review the design at retros. Small, regular changes beat a big redesign.")],
+        pitfalls=("columns named after people or teams; no queue columns; WIP limits set so high they never bite; ignoring "
+                  "limits when busy; too many swimlanes; policies that exist only in someone's head."),
+        after=[("Straight away", "Rebuild the physical or digital board to match the design. Write the policies on it."),
+               ("First week", "Walk the board right to left at every daily sync. Notice when limits bite."),
+               ("Each retro", "Ask: is the board still showing reality? Adjust one thing at a time."),
+               ("After a month", "Start the Ageing WIP chart using the cycle time data the board now gives you.")],
+        toolkit=FLOW_TOOLKIT,
+        foot="“What would happen if we lowered this WIP limit by one?”",
+    ),
+
+    # -------------------------------------------------------------- ageing WIP
+    dict(
+        slug="ageing-wip",
+        title="Ageing WIP & SLE Guide",
+        subtitle="How to work out a service level expectation from cycle times, and use work item age to act before items are late.",
+        tag="Facilitator Run-Sheet · Manage Flow · Work Item Age · Percentiles · Service Level Expectation",
+        boards=[("Open board", "ageing-wip-board.html"), ("SVG", "ageing-wip-board.svg")],
+        lede="Which item is oldest, and what would it take to finish it today?",
+        intro=("Cycle time tells you how long finished work took; <b>work item age</b> tells you how long open work has been "
+               "running. Plotting each open item's age against the team's <b>cycle time percentiles</b> shows which items are "
+               "at risk while there's still time to act. The 85th percentile gives a <b>service level expectation</b> (SLE): "
+               "“85% of our items finish within N days”. It's a forecast for a single item, not a target. Work item age and "
+               "SLE are described in the Kanban Guide and in Daniel Vacanti's work on flow metrics."),
+        glance=[("Duration", "45 min to set up<br>5 min each day"), ("Group", "The team, with<br>a flow-minded lead"),
+                ("Use when", "Items surprise you<br>by running late"), ("Output", "An SLE &amp;<br>daily age checks")],
+        before=["Print the board at A3, or load the SVG as a digital background",
+                "Export start and finish dates for at least the last 20–30 finished items",
+                "Agree when the clock starts (e.g. first in-progress column) and stops (e.g. Done)",
+                "Know the in-progress columns of your board, left to right",
+                "Small dot stickers or markers for plotting"],
+        agenda_heads=["Time", "Step", "Facilitator notes"],
+        agenda=[("0–10", "2 · Cycle Time Data", "List recently finished items with start, finish and days (count partial days as a whole day)."),
+                ("10–20", "Percentiles", "Sort the days, smallest to largest. The 85th percentile is the value 85% of the way along the list. Repeat for 50th and 70th."),
+                ("20–25", "3 · Our SLE", "Write the 85th percentile into the SLE sentence, with the data range and the clock start and stop."),
+                ("25–35", "1 · Ageing WIP Chart", "Write the column names along the bottom and age in days up the side. Draw the three percentile lines. Plot each open item."),
+                ("35–45", "4 · Act on Ageing Items", "For each item past a line, agree the action. Swarm the ones past the 85th."),
+                ("Daily", "Update", "Move dots up a day and across as items progress. Start the daily sync with the oldest items.")],
+        sections_title="Reading the chart",
+        sections_intro="What the dots tell you.",
+        sections=[("Below the 50th", EMERALD, ["On track", "No action needed"]),
+                  ("Past the 50th", EMERALD, ["Worth a mention", "Is anything slowing it?"]),
+                  ("Past the 70th", AMBER, ["At risk", "Ask what's needed to finish"]),
+                  ("Past the 85th", RED, ["Likely to miss the SLE", "Swarm it"]),
+                  ("Dots high in early columns", PURPLE, ["Stuck before real work started", "Check for blockers or big items"])],
+        tips=[("Age is the leading signal", "Cycle time is only known at the end. Age tells you about risk while you can still act."),
+              ("An SLE isn't a target", "Pushing people to hit it leads to gaming. Use it to spot risk and to answer “when?” for one item."),
+              ("Use enough data", "Twenty to thirty items gives a reasonable start. Recalculate monthly."),
+              ("Start with the oldest", "Walk the chart from the top. The oldest items need attention first."),
+              ("Right-size before you start", "Ask “can we finish this within our SLE?” when pulling work. If not, split it."),
+              ("Link it to swarming", "Use the 85th percentile as the age trigger in Buffering & Swarming.")],
+        pitfalls=("treating the SLE as a deadline; using averages instead of percentiles; too little data; never updating the "
+                  "dots; ignoring items in early columns; tracking age but never acting on it."),
+        after=[("Straight away", "Put the SLE sentence on the team board and in the team's working agreements."),
+               ("Every day", "Update the chart and discuss the oldest items first at the daily sync."),
+               ("Each retro", "Look at items that passed the 85th line. Why? Feed causes into Blocker Clustering."),
+               ("Monthly", "Recalculate the percentiles with new data and update the SLE.")],
+        toolkit=FLOW_TOOLKIT,
+        foot="“How long does work usually take here, really?”",
+    ),
+
+    # -------------------------------------------------------------- blocker clustering
+    dict(
+        slug="blocker-clustering",
+        title="Blocker Clustering Guide",
+        subtitle="How to log blockers over time, cluster them by cause, and fix the cluster that costs the most days.",
+        tag="Facilitator Run-Sheet · Manage Flow · Inspired by Klaus Leopold & Troy Magennis",
+        boards=[("Open board", "blocker-clustering-board.html"), ("SVG", "blocker-clustering-board.svg")],
+        lede="Which cluster, if we fixed it, would give us the most days back?",
+        intro=("Teams clear blockers one by one and rarely ask why they keep happening. Blocker clustering, a technique "
+               "popularised by Klaus Leopold and Troy Magennis, collects every blocker over several weeks, with its cause and how "
+               "many days it cost. Clustering similar causes shows which problem is really slowing the team down, so you can "
+               "fix the system rather than the symptom."),
+        glance=[("Duration", "4–6 weeks of logging<br>+ 60 min to cluster"), ("Group", "The team"),
+                ("Use when", "Work is often blocked,<br>or flow is slow"), ("Output", "Top cause<br>&amp; an experiment")],
+        before=["Print the board at A3 and put it next to the team board, or use a digital copy",
+                "Plenty of pink stickies, and yellow stickies for cluster names",
+                "Agree with the team to log every blocker, however small, for at least four weeks",
+                "Agree a simple rule: a sticky goes on the card the moment it's blocked"],
+        agenda_heads=["When", "Step", "Facilitator notes"],
+        agenda=[("Ongoing", "1 · Log", "Every time work is blocked, add a pink sticky to the card with the cause and date. Add a row to the log."),
+                ("Ongoing", "2 · Collect", "When the blocker clears, write the days blocked and move the sticky to the Blocker Stickies area."),
+                ("Week 4–6 · 0–20", "3 · Cluster", "In a session, group similar stickies. Name each cluster on a yellow sticky. Count blockers and total days."),
+                ("20–35", "Pick the biggest", "Rank clusters by total days blocked, not by count. Discuss the top one."),
+                ("35–50", "4 · Fix", "Find the root cause (5 Whys works well) and agree an experiment to fix it, with an owner and review date."),
+                ("50–60", "5 · Trend", "Agree to keep logging, and record the totals so you can see if the fix worked.")],
+        sections_title="Making each part useful",
+        sections_intro="Quality checks for each part of the board.",
+        sections=[("1 · Blocker Log", RED, ["Every blocker, however small", "The cause, not who to blame", "Days counted"]),
+                  ("2 · Blocker Stickies", SLATE, ["Kept after clearing", "Start date and days written on"]),
+                  ("3 · Clusters", ORANGE, ["Similar causes grouped", "Each cluster named", "Count and days totalled"]),
+                  ("4 · Fix the Biggest", FOREST, ["Chosen by days, not count", "A real root cause", "An owned experiment"]),
+                  ("5 · Trend", BLUE, ["Compared period to period", "Shows whether the fix worked"])],
+        tips=[("Log everything", "Small blockers add up. A two-hour wait three times a week is a cluster worth fixing."),
+              ("Cause, not person", "“Waiting for test environment” helps. “Waiting for Sam” blames someone and hides the system."),
+              ("Days beat counts", "Ten one-hour blockers matter less than one blocker that lasted two weeks."),
+              ("Inside vs. outside", "Separate what the team controls from what needs help from others, and escalate the outside ones."),
+              ("One fix at a time", "Tackle the top cluster, measure, then move to the next."),
+              ("Make it routine", "Keep the board running. A quick look at each retro keeps the data honest.")],
+        pitfalls=("logging only big blockers; blaming people; clustering too early with too little data; ranking by count; "
+                  "fixing several clusters at once; stopping logging after the first session."),
+        after=[("Straight away", "Start the experiment on the biggest cluster and put its review date in the calendar."),
+               ("Each retro", "Glance at the log: any new patterns? Is the top cluster shrinking?"),
+               ("Next cluster", "When the trend shows the fix worked, move on to the next biggest cluster."),
+               ("Outside causes", "Take clusters outside the team's control to the Cross-Team Sync or to leaders, with the data.")],
+        toolkit=FLOW_TOOLKIT,
+        foot="“What keeps blocking us, and what does it cost?”",
+    ),
+
+    # -------------------------------------------------------------- skills matrix
+    dict(
+        slug="skills-matrix",
+        title="Skills Matrix Guide",
+        subtitle="How to map the team's skills, find single points of failure, and plan learning so the team can swarm.",
+        tag="Facilitator Run-Sheet · Manage Flow · Team Capability · T-Shaped Skills",
+        boards=[("Open board", "skills-matrix-board.html"), ("SVG", "skills-matrix-board.svg")],
+        lede="If one person was away for a month, what would stop?",
+        intro=("Swarming and steady flow need more than one person who can do each kind of work. A skills matrix maps the "
+               "team's skills on a simple <b>0–3 scale</b>, from no experience to able to teach. It quickly shows <b>single points "
+               "of failure</b> and skills nobody can teach, and it turns what people <b>want to learn</b> into a learning plan. "
+               "It's a team tool for growth, not a performance assessment."),
+        glance=[("Duration", "60–90 min"), ("Group", "The whole team"),
+                ("Use when", "Work waits for one<br>person, or a team forms"), ("Output", "A matrix &amp;<br>a learning plan")],
+        before=["Print the board at A3, or load the SVG as a digital background",
+                "Agree up front that the matrix is for team learning, not for managers to rate people",
+                "Draft a list of 8–10 skills the team's work needs: technical, domain and practice skills",
+                "Markers; sticky notes for the wants-to-learn column"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–10", "Purpose", "Explain why: to spread skills so the team can swarm and isn't stuck when someone is away."),
+                ("10–25", "Skills", "Agree the skills that matter for the team's work. Write one per column. Keep to ten."),
+                ("25–45", "1 · Self-assess", "Each person scores themselves 0–3 for each skill, then the team discusses any surprises."),
+                ("45–55", "Wants to learn", "Each person adds what they'd like to learn."),
+                ("55–70", "2 · Single Points of Failure", "List skills with only one person at 2 or 3, and skills with nobody at 3."),
+                ("70–85", "3 · Learning Plan · 4 · Ready to Swarm?", "Pair learners with teachers, set dates, and check the readiness list.")],
+        sections_title="Reading the matrix",
+        sections_intro="Patterns to look for once it's filled in.",
+        sections=[("One person at 2+", RED, ["A single point of failure", "Top of the learning plan"]),
+                  ("Nobody at 3", AMBER, ["No one to teach it", "Consider outside help or training"]),
+                  ("Lots of 0s in a row", BLUE, ["A specialist; check they're not overloaded", "Pair them with learners"]),
+                  ("Wants to learn", EMERALD, ["Match with teachers", "Plan time for it"]),
+                  ("4 · Ready to Swarm?", FOREST, ["Two or more people per key skill", "Pairing is planned"])],
+        tips=[("Self-assess first", "People score themselves, then discuss. It builds trust and surfaces modesty or over-confidence."),
+              ("Learning, not rating", "Never use the matrix for performance reviews. If you do, the scores stop being honest."),
+              ("Aim for T-shapes", "Deep skill in one area plus working skill in others lets people help where the work is."),
+              ("Pair to teach", "Pairing on real work spreads skills faster than courses."),
+              ("Make time", "Plan learning into the iteration, or the matrix won't change."),
+              ("Revisit it", "Update every quarter and celebrate the levels that went up.")],
+        pitfalls=("managers filling it in about people; using it in performance reviews; too many skills; no time for learning; "
+                  "experts never given time to teach; filling it in once and forgetting it."),
+        after=[("Straight away", "Keep the matrix where the team can see it. Start the first learning pairs."),
+               ("Each iteration", "Plan pairing time. Note when a learner helps in a swarm."),
+               ("Each retro", "Ask: did work wait for one person? Update the learning plan."),
+               ("Quarterly", "Re-score together and compare. Single points of failure should be falling.")],
+        toolkit=FLOW_TOOLKIT,
+        foot="“What would you like to learn, and who could teach you?”",
+    ),
+]
+FLOW_GUIDES += [
+    # -------------------------------------------------------------- impediments
+    dict(
+        slug="impediments",
+        title="Impediments Board Guide",
+        subtitle="How to make impediments visible, give each one an owner, escalate on time, and show the value of removing them.",
+        tag="Facilitator Run-Sheet · Manage Flow · Team Impediments · Escalation Ladder",
+        boards=[("Open board", "impediments-board.html"), ("SVG", "impediments-board.svg")],
+        lede="What's slowing us down that we've stopped noticing?",
+        intro=("An <b>impediment</b> is anything that limits how well the team works and that the team can't easily fix "
+               "alone: a slow approval, a missing tool, an unclear decision owner, a flaky environment. Unlike a blocker on a "
+               "single item, impediments often affect everything. The board makes each one visible with <b>what it costs</b>, "
+               "gives it an owner, and uses an <b>escalation ladder</b> with time limits so nothing sits unresolved for weeks. "
+               "The resolved log shows stakeholders the value of removing impediments."),
+        glance=[("Duration", "30 min to set up<br>5 min each day"), ("Group", "The team, with the<br>SM or coach"),
+                ("Use when", "Always on, next to<br>the team board"), ("Output", "Owned impediments<br>&amp; a resolved log")],
+        before=["Print the board at A3 and put it next to the team board, or keep a digital copy",
+                "Pink and green stickies, and markers",
+                "Agree with management who sits on rungs 3 and 4 of the ladder, and that they'll respond in time",
+                "Bring any impediments from recent retros or the Blocker Clustering board"],
+        agenda_heads=["When", "Step", "Facilitator notes"],
+        agenda=[("Set-up · 0–10", "2 · Escalation Ladder", "Agree who is on each rung and how many days an impediment stays at a level before moving up."),
+                ("Set-up · 10–25", "1 · Seed the board", "Brainstorm current impediments. One pink sticky each: what, what it costs us, owner, date raised."),
+                ("Set-up · 25–30", "Prioritise", "Order by cost. Agree a next step for the top ones and move them to Being worked."),
+                ("Daily", "Review", "At the daily sync, check the board. Anything past its time limit moves up the ladder."),
+                ("When resolved", "3 · Resolved Log", "Add a green sticky saying what fixed it. Record it in the log with the days open and the lesson."),
+                ("Each retro", "Look back", "Review what was resolved, what's stuck, and whether the ladder's time limits are working.")],
+        sections_title="Making each part work",
+        sections_intro="Quality checks for each part of the board.",
+        sections=[("1 · Impediments", RED, ["Each sticky shows its cost", "Each has an owner and a date", "Few in Being worked at once"]),
+                  ("2 · Escalation Ladder", PURPLE, ["Named people at every rung", "Time limits are short", "Leaders agreed to respond"]),
+                  ("3 · Resolved Log", FOREST, ["What it cost and what fixed it", "Shared with stakeholders", "Lessons feed improvement"])],
+        tips=[("Show the cost", "“Waiting 3 days for approvals each sprint” gets action. “Approvals are slow” doesn't."),
+              ("Owner, not escalator", "The owner drives the impediment to resolution, even after it's escalated."),
+              ("Time-box each rung", "Without a time limit, impediments sit at the team level for months."),
+              ("Limit work in progress", "Work on a few impediments at a time and finish them, just like backlog items."),
+              ("Celebrate removals", "Share the resolved log at reviews. It builds support for removing the next one."),
+              ("Look for patterns", "If the same kind keeps appearing, it's a system issue. Raise it at the retro or with leaders.")],
+        pitfalls=("a board full of complaints with no owners; no time limits; escalating without the data on cost; leaders who "
+                  "don't respond; the SM fixing everything alone; never recording what was resolved."),
+        after=[("Straight away", "Put the board where the team and visitors can see it."),
+               ("Every day", "Check it at the daily sync and move anything past its time limit."),
+               ("Each review", "Share the resolved log and any escalations that need stakeholder help."),
+               ("Quarterly", "Look at the log for patterns and bring them to the Team Health Check or leaders.")],
+        toolkit=FLOW_TOOLKIT,
+        foot="“Who could remove this, and do they know it's costing us?”",
+    ),
+
+    # -------------------------------------------------------------- pairing & mobbing
+    dict(
+        slug="pairing-mobbing",
+        title="Pairing & Mobbing Guide",
+        subtitle="How to introduce pairing and mobbing, choose a style, rotate partners, and use it to spread skills.",
+        tag="Facilitator Run-Sheet · Manage Flow · Pair Programming · Mob / Ensemble Programming",
+        boards=[("Open board", "pairing-mobbing-board.html"), ("SVG", "pairing-mobbing-board.svg")],
+        lede="Who haven't we paired with yet, and what could we learn from each other?",
+        intro=("Pairing means two people working on one thing at one screen; mobbing, or ensemble work, means the whole group "
+               "does. Both finish work with fewer hand-offs, catch problems early, and spread skills quickly. They work for "
+               "code, tests, analysis and design. The board covers four <b>styles</b>, a <b>pair stair</b> to track who has paired "
+               "with whom, <b>session agreements</b>, the <b>skills</b> each pairing should spread, and a quick retro. Pair "
+               "programming comes from Extreme Programming; strong-style pairing is from Llewellyn Falco; mob programming was "
+               "popularised by Woody Zuill."),
+        glance=[("Duration", "45 min to set up<br>then ongoing"), ("Group", "The whole team"),
+                ("Use when", "Skills are siloed,<br>or work waits"), ("Output", "Agreements, rotation<br>&amp; learning pairs")],
+        before=["Print the board at A3 and put it next to the team board, or keep a digital copy",
+                "Bring the Skills Matrix: it shows which skills to spread",
+                "Check the setup: a shared screen, two keyboards, or a remote pairing tool",
+                "Agree a first trial: for example, pair on every item for two weeks, then review"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–10", "Why", "Discuss what the team wants from pairing: fewer hand-offs, shared knowledge, fewer bugs, or faster swarming."),
+                ("10–20", "1 · Styles", "Walk through the four styles. Agree what each is good for and how often to swap."),
+                ("20–30", "3 · Session Agreements", "Agree when to pair or mob, when to work solo, breaks, rotation and setup."),
+                ("30–40", "4 · Skills to Spread", "From the Skills Matrix, pick the skills to spread and match learners with teachers."),
+                ("40–45", "2 · Pair Stair · 5 · Pairs", "Write names on the stair. Plan this week's pairs, mixing people who haven't paired."),
+                ("Weekly", "6 · Quick Retro", "Five minutes: what worked, what was hard, what to change. Update the stair.")],
+        sections_title="Choosing a style",
+        sections_intro="Each style suits different work. Swap styles as the work changes.",
+        sections=[("Driver / Navigator", PURPLE, ["Everyday pairing", "Swap every 15–30 minutes"]),
+                  ("Ping-Pong", EMERALD, ["Test-driven development", "Keeps both people engaged"]),
+                  ("Strong-Style", ORANGE, ["Teaching and onboarding", "The expert navigates, the learner drives"]),
+                  ("Mob / Ensemble", SKY, ["Hard problems, swarming, new areas", "Rotate the driver every few minutes"]),
+                  ("2 · Pair Stair", SLATE, ["Spread tallies evenly", "Empty cells are pairs to try"])],
+        tips=[("Start with a trial", "Agree to pair for two weeks, then review. People adjust faster when it's an experiment."),
+              ("Swap often", "Regular role swaps keep both people engaged and stop one person dominating."),
+              ("Breaks matter", "Pairing is intense. Short, regular breaks keep it sustainable."),
+              ("Strong-style to teach", "Let the learner drive and the expert navigate. Knowledge moves through the learner's hands."),
+              ("Mob for hard problems", "When something is stuck or new, mobbing brings every perspective at once."),
+              ("Not everything needs a pair", "Agree what's fine solo: simple, well-understood or exploratory work.")],
+        pitfalls=("one person typing while the other watches; the same pairs every time; no breaks; forcing pairing on "
+                  "everything without agreement; measuring individual output; experts never letting learners drive."),
+        after=[("Straight away", "Put the agreements and the pair stair next to the team board."),
+               ("Daily", "Plan pairs at the daily sync, using the stair to mix people."),
+               ("Weekly", "Run the quick retro and update the tallies."),
+               ("Quarterly", "Re-score the Skills Matrix. Pairing should show up as levels going up.")],
+        toolkit=FLOW_TOOLKIT,
+        foot="“What would finish faster if two of us worked on it?”",
+    ),
+]
+GUIDES += FLOW_GUIDES
+
+
 # ------------------------------------------------------------------ rendering
 
 def guide_css():

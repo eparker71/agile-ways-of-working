@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 1190" width="1680" height="1190" role="img" aria-labelledby="mg-title mg-desc">
+  <title id="mg-title">Skills Matrix</title>
+  <desc id="mg-desc">A3 landscape skills matrix: team members by ten skills scored 0 to 3, wants-to-learn column, single points of failure, a learning plan, and a swarm-readiness checklist.</desc>
+  <defs><style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap');</style>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#EFF6FF"/>
+    </linearGradient>
+    <filter id="fc" x="-4%" y="-4%" width="110%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity=".10"/>
+    </filter>
+    <filter id="fsm" x="-6%" y="-6%" width="114%" height="116%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity=".08"/>
+    </filter>
+    <pattern id="dots" patternUnits="userSpaceOnUse" width="20" height="20">
+      <circle cx="10" cy="10" r="1.2" fill="#000" fill-opacity=".055"/>
+    </pattern>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E0F2FE"/>
+      <stop offset="100%" stop-color="#F0F9FF"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7DD3FC"/>
+      <stop offset="100%" stop-color="#BAE6FD"/>
+    </linearGradient>
+  </defs>
+<rect x="0" y="0" width="1680" height="1190" fill="url(#bg)"/><rect x="0" y="0" width="1680" height="4" fill="#eb6c36"/><rect x="0" y="4" width="1680" height="134" fill="#0C1A2E"/><text x="24" y="70" font-family="'Instrument Serif',Georgia,serif" font-size="42" font-weight="400" fill="white">Skills Matrix</text><text x="24" y="100" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" fill="#94A3B8">See who can do what, where you rely on one person, and who will learn what, so the team can swarm.</text><text x="24" y="120" font-family="'Geist Mono',Consolas,monospace" font-size="9" fill="#475569" letter-spacing=".06em">Manage Flow · Team Capability · T-Shaped Skills · Reduce Single Points of Failure</text><text x="1356" y="48" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#475569" letter-spacing=".14em">LEVELS</text><text x="1356" y="72" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#CBD5E1">0 = No experience</text><text x="1516" y="72" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#CBD5E1">1 = Learning</text><text x="1356" y="100" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#CBD5E1">2 = Can do it alone</text><text x="1516" y="100" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#CBD5E1">3 = Can teach it</text>
+<rect x="24" y="148" width="1632" height="640" rx="10" fill="#DBEAFE" stroke="#1E3A8A" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M24,200 V158 A10,10 0 0 1 34,148 H1646 A10,10 0 0 1 1656,158 V200 Z" fill="#1E3A8A"/><circle cx="45" cy="174" r="12" fill="white" fill-opacity=".18"/><text x="45" y="179" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">1</text><text x="68" y="180" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Skills Matrix</text><text x="1640" y="179" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".6" letter-spacing=".10em">SCORE 0–3 IN EACH CELL · SELF-ASSESSED, THEN DISCUSSED</text>
+<text x="46" y="252" font-family="'Geist Mono',Consolas,monospace" font-size="9" font-weight="600" fill="#1E3A8A" letter-spacing=".12em">TEAM MEMBER</text>
+<rect x="211" y="212" width="116.4" height="56" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".2"/>
+<text x="218" y="228" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="#1E3A8A" fill-opacity=".6" letter-spacing=".1em">SKILL 1</text>
+<line x1="218" y1="254" x2="320.4" y2="254" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="333.4" y="212" width="116.4" height="56" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".2"/>
+<text x="340.4" y="228" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="#1E3A8A" fill-opacity=".6" letter-spacing=".1em">SKILL 2</text>
+<line x1="340.4" y1="254" x2="442.8" y2="254" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="455.8" y="212" width="116.4" height="56" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".2"/>
+<text x="462.8" y="228" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="#1E3A8A" fill-opacity=".6" letter-spacing=".1em">SKILL 3</text>
+<line x1="462.8" y1="254" x2="565.2" y2="254" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="578.2" y="212" width="116.4" height="56" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".2"/>
+<text x="585.2" y="228" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="#1E3A8A" fill-opacity=".6" letter-spacing=".1em">SKILL 4</text>
+<line x1="585.2" y1="254" x2="687.6" y2="254" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="700.6" y="212" width="116.4" height="56" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".2"/>
+<text x="707.6" y="228" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="#1E3A8A" fill-opacity=".6" letter-spacing=".1em">SKILL 5</text>
+<line x1="707.6" y1="254" x2="810" y2="254" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="823" y="212" width="116.4" height="56" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".2"/>
+<text x="830" y="228" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="#1E3A8A" fill-opacity=".6" letter-spacing=".1em">SKILL 6</text>
+<line x1="830" y1="254" x2="932.4" y2="254" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="945.4" y="212" width="116.4" height="56" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".2"/>
+<text x="952.4" y="228" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="#1E3A8A" fill-opacity=".6" letter-spacing=".1em">SKILL 7</text>
+<line x1="952.4" y1="254" x2="1054.8" y2="254" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="1067.8" y="212" width="116.4" height="56" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".2"/>
+<text x="1074.8" y="228" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="#1E3A8A" fill-opacity=".6" letter-spacing=".1em">SKILL 8</text>
+<line x1="1074.8" y1="254" x2="1177.2" y2="254" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="1190.2" y="212" width="116.4" height="56" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".2"/>
+<text x="1197.2" y="228" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="#1E3A8A" fill-opacity=".6" letter-spacing=".1em">SKILL 9</text>
+<line x1="1197.2" y1="254" x2="1299.6" y2="254" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="1312.6" y="212" width="116.4" height="56" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".2"/>
+<text x="1319.6" y="228" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="#1E3A8A" fill-opacity=".6" letter-spacing=".1em">SKILL 10</text>
+<line x1="1319.6" y1="254" x2="1422" y2="254" stroke="#CBD5E1" stroke-width="1"/>
+<text x="1442" y="252" font-family="'Geist Mono',Consolas,monospace" font-size="9" font-weight="600" fill="#065F46" letter-spacing=".12em">WANTS TO LEARN</text>
+<rect x="38" y="274" width="164" height="56.5" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".15"/>
+<line x1="48" y1="316.5" x2="192" y2="316.5" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="211" y="274" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="333.4" y="274" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="455.8" y="274" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="578.2" y="274" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="700.6" y="274" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="823" y="274" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="945.4" y="274" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1067.8" y="274" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1190.2" y="274" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1312.6" y="274" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1435" y="274" width="207" height="56.5" rx="4" fill="#D1FAE5" stroke="#065F46" stroke-opacity=".15"/>
+<rect x="38" y="336.5" width="164" height="56.5" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".15"/>
+<line x1="48" y1="379" x2="192" y2="379" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="211" y="336.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="333.4" y="336.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="455.8" y="336.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="578.2" y="336.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="700.6" y="336.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="823" y="336.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="945.4" y="336.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1067.8" y="336.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1190.2" y="336.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1312.6" y="336.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1435" y="336.5" width="207" height="56.5" rx="4" fill="#D1FAE5" stroke="#065F46" stroke-opacity=".15"/>
+<rect x="38" y="399" width="164" height="56.5" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".15"/>
+<line x1="48" y1="441.5" x2="192" y2="441.5" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="211" y="399" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="333.4" y="399" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="455.8" y="399" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="578.2" y="399" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="700.6" y="399" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="823" y="399" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="945.4" y="399" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1067.8" y="399" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1190.2" y="399" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1312.6" y="399" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1435" y="399" width="207" height="56.5" rx="4" fill="#D1FAE5" stroke="#065F46" stroke-opacity=".15"/>
+<rect x="38" y="461.5" width="164" height="56.5" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".15"/>
+<line x1="48" y1="504" x2="192" y2="504" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="211" y="461.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="333.4" y="461.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="455.8" y="461.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="578.2" y="461.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="700.6" y="461.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="823" y="461.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="945.4" y="461.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1067.8" y="461.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1190.2" y="461.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1312.6" y="461.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1435" y="461.5" width="207" height="56.5" rx="4" fill="#D1FAE5" stroke="#065F46" stroke-opacity=".15"/>
+<rect x="38" y="524" width="164" height="56.5" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".15"/>
+<line x1="48" y1="566.5" x2="192" y2="566.5" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="211" y="524" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="333.4" y="524" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="455.8" y="524" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="578.2" y="524" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="700.6" y="524" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="823" y="524" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="945.4" y="524" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1067.8" y="524" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1190.2" y="524" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1312.6" y="524" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1435" y="524" width="207" height="56.5" rx="4" fill="#D1FAE5" stroke="#065F46" stroke-opacity=".15"/>
+<rect x="38" y="586.5" width="164" height="56.5" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".15"/>
+<line x1="48" y1="629" x2="192" y2="629" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="211" y="586.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="333.4" y="586.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="455.8" y="586.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="578.2" y="586.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="700.6" y="586.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="823" y="586.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="945.4" y="586.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1067.8" y="586.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1190.2" y="586.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1312.6" y="586.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1435" y="586.5" width="207" height="56.5" rx="4" fill="#D1FAE5" stroke="#065F46" stroke-opacity=".15"/>
+<rect x="38" y="649" width="164" height="56.5" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".15"/>
+<line x1="48" y1="691.5" x2="192" y2="691.5" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="211" y="649" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="333.4" y="649" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="455.8" y="649" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="578.2" y="649" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="700.6" y="649" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="823" y="649" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="945.4" y="649" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1067.8" y="649" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1190.2" y="649" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1312.6" y="649" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1435" y="649" width="207" height="56.5" rx="4" fill="#D1FAE5" stroke="#065F46" stroke-opacity=".15"/>
+<rect x="38" y="711.5" width="164" height="56.5" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".15"/>
+<line x1="48" y1="754" x2="192" y2="754" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="211" y="711.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="333.4" y="711.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="455.8" y="711.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="578.2" y="711.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="700.6" y="711.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="823" y="711.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="945.4" y="711.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1067.8" y="711.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1190.2" y="711.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1312.6" y="711.5" width="116.4" height="56.5" rx="4" fill="white" fill-opacity=".55" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1435" y="711.5" width="207" height="56.5" rx="4" fill="#D1FAE5" stroke="#065F46" stroke-opacity=".15"/>
+<rect x="24" y="802" width="534" height="258" rx="10" fill="#FEE2E2" stroke="#991B1B" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M24,854 V812 A10,10 0 0 1 34,802 H548 A10,10 0 0 1 558,812 V854 Z" fill="#991B1B"/><circle cx="45" cy="828" r="12" fill="white" fill-opacity=".18"/><text x="45" y="833" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">2</text><text x="68" y="834" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Single Points of Failure</text><text x="542" y="833" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".6" letter-spacing=".10em">THE BUS-FACTOR CHECK</text>
+<text x="42" y="884" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#991B1B">Skills where only one person is at 2 or 3:</text>
+<line x1="42" y1="912" x2="540" y2="912" stroke="#CBD5E1" stroke-width="1.5"/><line x1="42" y1="938" x2="540" y2="938" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="42" y="974" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#991B1B">Skills where nobody is at 3 (no one to teach):</text>
+<line x1="42" y1="1002" x2="540" y2="1002" stroke="#CBD5E1" stroke-width="1.5"/><line x1="42" y1="1028" x2="540" y2="1028" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="572" y="802" width="534" height="258" rx="10" fill="#D1FAE5" stroke="#065F46" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M572,854 V812 A10,10 0 0 1 582,802 H1096 A10,10 0 0 1 1106,812 V854 Z" fill="#065F46"/><circle cx="593" cy="828" r="12" fill="white" fill-opacity=".18"/><text x="593" y="833" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">3</text><text x="616" y="834" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Learning Plan</text><text x="1090" y="833" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".6" letter-spacing=".10em">PAIR TO SPREAD SKILLS</text>
+<text x="596" y="886" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="600" fill="#065F46" letter-spacing=".1em">WHO</text><text x="716" y="886" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="600" fill="#065F46" letter-spacing=".1em">LEARNS</text><text x="866" y="886" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="600" fill="#065F46" letter-spacing=".1em">FROM</text><text x="986" y="886" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="600" fill="#065F46" letter-spacing=".1em">BY WHEN</text><line x1="590" y1="896" x2="1088" y2="896" stroke="#065F46" stroke-width="1.2" stroke-opacity=".35"/><line x1="590" y1="930" x2="1088" y2="930" stroke="#CBD5E1" stroke-width="1.5"/><line x1="590" y1="964" x2="1088" y2="964" stroke="#CBD5E1" stroke-width="1.5"/><line x1="590" y1="998" x2="1088" y2="998" stroke="#CBD5E1" stroke-width="1.5"/><line x1="590" y1="1032" x2="1088" y2="1032" stroke="#CBD5E1" stroke-width="1.5"/><line x1="710" y1="874" x2="710" y2="1032" stroke="#065F46" stroke-width="1" stroke-opacity=".15"/><line x1="860" y1="874" x2="860" y2="1032" stroke="#065F46" stroke-width="1" stroke-opacity=".15"/><line x1="980" y1="874" x2="980" y2="1032" stroke="#065F46" stroke-width="1" stroke-opacity=".15"/>
+<rect x="1120" y="802" width="536" height="258" rx="10" fill="#DCFCE7" stroke="#14532D" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M1120,854 V812 A10,10 0 0 1 1130,802 H1646 A10,10 0 0 1 1656,812 V854 Z" fill="#14532D"/><circle cx="1141" cy="828" r="12" fill="white" fill-opacity=".18"/><text x="1141" y="833" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">4</text><text x="1164" y="834" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Ready to Swarm?</text>
+<rect x="1138" y="880" width="12" height="12" rx="2" fill="white" stroke="#14532D" stroke-opacity=".6" stroke-width="1.2"/><text x="1158" y="890" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#14532D">Every key skill has 2+ people at level 2</text>
+<rect x="1138" y="910" width="12" height="12" rx="2" fill="white" stroke="#14532D" stroke-opacity=".6" stroke-width="1.2"/><text x="1158" y="920" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#14532D">Pairing time is planned each iteration</text>
+<rect x="1138" y="940" width="12" height="12" rx="2" fill="white" stroke="#14532D" stroke-opacity=".6" stroke-width="1.2"/><text x="1158" y="950" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#14532D">Experts have time set aside to teach</text>
+<rect x="1138" y="970" width="12" height="12" rx="2" fill="white" stroke="#14532D" stroke-opacity=".6" stroke-width="1.2"/><text x="1158" y="980" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#14532D">New joiners have a learning buddy</text>
+<text x="1138" y="1030" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#14532D">Next review of the matrix:</text><line x1="1296.72" y1="1034" x2="1638" y2="1034" stroke="#CBD5E1" stroke-width="1.5"/>
+<line x1="24" y1="1070" x2="1656" y2="1070" stroke="#E2E8F0" stroke-width="1"/><text x="24" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“If one person was away for a month, what would stop?”</text><line x1="832" y1="1078" x2="832" y2="1128" stroke="#E2E8F0" stroke-width="1"/><text x="848" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“What would you like to learn, and who could teach you?”</text><text x="1656" y="1138" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#CBD5E1" letter-spacing=".08em">Manage Flow · Stop Starting, Start Finishing</text>
+</svg>

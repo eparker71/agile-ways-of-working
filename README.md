@@ -41,6 +41,13 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | Cross-Team Planning | `cross-team-planning-board` | `facilitator-guide-cross-team-planning.html` |
 | Dependency Map | `dependency-map-board` | `facilitator-guide-dependency-map.html` |
 | Cross-Team Sync | `cross-team-sync-board` | `facilitator-guide-cross-team-sync.html` |
+| Buffering & Swarming | `buffering-swarming-board` | `facilitator-guide-buffering-swarming.html` |
+| Kanban Board Design | `kanban-board-design` | `facilitator-guide-kanban-board-design.html` |
+| Ageing WIP & SLE | `ageing-wip-board` | `facilitator-guide-ageing-wip.html` |
+| Blocker Clustering | `blocker-clustering-board` | `facilitator-guide-blocker-clustering.html` |
+| Skills Matrix | `skills-matrix-board` | `facilitator-guide-skills-matrix.html` |
+| Impediments Board | `impediments-board` | `facilitator-guide-impediments.html` |
+| Pairing & Mobbing | `pairing-mobbing-board` | `facilitator-guide-pairing-mobbing.html` |
 | Scrum Master & Agile Coach Cheat Sheet | `scrum-master-agile-coach-cheat-sheet.html` (two-sided A3, print double-sided) | Self-documenting reference; links to every board |
 | Jira Cheat Sheet | `jira-cheat-sheet.html` (one-sided A3, Jira Cloud) | Self-documenting reference; companion to the cheat sheet above |
 
@@ -63,6 +70,7 @@ Two further sets sit around that loop:
 
 - **Run a project:** Project Kickoff, Stakeholder Map, Release Forecast & Burn-up, RAID Log.
 - **Coordinate teams (program level):** Objectives & Key Results, Cross-Team Planning, Dependency Map, Cross-Team Sync.
+- **Manage flow:** Kanban Board Design, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Skills Matrix, Impediments Board, Pairing & Mobbing.
 
 **Diagnose** (Team Health Check) → **Explore** (Marginal Gains Workshop) → **Experiment** (1% Experiment Canvas) → **Reflect** (Retrospective Kit), then back round again. Lean Coffee is a general-purpose facilitation format that can be used at any point.
 

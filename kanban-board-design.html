@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kanban Board Design</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{display:flex;justify-content:center;align-items:flex-start;padding:24px;box-sizing:border-box;min-height:100vh;}
+svg{display:block;max-width:100%;height:auto;box-shadow:0 12px 40px rgba(0,0,0,.22);}
+a.guide{position:fixed;right:16px;bottom:16px;font:500 12px 'Geist',system-ui,sans-serif;color:#fff;background:#0C1A2E;border-left:4px solid #eb6c36;padding:9px 14px;border-radius:6px;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.25);}
+a.guide:hover{background:#eb6c36;}
+@media print{@page{size:A3 landscape;margin:0;}html,body{background:none;}body{padding:0;}svg{box-shadow:none;width:100%;}a.guide{display:none;}}
+</style>
+</head>
+<body>
+<a class="guide" href="facilitator-guide-kanban-board-design.html">Facilitator guide →</a>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 1190" width="1680" height="1190" role="img" aria-labelledby="mg-title mg-desc">
+  <title id="mg-title">Kanban Board Design</title>
+  <desc id="mg-desc">A3 landscape board: seven workflow columns each with name, WIP limit, exit policy and active/queue type, classes of service, board policies, card and swimlane design, and flow metrics.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#EFF6FF"/>
+    </linearGradient>
+    <filter id="fc" x="-4%" y="-4%" width="110%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity=".10"/>
+    </filter>
+    <filter id="fsm" x="-6%" y="-6%" width="114%" height="116%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity=".08"/>
+    </filter>
+    <pattern id="dots" patternUnits="userSpaceOnUse" width="20" height="20">
+      <circle cx="10" cy="10" r="1.2" fill="#000" fill-opacity=".055"/>
+    </pattern>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E0F2FE"/>
+      <stop offset="100%" stop-color="#F0F9FF"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7DD3FC"/>
+      <stop offset="100%" stop-color="#BAE6FD"/>
+    </linearGradient>
+  </defs>
+<rect x="0" y="0" width="1680" height="1190" fill="url(#bg)"/><rect x="0" y="0" width="1680" height="4" fill="#eb6c36"/><rect x="0" y="4" width="1680" height="134" fill="#0C1A2E"/><text x="24" y="70" font-family="'Instrument Serif',Georgia,serif" font-size="42" font-weight="400" fill="white">Kanban Board Design</text><text x="24" y="100" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" fill="#94A3B8">Design a board that shows how work really flows: columns, WIP limits, exit policies and classes of service.</text><text x="24" y="120" font-family="'Geist Mono',Consolas,monospace" font-size="9" fill="#475569" letter-spacing=".06em">Manage Flow · Visualise the Workflow · Limit WIP · Make Policies Explicit</text><text x="1356" y="66" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#475569" letter-spacing=".14em">TEAM</text><line x1="1452" y1="69" x2="1656" y2="69" stroke="#334155" stroke-width="1.2"/><text x="1356" y="96" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#475569" letter-spacing=".14em">DATE</text><line x1="1452" y1="99" x2="1656" y2="99" stroke="#334155" stroke-width="1.2"/>
+<rect x="24" y="148" width="1632" height="380" rx="10" fill="#DBEAFE" stroke="#1E3A8A" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M24,200 V158 A10,10 0 0 1 34,148 H1646 A10,10 0 0 1 1656,158 V200 Z" fill="#1E3A8A"/><circle cx="45" cy="174" r="12" fill="white" fill-opacity=".18"/><text x="45" y="179" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">1</text><text x="68" y="180" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Workflow Columns</text><text x="1640" y="179" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".6" letter-spacing=".10em">LEFT TO RIGHT · ONE COLUMN PER REAL STATE OR QUEUE</text>
+<rect x="38" y="212" width="220.571" height="302" rx="6" fill="white" stroke="#1E3A8A" stroke-opacity=".2"/>
+<text x="50" y="234" font-family="'Geist Mono',Consolas,monospace" font-size="9" font-weight="600" fill="#1E3A8A" letter-spacing=".12em">COLUMN 1</text>
+<text x="246.571" y="234" text-anchor="end" font-family="'Geist',Inter,system-ui,sans-serif" font-size="9" font-style="italic" fill="#1E3A8A" fill-opacity=".55">e.g. Options</text>
+<text x="50" y="268" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E3A8A">Name:</text><line x1="88.6" y1="272" x2="246.571" y2="272" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="50" y="302" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E3A8A">WIP limit:</text><line x1="117.2" y1="306" x2="246.571" y2="306" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="50" y="338" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#1E3A8A">Done when (exit policy):</text>
+<line x1="50" y1="366" x2="246.571" y2="366" stroke="#CBD5E1" stroke-width="1.5"/><line x1="50" y1="392" x2="246.571" y2="392" stroke="#CBD5E1" stroke-width="1.5"/><line x1="50" y1="418" x2="246.571" y2="418" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="50" y="454" width="12" height="12" rx="2" fill="white" stroke="#1E3A8A" stroke-opacity=".6" stroke-width="1.2"/><text x="70" y="464" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E3A8A">Active</text>
+<rect x="126" y="454" width="12" height="12" rx="2" fill="white" stroke="#1E3A8A" stroke-opacity=".6" stroke-width="1.2"/><text x="146" y="464" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E3A8A">Queue</text>
+<rect x="268.571" y="212" width="220.571" height="302" rx="6" fill="white" stroke="#1E3A8A" stroke-opacity=".2"/>
+<text x="280.571" y="234" font-family="'Geist Mono',Consolas,monospace" font-size="9" font-weight="600" fill="#1E3A8A" letter-spacing=".12em">COLUMN 2</text>
+<text x="477.143" y="234" text-anchor="end" font-family="'Geist',Inter,system-ui,sans-serif" font-size="9" font-style="italic" fill="#1E3A8A" fill-opacity=".55">e.g. Ready</text>
+<text x="280.571" y="268" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E3A8A">Name:</text><line x1="319.171" y1="272" x2="477.143" y2="272" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="280.571" y="302" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E3A8A">WIP limit:</text><line x1="347.771" y1="306" x2="477.143" y2="306" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="280.571" y="338" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#1E3A8A">Done when (exit policy):</text>
+<line x1="280.571" y1="366" x2="477.143" y2="366" stroke="#CBD5E1" stroke-width="1.5"/><line x1="280.571" y1="392" x2="477.143" y2="392" stroke="#CBD5E1" stroke-width="1.5"/><line x1="280.571" y1="418" x2="477.143" y2="418" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="280.571" y="454" width="12" height="12" rx="2" fill="white" stroke="#1E3A8A" stroke-opacity=".6" stroke-width="1.2"/><text x="300.571" y="464" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E3A8A">Active</text>
+<rect x="356.571" y="454" width="12" height="12" rx="2" fill="white" stroke="#1E3A8A" stroke-opacity=".6" stroke-width="1.2"/><text x="376.571" y="464" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E3A8A">Queue</text>
+<rect x="499.143" y="212" width="220.571" height="302" rx="6" fill="white" stroke="#1E3A8A" stroke-opacity=".2"/>
+<text x="511.143" y="234" font-family="'Geist Mono',Consolas,monospace" font-size="9" font-weight="600" fill="#1E3A8A" letter-spacing=".12em">COLUMN 3</text>
+<text x="707.714" y="234" text-anchor="end" font-family="'Geist',Inter,system-ui,sans-serif" font-size="9" font-style="italic" fill="#1E3A8A" fill-opacity=".55">e.g. Building</text>
+<text x="511.143" y="268" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E3A8A">Name:</text><line x1="549.743" y1="272" x2="707.714" y2="272" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="511.143" y="302" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E3A8A">WIP limit:</text><line x1="578.343" y1="306" x2="707.714" y2="306" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="511.143" y="338" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#1E3A8A">Done when (exit policy):</text>
+<line x1="511.143" y1="366" x2="707.714" y2="366" stroke="#CBD5E1" stroke-width="1.5"/><line x1="511.143" y1="392" x2="707.714" y2="392" stroke="#CBD5E1" stroke-width="1.5"/><line x1="511.143" y1="418" x2="707.714" y2="418" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="511.143" y="454" width="12" height="12" rx="2" fill="white" stroke="#1E3A8A" stroke-opacity=".6" stroke-width="1.2"/><text x="531.143" y="464" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E3A8A">Active</text>
+<rect x="587.143" y="454" width="12" height="12" rx="2" fill="white" stroke="#1E3A8A" stroke-opacity=".6" stroke-width="1.2"/><text x="607.143" y="464" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E3A8A">Queue</text>
+<rect x="729.714" y="212" width="220.571" height="302" rx="6" fill="white" stroke="#1E3A8A" stroke-opacity=".2"/>
+<text x="741.714" y="234" font-family="'Geist Mono',Consolas,monospace" font-size="9" font-weight="600" fill="#1E3A8A" letter-spacing=".12em">COLUMN 4</text>
+<text x="938.286" y="234" text-anchor="end" font-family="'Geist',Inter,system-ui,sans-serif" font-size="9" font-style="italic" fill="#1E3A8A" fill-opacity=".55">e.g. Waiting for review</text>
+<text x="741.714" y="268" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E3A8A">Name:</text><line x1="780.314" y1="272" x2="938.286" y2="272" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="741.714" y="302" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E3A8A">WIP limit:</text><line x1="808.914" y1="306" x2="938.286" y2="306" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="741.714" y="338" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#1E3A8A">Done when (exit policy):</text>
+<line x1="741.714" y1="366" x2="938.286" y2="366" stroke="#CBD5E1" stroke-width="1.5"/><line x1="741.714" y1="392" x2="938.286" y2="392" stroke="#CBD5E1" stroke-width="1.5"/><line x1="741.714" y1="418" x2="938.286" y2="418" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="741.714" y="454" width="12" height="12" rx="2" fill="white" stroke="#1E3A8A" stroke-opacity=".6" stroke-width="1.2"/><text x="761.714" y="464" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E3A8A">Active</text>
+<rect x="817.714" y="454" width="12" height="12" rx="2" fill="white" stroke="#1E3A8A" stroke-opacity=".6" stroke-width="1.2"/><text x="837.714" y="464" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E3A8A">Queue</text>
+<rect x="960.286" y="212" width="220.571" height="302" rx="6" fill="white" stroke="#1E3A8A" stroke-opacity=".2"/>
+<text x="972.286" y="234" font-family="'Geist Mono',Consolas,monospace" font-size="9" font-weight="600" fill="#1E3A8A" letter-spacing=".12em">COLUMN 5</text>
+<text x="1168.86" y="234" text-anchor="end" font-family="'Geist',Inter,system-ui,sans-serif" font-size="9" font-style="italic" fill="#1E3A8A" fill-opacity=".55">e.g. Testing</text>
+<text x="972.286" y="268" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E3A8A">Name:</text><line x1="1010.89" y1="272" x2="1168.86" y2="272" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="972.286" y="302" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E3A8A">WIP limit:</text><line x1="1039.49" y1="306" x2="1168.86" y2="306" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="972.286" y="338" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#1E3A8A">Done when (exit policy):</text>
+<line x1="972.286" y1="366" x2="1168.86" y2="366" stroke="#CBD5E1" stroke-width="1.5"/><line x1="972.286" y1="392" x2="1168.86" y2="392" stroke="#CBD5E1" stroke-width="1.5"/><line x1="972.286" y1="418" x2="1168.86" y2="418" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="972.286" y="454" width="12" height="12" rx="2" fill="white" stroke="#1E3A8A" stroke-opacity=".6" stroke-width="1.2"/><text x="992.286" y="464" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E3A8A">Active</text>
+<rect x="1048.29" y="454" width="12" height="12" rx="2" fill="white" stroke="#1E3A8A" stroke-opacity=".6" stroke-width="1.2"/><text x="1068.29" y="464" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E3A8A">Queue</text>
+<rect x="1190.86" y="212" width="220.571" height="302" rx="6" fill="white" stroke="#1E3A8A" stroke-opacity=".2"/>
+<text x="1202.86" y="234" font-family="'Geist Mono',Consolas,monospace" font-size="9" font-weight="600" fill="#1E3A8A" letter-spacing=".12em">COLUMN 6</text>
+<text x="1399.43" y="234" text-anchor="end" font-family="'Geist',Inter,system-ui,sans-serif" font-size="9" font-style="italic" fill="#1E3A8A" fill-opacity=".55">e.g. Ready to release</text>
+<text x="1202.86" y="268" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E3A8A">Name:</text><line x1="1241.46" y1="272" x2="1399.43" y2="272" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="1202.86" y="302" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E3A8A">WIP limit:</text><line x1="1270.06" y1="306" x2="1399.43" y2="306" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="1202.86" y="338" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#1E3A8A">Done when (exit policy):</text>
+<line x1="1202.86" y1="366" x2="1399.43" y2="366" stroke="#CBD5E1" stroke-width="1.5"/><line x1="1202.86" y1="392" x2="1399.43" y2="392" stroke="#CBD5E1" stroke-width="1.5"/><line x1="1202.86" y1="418" x2="1399.43" y2="418" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="1202.86" y="454" width="12" height="12" rx="2" fill="white" stroke="#1E3A8A" stroke-opacity=".6" stroke-width="1.2"/><text x="1222.86" y="464" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E3A8A">Active</text>
+<rect x="1278.86" y="454" width="12" height="12" rx="2" fill="white" stroke="#1E3A8A" stroke-opacity=".6" stroke-width="1.2"/><text x="1298.86" y="464" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E3A8A">Queue</text>
+<rect x="1421.43" y="212" width="220.571" height="302" rx="6" fill="white" stroke="#1E3A8A" stroke-opacity=".2"/>
+<text x="1433.43" y="234" font-family="'Geist Mono',Consolas,monospace" font-size="9" font-weight="600" fill="#1E3A8A" letter-spacing=".12em">COLUMN 7</text>
+<text x="1630" y="234" text-anchor="end" font-family="'Geist',Inter,system-ui,sans-serif" font-size="9" font-style="italic" fill="#1E3A8A" fill-opacity=".55">Done</text>
+<text x="1433.43" y="268" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E3A8A">Name:</text><line x1="1472.03" y1="272" x2="1630" y2="272" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="1433.43" y="302" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E3A8A">WIP limit:</text><line x1="1500.63" y1="306" x2="1630" y2="306" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="1433.43" y="338" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#1E3A8A">Done when (exit policy):</text>
+<line x1="1433.43" y1="366" x2="1630" y2="366" stroke="#CBD5E1" stroke-width="1.5"/><line x1="1433.43" y1="392" x2="1630" y2="392" stroke="#CBD5E1" stroke-width="1.5"/><line x1="1433.43" y1="418" x2="1630" y2="418" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="1433.43" y="454" width="12" height="12" rx="2" fill="white" stroke="#1E3A8A" stroke-opacity=".6" stroke-width="1.2"/><text x="1453.43" y="464" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E3A8A">Active</text>
+<rect x="1509.43" y="454" width="12" height="12" rx="2" fill="white" stroke="#1E3A8A" stroke-opacity=".6" stroke-width="1.2"/><text x="1529.43" y="464" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E3A8A">Queue</text>
+<rect x="24" y="542" width="1082" height="300" rx="10" fill="#EDE9FE" stroke="#581C87" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M24,594 V552 A10,10 0 0 1 34,542 H1096 A10,10 0 0 1 1106,552 V594 Z" fill="#581C87"/><circle cx="45" cy="568" r="12" fill="white" fill-opacity=".18"/><text x="45" y="573" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">2</text><text x="68" y="574" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Classes of Service</text><text x="1090" y="573" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".6" letter-spacing=".10em">HOW WE TREAT DIFFERENT KINDS OF WORK</text>
+<text x="48" y="626" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="600" fill="#581C87" letter-spacing=".1em">CLASS</text><text x="198" y="626" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="600" fill="#581C87" letter-spacing=".1em">WHEN TO USE IT</text><text x="498" y="626" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="600" fill="#581C87" letter-spacing=".1em">OUR POLICY</text><text x="938" y="626" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="600" fill="#581C87" letter-spacing=".1em">LIMIT</text><line x1="42" y1="636" x2="1088" y2="636" stroke="#581C87" stroke-width="1.2" stroke-opacity=".35"/><line x1="42" y1="682" x2="1088" y2="682" stroke="#CBD5E1" stroke-width="1.5"/><line x1="42" y1="728" x2="1088" y2="728" stroke="#CBD5E1" stroke-width="1.5"/><line x1="42" y1="774" x2="1088" y2="774" stroke="#CBD5E1" stroke-width="1.5"/><line x1="42" y1="820" x2="1088" y2="820" stroke="#CBD5E1" stroke-width="1.5"/><line x1="192" y1="614" x2="192" y2="820" stroke="#581C87" stroke-width="1" stroke-opacity=".15"/><line x1="492" y1="614" x2="492" y2="820" stroke="#581C87" stroke-width="1" stroke-opacity=".15"/><line x1="932" y1="614" x2="932" y2="820" stroke="#581C87" stroke-width="1" stroke-opacity=".15"/>
+<text x="48" y="664" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" font-weight="600" fill="#581C87">Expedite</text>
+<text x="198" y="664" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-style="italic" fill="#581C87" fill-opacity=".65">Urgent, high cost of delay now</text>
+<text x="48" y="710" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" font-weight="600" fill="#581C87">Fixed date</text>
+<text x="198" y="710" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-style="italic" fill="#581C87" fill-opacity=".65">Value drops after a date</text>
+<text x="48" y="756" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" font-weight="600" fill="#581C87">Standard</text>
+<text x="198" y="756" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-style="italic" fill="#581C87" fill-opacity=".65">Most work, in priority order</text>
+<text x="48" y="802" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" font-weight="600" fill="#581C87">Intangible</text>
+<text x="198" y="802" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-style="italic" fill="#581C87" fill-opacity=".65">Improvement, tech debt</text>
+<rect x="1120" y="542" width="536" height="300" rx="10" fill="#F1F5F9" stroke="#334155" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M1120,594 V552 A10,10 0 0 1 1130,542 H1646 A10,10 0 0 1 1656,552 V594 Z" fill="#334155"/><circle cx="1141" cy="568" r="12" fill="white" fill-opacity=".18"/><text x="1141" y="573" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">3</text><text x="1164" y="574" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Board Policies</text><text x="1640" y="573" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".6" letter-spacing=".10em">WRITE THEM ON THE BOARD</text>
+<text x="1138" y="630" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#334155">We pull work when:</text><line x1="1250.96" y1="634" x2="1638" y2="634" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="1138" y="664" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#334155">Blocked items are marked by:</text><line x1="1308.16" y1="668" x2="1638" y2="668" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="1138" y="698" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#334155">Replenishment: when &amp; who:</text><line x1="1296.72" y1="702" x2="1638" y2="702" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="1138" y="732" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#334155">We walk the board at:</text><line x1="1268.12" y1="736" x2="1638" y2="736" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="1138" y="766" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#334155">Definition of Done lives at:</text><line x1="1308.16" y1="770" x2="1638" y2="770" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="1138" y="800" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#334155">Policies reviewed every:</text><line x1="1285.28" y1="804" x2="1638" y2="804" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="24" y="856" width="808" height="204" rx="10" fill="#E0F2FE" stroke="#0C4A6E" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M24,908 V866 A10,10 0 0 1 34,856 H822 A10,10 0 0 1 832,866 V908 Z" fill="#0C4A6E"/><circle cx="45" cy="882" r="12" fill="white" fill-opacity=".18"/><text x="45" y="887" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">4</text><text x="68" y="888" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Cards &amp; Swimlanes</text>
+<text x="42" y="938" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#0C4A6E">Each card shows:</text>
+<rect x="42" y="956" width="12" height="12" rx="2" fill="white" stroke="#0C4A6E" stroke-opacity=".6" stroke-width="1.2"/><text x="62" y="966" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#0C4A6E">Title</text>
+<rect x="242" y="956" width="12" height="12" rx="2" fill="white" stroke="#0C4A6E" stroke-opacity=".6" stroke-width="1.2"/><text x="262" y="966" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#0C4A6E">Owner</text>
+<rect x="442" y="956" width="12" height="12" rx="2" fill="white" stroke="#0C4A6E" stroke-opacity=".6" stroke-width="1.2"/><text x="462" y="966" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#0C4A6E">Age (days)</text>
+<rect x="42" y="984" width="12" height="12" rx="2" fill="white" stroke="#0C4A6E" stroke-opacity=".6" stroke-width="1.2"/><text x="62" y="994" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#0C4A6E">Blocked flag</text>
+<rect x="242" y="984" width="12" height="12" rx="2" fill="white" stroke="#0C4A6E" stroke-opacity=".6" stroke-width="1.2"/><text x="262" y="994" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#0C4A6E">Class of service</text>
+<rect x="442" y="984" width="12" height="12" rx="2" fill="white" stroke="#0C4A6E" stroke-opacity=".6" stroke-width="1.2"/><text x="462" y="994" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#0C4A6E">Due date</text>
+<text x="42" y="1040" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#0C4A6E">Swimlanes (if any):</text><line x1="160.68" y1="1044" x2="814" y2="1044" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="846" y="856" width="810" height="204" rx="10" fill="#DCFCE7" stroke="#14532D" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M846,908 V866 A10,10 0 0 1 856,856 H1646 A10,10 0 0 1 1656,866 V908 Z" fill="#14532D"/><circle cx="867" cy="882" r="12" fill="white" fill-opacity=".18"/><text x="867" y="887" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">5</text><text x="890" y="888" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Flow Metrics to Watch</text><text x="1640" y="887" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".6" letter-spacing=".10em">LEARN, DON'T JUDGE</text>
+<rect x="864" y="932" width="12" height="12" rx="2" fill="white" stroke="#14532D" stroke-opacity=".6" stroke-width="1.2"/><text x="884" y="942" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#14532D">WIP</text>
+<text x="994" y="942" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-style="italic" fill="#14532D" fill-opacity=".7">items in progress</text>
+<rect x="1254" y="932" width="12" height="12" rx="2" fill="white" stroke="#14532D" stroke-opacity=".6" stroke-width="1.2"/><text x="1274" y="942" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#14532D">Throughput</text>
+<text x="1384" y="942" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-style="italic" fill="#14532D" fill-opacity=".7">items done per week</text>
+<rect x="864" y="964" width="12" height="12" rx="2" fill="white" stroke="#14532D" stroke-opacity=".6" stroke-width="1.2"/><text x="884" y="974" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#14532D">Cycle time</text>
+<text x="994" y="974" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-style="italic" fill="#14532D" fill-opacity=".7">start to done, in days</text>
+<rect x="1254" y="964" width="12" height="12" rx="2" fill="white" stroke="#14532D" stroke-opacity=".6" stroke-width="1.2"/><text x="1274" y="974" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#14532D">Work item age</text>
+<text x="1384" y="974" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-style="italic" fill="#14532D" fill-opacity=".7">how long open items have run</text>
+<rect x="864" y="996" width="12" height="12" rx="2" fill="white" stroke="#14532D" stroke-opacity=".6" stroke-width="1.2"/><text x="884" y="1006" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#14532D">Blocked time</text>
+<text x="994" y="1006" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-style="italic" fill="#14532D" fill-opacity=".7">days items spend blocked</text>
+<rect x="1254" y="996" width="12" height="12" rx="2" fill="white" stroke="#14532D" stroke-opacity=".6" stroke-width="1.2"/><text x="1274" y="1006" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#14532D">Flow efficiency</text>
+<text x="1384" y="1006" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-style="italic" fill="#14532D" fill-opacity=".7">active time / total time</text>
+<line x1="24" y1="1070" x2="1656" y2="1070" stroke="#E2E8F0" stroke-width="1"/><text x="24" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“Where does work wait, and is that visible on our board?”</text><line x1="832" y1="1078" x2="832" y2="1128" stroke="#E2E8F0" stroke-width="1"/><text x="848" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“What would happen if we lowered this WIP limit by one?”</text><text x="1656" y="1138" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#CBD5E1" letter-spacing=".08em">Manage Flow · Stop Starting, Start Finishing</text>
+</svg>
+</body>
+</html>

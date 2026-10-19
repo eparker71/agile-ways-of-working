@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skills Matrix Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#64748B; --rule:#E2E8F0; --paper:#FFFFFF;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:13px;line-height:1.55;padding:24px 16px;}
+.page{max-width:820px;margin:0 auto 24px;background:var(--paper);box-shadow:0 12px 40px rgba(0,0,0,.22);}
+.masthead{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:28px 40px 26px;position:relative;}
+.badge{position:absolute;top:14px;right:24px;font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;}
+.masthead h1{font:400 40px/1.05 var(--serif);margin:14px 0 8px;}
+.masthead p{margin:0;color:#94A3B8;font-size:13.5px;}
+.masthead .tag{margin-top:8px;font:9px var(--mono);color:#64748B;letter-spacing:.06em;}
+.content{padding:28px 40px 36px;}
+h2{font:400 26px/1.15 var(--serif);margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;}
+h2 .n{font:600 11px var(--sans);color:#fff;background:var(--navy);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;flex:none;transform:translateY(-3px);}
+h3{font:600 13px var(--sans);margin:16px 0 6px;}
+p{margin:6px 0 10px;}
+.lede{font:italic 400 19px/1.35 var(--serif);color:var(--ink);border-left:4px solid var(--accent);padding:2px 0 2px 16px;margin:4px 0 20px;}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px;}
+.glance div{background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;}
+.glance b{display:block;font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+.glance span{font-weight:600;font-size:13px;}
+ul.check{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:28px;}
+ul.check li{padding-left:22px;position:relative;margin-bottom:5px;break-inside:avoid;}
+ul.check li::before{content:"";position:absolute;left:0;top:3px;width:11px;height:11px;border:1.4px solid var(--ink);border-radius:2px;opacity:.55;}
+table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:12.5px;}
+th{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--ink);text-align:left;padding:8px 10px;}
+th:first-child{border-left:5px solid var(--accent);}
+td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+td.t{font:500 11px var(--mono);white-space:nowrap;color:var(--muted);}
+td.a{font-weight:600;width:24%;}
+tr:nth-child(even) td{background:#F8FAFC;}
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;}
+.area{border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,.06);break-inside:avoid;}
+.area h4{margin:0;padding:7px 12px;color:#fff;font:600 12.5px var(--sans);}
+.area ul{margin:0;padding:8px 12px 10px 28px;font-size:12px;}
+.area li{margin-bottom:3px;}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.tip{border-top:2px solid var(--rule);padding-top:8px;}
+.tip b{display:block;margin-bottom:2px;}
+.flow{display:flex;align-items:stretch;gap:0;margin:14px 0 6px;flex-wrap:wrap;}
+.step{flex:1 1 0;min-width:120px;background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;position:relative;}
+.arrow{flex:none;align-self:center;color:var(--accent);font:600 16px var(--sans);padding:0 6px;}
+.step b{display:block;font-size:12.5px;}
+.step small{color:var(--muted);font-size:11px;line-height:1.4;display:block;margin-top:2px;}
+.step .k{font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--accent);text-transform:uppercase;}
+.callout{background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:12px 16px;margin:14px 0;}
+.callout b{color:#9A3412;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display:flex;justify-content:space-between;gap:16px;font:8px var(--mono);letter-spacing:.08em;color:#94A3B8;}
+@media (max-width:640px){
+  .masthead,.content{padding-left:20px;padding-right:20px;}
+  .glance{grid-template-columns:1fr 1fr;}
+  ul.check{columns:1;}
+  .areas,.tips,.two{grid-template-columns:1fr;}
+  .arrow{display:none;}
+  .flow{gap:8px;}
+  table{font-size:11.5px;}
+  td.t{white-space:normal;}
+}
+@media print{
+  @page{size:A4 portrait;margin:12mm 12mm 14mm;}
+  html,body{background:none;}
+  body{padding:0;font-size:11.5px;}
+  .page{box-shadow:none;max-width:none;margin:0;}
+  .masthead,th,.area h4,h2 .n{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  tr,.area,.tip,.step,.callout{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .pb{break-before:page;}
+}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.content a{color:#9A3412;}
+@media print{.boards{display:none;}}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.content a{color:#9A3412;}
+.example{border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:10px 0;}
+.example div{display:grid;grid-template-columns:30% 1fr;border-bottom:1px solid var(--rule);}
+.example div:last-child{border-bottom:none;}
+.example b{background:#F8FAFC;padding:7px 12px;font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.example span{padding:7px 12px;font-size:12.5px;}
+@media (max-width:640px){.example div{grid-template-columns:1fr;}}
+@media print{.boards{display:none;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>Skills Matrix Guide</h1>
+    <p>How to map the team&#x27;s skills, find single points of failure, and plan learning so the team can swarm.</p>
+    <div class="tag">Facilitator Run-Sheet · Manage Flow · Team Capability · T-Shaped Skills</div>
+    <div class="boards"><a class="primary" href="skills-matrix-board.html">Open board →</a><a href="skills-matrix-board.svg">SVG →</a></div>
+  </header>
+  <div class="content">
+    <p class="lede">“If one person was away for a month, what would stop?”</p>
+    <p>Swarming and steady flow need more than one person who can do each kind of work. A skills matrix maps the team's skills on a simple <b>0–3 scale</b>, from no experience to able to teach. It quickly shows <b>single points of failure</b> and skills nobody can teach, and it turns what people <b>want to learn</b> into a learning plan. It's a team tool for growth, not a performance assessment.</p>
+    <div class="glance"><div><b>Duration</b><span>60–90 min</span></div><div><b>Group</b><span>The whole team</span></div><div><b>Use when</b><span>Work waits for one<br>person, or a team forms</span></div><div><b>Output</b><span>A matrix &amp;<br>a learning plan</span></div></div>
+    <h2><span class="n">1</span>Before the session</h2>
+    <ul class="check"><li>Print the board at A3, or load the SVG as a digital background</li><li>Agree up front that the matrix is for team learning, not for managers to rate people</li><li>Draft a list of 8–10 skills the team's work needs: technical, domain and practice skills</li><li>Markers; sticky notes for the wants-to-learn column</li></ul>
+    <h2><span class="n">2</span>Agenda &amp; run-sheet</h2>
+    <table><thead><tr><th>Time</th><th>Section</th><th>Facilitator notes</th></tr></thead><tbody><tr><td class="t">0–10</td><td class="a">Purpose</td><td>Explain why: to spread skills so the team can swarm and isn't stuck when someone is away.</td></tr><tr><td class="t">10–25</td><td class="a">Skills</td><td>Agree the skills that matter for the team's work. Write one per column. Keep to ten.</td></tr><tr><td class="t">25–45</td><td class="a">1 · Self-assess</td><td>Each person scores themselves 0–3 for each skill, then the team discusses any surprises.</td></tr><tr><td class="t">45–55</td><td class="a">Wants to learn</td><td>Each person adds what they'd like to learn.</td></tr><tr><td class="t">55–70</td><td class="a">2 · Single Points of Failure</td><td>List skills with only one person at 2 or 3, and skills with nobody at 3.</td></tr><tr><td class="t">70–85</td><td class="a">3 · Learning Plan · 4 · Ready to Swarm?</td><td>Pair learners with teachers, set dates, and check the readiness list.</td></tr></tbody></table>
+    <h2 class="pb"><span class="n">3</span>Reading the matrix</h2>
+    <p>Patterns to look for once it&#x27;s filled in.</p>
+    <div class="areas"><div class="area" style="background:#FEE2E2;color:#991B1B"><h4 style="background:#991B1B">One person at 2+</h4><ul><li>A single point of failure</li><li>Top of the learning plan</li></ul></div><div class="area" style="background:#FEF3C7;color:#92400E"><h4 style="background:#92400E">Nobody at 3</h4><ul><li>No one to teach it</li><li>Consider outside help or training</li></ul></div><div class="area" style="background:#DBEAFE;color:#1E3A8A"><h4 style="background:#1E3A8A">Lots of 0s in a row</h4><ul><li>A specialist; check they&#x27;re not overloaded</li><li>Pair them with learners</li></ul></div><div class="area" style="background:#D1FAE5;color:#065F46"><h4 style="background:#065F46">Wants to learn</h4><ul><li>Match with teachers</li><li>Plan time for it</li></ul></div><div class="area" style="background:#DCFCE7;color:#14532D"><h4 style="background:#14532D">4 · Ready to Swarm?</h4><ul><li>Two or more people per key skill</li><li>Pairing is planned</li></ul></div></div>
+    <h2><span class="n">4</span>Facilitation tips</h2>
+    <div class="tips"><div class="tip"><b>Self-assess first</b>People score themselves, then discuss. It builds trust and surfaces modesty or over-confidence.</div><div class="tip"><b>Learning, not rating</b>Never use the matrix for performance reviews. If you do, the scores stop being honest.</div><div class="tip"><b>Aim for T-shapes</b>Deep skill in one area plus working skill in others lets people help where the work is.</div><div class="tip"><b>Pair to teach</b>Pairing on real work spreads skills faster than courses.</div><div class="tip"><b>Make time</b>Plan learning into the iteration, or the matrix won&#x27;t change.</div><div class="tip"><b>Revisit it</b>Update every quarter and celebrate the levels that went up.</div></div>
+    <div class="callout"><b>Common pitfalls:</b> managers filling it in about people; using it in performance reviews; too many skills; no time for learning; experts never given time to teach; filling it in once and forgetting it.</div>
+    <h2><span class="n">5</span>After the session</h2>
+    <div class="two"><div><h3>Straight away</h3><p>Keep the matrix where the team can see it. Start the first learning pairs.</p></div><div><h3>Each iteration</h3><p>Plan pairing time. Note when a learner helps in a swarm.</p></div><div><h3>Each retro</h3><p>Ask: did work wait for one person? Update the learning plan.</p></div><div><h3>Quarterly</h3><p>Re-score together and compare. Single points of failure should be falling.</p></div></div>
+    <h2><span class="n">6</span>How it fits the toolkit</h2>
+    <p>The flow pack works as a set. <a href="facilitator-guide-kanban-board-design.html">Kanban Board Design</a> makes the workflow visible and limits WIP. <a href="facilitator-guide-ageing-wip.html">Ageing WIP &amp; SLE</a> shows which items are at risk and sets the swarm triggers used in <a href="facilitator-guide-buffering-swarming.html">Buffering &amp; Swarming</a>. <a href="facilitator-guide-blocker-clustering.html">Blocker Clustering</a> finds why work gets stuck, and the <a href="facilitator-guide-skills-matrix.html">Skills Matrix</a> shows who can swarm. Bring the results to retrospectives and the Team Health Check.</p>
+    <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a></p>
+    <footer><span>“What would you like to learn, and who could teach you?”</span><span>Systems-Thinking · Continuous Improvement · Team-Led Change</span></footer>
+  </div>
+</div>
+</body>
+</html>

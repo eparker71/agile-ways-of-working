@@ -1512,7 +1512,7 @@ def slider(x, y, w, name, color, lo="FLEX", hi="FIXED"):
     return "".join(out)
 
 
-def kanban_cols(x, y, w, h, names, color, gap=10):
+def kanban_cols(x, y, w, h, names, color, gap=10, chips=(YELLOW,)):
     """Labelled sticky columns inside a panel body. names: (title, sub)."""
     cw = (w - (len(names) - 1) * gap) / len(names)
     out = []
@@ -1520,7 +1520,7 @@ def kanban_cols(x, y, w, h, names, color, gap=10):
         cx = x + i * (cw + gap)
         out.append(T(cx + 6, y + 14, name, 13, color, weight=600))
         out.append(T(cx + 6, y + 30, sub, 9.5, color, op=".7"))
-        out.append(sticky_zone(cx, y + 40, cw, h - 40, color, "Stickies", chips=(YELLOW,)))
+        out.append(sticky_zone(cx, y + 40, cw, h - 40, color, "Stickies", chips=chips))
     return "".join(out)
 
 
@@ -1958,6 +1958,527 @@ def build_cross_team_sync():
                 "resolved), and decisions and actions.", "\n".join(b))
 
 
+# ---------------------------------------------------------------- flow pack
+
+FLOW_TAG = "Manage Flow · Stop Starting, Start Finishing"
+
+
+def step_cards(x, y, w, h, steps, color, gap=10):
+    """Numbered horizontal cards: steps = (title, [lines])."""
+    dark = color[0]
+    cw = (w - (len(steps) - 1) * gap) / len(steps)
+    out = []
+    for i, (title, body) in enumerate(steps):
+        cx = x + i * (cw + gap)
+        out.append(R(cx, y, cw, h, "white", 6, f' stroke="{dark}" stroke-opacity=".2"'))
+        out.append(f'<circle cx="{cx + 22:g}" cy="{y + 24}" r="11" fill="{dark}"/>')
+        out.append(T(cx + 22, y + 28, str(i + 1), 10.5, "white", weight=600, anchor="middle"))
+        out.append(T(cx + 40, y + 29, title, 12, dark, weight=600))
+        out.append(para(cx + 14, y + 56, body, 10.5, dark, 15))
+        out.append(T(cx + 14, y + h - 74, "Our note:", 9.5, dark, op=".6"))
+        out.append(lines(cx + 14, y + h - 46, cx + cw - 14, 2, 24))
+        if i < len(steps) - 1:
+            out.append(T(cx + cw + gap / 2, y + h / 2 + 4, "›", 14, dark, anchor="middle", op=".5"))
+    return "".join(out)
+
+
+def rule_line(x, y, before, after, x_end, color, size=11):
+    """Checkbox, text, a short blank, then more text: 'blocked for more than ___ hours'."""
+    out = [R(x, y - 10, 12, 12, "white", 2, f' stroke="{color}" stroke-opacity=".6" stroke-width="1.2"'),
+           T(x + 20, y, before, size, color)]
+    bx = x + 20 + text_w(before, size) + 6
+    out.append(L(bx, y + 3, bx + 50, y + 3, color, 1, ' stroke-opacity=".4"'))
+    if after:
+        out.append(T(bx + 56, y, after, size, color))
+    return "".join(out)
+
+
+# ---------------------------------------------------------------- buffering & swarming
+
+def build_buffering_swarming():
+    b = [header("Buffering & Swarming",
+                "Protect capacity for the unexpected, and agree when the team stops starting and gathers to finish.",
+                "Manage Flow · Capacity Buffer · Swarm Triggers · Stop Starting, Start Finishing",
+                header_fields(["Team", "Date"]))]
+
+    y, h = 148, 300
+    x, w = 24, 808
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 1, "Unplanned Work History", BLUE, "HOW MUCH SURPRISE WORK DO WE REALLY GET?"))
+    b.append(table(x + 18, y + 84, [("Iteration", 120), ("Planned capacity", 170), ("Unplanned work", 170), ("% unplanned", 120),
+                                    ("Notes", w - 36 - 580)], 5, d, 34))
+    b.append(field(x + 18, y + 278, "Average % unplanned over the last 5:", x + 420, d))
+
+    x, w = 846, 397
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 2, "Size the Buffer", EMERALD))
+    for i, f in enumerate(["Buffer this iteration (%):", "In days or items:"]):
+        b.append(field(x + 18, y + 88 + i * 32, f, x + w - 18, d))
+    b.append(T(x + 18, y + 172, "The buffer is for:", 11, d, weight=600))
+    for i, m in enumerate(["Support, incidents & bugs", "Urgent requests", "Swarming & helping others", "Improvement work, if unused"]):
+        b.append(checkbox(x + 18, y + 200 + i * 26, m, d, 11))
+
+    x = 1257
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 3, "Buffer Rules", SLATE))
+    for i, f in enumerate(["What counts as unplanned?", "Who decides to use it?", "If it runs out, we…", "If it's unused, we…"]):
+        b.append(T(x + 18, y + 84 + i * 54, f, 11, d, weight=600))
+        b.append(L(x + 18, y + 106 + i * 54, x + w - 18, y + 106 + i * 54, WRITE))
+
+    y, h = 462, 300
+    x, w = 24, 808
+    d = RED[0]
+    b.append(panel(x, y, w, h, 4, "Swarm Triggers", RED, "WHEN WE STOP STARTING AND SWARM"))
+    rules = [("An item is blocked for more than", "hours"), ("An item is older than", "days (our 85% SLE)"),
+             ("A sprint-goal item is at risk with", "days left"), ("A production incident at severity", "or higher"),
+             ("A column is at its WIP limit", "")]
+    for i, (a, c) in enumerate(rules):
+        b.append(rule_line(x + 18, y + 90 + i * 34, a, c, x + w - 18, d))
+    b.append(field(x + 18, y + 268, "Our own trigger:", x + w - 18, d))
+
+    x, w = 846, 810
+    d = ORANGE[0]
+    b.append(panel(x, y, w, h, 5, "How We Swarm", ORANGE, "AGREE IT BEFORE YOU NEED IT"))
+    b.append(step_cards(x + 14, y + 66, w - 28, h - 80, [
+        ("Stop", ["Don't start anything", "new. Say “swarm”", "at the board."]),
+        ("Gather", ["Whoever can help joins.", "Not everyone needs", "to, just enough."]),
+        ("Plan", ["What's the next step", "to finish it? Who", "does which part?"]),
+        ("Work it", ["Pair or mob. Test", "while building.", "Clear the blocker."]),
+        ("Reflect", ["Done? Log it below.", "Why did it need a", "swarm at all?"])], ORANGE))
+
+    y, h = 776, 284
+    x, w = 24, 1082
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 6, "Swarm Log", PURPLE, "LEARN FROM EVERY SWARM"))
+    b.append(table(x + 18, y + 84, [("Date", 90), ("Item", 220), ("Trigger", 170), ("Who swarmed", 170), ("Time to done", 120),
+                                    ("What we learned", w - 36 - 770)], 5, d, 34))
+
+    x, w = 1120, 536
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 7, "Iteration Check", FOREST, "AT THE RETRO"))
+    for i, f in enumerate(["Buffer used last iteration (%):", "Number of swarms:"]):
+        b.append(field(x + 18, y + 88 + i * 34, f, x + w - 18, d))
+    b.append(T(x + 18, y + 170, "Did swarming finish things faster?", 11, d, weight=600))
+    for j, lab in enumerate(["Yes", "Partly", "No"]):
+        b.append(checkbox(x + 18 + j * 90, y + 198, lab, d, 11))
+    b.append(field(x + 18, y + 244, "Next iteration's buffer (%):", x + w - 18, d))
+
+    b.append(footer("What would we stop starting so we could finish this?",
+                    "How much of our plan is really for surprises?", FLOW_TAG))
+    write_board("buffering-swarming-board", "Buffering & Swarming",
+                "A3 landscape board: unplanned work history, buffer sizing and rules, swarm triggers, a five-step swarm "
+                "routine, a swarm log, and an iteration check.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- kanban board design
+
+def build_kanban_design():
+    b = [header("Kanban Board Design",
+                "Design a board that shows how work really flows: columns, WIP limits, exit policies and classes of service.",
+                "Manage Flow · Visualise the Workflow · Limit WIP · Make Policies Explicit",
+                header_fields(["Team", "Date"]))]
+
+    x, y, w, h = 24, 148, 1632, 380
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 1, "Workflow Columns", BLUE, "LEFT TO RIGHT · ONE COLUMN PER REAL STATE OR QUEUE"))
+    n = 7
+    cw = (w - 28 - (n - 1) * 10) / n
+    hints = ["e.g. Options", "e.g. Ready", "e.g. Building", "e.g. Waiting for review", "e.g. Testing", "e.g. Ready to release", "Done"]
+    for i in range(n):
+        cx = x + 14 + i * (cw + 10)
+        b.append(R(cx, y + 64, cw, h - 78, "white", 6, f' stroke="{d}" stroke-opacity=".2"'))
+        b.append(T(cx + 12, y + 86, f"COLUMN {i + 1}", 9, d, MONO, weight=600, ls=".12em"))
+        b.append(T(cx + cw - 12, y + 86, hints[i], 9, d, italic=True, anchor="end", op=".55"))
+        b.append(field(cx + 12, y + 120, "Name:", cx + cw - 12, d))
+        b.append(field(cx + 12, y + 154, "WIP limit:", cx + cw - 12, d))
+        b.append(T(cx + 12, y + 190, "Done when (exit policy):", 10.5, d, weight=600))
+        b.append(lines(cx + 12, y + 218, cx + cw - 12, 3, 26))
+        b.append(checkbox(cx + 12, y + 316, "Active", d, 10.5))
+        b.append(checkbox(cx + 88, y + 316, "Queue", d, 10.5))
+
+    y, h = 542, 300
+    x, w = 24, 1082
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 2, "Classes of Service", PURPLE, "HOW WE TREAT DIFFERENT KINDS OF WORK"))
+    cols = [("Class", 150), ("When to use it", 300), ("Our policy", 440), ("Limit", w - 36 - 890)]
+    b.append(table(x + 18, y + 84, cols, 4, d, 46))
+    for i, (cls, hint) in enumerate([("Expedite", "Urgent, high cost of delay now"), ("Fixed date", "Value drops after a date"),
+                                     ("Standard", "Most work, in priority order"), ("Intangible", "Improvement, tech debt")]):
+        ry = y + 84 + 10 + i * 46 + 28
+        b.append(T(x + 24, ry, cls, 12, d, weight=600))
+        b.append(T(x + 24 + 150, ry, hint, 10.5, d, italic=True, op=".65"))
+
+    x, w = 1120, 536
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 3, "Board Policies", SLATE, "WRITE THEM ON THE BOARD"))
+    for i, f in enumerate(["We pull work when:", "Blocked items are marked by:", "Replenishment: when & who:",
+                           "We walk the board at:", "Definition of Done lives at:", "Policies reviewed every:"]):
+        b.append(field(x + 18, y + 88 + i * 34, f, x + w - 18, d))
+
+    y, h = 856, 204
+    x, w = 24, 808
+    d = SKY[0]
+    b.append(panel(x, y, w, h, 4, "Cards & Swimlanes", SKY))
+    b.append(T(x + 18, y + 82, "Each card shows:", 11, d, weight=600))
+    for j, lab in enumerate(["Title", "Owner", "Age (days)", "Blocked flag", "Class of service", "Due date"]):
+        b.append(checkbox(x + 18 + (j % 3) * 200, y + 110 + (j // 3) * 28, lab, d, 11))
+    b.append(field(x + 18, y + 184, "Swimlanes (if any):", x + w - 18, d))
+
+    x, w = 846, 810
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 5, "Flow Metrics to Watch", FOREST, "LEARN, DON'T JUDGE"))
+    for j, (lab, note) in enumerate([("WIP", "items in progress"), ("Throughput", "items done per week"),
+                                     ("Cycle time", "start to done, in days"), ("Work item age", "how long open items have run"),
+                                     ("Blocked time", "days items spend blocked"), ("Flow efficiency", "active time / total time")]):
+        cx = x + 18 + (j % 2) * 390
+        cy = y + 86 + (j // 2) * 32
+        b.append(checkbox(cx, cy, lab, d, 11))
+        b.append(T(cx + 130, cy, note, 10.5, d, italic=True, op=".7"))
+
+    b.append(footer("Where does work wait, and is that visible on our board?",
+                    "What would happen if we lowered this WIP limit by one?", FLOW_TAG))
+    write_board("kanban-board-design", "Kanban Board Design",
+                "A3 landscape board: seven workflow columns each with name, WIP limit, exit policy and active/queue type, "
+                "classes of service, board policies, card and swimlane design, and flow metrics.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- ageing WIP & SLE
+
+def build_ageing_wip():
+    b = [header("Ageing WIP & Service Level Expectation",
+                "See how old each open item is compared with how long work usually takes, and act before it's late.",
+                "Manage Flow · Work Item Age · Cycle Time Percentiles · Service Level Expectation",
+                header_fields(["Team", "Date"]))]
+
+    x, y, w, h = 24, 148, 1082, 600
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 1, "Ageing WIP Chart", BLUE, "ONE DOT PER OPEN ITEM, IN ITS CURRENT COLUMN"))
+    cx0, cy0, cx1, cy1 = x + 80, y + 76, x + w - 24, y + h - 80
+    b.append(R(cx0, cy0, cx1 - cx0, cy1 - cy0, "white", 4, f' stroke="{RULE}"'))
+    ncol = 5
+    for i in range(1, ncol):
+        gx = cx0 + i * (cx1 - cx0) / ncol
+        b.append(L(gx, cy0, gx, cy1, RULE, 1))
+    for j in range(1, 10):
+        gy = cy0 + j * (cy1 - cy0) / 10
+        b.append(L(cx0, gy, cx1, gy, RULE, 1, ' stroke-dasharray="2,4"'))
+        b.append(L(cx0 - 36, gy, cx0 - 8, gy, WRITE, 1))
+    for i in range(ncol):
+        mx = cx0 + (i + 0.5) * (cx1 - cx0) / ncol
+        colw = (cx1 - cx0) / ncol
+        b.append(L(mx - colw / 2 + 14, cy1 + 24, mx + colw / 2 - 14, cy1 + 24, WRITE, 1))
+    b.append(T(cx0, cy1 + 44, "COLUMN NAMES ↑ · IN-PROGRESS COLUMNS ONLY, LEFT TO RIGHT", 9, MUTED, MONO, ls=".1em"))
+    b.append(L(cx0, cy1, cx1, cy1, INK, 1.5))
+    b.append(L(cx0, cy0, cx0, cy1, INK, 1.5))
+    b.append(rot_label(x + 22, (cy0 + cy1) / 2, "AGE IN DAYS →"))
+    for i, (lab, col) in enumerate([("50th percentile", EMERALD[0]), ("70th", AMBER[0]), ("85th = SLE", RED[0])]):
+        lx = cx0 + i * 200
+        b.append(L(lx, y + h - 22, lx + 34, y + h - 22, col, 2.5, ' stroke-dasharray="8,4"'))
+        b.append(T(lx + 42, y + h - 18, lab, 10.5, INK))
+    b.append(T(cx1, y + h - 18, "Draw each percentile as a line across the chart", 10, MUTED, italic=True, anchor="end"))
+
+    x, w = 1120, 536
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 2, "Cycle Time Data", EMERALD, "RECENTLY FINISHED ITEMS"))
+    b.append(table(x + 18, y + 84, [("Item", 200), ("Started", 90), ("Finished", 90), ("Days", w - 36 - 380)], 11, d, 34))
+    for i, f in enumerate(["50th percentile (days):", "70th percentile (days):", "85th percentile (days):"]):
+        b.append(field(x + 18, y + 500 + i * 30, f, x + w - 18, d))
+
+    y, h = 762, 298
+    x, w = 24, 808
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 3, "Our Service Level Expectation", PURPLE, "A FORECAST FOR ONE ITEM, NOT A TARGET"))
+    b.append(T(x + 18, y + 104, "85% of our items finish within", 22, d, SERIF, italic=True))
+    b.append(L(x + 262, y + 107, x + 342, y + 107, d, 1.2, ' stroke-opacity=".4"'))
+    b.append(T(x + 352, y + 104, "days.", 22, d, SERIF, italic=True))
+    for i, f in enumerate(["Based on how many items, from when to when:", "The clock starts when:", "The clock stops when:"]):
+        b.append(field(x + 18, y + 160 + i * 38, f, x + w - 18, d))
+
+    x, w = 846, 810
+    d = RED[0]
+    b.append(panel(x, y, w, h, 4, "Act on Ageing Items", RED, "LOOK AT THE OLDEST ITEMS FIRST, EVERY DAY"))
+    for i, (lab, act, col) in enumerate([("Past the 50th", "Mention it at the daily sync", EMERALD[0]),
+                                         ("Past the 70th", "Ask what's needed to finish it", AMBER[0]),
+                                         ("Past the 85th", "Swarm it (see Buffering & Swarming)", RED[0])]):
+        cy = y + 88 + i * 30
+        b.append(R(x + 18, cy - 10, 12, 12, col, 2))
+        b.append(T(x + 40, cy, lab, 11, col, weight=600))
+        b.append(T(x + 160, cy, act, 11, d))
+    b.append(T(x + 18, y + 184, "Items to act on today:", 11, d, weight=600))
+    b.append(sticky_zone(x + 10, y + 194, w - 20, h - 206, d, "Sticky per item", chips=(PINK_ST,)))
+
+    b.append(footer("Which item is oldest, and what would it take to finish it today?",
+                    "How long does work usually take here, really?", FLOW_TAG))
+    write_board("ageing-wip-board", "Ageing WIP & Service Level Expectation",
+                "A3 landscape board: ageing WIP chart by column, cycle time data with percentiles, the team's service "
+                "level expectation, and actions for ageing items.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- blocker clustering
+
+def build_blocker_clustering():
+    b = [header("Blocker Clustering",
+                "Log every blocker, cluster them by cause, and fix the cluster that costs the most days.",
+                "Manage Flow · Inspired by Klaus Leopold & Troy Magennis · Blocked Time · Root Causes",
+                legend([("sticky", PINK_ST, "Pink Sticky = One blocker"), ("sticky", YELLOW, "Yellow Sticky = Cluster name")]))]
+
+    y, h = 148, 420
+    x, w = 24, 1082
+    d = RED[0]
+    b.append(panel(x, y, w, h, 1, "Blocker Log", RED, "ONE ROW PER BLOCKER · CAUSE, NOT PERSON"))
+    b.append(table(x + 18, y + 84, [("Date", 90), ("Item", 220), ("Blocked by (what)", 340), ("Inside / outside team", 170),
+                                    ("Days blocked", w - 36 - 820)], 9, d, 34))
+
+    x, w = 1120, 536
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 2, "Blocker Stickies", SLATE, "KEEP THEM AFTER THEY'RE CLEARED"))
+    b.append(bullets(x + 22, y + 74, ["A pink sticky on the card the moment it's blocked",
+                                      "Write the cause and the start date",
+                                      "When it's cleared, add the days and move it here"], SLATE[0]))
+    b.append(dashed(x + 10, x + w - 10, y + 128, d))
+    b.append(sticky_zone(x + 10, y + 134, w - 20, h - 146, d, "Cleared blocker stickies", chips=(PINK_ST,)))
+
+    x, y, w, h = 24, 582, 1632, 300
+    d = ORANGE[0]
+    b.append(panel(x, y, w, h, 3, "Clusters", ORANGE, "GROUP SIMILAR CAUSES · NAME EACH CLUSTER"))
+    n = 5
+    cw = (w - 28 - (n - 1) * 10) / n
+    for i in range(n):
+        cx = x + 14 + i * (cw + 10)
+        b.append(R(cx, y + 64, cw, h - 78, "white", 6, f' fill-opacity=".5" stroke="{d}" stroke-opacity=".2"'))
+        b.append(field(cx + 12, y + 92, "Cluster:", cx + cw - 12, d))
+        b.append(sticky_zone(cx + 6, y + 104, cw - 12, h - 160, d, "Pink stickies", chips=(PINK_ST,)))
+        b.append(field(cx + 12, y + h - 30, "Count:", cx + cw / 2 - 6, d))
+        b.append(field(cx + cw / 2 + 4, y + h - 30, "Days:", cx + cw - 12, d))
+
+    y, h = 896, 164
+    x, w = 24, 1082
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 4, "Fix the Biggest Cluster", FOREST, "BY TOTAL DAYS BLOCKED, NOT COUNT"))
+    hw = (w - 54) / 2
+    for i, f in enumerate(["Biggest cluster:", "Root cause:"]):
+        b.append(field(x + 18, y + 90 + i * 36, f, x + 18 + hw, d))
+    for i, f in enumerate(["Experiment to fix it:", "Owner & review date:"]):
+        b.append(field(x + 36 + hw, y + 90 + i * 36, f, x + w - 18, d))
+
+    x, w = 1120, 536
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 5, "Trend", BLUE, "IS IT WORKING?"))
+    b.append(table(x + 18, y + 82, [("Period", 160), ("Blockers", 140), ("Days blocked", w - 36 - 300)], 2, d, 30))
+
+    b.append(footer("What keeps blocking us, and what does it cost?",
+                    "Which cluster, if we fixed it, would give us the most days back?", FLOW_TAG))
+    write_board("blocker-clustering-board", "Blocker Clustering",
+                "A3 landscape board: blocker log, cleared blocker stickies, five cause clusters with counts and days, "
+                "an action for the biggest cluster, and a trend table.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- skills matrix
+
+def build_skills_matrix():
+    key = "".join([
+        T(1356, 48, "LEVELS", 8, "#475569", MONO, ls=".14em"),
+        *[T(1356 + (i % 2) * 160, 72 + (i // 2) * 28, f"{n} = {lab}", 11, "#CBD5E1")
+          for i, (n, lab) in enumerate([(0, "No experience"), (1, "Learning"), (2, "Can do it alone"), (3, "Can teach it")])],
+    ])
+    b = [header("Skills Matrix",
+                "See who can do what, where you rely on one person, and who will learn what, so the team can swarm.",
+                "Manage Flow · Team Capability · T-Shaped Skills · Reduce Single Points of Failure",
+                key)]
+
+    x, y, w, h = 24, 148, 1632, 640
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 1, "Skills Matrix", BLUE, "SCORE 0–3 IN EACH CELL · SELF-ASSESSED, THEN DISCUSSED"))
+    gx0, gy0 = x + 14, y + 64
+    name_w, want_w, nskill = 170, 210, 10
+    sk_w = (w - 28 - name_w - want_w) / nskill
+    head_h = 62
+    b.append(T(gx0 + 8, gy0 + 40, "TEAM MEMBER", 9, d, MONO, weight=600, ls=".12em"))
+    for i in range(nskill):
+        cx = gx0 + name_w + i * sk_w
+        b.append(R(cx + 3, gy0, sk_w - 6, head_h - 6, "white", 4, f' stroke="{d}" stroke-opacity=".2"'))
+        b.append(T(cx + 10, gy0 + 16, f"SKILL {i + 1}", 8.5, d, MONO, op=".6", ls=".1em"))
+        b.append(L(cx + 10, gy0 + 42, cx + sk_w - 10, gy0 + 42, WRITE, 1))
+    wx = gx0 + name_w + nskill * sk_w
+    b.append(T(wx + 10, gy0 + 40, "WANTS TO LEARN", 9, EMERALD[0], MONO, weight=600, ls=".12em"))
+    nrow = 8
+    rh = (h - 64 - head_h - 14) / nrow
+    for r in range(nrow):
+        ry = gy0 + head_h + r * rh
+        b.append(R(gx0, ry, name_w - 6, rh - 6, "white", 4, f' stroke="{d}" stroke-opacity=".15"'))
+        b.append(L(gx0 + 10, ry + rh - 20, gx0 + name_w - 16, ry + rh - 20, WRITE, 1))
+        for i in range(nskill):
+            cx = gx0 + name_w + i * sk_w
+            b.append(R(cx + 3, ry, sk_w - 6, rh - 6, "white", 4, f' fill-opacity=".55" stroke="{d}" stroke-opacity=".12"'))
+        b.append(R(wx + 3, ry, want_w - 3, rh - 6, EMERALD[1], 4, f' stroke="{EMERALD[0]}" stroke-opacity=".15"'))
+
+    y, h = 802, 258
+    x, w = 24, 534
+    d = RED[0]
+    b.append(panel(x, y, w, h, 2, "Single Points of Failure", RED, "THE BUS-FACTOR CHECK"))
+    b.append(T(x + 18, y + 82, "Skills where only one person is at 2 or 3:", 11, d, weight=600))
+    b.append(lines(x + 18, y + 110, x + w - 18, 2, 26))
+    b.append(T(x + 18, y + 172, "Skills where nobody is at 3 (no one to teach):", 11, d, weight=600))
+    b.append(lines(x + 18, y + 200, x + w - 18, 2, 26))
+
+    x = 572
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 3, "Learning Plan", EMERALD, "PAIR TO SPREAD SKILLS"))
+    b.append(table(x + 18, y + 84, [("Who", 120), ("Learns", 150), ("From", 120), ("By when", w - 36 - 390)], 4, d, 34))
+
+    x, w = 1120, 536
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 4, "Ready to Swarm?", FOREST))
+    for i, m in enumerate(["Every key skill has 2+ people at level 2", "Pairing time is planned each iteration",
+                           "Experts have time set aside to teach", "New joiners have a learning buddy"]):
+        b.append(checkbox(x + 18, y + 88 + i * 30, m, d, 11))
+    b.append(field(x + 18, y + 228, "Next review of the matrix:", x + w - 18, d))
+
+    b.append(footer("If one person was away for a month, what would stop?",
+                    "What would you like to learn, and who could teach you?", FLOW_TAG))
+    write_board("skills-matrix-board", "Skills Matrix",
+                "A3 landscape skills matrix: team members by ten skills scored 0 to 3, wants-to-learn column, "
+                "single points of failure, a learning plan, and a swarm-readiness checklist.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- impediments board
+
+def build_impediments():
+    b = [header("Impediments Board",
+                "Make what's holding the team back visible, give each impediment an owner, and escalate it on time.",
+                "Manage Flow · Team Impediments · Escalation Ladder · Show the Cost",
+                legend([("sticky", PINK_ST, "Pink Sticky = Impediment"), ("sticky", GREEN, "Green Sticky = Resolution")]))]
+
+    x, y, w, h = 24, 148, 1632, 560
+    d = RED[0]
+    b.append(panel(x, y, w, h, 1, "Impediments", RED, "EACH STICKY: WHAT · WHAT IT COSTS US · OWNER · DATE RAISED"))
+    b.append(kanban_cols(x + 14, y + 66, w - 28, h - 80,
+                         [("New", "Raised, not yet picked up"), ("Being worked", "Owner and next step agreed"),
+                          ("Escalated", "Needs help from outside the team"), ("Resolved", "Add a green sticky: what fixed it")], d, 12,
+                         chips=(PINK_ST,)))
+
+    y, h = 722, 338
+    x, w = 24, 808
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 2, "Escalation Ladder", PURPLE, "MOVE UP IF NOT RESOLVED IN TIME"))
+    rungs = [("1 · TEAM", "The team tries first", "Escalate after", "days"),
+             ("2 · SCRUM MASTER / COACH", "Removes or chases it", "Escalate after", "days"),
+             ("3 · MANAGEMENT", "Decides or funds the fix", "Escalate after", "days"),
+             ("4 · LEADERSHIP", "Changes policy or structure", "Decision by", "")]
+    rh, gap = 58, 8
+    for k, (lev, role, after, unit) in enumerate(rungs):
+        ry = y + h - 18 - (k + 1) * rh - k * gap
+        rx = x + 18 + k * 48
+        rw = w - 36 - k * 48
+        b.append(R(rx, ry, rw, rh, "white", 6, f' stroke="{d}" stroke-opacity=".25"'))
+        b.append(R(rx, ry, 5, rh, d, 3, f' fill-opacity="{.4 + k * .2:.1f}"'))
+        b.append(T(rx + 18, ry + 22, lev, 9, d, MONO, weight=600, ls=".12em"))
+        b.append(T(rx + 18, ry + 42, role, 10.5, d, op=".75"))
+        b.append(field(rx + 250, ry + 34, "Who:", rx + rw - 230, d))
+        b.append(T(rx + rw - 210, ry + 34, after, 10.5, d))
+        b.append(L(rx + rw - 120, ry + 37, rx + rw - 60, ry + 37, WRITE, 1))
+        if unit:
+            b.append(T(rx + rw - 52, ry + 34, unit, 10.5, d))
+
+    x, w = 846, 810
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 3, "Resolved Log", FOREST, "SHOW THE VALUE OF REMOVING IMPEDIMENTS"))
+    b.append(table(x + 18, y + 84, [("Impediment", 230), ("What it cost us", 190), ("Resolved by", 150), ("Days open", 90),
+                                    ("Lesson", w - 36 - 660)], 6, d, 36))
+
+    b.append(footer("What's slowing us down that we've stopped noticing?",
+                    "Who could remove this, and do they know it's costing us?", FLOW_TAG))
+    write_board("impediments-board", "Impediments Board",
+                "A3 landscape impediments board: new, being worked, escalated and resolved columns, a four-step "
+                "escalation ladder with time limits, and a resolved log.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- pairing & mobbing
+
+def build_pairing_mobbing():
+    b = [header("Pairing & Mobbing",
+                "Choose a style, rotate partners, agree how sessions run, and use pairing to spread skills across the team.",
+                "Manage Flow · Pair Programming · Mob / Ensemble Programming · Pair Stair · Spread Skills",
+                header_fields(["Team", "Date"]))]
+
+    x, y, w, h = 24, 148, 1632, 300
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 1, "Styles", BLUE, "PICK ONE PER SESSION · WORKS FOR CODE, TESTS, ANALYSIS AND DESIGN"))
+    styles = [("Driver / Navigator", PURPLE, ["One types (driver), one thinks ahead", "and reviews (navigator). Swap", "roles every 15–30 minutes."]),
+              ("Ping-Pong", EMERALD, ["A writes a failing test, B makes", "it pass and writes the next test.", "Great with test-driven development."]),
+              ("Strong-Style", ORANGE, ["“For an idea to go from your head", "into the computer, it must go", "through someone else's hands.”"]),
+              ("Mob / Ensemble", SKY, ["The whole group, one keyboard.", "The driver rotates every few", "minutes. Ideal for swarming."])]
+    cw = (w - 28 - 3 * 12) / 4
+    for i, (name, col, body) in enumerate(styles):
+        cx = x + 14 + i * (cw + 12)
+        cd = col[0]
+        b.append(R(cx, y + 64, cw, h - 78, "white", 6, f' stroke="{cd}" stroke-opacity=".25"'))
+        b.append(R(cx, y + 64, cw, 5, cd, 3))
+        b.append(T(cx + 16, y + 96, name, 14, cd, weight=600))
+        b.append(para(cx + 16, y + 122, body, 10.5, cd, 16))
+        b.append(field(cx + 16, y + 200, "Use it for:", cx + cw - 16, cd))
+        b.append(field(cx + 16, y + 234, "Swap every:", cx + cw - 16, cd))
+
+    y, h = 462, 400
+    x, w = 24, 700
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 2, "Pair Stair", PURPLE, "TALLY EACH PAIRING · SPREAD IT OUT"))
+    n = 8
+    name_w = 130
+    cell_w = (w - 28 - name_w) / n
+    cell_h = (h - 64 - 40 - 26) / n
+    gx0, gy0 = x + 14, y + 64
+    for i in range(n):
+        b.append(T(gx0 + name_w + i * cell_w + cell_w / 2, gy0 + 16, f"P{i + 1}", 9, d, MONO, weight=600, anchor="middle"))
+    for r in range(n):
+        ry = gy0 + 28 + r * cell_h
+        b.append(T(gx0, ry + cell_h / 2 + 4, f"P{r + 1}", 9, d, MONO, weight=600))
+        b.append(L(gx0 + 24, ry + cell_h / 2 + 6, gx0 + name_w - 10, ry + cell_h / 2 + 6, WRITE, 1))
+        for c in range(n):
+            cx = gx0 + name_w + c * cell_w
+            if c < r:
+                b.append(R(cx + 2, ry + 2, cell_w - 4, cell_h - 4, "white", 4, f' stroke="{d}" stroke-opacity=".15"'))
+            elif c == r:
+                b.append(R(cx + 2, ry + 2, cell_w - 4, cell_h - 4, d, 4, ' fill-opacity=".12"'))
+    b.append(T(gx0, y + h - 16, "Write names on the left. Add a tally where two people pair. Empty cells = pairs to try.",
+               10, d, italic=True, op=".7"))
+
+    x, w = 738, 460
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 3, "Session Agreements", SLATE))
+    for i, f in enumerate(["We pair or mob by default on:", "We work solo on:", "Swap roles every (min):", "Take a break every (min):",
+                           "Rotate partners every:", "Setup & tools:"]):
+        b.append(field(x + 18, y + 88 + i * 36, f, x + w - 18, d))
+    for i, m in enumerate(["Anyone can call a break or a swap", "Navigators ask questions, not orders"]):
+        b.append(checkbox(x + 18, y + 318 + i * 30, m, d, 11))
+
+    x, w = 1212, 444
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 4, "Skills to Spread", EMERALD, "FROM THE SKILLS MATRIX"))
+    b.append(table(x + 18, y + 84, [("Skill", 130), ("Learner", 95), ("Teacher", 95), ("Pair / mob", w - 36 - 320)], 8, d, 36))
+
+    y, h = 876, 184
+    x, w = 24, 808
+    d = ORANGE[0]
+    b.append(panel(x, y, w, h, 5, "This Week's Pairs", ORANGE))
+    b.append(table(x + 18, y + 82, [("Work item", 330), ("Who", 260), ("Style", w - 36 - 590)], 2, d, 34))
+
+    x, w = 846, 810
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 6, "Quick Retro", FOREST, "AFTER A SESSION OR AT THE END OF THE WEEK"))
+    tw = (w - 36 - 2 * 16) / 3
+    for i, q in enumerate(["What worked?", "What was hard?", "Next time we'll…"]):
+        cx = x + 18 + i * (tw + 16)
+        b.append(T(cx, y + 82, q, 11, d, weight=600))
+        b.append(lines(cx, y + 110, cx + tw, 3, 24))
+
+    b.append(footer("Who haven't we paired with yet, and what could we learn from each other?",
+                    "What would finish faster if two of us worked on it?", FLOW_TAG))
+    write_board("pairing-mobbing-board", "Pairing & Mobbing",
+                "A3 landscape board: four pairing and mobbing styles, a pair stair, session agreements, skills to spread, "
+                "this week's pairs, and a quick retro.", "\n".join(b))
+
+
 if __name__ == "__main__":
     for horizon in ("sprint", "quarter"):
         build_retros(horizon)
@@ -1982,3 +2503,10 @@ if __name__ == "__main__":
     build_dependency_map()
     build_okr()
     build_cross_team_sync()
+    build_buffering_swarming()
+    build_kanban_design()
+    build_ageing_wip()
+    build_blocker_clustering()
+    build_skills_matrix()
+    build_impediments()
+    build_pairing_mobbing()

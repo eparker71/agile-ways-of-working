@@ -87,8 +87,10 @@ li{margin-bottom:2px;}
 .pyr div:nth-child(4){width:86%;opacity:.87}.pyr div:nth-child(5){width:100%;}
 .cols2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .cols3{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:12px;}
-.tk li{margin-bottom:2px;}
+.tk li{margin-bottom:1px;}
 .tk li>b{font-weight:500;opacity:.7;}
+.panel>h2 small a{text-decoration:underline;text-underline-offset:2px;}
+@media (max-width:720px){.panel>h2 small:has(a){display:inline;}}
 .tk a{font-weight:600;text-decoration:none;border-bottom:1px solid color-mix(in srgb,currentColor 35%,transparent);}
 
 @media (max-width:1640px){
@@ -313,19 +315,19 @@ li{margin-bottom:2px;}
     </section>
 
     <section class="panel" style="grid-area:toolkit;--d:#9A3412;--l:#FFEDD5">
-      <h2><span class="n">11</span>Your Toolkit<small>By lifecycle phase</small></h2>
+      <h2><span class="n">11</span>Your Toolkit<small><a href="index.html">All tools &amp; guides</a> · <a href="jira-cheat-sheet.html">Jira</a></small></h2>
       <div class="pb tk">
         <ul>
           <li><b>Form:</b> <a href="team-charter-board.html">Team Charter</a></li>
           <li><b>Envision &amp; plan:</b> <a href="product-vision-board.html">Vision Board</a> → <a href="prioritisation-board.html">Prioritisation</a></li>
           <li><b>Break down:</b> <a href="epic-breakdown-canvas.html">Epic Canvas</a> → <a href="story-map-board.html">Story Map</a> → <a href="story-splitting-poster.html">Splitting</a> → <a href="example-mapping-board.html">Example Mapping</a></li>
           <li><b>Iterate:</b> <a href="sprint-planning-board.html">Sprint Planning</a> → <a href="sprint-review-board.html">Sprint Review</a></li>
-          <li><b>Improve:</b> <a href="team-health-check-board.html">Health Check</a> · <a href="marginal-gains-workshop-board-sprint.html">Marginal Gains</a> → <a href="experiment-canvas.html">1% Experiment</a></li>
+          <li><b>Flow:</b> <a href="kanban-board-design.html">Board</a> · <a href="ageing-wip-board.html">Ageing</a> · <a href="buffering-swarming-board.html">Swarming</a> · <a href="blocker-clustering-board.html">Blockers</a> · <a href="skills-matrix-board.html">Skills</a> · <a href="impediments-board.html">Impediments</a> · <a href="pairing-mobbing-board.html">Pairing</a></li>
+          <li><b>Improve:</b> <a href="team-health-check-board.html">Health Check</a> · <a href="marginal-gains-workshop-board-sprint.html">Marginal Gains</a> → <a href="experiment-canvas.html">Experiment</a></li>
           <li><b>Reflect:</b> <a href="retro-board-start-stop-continue-sprint.html">Retro Kit</a> · any time: <a href="lean-coffee-board.html">Lean Coffee</a></li>
           <li><b>Project:</b> <a href="project-kickoff-board.html">Kickoff</a> · <a href="stakeholder-map-board.html">Stakeholders</a> · <a href="release-forecast-board.html">Forecast</a> · <a href="raid-log-board.html">RAID</a></li>
           <li><b>Program:</b> <a href="okr-board.html">OKRs</a> · <a href="cross-team-planning-board.html">Planning</a> · <a href="dependency-map-board.html">Dependencies</a> · <a href="cross-team-sync-board.html">Sync</a></li>
         </ul>
-        <p style="margin-top:6px;opacity:.8">Guides: <a href="index.html">index.html</a> · Jira: <a href="jira-cheat-sheet.html">Jira sheet</a></p>
       </div>
     </section>
   </div>
