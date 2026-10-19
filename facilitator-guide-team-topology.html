@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Team Topology Design Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#64748B; --rule:#E2E8F0; --paper:#FFFFFF;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:13px;line-height:1.55;padding:24px 16px;}
+.page{max-width:820px;margin:0 auto 24px;background:var(--paper);box-shadow:0 12px 40px rgba(0,0,0,.22);}
+.masthead{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:28px 40px 26px;position:relative;}
+.badge{position:absolute;top:14px;right:24px;font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;}
+.masthead h1{font:400 40px/1.05 var(--serif);margin:14px 0 8px;}
+.masthead p{margin:0;color:#94A3B8;font-size:13.5px;}
+.masthead .tag{margin-top:8px;font:9px var(--mono);color:#64748B;letter-spacing:.06em;}
+.content{padding:28px 40px 36px;}
+h2{font:400 26px/1.15 var(--serif);margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;}
+h2 .n{font:600 11px var(--sans);color:#fff;background:var(--navy);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;flex:none;transform:translateY(-3px);}
+h3{font:600 13px var(--sans);margin:16px 0 6px;}
+p{margin:6px 0 10px;}
+.lede{font:italic 400 19px/1.35 var(--serif);color:var(--ink);border-left:4px solid var(--accent);padding:2px 0 2px 16px;margin:4px 0 20px;}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px;}
+.glance div{background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;}
+.glance b{display:block;font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+.glance span{font-weight:600;font-size:13px;}
+ul.check{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:28px;}
+ul.check li{padding-left:22px;position:relative;margin-bottom:5px;break-inside:avoid;}
+ul.check li::before{content:"";position:absolute;left:0;top:3px;width:11px;height:11px;border:1.4px solid var(--ink);border-radius:2px;opacity:.55;}
+table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:12.5px;}
+th{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--ink);text-align:left;padding:8px 10px;}
+th:first-child{border-left:5px solid var(--accent);}
+td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+td.t{font:500 11px var(--mono);white-space:nowrap;color:var(--muted);}
+td.a{font-weight:600;width:24%;}
+tr:nth-child(even) td{background:#F8FAFC;}
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;}
+.area{border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,.06);break-inside:avoid;}
+.area h4{margin:0;padding:7px 12px;color:#fff;font:600 12.5px var(--sans);}
+.area ul{margin:0;padding:8px 12px 10px 28px;font-size:12px;}
+.area li{margin-bottom:3px;}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.tip{border-top:2px solid var(--rule);padding-top:8px;}
+.tip b{display:block;margin-bottom:2px;}
+.flow{display:flex;align-items:stretch;gap:0;margin:14px 0 6px;flex-wrap:wrap;}
+.step{flex:1 1 0;min-width:120px;background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;position:relative;}
+.arrow{flex:none;align-self:center;color:var(--accent);font:600 16px var(--sans);padding:0 6px;}
+.step b{display:block;font-size:12.5px;}
+.step small{color:var(--muted);font-size:11px;line-height:1.4;display:block;margin-top:2px;}
+.step .k{font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--accent);text-transform:uppercase;}
+.callout{background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:12px 16px;margin:14px 0;}
+.callout b{color:#9A3412;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display:flex;justify-content:space-between;gap:16px;font:8px var(--mono);letter-spacing:.08em;color:#94A3B8;}
+@media (max-width:640px){
+  .masthead,.content{padding-left:20px;padding-right:20px;}
+  .glance{grid-template-columns:1fr 1fr;}
+  ul.check{columns:1;}
+  .areas,.tips,.two{grid-template-columns:1fr;}
+  .arrow{display:none;}
+  .flow{gap:8px;}
+  table{font-size:11.5px;}
+  td.t{white-space:normal;}
+}
+@media print{
+  @page{size:A4 portrait;margin:12mm 12mm 14mm;}
+  html,body{background:none;}
+  body{padding:0;font-size:11.5px;}
+  .page{box-shadow:none;max-width:none;margin:0;}
+  .masthead,th,.area h4,h2 .n{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  tr,.area,.tip,.step,.callout{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .pb{break-before:page;}
+}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.content a{color:#9A3412;}
+@media print{.boards{display:none;}}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.content a{color:#9A3412;}
+.example{border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:10px 0;}
+.example div{display:grid;grid-template-columns:30% 1fr;border-bottom:1px solid var(--rule);}
+.example div:last-child{border-bottom:none;}
+.example b{background:#F8FAFC;padding:7px 12px;font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.example span{padding:7px 12px;font-size:12.5px;}
+@media (max-width:640px){.example div{grid-template-columns:1fr;}}
+@media print{.boards{display:none;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>Team Topology Design Guide</h1>
+    <p>How to design teams around the flow of value, with clear team types, interaction modes and manageable load.</p>
+    <div class="tag">Facilitator Run-Sheet · Coordinate Teams · Inspired by Team Topologies (Skelton &amp; Pais)</div>
+    <div class="boards"><a class="primary" href="team-topology-board.html">Open board →</a><a href="team-topology-board.svg">SVG →</a></div>
+  </header>
+  <div class="content">
+    <p class="lede">“Which team is carrying more than it can hold?”</p>
+    <p>Many delivery problems, such as dependencies, hand-offs and overloaded teams, come from how teams are organised. <i>Team Topologies</i> by Matthew Skelton and Manuel Pais offers four <b>team types</b> (stream-aligned, platform, enabling and complicated subsystem) and three <b>interaction modes</b> (collaboration, X-as-a-service and facilitating). It also asks whether each team's <b>cognitive load</b> is manageable. This board helps leaders and teams map today's structure and find changes worth trying.</p>
+    <div class="glance"><div><b>Duration</b><span>2–3 h</span></div><div><b>Group</b><span>Leaders, eng managers,<br>team reps, architects</span></div><div><b>Use when</b><span>Dependencies or<br>overload keep growing</span></div><div><b>Output</b><span>A team map &amp;<br>changes to try</span></div></div>
+    <h2><span class="n">1</span>Before the session</h2>
+    <ul class="check"><li>Print the board at A1 or A3, or load the SVG as a digital background</li><li>List current teams with their size, what they own, and who they depend on</li><li>Bring the Dependency Map and any recent Team Health Check results</li><li>Invite people from several teams, not just leaders</li><li>Yellow and pink stickies, markers, and three colours of pen or string for interaction modes</li></ul>
+    <h2><span class="n">2</span>Agenda &amp; run-sheet</h2>
+    <table><thead><tr><th>Time</th><th>Section</th><th>Facilitator notes</th></tr></thead><tbody><tr><td class="t">0–20</td><td class="a">1 · Team Types</td><td>Explain the four types. Write each current team under the type it most resembles today.</td></tr><tr><td class="t">20–50</td><td class="a">2 · Team Map</td><td>Place each team on the map, grouped by value stream. Draw how they interact today, using the three line styles.</td></tr><tr><td class="t">50–75</td><td class="a">3 · Cognitive Load</td><td>For each team, list the domains and systems it owns and rate its load. Mark teams that hold too much.</td></tr><tr><td class="t">75–100</td><td class="a">Spot problems</td><td>Look for overloaded teams, long-running collaborations, and teams with many dependencies. Add pink stickies.</td></tr><tr><td class="t">100–130</td><td class="a">4 · Interactions · 5 · Changes</td><td>Agree intended interaction modes with end dates, and list changes to try, such as a platform or enabling team.</td></tr><tr><td class="t">130–150</td><td class="a">Close</td><td>Pick one change to try first, with an owner and a review date.</td></tr></tbody></table>
+    <h2 class="pb"><span class="n">3</span>Reading the map</h2>
+    <p>Patterns that suggest a change.</p>
+    <div class="areas"><div class="area" style="background:#FEE2E2;color:#991B1B"><h4 style="background:#991B1B">Overloaded team</h4><ul><li>Owns too many domains</li><li>Split it, or move work to a platform</li></ul></div><div class="area" style="background:#EDE9FE;color:#581C87"><h4 style="background:#581C87">Endless collaboration</h4><ul><li>Two teams always together</li><li>Merge them, or define a service</li></ul></div><div class="area" style="background:#D1FAE5;color:#065F46"><h4 style="background:#065F46">No stream-aligned teams</h4><ul><li>Work flows through many teams</li><li>Re-form around value streams</li></ul></div><div class="area" style="background:#DBEAFE;color:#1E3A8A"><h4 style="background:#1E3A8A">Skill gaps everywhere</h4><ul><li>Consider an enabling team</li><li>It should step back when done</li></ul></div><div class="area" style="background:#F1F5F9;color:#334155"><h4 style="background:#334155">Interaction Agreements</h4><ul><li>Each has a purpose</li><li>Collaborations have an end date</li></ul></div></div>
+    <h2><span class="n">4</span>Facilitation tips</h2>
+    <div class="tips"><div class="tip"><b>Stream-aligned first</b>Most teams should own a flow of value end to end. Others exist to help them.</div><div class="tip"><b>Load is the limit</b>A team can only hold so much. If it owns too much, quality and speed drop.</div><div class="tip"><b>Interactions are deliberate</b>Choose the mode on purpose, and change it as the relationship matures.</div><div class="tip"><b>Collaboration is temporary</b>Close collaboration is expensive. Use it to discover, then move to a service.</div><div class="tip"><b>Small changes first</b>Try one boundary change at a time and watch dependencies and flow.</div><div class="tip"><b>Involve the teams</b>People in the teams know where the friction is. Design with them, not for them.</div></div>
+    <div class="callout"><b>Common pitfalls:</b> redrawing an org chart without changing how work flows; ignoring cognitive load; permanent collaboration; platform teams that become gatekeepers; designing teams without the people in them; changing everything at once.</div>
+    <h2><span class="n">5</span>After the session</h2>
+    <div class="two"><div><h3>Straight away</h3><p>Share the map and the first change with the teams affected.</p></div><div><h3>Over the next quarter</h3><p>Run the change and watch dependencies, flow and team health.</p></div><div><h3>At the review date</h3><p>Check what changed and decide the next step.</p></div><div><h3>Twice a year</h3><p>Re-map teams as products and strategy change.</p></div></div>
+    <h2><span class="n">6</span>How it fits the toolkit</h2>
+    <p>The program tools coordinate several teams: agree <a href="facilitator-guide-okr.html">Objectives &amp; Key Results</a>, plan together with the <a href="facilitator-guide-cross-team-planning.html">Cross-Team Planning</a> board, make links visible on the <a href="facilitator-guide-dependency-map.html">Dependency Map</a>, and keep in step with a regular <a href="facilitator-guide-cross-team-sync.html">Cross-Team Sync</a>. Each team still plans, reviews and improves with the team-level tools.</p>
+    <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a></p>
+    <footer><span>“If we redrew one team boundary, which dependency would disappear?”</span><span>Systems-Thinking · Continuous Improvement · Team-Led Change</span></footer>
+  </div>
+</div>
+</body>
+</html>

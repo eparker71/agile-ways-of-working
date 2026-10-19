@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Outcome Status Report Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#64748B; --rule:#E2E8F0; --paper:#FFFFFF;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:13px;line-height:1.55;padding:24px 16px;}
+.page{max-width:820px;margin:0 auto 24px;background:var(--paper);box-shadow:0 12px 40px rgba(0,0,0,.22);}
+.masthead{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:28px 40px 26px;position:relative;}
+.badge{position:absolute;top:14px;right:24px;font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;}
+.masthead h1{font:400 40px/1.05 var(--serif);margin:14px 0 8px;}
+.masthead p{margin:0;color:#94A3B8;font-size:13.5px;}
+.masthead .tag{margin-top:8px;font:9px var(--mono);color:#64748B;letter-spacing:.06em;}
+.content{padding:28px 40px 36px;}
+h2{font:400 26px/1.15 var(--serif);margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;}
+h2 .n{font:600 11px var(--sans);color:#fff;background:var(--navy);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;flex:none;transform:translateY(-3px);}
+h3{font:600 13px var(--sans);margin:16px 0 6px;}
+p{margin:6px 0 10px;}
+.lede{font:italic 400 19px/1.35 var(--serif);color:var(--ink);border-left:4px solid var(--accent);padding:2px 0 2px 16px;margin:4px 0 20px;}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px;}
+.glance div{background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;}
+.glance b{display:block;font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+.glance span{font-weight:600;font-size:13px;}
+ul.check{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:28px;}
+ul.check li{padding-left:22px;position:relative;margin-bottom:5px;break-inside:avoid;}
+ul.check li::before{content:"";position:absolute;left:0;top:3px;width:11px;height:11px;border:1.4px solid var(--ink);border-radius:2px;opacity:.55;}
+table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:12.5px;}
+th{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--ink);text-align:left;padding:8px 10px;}
+th:first-child{border-left:5px solid var(--accent);}
+td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+td.t{font:500 11px var(--mono);white-space:nowrap;color:var(--muted);}
+td.a{font-weight:600;width:24%;}
+tr:nth-child(even) td{background:#F8FAFC;}
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;}
+.area{border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,.06);break-inside:avoid;}
+.area h4{margin:0;padding:7px 12px;color:#fff;font:600 12.5px var(--sans);}
+.area ul{margin:0;padding:8px 12px 10px 28px;font-size:12px;}
+.area li{margin-bottom:3px;}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.tip{border-top:2px solid var(--rule);padding-top:8px;}
+.tip b{display:block;margin-bottom:2px;}
+.flow{display:flex;align-items:stretch;gap:0;margin:14px 0 6px;flex-wrap:wrap;}
+.step{flex:1 1 0;min-width:120px;background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;position:relative;}
+.arrow{flex:none;align-self:center;color:var(--accent);font:600 16px var(--sans);padding:0 6px;}
+.step b{display:block;font-size:12.5px;}
+.step small{color:var(--muted);font-size:11px;line-height:1.4;display:block;margin-top:2px;}
+.step .k{font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--accent);text-transform:uppercase;}
+.callout{background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:12px 16px;margin:14px 0;}
+.callout b{color:#9A3412;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display:flex;justify-content:space-between;gap:16px;font:8px var(--mono);letter-spacing:.08em;color:#94A3B8;}
+@media (max-width:640px){
+  .masthead,.content{padding-left:20px;padding-right:20px;}
+  .glance{grid-template-columns:1fr 1fr;}
+  ul.check{columns:1;}
+  .areas,.tips,.two{grid-template-columns:1fr;}
+  .arrow{display:none;}
+  .flow{gap:8px;}
+  table{font-size:11.5px;}
+  td.t{white-space:normal;}
+}
+@media print{
+  @page{size:A4 portrait;margin:12mm 12mm 14mm;}
+  html,body{background:none;}
+  body{padding:0;font-size:11.5px;}
+  .page{box-shadow:none;max-width:none;margin:0;}
+  .masthead,th,.area h4,h2 .n{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  tr,.area,.tip,.step,.callout{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .pb{break-before:page;}
+}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.content a{color:#9A3412;}
+@media print{.boards{display:none;}}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.content a{color:#9A3412;}
+.example{border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:10px 0;}
+.example div{display:grid;grid-template-columns:30% 1fr;border-bottom:1px solid var(--rule);}
+.example div:last-child{border-bottom:none;}
+.example b{background:#F8FAFC;padding:7px 12px;font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.example span{padding:7px 12px;font-size:12.5px;}
+@media (max-width:640px){.example div{grid-template-columns:1fr;}}
+@media print{.boards{display:none;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>Outcome Status Report Guide</h1>
+    <p>How to write a one-page update built on outcomes, a forecast range, risks and the decisions you need.</p>
+    <div class="tag">Facilitator Run-Sheet · Run a Project · Outcomes Over Output · Decisions, Not Just Status</div>
+    <div class="boards"><a class="primary" href="status-report-board.html">Open board →</a><a href="status-report-board.svg">SVG →</a></div>
+  </header>
+  <div class="content">
+    <p class="lede">“What decision do we need, and from whom?”</p>
+    <p>Traditional status reports turn amber when it's already too late, and rarely ask for anything. This one-page report leads with a <b>headline</b>, a <b>confidence</b> rating and its trend, then shows progress on <b>outcomes</b>, the <b>forecast range</b> and what moved it, what was <b>delivered and learned</b>, the top <b>risks</b>, and the <b>decisions needed</b>. It's built from boards the team already keeps, so it takes minutes, not hours, to write.</p>
+    <div class="glance"><div><b>Duration</b><span>20–30 min<br>to prepare</span></div><div><b>Group</b><span>PM or program lead,<br>with the PO</span></div><div><b>Use when</b><span>Every 2–4 weeks,<br>or for steering</span></div><div><b>Output</b><span>A one-page update<br>&amp; clear asks</span></div></div>
+    <h2><span class="n">1</span>Before the session</h2>
+    <ul class="check"><li>Print the board at A3, or use a digital copy for each report</li><li>Bring the latest Release Forecast, RAID Log and value or OKR measures</li><li>Check what was released or demonstrated since the last report</li><li>Know who the readers are and what decisions they own (see the Stakeholder Map)</li></ul>
+    <h2><span class="n">2</span>Agenda &amp; run-sheet</h2>
+    <table><thead><tr><th>Step</th><th>Section</th><th>Notes</th></tr></thead><tbody><tr><td class="t">1</td><td class="a">2 · Outcomes</td><td>Update each outcome measure: start, now, target and trend.</td></tr><tr><td class="t">2</td><td class="a">3 · Forecast</td><td>Copy the range from the Release Forecast. Say if it moved, and why.</td></tr><tr><td class="t">3</td><td class="a">4 · Delivered & Learned</td><td>List working, in-use deliveries and anything that changed your thinking.</td></tr><tr><td class="t">4</td><td class="a">5 · Top Risks & Issues</td><td>Copy the top few from the RAID Log, with actions and owners.</td></tr><tr><td class="t">5</td><td class="a">6 · Decisions Needed</td><td>Write each decision, who must make it, and by when.</td></tr><tr><td class="t">6</td><td class="a">1 · Headline</td><td>Last: write one sentence, a confidence rating 1–5, and the trend since last time.</td></tr></tbody></table>
+    <h2 class="pb"><span class="n">3</span>Making each section strong</h2>
+    <p>Quality checks for each part of the report.</p>
+    <div class="areas"><div class="area" style="background:#EDE9FE;color:#581C87"><h4 style="background:#581C87">1 · Headline</h4><ul><li>One honest sentence</li><li>Confidence and trend are clear</li></ul></div><div class="area" style="background:#D1FAE5;color:#065F46"><h4 style="background:#065F46">2 · Outcomes</h4><ul><li>Outcomes, not task lists</li><li>Start, now and target shown</li></ul></div><div class="area" style="background:#FEF3C7;color:#92400E"><h4 style="background:#92400E">3 · Forecast</h4><ul><li>A range, not a date</li><li>What moved it</li></ul></div><div class="area" style="background:#DBEAFE;color:#1E3A8A"><h4 style="background:#1E3A8A">4 · Delivered &amp; Learned</h4><ul><li>Working and in use</li><li>Learning is shared</li></ul></div><div class="area" style="background:#FEE2E2;color:#991B1B"><h4 style="background:#991B1B">5 · Top Risks &amp; Issues</h4><ul><li>Each has an action and owner</li><li>Matches the RAID Log</li></ul></div><div class="area" style="background:#DCFCE7;color:#14532D"><h4 style="background:#14532D">6 · Decisions Needed</h4><ul><li>Specific asks</li><li>A named person and a date</li></ul></div></div>
+    <h2><span class="n">4</span>Facilitation tips</h2>
+    <div class="tips"><div class="tip"><b>Write the headline last</b>Once the rest is done, the one-sentence summary is easy and honest.</div><div class="tip"><b>Confidence beats colours</b>A 1–5 confidence rating with a trend says more than red, amber or green.</div><div class="tip"><b>Lead with outcomes</b>Readers care about what changed for customers and the business, not tasks completed.</div><div class="tip"><b>Always ask for something</b>If no decisions are needed, say so. Usually there&#x27;s at least one.</div><div class="tip"><b>Reuse the boards</b>Copy from the Release Forecast and RAID Log rather than writing from scratch.</div><div class="tip"><b>Same shape every time</b>A consistent format lets readers spot changes quickly.</div></div>
+    <div class="callout"><b>Common pitfalls:</b> a wall of task updates; a single date instead of a range; hiding bad news until it&#x27;s red; no decisions requested; different formats every time; writing it from scratch instead of from the boards.</div>
+    <h2><span class="n">5</span>After the session</h2>
+    <div class="two"><div><h3>Straight away</h3><p>Send it to the readers and walk the key ones through it in person or on a call.</p></div><div><h3>Follow up</h3><p>Chase the decisions needed before their dates.</p></div><div><h3>Next report</h3><p>Start by noting what changed since this one.</p></div><div><h3>Over time</h3><p>Ask readers what they use and what they don&#x27;t, and trim the report.</p></div></div>
+    <h2><span class="n">6</span>How it fits the toolkit</h2>
+    <p>The project tools work together: run a <a href="facilitator-guide-project-kickoff.html">Project Kickoff</a> first, then build the <a href="facilitator-guide-stakeholder-map.html">Stakeholder Map</a>, keep the <a href="facilitator-guide-raid-log.html">RAID Log</a> up to date, and refresh the <a href="facilitator-guide-release-forecast.html">Release Forecast</a> after every iteration. Inside the project, teams use the lifecycle tools (Team Charter, Prioritisation, Sprint Planning and Review) and the break-down tools.</p>
+    <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a></p>
+    <footer><span>“What has changed for our customers since the last report?”</span><span>Systems-Thinking · Continuous Improvement · Team-Led Change</span></footer>
+  </div>
+</div>
+</body>
+</html>

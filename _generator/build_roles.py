@@ -1,0 +1,294 @@
+#!/usr/bin/env python3
+"""Generate start-here-by-role.html and the role filter on index.html.
+
+ROLES below is the single source for which tools suit which role. The script:
+  - writes start-here-by-role.html
+  - tags each card on index.html with data-roles="..." (matched by its Open link)
+  - inserts the role filter chips, CSS and script into index.html (between
+    the <!-- roles:... --> markers, which it adds on first run)
+
+Run:  python3 _generator/build_roles.py      (after adding a card to index.html)
+"""
+import re
+from html import escape
+from pathlib import Path
+
+OUT = Path(__file__).resolve().parent.parent
+FONT_URL = ("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600"
+            "&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap")
+
+# key: (title, board page, guide page or None, href prefix used to match index cards)
+TOOLS = {
+    "sm-cheat": ("Scrum Master & Agile Coach Cheat Sheet", "scrum-master-agile-coach-cheat-sheet.html", None, "scrum-master-agile-coach"),
+    "jira": ("Jira Cheat Sheet", "jira-cheat-sheet.html", None, "jira-cheat-sheet"),
+    "lean-coffee": ("Lean Coffee", "lean-coffee-board.html", "facilitator-guide-lean-coffee.html", "lean-coffee"),
+    "team-charter": ("Team Charter", "team-charter-board.html", "facilitator-guide-team-charter.html", "team-charter"),
+    "ai": ("AI Working Agreement", "ai-working-agreement-board.html", "facilitator-guide-ai-working-agreement.html", "ai-working-agreement"),
+    "vision": ("Product Vision Board", "product-vision-board.html", "facilitator-guide-product-vision.html", "product-vision"),
+    "ost": ("Opportunity Solution Tree", "opportunity-solution-tree-board.html", "facilitator-guide-opportunity-solution-tree.html", "opportunity-solution-tree"),
+    "prioritisation": ("Prioritisation Board", "prioritisation-board.html", "facilitator-guide-prioritisation.html", "prioritisation"),
+    "kickoff": ("Project Kickoff", "project-kickoff-board.html", "facilitator-guide-project-kickoff.html", "project-kickoff"),
+    "stakeholder": ("Stakeholder Map", "stakeholder-map-board.html", "facilitator-guide-stakeholder-map.html", "stakeholder-map"),
+    "premortem": ("Pre-mortem", "pre-mortem-board.html", "facilitator-guide-pre-mortem.html", "pre-mortem"),
+    "forecast": ("Release Forecast & Burn-up", "release-forecast-board.html", "facilitator-guide-release-forecast.html", "release-forecast"),
+    "raid": ("RAID Log", "raid-log-board.html", "facilitator-guide-raid-log.html", "raid-log"),
+    "status": ("Outcome Status Report", "status-report-board.html", "facilitator-guide-status-report.html", "status-report"),
+    "epic": ("Epic Breakdown Canvas", "epic-breakdown-canvas.html", "facilitator-guide-epic-breakdown-canvas.html", "epic-breakdown"),
+    "storymap": ("User Story Map", "story-map-board.html", "facilitator-guide-story-map.html", "story-map"),
+    "splitting": ("Story Splitting", "story-splitting-poster.html", "facilitator-guide-story-splitting.html", "story-splitting"),
+    "example": ("Example Mapping", "example-mapping-board.html", "facilitator-guide-example-mapping.html", "example-mapping"),
+    "sprint-planning": ("Sprint Planning", "sprint-planning-board.html", "facilitator-guide-sprint-planning.html", "sprint-planning"),
+    "sprint-review": ("Sprint Review", "sprint-review-board.html", "facilitator-guide-sprint-review.html", "sprint-review"),
+    "buffer": ("Buffering & Swarming", "buffering-swarming-board.html", "facilitator-guide-buffering-swarming.html", "buffering-swarming"),
+    "kanban": ("Kanban Board Design", "kanban-board-design.html", "facilitator-guide-kanban-board-design.html", "kanban-board-design"),
+    "ageing": ("Ageing WIP & SLE", "ageing-wip-board.html", "facilitator-guide-ageing-wip.html", "ageing-wip"),
+    "blockers": ("Blocker Clustering", "blocker-clustering-board.html", "facilitator-guide-blocker-clustering.html", "blocker-clustering"),
+    "skills": ("Skills Matrix", "skills-matrix-board.html", "facilitator-guide-skills-matrix.html", "skills-matrix"),
+    "impediments": ("Impediments Board", "impediments-board.html", "facilitator-guide-impediments.html", "impediments"),
+    "pairing": ("Pairing & Mobbing", "pairing-mobbing-board.html", "facilitator-guide-pairing-mobbing.html", "pairing-mobbing"),
+    "okr": ("Objectives & Key Results", "okr-board.html", "facilitator-guide-okr.html", "okr-board"),
+    "ctp": ("Cross-Team Planning", "cross-team-planning-board.html", "facilitator-guide-cross-team-planning.html", "cross-team-planning"),
+    "dependency": ("Dependency Map", "dependency-map-board.html", "facilitator-guide-dependency-map.html", "dependency-map"),
+    "sync": ("Cross-Team Sync", "cross-team-sync-board.html", "facilitator-guide-cross-team-sync.html", "cross-team-sync"),
+    "topology": ("Team Topology Design", "team-topology-board.html", "facilitator-guide-team-topology.html", "team-topology"),
+    "value": ("Value Metrics", "value-metrics-board.html", "facilitator-guide-value-metrics.html", "value-metrics"),
+    "health": ("Team Health Check", "team-health-check-board.html", "facilitator-guide-team-health-check.html", "team-health-check"),
+    "marginal": ("Marginal Gains Workshop", "marginal-gains-workshop-board-sprint.html", "facilitator-guide-marginal-gains.html", "marginal-gains"),
+    "experiment": ("1% Experiment Canvas", "experiment-canvas.html", "facilitator-guide-experiment-canvas.html", "experiment-canvas"),
+    "rootcause": ("Root Cause Analysis", "root-cause-board.html", "facilitator-guide-root-cause.html", "root-cause"),
+    "retro": ("Retrospective Kit", "retro-board-start-stop-continue-sprint.html", "facilitator-guide-retro-start-stop-continue.html", "retro-board-"),
+}
+
+# id, name, what you're there to do, start with (3), also useful
+ROLES = [
+    ("sm", "Scrum Master / Delivery Lead",
+     "You help the team deliver well: smooth flow, useful events, and impediments removed.",
+     ["sm-cheat", "retro", "impediments"],
+     ["sprint-planning", "sprint-review", "team-charter", "ai", "health", "kanban", "ageing", "buffer", "blockers", "pairing",
+      "skills", "example", "splitting", "rootcause", "experiment", "marginal", "lean-coffee", "jira"]),
+    ("coach", "Agile Coach",
+     "You help teams and leaders improve how they work, and coach the system beyond any one team.",
+     ["health", "marginal", "topology"],
+     ["sm-cheat", "retro", "team-charter", "ai", "experiment", "rootcause", "kanban", "ageing", "blockers", "skills",
+      "value", "okr", "ctp", "sync", "impediments", "lean-coffee"]),
+    ("po", "Product Owner / Product Manager",
+     "You decide what's worth building, for whom, and in what order, and you prove it worked.",
+     ["vision", "ost", "prioritisation"],
+     ["epic", "storymap", "splitting", "example", "sprint-planning", "sprint-review", "okr", "value", "forecast",
+      "stakeholder", "experiment", "jira"]),
+    ("pm", "Project Manager",
+     "You get a defined piece of work delivered: scope, stakeholders, risks, forecasts and decisions.",
+     ["kickoff", "raid", "status"],
+     ["stakeholder", "premortem", "forecast", "prioritisation", "team-charter", "sprint-review", "dependency",
+      "impediments", "lean-coffee", "jira"]),
+    ("program", "Program Manager / Release Train Engineer",
+     "You keep several teams aligned on shared outcomes, with dependencies and risks in the open.",
+     ["ctp", "dependency", "sync"],
+     ["okr", "topology", "status", "raid", "forecast", "premortem", "value", "stakeholder", "impediments", "marginal"]),
+    ("portfolio", "Portfolio Manager / PMO",
+     "You decide where the organisation invests, and check that the investment delivers value.",
+     ["value", "prioritisation", "okr"],
+     ["status", "kickoff", "premortem", "ctp", "topology", "stakeholder", "forecast"]),
+    ("leader", "Executive / Sponsor",
+     "You set direction, fund the work, remove the biggest obstacles, and shape how teams are organised.",
+     ["value", "okr", "topology"],
+     ["vision", "status", "stakeholder", "premortem", "kickoff", "impediments", "ai", "health"]),
+    ("eng", "Engineering Manager / Tech Lead",
+     "You build capable teams and healthy systems: skills, flow, quality and sensible team boundaries.",
+     ["skills", "topology", "kanban"],
+     ["pairing", "ageing", "buffer", "blockers", "ai", "team-charter", "rootcause", "example", "splitting",
+      "dependency", "health", "impediments"]),
+    ("ux", "Designer / Business Analyst",
+     "You understand users and the problem, and help the team build the right thing, clearly specified.",
+     ["ost", "storymap", "example"],
+     ["vision", "splitting", "epic", "sprint-review", "premortem", "pairing"]),
+    ("team", "Team Member",
+     "You do the work, and you help decide how the team works and improves.",
+     ["team-charter", "retro", "pairing"],
+     ["ai", "sprint-planning", "sprint-review", "lean-coffee", "skills", "kanban", "buffer", "impediments", "example",
+      "splitting", "health"]),
+]
+
+for _id, _n, _d, start, also in ROLES:
+    for k in start + also:
+        assert k in TOOLS, f"{_id}: unknown tool {k}"
+
+
+def roles_for(href):
+    """Role ids for the index card whose Open link is href."""
+    if href.startswith("start-here-by-role"):
+        return [rid for rid, *_ in ROLES]
+    for key, (_, _, _, prefix) in TOOLS.items():
+        if href.startswith(prefix):
+            return [rid for rid, _, _, start, also in ROLES if key in start or key in also]
+    return None
+
+
+# ------------------------------------------------------------------ role page
+
+def tool_link(key, primary=False):
+    title, board, guide, _ = TOOLS[key]
+    g = f'<a class="g" href="{guide}">guide</a>' if guide else ""
+    cls = "tool start" if primary else "tool"
+    return f'<span class="{cls}"><a href="{board}">{escape(title)}</a>{g}</span>'
+
+
+def build_page():
+    nav = "".join(f'<a href="#{rid}">{escape(name.split(" / ")[0])}</a>' for rid, name, *_ in ROLES)
+    sections = []
+    for rid, name, desc, start, also in ROLES:
+        sections.append(f"""  <section class="role" id="{rid}">
+    <div class="rh"><h2>{escape(name)}</h2><a class="filter" href="index.html#role={rid}">Show on the home page →</a></div>
+    <p>{escape(desc)}</p>
+    <div class="lbl">Start with</div>
+    <div class="tools">{"".join(tool_link(k, True) for k in start)}</div>
+    <div class="lbl">Also useful</div>
+    <div class="tools">{"".join(tool_link(k) for k in also)}</div>
+  </section>""")
+    page = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Start Here by Role</title>
+<link rel="stylesheet" href="{FONT_URL}">
+<style>
+:root{{--accent:#eb6c36;--navy:#0C1A2E;--ink:#1E293B;--muted:#64748B;--rule:#E2E8F0;}}
+*{{box-sizing:border-box;}}
+html,body{{margin:0;background:#F1F5F9;}}
+body{{font-family:'Geist',Inter,system-ui,sans-serif;color:var(--ink);font-size:14px;line-height:1.5;}}
+header{{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:36px 16px 28px;}}
+.wrap{{max-width:1040px;margin:0 auto;padding:0 16px;}}
+h1{{font:400 44px/1.05 'Instrument Serif',Georgia,serif;margin:0 0 8px;}}
+header p{{color:#94A3B8;margin:0 0 18px;max-width:680px;}}
+header a.back{{color:#94A3B8;font:500 11px 'Geist Mono',monospace;letter-spacing:.06em;}}
+nav{{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}}
+nav a{{font:500 11px 'Geist Mono',monospace;letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:14px;padding:5px 11px;}}
+nav a:hover{{border-color:var(--accent);color:var(--accent);}}
+main{{padding:24px 0 48px;}}
+.role{{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:20px 22px;margin:0 0 16px;box-shadow:0 1px 3px rgba(0,0,0,.05);scroll-margin-top:16px;}}
+.rh{{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;}}
+.role h2{{font:400 26px/1.1 'Instrument Serif',Georgia,serif;margin:0;}}
+.role p{{margin:6px 0 14px;color:var(--muted);}}
+a.filter{{font:500 11px 'Geist Mono',monospace;color:#9A3412;text-decoration:none;}}
+a.filter:hover{{text-decoration:underline;}}
+.lbl{{font:600 9px 'Geist Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:10px 0 6px;}}
+.tools{{display:flex;flex-wrap:wrap;gap:8px;}}
+.tool{{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--rule);border-radius:6px;padding:5px 10px;font-size:13px;}}
+.tool a{{color:var(--ink);text-decoration:none;}}
+.tool a:hover{{color:var(--accent);}}
+.tool a.g{{font:500 10px 'Geist Mono',monospace;color:var(--muted);border-left:1px solid var(--rule);padding-left:8px;}}
+.tool.start{{background:var(--ink);border-color:var(--ink);}}
+.tool.start a{{color:#fff;font-weight:600;}}
+.tool.start a.g{{color:#94A3B8;border-color:#475569;font-weight:500;}}
+footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#94A3B8;text-align:center;padding:0 16px 32px;}}
+@media print{{header{{padding:20px 16px;}} nav,a.filter{{display:none;}} .role{{break-inside:avoid;box-shadow:none;}}}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="back" href="index.html">← All tools</a>
+  <h1>Start Here by Role</h1>
+  <p>Find the tools that fit your role. Each role has three to start with, then others worth knowing. Roles overlap, so use whichever lists help.</p>
+  <nav>{nav}</nav>
+</div></header>
+<main><div class="wrap">
+{chr(10).join(sections)}
+</div></main>
+<footer>Systems-Thinking · Continuous Improvement · Team-Led Change</footer>
+</body>
+</html>
+"""
+    (OUT / "start-here-by-role.html").write_text(page, encoding="utf-8")
+    print("wrote start-here-by-role.html")
+
+
+# ------------------------------------------------------------------ index filter
+
+FILTER_CSS = """/* roles:css */
+.rolebar{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;align-items:center;}
+.rolebar span{font:500 9px 'Geist Mono',monospace;letter-spacing:.12em;color:#64748B;text-transform:uppercase;margin-right:4px;}
+.rolebar button{font:500 11px 'Geist Mono',monospace;letter-spacing:.04em;color:#fff;background:none;border:1px solid #334155;border-radius:14px;padding:5px 11px;cursor:pointer;}
+.rolebar button:hover{border-color:var(--accent);color:var(--accent);}
+.rolebar button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;}
+.rolenote{display:none;margin:0 0 4px;font-size:13px;color:var(--muted);}
+.rolenote.on{display:block;}
+.rolenote a{color:#9A3412;}
+.hidden{display:none !important;}
+/* /roles:css */
+"""
+
+FILTER_JS = """<!-- roles:js -->
+<script>
+(function(){
+  var buttons=document.querySelectorAll('.rolebar button'), note=document.querySelector('.rolenote');
+  function apply(role){
+    buttons.forEach(function(b){b.setAttribute('aria-pressed', String(b.dataset.role===(role||'all')));});
+    document.querySelectorAll('.card').forEach(function(c){
+      var r=(c.dataset.roles||'').split(' ');
+      c.classList.toggle('hidden', !!role && role!=='all' && r.indexOf(role)<0);
+    });
+    document.querySelectorAll('main h2').forEach(function(h){
+      var g=h.nextElementSibling, any=g && g.querySelector('.card:not(.hidden)');
+      h.classList.toggle('hidden', !any); if(g) g.classList.toggle('hidden', !any);
+    });
+    var b=document.querySelector('.rolebar button[data-role="'+role+'"]');
+    if(role && role!=='all' && b){
+      note.innerHTML='Showing tools for <b>'+b.dataset.name+'</b>. <a href="start-here-by-role.html#'+role+'">Where to start</a> · <a href="#" data-clear>Show all</a>';
+      note.classList.add('on');
+    } else note.classList.remove('on');
+  }
+  buttons.forEach(function(b){b.addEventListener('click',function(){
+    var r=b.dataset.role; history.replaceState(null,'',r==='all'?location.pathname:'#role='+r); apply(r);
+  });});
+  note.addEventListener('click',function(e){ if(e.target.hasAttribute('data-clear')){e.preventDefault(); history.replaceState(null,'',location.pathname); apply('all');} });
+  var m=location.hash.match(/role=([a-z-]+)/); apply(m?m[1]:'all');
+})();
+</script>
+<!-- /roles:js -->
+"""
+
+
+def build_index_filter():
+    p = OUT / "index.html"
+    s = p.read_text(encoding="utf-8")
+
+    # CSS
+    s = re.sub(r"/\* roles:css \*/.*?/\* /roles:css \*/\n", "", s, flags=re.S)
+    s = s.replace("</style>", FILTER_CSS + "</style>", 1)
+
+    # chips in the header
+    chips = "".join(f'<button type="button" data-role="{rid}" data-name="{escape(name)}">{escape(name.split(" / ")[0])}</button>'
+                    for rid, name, *_ in ROLES)
+    bar = (f'<!-- roles:bar --><div class="rolebar"><span>I\'m a…</span><button type="button" data-role="all" '
+           f'data-name="everyone">All tools</button>{chips}</div><!-- /roles:bar -->')
+    s = re.sub(r"<!-- roles:bar -->.*?<!-- /roles:bar -->", "", s, flags=re.S)
+    s = s.replace("</div></header>", bar + "\n</div></header>", 1)
+
+    # note above the first section
+    s = re.sub(r'<p class="rolenote"></p>\n', "", s)
+    s = s.replace("<main><div class=\"wrap\">\n", "<main><div class=\"wrap\">\n<p class=\"rolenote\"></p>\n", 1)
+
+    # data-roles on each card
+    def tag(m):
+        card_open, rest = m.group(1), m.group(2)
+        href = re.search(r'class="primary" href="([^"]+)"', rest)
+        roles = roles_for(href.group(1)) if href else None
+        card_open = re.sub(r' data-roles="[^"]*"', "", card_open)
+        if roles is not None:
+            card_open = card_open[:-1] + f' data-roles="{" ".join(roles)}">'
+        return card_open + rest
+    s = re.sub(r'(<div class="card"[^>]*>)(.*?</div></div>\n)', tag, s, flags=re.S)
+
+    # script
+    s = re.sub(r"<!-- roles:js -->.*?<!-- /roles:js -->\n", "", s, flags=re.S)
+    s = s.replace("</body>", FILTER_JS + "</body>", 1)
+
+    p.write_text(s, encoding="utf-8")
+    untagged = re.findall(r'<div class="card">', s)
+    print(f"tagged index.html cards ({len(untagged)} untagged)")
+
+
+if __name__ == "__main__":
+    build_page()
+    build_index_filter()

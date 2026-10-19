@@ -2615,6 +2615,345 @@ def build_root_cause():
                 "countermeasures, and a check that the fix worked.", "\n".join(b))
 
 
+# ---------------------------------------------------------------- value metrics (EBM)
+
+LEAD_TAG = "Lead & Measure · Outcomes Over Output · Evidence, Not Opinion"
+
+
+def build_value_metrics():
+    b = [header("Value Metrics",
+                "Measure the value you deliver and your ability to deliver more, then pick experiments to improve it.",
+                "Lead & Measure · Inspired by Evidence-Based Management (Scrum.org) · Four Key Value Areas",
+                header_fields(["Product / org", "Date"]))]
+
+    x, y, w, h = 24, 148, 1632, 150
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 1, "Goals", SLATE, "BIG AND FAR · NEXT MILESTONE · NOW"))
+    gw = (w - 36 - 2 * 16) / 3
+    for i, (name, hint) in enumerate([("Strategic goal", "The big, long-term ambition"),
+                                      ("Intermediate goal", "The next milestone toward it"),
+                                      ("Immediate tactical goal", "What we're working on now")]):
+        cx = x + 18 + i * (gw + 16)
+        b.append(T(cx, y + 80, name, 12, d, weight=600))
+        b.append(T(cx + gw, y + 80, hint, 10, d, italic=True, anchor="end", op=".6"))
+        b.append(lines(cx, y + 110, cx + gw, 2, 26))
+
+    y, h = 312, 560
+    kvas = [(2, "Current Value", EMERALD, "VALUE DELIVERED TODAY",
+             "How much value do customers get now?", ["Customer satisfaction", "Usage / adoption", "Revenue per customer", "Employee satisfaction"]),
+            (3, "Unrealised Value", PURPLE, "VALUE STILL ON THE TABLE",
+             "How much more value could we deliver?", ["Market share gap", "Unmet customer needs", "Demand we can't serve", "Competitor gaps"]),
+            (4, "Time to Market", BLUE, "HOW FAST WE LEARN & DELIVER",
+             "How quickly can we deliver and learn?", ["Lead / cycle time", "Release frequency", "Time to first feedback", "Time to fix"]),
+            (5, "Ability to Innovate", ORANGE, "WHAT SLOWS NEW VALUE",
+             "What stops us delivering new value?", ["% time on new features", "Technical debt", "Defect trends", "Time lost to blockers"])]
+    cw = (1632 - 3 * 14) / 4
+    for i, (num, title, color, note, q, examples) in enumerate(kvas):
+        x = 24 + i * (cw + 14)
+        d = color[0]
+        b.append(panel(x, y, cw, h, num, title, color, note))
+        b.append(T(x + 18, y + 84, q, 16, d, SERIF, italic=True))
+        b.append(T(x + 18, y + 116, "EXAMPLE MEASURES", 8.5, d, MONO, weight=600, ls=".12em"))
+        for j, ex in enumerate(examples):
+            b.append(checkbox(x + 18 + (j % 2) * 186, y + 142 + (j // 2) * 26, ex, d, 10.5))
+        b.append(table(x + 18, y + 220, [("Our measure", 150), ("Now", 62), ("Target", 62), ("Trend", cw - 36 - 274)], 4, d, 38))
+        b.append(T(x + 18, y + 412, "What the numbers tell us:", 11, d, weight=600))
+        b.append(lines(x + 18, y + 440, x + cw - 18, 4, 26))
+
+    y, h = 886, 174
+    x, w = 24, 1082
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 6, "Experiments to Improve", FOREST, "ONE PER KEY VALUE AREA AT MOST"))
+    b.append(table(x + 18, y + 82, [("Area", 160), ("Experiment", 430), ("Measure we expect to move", 300), ("Owner", w - 36 - 890)], 2, d, 34))
+
+    x, w = 1120, 536
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 7, "Review Rhythm", AMBER))
+    for i, f in enumerate(["Measures updated every:", "Reviewed with leaders at:", "Next review:"]):
+        b.append(field(x + 18, y + 84 + i * 30, f, x + w - 18, d))
+
+    b.append(footer("How do we know we're delivering value, not just output?",
+                    "What's stopping us from delivering more value, sooner?", LEAD_TAG))
+    write_board("value-metrics-board", "Value Metrics",
+                "A3 landscape value metrics board: strategic, intermediate and tactical goals, the four key value areas "
+                "with example measures, a measures table and insights, experiments, and a review rhythm.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- opportunity solution tree
+
+def build_opportunity_tree():
+    b = [header("Opportunity Solution Tree",
+                "Connect a product outcome to customer opportunities, candidate solutions, and the assumptions to test first.",
+                "Envision & Plan · Continuous Discovery · Inspired by Teresa Torres · Assumption Mapping",
+                legend([("sticky", BLUE_ST, "Blue = Opportunity"), ("sticky", YELLOW, "Yellow = Solution"),
+                        ("sticky", PINK_ST, "Pink = Assumption"), ("sticky", GREEN, "Green = Test")]))]
+
+    x, y, w, h = 24, 148, 1082, 912
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 1, "The Tree", PURPLE, "OUTCOME → OPPORTUNITIES → SOLUTIONS → TESTS"))
+    cx = x + w / 2
+    # outcome
+    ow = 420
+    b.append(R(cx - ow / 2, y + 70, ow, 92, EMERALD[1], 8, f' stroke="{EMERALD[0]}" stroke-opacity=".5" stroke-width="1.5"'))
+    b.append(T(cx - ow / 2 + 16, y + 94, "OUTCOME · ONE MEASURABLE PRODUCT OUTCOME", 9, EMERALD[0], MONO, weight=600, ls=".1em"))
+    b.append(lines(cx - ow / 2 + 16, y + 124, cx + ow / 2 - 16, 2, 24))
+    # opportunities
+    n = 3
+    colw = (w - 40) / n
+    oy = y + 210
+    for i in range(n):
+        ox = x + 20 + i * colw + colw / 2
+        b.append(L(cx, y + 162, ox, oy, d, 1.5, ' stroke-opacity=".5"'))
+        bw = colw - 30
+        b.append(R(ox - bw / 2, oy, bw, 120, BLUE[1], 8, f' stroke="{BLUE[0]}" stroke-opacity=".4"'))
+        b.append(T(ox - bw / 2 + 14, oy + 22, f"OPPORTUNITY {i + 1}", 9, BLUE[0], MONO, weight=600, ls=".1em"))
+        b.append(T(ox - bw / 2 + 14, oy + 40, "A customer need, pain or desire", 9.5, BLUE[0], italic=True, op=".6"))
+        b.append(lines(ox - bw / 2 + 14, oy + 68, ox + bw / 2 - 14, 2, 24))
+        # solutions
+        sy = oy + 170
+        sw = (bw - 12) / 2
+        for j in range(2):
+            sx = ox - bw / 2 + j * (sw + 12)
+            b.append(L(ox, oy + 120, sx + sw / 2, sy, d, 1.2, ' stroke-opacity=".4"'))
+            b.append(R(sx, sy, sw, 380, AMBER[1], 6, f' stroke="{AMBER[0]}" stroke-opacity=".35"'))
+            b.append(T(sx + 10, sy + 20, "SOLUTION", 8.5, AMBER[0], MONO, weight=600, ls=".1em"))
+            b.append(lines(sx + 10, sy + 48, sx + sw - 10, 3, 24))
+            b.append(T(sx + 10, sy + 136, "Riskiest assumption", 9.5, RED[0], weight=600))
+            b.append(lines(sx + 10, sy + 162, sx + sw - 10, 2, 24))
+            b.append(T(sx + 10, sy + 230, "Test", 9.5, FOREST[0], weight=600))
+            b.append(lines(sx + 10, sy + 256, sx + sw - 10, 2, 24))
+            b.append(T(sx + 10, sy + 324, "Result", 9.5, BLUE[0], weight=600))
+            b.append(lines(sx + 10, sy + 350, sx + sw - 10, 1, 24))
+    b.append(T(x + 20, y + h - 112, "Compare and contrast: explore at least two or three solutions per opportunity before choosing.",
+               10.5, d, italic=True, op=".7"))
+    b.append(sticky_zone(x + 10, y + h - 98, w - 20, 86, d, "Parked opportunities and ideas", chips=(BLUE_ST, YELLOW)))
+
+    x, w = 1120, 536
+    b.append(panel(x, y, w, 500, 2, "Assumption Map", RED, "TEST TOP-RIGHT FIRST"))
+    b.append(quad_grid(x + 54, y + 70, x + w - 18, y + 500 - 52,
+                       [("Watch", "Important · good evidence", SLATE), ("Test First", "Important · little evidence", RED),
+                        ("Ignore for now", "Less important · evidence", SLATE), ("Park", "Less important · little evidence", AMBER)],
+                       "HAVE EVIDENCE", "NO EVIDENCE", "EVIDENCE →", "IMPORTANCE →"))
+
+    y2, h2 = y + 514, h - 514
+    d = FOREST[0]
+    b.append(panel(x, y2, w, h2, 3, "Assumption Tests", FOREST, "SMALL, FAST, CHEAP"))
+    b.append(table(x + 18, y2 + 82, [("Assumption", 150), ("Test", 140), ("Success if…", 120), ("Result", w - 36 - 410)], 6, d, 40))
+    b.append(T(x + 18, y2 + h2 - 14, "Types: desirable · viable · feasible · usable · ethical", 9, d, MONO, op=".6", ls=".06em"))
+
+    b.append(footer("Which customer need, if we solved it, would move our outcome most?",
+                    "What must be true for this solution to work, and how could we find out this week?", "Envision · Continuous Discovery · Outcomes Over Output"))
+    write_board("opportunity-solution-tree-board", "Opportunity Solution Tree",
+                "A3 landscape opportunity solution tree: outcome, three opportunities with two solutions each, riskiest "
+                "assumptions and tests, an assumption map, and an assumption test table.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- team topology
+
+def build_team_topology():
+    b = [header("Team Topology Design",
+                "Design teams around the flow of value: team types, how they interact, and how much each team can hold.",
+                "Coordinate Teams · Inspired by Team Topologies (Skelton & Pais) · Cognitive Load · Interaction Modes",
+                legend([("sticky", YELLOW, "Yellow Sticky = A team"), ("sticky", PINK_ST, "Pink Sticky = Pain point")]))]
+
+    x, y, w, h = 24, 148, 1632, 290
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 1, "Team Types", BLUE, "MOST TEAMS SHOULD BE STREAM-ALIGNED"))
+    types = [("Stream-aligned", EMERALD, ["Owns a flow of work end to end:", "a product, journey or customer", "segment. Delivers value directly."]),
+             ("Platform", BLUE, ["Provides internal services that", "stream-aligned teams use self-", "service, reducing their load."]),
+             ("Enabling", PURPLE, ["Helps other teams build new skills", "or adopt practices, for a while,", "then steps back."]),
+             ("Complicated subsystem", ORANGE, ["Owns a part needing deep", "specialist knowledge, so others", "don't have to."])]
+    cw = (w - 28 - 3 * 12) / 4
+    for i, (name, col, body) in enumerate(types):
+        cx = x + 14 + i * (cw + 12)
+        cd = col[0]
+        b.append(R(cx, y + 64, cw, h - 78, "white", 6, f' stroke="{cd}" stroke-opacity=".25"'))
+        b.append(R(cx, y + 64, cw, 5, cd, 3))
+        b.append(T(cx + 16, y + 94, name, 14, cd, weight=600))
+        b.append(para(cx + 16, y + 120, body, 10.5, cd, 16))
+        b.append(T(cx + 16, y + 186, "Our teams of this type:", 10.5, cd, weight=600))
+        b.append(lines(cx + 16, y + 212, cx + cw - 16, 2, 26))
+
+    y, h = 452, 420
+    x, w = 24, 1082
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 2, "Team Map", SLATE, "PLACE TEAMS · DRAW HOW THEY INTERACT"))
+    b.append(sticky_zone(x + 10, y + 64, w - 20, h - 116, d, "One yellow sticky per team, grouped by value stream", chips=(YELLOW, PINK_ST)))
+    ly = y + h - 24
+    for i, (lab, dash) in enumerate([("Collaboration · work closely, for a time", ""),
+                                     ("X-as-a-Service · use with little contact", ' stroke-dasharray="8,5"'),
+                                     ("Facilitating · help and coach", ' stroke-dasharray="2,4"')]):
+        lx = x + 18 + i * 350
+        b.append(L(lx, ly - 4, lx + 36, ly - 4, d, 2.5, dash))
+        b.append(T(lx + 44, ly, lab, 10.5, d))
+
+    x, w = 1120, 536
+    d = RED[0]
+    b.append(panel(x, y, w, h, 3, "Cognitive Load Check", RED, "CAN EACH TEAM HOLD WHAT IT OWNS?"))
+    b.append(table(x + 18, y + 84, [("Team", 120), ("Domains & systems owned", 200), ("Load L/M/H", 90), ("Too much?", w - 36 - 410)], 7, d, 40))
+
+    y, h = 886, 174
+    x, w = 24, 1082
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 4, "Interaction Agreements", PURPLE, "EVERY COLLABORATION HAS AN END DATE"))
+    b.append(table(x + 18, y + 82, [("Team A", 180), ("Team B", 180), ("Mode", 200), ("Purpose", 330), ("Review by", w - 36 - 890)], 2, d, 34))
+
+    x, w = 1120, 536
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 5, "Changes to Try", FOREST))
+    b.append(lines(x + 18, y + 88, x + w - 18, 3, 26))
+
+    b.append(footer("Which team is carrying more than it can hold?",
+                    "If we redrew one team boundary, which dependency would disappear?", PROGRAM_TAG))
+    write_board("team-topology-board", "Team Topology Design",
+                "A3 landscape team topology board: four team types, a team map with interaction modes, a cognitive load "
+                "check, interaction agreements, and changes to try.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- AI working agreement
+
+def build_ai_agreement():
+    b = [header("AI Working Agreement",
+                "Agree how the team uses AI tools: where it helps, the guardrails, how output is reviewed, and how you'll know it's working.",
+                "Form the Team · Responsible Use · Human Review · Measure the Impact · Review It Often",
+                header_fields(["Team", "Date"]))]
+
+    y, h = 148, 300
+    x, w = 24, 808
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 1, "Where We Use AI", BLUE, "BE SPECIFIC: NAME THE TASKS"))
+    cw3 = (w - 36 - 2 * 14) / 3
+    for i, (name, col, hint) in enumerate([("Encouraged", EMERALD, "e.g. drafts, summaries, test ideas"),
+                                           ("With care", AMBER, "e.g. code, analysis: always reviewed"),
+                                           ("Not for", RED, "e.g. decisions about people")]):
+        cx = x + 18 + i * (cw3 + 14)
+        b.append(T(cx, y + 80, name, 13, col[0], weight=600))
+        b.append(T(cx, y + 98, hint, 9.5, col[0], italic=True, op=".7"))
+        b.append(lines(cx, y + 130, cx + cw3, 6, 26))
+
+    x, w = 846, 810
+    d = RED[0]
+    b.append(panel(x, y, w, h, 2, "Guardrails", RED, "CHECK WITH YOUR ORGANISATION'S POLICY"))
+    for i, m in enumerate(["Only approved tools for work data", "No confidential, customer or personal data in unapproved tools",
+                           "A person reviews AI output before it's used or shipped", "We say when work is substantially AI-assisted",
+                           "We check sources, facts and licences"]):
+        b.append(checkbox(x + 18, y + 86 + i * 30, m, d, 11))
+    b.append(field(x + 18, y + 248, "Approved tools:", x + w / 2 - 10, d))
+    b.append(field(x + w / 2 + 10, y + 248, "Policy owner / contact:", x + w - 18, d))
+
+    y, h = 462, 300
+    x, w = 24, 808
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 3, "Quality & Review", PURPLE, "SAME BAR, WHOEVER WROTE IT"))
+    for i, m in enumerate(["AI-assisted code gets the same review and tests as any code",
+                           "The person who uses AI owns the result", "Reviewers can ask how output was produced"]):
+        b.append(checkbox(x + 18, y + 86 + i * 30, m, d, 11))
+    b.append(T(x + 18, y + 190, "Additions to our Definition of Done:", 11, d, weight=600))
+    b.append(lines(x + 18, y + 218, x + w - 18, 3, 26))
+
+    x, w = 846, 397
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 4, "Skills & Sharing", EMERALD))
+    for i, f in enumerate(["Shared prompts live at:", "We share what works at:", "Who can help others:", "Skills we'll keep sharp:"]):
+        b.append(field(x + 18, y + 88 + i * 46, f, x + w - 18, d))
+
+    x = 1257
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 5, "Risks We'll Watch", AMBER))
+    b.append(bullets(x + 22, y + 74, ["Wrong or invented answers", "Security and data leaks", "Bias · over-reliance · lost skills"], d))
+    b.append(dashed(x + 10, x + w - 10, y + 128, d))
+    b.append(sticky_zone(x + 10, y + 134, w - 20, h - 146, d, chips=(PINK_ST,)))
+
+    y, h = 776, 284
+    x, w = 24, 1082
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 6, "Measure the Impact", FOREST, "IS IT ACTUALLY HELPING?"))
+    b.append(table(x + 18, y + 84, [("Measure", 300), ("Before", 140), ("After", 140), ("What we noticed", w - 36 - 580)], 4, d, 34))
+    b.append(T(x + 18, y + h - 20, "Try: cycle time · defects found later · review time · rework · team confidence", 9, d, MONO, op=".6", ls=".06em"))
+
+    x, w = 1120, 536
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 7, "Review This Agreement", SLATE, "AI CHANGES FAST"))
+    for i, f in enumerate(["Review every:", "Last reviewed:", "Owner:"]):
+        b.append(field(x + 18, y + 90 + i * 36, f, x + w - 18, d))
+    b.append(checkbox(x + 18, y + 210, "Agreed by the whole team", d, 11))
+    b.append(checkbox(x + 18, y + 240, "Checked against organisation policy", d, 11))
+
+    b.append(footer("Where does AI genuinely help us, and where does it get in the way?",
+                    "Would we be comfortable explaining how this was made?", "Form the Team · Working Agreements · Responsible Use"))
+    write_board("ai-working-agreement-board", "AI Working Agreement",
+                "A3 landscape AI working agreement: where the team uses AI, guardrails, quality and review, skills and "
+                "sharing, risks, impact measures, and a review schedule.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- outcome status report
+
+def build_status_report():
+    b = [header("Outcome Status Report",
+                "A one-page update built on outcomes, a forecast range, risks and the decisions needed, not traffic lights.",
+                "Run a Project · Outcomes Over Output · Forecast Ranges · Decisions, Not Just Status",
+                header_fields(["Project", "Report date"]))]
+
+    x, y, w, h = 24, 148, 1632, 150
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 1, "Headline", PURPLE, "IF THEY READ ONLY THIS"))
+    b.append(T(x + 18, y + 96, "In one sentence:", 18, d, SERIF, italic=True))
+    b.append(L(x + 180, y + 99, x + 1100, y + 99, d, 1, ' stroke-opacity=".3"'))
+    b.append(T(x + 1130, y + 82, "CONFIDENCE", 9, d, MONO, weight=600, ls=".12em"))
+    for i in range(5):
+        ccx = x + 1140 + i * 52
+        b.append(f'<circle cx="{ccx}" cy="{y + 110}" r="15" fill="white" stroke="{d}" stroke-opacity=".5" stroke-width="1.5"/>')
+        b.append(T(ccx, y + 115, str(i + 1), 12, d, weight=600, anchor="middle"))
+    b.append(T(x + 1420, y + 82, "SINCE LAST TIME", 9, d, MONO, weight=600, ls=".12em"))
+    for j, lab in enumerate(["↑", "→", "↓"]):
+        b.append(checkbox(x + 1420 + j * 60, y + 116, lab, d, 13))
+    b.append(field(x + 18, y + 134, "Because:", x + 1100, d))
+
+    y, h = 312, 380
+    x, w = 24, 1082
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 2, "Outcomes", EMERALD, "WHAT'S CHANGED FOR CUSTOMERS AND THE BUSINESS"))
+    b.append(table(x + 18, y + 84, [("Outcome", 310), ("Measure", 220), ("Start", 100), ("Now", 100), ("Target", 100),
+                                    ("Trend", w - 36 - 830)], 6, d, 44))
+
+    x, w = 1120, 536
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 3, "Forecast", AMBER, "A RANGE, WITH ITS ASSUMPTIONS"))
+    for i, f in enumerate(["Likely finish range:", "Work done / remaining:", "Scope change since last report:"]):
+        b.append(field(x + 18, y + 90 + i * 40, f, x + w - 18, d))
+    b.append(T(x + 18, y + 226, "Has the forecast moved?", 11, d, weight=600))
+    for j, lab in enumerate(["No", "Earlier", "Later"]):
+        b.append(checkbox(x + 200 + j * 90, y + 226, lab, d, 11))
+    b.append(field(x + 18, y + 270, "Why:", x + w - 18, d))
+    b.append(T(x + 18, y + 330, "See the Release Forecast board for the burn-up.", 10, d, italic=True, op=".7"))
+
+    y, h = 706, 354
+    x, w = 24, 534
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 4, "Delivered & Learned", BLUE, "SINCE THE LAST REPORT"))
+    b.append(T(x + 18, y + 82, "Delivered (working, in use):", 11, d, weight=600))
+    b.append(lines(x + 18, y + 110, x + w - 18, 4, 26))
+    b.append(T(x + 18, y + 230, "Learned (what changed our thinking):", 11, d, weight=600))
+    b.append(lines(x + 18, y + 258, x + w - 18, 3, 26))
+
+    x = 572
+    d = RED[0]
+    b.append(panel(x, y, w, h, 5, "Top Risks & Issues", RED, "FROM THE RAID LOG"))
+    b.append(table(x + 18, y + 84, [("Risk / issue", 210), ("Action", 180), ("Owner", w - 36 - 390)], 6, d, 40))
+
+    x, w = 1120, 536
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 6, "Decisions Needed", FOREST, "WHAT WE NEED FROM YOU"))
+    b.append(table(x + 18, y + 84, [("Decision", 230), ("From whom", 130), ("By when", w - 36 - 360)], 4, d, 44))
+    b.append(field(x + 18, y + h - 26, "Next report:", x + w - 18, d))
+
+    b.append(footer("What has changed for our customers since the last report?",
+                    "What decision do we need, and from whom?", PROJECT_TAG))
+    write_board("status-report-board", "Outcome Status Report",
+                "A3 landscape one-page status report: headline with confidence and trend, outcomes table, forecast range, "
+                "delivered and learned, top risks and issues, and decisions needed.", "\n".join(b))
+
+
 if __name__ == "__main__":
     for horizon in ("sprint", "quarter"):
         build_retros(horizon)
@@ -2648,3 +2987,8 @@ if __name__ == "__main__":
     build_pairing_mobbing()
     build_pre_mortem()
     build_root_cause()
+    build_value_metrics()
+    build_opportunity_tree()
+    build_team_topology()
+    build_ai_agreement()
+    build_status_report()

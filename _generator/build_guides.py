@@ -1732,6 +1732,266 @@ GUIDES += [
 ]
 
 
+WAVE1_GUIDES = [
+    # -------------------------------------------------------------- value metrics
+    dict(
+        slug="value-metrics",
+        title="Value Metrics Guide",
+        subtitle="How to measure the value you deliver and your ability to deliver more, using four key value areas.",
+        tag="Facilitator Run-Sheet · Lead & Measure · Inspired by Evidence-Based Management",
+        boards=[("Open board", "value-metrics-board.html"), ("SVG", "value-metrics-board.svg")],
+        lede="How do we know we're delivering value, not just output?",
+        intro=("Velocity and on-time delivery say little about whether customers are better off. This board is based on "
+               "Scrum.org's <b>Evidence-Based Management</b> (EBM), which looks at value through four <b>key value areas</b>: "
+               "<b>current value</b> delivered today, <b>unrealised value</b> still on the table, <b>time to market</b>, and the "
+               "<b>ability to innovate</b>. Each is tied to a strategic, intermediate and immediate goal, and the board ends with "
+               "small experiments to improve the weakest area. It works for a product, a portfolio or a whole organisation."),
+        glance=[("Duration", "90–120 min to set up<br>30 min to review"), ("Group", "Leaders, product<br>managers, POs"),
+                ("Use when", "Quarterly, or when<br>“are we improving?” arises"), ("Output", "Measures, a baseline<br>&amp; experiments")],
+        before=["Print the board at A3 or larger, or load the SVG as a digital background",
+                "Bring whatever data exists: customer satisfaction, usage, cycle time, releases, defects, time on new work",
+                "Agree the scope: one product, a group of products, or the organisation",
+                "Invite people who can act on the results, not just report them",
+                "Bring the product vision, OKRs or strategy so goals line up"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–20", "1 · Goals", "Agree the strategic goal, the next intermediate goal, and the immediate tactical goal."),
+                ("20–70", "2–5 · Key Value Areas", "For each area, pick 1–3 measures from the examples or your own. Fill in now, target and trend where you have data."),
+                ("70–85", "What the numbers tell us", "For each area, note what stands out. Where's the biggest gap or the weakest area?"),
+                ("85–105", "6 · Experiments", "Pick one experiment for the weakest area, with the measure you expect to move and an owner."),
+                ("105–115", "7 · Review Rhythm", "Agree how often measures are updated and when leaders review them.")],
+        sections_title="The four key value areas",
+        sections_intro="Each looks at value from a different angle; balance all four.",
+        sections=[("Current Value", EMERALD, ["Value customers get today", "Satisfaction, usage, revenue", "Employee satisfaction too"]),
+                  ("Unrealised Value", PURPLE, ["Value we could still create", "Unmet needs, market gaps"]),
+                  ("Time to Market", BLUE, ["How fast we deliver and learn", "Lead time, release frequency"]),
+                  ("Ability to Innovate", ORANGE, ["What slows new value", "Tech debt, defects, time on new work"]),
+                  ("Goals", SLATE, ["Strategic, intermediate, tactical", "Measures link to them"])],
+        tips=[("Balance the four", "Optimising one area, often time to market, can hurt another. Look at all four together."),
+              ("Few measures", "One to three per area is enough. More measures mean less attention."),
+              ("Trends over targets", "The direction over several reviews matters more than any single number."),
+              ("Experiments, not mandates", "Treat improvements as hypotheses: measure, then keep, adapt or drop them."),
+              ("Leaders own it", "The board is for decisions about investment and priorities, not for judging teams."),
+              ("Start with what you have", "Imperfect data now beats perfect data never. Improve the measures as you go.")],
+        pitfalls=("measuring only output; turning measures into team targets; too many measures; no baseline; reviewing numbers "
+                  "without acting; using it to compare teams."),
+        after=[("Straight away", "Share the board with the teams and stakeholders affected."),
+               ("This month", "Start the experiments and set up the data you're missing."),
+               ("Each review", "Update the measures, look at trends, and decide what to keep or change."),
+               ("Quarterly", "Revisit the goals, and feed insights into OKRs and the Prioritisation Board.")],
+        toolkit=("Value metrics sit above the rest of the toolkit: use them with <a href=\"facilitator-guide-okr.html\">OKRs</a> "
+                 "to set direction, the <a href=\"facilitator-guide-prioritisation.html\">Prioritisation Board</a> to decide what to "
+                 "fund, and the flow pack (for example <a href=\"facilitator-guide-ageing-wip.html\">Ageing WIP</a>) to improve "
+                 "time to market. The <a href=\"facilitator-guide-status-report.html\">Outcome Status Report</a> is a good place to "
+                 "share them."),
+        foot="“What's stopping us from delivering more value, sooner?”",
+    ),
+
+    # -------------------------------------------------------------- opportunity solution tree
+    dict(
+        slug="opportunity-solution-tree",
+        title="Opportunity Solution Tree Guide",
+        subtitle="How to connect an outcome to customer opportunities and solutions, and test the riskiest assumptions first.",
+        tag="Facilitator Run-Sheet · Continuous Discovery · Inspired by Teresa Torres",
+        boards=[("Open board", "opportunity-solution-tree-board.html"), ("SVG", "opportunity-solution-tree-board.svg")],
+        lede="What must be true for this solution to work, and how could we find out this week?",
+        intro=("Teams often jump from a goal straight to a feature. The <b>opportunity solution tree</b>, from Teresa Torres' "
+               "<i>Continuous Discovery Habits</i>, adds the missing step: start with one measurable <b>outcome</b>, map the "
+               "customer <b>opportunities</b> (needs, pains and desires) that could move it, then explore several "
+               "<b>solutions</b> for each. The <b>assumption map</b> sorts what must be true by importance and evidence, so the "
+               "team tests the riskiest assumptions first with small, cheap experiments."),
+        glance=[("Duration", "90 min, then<br>weekly updates"), ("Group", "Product trio: PO / PM,<br>designer, tech lead"),
+                ("Use when", "Choosing what to<br>build next"), ("Output", "A tree, ranked<br>assumptions &amp; tests")],
+        before=["Print the board at A3 or larger, or load the SVG as a digital background",
+                "Agree one product outcome to focus on, ideally from the OKRs or Product Vision Board",
+                "Bring evidence from customers: interviews, support tickets, analytics",
+                "Blue, yellow, pink and green stickies, and markers",
+                "Ideally, keep interviewing customers each week to feed the tree"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–10", "Outcome", "Write one measurable product outcome at the top. Not a feature or an output."),
+                ("10–30", "Opportunities", "From customer evidence, list needs and pains that could move the outcome. Group them and pick the top three."),
+                ("30–50", "Solutions", "For each opportunity, brainstorm at least two or three solutions. Compare them; don't fall for the first one."),
+                ("50–65", "2 · Assumption Map", "For the leading solutions, write what must be true (pink). Place each by importance and evidence."),
+                ("65–80", "3 · Assumption Tests", "For the top-right assumptions, design small tests with a clear success measure."),
+                ("80–90", "Close", "Agree who runs which tests this week, and when the trio will update the tree.")],
+        sections_title="Making each level strong",
+        sections_intro="Quality checks for each part of the tree and the map.",
+        sections=[("Outcome", EMERALD, ["One measurable outcome", "Within the team's influence"]),
+                  ("Opportunities", BLUE, ["From the customer's point of view", "Based on evidence", "Not solutions in disguise"]),
+                  ("Solutions", AMBER, ["Several per opportunity", "Compared, not just listed"]),
+                  ("Assumption Map", RED, ["Desirable, viable, feasible, usable, ethical", "Top-right tested first"]),
+                  ("Assumption Tests", FOREST, ["Small, fast, cheap", "Success defined before running"])],
+        tips=[("Outcome, not output", "“Increase repeat purchases” gives room to explore. “Build a loyalty scheme” doesn't."),
+              ("Opportunities are customer words", "“I can't tell if my order shipped” is an opportunity. “Add tracking” is a solution."),
+              ("Compare and contrast", "Exploring several solutions at once avoids falling in love with the first idea."),
+              ("Test assumptions, not ideas", "Break each solution into what must be true, and test the riskiest part only."),
+              ("Keep it alive", "Update the tree every week as you learn. It's a living map, not a plan."),
+              ("Talk to customers weekly", "Regular interviews keep opportunities grounded in real evidence.")],
+        pitfalls=("an output as the outcome; opportunities that are really features; only one solution per opportunity; "
+                  "testing whole solutions instead of assumptions; building before testing; never updating the tree."),
+        after=[("This week", "Run the assumption tests and record results on the board."),
+               ("Each week", "The trio updates the tree with new interviews and test results."),
+               ("When an assumption holds", "Move the solution into delivery: Epic Canvas, Story Map and splitting."),
+               ("When it fails", "Celebrate the learning, then try the next solution or opportunity.")],
+        toolkit=LIFECYCLE_TOOLKIT,
+        foot="“Which customer need, if we solved it, would move our outcome most?”",
+    ),
+
+    # -------------------------------------------------------------- team topology
+    dict(
+        slug="team-topology",
+        title="Team Topology Design Guide",
+        subtitle="How to design teams around the flow of value, with clear team types, interaction modes and manageable load.",
+        tag="Facilitator Run-Sheet · Coordinate Teams · Inspired by Team Topologies (Skelton & Pais)",
+        boards=[("Open board", "team-topology-board.html"), ("SVG", "team-topology-board.svg")],
+        lede="Which team is carrying more than it can hold?",
+        intro=("Many delivery problems, such as dependencies, hand-offs and overloaded teams, come from how teams are "
+               "organised. <i>Team Topologies</i> by Matthew Skelton and Manuel Pais offers four <b>team types</b> "
+               "(stream-aligned, platform, enabling and complicated subsystem) and three <b>interaction modes</b> "
+               "(collaboration, X-as-a-service and facilitating). It also asks whether each team's <b>cognitive load</b> is "
+               "manageable. This board helps leaders and teams map today's structure and find changes worth trying."),
+        glance=[("Duration", "2–3 h"), ("Group", "Leaders, eng managers,<br>team reps, architects"),
+                ("Use when", "Dependencies or<br>overload keep growing"), ("Output", "A team map &amp;<br>changes to try")],
+        before=["Print the board at A1 or A3, or load the SVG as a digital background",
+                "List current teams with their size, what they own, and who they depend on",
+                "Bring the Dependency Map and any recent Team Health Check results",
+                "Invite people from several teams, not just leaders",
+                "Yellow and pink stickies, markers, and three colours of pen or string for interaction modes"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–20", "1 · Team Types", "Explain the four types. Write each current team under the type it most resembles today."),
+                ("20–50", "2 · Team Map", "Place each team on the map, grouped by value stream. Draw how they interact today, using the three line styles."),
+                ("50–75", "3 · Cognitive Load", "For each team, list the domains and systems it owns and rate its load. Mark teams that hold too much."),
+                ("75–100", "Spot problems", "Look for overloaded teams, long-running collaborations, and teams with many dependencies. Add pink stickies."),
+                ("100–130", "4 · Interactions · 5 · Changes", "Agree intended interaction modes with end dates, and list changes to try, such as a platform or enabling team."),
+                ("130–150", "Close", "Pick one change to try first, with an owner and a review date.")],
+        sections_title="Reading the map",
+        sections_intro="Patterns that suggest a change.",
+        sections=[("Overloaded team", RED, ["Owns too many domains", "Split it, or move work to a platform"]),
+                  ("Endless collaboration", PURPLE, ["Two teams always together", "Merge them, or define a service"]),
+                  ("No stream-aligned teams", EMERALD, ["Work flows through many teams", "Re-form around value streams"]),
+                  ("Skill gaps everywhere", BLUE, ["Consider an enabling team", "It should step back when done"]),
+                  ("Interaction Agreements", SLATE, ["Each has a purpose", "Collaborations have an end date"])],
+        tips=[("Stream-aligned first", "Most teams should own a flow of value end to end. Others exist to help them."),
+              ("Load is the limit", "A team can only hold so much. If it owns too much, quality and speed drop."),
+              ("Interactions are deliberate", "Choose the mode on purpose, and change it as the relationship matures."),
+              ("Collaboration is temporary", "Close collaboration is expensive. Use it to discover, then move to a service."),
+              ("Small changes first", "Try one boundary change at a time and watch dependencies and flow."),
+              ("Involve the teams", "People in the teams know where the friction is. Design with them, not for them.")],
+        pitfalls=("redrawing an org chart without changing how work flows; ignoring cognitive load; permanent collaboration; "
+                  "platform teams that become gatekeepers; designing teams without the people in them; changing everything at once."),
+        after=[("Straight away", "Share the map and the first change with the teams affected."),
+               ("Over the next quarter", "Run the change and watch dependencies, flow and team health."),
+               ("At the review date", "Check what changed and decide the next step."),
+               ("Twice a year", "Re-map teams as products and strategy change.")],
+        toolkit=PROGRAM_TOOLKIT,
+        foot="“If we redrew one team boundary, which dependency would disappear?”",
+    ),
+
+    # -------------------------------------------------------------- AI working agreement
+    dict(
+        slug="ai-working-agreement",
+        title="AI Working Agreement Guide",
+        subtitle="How to help a team agree how it uses AI tools: where they help, the guardrails, review rules and impact.",
+        tag="Facilitator Run-Sheet · Form the Team · Responsible Use · Human Review",
+        boards=[("Open board", "ai-working-agreement-board.html"), ("SVG", "ai-working-agreement-board.svg")],
+        lede="Where does AI genuinely help us, and where does it get in the way?",
+        intro=("Most teams now use AI tools for drafting, summarising, analysis, tests or code, often without agreeing how. "
+               "This board helps the team make its use <b>explicit</b>: which tasks AI is encouraged for, used with care, or "
+               "not used for; the <b>guardrails</b> on data and tools; how output is <b>reviewed</b>; how skills are shared; "
+               "the <b>risks</b> to watch; and how to <b>measure</b> whether it actually helps. It complements, and never "
+               "replaces, your organisation's AI and data policies."),
+        glance=[("Duration", "60–90 min"), ("Group", "The whole team,<br>PO included"),
+                ("Use when", "AI use starts or grows,<br>or tools change"), ("Output", "An agreed, reviewed<br>way of working")],
+        before=["Print the board at A3, or load the SVG as a digital background",
+                "Find your organisation's AI, data and security policies, and the approved tools",
+                "Ask team members how they use AI today, without judgement",
+                "Gather a baseline for a few measures, such as cycle time or defects found later",
+                "Invite someone from security or data protection if the team handles sensitive data"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–10", "Today", "Go round: how does each person use AI now? What has helped, and what has gone wrong?"),
+                ("10–25", "1 · Where We Use AI", "Sort tasks into encouraged, with care, and not for. Be specific about tasks."),
+                ("25–40", "2 · Guardrails", "Check the boxes that apply, and fill in approved tools and the policy contact."),
+                ("40–55", "3 · Quality & Review", "Agree review rules and any additions to the Definition of Done."),
+                ("55–65", "4 · Skills · 5 · Risks", "Agree how the team shares what works and keeps skills sharp. List the risks to watch."),
+                ("65–80", "6 · Measure the Impact", "Pick 2–4 measures with a baseline. Agree when to check them."),
+                ("80–90", "7 · Review · Close", "Agree a review date (often monthly at first) and confirm everyone agrees.")],
+        sections_title="Making each section strong",
+        sections_intro="Quality checks for each part of the agreement.",
+        sections=[("1 · Where We Use AI", BLUE, ["Named tasks, not “anything”", "Not-for list is explicit"]),
+                  ("2 · Guardrails", RED, ["Matches organisation policy", "Data rules are clear"]),
+                  ("3 · Quality & Review", PURPLE, ["Same bar for all work", "A person owns every result"]),
+                  ("4 · Skills & Sharing", EMERALD, ["Good prompts are shared", "Core skills are practised"]),
+                  ("5 · Risks We'll Watch", AMBER, ["Errors, data, bias, over-reliance", "Who notices and how"]),
+                  ("6 · Measure the Impact", FOREST, ["A baseline exists", "Quality as well as speed"]),
+                  ("7 · Review", SLATE, ["A short review cycle", "Whole team agreed"])],
+        tips=[("Policy first", "The team agreement sits inside the organisation's rules. Check them before you start."),
+              ("Specific tasks", "“Drafting release notes” is clear. “Writing” is not."),
+              ("People own results", "Whoever uses AI is accountable for the output, as with any tool."),
+              ("Measure quality too", "Faster isn't better if defects or rework go up. Track both."),
+              ("Share openly", "Make it normal to say how work was produced. It builds trust and spreads good practice."),
+              ("Review often", "Tools and policies change quickly. Revisit the agreement monthly at first.")],
+        pitfalls=("ignoring organisation policy; banning AI so people use it quietly; no review of AI output; measuring only "
+                  "speed; letting core skills fade; writing the agreement once and never revisiting it."),
+        after=[("Straight away", "Put the agreement next to the Team Charter and link it from the team's space."),
+               ("Each retro", "Ask: is the agreement working? Any near misses or great wins?"),
+               ("Monthly", "Check the impact measures and update the agreement."),
+               ("When tools change", "Revisit the guardrails and review rules before using new tools.")],
+        toolkit=LIFECYCLE_TOOLKIT,
+        foot="“Would we be comfortable explaining how this was made?”",
+    ),
+
+    # -------------------------------------------------------------- status report
+    dict(
+        slug="status-report",
+        title="Outcome Status Report Guide",
+        subtitle="How to write a one-page update built on outcomes, a forecast range, risks and the decisions you need.",
+        tag="Facilitator Run-Sheet · Run a Project · Outcomes Over Output · Decisions, Not Just Status",
+        boards=[("Open board", "status-report-board.html"), ("SVG", "status-report-board.svg")],
+        lede="What decision do we need, and from whom?",
+        intro=("Traditional status reports turn amber when it's already too late, and rarely ask for anything. This one-page "
+               "report leads with a <b>headline</b>, a <b>confidence</b> rating and its trend, then shows progress on "
+               "<b>outcomes</b>, the <b>forecast range</b> and what moved it, what was <b>delivered and learned</b>, the top "
+               "<b>risks</b>, and the <b>decisions needed</b>. It's built from boards the team already keeps, so it takes "
+               "minutes, not hours, to write."),
+        glance=[("Duration", "20–30 min<br>to prepare"), ("Group", "PM or program lead,<br>with the PO"),
+                ("Use when", "Every 2–4 weeks,<br>or for steering"), ("Output", "A one-page update<br>&amp; clear asks")],
+        before=["Print the board at A3, or use a digital copy for each report",
+                "Bring the latest Release Forecast, RAID Log and value or OKR measures",
+                "Check what was released or demonstrated since the last report",
+                "Know who the readers are and what decisions they own (see the Stakeholder Map)"],
+        agenda_heads=["Step", "Section", "Notes"],
+        agenda=[("1", "2 · Outcomes", "Update each outcome measure: start, now, target and trend."),
+                ("2", "3 · Forecast", "Copy the range from the Release Forecast. Say if it moved, and why."),
+                ("3", "4 · Delivered & Learned", "List working, in-use deliveries and anything that changed your thinking."),
+                ("4", "5 · Top Risks & Issues", "Copy the top few from the RAID Log, with actions and owners."),
+                ("5", "6 · Decisions Needed", "Write each decision, who must make it, and by when."),
+                ("6", "1 · Headline", "Last: write one sentence, a confidence rating 1–5, and the trend since last time.")],
+        sections_title="Making each section strong",
+        sections_intro="Quality checks for each part of the report.",
+        sections=[("1 · Headline", PURPLE, ["One honest sentence", "Confidence and trend are clear"]),
+                  ("2 · Outcomes", EMERALD, ["Outcomes, not task lists", "Start, now and target shown"]),
+                  ("3 · Forecast", AMBER, ["A range, not a date", "What moved it"]),
+                  ("4 · Delivered & Learned", BLUE, ["Working and in use", "Learning is shared"]),
+                  ("5 · Top Risks & Issues", RED, ["Each has an action and owner", "Matches the RAID Log"]),
+                  ("6 · Decisions Needed", FOREST, ["Specific asks", "A named person and a date"])],
+        tips=[("Write the headline last", "Once the rest is done, the one-sentence summary is easy and honest."),
+              ("Confidence beats colours", "A 1–5 confidence rating with a trend says more than red, amber or green."),
+              ("Lead with outcomes", "Readers care about what changed for customers and the business, not tasks completed."),
+              ("Always ask for something", "If no decisions are needed, say so. Usually there's at least one."),
+              ("Reuse the boards", "Copy from the Release Forecast and RAID Log rather than writing from scratch."),
+              ("Same shape every time", "A consistent format lets readers spot changes quickly.")],
+        pitfalls=("a wall of task updates; a single date instead of a range; hiding bad news until it's red; no decisions "
+                  "requested; different formats every time; writing it from scratch instead of from the boards."),
+        after=[("Straight away", "Send it to the readers and walk the key ones through it in person or on a call."),
+               ("Follow up", "Chase the decisions needed before their dates."),
+               ("Next report", "Start by noting what changed since this one."),
+               ("Over time", "Ask readers what they use and what they don't, and trim the report.")],
+        toolkit=PROJECT_TOOLKIT,
+        foot="“What has changed for our customers since the last report?”",
+    ),
+]
+GUIDES += WAVE1_GUIDES
+
+
 # ------------------------------------------------------------------ rendering
 
 def guide_css():
