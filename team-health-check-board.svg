@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 1190" width="1680" height="1190" role="img" aria-labelledby="mg-title mg-desc">
+  <title id="mg-title">Team Health Check</title>
+  <desc id="mg-desc">A3 landscape team health check: eleven dimensions, each with healthy and unhealthy descriptions, green/amber/red dot-vote cells, a trend indicator and space for notes and actions.</desc>
+  <defs><style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap');</style>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#EFF6FF"/>
+    </linearGradient>
+    <filter id="fc" x="-4%" y="-4%" width="110%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity=".10"/>
+    </filter>
+    <filter id="fsm" x="-6%" y="-6%" width="114%" height="116%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity=".08"/>
+    </filter>
+    <pattern id="dots" patternUnits="userSpaceOnUse" width="20" height="20">
+      <circle cx="10" cy="10" r="1.2" fill="#000" fill-opacity=".055"/>
+    </pattern>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E0F2FE"/>
+      <stop offset="100%" stop-color="#F0F9FF"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7DD3FC"/>
+      <stop offset="100%" stop-color="#BAE6FD"/>
+    </linearGradient>
+  </defs>
+<rect x="0" y="0" width="1680" height="1190" fill="url(#bg)"/><rect x="0" y="0" width="1680" height="4" fill="#eb6c36"/><rect x="0" y="4" width="1680" height="134" fill="#0C1A2E"/><rect x="1448" y="14" width="208" height="22" rx="11" fill="#eb6c36" fill-opacity=".18"/><text x="1552" y="29" text-anchor="middle" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="#eb6c36" letter-spacing=".10em">PRODUCT OPERATING MODEL 2.0</text><text x="24" y="70" font-family="'Instrument Serif',Georgia,serif" font-size="42" font-weight="400" fill="white">Team Health Check</text><text x="24" y="100" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" fill="#94A3B8">How healthy is our team right now, and which way is it trending? Vote, discuss, then pick 1–2 areas to improve.</text><text x="24" y="120" font-family="'Geist Mono',Consolas,monospace" font-size="9" fill="#475569" letter-spacing=".06em">Inspired by the Spotify Squad Health Check · Team &amp; Facilitator Tool · Systems-Thinking Approach</text><text x="1356" y="44" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#475569" letter-spacing=".14em">LEGEND</text><circle cx="1367" cy="63" r="9" fill="#22C55E"/><text x="1384" y="67" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#CBD5E1">Green = Healthy, nothing to fix</text><circle cx="1367" cy="91" r="9" fill="#F59E0B"/><text x="1384" y="95" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#CBD5E1">Amber = Some issues to discuss</text><circle cx="1367" cy="119" r="9" fill="#EF4444"/><text x="1384" y="123" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#CBD5E1">Red = Unhealthy, needs attention</text>
+<rect x="24" y="148" width="1632" height="36" rx="6" fill="#1E293B"/>
+<rect x="24" y="148" width="6" height="36" rx="3" fill="#eb6c36"/>
+<text x="44" y="170" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white" letter-spacing=".12em">DIMENSION</text>
+<circle cx="585.25" cy="166" r="5" fill="#22C55E"/>
+<text x="622" y="170" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white" letter-spacing=".12em">HEALTHY</text>
+<circle cx="810.25" cy="166" r="5" fill="#F59E0B"/>
+<text x="860" y="170" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white" letter-spacing=".12em">SOME ISSUES</text>
+<circle cx="1054.75" cy="166" r="5" fill="#EF4444"/>
+<text x="1098" y="170" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white" letter-spacing=".12em">UNHEALTHY</text>
+<text x="1306" y="170" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white" letter-spacing=".12em">TREND</text>
+<text x="1530" y="170" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white" letter-spacing=".12em">NOTES &amp; ACTIONS</text>
+<rect x="24" y="192" width="1632" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
+<circle cx="46" cy="214" r="11" fill="#0C1A2E"/>
+<text x="46" y="218" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white">1</text>
+<text x="66" y="219" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#1E293B">Delivering Value</text>
+<circle cx="70" cy="236" r="3.5" fill="#22C55E"/>
+<text x="80" y="240" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#14532D">We deliver great stuff and customers are delighted.</text>
+<circle cx="70" cy="252" r="3.5" fill="#EF4444"/>
+<text x="80" y="256" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#991B1B">We deliver poor work and feel uneasy shipping it.</text>
+<rect x="504" y="200" width="228" height="56" rx="6" fill="#DCFCE7"/>
+<rect x="504" y="200" width="228" height="56" rx="6" fill="url(#dots)"/>
+<rect x="742" y="200" width="228" height="56" rx="6" fill="#FEF3C7"/>
+<rect x="742" y="200" width="228" height="56" rx="6" fill="url(#dots)"/>
+<rect x="980" y="200" width="228" height="56" rx="6" fill="#FEE2E2"/>
+<rect x="980" y="200" width="228" height="56" rx="6" fill="url(#dots)"/>
+<circle cx="1260.0" cy="228.0" r="15" fill="white" stroke="#14532D" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1260" y="233" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#14532D">↑</text>
+<circle cx="1306.0" cy="228.0" r="15" fill="white" stroke="#92400E" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1306" y="233" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">→</text>
+<circle cx="1352.0" cy="228.0" r="15" fill="white" stroke="#991B1B" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1352" y="233" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">↓</text>
+<line x1="1410" y1="222" x2="1642" y2="222" stroke="#E2E8F0" stroke-width="1.5"/><line x1="1410" y1="244" x2="1642" y2="244" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="24" y="270" width="1632" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
+<circle cx="46" cy="292" r="11" fill="#0C1A2E"/>
+<text x="46" y="296" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white">2</text>
+<text x="66" y="297" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#1E293B">Easy to Release</text>
+<circle cx="70" cy="314" r="3.5" fill="#22C55E"/>
+<text x="80" y="318" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#14532D">Releasing is simple, safe, painless and automated.</text>
+<circle cx="70" cy="330" r="3.5" fill="#EF4444"/>
+<text x="80" y="334" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#991B1B">Releasing is risky, manual, painful and slow.</text>
+<rect x="504" y="278" width="228" height="56" rx="6" fill="#DCFCE7"/>
+<rect x="504" y="278" width="228" height="56" rx="6" fill="url(#dots)"/>
+<rect x="742" y="278" width="228" height="56" rx="6" fill="#FEF3C7"/>
+<rect x="742" y="278" width="228" height="56" rx="6" fill="url(#dots)"/>
+<rect x="980" y="278" width="228" height="56" rx="6" fill="#FEE2E2"/>
+<rect x="980" y="278" width="228" height="56" rx="6" fill="url(#dots)"/>
+<circle cx="1260.0" cy="306.0" r="15" fill="white" stroke="#14532D" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1260" y="311" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#14532D">↑</text>
+<circle cx="1306.0" cy="306.0" r="15" fill="white" stroke="#92400E" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1306" y="311" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">→</text>
+<circle cx="1352.0" cy="306.0" r="15" fill="white" stroke="#991B1B" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1352" y="311" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">↓</text>
+<line x1="1410" y1="300" x2="1642" y2="300" stroke="#E2E8F0" stroke-width="1.5"/><line x1="1410" y1="322" x2="1642" y2="322" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="24" y="348" width="1632" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
+<circle cx="46" cy="370" r="11" fill="#0C1A2E"/>
+<text x="46" y="374" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white">3</text>
+<text x="66" y="375" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#1E293B">Fun</text>
+<circle cx="70" cy="392" r="3.5" fill="#22C55E"/>
+<text x="80" y="396" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#14532D">We love coming to work and have fun together.</text>
+<circle cx="70" cy="408" r="3.5" fill="#EF4444"/>
+<text x="80" y="412" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#991B1B">Work feels like a grind.</text>
+<rect x="504" y="356" width="228" height="56" rx="6" fill="#DCFCE7"/>
+<rect x="504" y="356" width="228" height="56" rx="6" fill="url(#dots)"/>
+<rect x="742" y="356" width="228" height="56" rx="6" fill="#FEF3C7"/>
+<rect x="742" y="356" width="228" height="56" rx="6" fill="url(#dots)"/>
+<rect x="980" y="356" width="228" height="56" rx="6" fill="#FEE2E2"/>
+<rect x="980" y="356" width="228" height="56" rx="6" fill="url(#dots)"/>
+<circle cx="1260.0" cy="384.0" r="15" fill="white" stroke="#14532D" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1260" y="389" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#14532D">↑</text>
+<circle cx="1306.0" cy="384.0" r="15" fill="white" stroke="#92400E" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1306" y="389" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">→</text>
+<circle cx="1352.0" cy="384.0" r="15" fill="white" stroke="#991B1B" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1352" y="389" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">↓</text>
+<line x1="1410" y1="378" x2="1642" y2="378" stroke="#E2E8F0" stroke-width="1.5"/><line x1="1410" y1="400" x2="1642" y2="400" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="24" y="426" width="1632" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
+<circle cx="46" cy="448" r="11" fill="#0C1A2E"/>
+<text x="46" y="452" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white">4</text>
+<text x="66" y="453" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#1E293B">Health of Codebase</text>
+<circle cx="70" cy="470" r="3.5" fill="#22C55E"/>
+<text x="80" y="474" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#14532D">Clean, readable code with great test coverage.</text>
+<circle cx="70" cy="486" r="3.5" fill="#EF4444"/>
+<text x="80" y="490" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#991B1B">Technical debt is out of control.</text>
+<rect x="504" y="434" width="228" height="56" rx="6" fill="#DCFCE7"/>
+<rect x="504" y="434" width="228" height="56" rx="6" fill="url(#dots)"/>
+<rect x="742" y="434" width="228" height="56" rx="6" fill="#FEF3C7"/>
+<rect x="742" y="434" width="228" height="56" rx="6" fill="url(#dots)"/>
+<rect x="980" y="434" width="228" height="56" rx="6" fill="#FEE2E2"/>
+<rect x="980" y="434" width="228" height="56" rx="6" fill="url(#dots)"/>
+<circle cx="1260.0" cy="462.0" r="15" fill="white" stroke="#14532D" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1260" y="467" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#14532D">↑</text>
+<circle cx="1306.0" cy="462.0" r="15" fill="white" stroke="#92400E" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1306" y="467" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">→</text>
+<circle cx="1352.0" cy="462.0" r="15" fill="white" stroke="#991B1B" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1352" y="467" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">↓</text>
+<line x1="1410" y1="456" x2="1642" y2="456" stroke="#E2E8F0" stroke-width="1.5"/><line x1="1410" y1="478" x2="1642" y2="478" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="24" y="504" width="1632" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
+<circle cx="46" cy="526" r="11" fill="#0C1A2E"/>
+<text x="46" y="530" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white">5</text>
+<text x="66" y="531" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#1E293B">Learning</text>
+<circle cx="70" cy="548" r="3.5" fill="#22C55E"/>
+<text x="80" y="552" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#14532D">We're learning interesting things all the time.</text>
+<circle cx="70" cy="564" r="3.5" fill="#EF4444"/>
+<text x="80" y="568" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#991B1B">We never have time to learn anything.</text>
+<rect x="504" y="512" width="228" height="56" rx="6" fill="#DCFCE7"/>
+<rect x="504" y="512" width="228" height="56" rx="6" fill="url(#dots)"/>
+<rect x="742" y="512" width="228" height="56" rx="6" fill="#FEF3C7"/>
+<rect x="742" y="512" width="228" height="56" rx="6" fill="url(#dots)"/>
+<rect x="980" y="512" width="228" height="56" rx="6" fill="#FEE2E2"/>
+<rect x="980" y="512" width="228" height="56" rx="6" fill="url(#dots)"/>
+<circle cx="1260.0" cy="540.0" r="15" fill="white" stroke="#14532D" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1260" y="545" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#14532D">↑</text>
+<circle cx="1306.0" cy="540.0" r="15" fill="white" stroke="#92400E" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1306" y="545" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">→</text>
+<circle cx="1352.0" cy="540.0" r="15" fill="white" stroke="#991B1B" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1352" y="545" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">↓</text>
+<line x1="1410" y1="534" x2="1642" y2="534" stroke="#E2E8F0" stroke-width="1.5"/><line x1="1410" y1="556" x2="1642" y2="556" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="24" y="582" width="1632" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
+<circle cx="46" cy="604" r="11" fill="#0C1A2E"/>
+<text x="46" y="608" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white">6</text>
+<text x="66" y="609" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#1E293B">Mission</text>
+<circle cx="70" cy="626" r="3.5" fill="#22C55E"/>
+<text x="80" y="630" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#14532D">We know why we're here and we're excited about it.</text>
+<circle cx="70" cy="642" r="3.5" fill="#EF4444"/>
+<text x="80" y="646" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#991B1B">No clear purpose, big picture or focus.</text>
+<rect x="504" y="590" width="228" height="56" rx="6" fill="#DCFCE7"/>
+<rect x="504" y="590" width="228" height="56" rx="6" fill="url(#dots)"/>
+<rect x="742" y="590" width="228" height="56" rx="6" fill="#FEF3C7"/>
+<rect x="742" y="590" width="228" height="56" rx="6" fill="url(#dots)"/>
+<rect x="980" y="590" width="228" height="56" rx="6" fill="#FEE2E2"/>
+<rect x="980" y="590" width="228" height="56" rx="6" fill="url(#dots)"/>
+<circle cx="1260.0" cy="618.0" r="15" fill="white" stroke="#14532D" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1260" y="623" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#14532D">↑</text>
+<circle cx="1306.0" cy="618.0" r="15" fill="white" stroke="#92400E" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1306" y="623" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">→</text>
+<circle cx="1352.0" cy="618.0" r="15" fill="white" stroke="#991B1B" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1352" y="623" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">↓</text>
+<line x1="1410" y1="612" x2="1642" y2="612" stroke="#E2E8F0" stroke-width="1.5"/><line x1="1410" y1="634" x2="1642" y2="634" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="24" y="660" width="1632" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
+<circle cx="46" cy="682" r="11" fill="#0C1A2E"/>
+<text x="46" y="686" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white">7</text>
+<text x="66" y="687" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#1E293B">Pawns or Players</text>
+<circle cx="70" cy="704" r="3.5" fill="#22C55E"/>
+<text x="80" y="708" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#14532D">We control our destiny: we decide what and how.</text>
+<circle cx="70" cy="720" r="3.5" fill="#EF4444"/>
+<text x="80" y="724" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#991B1B">We're pawns with no influence on what we do.</text>
+<rect x="504" y="668" width="228" height="56" rx="6" fill="#DCFCE7"/>
+<rect x="504" y="668" width="228" height="56" rx="6" fill="url(#dots)"/>
+<rect x="742" y="668" width="228" height="56" rx="6" fill="#FEF3C7"/>
+<rect x="742" y="668" width="228" height="56" rx="6" fill="url(#dots)"/>
+<rect x="980" y="668" width="228" height="56" rx="6" fill="#FEE2E2"/>
+<rect x="980" y="668" width="228" height="56" rx="6" fill="url(#dots)"/>
+<circle cx="1260.0" cy="696.0" r="15" fill="white" stroke="#14532D" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1260" y="701" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#14532D">↑</text>
+<circle cx="1306.0" cy="696.0" r="15" fill="white" stroke="#92400E" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1306" y="701" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">→</text>
+<circle cx="1352.0" cy="696.0" r="15" fill="white" stroke="#991B1B" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1352" y="701" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">↓</text>
+<line x1="1410" y1="690" x2="1642" y2="690" stroke="#E2E8F0" stroke-width="1.5"/><line x1="1410" y1="712" x2="1642" y2="712" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="24" y="738" width="1632" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
+<circle cx="46" cy="760" r="11" fill="#0C1A2E"/>
+<text x="46" y="764" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white">8</text>
+<text x="66" y="765" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#1E293B">Speed</text>
+<circle cx="70" cy="782" r="3.5" fill="#22C55E"/>
+<text x="80" y="786" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#14532D">We get things done quickly. No waiting, no delays.</text>
+<circle cx="70" cy="798" r="3.5" fill="#EF4444"/>
+<text x="80" y="802" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#991B1B">We keep getting stuck, blocked or interrupted.</text>
+<rect x="504" y="746" width="228" height="56" rx="6" fill="#DCFCE7"/>
+<rect x="504" y="746" width="228" height="56" rx="6" fill="url(#dots)"/>
+<rect x="742" y="746" width="228" height="56" rx="6" fill="#FEF3C7"/>
+<rect x="742" y="746" width="228" height="56" rx="6" fill="url(#dots)"/>
+<rect x="980" y="746" width="228" height="56" rx="6" fill="#FEE2E2"/>
+<rect x="980" y="746" width="228" height="56" rx="6" fill="url(#dots)"/>
+<circle cx="1260.0" cy="774.0" r="15" fill="white" stroke="#14532D" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1260" y="779" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#14532D">↑</text>
+<circle cx="1306.0" cy="774.0" r="15" fill="white" stroke="#92400E" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1306" y="779" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">→</text>
+<circle cx="1352.0" cy="774.0" r="15" fill="white" stroke="#991B1B" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1352" y="779" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">↓</text>
+<line x1="1410" y1="768" x2="1642" y2="768" stroke="#E2E8F0" stroke-width="1.5"/><line x1="1410" y1="790" x2="1642" y2="790" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="24" y="816" width="1632" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
+<circle cx="46" cy="838" r="11" fill="#0C1A2E"/>
+<text x="46" y="842" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white">9</text>
+<text x="66" y="843" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#1E293B">Suitable Process</text>
+<circle cx="70" cy="860" r="3.5" fill="#22C55E"/>
+<text x="80" y="864" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#14532D">Our way of working fits us perfectly.</text>
+<circle cx="70" cy="876" r="3.5" fill="#EF4444"/>
+<text x="80" y="880" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#991B1B">Our way of working gets in our way.</text>
+<rect x="504" y="824" width="228" height="56" rx="6" fill="#DCFCE7"/>
+<rect x="504" y="824" width="228" height="56" rx="6" fill="url(#dots)"/>
+<rect x="742" y="824" width="228" height="56" rx="6" fill="#FEF3C7"/>
+<rect x="742" y="824" width="228" height="56" rx="6" fill="url(#dots)"/>
+<rect x="980" y="824" width="228" height="56" rx="6" fill="#FEE2E2"/>
+<rect x="980" y="824" width="228" height="56" rx="6" fill="url(#dots)"/>
+<circle cx="1260.0" cy="852.0" r="15" fill="white" stroke="#14532D" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1260" y="857" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#14532D">↑</text>
+<circle cx="1306.0" cy="852.0" r="15" fill="white" stroke="#92400E" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1306" y="857" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">→</text>
+<circle cx="1352.0" cy="852.0" r="15" fill="white" stroke="#991B1B" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1352" y="857" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">↓</text>
+<line x1="1410" y1="846" x2="1642" y2="846" stroke="#E2E8F0" stroke-width="1.5"/><line x1="1410" y1="868" x2="1642" y2="868" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="24" y="894" width="1632" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
+<circle cx="46" cy="916" r="11" fill="#0C1A2E"/>
+<text x="46" y="920" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white">10</text>
+<text x="66" y="921" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#1E293B">Support</text>
+<circle cx="70" cy="938" r="3.5" fill="#22C55E"/>
+<text x="80" y="942" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#14532D">We get great help and support when we ask.</text>
+<circle cx="70" cy="954" r="3.5" fill="#EF4444"/>
+<text x="80" y="958" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#991B1B">We get stuck because we can't get the help we need.</text>
+<rect x="504" y="902" width="228" height="56" rx="6" fill="#DCFCE7"/>
+<rect x="504" y="902" width="228" height="56" rx="6" fill="url(#dots)"/>
+<rect x="742" y="902" width="228" height="56" rx="6" fill="#FEF3C7"/>
+<rect x="742" y="902" width="228" height="56" rx="6" fill="url(#dots)"/>
+<rect x="980" y="902" width="228" height="56" rx="6" fill="#FEE2E2"/>
+<rect x="980" y="902" width="228" height="56" rx="6" fill="url(#dots)"/>
+<circle cx="1260.0" cy="930.0" r="15" fill="white" stroke="#14532D" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1260" y="935" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#14532D">↑</text>
+<circle cx="1306.0" cy="930.0" r="15" fill="white" stroke="#92400E" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1306" y="935" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">→</text>
+<circle cx="1352.0" cy="930.0" r="15" fill="white" stroke="#991B1B" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1352" y="935" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">↓</text>
+<line x1="1410" y1="924" x2="1642" y2="924" stroke="#E2E8F0" stroke-width="1.5"/><line x1="1410" y1="946" x2="1642" y2="946" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="24" y="972" width="1632" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
+<circle cx="46" cy="994" r="11" fill="#0C1A2E"/>
+<text x="46" y="998" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white">11</text>
+<text x="66" y="999" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#1E293B">Teamwork</text>
+<circle cx="70" cy="1016" r="3.5" fill="#22C55E"/>
+<text x="80" y="1020" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#14532D">We're a gelled team with awesome collaboration.</text>
+<circle cx="70" cy="1032" r="3.5" fill="#EF4444"/>
+<text x="80" y="1036" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#991B1B">We're individuals who don't really know each other.</text>
+<rect x="504" y="980" width="228" height="56" rx="6" fill="#DCFCE7"/>
+<rect x="504" y="980" width="228" height="56" rx="6" fill="url(#dots)"/>
+<rect x="742" y="980" width="228" height="56" rx="6" fill="#FEF3C7"/>
+<rect x="742" y="980" width="228" height="56" rx="6" fill="url(#dots)"/>
+<rect x="980" y="980" width="228" height="56" rx="6" fill="#FEE2E2"/>
+<rect x="980" y="980" width="228" height="56" rx="6" fill="url(#dots)"/>
+<circle cx="1260.0" cy="1008.0" r="15" fill="white" stroke="#14532D" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1260" y="1013" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#14532D">↑</text>
+<circle cx="1306.0" cy="1008.0" r="15" fill="white" stroke="#92400E" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1306" y="1013" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">→</text>
+<circle cx="1352.0" cy="1008.0" r="15" fill="white" stroke="#991B1B" stroke-opacity=".45" stroke-width="1.5"/>
+<text x="1352" y="1013" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">↓</text>
+<line x1="1410" y1="1002" x2="1642" y2="1002" stroke="#E2E8F0" stroke-width="1.5"/><line x1="1410" y1="1024" x2="1642" y2="1024" stroke="#E2E8F0" stroke-width="1.5"/>
+<line x1="24" y1="1070" x2="1656" y2="1070" stroke="#E2E8F0" stroke-width="1"/><text x="24" y="1106" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" fill="#1E293B">Team:</text><line x1="67.8" y1="1110" x2="330" y2="1110" stroke="#E2E8F0" stroke-width="1.5"/><text x="350" y="1106" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" fill="#1E293B">Date:</text><line x1="393.8" y1="1110" x2="560" y2="1110" stroke="#E2E8F0" stroke-width="1.5"/><text x="580" y="1106" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" fill="#1E293B">Facilitator:</text><line x1="671.12" y1="1110" x2="810" y2="1110" stroke="#E2E8F0" stroke-width="1.5"/><line x1="832" y1="1078" x2="832" y2="1128" stroke="#E2E8F0" stroke-width="1"/><text x="848" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“Which 1–2 areas would make the biggest difference if they got 1% better?”</text><text x="1656" y="1138" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#CBD5E1" letter-spacing=".08em">Vote with coloured dots · Repeat each PI to see trends · Feed red/amber areas into the 1% Experiment Canvas</text>
+</svg>
