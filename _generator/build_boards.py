@@ -25,8 +25,11 @@ NAVY = "#0C1A2E"
 INK = "#1E293B"
 MUTED = "#64748B"
 RULE = "#E2E8F0"
+WRITE = "#CBD5E1"  # write-on lines: visible on white and on tinted panels
 YELLOW = "#FDE047"
 GREEN = "#4ADE80"
+BLUE_ST = "#93C5FD"
+PINK_ST = "#F9A8D4"
 
 # (dark, light) pairs used by the eight Marginal Gains areas
 BLUE = ("#1E3A8A", "#DBEAFE")
@@ -96,10 +99,10 @@ def checkbox(x, y, label, color=INK, size=11):
 def field(x, y, label, x_end, color=MUTED, size=11):
     """Label followed by a write-on line to x_end."""
     start = x + text_w(label, size) + 10
-    return T(x, y, label, size, color) + L(start, y + 4, x_end, y + 4)
+    return T(x, y, label, size, color) + L(start, y + 4, x_end, y + 4, WRITE)
 
 
-def lines(x, y, x_end, n, gap=26, stroke=RULE):
+def lines(x, y, x_end, n, gap=26, stroke=WRITE):
     return "".join(L(x, y + i * gap, x_end, y + i * gap, stroke) for i in range(n))
 
 
@@ -146,9 +149,13 @@ def header(title, subtitle, tagline, right=""):
 
 def legend(items, x=1356):
     """items: list of (kind, color, label); kind is 'sticky' or 'dot'."""
-    out = [T(x, 48 if len(items) < 3 else 44, "LEGEND", 8, "#475569", MONO, ls=".14em")]
-    ys = [59, 89] if len(items) < 3 else [52, 80, 108]
-    for (kind, color, label), y in zip(items, ys):
+    out = [T(x, 48 if len(items) != 3 else 44, "LEGEND", 8, "#475569", MONO, ls=".14em")]
+    if len(items) == 4:
+        x0 = x
+        pos = [(x0, 59), (x0 + 150, 59), (x0, 89), (x0 + 150, 89)]
+    else:
+        pos = [(x, y) for y in ([59, 89] if len(items) < 3 else [52, 80, 108])]
+    for (kind, color, label), (x, y) in zip(items, pos):
         if kind == "sticky":
             out.append(sticky(x, y, 22, color))
         else:
@@ -244,7 +251,7 @@ def guide_for(slug):
     m = re.match(r"retro-board-(.+)-(sprint|quarter)$", slug)
     if m:
         return f"facilitator-guide-retro-{m.group(1)}.html"
-    return f"facilitator-guide-{slug.removesuffix('-board')}.html"
+    return f"facilitator-guide-{slug.removesuffix('-board').removesuffix('-poster')}.html"
 
 
 GUIDE_LINK_CSS = ("a.guide{position:fixed;right:16px;bottom:16px;font:500 12px 'Geist',system-ui,sans-serif;color:#fff;"
@@ -731,6 +738,356 @@ def build_lean_coffee():
                 "and Discussed columns, a five-step how-it-works row, and three action slots.", "\n".join(b))
 
 
+# ---------------------------------------------------------------- break down work: helpers
+
+SLATE = ("#334155", "#F1F5F9")
+
+
+def para(x, y, text_lines, size=11, fill=INK, step=None, **kw):
+    step = step or round(size * 1.4)
+    return "".join(T(x, y + i * step, ln, size, fill, **kw) for i, ln in enumerate(text_lines))
+
+
+def slot(x, y, w, h, fill, dark, hint):
+    """Dashed placeholder sized for one sticky note."""
+    return (R(x, y, w, h, fill, 6, f' fill-opacity=".35" stroke="{dark}" stroke-opacity=".35" stroke-dasharray="6,5" stroke-width="1.5"') +
+            T(x + w / 2, y + h / 2 + 4, hint, 10, dark, italic=True, anchor="middle", op=".55"))
+
+
+BREAKDOWN_TAG = "Break Down Work · Vertical Slicing · Deliver Value Early · POM 2.0"
+
+
+# ---------------------------------------------------------------- epic breakdown canvas
+
+def build_epic_breakdown():
+    b = [header("Epic Breakdown Canvas",
+                "Turn a big idea into an MVP, a handful of valuable features, and the first stories a team can start.",
+                "Break Down Work · Epic Hypothesis · Minimum Viable Product · Feature Slicing",
+                header_fields(["Epic", "Owner"]))]
+
+    # 1 hypothesis
+    x, y, w = 24, 148, 808
+    d = PURPLE[0]
+    b.append(panel(x, y, w, 320, 1, "Epic Hypothesis", PURPLE, "WHY ARE WE DOING THIS?"))
+    for i, lead in enumerate(["For…", "who…", "the…", "is a…", "that…", "unlike…", "our solution…"]):
+        ly = y + 90 + i * 34
+        b.append(T(x + 18, ly, lead, 19, d, SERIF, italic=True))
+        b.append(L(x + 150, ly + 3, x + w - 18, ly + 3, d, 1, ' stroke-opacity=".25"'))
+    hints = ["(the customers or users)", "(have this need or problem)", "(epic name)", "(what it is: product, service, capability)",
+             "(provides this value)", "(the current solution or competitor)", "(does this better)"]
+    for i, h in enumerate(hints):
+        b.append(T(x + w - 18, y + 90 + i * 34 - 6, h, 8.5, d, MONO, anchor="end", op=".45", ls=".04em"))
+
+    # 2 outcomes
+    x, w = 846, 397
+    b.append(panel(x, y, w, 320, 2, "Outcomes & Measures", EMERALD))
+    b.append(T(x + 18, y + 80, "Business outcomes: how we'll know it worked", 11, EMERALD[0], weight=600))
+    b.append(lines(x + 18, y + 108, x + w - 18, 3, 26))
+    b.append(T(x + 18, y + 204, "Leading indicators: early signals", 11, EMERALD[0], weight=600))
+    b.append(lines(x + 18, y + 232, x + w - 18, 3, 26))
+
+    # 3 mvp
+    x = 1257
+    b.append(panel(x, y, w, 320, 3, "Minimum Viable Product", BLUE, "TEST IT SMALL"))
+    b.append(T(x + 18, y + 80, "Smallest thing that tests the hypothesis:", 11, BLUE[0], weight=600))
+    b.append(lines(x + 18, y + 108, x + w - 18, 4, 26))
+    b.append(field(x + 18, y + 240, "Persevere if…", x + w - 18, BLUE[0]))
+    b.append(field(x + 18, y + 280, "Pivot or stop if…", x + w - 18, BLUE[0]))
+
+    # 4 features
+    x, y, w = 24, 482, 1632
+    d = ORANGE[0]
+    b.append(panel(x, y, w, 280, 4, "Features", ORANGE, "SPLIT THE EPIC INTO 3–8 FEATURES THAT EACH DELIVER VALUE"))
+    cw = (w - 36 - 4 * 12) / 5
+    for i in range(5):
+        cx, cy = x + 18 + i * (cw + 12), y + 66
+        b.append(R(cx, cy, cw, 200, "white", 6, f' stroke="{d}" stroke-opacity=".2"'))
+        b.append(T(cx + 14, cy + 22, f"FEATURE {i + 1}", 9, d, MONO, weight=600, ls=".12em"))
+        b.append(field(cx + 14, cy + 52, "Name:", cx + cw - 14, d))
+        b.append(field(cx + 14, cy + 86, "Benefit:", cx + cw - 14, d))
+        b.append(L(cx + 14, cy + 114, cx + cw - 14, cy + 114))
+        b.append(T(cx + 14, cy + 148, "Size:", 11, d))
+        for j, sz in enumerate(["S", "M", "L", "XL"]):
+            b.append(checkbox(cx + 56 + j * 50, cy + 148, sz, d, 10.5))
+        b.append(checkbox(cx + 14, cy + 182, "Part of the MVP", d, 10.5))
+
+    # 5 first stories, 6 out of scope, 7 risks
+    y = 776
+    x, w = 24, 808
+    d = FOREST[0]
+    b.append(panel(x, y, w, 284, 5, "First Stories", FOREST, "FROM THE MVP FEATURES"))
+    b.append(bullets(x + 22, y + 74, ["Slice vertically: each story is usable end-to-end",
+                                      "Too big for a sprint? Use the Story Splitting poster"], d))
+    b.append(dashed(x + 10, x + w - 10, y + 104, d))
+    b.append(sticky_zone(x + 10, y + 110, w - 20, 162, d, chips=(YELLOW,)))
+
+    x, w = 846, 397
+    d = AMBER[0]
+    b.append(panel(x, y, w, 284, 6, "Out of Scope & NFRs", AMBER))
+    b.append(T(x + 18, y + 80, "We are explicitly not doing:", 11, d, weight=600))
+    b.append(lines(x + 18, y + 108, x + w - 18, 3, 26))
+    b.append(T(x + 18, y + 202, "Non-functional needs (security, scale…):", 11, d, weight=600))
+    b.append(lines(x + 18, y + 230, x + w - 18, 2, 26))
+
+    x = 1257
+    d = RED[0]
+    b.append(panel(x, y, w, 284, 7, "Dependencies & Risks", RED))
+    b.append(bullets(x + 22, y + 74, ["Other teams, systems or suppliers we need", "What could stop or delay this?"], d))
+    b.append(dashed(x + 10, x + w - 10, y + 104, d))
+    b.append(sticky_zone(x + 10, y + 110, w - 20, 162, d, chips=(YELLOW,)))
+
+    b.append(footer("What's the smallest thing we could build to learn whether this epic is worth it?",
+                    "Which feature, if it were the only one, would still deliver value?", BREAKDOWN_TAG))
+    write_board("epic-breakdown-canvas", "Epic Breakdown Canvas",
+                "A3 landscape canvas: epic hypothesis, outcomes, MVP, five feature cards with size and MVP flags, "
+                "first stories, out-of-scope items and NFRs, and dependencies and risks.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- story map
+
+def build_story_map():
+    b = [header("User Story Map",
+                "Map the user's journey, then slice it into releases that each deliver a complete, usable path.",
+                "Break Down Work · Inspired by Jeff Patton's Story Mapping · Walking Skeleton · Release Slices",
+                legend([("sticky", BLUE_ST, "Blue Sticky = Activity (backbone)"),
+                        ("sticky", YELLOW, "Yellow Sticky = User Task"),
+                        ("sticky", GREEN, "Green Sticky = Story / Detail")]))]
+
+    # context bar
+    b.append(R(24, 148, 1632, 48, "white", 8, f' stroke="{RULE}" stroke-width="1.5" filter="url(#fsm)"'))
+    b.append(field(44, 178, "Persona / user:", 520, INK, 12))
+    b.append(field(546, 178, "Their goal:", 1100, INK, 12))
+    b.append(field(1126, 178, "Product / epic:", 1636, INK, 12))
+
+    def lane(y, h, num, title, desc, color, chip, note):
+        dark, light = color
+        return "".join([
+            R(24, y, 230, h, dark, 10),
+            f'<circle cx="46" cy="{y + 24}" r="12" fill="white" fill-opacity=".18"/>',
+            T(46, y + 29, str(num), 11, "white", weight=600, anchor="middle"),
+            T(68, y + 30, title, 14, "white", weight=600),
+            para(24 + 20, y + 54, desc, 10.5, "white", 15, op=".75"),
+            R(264, y, 1392, h, light, 10, f' stroke="{dark}" stroke-opacity=".18" stroke-width="1.5"'),
+            R(264, y, 1392, h, "url(#dots)", 10),
+            T(1640, y + 20, note, 8.5, dark, MONO, anchor="end", op=".5", ls=".1em"),
+            "".join(R(300 + i * 150, y + 28, 110, h - 46, chip, 3, ' fill-opacity=".22"') for i in range(4)),
+            T(300 + 4 * 150 + 20, y + h / 2 + 4, "…one sticky per step, left to right", 10, dark, italic=True, op=".4"),
+        ])
+
+    b.append(lane(208, 98, 1, "Activities", ["The backbone: the big things", "users do, in order"], BLUE, BLUE_ST,
+                  "USER JOURNEY → LEFT TO RIGHT, IN THE ORDER USERS DO THINGS"))
+    b.append(lane(316, 98, 2, "User Tasks", ["The walking skeleton: steps", "within each activity"], AMBER, YELLOW,
+                  "UNDER EACH ACTIVITY"))
+
+    b.append(strip(426, "RELEASE SLICES: STORIES GO BELOW EACH TASK, MOST IMPORTANT AT THE TOP. EACH SLICE IS A COMPLETE PATH"))
+
+    def band(y, h, name, sub, color):
+        dark, light = color
+        return "".join([
+            R(24, y, 230, h, light, 10, f' stroke="{dark}" stroke-opacity=".3" stroke-width="1.5"'),
+            R(24, y, 6, h, dark, 3),
+            T(44, y + 30, name, 15, dark, weight=600),
+            para(44, y + 52, sub, 10.5, dark, 15, op=".8"),
+            field(44, y + h - 52, "Outcome:", 238, dark, 11),
+            field(44, y + h - 20, "Target:", 238, dark, 11),
+            R(264, y, 1392, h, light, 10, f' fill-opacity=".55" stroke="{dark}" stroke-opacity=".25" stroke-dasharray="6,5" stroke-width="1.5"'),
+            R(264, y, 1392, h, "url(#dots)", 10),
+            T(960, y + h / 2 + 4, "Stories for this slice, under the task they belong to", 10, dark, italic=True,
+              anchor="middle", op=".3"),
+        ])
+
+    b.append(band(468, 220, "Release 1 · MVP", ["The thinnest slice that lets", "a user reach their goal", "end-to-end"], EMERALD))
+    b.append(band(698, 190, "Release 2", ["Makes the journey better:", "more options, fewer errors"], BLUE))
+    b.append(band(898, 162, "Later", ["Nice to have.", "Revisit after learning", "from earlier releases"], SLATE))
+
+    b.append(footer("What's the smallest slice that lets a user reach their goal end-to-end?",
+                    "What will we learn from releasing this slice?", BREAKDOWN_TAG))
+    write_board("story-map-board", "User Story Map",
+                "A3 landscape story map: persona and goal, an activities backbone, user tasks (walking skeleton), "
+                "and three release slices (MVP, Release 2, Later) for stories.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- story splitting poster
+
+PATTERNS = [
+    ("Workflow Steps", "PATHS", ["Split along the steps users take.", "Build the thinnest end-to-end path", "first, then add the extra steps."],
+     "Basket → pay → confirmation", "Gift wrap, delivery notes"),
+    ("Business Rules", "RULES", ["Start with the simplest rule set,", "then add each rule variation as", "its own story."],
+     "Standard delivery, no discounts", "Discount codes, delivery limits"),
+    ("Happy / Unhappy Paths", "PATHS", ["Deliver the success path first,", "then handle errors and edge cases", "in follow-up stories."],
+     "Card payment succeeds", "Declined card, timeout, retry"),
+    ("Data Variations", "DATA", ["Support one type of data first,", "then widen to more types, formats", "or sources."],
+     "UK addresses", "International addresses"),
+    ("Interfaces", "INTERFACES", ["Start with one channel, device or", "input method, then add the others."],
+     "Web checkout, card only", "Mobile app, Apple Pay, PayPal"),
+    ("Simple → Complex", "SIMPLIFY", ["Ask “what's the simplest version", "that could work?”, then defer the", "complicated parts."],
+     "Flat shipping fee", "Price by weight and zone"),
+    ("Operations (CRUD)", "OPERATIONS", ["Split “manage X” into create, read,", "update and delete. Ship the ones", "users need first."],
+     "Save and view a card", "Edit and delete saved cards"),
+    ("Defer Performance", "QUALITY", ["Make it work, then make it fast or", "scale. Agree the minimum bar in", "the Definition of Done."],
+     "100 orders an hour", "Black Friday peak load"),
+    ("Spike First", "SPIKE", ["Too unknown to split? Timebox", "research first. The output is", "knowledge, not code."],
+     "1-day spike: choose a provider", "Split the build using 1–8"),
+]
+PATTERN_COLORS = [BLUE, PURPLE, FOREST, SKY, ORANGE, EMERALD, AMBER, RED, SLATE]
+
+
+def build_story_splitting():
+    right = "".join([
+        T(1356, 50, "RUNNING EXAMPLE", 8, "#475569", MONO, ls=".14em"),
+        para(1356, 74, ["“As a shopper, I want to check out", "my basket so that I receive", "my order.”"], 15, "#CBD5E1", 19, font=SERIF, italic=True),
+    ])
+    b = [header("Story Splitting",
+                "When a story is too big to finish in a sprint, split it into thin, vertical slices that each deliver value.",
+                "Break Down Work · INVEST · SPIDR · Story Splitting Patterns · Vertical Slicing", right)]
+
+    # INVEST row
+    invest = [("I", "Independent", ["Can it be built and", "released on its own?"]),
+              ("N", "Negotiable", ["Is it a conversation,", "not a contract?"]),
+              ("V", "Valuable", ["Does a user or customer", "get value from it?"]),
+              ("E", "Estimable", ["Do we understand it", "well enough to size it?"]),
+              ("S", "Small", ["Can we finish it in a", "few days, well within a sprint?"]),
+              ("T", "Testable", ["Do we know how to", "prove it's done?"])]
+    iw = (1632 - 5 * 12) / 6
+    for i, (letter, word, q) in enumerate(invest):
+        x = 24 + i * (iw + 12)
+        b.append(R(x, 148, iw, 112, "white", 8, f' stroke="{RULE}" stroke-width="1.5" filter="url(#fsm)"'))
+        b.append(R(x, 148, iw, 4, ACCENT, 2))
+        b.append(T(x + 30, 214, letter, 50, ACCENT, SERIF, anchor="middle"))
+        b.append(T(x + 62, 182, word, 14, INK, weight=600))
+        b.append(para(x + 62, 204, q, 11, MUTED, 16))
+    b.append(T(24, 278, "BEFORE YOU SPLIT: DOES THE STORY PASS INVEST? IF “SMALL” FAILS, SPLIT IT. IF “VALUABLE” FAILS, RETHINK IT.",
+               9, MUTED, MONO, ls=".1em"))
+
+    b.append(strip(290, "SPLITTING PATTERNS: TRY THEM IN ROUGHLY THIS ORDER"))
+    pw = (1632 - 4 * 12) / 5
+    for i, ((name, tag, how, first, later), (dark, light)) in enumerate(zip(PATTERNS, PATTERN_COLORS)):
+        x = 24 + (i % 5) * (pw + 12)
+        y = 332 + (i // 5) * 208
+        b.append(R(x, y, pw, 196, "white", 8, f' stroke="{RULE}" stroke-width="1.5" filter="url(#fsm)"'))
+        b.append(R(x, y, 5, 196, dark, 3))
+        b.append(f'<circle cx="{x + 28}" cy="{y + 26}" r="12" fill="{dark}"/>')
+        b.append(T(x + 28, y + 30, str(i + 1), 11, "white", weight=600, anchor="middle"))
+        b.append(T(x + 48, y + 31, name, 14, INK, weight=600))
+        tw = len(tag) * 8.5 * 0.68 + 14
+        b.append(R(x + pw - 14 - tw, y + 16, tw, 18, light, 9))
+        b.append(T(x + pw - 14 - tw / 2, y + 28, tag, 8.5, dark, MONO, weight=600, anchor="middle", ls=".08em"))
+        b.append(para(x + 20, y + 62, how, 11, INK, 16))
+        b.append(R(x + 14, y + 118, pw - 28, 64, light, 6, ' fill-opacity=".6"'))
+        b.append(T(x + 24, y + 138, "FIRST", 8.5, FOREST[0], MONO, weight=600, ls=".1em"))
+        b.append(T(x + 72, y + 138, first, 11, INK))
+        b.append(T(x + 24, y + 166, "LATER", 8.5, MUTED, MONO, weight=600, ls=".1em"))
+        b.append(T(x + 72, y + 166, later, 11, MUTED))
+    # 10th card: still too big
+    x, y = 24 + 4 * (pw + 12), 540
+    b.append(R(x, y, pw, 196, NAVY, 8))
+    b.append(R(x, y, 5, 196, ACCENT, 3))
+    b.append(T(x + 20, y + 31, "Still too big?", 14, "white", weight=600))
+    b.append(bullets(x + 24, y + 58, ["Combine patterns: workflow first,", "then rules within one step"], "#CBD5E1"))
+    b.append(bullets(x + 24, y + 104, ["Find the 80/20: which slice gives", "the most value for the least effort?"], "#CBD5E1"))
+    b.append(bullets(x + 24, y + 150, ["Ask what could be dropped", "entirely, not just deferred"], "#CBD5E1"))
+
+    # slice vertically diagram
+    x, y, w = 24, 752, 808
+    d = BLUE[0]
+    b.append(panel(x, y, w, 308, None, "Slice Vertically, Not Horizontally", BLUE))
+    layers = ["UI / screens", "Logic / API", "Data / storage"]
+    # horizontal: wrong
+    b.append(T(x + 24, y + 84, "✗  HORIZONTAL", 10, RED[0], MONO, weight=600, ls=".1em"))
+    for j, lab in enumerate(layers):
+        ly = y + 98 + j * 52
+        b.append(R(x + 24, ly, 340, 42, "white", 5, f' stroke="{RED[0]}" stroke-opacity=".35"'))
+        b.append(T(x + 38, ly + 26, lab, 11, INK))
+        b.append(T(x + 350, ly + 26, f"Story {j + 1}", 10, RED[0], MONO, anchor="end"))
+    b.append(T(x + 24, y + 278, "Nothing is usable until every layer is finished.", 11, RED[0], italic=True))
+    # vertical: right
+    vx = x + 420
+    b.append(T(vx, y + 84, "✓  VERTICAL", 10, FOREST[0], MONO, weight=600, ls=".1em"))
+    for j, lab in enumerate(layers):
+        ly = y + 98 + j * 52
+        b.append(R(vx, ly, 364, 42, "white", 5, f' stroke="{d}" stroke-opacity=".2"'))
+        b.append(T(vx + 12, ly + 26, lab, 11, MUTED, op=".8"))
+    for k in range(4):
+        sx = vx + 124 + k * 60
+        b.append(R(sx, y + 92, 44, 166, ACCENT, 5, ' fill-opacity=".8"'))
+        b.append(T(sx + 22, y + 270, f"Slice {k + 1}", 9, ACCENT, MONO, weight=600, anchor="middle"))
+    b.append(T(vx, y + 292, "Each slice is usable and testable on its own.", 11, FOREST[0], italic=True))
+
+    # checks
+    x, w = 846, 810
+    d = EMERALD[0]
+    b.append(panel(x, y, w, 308, None, "Is It a Good Split?", EMERALD))
+    b.append(T(x + 22, y + 84, "AFTER SPLITTING, CHECK EACH SLICE", 9, d, MONO, weight=600, ls=".1em"))
+    b.append(bullets(x + 26, y + 106, ["Delivers value or learning by itself", "Fits comfortably in a sprint: aim for several per sprint",
+                                       "Has clear acceptance criteria", "The team can estimate it", "Still passes INVEST"], d, 22))
+    b.append(T(x + 420, y + 84, "CHOOSE THE SPLIT THAT…", 9, d, MONO, weight=600, ls=".1em"))
+    b.append(bullets(x + 424, y + 106, ["Lets you deprioritise or drop a slice", "Makes slices of roughly equal size",
+                                        "Gets user feedback soonest", "Tackles the biggest risk first",
+                                        "Exposes low-value work you can skip"], d, 22))
+    b.append(T(x + w / 2, y + 260, "If no slice can be dropped, try a different pattern.", 16, d, SERIF, italic=True, anchor="middle"))
+
+    b.append(footer("What's the thinnest slice that still delivers value to a user?",
+                    "If we could only ship half of this, which half?",
+                    "INVEST (Bill Wake) · SPIDR (Mike Cohn) · Splitting Patterns (Richard Lawrence) · POM 2.0"))
+    write_board("story-splitting-poster", "Story Splitting",
+                "A3 landscape reference poster: the INVEST check, nine story splitting patterns with a running checkout "
+                "example, vertical vs. horizontal slicing, and checks for a good split.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- example mapping
+
+def build_example_mapping():
+    b = [header("Example Mapping",
+                "Explore one story through its rules, concrete examples and open questions, and find out if it's ready.",
+                "Break Down Work · Inspired by Matt Wynne's Example Mapping · Refinement · 25-Minute Timebox",
+                legend([("sticky", YELLOW, "Yellow = Story"), ("sticky", BLUE_ST, "Blue = Rule"),
+                        ("sticky", GREEN, "Green = Example"), ("sticky", PINK_ST, "Pink = Question")]))]
+
+    # story bar
+    b.append(R(24, 148, 1632, 104, "white", 10, f' stroke="{RULE}" stroke-width="1.5" filter="url(#fc)"'))
+    b.append(slot(40, 160, 300, 80, YELLOW, AMBER[0], "Story card"))
+    b.append(field(362, 192, "As a…", 760, INK, 12))
+    b.append(field(782, 192, "I want…", 1220, INK, 12))
+    b.append(field(1242, 192, "so that…", 1636, INK, 12))
+    b.append(T(362, 230, "TIMEBOX 25 MIN · ONE BLUE CARD PER RULE · GREEN EXAMPLES UNDER EACH RULE · PINK FOR ANYTHING UNKNOWN",
+               9, MUTED, MONO, ls=".1em"))
+
+    cw = (1278 - 36) / 4
+    for i in range(4):
+        x = 24 + i * (cw + 12)
+        d = BLUE[0]
+        b.append(panel(x, 266, cw, 586, i + 1, f"Rule {i + 1}", BLUE, "ACCEPTANCE CRITERION"))
+        b.append(slot(x + 14, 332, cw - 28, 84, BLUE_ST, d, "Blue card: the rule"))
+        b.append(T(x + 16, 444, "EXAMPLES", 9, FOREST[0], MONO, weight=600, ls=".12em"))
+        b.append(T(x + cw - 16, 444, "given · when · then", 9, FOREST[0], MONO, anchor="end", op=".55"))
+        b.append(sticky_zone(x + 10, 454, cw - 20, 386, d, "Green cards: concrete examples", chips=(GREEN,)))
+
+    x, w = 1314, 342
+    d = "#9D174D"
+    b.append(panel(x, 266, w, 586, None, "Questions", (d, "#FCE7F3"), "UNKNOWNS"))
+    b.append(bullets(x + 22, 340, ["Anything nobody here can answer", "Write who will find out", "Don't let one question stall the session"], d))
+    b.append(dashed(x + 10, x + w - 10, 390, d))
+    b.append(sticky_zone(x + 10, 396, w - 20, 444, d, "Pink cards: open questions", chips=(PINK_ST,)))
+
+    b.append(strip(866, "OUTCOME: THUMB-VOTE AT THE END OF THE TIMEBOX"))
+    b.append(R(24, 906, 534, 154, "white", 8, f' stroke="{RULE}" stroke-width="1.5" filter="url(#fsm)"'))
+    b.append(R(24, 906, 5, 154, ACCENT, 3))
+    b.append(T(46, 940, "Decision", 13, INK, weight=600))
+    for j, (lab, note) in enumerate([("Ready to plan", "few questions, rules are clear"),
+                                     ("Needs splitting", "too many rules: split by rule"),
+                                     ("Needs answers first", "too many questions: find out")]):
+        b.append(checkbox(46, 974 + j * 30, lab, INK, 12))
+        b.append(T(220, 974 + j * 30, note, 11, MUTED, italic=True))
+    b.append(card(572, 906, 534, 154, "Split into…", EMERALD[0], ["Story A:", "Story B:"]))
+    b.append(card(1120, 906, 534, 154, "Open questions", "#9D174D", ["Owner:", "Answer by:"]))
+
+    b.append(footer("Lots of pink? We're not ready yet.", "Lots of blue? The story is too big, so split it by rule.",
+                    BREAKDOWN_TAG))
+    write_board("example-mapping-board", "Example Mapping",
+                "A3 landscape example mapping board: story card and statement, four rule columns with example zones, "
+                "a questions column, and an outcome strip for the ready / split / needs-answers decision.", "\n".join(b))
+
+
 if __name__ == "__main__":
     for horizon in ("sprint", "quarter"):
         build_retros(horizon)
@@ -738,3 +1095,7 @@ if __name__ == "__main__":
     build_health_check()
     build_experiment_canvas()
     build_lean_coffee()
+    build_epic_breakdown()
+    build_story_map()
+    build_story_splitting()
+    build_example_mapping()

@@ -20,6 +20,10 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | Retro: The 4 Ls | `retro-board-4ls-sprint`, `-quarter` | `facilitator-guide-retro-4ls.html` |
 | Retro: Mad · Sad · Glad | `retro-board-mad-sad-glad-sprint`, `-quarter` | `facilitator-guide-retro-mad-sad-glad.html` |
 | Retro: Sailboat | `retro-board-sailboat-sprint`, `-quarter` | `facilitator-guide-retro-sailboat.html` |
+| Epic Breakdown Canvas | `epic-breakdown-canvas` | `facilitator-guide-epic-breakdown-canvas.html` |
+| User Story Map | `story-map-board` | `facilitator-guide-story-map.html` |
+| Story Splitting poster | `story-splitting-poster` | `facilitator-guide-story-splitting.html` |
+| Example Mapping | `example-mapping-board` | `facilitator-guide-example-mapping.html` |
 | Scrum Master & Agile Coach Cheat Sheet | `scrum-master-agile-coach-cheat-sheet.html` (two-sided A3, print double-sided) | Self-documenting reference; links to every board |
 
 Each guide covers: when to use the tool, an at-a-glance summary, a prep checklist, a timed run-sheet (with sprint and quarter timings for retros), prompts for each section of the board, facilitation tips, common pitfalls, follow-up, and how the tool fits the rest of the toolkit.
@@ -27,6 +31,8 @@ Each guide covers: when to use the tool, an at-a-glance summary, a prep checklis
 ## How the tools fit together
 
 **Diagnose** (Team Health Check) → **Explore** (Marginal Gains Workshop) → **Experiment** (1% Experiment Canvas) → **Reflect** (Retrospective Kit), then back round again. Lean Coffee is a general-purpose facilitation format that can be used at any point.
+
+**Breaking down work** goes from big to small: Epic Breakdown Canvas (idea → MVP → features) → User Story Map (journey → release slices) → Story Splitting (stories small enough for a sprint) → Example Mapping (is each story understood and ready?).
 
 ## Editing and regenerating
 

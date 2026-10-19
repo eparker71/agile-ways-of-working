@@ -57,7 +57,7 @@
 <text x="1306" y="233" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">→</text>
 <circle cx="1352.0" cy="228.0" r="15" fill="white" stroke="#991B1B" stroke-opacity=".45" stroke-width="1.5"/>
 <text x="1352" y="233" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">↓</text>
-<line x1="1410" y1="222" x2="1642" y2="222" stroke="#E2E8F0" stroke-width="1.5"/><line x1="1410" y1="244" x2="1642" y2="244" stroke="#E2E8F0" stroke-width="1.5"/>
+<line x1="1410" y1="222" x2="1642" y2="222" stroke="#CBD5E1" stroke-width="1.5"/><line x1="1410" y1="244" x2="1642" y2="244" stroke="#CBD5E1" stroke-width="1.5"/>
 <rect x="24" y="270" width="1632" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
 <circle cx="46" cy="292" r="11" fill="#0C1A2E"/>
 <text x="46" y="296" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white">2</text>
@@ -78,7 +78,7 @@
 <text x="1306" y="311" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">→</text>
 <circle cx="1352.0" cy="306.0" r="15" fill="white" stroke="#991B1B" stroke-opacity=".45" stroke-width="1.5"/>
 <text x="1352" y="311" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">↓</text>
-<line x1="1410" y1="300" x2="1642" y2="300" stroke="#E2E8F0" stroke-width="1.5"/><line x1="1410" y1="322" x2="1642" y2="322" stroke="#E2E8F0" stroke-width="1.5"/>
+<line x1="1410" y1="300" x2="1642" y2="300" stroke="#CBD5E1" stroke-width="1.5"/><line x1="1410" y1="322" x2="1642" y2="322" stroke="#CBD5E1" stroke-width="1.5"/>
 <rect x="24" y="348" width="1632" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
 <circle cx="46" cy="370" r="11" fill="#0C1A2E"/>
 <text x="46" y="374" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white">3</text>
@@ -99,7 +99,7 @@
 <text x="1306" y="389" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">→</text>
 <circle cx="1352.0" cy="384.0" r="15" fill="white" stroke="#991B1B" stroke-opacity=".45" stroke-width="1.5"/>
 <text x="1352" y="389" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">↓</text>
-<line x1="1410" y1="378" x2="1642" y2="378" stroke="#E2E8F0" stroke-width="1.5"/><line x1="1410" y1="400" x2="1642" y2="400" stroke="#E2E8F0" stroke-width="1.5"/>
+<line x1="1410" y1="378" x2="1642" y2="378" stroke="#CBD5E1" stroke-width="1.5"/><line x1="1410" y1="400" x2="1642" y2="400" stroke="#CBD5E1" stroke-width="1.5"/>
 <rect x="24" y="426" width="1632" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
 <circle cx="46" cy="448" r="11" fill="#0C1A2E"/>
 <text x="46" y="452" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white">4</text>
@@ -120,7 +120,7 @@
 <text x="1306" y="467" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">→</text>
 <circle cx="1352.0" cy="462.0" r="15" fill="white" stroke="#991B1B" stroke-opacity=".45" stroke-width="1.5"/>
 <text x="1352" y="467" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">↓</text>
-<line x1="1410" y1="456" x2="1642" y2="456" stroke="#E2E8F0" stroke-width="1.5"/><line x1="1410" y1="478" x2="1642" y2="478" stroke="#E2E8F0" stroke-width="1.5"/>
+<line x1="1410" y1="456" x2="1642" y2="456" stroke="#CBD5E1" stroke-width="1.5"/><line x1="1410" y1="478" x2="1642" y2="478" stroke="#CBD5E1" stroke-width="1.5"/>
 <rect x="24" y="504" width="1632" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
 <circle cx="46" cy="526" r="11" fill="#0C1A2E"/>
 <text x="46" y="530" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white">5</text>
@@ -141,7 +141,7 @@
 <text x="1306" y="545" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">→</text>
 <circle cx="1352.0" cy="540.0" r="15" fill="white" stroke="#991B1B" stroke-opacity=".45" stroke-width="1.5"/>
 <text x="1352" y="545" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">↓</text>
-<line x1="1410" y1="534" x2="1642" y2="534" stroke="#E2E8F0" stroke-width="1.5"/><line x1="1410" y1="556" x2="1642" y2="556" stroke="#E2E8F0" stroke-width="1.5"/>
+<line x1="1410" y1="534" x2="1642" y2="534" stroke="#CBD5E1" stroke-width="1.5"/><line x1="1410" y1="556" x2="1642" y2="556" stroke="#CBD5E1" stroke-width="1.5"/>
 <rect x="24" y="582" width="1632" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
 <circle cx="46" cy="604" r="11" fill="#0C1A2E"/>
 <text x="46" y="608" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white">6</text>
@@ -162,7 +162,7 @@
 <text x="1306" y="623" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">→</text>
 <circle cx="1352.0" cy="618.0" r="15" fill="white" stroke="#991B1B" stroke-opacity=".45" stroke-width="1.5"/>
 <text x="1352" y="623" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">↓</text>
-<line x1="1410" y1="612" x2="1642" y2="612" stroke="#E2E8F0" stroke-width="1.5"/><line x1="1410" y1="634" x2="1642" y2="634" stroke="#E2E8F0" stroke-width="1.5"/>
+<line x1="1410" y1="612" x2="1642" y2="612" stroke="#CBD5E1" stroke-width="1.5"/><line x1="1410" y1="634" x2="1642" y2="634" stroke="#CBD5E1" stroke-width="1.5"/>
 <rect x="24" y="660" width="1632" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
 <circle cx="46" cy="682" r="11" fill="#0C1A2E"/>
 <text x="46" y="686" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white">7</text>
@@ -183,7 +183,7 @@
 <text x="1306" y="701" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">→</text>
 <circle cx="1352.0" cy="696.0" r="15" fill="white" stroke="#991B1B" stroke-opacity=".45" stroke-width="1.5"/>
 <text x="1352" y="701" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">↓</text>
-<line x1="1410" y1="690" x2="1642" y2="690" stroke="#E2E8F0" stroke-width="1.5"/><line x1="1410" y1="712" x2="1642" y2="712" stroke="#E2E8F0" stroke-width="1.5"/>
+<line x1="1410" y1="690" x2="1642" y2="690" stroke="#CBD5E1" stroke-width="1.5"/><line x1="1410" y1="712" x2="1642" y2="712" stroke="#CBD5E1" stroke-width="1.5"/>
 <rect x="24" y="738" width="1632" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
 <circle cx="46" cy="760" r="11" fill="#0C1A2E"/>
 <text x="46" y="764" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white">8</text>
@@ -204,7 +204,7 @@
 <text x="1306" y="779" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">→</text>
 <circle cx="1352.0" cy="774.0" r="15" fill="white" stroke="#991B1B" stroke-opacity=".45" stroke-width="1.5"/>
 <text x="1352" y="779" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">↓</text>
-<line x1="1410" y1="768" x2="1642" y2="768" stroke="#E2E8F0" stroke-width="1.5"/><line x1="1410" y1="790" x2="1642" y2="790" stroke="#E2E8F0" stroke-width="1.5"/>
+<line x1="1410" y1="768" x2="1642" y2="768" stroke="#CBD5E1" stroke-width="1.5"/><line x1="1410" y1="790" x2="1642" y2="790" stroke="#CBD5E1" stroke-width="1.5"/>
 <rect x="24" y="816" width="1632" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
 <circle cx="46" cy="838" r="11" fill="#0C1A2E"/>
 <text x="46" y="842" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white">9</text>
@@ -225,7 +225,7 @@
 <text x="1306" y="857" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">→</text>
 <circle cx="1352.0" cy="852.0" r="15" fill="white" stroke="#991B1B" stroke-opacity=".45" stroke-width="1.5"/>
 <text x="1352" y="857" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">↓</text>
-<line x1="1410" y1="846" x2="1642" y2="846" stroke="#E2E8F0" stroke-width="1.5"/><line x1="1410" y1="868" x2="1642" y2="868" stroke="#E2E8F0" stroke-width="1.5"/>
+<line x1="1410" y1="846" x2="1642" y2="846" stroke="#CBD5E1" stroke-width="1.5"/><line x1="1410" y1="868" x2="1642" y2="868" stroke="#CBD5E1" stroke-width="1.5"/>
 <rect x="24" y="894" width="1632" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
 <circle cx="46" cy="916" r="11" fill="#0C1A2E"/>
 <text x="46" y="920" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white">10</text>
@@ -246,7 +246,7 @@
 <text x="1306" y="935" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">→</text>
 <circle cx="1352.0" cy="930.0" r="15" fill="white" stroke="#991B1B" stroke-opacity=".45" stroke-width="1.5"/>
 <text x="1352" y="935" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">↓</text>
-<line x1="1410" y1="924" x2="1642" y2="924" stroke="#E2E8F0" stroke-width="1.5"/><line x1="1410" y1="946" x2="1642" y2="946" stroke="#E2E8F0" stroke-width="1.5"/>
+<line x1="1410" y1="924" x2="1642" y2="924" stroke="#CBD5E1" stroke-width="1.5"/><line x1="1410" y1="946" x2="1642" y2="946" stroke="#CBD5E1" stroke-width="1.5"/>
 <rect x="24" y="972" width="1632" height="72" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
 <circle cx="46" cy="994" r="11" fill="#0C1A2E"/>
 <text x="46" y="998" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="white">11</text>
@@ -267,6 +267,6 @@
 <text x="1306" y="1013" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">→</text>
 <circle cx="1352.0" cy="1008.0" r="15" fill="white" stroke="#991B1B" stroke-opacity=".45" stroke-width="1.5"/>
 <text x="1352" y="1013" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">↓</text>
-<line x1="1410" y1="1002" x2="1642" y2="1002" stroke="#E2E8F0" stroke-width="1.5"/><line x1="1410" y1="1024" x2="1642" y2="1024" stroke="#E2E8F0" stroke-width="1.5"/>
-<line x1="24" y1="1070" x2="1656" y2="1070" stroke="#E2E8F0" stroke-width="1"/><text x="24" y="1106" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" fill="#1E293B">Team:</text><line x1="67.8" y1="1110" x2="330" y2="1110" stroke="#E2E8F0" stroke-width="1.5"/><text x="350" y="1106" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" fill="#1E293B">Date:</text><line x1="393.8" y1="1110" x2="560" y2="1110" stroke="#E2E8F0" stroke-width="1.5"/><text x="580" y="1106" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" fill="#1E293B">Facilitator:</text><line x1="671.12" y1="1110" x2="810" y2="1110" stroke="#E2E8F0" stroke-width="1.5"/><line x1="832" y1="1078" x2="832" y2="1128" stroke="#E2E8F0" stroke-width="1"/><text x="848" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“Which 1–2 areas would make the biggest difference if they got 1% better?”</text><text x="1656" y="1138" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#CBD5E1" letter-spacing=".08em">Vote with coloured dots · Repeat each PI to see trends · Feed red/amber areas into the 1% Experiment Canvas</text>
+<line x1="1410" y1="1002" x2="1642" y2="1002" stroke="#CBD5E1" stroke-width="1.5"/><line x1="1410" y1="1024" x2="1642" y2="1024" stroke="#CBD5E1" stroke-width="1.5"/>
+<line x1="24" y1="1070" x2="1656" y2="1070" stroke="#E2E8F0" stroke-width="1"/><text x="24" y="1106" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" fill="#1E293B">Team:</text><line x1="67.8" y1="1110" x2="330" y2="1110" stroke="#CBD5E1" stroke-width="1.5"/><text x="350" y="1106" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" fill="#1E293B">Date:</text><line x1="393.8" y1="1110" x2="560" y2="1110" stroke="#CBD5E1" stroke-width="1.5"/><text x="580" y="1106" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" fill="#1E293B">Facilitator:</text><line x1="671.12" y1="1110" x2="810" y2="1110" stroke="#CBD5E1" stroke-width="1.5"/><line x1="832" y1="1078" x2="832" y2="1128" stroke="#E2E8F0" stroke-width="1"/><text x="848" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“Which 1–2 areas would make the biggest difference if they got 1% better?”</text><text x="1656" y="1138" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#CBD5E1" letter-spacing=".08em">Vote with coloured dots · Repeat each PI to see trends · Feed red/amber areas into the 1% Experiment Canvas</text>
 </svg>
