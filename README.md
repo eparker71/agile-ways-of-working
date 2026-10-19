@@ -28,11 +28,28 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | User Story Map | `story-map-board` | `facilitator-guide-story-map.html` |
 | Story Splitting poster | `story-splitting-poster` | `facilitator-guide-story-splitting.html` |
 | Example Mapping | `example-mapping-board` | `facilitator-guide-example-mapping.html` |
+| Team Charter | `team-charter-board` | `facilitator-guide-team-charter.html` |
+| Product Vision Board | `product-vision-board` | `facilitator-guide-product-vision.html` |
+| Prioritisation Board | `prioritisation-board` | `facilitator-guide-prioritisation.html` |
+| Sprint Planning | `sprint-planning-board` | `facilitator-guide-sprint-planning.html` |
+| Sprint Review | `sprint-review-board` | `facilitator-guide-sprint-review.html` |
 | Scrum Master & Agile Coach Cheat Sheet | `scrum-master-agile-coach-cheat-sheet.html` (two-sided A3, print double-sided) | Self-documenting reference; links to every board |
+| Jira Cheat Sheet | `jira-cheat-sheet.html` (one-sided A3, Jira Cloud) | Self-documenting reference; companion to the cheat sheet above |
 
 Each guide covers: when to use the tool, an at-a-glance summary, a prep checklist, a timed run-sheet (with sprint and quarter timings for retros), prompts for each section of the board, facilitation tips, common pitfalls, follow-up, and how the tool fits the rest of the toolkit.
 
 ## How the tools fit together
+
+The toolkit follows the agile lifecycle and doesn't assume any one framework:
+
+| Phase | Tools |
+|---|---|
+| Form the team | Team Charter |
+| Envision | Product Vision Board |
+| Plan | Prioritisation Board, then the break-down tools below |
+| Build in iterations | Sprint Planning, Example Mapping, the cheat sheets |
+| Review | Sprint Review |
+| Reflect and improve | Retrospective Kit, Team Health Check, Marginal Gains Workshop, 1% Experiment Canvas |
 
 **Diagnose** (Team Health Check) → **Explore** (Marginal Gains Workshop) → **Experiment** (1% Experiment Canvas) → **Reflect** (Retrospective Kit), then back round again. Lean Coffee is a general-purpose facilitation format that can be used at any point.
 
@@ -49,6 +66,6 @@ python3 _generator/build_guides.py   # all guides except Marginal Gains
 
 - `build_boards.py` holds the shared visual components (header, panels, sticky zones, action cards, footer). Retro boards are built for each horizon in the `("sprint", "quarter")` list at the bottom.
 - `build_guides.py` holds each guide's content in the `GUIDES` list. It copies its styling from `facilitator-guide-marginal-gains.html`.
-- These files are hand-written and are not overwritten by the scripts: the Marginal Gains boards, `facilitator-guide-marginal-gains.html`, `scrum-master-agile-coach-cheat-sheet.html` and `index.html`.
+- These files are hand-written and are not overwritten by the scripts: the Marginal Gains boards, `facilitator-guide-marginal-gains.html`, `scrum-master-agile-coach-cheat-sheet.html`, `jira-cheat-sheet.html` and `index.html`.
 
 When you add a new board, also add a guide entry to `GUIDES` and a card to `index.html`.

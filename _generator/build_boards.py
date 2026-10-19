@@ -44,7 +44,7 @@ SKY = ("#0C4A6E", "#E0F2FE")
 AREAS = [("Strategy", BLUE), ("Outcomes", EMERALD), ("Product", PURPLE), ("Teams", ORANGE),
          ("Dependencies", RED), ("Engineering", AMBER), ("Delivery", FOREST), ("Learning", SKY)]
 
-FOOT_TAG = "Agile Release Train · Systems-Thinking · Continuous Improvement · POM 2.0"
+FOOT_TAG = "Systems-Thinking · Continuous Improvement · Team-Led Change"
 
 
 # ---------------------------------------------------------------- primitives
@@ -138,8 +138,6 @@ def header(title, subtitle, tagline, right=""):
         R(0, 0, W, H, "url(#bg)"),
         R(0, 0, W, 4, ACCENT),
         R(0, 4, W, 134, NAVY),
-        R(1448, 14, 208, 22, ACCENT, 11, ' fill-opacity=".18"'),
-        T(1552, 29, "PRODUCT OPERATING MODEL 2.0", 8.5, ACCENT, MONO, anchor="middle", ls=".10em"),
         T(24, 70, title, 42, "white", SERIF, weight=400),
         T(24, 100, subtitle, 13, "#94A3B8"),
         T(24, 120, tagline, 9, "#475569", MONO, ls=".06em"),
@@ -297,7 +295,7 @@ svg{{display:block;max-width:100%;height:auto;box-shadow:0 12px 40px rgba(0,0,0,
 RETRO_LEGEND = [("sticky", YELLOW, "Yellow Sticky = What Happened"),
                 ("sticky", GREEN, "Green Sticky = Idea / Action"),
                 ("dot", ACCENT, "Dot = Vote (3 per person)")]
-RETRO_TAG = "Retrospective Kit · Team Reflection · Continuous Improvement · POM 2.0"
+RETRO_TAG = "Retrospective Kit · Team Reflection · Continuous Improvement"
 
 
 # ---------------------------------------------------------------- retro: column formats
@@ -537,7 +535,7 @@ def build_health_check():
         field(580, 1106, "Facilitator:", 810, INK, 13),
         L(832, 1078, 832, 1128, RULE, 1),
         T(848, 1106, "“Which 1–2 areas would make the biggest difference if they got 1% better?”", 15, INK, SERIF, italic=True),
-        T(1656, 1138, "Vote with coloured dots · Repeat each PI to see trends · Feed red/amber areas into the 1% Experiment Canvas",
+        T(1656, 1138, "Vote with coloured dots · Repeat each quarter to see trends · Feed red/amber areas into the 1% Experiment Canvas",
           8, "#CBD5E1", MONO, anchor="end", ls=".08em"),
     ]))
     write_board("team-health-check-board", "Team Health Check",
@@ -608,7 +606,7 @@ def build_experiment_canvas():
     for i, lab in enumerate(["Owner:", "Supporters:", "Start date:", "Mid-point check-in:", "Review date:"]):
         b.append(field(x + 18, y + 84 + i * 36, lab, x + w - 18, ORANGE[0]))
     b.append(T(x + 18, y + 278, "Timebox:", 11, ORANGE[0], weight=600))
-    for i, lab in enumerate(["1 sprint", "2 sprints", "1 quarter / PI"]):
+    for i, lab in enumerate(["1 sprint", "2 sprints", "1 quarter"]):
         b.append(checkbox(x + 92 + i * 96, y + 278, lab, ORANGE[0], 10.5))
 
     # 6 risks
@@ -732,7 +730,7 @@ def build_lean_coffee():
     b.append(three_cards(906, "Action", ["Owner:", "Done when:"]))
     b.append(footer("What's the most valuable thing we could talk about right now?",
                     "Has this conversation run its course, or is there more value to unlock?",
-                    "Lean Coffee · Participant-Driven Meetings · Facilitation Toolkit · POM 2.0"))
+                    "Lean Coffee · Participant-Driven Meetings · Facilitation Toolkit"))
     write_board("lean-coffee-board", "Lean Coffee",
                 "A3 landscape Lean Coffee board: To Discuss, Discussing (current topic, timebox and keep-going vote) "
                 "and Discussed columns, a five-step how-it-works row, and three action slots.", "\n".join(b))
@@ -754,7 +752,7 @@ def slot(x, y, w, h, fill, dark, hint):
             T(x + w / 2, y + h / 2 + 4, hint, 10, dark, italic=True, anchor="middle", op=".55"))
 
 
-BREAKDOWN_TAG = "Break Down Work · Vertical Slicing · Deliver Value Early · POM 2.0"
+BREAKDOWN_TAG = "Break Down Work · Vertical Slicing · Deliver Value Early"
 
 
 # ---------------------------------------------------------------- epic breakdown canvas
@@ -1028,7 +1026,7 @@ def build_story_splitting():
 
     b.append(footer("What's the thinnest slice that still delivers value to a user?",
                     "If we could only ship half of this, which half?",
-                    "INVEST (Bill Wake) · SPIDR (Mike Cohn) · Splitting Patterns (Richard Lawrence) · POM 2.0"))
+                    "INVEST (Bill Wake) · SPIDR (Mike Cohn) · Splitting Patterns (Richard Lawrence)"))
     write_board("story-splitting-poster", "Story Splitting",
                 "A3 landscape reference poster: the INVEST check, nine story splitting patterns with a running checkout "
                 "example, vertical vs. horizontal slicing, and checks for a good split.", "\n".join(b))
@@ -1088,6 +1086,392 @@ def build_example_mapping():
                 "a questions column, and an outcome strip for the ready / split / needs-answers decision.", "\n".join(b))
 
 
+# ---------------------------------------------------------------- lifecycle helpers
+
+def check_lines(x, y, x_end, n, color, gap=30):
+    """Empty checkbox followed by a write-on line, n times."""
+    out = []
+    for i in range(n):
+        cy = y + i * gap
+        out.append(R(x, cy - 10, 12, 12, "white", 2, f' stroke="{color}" stroke-opacity=".6" stroke-width="1.2"'))
+        out.append(L(x + 22, cy + 3, x_end, cy + 3, WRITE))
+    return "".join(out)
+
+
+def table(x, y, cols, n, color, row_h=32):
+    """Write-on table. cols: list of (label, width); header labels sit at y."""
+    dark = color
+    w = sum(cw for _, cw in cols)
+    out = []
+    cx = x
+    for label, cw in cols:
+        out.append(T(cx + 6, y, label.upper(), 8.5, dark, MONO, weight=600, ls=".1em"))
+        cx += cw
+    out.append(L(x, y + 10, x + w, y + 10, dark, 1.2, ' stroke-opacity=".35"'))
+    for i in range(1, n + 1):
+        out.append(L(x, y + 10 + i * row_h, x + w, y + 10 + i * row_h, WRITE))
+    cx = x
+    for _, cw in cols[:-1]:
+        cx += cw
+        out.append(L(cx, y - 12, cx, y + 10 + n * row_h, dark, 1, ' stroke-opacity=".15"'))
+    return "".join(out)
+
+
+def label(x, y, s, color, size=11):
+    return T(x, y, s, size, color, weight=600)
+
+
+LIFECYCLE_TAG = "Agile Lifecycle · Plan · Build · Review · Improve"
+
+
+# ---------------------------------------------------------------- team charter
+
+def build_team_charter():
+    b = [header("Team Charter",
+                "Agree why the team exists, how it works together, and what Ready and Done mean, before the work starts.",
+                "Team Formation · Working Agreements · Definition of Ready & Done · Review It as the Team Changes",
+                header_fields(["Team", "Date"]))]
+
+    # row 1
+    y, h = 148, 300
+    x, w = 24, 808
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 1, "Purpose", PURPLE, "WHY DOES THIS TEAM EXIST?"))
+    for i, lead in enumerate(["We exist to…", "for…", "We succeed when…"]):
+        ly = y + 96 + i * 66
+        b.append(T(x + 18, ly, lead, 19, d, SERIF, italic=True))
+        b.append(L(x + 190, ly + 3, x + w - 18, ly + 3, d, 1, ' stroke-opacity=".25"'))
+        b.append(L(x + 18, ly + 33, x + w - 18, ly + 33, d, 1, ' stroke-opacity=".25"'))
+
+    x, w = 846, 397
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 2, "Members & Roles", BLUE))
+    b.append(table(x + 16, y + 84, [("Name", 120), ("Role", 110), ("What I bring", w - 32 - 230)], 6, d))
+
+    x = 1257
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 3, "Our Values", EMERALD, "WHAT MATTERS TO US"))
+    b.append(bullets(x + 22, y + 74, ["3–5 values, each with an example of it in action"], d))
+    b.append(dashed(x + 10, x + w - 10, y + 92, d))
+    b.append(sticky_zone(x + 10, y + 98, w - 20, h - 110, d, chips=(YELLOW,)))
+
+    # row 2
+    y, h = 462, 300
+    x, w = 24, 808
+    d = ORANGE[0]
+    b.append(panel(x, y, w, h, 4, "Working Agreements", ORANGE, "WE AGREE TO…"))
+    b.append(bullets(x + 22, y + 74, ["Communication, core hours, meetings, feedback, how we handle interruptions"], d))
+    b.append(dashed(x + 10, x + w - 10, y + 92, d))
+    b.append(sticky_zone(x + 10, y + 98, w - 20, h - 110, d, "One agreement per sticky, written as “We…”", chips=(YELLOW,)))
+
+    x, w = 846, 397
+    d = SKY[0]
+    b.append(panel(x, y, w, h, 5, "How We Decide", SKY))
+    for i, m in enumerate(["Consent: no one objects", "Consensus: everyone agrees", "Majority vote",
+                           "Consult, then one person decides", "Delegated to an owner"]):
+        b.append(checkbox(x + 18, y + 86 + i * 28, m, d, 11))
+    b.append(T(x + 18, y + 236, "Default method, and who decides what:", 11, d, weight=600))
+    b.append(lines(x + 18, y + 264, x + w - 18, 1))
+
+    x = 1257
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 6, "Ways of Working", SLATE, "CADENCE & TOOLS"))
+    for i, f in enumerate(["Iteration length:", "Planning:", "Daily sync:", "Review:", "Retro:", "Board / tools:", "Channels:"]):
+        b.append(field(x + 18, y + 86 + i * 30, f, x + w - 18, d))
+
+    # row 3
+    y, h, w = 776, 284, 534
+    for i, (num, title, color, note, hint) in enumerate([
+            (7, "Definition of Ready", AMBER, "BEFORE WE START AN ITEM", "e.g. value is clear, it's small enough, examples agreed"),
+            (8, "Definition of Done", FOREST, "BEFORE WE CALL IT DONE", "e.g. tested, reviewed, documented, releasable")]):
+        x = 24 + i * 548
+        d = color[0]
+        b.append(panel(x, y, w, h, num, title, color, note))
+        b.append(T(x + 18, y + 78, hint, 10.5, d, italic=True, op=".7"))
+        b.append(check_lines(x + 18, y + 110, x + w - 18, 6, d))
+
+    x = 1120
+    d = RED[0]
+    b.append(panel(x, y, 536, h, 9, "Conflict & Review", RED))
+    b.append(T(x + 18, y + 82, "When we disagree, we…", 11, d, weight=600))
+    b.append(lines(x + 18, y + 110, x + 536 - 18, 2))
+    b.append(T(x + 18, y + 170, "We review this charter:", 11, d, weight=600))
+    for j, lab in enumerate(["Every quarter", "When someone joins", "When it stops working"]):
+        b.append(checkbox(x + 18 + j * 168, y + 200, lab, d, 10.5))
+    b.append(field(x + 18, y + 244, "Signed by the team:", x + 536 - 18, d))
+
+    b.append(footer("What would make this the best team any of us has worked on?",
+                    "Which of these agreements will we find hardest to keep?",
+                    "Team Formation · Working Agreements · Continuous Improvement"))
+    write_board("team-charter-board", "Team Charter",
+                "A3 landscape team charter: purpose, members and roles, values, working agreements, decision methods, "
+                "ways of working, Definition of Ready, Definition of Done, and conflict and review.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- product vision board
+
+def build_product_vision():
+    b = [header("Product Vision Board",
+                "Describe the change the product will bring, who it's for, what they need, and how we'll know it's working.",
+                "Envision · Inspired by Roman Pichler's Product Vision Board · Outcomes Over Output",
+                header_fields(["Product", "Owner"]))]
+
+    x, y, w, h = 24, 148, 1632, 176
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 1, "Vision", PURPLE, "THE POSITIVE CHANGE THE PRODUCT WILL BRING · NOT WHAT IT IS"))
+    b.append(T(x + 18, y + 98, "Our vision is…", 22, d, SERIF, italic=True))
+    b.append(L(x + 190, y + 101, x + w - 18, y + 101, d, 1, ' stroke-opacity=".25"'))
+    b.append(L(x + 18, y + 142, x + w - 18, y + 142, d, 1, ' stroke-opacity=".25"'))
+
+    y, h = 338, 470
+    cw = (1632 - 3 * 14) / 4
+    cols = [(2, "Target Group", BLUE, "WHO?", ["Which users and customers?", "Who is the most important group?", "Who is it not for?"]),
+            (3, "Needs", EMERALD, "WHY?", ["What problem does it solve?", "What benefit does it bring?", "How do they solve it today?"]),
+            (4, "Product", ORANGE, "WHAT?", ["The 3–5 things that make it stand out", "Is it feasible?", "How is it different?"]),
+            (5, "Business Goals", AMBER, "WHY US?", ["How does it help the organisation?", "Revenue, cost, reach, reputation?", "Which goal matters most?"])]
+    for i, (num, title, color, note, prompts) in enumerate(cols):
+        x = 24 + i * (cw + 14)
+        d = color[0]
+        b.append(panel(x, y, cw, h, num, title, color, note))
+        b.append(bullets(x + 22, y + 74, prompts, d))
+        b.append(dashed(x + 10, x + cw - 10, y + 128, d))
+        b.append(sticky_zone(x + 10, y + 134, cw - 20, h - 146, d, chips=(YELLOW,)))
+
+    y, h = 822, 238
+    x, w = 24, 808
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 6, "Measures of Success", FOREST, "HOW WE'LL KNOW IT'S WORKING"))
+    b.append(table(x + 18, y + 84, [("Outcome", 300), ("Measure", 230), ("Baseline", 118), ("Target", w - 36 - 648)], 4, d))
+
+    x = 846
+    d = RED[0]
+    b.append(panel(x, y, w, h, 7, "Riskiest Assumptions", RED, "TEST THESE FIRST"))
+    b.append(bullets(x + 22, y + 74, ["What must be true for this vision to work?",
+                                      "Test the riskiest with the 1% Experiment Canvas or an MVP"], d))
+    b.append(dashed(x + 10, x + w - 10, y + 110, d))
+    b.append(sticky_zone(x + 10, y + 116, w - 20, h - 128, d, chips=(YELLOW, PINK_ST)))
+
+    b.append(footer("What will be different for our users when this succeeds?",
+                    "Who is this not for?", "Envision · Product Strategy · Outcomes Over Output"))
+    write_board("product-vision-board", "Product Vision Board",
+                "A3 landscape product vision board: vision statement, target group, needs, product, business goals, "
+                "measures of success, and riskiest assumptions to test.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- prioritisation board
+
+def build_prioritisation():
+    b = [header("Prioritisation Board",
+                "Compare value and effort, put a number on the cost of delay, agree what's in, and lay out Now, Next and Later.",
+                "Plan · Value vs. Effort · Cost of Delay (CD3) · MoSCoW · Now / Next / Later Roadmap",
+                header_fields(["Product / scope", "Date"]))]
+
+    # 1 value vs effort
+    x, y, w, h = 24, 148, 808, 600
+    b.append(panel(x, y, w, h, 1, "Value vs. Effort", BLUE, "PLACE EACH ITEM ON THE GRID"))
+    gx0, gy0, gx1, gy1 = x + 54, y + 70, x + w - 18, y + h - 52
+    mx, my = (gx0 + gx1) / 2, (gy0 + gy1) / 2
+    quads = [(gx0, gy0, "Quick Wins", "High value · low effort · do these first", EMERALD),
+             (mx, gy0, "Big Bets", "High value · high effort · slice them first", BLUE),
+             (gx0, my, "Fill-ins", "Low value · low effort · if there's spare time", AMBER),
+             (mx, my, "Money Pits", "Low value · high effort · avoid or drop", RED)]
+    for qx, qy, name, sub, (dk, lt) in quads:
+        b.append(R(qx + 2, qy + 2, mx - gx0 - 4, my - gy0 - 4, lt, 6))
+        b.append(R(qx + 2, qy + 2, mx - gx0 - 4, my - gy0 - 4, "url(#dots)", 6))
+        b.append(T(qx + 16, qy + 28, name, 15, dk, weight=600))
+        b.append(T(qx + 16, qy + 46, sub, 10, dk, op=".75"))
+    b.append(L(gx0, gy1, gx1, gy1, INK, 1.5))
+    b.append(L(gx0, gy0, gx0, gy1, INK, 1.5))
+    b.append(T(gx0, gy1 + 22, "LOW EFFORT", 9, MUTED, MONO, ls=".12em"))
+    b.append(T(gx1, gy1 + 22, "HIGH EFFORT", 9, MUTED, MONO, anchor="end", ls=".12em"))
+    b.append(T(mx, gy1 + 22, "EFFORT →", 9, INK, MONO, weight=600, anchor="middle", ls=".12em"))
+    vy = (gy0 + gy1) / 2
+    b.append(f'<text transform="translate({gx0 - 22:g},{vy:g}) rotate(-90)" text-anchor="middle" font-family="{MONO}" '
+             f'font-size="9" font-weight="600" fill="{INK}" letter-spacing=".12em">VALUE →</text>')
+
+    # 2 cost of delay
+    x, y, w, h = 846, 148, 810, 290
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 2, "Cost of Delay", PURPLE, "HIGHEST COST OF DELAY / SIZE GOES FIRST"))
+    b.append(T(x + 18, y + 76, "Score each column 1, 2, 3, 5, 8 or 13, relative to the lowest item. CoD = value + time + risk.",
+               10.5, d, italic=True, op=".75"))
+    b.append(table(x + 18, y + 108, [("Item", 214), ("Value", 76), ("Time", 76), ("Risk / opp.", 92),
+                                     ("CoD", 76), ("Size", 76), ("CoD / Size", 92), ("Rank", w - 36 - 702)], 5, d, 32))
+
+    # 3 moscow
+    x, y, w, h = 846, 452, 810, 296
+    d = ORANGE[0]
+    b.append(panel(x, y, w, h, 3, "MoSCoW", ORANGE, "FOR A FIXED DATE OR SCOPE"))
+    mw = (w - 20 - 3 * 10) / 4
+    for i, (name, sub, col) in enumerate([("Must", "Fails without it", RED), ("Should", "Important, not vital", ORANGE),
+                                          ("Could", "Nice if there's time", AMBER), ("Won't (this time)", "Agreed out", SLATE)]):
+        cx = x + 10 + i * (mw + 10)
+        b.append(T(cx + 6, y + 78, name, 13, col[0], weight=600))
+        b.append(T(cx + 6, y + 94, sub, 9.5, col[0], op=".7"))
+        b.append(sticky_zone(cx, y + 104, mw, h - 116, col[0], "Stickies", chips=(YELLOW,)))
+
+    # 4 roadmap
+    x, y, w, h = 24, 762, 1632, 298
+    b.append(panel(x, y, w, h, 4, "Now · Next · Later", FOREST, "A ROADMAP OF OUTCOMES, NOT DATES"))
+    rw = (w - 20 - 2 * 12) / 3
+    for i, (name, sub, col) in enumerate([("Now", "Committed and in progress", EMERALD),
+                                          ("Next", "Planned and being shaped", BLUE),
+                                          ("Later", "Ideas and options, not committed", SLATE)]):
+        cx = x + 10 + i * (rw + 12)
+        d = col[0]
+        b.append(R(cx, y + 64, rw, h - 76, col[1], 6, f' stroke="{d}" stroke-opacity=".2"'))
+        b.append(T(cx + 14, y + 90, name.upper(), 12, d, MONO, weight=600, ls=".14em"))
+        b.append(T(cx + rw - 14, y + 90, sub, 10, d, anchor="end", op=".7"))
+        b.append(sticky_zone(cx + 8, y + 102, rw - 16, h - 166, d, chips=(YELLOW,)))
+        b.append(field(cx + 14, y + h - 28, "Outcome:", cx + rw - 14, d))
+
+    b.append(footer("What does it cost us, each week, to not have this yet?",
+                    "If we could only do one thing this quarter, what would it be?", "Plan · Prioritise · Deliver Value Early"))
+    write_board("prioritisation-board", "Prioritisation Board",
+                "A3 landscape prioritisation board: value vs. effort grid, cost of delay table (CD3), MoSCoW columns, "
+                "and a Now / Next / Later roadmap.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- sprint planning
+
+def build_sprint_planning():
+    b = [header("Sprint Planning",
+                "Agree why this sprint matters, what can be done, and how the team will start, in one visible plan.",
+                "Build in Iterations · Sprint Goal · Capacity · Forecast, Not Commitment to Every Item",
+                header_fields(["Team", "Sprint dates"]))]
+
+    y, h = 148, 268
+    x, w = 24, 808
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 1, "Sprint Goal", PURPLE, "WHY IS THIS SPRINT VALUABLE?"))
+    b.append(T(x + 18, y + 96, "By the end of this sprint…", 19, d, SERIF, italic=True))
+    b.append(L(x + 250, y + 99, x + w - 18, y + 99, d, 1, ' stroke-opacity=".25"'))
+    b.append(L(x + 18, y + 135, x + w - 18, y + 135, d, 1, ' stroke-opacity=".25"'))
+    b.append(field(x + 18, y + 182, "We'll know we've achieved it when…", x + w - 18, d))
+    b.append(field(x + 18, y + 222, "It supports this product goal:", x + w - 18, d))
+
+    x, w = 846, 397
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 2, "Capacity", BLUE, "BE REALISTIC"))
+    for i, f in enumerate(["Working days:", "People available:", "Holidays & absences:", "Other commitments:",
+                           "Recent throughput (last 3):", "Capacity this sprint:"]):
+        b.append(field(x + 18, y + 86 + i * 30, f, x + w - 18, d))
+
+    x = 1257
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 3, "Inputs Checked", EMERALD))
+    for i, m in enumerate(["Product goal & roadmap reviewed", "Top of the backlog is ready", "Last review's feedback included",
+                           "Retro actions planned in", "Dependencies known", "Definition of Done visible"]):
+        b.append(checkbox(x + 18, y + 86 + i * 30, m, d, 11))
+
+    y, h = 430, 420
+    x, w = 24, 1219
+    d = ORANGE[0]
+    b.append(panel(x, y, w, h, 4, "Selected Items", ORANGE, "IN PRIORITY ORDER · STOP WHEN CAPACITY IS REACHED"))
+    hw = (w - 30) / 2
+    for i, (name, sub) in enumerate([("Needed for the Sprint Goal", "If we only finish these, the sprint still succeeds"),
+                                     ("Also planned", "Valuable, but they can move if the goal is at risk")]):
+        cx = x + 10 + i * (hw + 10)
+        b.append(T(cx + 6, y + 78, name, 13, d, weight=600))
+        b.append(T(cx + 6, y + 96, sub, 10, d, op=".7"))
+        b.append(sticky_zone(cx, y + 106, hw, h - 118, d, chips=(YELLOW,)))
+
+    x, w = 1257, 397
+    d = RED[0]
+    b.append(panel(x, y, w, h, 5, "Risks & Dependencies", RED))
+    b.append(bullets(x + 22, y + 74, ["What could stop us reaching the goal?", "Who outside the team do we need, and when?"], d))
+    b.append(dashed(x + 10, x + w - 10, y + 110, d))
+    b.append(sticky_zone(x + 10, y + 116, w - 20, h - 128, d, chips=(YELLOW, PINK_ST)))
+
+    y, h = 864, 196
+    x, w = 24, 808
+    d = SKY[0]
+    b.append(panel(x, y, w, h, 6, "How We'll Start", SKY, "THE FIRST DAYS"))
+    b.append(field(x + 18, y + 86, "Day 1, we start with:", x + w - 18, d))
+    b.append(field(x + 18, y + 120, "Pairing / swarming on:", x + w - 18, d))
+    b.append(field(x + 18, y + 154, "First thing to finish:", x + w - 18, d))
+
+    x = 846
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 7, "Confidence Vote", FOREST, "FIST OF FIVE"))
+    for i, lab in enumerate(["No confidence", "Serious concerns", "Some concerns", "Confident", "Very confident"]):
+        cx = x + 70 + i * 108
+        b.append(f'<circle cx="{cx}" cy="{y + 92}" r="17" fill="white" stroke="{d}" stroke-opacity=".5" stroke-width="1.5"/>')
+        b.append(T(cx, y + 98, str(i + 1), 14, d, weight=600, anchor="middle"))
+        b.append(T(cx, y + 128, lab, 9.5, d, anchor="middle", op=".8"))
+    b.append(field(x + 18, y + 168, "Any 1s or 2s? Concerns raised:", x + w - 18, d))
+
+    b.append(footer("If we only achieve one thing this sprint, what should it be?",
+                    "What would stop us from reaching the goal?", LIFECYCLE_TAG))
+    write_board("sprint-planning-board", "Sprint Planning",
+                "A3 landscape sprint planning board: sprint goal, capacity, inputs checklist, selected items split by "
+                "goal and also-planned, risks and dependencies, first-day plan, and a fist-of-five confidence vote.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- sprint review
+
+def build_sprint_review():
+    b = [header("Sprint Review",
+                "Show what's done, hear from stakeholders, and decide together what the backlog should look like next.",
+                "Review & Release · Inspect the Increment · Stakeholder Feedback · Adapt the Backlog",
+                legend([("sticky", YELLOW, "Yellow = Item"), ("sticky", GREEN, "Green = Positive"),
+                        ("sticky", PINK_ST, "Pink = Concern"), ("sticky", BLUE_ST, "Blue = Idea")]))]
+
+    y, h = 148, 236
+    x, w = 24, 808
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 1, "Sprint Goal & Result", PURPLE))
+    b.append(field(x + 18, y + 86, "Team & sprint:", x + w - 18, d))
+    b.append(field(x + 18, y + 122, "Sprint Goal:", x + w - 18, d))
+    b.append(T(x + 18, y + 162, "Did we achieve it?", 11, d, weight=600))
+    for j, lab in enumerate(["Yes", "Partly", "No"]):
+        b.append(checkbox(x + 160 + j * 90, y + 162, lab, d, 11))
+    b.append(field(x + 18, y + 204, "What we learned about the goal:", x + w - 18, d))
+
+    x = 846
+    d = BLUE[0]
+    b.append(panel(x, y, 810, h, 2, "Key Measures", BLUE, "DID THE NUMBERS MOVE?"))
+    b.append(table(x + 18, y + 84, [("Measure", 300), ("Before", 140), ("Now", 140), ("Target", 810 - 36 - 580)], 4, d))
+
+    y, h = 398, 400
+    cols = [(3, "What We Built", EMERALD, "DONE ITEMS ONLY", ["Only work that meets the Definition of Done", "Show working product, not slides"], (YELLOW,)),
+            (4, "Stakeholder Feedback", ORANGE, "LISTEN FIRST", ["What did you like? What worries you?", "What would you change or add?"], (GREEN, PINK_ST, BLUE_ST)),
+            (5, "What's Changed Around Us", SKY, "CONTEXT", ["Users, market, competitors", "Budget, timeline, priorities"], (YELLOW,))]
+    for i, (num, title, color, note, prompts, chips) in enumerate(cols):
+        x = 24 + i * 548
+        w = 534 if i < 2 else 536
+        d = color[0]
+        b.append(panel(x, y, w, h, num, title, color, note))
+        b.append(bullets(x + 22, y + 74, prompts, d))
+        b.append(dashed(x + 10, x + w - 10, y + 110, d))
+        b.append(sticky_zone(x + 10, y + 116, w - 20, h - 128, d, chips=chips))
+
+    y, h = 812, 248
+    x, w = 24, 1082
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 6, "Backlog Changes", AMBER, "WHAT THE REVIEW CHANGES"))
+    bw = (w - 20 - 2 * 10) / 3
+    for i, (name, sub) in enumerate([("Add", "New items from feedback"), ("Change", "Re-order, re-shape or re-size"),
+                                     ("Remove", "No longer worth doing")]):
+        cx = x + 10 + i * (bw + 10)
+        b.append(T(cx + 6, y + 78, name, 13, d, weight=600))
+        b.append(T(cx + 6, y + 94, sub, 9.5, d, op=".7"))
+        b.append(sticky_zone(cx, y + 104, bw, h - 116, d, "Stickies", chips=(YELLOW,)))
+
+    x, w = 1120, 536
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 7, "What's Next", FOREST))
+    for i, f in enumerate(["Likely next Sprint Goal:", "Release / forecast update:", "Decisions needed from stakeholders:",
+                           "Who follows up:"]):
+        b.append(field(x + 18, y + 90 + i * 38, f, x + w - 18, d))
+
+    b.append(footer("Based on what we've seen, what should we do next?",
+                    "What surprised you today?", LIFECYCLE_TAG))
+    write_board("sprint-review-board", "Sprint Review",
+                "A3 landscape sprint review board: sprint goal and result, key measures, what was built, stakeholder "
+                "feedback, changes in context, backlog changes (add, change, remove), and next steps.", "\n".join(b))
+
+
 if __name__ == "__main__":
     for horizon in ("sprint", "quarter"):
         build_retros(horizon)
@@ -1099,3 +1483,8 @@ if __name__ == "__main__":
     build_story_map()
     build_story_splitting()
     build_example_mapping()
+    build_team_charter()
+    build_product_vision()
+    build_prioritisation()
+    build_sprint_planning()
+    build_sprint_review()

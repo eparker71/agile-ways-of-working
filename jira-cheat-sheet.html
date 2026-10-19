@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jira Cheat Sheet</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#64748B; --rule:#E2E8F0;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:12.5px;line-height:1.45;padding:24px 16px;}
+a{color:inherit;}
+
+/* one sheet = A3 landscape at 96 dpi */
+.sheet{width:1587px;height:1123px;margin:0 auto 24px;background:linear-gradient(#F8FAFC,#EFF6FF);
+  box-shadow:0 12px 40px rgba(0,0,0,.22);display:flex;flex-direction:column;overflow:hidden;}
+.head{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:16px 22px 14px;position:relative;flex:none;}
+.head h1{font:400 34px/1 var(--serif);margin:0 0 6px;}
+.head p{margin:0;color:#94A3B8;font-size:12.5px;}
+.head .side{position:absolute;right:22px;top:14px;text-align:right;}
+.badge{font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;display:inline-block;}
+.head .side div{font:500 9px var(--mono);letter-spacing:.14em;color:#64748B;margin-top:12px;}
+.body>*{min-width:0;}
+.body{flex:1;min-height:0;display:grid;gap:12px;padding:12px 20px;}
+.foot{flex:none;display:flex;justify-content:space-between;gap:16px;padding:0 20px 10px;font:8px var(--mono);letter-spacing:.08em;color:#94A3B8;}
+.foot .fq{font:italic 13px var(--serif);color:var(--ink);letter-spacing:0;}
+
+
+.panel{background:var(--l);border:1.5px solid color-mix(in srgb,var(--d) 18%,transparent);border-radius:10px;overflow:hidden;
+  display:flex;flex-direction:column;min-height:0;box-shadow:0 2px 8px rgba(0,0,0,.07);}
+.panel>h2{margin:0;background:var(--d);color:#fff;font:600 14px var(--sans);padding:9px 14px;display:flex;align-items:center;gap:9px;flex:none;}
+.panel>h2 .n{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.18);font-size:10.5px;display:inline-flex;align-items:center;justify-content:center;}
+.panel>h2 small{margin-left:auto;font:500 8.5px var(--mono);letter-spacing:.1em;opacity:.65;text-transform:uppercase;}
+.pb{padding:10px 14px 12px;color:var(--d);flex:1;min-height:0;}
+.pb p{margin:0 0 6px;}
+.q{font:italic 18px/1.2 var(--serif);margin:0 0 8px;color:var(--d);}
+.lbl{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;opacity:.75;display:block;margin:0 0 3px;}
+
+/* white sub-cards inside panels */
+.cards{display:grid;gap:7px;}
+.card{background:rgba(255,255,255,.78);border-radius:6px;padding:9px 12px;border:1px solid color-mix(in srgb,var(--d) 12%,transparent);}
+.card b{display:block;font-size:13px;margin-bottom:1px;}
+.card i{display:block;font-style:normal;opacity:.8;}
+.card .ask{font:italic 14.5px/1.25 var(--serif);opacity:1;margin-top:2px;}
+
+table{width:100%;border-collapse:collapse;}
+th{font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;text-align:left;padding:6px 9px;border-bottom:1.5px solid color-mix(in srgb,var(--d) 30%,transparent);}
+td{padding:8px 9px;vertical-align:top;border-bottom:1px solid color-mix(in srgb,var(--d) 12%,transparent);}
+tr:last-child td{border-bottom:none;}
+td:first-child{font-weight:600;white-space:nowrap;}
+td.tb{font:500 11px var(--mono);white-space:nowrap;}
+.bad{color:#991B1B;}
+
+ul{margin:0;padding-left:15px;}
+li{margin-bottom:2px;}
+.qgroups{display:grid;gap:8px;align-content:space-between;}
+.qgroups ul{list-style:none;padding:0;}
+.qgroups li{font:italic 15px/1.3 var(--serif);padding-left:11px;position:relative;margin-bottom:1px;}
+.qgroups li::before{content:"";position:absolute;left:0;top:.6em;width:4px;height:4px;border-radius:50%;background:currentColor;opacity:.5;}
+
+.chips{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;}
+.chip{background:#fff;border-radius:8px;padding:8px 10px;border:1px solid var(--rule);border-top:3px solid var(--accent);color:var(--ink);}
+.chip b{display:block;font-size:13px;margin-bottom:2px;}
+.chip span{color:var(--muted);}
+
+.stages{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.stage{background:rgba(255,255,255,.78);border-radius:6px;padding:8px 12px;position:relative;}
+.stage b{font-size:14px;}
+.stage .lbl{margin-top:5px;}
+.arrowrow{display:flex;justify-content:space-between;font:500 8.5px var(--mono);letter-spacing:.1em;opacity:.6;margin:6px 2px 0;text-transform:uppercase;}
+
+.poker{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:3px 0 8px;}
+.poker div{background:#fff;border-radius:5px;text-align:center;padding:5px 2px;border:1px solid color-mix(in srgb,var(--d) 15%,transparent);}
+.poker b{display:block;font:600 14px var(--sans);}
+.poker span{font-size:10px;}
+.pyr{display:flex;flex-direction:column;align-items:center;gap:3px;margin-top:3px;}
+.pyr div{background:var(--d);color:#fff;text-align:center;padding:4px 6px;border-radius:3px;font-size:11px;}
+.pyr div:nth-child(1){width:44%;opacity:.55}.pyr div:nth-child(2){width:58%;opacity:.65}.pyr div:nth-child(3){width:72%;opacity:.75}
+.pyr div:nth-child(4){width:86%;opacity:.87}.pyr div:nth-child(5){width:100%;}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.cols3{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:12px;}
+.tk li{margin-bottom:5px;}
+.tk a{font-weight:600;text-decoration:none;border-bottom:1px solid color-mix(in srgb,currentColor 35%,transparent);}
+
+.j1{grid-template-columns:1fr 1fr 1.4fr 1fr;grid-template-rows:auto 1fr auto;
+  grid-template-areas:"hier hier board sprint" "jql jql reports reports" "anti anti anti keys";}
+.hier{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;}
+.hier .card{border-top:3px solid var(--d);}
+.hier .card:nth-child(1){opacity:.78}.hier .card:nth-child(4){opacity:.85}
+.pb a{font-weight:600;text-decoration:none;border-bottom:1px solid color-mix(in srgb,currentColor 35%,transparent);}
+.tight li{margin-bottom:5px;}
+code{font:500 10.5px/1.45 var(--mono);background:rgba(255,255,255,.85);border:1px solid color-mix(in srgb,var(--d) 14%,transparent);border-radius:4px;padding:1px 5px;color:var(--ink);}
+.jqls{display:grid;grid-template-columns:1fr 1fr;gap:7px 10px;}
+.jq{background:rgba(255,255,255,.6);border-radius:6px;padding:6px 9px;}
+.jq code{display:block;white-space:normal;overflow-wrap:anywhere;margin-top:2px;}
+.jq .note{display:block;margin-top:2px;}
+.note{font-size:11px;opacity:.75;}
+.card .fix{display:block;margin-top:4px;font-weight:600;}
+.card .fix::before{content:"→ ";}
+.keys{display:grid;grid-template-columns:1fr 1fr;gap:6px 10px;}
+.keys div{display:flex;align-items:center;gap:8px;color:var(--ink);}
+kbd{font:600 11px var(--mono);background:#fff;border:1px solid #CBD5E1;border-bottom-width:2px;border-radius:4px;min-width:22px;text-align:center;padding:2px 6px;color:var(--ink);}
+.keys div kbd:last-of-type{margin-right:4px;}
+.foot a{color:inherit;}
+@media (max-width:1640px){.hier{grid-template-columns:1fr 1fr;}}
+@media (max-width:720px){.hier{grid-template-columns:1fr;}.jqls{grid-template-columns:1fr;}}
+
+@media (max-width:1640px){
+  .sheet{width:auto;height:auto;max-width:1100px;}
+  .body,.j1{grid-template-columns:1fr 1fr;grid-template-rows:none;
+    grid-template-areas:none;}
+  .body>*{grid-area:auto !important;}
+  .wide{grid-column:1 / -1 !important;}
+  .chips{grid-template-columns:repeat(4,1fr);}
+}
+@media (max-width:720px){
+  body{padding:16px 0;}
+  .sheet{max-width:100%;}
+  .head h1{font-size:28px;}
+  .panel>h2 small{display:none;}
+  .tbl table{min-width:620px;}
+  .cards[style]{grid-template-columns:1fr !important;}
+  .body,.j1{grid-template-columns:1fr;padding:12px 16px;}
+  .head .side{position:static;text-align:left;margin-top:10px;}
+  .chips,.stages,.cols2,.cols3{grid-template-columns:1fr 1fr;}
+  .poker{grid-template-columns:repeat(4,1fr);}
+  .tbl{overflow-x:auto;}
+  .stages,.chips{grid-template-columns:1fr 1fr;}
+}
+@media print{
+  @page{size:A3 landscape;margin:0;}
+  html,body{background:none;}
+  body{padding:0;}
+  .sheet{width:420mm;height:297mm;margin:0;box-shadow:none;break-after:page;}
+  .sheet:last-child{break-after:auto;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+
+<section class="sheet">
+  <header class="head">
+    <h1>Jira Cheat Sheet for Agile Teams</h1>
+    <p>How the toolkit's practices show up in Jira Cloud. <b style="color:#fff">CM</b> = company-managed project · <b style="color:#fff">TM</b> = team-managed project.</p>
+    <div class="side"><div>ONE SIDE · JIRA CLOUD</div></div>
+  </header>
+
+  <div class="body j1">
+    <section class="panel" style="grid-area:hier;--d:#581C87;--l:#EDE9FE">
+      <h2><span class="n">1</span>Work Hierarchy → The Toolkit<small>Jira now calls issues "work items"</small></h2>
+      <div class="pb">
+        <div class="hier">
+          <div class="card"><span class="lbl">Above epic · Premium / Plans</span><b>Initiative</b><i>A strategic bet across teams. Shape it with the <a href="epic-breakdown-canvas.html">Epic Breakdown Canvas</a> before it becomes epics.</i></div>
+          <div class="card"><span class="lbl">Level 1</span><b>Epic</b><i>One hypothesis, an MVP and 3–8 features. Weeks to a quarter. Put the hypothesis and success measure in the description.</i></div>
+          <div class="card"><span class="lbl">Level 0 · Story · Task · Bug</span><b>Story</b><i>A vertical slice of value that fits in a sprint. Lay them out with the <a href="story-map-board.html">Story Map</a>, size them with <a href="story-splitting-poster.html">Story Splitting</a>, confirm with <a href="example-mapping-board.html">Example Mapping</a>.</i></div>
+          <div class="card"><span class="lbl">Level −1 · optional</span><b>Sub-task</b><i>The team's how-to steps for one story. Never a separate slice of value, and never tracked as progress.</i></div>
+        </div>
+        <p style="margin-top:8px;opacity:.85">Several teams? Some add a <b>Feature</b> level between epic and story (part of SAFe), or treat epics as features. Pick one mapping and write it down.</p>
+      </div>
+    </section>
+
+    <section class="panel" style="grid-area:board;--d:#1E3A8A;--l:#DBEAFE">
+      <h2><span class="n">2</span>Board Setup<small>Make the real flow visible</small></h2>
+      <div class="pb">
+        <ul class="tight">
+          <li><b>Columns = real states.</b> One column for each place work actually waits or changes hands. Add a <i>Waiting for review</i> column so queues show.</li>
+          <li><b>WIP limits.</b> Set a maximum on in-progress columns. CM: Board settings → Columns. TM: column menu → Set column limit.</li>
+          <li><b>Swimlanes.</b> By epic or by query, with an <i>Expedite</i> lane for urgent work. Avoid lanes by person.</li>
+          <li><b>Quick filters.</b> CM: any JQL, e.g. <code>flagged is not EMPTY</code>. TM: built-in filters for epic, type, assignee and label.</li>
+          <li><b>Days in column.</b> CM: Card layout → show days in column, so ageing work stands out.</li>
+          <li><b>Done means Done.</b> Only the last column maps to the Done category, and nothing moves there until it meets the Definition of Done.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel" style="grid-area:sprint;--d:#065F46;--l:#D1FAE5">
+      <h2><span class="n">3</span>Sprint Operations<small>Plan · run · close</small></h2>
+      <div class="pb">
+        <ul class="tight">
+          <li><b>Refine.</b> Keep 1–2 sprints of stories ready at the top of the backlog. Rank by dragging. The order is the plan.</li>
+          <li><b>Start.</b> Fill in the <em>Sprint goal</em> field in the Start sprint dialog. It then shows on the board for everyone.</li>
+          <li><b>Run.</b> Flag blocked work (right-click → Add flag) and raise it at the Daily Scrum. Walk the board right to left.</li>
+          <li><b>Close.</b> Complete sprint asks where unfinished work goes. Decide each item on purpose: next sprint, or back to the backlog to re-rank.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel" style="grid-area:jql;--d:#0C4A6E;--l:#E0F2FE">
+      <h2><span class="n">4</span>JQL You'll Reuse<small>Replace KEY with your project key</small></h2>
+      <div class="pb">
+        <div class="jqls">
+          <div class="jq"><span class="lbl">Open sprint, not done</span><code>project = KEY AND sprint in openSprints() AND statusCategory != Done</code></div>
+          <div class="jq"><span class="lbl">Stale in progress</span><code>project = KEY AND statusCategory = "In Progress" AND updated &lt;= -5d</code></div>
+          <div class="jq"><span class="lbl">Blocked</span><code>project = KEY AND flagged is not EMPTY</code></div>
+          <div class="jq"><span class="lbl">Stories with no epic</span><code>project = KEY AND issuetype = Story AND parent is EMPTY</code></div>
+          <div class="jq"><span class="lbl">Ready but unestimated</span><code>project = KEY AND issuetype = Story AND statusCategory = "To Do" AND "Story point estimate" is EMPTY</code> <span class="note">CM field: "Story Points"</span></div>
+          <div class="jq"><span class="lbl">Backlog graveyard</span><code>project = KEY AND statusCategory = "To Do" AND created &lt;= -180d ORDER BY created ASC</code></div>
+          <div class="jq"><span class="lbl">Finished in the last 2 weeks</span><code>project = KEY AND statusCategory = Done AND statusCategoryChangedDate &gt;= -14d</code></div>
+          <div class="jq"><span class="lbl">Started in the last 2 weeks</span><code>project = KEY AND status CHANGED TO "In Progress" AFTER -14d</code></div>
+        </div>
+        <p class="note" style="margin-top:7px">Scope added mid-sprint has no clean JQL: use the Sprint Report (added items are marked *). Save queries as shared filters.</p>
+      </div>
+    </section>
+
+    <section class="panel" style="grid-area:reports;--d:#9A3412;--l:#FFEDD5">
+      <h2><span class="n">5</span>Reports &amp; What They Tell You<small>Use them for questions, not judgement</small></h2>
+      <div class="pb">
+        <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+          <div class="card"><b>Sprint Report</b><i>Committed vs. completed, plus scope added (*) and removed.</i><span class="ask">“What changed our plan, and could we have seen it coming?”</span></div>
+          <div class="card"><b>Burndown / Burnup</b><i>Progress inside a sprint. A flat line then a cliff means big items or testing left to the end.</i><span class="ask">“What would let work finish earlier in the sprint?”</span></div>
+          <div class="card"><b>Velocity</b><i>A forecasting aid for this team only. Never compare teams or set it as a target.</i><span class="ask">“What range can we plan with?”</span></div>
+          <div class="card"><b>Cumulative Flow</b><i>A widening band is a bottleneck; rising bands with flat Done mean too much WIP.</i><span class="ask">“Where is work piling up?”</span></div>
+          <div class="card"><b>Control Chart · CM</b><i>Cycle time per item, with outliers and trend. TM projects: use the cycle time report where available.</i><span class="ask">“What happened to the outliers?”</span></div>
+          <div class="card"><b>Epic &amp; Version Reports</b><i>Forecast a completion range from remaining work and velocity.</i><span class="ask">“What could we cut to land sooner?”</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" style="grid-area:anti;--d:#991B1B;--l:#FEE2E2">
+      <h2><span class="n">6</span>Jira Anti-Patterns<small>Spot it · Try this</small></h2>
+      <div class="pb">
+        <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+          <div class="card"><b>Status theatre</b><i>Tickets updated just before the stand-up, not as work moves.</i><span class="fix">Walk the board at the Daily Scrum and update as you go.</span></div>
+          <div class="card"><b>Workflow sprawl</b><i>Twelve statuses and forty custom fields nobody reads.</i><span class="fix">One status per real wait or hand-off. Prune fields every quarter.</span></div>
+          <div class="card"><b>Horizontal sub-tasks</b><i>Front end, back end and QA sub-tasks presented as progress.</i><span class="fix">Split stories vertically with the <a href="story-splitting-poster.html">splitting patterns</a>.</span></div>
+          <div class="card"><b>Tickets as performance</b><i>People ranked by tickets closed or points burned.</i><span class="fix">Measure team outcomes and flow, never individuals.</span></div>
+          <div class="card"><b>Jira as the conversation</b><i>Requirements argued out in long comment threads.</i><span class="fix">Talk first (try <a href="example-mapping-board.html">Example Mapping</a>), then record the decision.</span></div>
+          <div class="card"><b>Backlog graveyard</b><i>Hundreds of items, the oldest years old.</i><span class="fix">Archive anything untouched for 6 months. It'll come back if it matters.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" style="grid-area:keys;--d:#334155;--l:#F1F5F9">
+      <h2><span class="n">7</span>Keyboard Shortcuts<small>? lists them all</small></h2>
+      <div class="pb">
+        <div class="keys">
+          <div><kbd>c</kbd>Create a work item</div>
+          <div><kbd>/</kbd>Search</div>
+          <div><kbd>.</kbd>Actions menu for the selected item</div>
+          <div><kbd>i</kbd>Assign to me</div>
+          <div><kbd>a</kbd>Assign</div>
+          <div><kbd>m</kbd>Comment</div>
+          <div><kbd>e</kbd>Edit</div>
+          <div><kbd>j</kbd> <kbd>k</kbd>Next / previous item</div>
+          <div><kbd>[</kbd>Show or hide the sidebar</div>
+          <div><kbd>?</kbd>All shortcuts</div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer class="foot"><span class="fq">“The tool serves the team, not the other way round.”</span><span>Companion to the <a href="scrum-master-agile-coach-cheat-sheet.html">Scrum Master &amp; Agile Coach Cheat Sheet</a> · <a href="index.html">All tools</a></span></footer>
+</section>
+
+</body>
+</html>

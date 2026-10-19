@@ -98,8 +98,8 @@ GUIDES = [
         lede="How healthy is our team right now, and which way is it trending?",
         intro=("The health check gives a team a structured, safe way to talk about how things really are across eleven "
                "dimensions, from delivering value to teamwork. It is a <b>conversation tool for the team</b>, not a "
-               "management scorecard. Its value comes from discussing the votes and repeating the check every PI so trends show up."),
-        glance=[("Duration", "45–60 min"), ("Group", "One team<br>5–10 people"), ("Cadence", "Every PI<br>or quarter"),
+               "management scorecard. Its value comes from discussing the votes and repeating the check every quarter so trends show up."),
+        glance=[("Duration", "45–60 min"), ("Group", "One team<br>5–10 people"), ("Cadence", "Every quarter<br>or planning cycle"),
                 ("Output", "1–2 focus areas<br>&amp; trend")],
         before=["Print the board at A3, or load the SVG as a digital background",
                 "Green, amber and red dot stickers: one of each colour per person per dimension (or coloured cards for silent voting)",
@@ -121,8 +121,8 @@ GUIDES = [
                   ("2 · Easy to Release", BLUE, ["What's the scariest part of releasing?", "How many manual steps are there?"]),
                   ("3 · Fun", ORANGE, ["What gives us energy? What drains it?", "When did we last celebrate something?"]),
                   ("4 · Health of Codebase", AMBER, ["Which part of the code do we avoid touching?", "Is tech debt visible in the backlog?"]),
-                  ("5 · Learning", SKY, ["What did we learn this PI?", "Is learning planned or squeezed in?"]),
-                  ("6 · Mission", PURPLE, ["Could each of us explain why the team exists?", "How does our work link to the PI objectives?"]),
+                  ("5 · Learning", SKY, ["What did we learn this quarter?", "Is learning planned or squeezed in?"]),
+                  ("6 · Mission", PURPLE, ["Could each of us explain why the team exists?", "How does our work link to our quarterly objectives?"]),
                   ("7 · Pawns or Players", RED, ["Which decisions do we wish we could make?", "Where do we feel we have no say?"]),
                   ("8 · Speed", FOREST, ["Where does work wait?", "What blocks us most often?"]),
                   ("9 · Suitable Process", SLATE, ["Which ritual adds the least value?", "What would we change if we could?"]),
@@ -139,7 +139,7 @@ GUIDES = [
         after=[("Within 24 hours", "Photograph the board and store it with previous checks. Record the votes per row so you can track trends."),
                ("Focus areas", "Turn each focus area into a 1% Experiment Canvas with an owner and review date."),
                ("Between checks", "Revisit the focus areas at retros. Did the experiments help?"),
-               ("Next check", "Repeat at the same point next PI, using the same dimensions, and set the trend arrows.")],
+               ("Next check", "Repeat at the same point next quarter, using the same dimensions, and set the trend arrows.")],
         toolkit=("The health check is the <b>diagnose</b> step of the toolkit. Feed red or amber rows into a "
                  "<a href=\"experiment-canvas.html\">1% Experiment Canvas</a>. Where the cause sits outside the team, take it to a "
                  "<a href=\"facilitator-guide-marginal-gains.html\">Marginal Gains Workshop</a>."),
@@ -294,7 +294,7 @@ GUIDES = [
                 ("SVG · Sprint", "retro-board-4ls-sprint.svg"), ("SVG · Quarter", "retro-board-4ls-quarter.svg")],
         lede="What did we learn that we don't want to forget?",
         intro=("The 4 Ls balances positives and gaps, and puts learning in the spotlight. It suits the end of a project, a release "
-               "or a PI, and teams that want a reflective conversation rather than only listing problems."),
+               "or a quarter, and teams that want a reflective conversation rather than only listing problems."),
         glance=[("Duration", "60 min (sprint)<br>2 h (quarter)"), ("Group", "One team<br>3–10 people"),
                 ("Best for", "Reflection &amp;<br>learning"), ("Output", "Up to 3 actions<br>&amp; key learnings")],
         before=RETRO_BEFORE,
@@ -350,14 +350,14 @@ GUIDES = [
         lede="Which anchor, if cut, would let us sail fastest?",
         intro=("The sailboat metaphor helps teams look both back and forward: the <b>island</b> is our goal, the <b>wind</b> is what "
                "pushes us forward, <b>anchors</b> are what slow us down, and <b>rocks</b> are the risks ahead. Including risks "
-               "makes it a strong choice before a new PI or at a quarter boundary."),
+               "makes it a strong choice before a new planning cycle or at a quarter boundary."),
         glance=[("Duration", "60 min (sprint)<br>2 h (quarter)"), ("Group", "One team<br>3–12 people"),
                 ("Best for", "Goals, impediments<br>&amp; risks"), ("Output", "Up to 3 actions<br>&amp; known risks")],
         before=RETRO_BEFORE,
         agenda_heads=["Sprint", "Quarter", "Activity", "Facilitator notes"],
         agenda=retro_agenda("Yellow stickies in Wind, Anchors and Rocks. Use green for ideas that would add wind or cut an anchor.",
                             "Discuss the biggest anchors first, then the rocks. For each risk, decide whether to act now or just watch it.",
-                            extra_first=("5–8", "10–15", "Name the island", "Agree the goal first and write it in the Island zone: a sprint goal, PI objective or product outcome.")),
+                            extra_first=("5–8", "10–15", "Name the island", "Agree the goal first and write it in the Island zone: a sprint goal, quarterly objective or product outcome.")),
         sections_title="Prompts for each zone",
         sections_intro="Read these out if a zone stays empty.",
         sections=[("1 · Wind", FOREST, ["What helped us move faster?", "Who or what supported us?", "What should we do more of?"]),
@@ -366,7 +366,7 @@ GUIDES = [
                   ("4 · Rocks", AMBER, ["What could sink us?", "Which dependencies or deadlines worry us?", "What are we not talking about?"]),
                   ("Actions strip", ORANGE, ["Cut one anchor, avoid one rock", "Owner + done when for each"])],
         tips=[("Island first", "Without a shared goal, wind and anchors are hard to judge. Spend a few minutes agreeing it."),
-              ("Risks need owners too", "For each important rock, agree who will watch it and what would trigger action, such as a ROAM review in PI planning."),
+              ("Risks need owners too", "For each important rock, agree who will watch it and what would trigger action."),
               *RETRO_TIPS[2:]],
         pitfalls=RETRO_PITFALLS + " With the Sailboat in particular, don't let the drawing become the conversation. Keep moving.",
         after=RETRO_AFTER, toolkit=RETRO_TOOLKIT,
@@ -392,7 +392,7 @@ BREAKDOWN_GUIDES = [
         intro=("Big initiatives often arrive as a solution with a deadline. The canvas slows the group down just enough to agree "
                "<b>why</b> the epic exists, what outcome would prove it worked, and what the <b>smallest viable version</b> is. "
                "It then splits the epic into a few features that each deliver value, and identifies the first stories a team "
-               "can start. Use it before PI planning, or whenever an epic is too vague to plan."),
+               "can start. Use it before quarterly planning, or whenever an epic is too vague to plan."),
         glance=[("Duration", "90–120 min"), ("Group", "PO / PM, architect,<br>team reps, stakeholders"),
                 ("Use when", "A new epic or<br>big initiative"), ("Output", "MVP, 3–8 features<br>&amp; first stories")],
         before=["Print the canvas at A3 or larger, or load the SVG as a digital background",
@@ -409,7 +409,7 @@ BREAKDOWN_GUIDES = [
                 ("60–85", "4 · Features", "Split the epic into 3–8 features, each with a name, benefit and rough size. Tick the ones needed for the MVP."),
                 ("85–100", "6 · Out of Scope · 7 · Risks", "Write down what you are explicitly not doing, plus any non-functional needs. Add dependencies and risks as stickies."),
                 ("100–115", "5 · First Stories", "For the MVP features, write the first few stories as vertical slices. Use the Story Splitting poster if any look too big."),
-                ("115–120", "Close", "Confirm the next step: story mapping, PI planning, or a go / no-go decision.")],
+                ("115–120", "Close", "Confirm the next step: story mapping, release planning, or a go / no-go decision.")],
         sections_title="Making each section strong",
         sections_intro="Quality checks for each part of the canvas.",
         sections=[("1 · Epic Hypothesis", PURPLE, ["Is the customer specific, not “everyone”?", "Does “that…” describe value, not features?", "Could it be proven wrong?"]),
@@ -429,7 +429,7 @@ BREAKDOWN_GUIDES = [
                   "no measurable outcome; skipping out-of-scope so everything stays in; designing the solution in detail."),
         after=[("Straight away", "Photograph the canvas. Create the epic and its features in your backlog tool, linked to the canvas."),
                ("Next step", "Run a Story Map for the MVP features to lay out the user journey and the first release slice."),
-               ("Before PI planning", "Refine the first stories with Example Mapping so teams can plan them."),
+               ("Before quarterly planning", "Refine the first stories with Example Mapping so teams can plan them."),
                ("After the MVP", "Review the outcomes and leading indicators against the persevere / pivot conditions.")],
         toolkit=BREAKDOWN_TOOLKIT,
         foot="“Which feature, if it were the only one, would still deliver value?”",
@@ -590,6 +590,280 @@ BREAKDOWN_GUIDES = [
 GUIDES += BREAKDOWN_GUIDES
 
 
+LIFECYCLE_TOOLKIT = ("The lifecycle tools follow the work from start to finish: a <a href=\"facilitator-guide-team-charter.html\">Team Charter</a> "
+                     "when a team forms, a <a href=\"facilitator-guide-product-vision.html\">Product Vision Board</a> to agree why the product "
+                     "exists, the <a href=\"facilitator-guide-prioritisation.html\">Prioritisation Board</a> to decide what comes first, then "
+                     "<a href=\"facilitator-guide-sprint-planning.html\">Sprint Planning</a> and <a href=\"facilitator-guide-sprint-review.html\">"
+                     "Sprint Review</a> each iteration, with a retrospective from the Retro Kit to close the loop. The break-down tools "
+                     "(Epic Canvas, Story Map, Story Splitting, Example Mapping) sit between vision and planning.")
+
+LIFECYCLE_GUIDES = [
+    # -------------------------------------------------------------- team charter
+    dict(
+        slug="team-charter",
+        title="Team Charter Guide",
+        subtitle="How to help a new or changing team agree its purpose, ways of working, and what Ready and Done mean.",
+        tag="Facilitator Run-Sheet · Team Formation · Working Agreements · Definition of Ready & Done",
+        boards=[("Open board", "team-charter-board.html"), ("SVG", "team-charter-board.svg")],
+        lede="What would make this the best team any of us has worked on?",
+        intro=("Teams that skip chartering discover their disagreements later, under delivery pressure. A charter makes the "
+               "unwritten rules explicit: <b>why</b> the team exists, who is in it, what it values, how it works and decides, and "
+               "the quality bar for starting and finishing work. The team writes it together, so they own it, and revisits it "
+               "whenever the team or its work changes."),
+        glance=[("Duration", "2–3 h<br>or two sessions"), ("Group", "The whole team,<br>PO included"),
+                ("Use when", "A team forms, changes<br>or gets stuck"), ("Output", "An agreed charter<br>on the wall")],
+        before=["Print the board at A3 or larger, or load the SVG as a digital background",
+                "Ask the sponsor or product owner for a one-line draft of the team's purpose",
+                "Gather any existing agreements, Definitions of Done or team norms",
+                "Book a space where everyone can contribute, and make sure the whole team can attend",
+                "Yellow stickies, markers and dot stickers for voting",
+                "Plan an icebreaker that helps people share how they like to work"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–15", "Check-in", "Each person shares one thing that made a past team great, and one thing that made one hard."),
+                ("15–40", "1 · Purpose", "Draft the three sentences together. Start with the sponsor's draft and challenge it until everyone could explain it."),
+                ("40–55", "2 · Members & Roles", "Each person adds their name, role, and what they bring: skills, experience, interests."),
+                ("55–75", "3 · Values", "Silent writing, cluster, then dot-vote down to 3–5 values. Give each value a concrete example."),
+                ("75–105", "4 · Working Agreements", "Brainstorm agreements as “We…” statements. Discuss each; keep only those everyone can commit to."),
+                ("105–120", "5 · How We Decide · 6 · Ways of Working", "Pick a default decision method and note who decides what. Fill in cadence, tools and channels."),
+                ("120–145", "7 · Ready · 8 · Done", "Agree the checklist for starting an item and for calling it done. Keep each to what the team will really check."),
+                ("145–160", "9 · Conflict & Review · Close", "Agree how to handle disagreement and when to review. Everyone signs; photograph the board.")],
+        sections_title="Making each section strong",
+        sections_intro="Quality checks for each part of the charter.",
+        sections=[("1 · Purpose", PURPLE, ["Could a stakeholder repeat it?", "Does it name who the team serves?", "Is success observable?"]),
+                  ("2 · Members & Roles", BLUE, ["Is everyone listed, part-time members too?", "Are skill gaps visible?"]),
+                  ("3 · Values", EMERALD, ["3–5, not 12", "Each has an example of it in action"]),
+                  ("4 · Working Agreements", ORANGE, ["Written as “We…”", "Specific enough to notice if broken", "Everyone can commit"]),
+                  ("5 · How We Decide", SKY, ["A default method is chosen", "Who decides product, technical and process questions?"]),
+                  ("6 · Ways of Working", SLATE, ["Cadence and times are filled in", "One place for the board and the backlog"]),
+                  ("7 · Definition of Ready", AMBER, ["Short, and a guide not a gate", "Includes “small enough for an iteration”"]),
+                  ("8 · Definition of Done", FOREST, ["Includes testing and review", "Done means releasable"]),
+                  ("9 · Conflict & Review", RED, ["A first step when we disagree", "A review trigger is ticked"])],
+        tips=[("The team writes it", "A charter handed down by a manager is a policy. Facilitate; don't author."),
+              ("Specific beats nice", "“We respect each other” can't be broken. “We reply to review requests within a day” can."),
+              ("Decide how you decide", "Many team conflicts are really about decision rights. Settle them before they matter."),
+              ("Ready is a guide", "A strict Definition of Ready can become a hand-off gate. Use it to prompt conversation."),
+              ("Done grows over time", "Start with what the team can achieve now, and raise the bar at retrospectives."),
+              ("Keep it visible", "Pin it up or link it from the team board, and point to it when an agreement is broken.")],
+        pitfalls=("a purpose written by someone outside the team; generic values with no examples; dozens of agreements nobody "
+                  "remembers; a Definition of Done the team can't meet yet; signing it once and never looking at it again."),
+        after=[("Straight away", "Photograph the board and put a copy where the team works, physically or online."),
+               ("First retro", "Ask: which agreements are we keeping? Which aren't working? Update the charter."),
+               ("When the team changes", "Walk new members through it and invite them to challenge it."),
+               ("Every quarter", "Review the purpose and the Definition of Done. Raise the bar if the team is ready.")],
+        toolkit=LIFECYCLE_TOOLKIT,
+        foot="“Which of these agreements will we find hardest to keep?”",
+    ),
+
+    # -------------------------------------------------------------- product vision
+    dict(
+        slug="product-vision",
+        title="Product Vision Board Guide",
+        subtitle="How to agree the change a product will bring, who it's for, and how you'll know it's working.",
+        tag="Facilitator Run-Sheet · Envision · Inspired by Roman Pichler's Product Vision Board",
+        boards=[("Open board", "product-vision-board.html"), ("SVG", "product-vision-board.svg")],
+        lede="What will be different for our users when this succeeds?",
+        intro=("Without a shared vision, every backlog decision becomes an argument about opinions. The board, based on Roman "
+               "Pichler's Product Vision Board, separates the <b>vision</b> (the change you want to bring about) from the "
+               "<b>strategy</b> (target group, needs, product and business goals) underneath it. Adding <b>measures of success</b> "
+               "and <b>riskiest assumptions</b> turns it into something you can test, not just a statement."),
+        glance=[("Duration", "90–120 min"), ("Group", "PO / PM, team reps,<br>key stakeholders"),
+                ("Use when", "A new product, or a<br>product that's drifting"), ("Output", "A testable vision<br>&amp; assumptions")],
+        before=["Print the board at A3 or larger, or load the SVG as a digital background",
+                "Bring evidence: user research, support data, analytics and market information",
+                "Invite people who know the users, the business and the technology",
+                "Ask the product owner to draft a vision sentence in advance, as a starting point",
+                "Yellow and pink stickies, and markers"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–10", "Frame", "Explain the board and the decision it supports. Share the evidence you brought."),
+                ("10–25", "1 · Vision", "Write the positive change the product will bring. Not features. Keep it short enough to remember."),
+                ("25–45", "2 · Target Group", "Who are the users and customers? Pick the most important group, and say who it's not for."),
+                ("45–60", "3 · Needs", "What problem does each group have, and how do they solve it today? Prioritise the main need."),
+                ("60–75", "4 · Product", "List the 3–5 things that make the product stand out and meet the main need."),
+                ("75–90", "5 · Business Goals", "How does the product help the organisation? Pick the goal that matters most."),
+                ("90–105", "6 · Measures of Success", "For the top outcomes, agree a measure, a baseline and a target."),
+                ("105–120", "7 · Riskiest Assumptions · Close", "What must be true for this to work? Rank them and agree how to test the riskiest first.")],
+        sections_title="Making each section strong",
+        sections_intro="Quality checks for each part of the board.",
+        sections=[("1 · Vision", PURPLE, ["Describes a change, not a product", "Would still hold if the product changed", "Memorable"]),
+                  ("2 · Target Group", BLUE, ["Specific, not “everyone”", "Primary group is clear", "Says who it's not for"]),
+                  ("3 · Needs", EMERALD, ["Problems, not features", "Based on evidence where possible"]),
+                  ("4 · Product", ORANGE, ["3–5 key features at most", "Each links to a need"]),
+                  ("5 · Business Goals", AMBER, ["Ranked", "Measurable over time"]),
+                  ("6 · Measures of Success", FOREST, ["Baseline and target for each", "Outcomes, not output"]),
+                  ("7 · Riskiest Assumptions", RED, ["Ranked by risk", "Each has a cheap way to test it"])],
+        tips=[("Vision before features", "If people describe features in the vision box, ask “and what will that change for users?”"),
+              ("One primary user", "Trying to serve everyone equally leads to a product that serves no one well."),
+              ("Evidence over opinion", "Mark stickies that are backed by data. Treat the rest as assumptions to test."),
+              ("Say who it's not for", "Excluding a group is a strategic choice, and makes later trade-offs easier."),
+              ("Measures make it real", "A vision with no measure of success can't be proven wrong, so it can't guide decisions."),
+              ("Revisit it", "Bring the board to quarterly planning and update it when evidence changes the picture.")],
+        pitfalls=("a vision that is a feature list; target group “everyone”; needs invented in the room with no evidence; "
+                  "skipping measures; treating assumptions as facts; never testing the riskiest assumption."),
+        after=[("Straight away", "Photograph the board and share it with stakeholders who weren't there."),
+               ("Next week", "Turn the riskiest assumption into a test with the 1% Experiment Canvas or an MVP."),
+               ("Then", "Use the Prioritisation Board to decide which needs and features come first."),
+               ("Every quarter", "Check the measures of success. Update the board if the evidence has changed.")],
+        toolkit=LIFECYCLE_TOOLKIT,
+        foot="“Who is this not for?”",
+    ),
+
+    # -------------------------------------------------------------- prioritisation
+    dict(
+        slug="prioritisation",
+        title="Prioritisation Board Guide",
+        subtitle="How to compare options by value, effort and cost of delay, agree scope, and build a Now / Next / Later roadmap.",
+        tag="Facilitator Run-Sheet · Plan · Value vs. Effort · Cost of Delay · MoSCoW · Now / Next / Later",
+        boards=[("Open board", "prioritisation-board.html"), ("SVG", "prioritisation-board.svg")],
+        lede="What does it cost us, each week, to not have this yet?",
+        intro=("Most teams have more good ideas than capacity. The board combines four complementary techniques: a quick "
+               "<b>value vs. effort</b> grid to sort many items, <b>cost of delay</b> (CD3, from Don Reinertsen) to rank the top few "
+               "with numbers, <b>MoSCoW</b> to agree scope for a fixed date, and a <b>Now / Next / Later</b> roadmap to share the "
+               "result. Use the parts you need: a quick sort might only use the grid and the roadmap."),
+        glance=[("Duration", "60–120 min"), ("Group", "PO / PM, team reps,<br>stakeholders"),
+                ("Use when", "Quarterly planning, or<br>too many priorities"), ("Output", "A ranked list &amp;<br>a roadmap")],
+        before=["Print the board at A3 or larger, or load the SVG as a digital background",
+                "List the candidate items in advance: epics, features or outcomes, one per sticky",
+                "Bring any data on value: customer demand, revenue, risk, deadlines",
+                "Invite the people who decide priorities, and team members who can judge effort",
+                "Agree who makes the final call if the group can't agree (usually the product owner)"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–10", "Frame", "Recap the product goal or vision. Agree the scope: which items, and for what time horizon."),
+                ("10–35", "1 · Value vs. Effort", "Place each sticky on the grid. Compare items to each other, not to an absolute scale. Discuss the outliers."),
+                ("35–60", "2 · Cost of Delay", "Take the top 5–8 items. Score value, time criticality and risk reduction relative to each other. Divide by size and rank."),
+                ("60–75", "3 · MoSCoW", "If there's a fixed date or release, sort the ranked items into Must, Should, Could and Won't (this time)."),
+                ("75–100", "4 · Now · Next · Later", "Place the items on the roadmap and write the outcome for each column. Only Now is committed."),
+                ("100–110", "Close", "Read the roadmap back. Confirm the decision owner agrees, and who will share it with stakeholders.")],
+        sections_title="Using each technique well",
+        sections_intro="What each part is for, and what to watch for.",
+        sections=[("1 · Value vs. Effort", BLUE, ["Relative placement is enough", "Big bets: slice before committing", "Drop the money pits"]),
+                  ("2 · Cost of Delay", PURPLE, ["Score each column relative to the lowest item", "CoD / size gives the order", "Use it for the top few only"]),
+                  ("3 · MoSCoW", ORANGE, ["Musts should be about 60% of capacity", "Won't means not this time", "Needs a fixed date or scope"]),
+                  ("4 · Now · Next · Later", FOREST, ["Outcomes, not dates", "Now is committed; Later is options", "Keep Next short"])],
+        tips=[("Compare, don't score in isolation", "Ask “is this more or less valuable than that?” Relative judgements are faster and more reliable."),
+              ("Make delay visible", "Ask what it costs each week not to have an item. Time-critical work often moves up."),
+              ("Slice the big bets", "High-value, high-effort items usually hide a smaller, high-value slice. Use the Epic Canvas or Story Map."),
+              ("Protect the Could list", "If everything is a Must, MoSCoW stops working. Push back until Musts fit comfortably."),
+              ("One decision owner", "The group advises; one person decides. Say who before you start."),
+              ("Roadmaps change", "Review Now / Next / Later every iteration or month. Moving items is learning, not failure.")],
+        pitfalls=("scoring items in isolation; letting the loudest stakeholder set the order; everything as a Must; "
+                  "a roadmap full of dates and features instead of outcomes; using cost of delay for 50 items; never revisiting it."),
+        after=[("Straight away", "Photograph the board. Update the backlog order and the roadmap in your tools."),
+               ("Share it", "Walk stakeholders through the roadmap and the reasons for the order."),
+               ("Next", "Break the Now items down with the Epic Canvas and Story Map, ready for Sprint Planning."),
+               ("Regularly", "Revisit the order at each Sprint Review, when feedback and data change the picture.")],
+        toolkit=LIFECYCLE_TOOLKIT,
+        foot="“If we could only do one thing this quarter, what would it be?”",
+    ),
+
+    # -------------------------------------------------------------- sprint planning
+    dict(
+        slug="sprint-planning",
+        title="Sprint Planning Guide",
+        subtitle="How to agree a sprint goal, size the work to real capacity, and leave with a plan the team believes in.",
+        tag="Facilitator Run-Sheet · Build in Iterations · Sprint Goal · Capacity · Confidence Vote",
+        boards=[("Open board", "sprint-planning-board.html"), ("SVG", "sprint-planning-board.svg")],
+        lede="If we only achieve one thing this sprint, what should it be?",
+        intro=("Planning that is just dragging tickets into a sprint produces a list, not a plan. The board puts the "
+               "<b>sprint goal</b> first, checks the work against <b>real capacity</b>, splits items into those needed for the goal "
+               "and those that are also planned, and ends with a <b>confidence vote</b> so concerns surface before the sprint starts, "
+               "not halfway through. It works for any iteration length. Scrum calls this event Sprint Planning."),
+        glance=[("Duration", "1–2 h for a<br>2-week sprint"), ("Group", "The whole team,<br>PO included"),
+                ("Use when", "The start of every<br>iteration"), ("Output", "A goal, a forecast<br>&amp; a first-day plan")],
+        before=["Print the board at A3, or load the SVG as a digital background",
+                "Make sure the top of the backlog is refined and ordered (Example Mapping helps)",
+                "Know who is away, and the team's throughput or velocity for the last three sprints",
+                "Bring the last Sprint Review's feedback and the last retro's actions",
+                "Yellow and pink stickies, markers, and the team's Definition of Done"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–10", "Context", "The PO shares the product goal, recent feedback, and what's at the top of the backlog. Check the inputs."),
+                ("10–25", "1 · Sprint Goal", "Draft a goal that explains why the sprint is valuable. Agree how you'll know it's achieved."),
+                ("25–35", "2 · Capacity", "Count working days, absences and other commitments. Compare with recent throughput."),
+                ("35–65", "4 · Selected Items", "Pull items in priority order into “Needed for the goal”, then “Also planned”. Stop at capacity."),
+                ("65–80", "5 · Risks & Dependencies", "What could stop the goal? Who outside the team is needed, and when? Agree actions."),
+                ("80–90", "6 · How We'll Start", "Agree what starts on day one, who pairs or swarms, and the first thing to finish."),
+                ("90–95", "7 · Confidence Vote", "Fist of five. Anyone at 1 or 2 explains why; adjust the plan and re-vote.")],
+        sections_title="Making each section strong",
+        sections_intro="Quality checks for each part of the board.",
+        sections=[("1 · Sprint Goal", PURPLE, ["One objective, not a list of items", "Says why, not just what", "Linked to the product goal"]),
+                  ("2 · Capacity", BLUE, ["Absences are counted", "Based on recent throughput, not hope"]),
+                  ("3 · Inputs Checked", EMERALD, ["Review feedback and retro actions included", "The top items are ready"]),
+                  ("4 · Selected Items", ORANGE, ["Goal items come first", "Room left for unplanned work", "Items are small"]),
+                  ("5 · Risks & Dependencies", RED, ["Each risk has an action", "External people know they're needed"]),
+                  ("6 · How We'll Start", SKY, ["Focus on finishing, not starting everything", "Pairing or swarming planned"]),
+                  ("7 · Confidence Vote", FOREST, ["Low votes are explored, not overruled", "Re-vote after changes"])],
+        tips=[("Goal first, items second", "Agree why the sprint matters before choosing items. The goal guides trade-offs mid-sprint."),
+              ("Plan to recent reality", "Use the last three sprints' throughput. Planning to an ideal leads to carry-over and lost trust."),
+              ("Leave slack", "Plan to about 80% of capacity. Unplanned work always arrives."),
+              ("It's a forecast", "The team commits to the goal, not to every item. Say so out loud."),
+              ("Plan the start", "A clear first day stops everyone starting a different item at once."),
+              ("Respect low votes", "A 1 or a 2 is information. Ask what would raise it, and adjust the plan.")],
+        pitfalls=("no sprint goal, or a goal that just lists items; ignoring absences; planning to 100% capacity; the PO assigning work "
+                  "to people; skipping the confidence vote; carrying over unfinished work without discussion."),
+        after=[("Straight away", "Put the goal on the team board and update the backlog tool. Photograph the board."),
+               ("Every day", "At the daily sync, ask: are we on track for the sprint goal? What's blocking it?"),
+               ("Mid-sprint", "If the goal is at risk, renegotiate scope with the PO early. Don't wait for the review."),
+               ("End of sprint", "Bring the goal to the Sprint Review and the retro: did we achieve it, and why?")],
+        toolkit=LIFECYCLE_TOOLKIT,
+        foot="“What would stop us from reaching the goal?”",
+    ),
+
+    # -------------------------------------------------------------- sprint review
+    dict(
+        slug="sprint-review",
+        title="Sprint Review Guide",
+        subtitle="How to inspect what was built with stakeholders, gather real feedback, and adapt the backlog together.",
+        tag="Facilitator Run-Sheet · Review & Release · Inspect the Increment · Adapt the Backlog",
+        boards=[("Open board", "sprint-review-board.html"), ("SVG", "sprint-review-board.svg")],
+        lede="Based on what we've seen, what should we do next?",
+        intro=("A review is a working session, not a demo. The team shows working product that meets the Definition of Done, "
+               "stakeholders say what they think, and everyone looks at what has changed around the product. The output is "
+               "a <b>changed backlog</b> and a clear view of what's next. If nothing in the backlog changes, the review didn't do "
+               "its job. Scrum calls this event the Sprint Review."),
+        glance=[("Duration", "45–90 min for a<br>2-week sprint"), ("Group", "Team, PO and<br>stakeholders"),
+                ("Use when", "The end of every<br>iteration"), ("Output", "Feedback &amp; an<br>updated backlog")],
+        before=["Print the board at A3, or load the SVG as a digital background",
+                "Invite the stakeholders whose feedback matters most, including users if you can",
+                "Prepare working product to show, in an environment people can try themselves",
+                "Gather the data for key measures: before, now and target",
+                "Green, pink, blue and yellow stickies, and markers",
+                "Ask the PO to prepare a short update on the backlog, release and forecast"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–5", "Welcome", "Explain the purpose: to inspect the product and decide what's next together, not to approve work."),
+                ("5–10", "1 · Sprint Goal & Result", "The PO states the goal and whether it was achieved. Be honest about what wasn't done."),
+                ("10–15", "2 · Key Measures", "Share the numbers that matter. Did the last release move them?"),
+                ("15–40", "3 · What We Built", "Team members show working product. Let stakeholders try it. Only Done work is shown."),
+                ("—", "4 · Stakeholder Feedback", "Throughout the demo, stakeholders add green, pink and blue stickies. Ask questions; don't defend."),
+                ("40–50", "5 · What's Changed", "What's new in the market, with users, budget or timelines? How does it affect the plan?"),
+                ("50–65", "6 · Backlog Changes", "Turn feedback and changes into backlog additions, changes and removals. The PO decides."),
+                ("65–75", "7 · What's Next · Close", "Share the likely next goal and any forecast update. Agree decisions needed and who follows up.")],
+        sections_title="Making each section strong",
+        sections_intro="Quality checks for each part of the board.",
+        sections=[("1 · Sprint Goal & Result", PURPLE, ["An honest answer: yes, partly or no", "What we learned is captured"]),
+                  ("2 · Key Measures", BLUE, ["Outcomes, not just velocity", "Before, now and target shown"]),
+                  ("3 · What We Built", EMERALD, ["Only Done work", "Working product, not slides", "Stakeholders try it"]),
+                  ("4 · Stakeholder Feedback", ORANGE, ["Concerns are welcomed", "Ideas are captured, not promised"]),
+                  ("5 · What's Changed", SKY, ["Market, users, budget, timeline", "Impact on priorities discussed"]),
+                  ("6 · Backlog Changes", AMBER, ["Something changed", "Removals are allowed", "The PO decides"]),
+                  ("7 · What's Next", FOREST, ["Next goal is shared", "Decisions have an owner"])],
+        tips=[("Not a demo", "If stakeholders only watch, you'll get politeness, not feedback. Hand them the product."),
+              ("Show Done only", "Showing unfinished work creates false expectations. Mention it, but don't demo it."),
+              ("Invite the right people", "A review with no stakeholders is just a team meeting. Chase the people whose opinion matters."),
+              ("Listen, don't defend", "Write every piece of feedback down, especially the uncomfortable ones."),
+              ("Change the backlog", "End by showing what changed. It proves the feedback was heard."),
+              ("Keep it short and regular", "Same time each sprint, tight timebox. Stakeholders come back when it's useful.")],
+        pitfalls=("a one-way demo with no feedback; showing work that isn't Done; no stakeholders present; defending every "
+                  "criticism; promising every idea; no backlog changes at the end; a status report instead of working product."),
+        after=[("Straight away", "Update the backlog with the agreed changes and share the board with anyone who missed it."),
+               ("Follow up", "Owners chase the decisions needed from stakeholders before Sprint Planning."),
+               ("Retro", "Bring anything about how the team worked to the retrospective, which usually comes next."),
+               ("Next planning", "Use the feedback and backlog changes as inputs for the next sprint goal.")],
+        toolkit=LIFECYCLE_TOOLKIT,
+        foot="“What surprised you today?”",
+    ),
+]
+GUIDES += LIFECYCLE_GUIDES
+
+
 # ------------------------------------------------------------------ rendering
 
 def guide_css():
@@ -651,7 +925,7 @@ def render(g, css):
         h2("How it fits the toolkit"),
         f'<p>{g["toolkit"]}</p>',
         f'<p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a></p>',
-        f'<footer><span>{escape(g["foot"])}</span><span>Agile Release Train · Systems-Thinking · Continuous Improvement · POM 2.0</span></footer>',
+        f'<footer><span>{escape(g["foot"])}</span><span>Systems-Thinking · Continuous Improvement · Team-Led Change</span></footer>',
     ]
 
     return f"""<!DOCTYPE html>
@@ -666,7 +940,6 @@ def render(g, css):
 <body>
 <div class="page">
   <header class="masthead">
-    <span class="badge">PRODUCT OPERATING MODEL 2.0</span>
     <h1>{escape(g["title"])}</h1>
     <p>{escape(g["subtitle"])}</p>
     <div class="tag">{escape(g["tag"])}</div>
