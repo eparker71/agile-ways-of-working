@@ -19,7 +19,7 @@
 <!-- /meta -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
 <style>
-:root{--accent:#eb6c36;--navy:#0C1A2E;--ink:#1E293B;--muted:#64748B;--rule:#E2E8F0;}
+:root{--accent:#eb6c36;--navy:#0C1A2E;--ink:#1E293B;--muted:#5B6B82;--rule:#E2E8F0;}
 *{box-sizing:border-box;}
 html,body{margin:0;background:#F1F5F9;}
 body{font-family:'Geist',Inter,system-ui,sans-serif;color:var(--ink);font-size:14.5px;line-height:1.6;}
@@ -42,7 +42,7 @@ blockquote{margin:10px 0;padding:8px 14px;border-left:3px solid var(--accent);ba
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;}
 .grid div{border:1px solid var(--rule);border-radius:8px;padding:10px 14px;}
 .grid b{display:block;}
-footer{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#94A3B8;text-align:center;padding:0 16px 32px;}
+footer{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-align:center;padding:0 16px 32px;}
 @media (max-width:640px){.grid{grid-template-columns:1fr;}}
 @media print{section{break-inside:avoid;box-shadow:none;}}
 </style>
@@ -109,7 +109,8 @@ footer{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#94A3B8;text-a
       </ul></li>
     <li>Regenerate everything, in the right order, then check for broken links and other problems:
       <br><code>python3 _generator/build_all.py</code>
-      <br><code>python3 _generator/check_site.py</code></li>
+      <br><code>python3 _generator/check_site.py</code>
+      <br>If you changed any boards, also run <code>python3 _generator/build_pdfs.py</code> (needs Google Chrome) to remake their print-ready PDFs, then <code>build_all.py</code> again.</li>
     <li>Publish your own site: in your copy's GitHub settings, open <b>Pages</b> and deploy from the <code>main</code> branch, root folder. Your copy includes the automated checks, which run on every push. Set <code>PUBLISH_AT</code> in <code>brand.py</code> to your site's address, so link previews and the sitemap point to your copy. Leave the credit line as it is.</li>
   </ol>
   <p>A few pages are hand-written and don't read <code>brand.py</code>: the home page, the two cheat sheets, and the Marginal Gains board and guide. Edit those directly. The README lists the details.</p>

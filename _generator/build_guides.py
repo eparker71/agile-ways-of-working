@@ -25,7 +25,7 @@ SLATE = ("#334155", "#F1F5F9")
 EXTRA_CSS = """
 .boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
 .boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
-.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
 .content a{color:#9A3412;}
 .example{border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:10px 0;}
 .example div{display:grid;grid-template-columns:30% 1fr;border-bottom:1px solid var(--rule);}
@@ -3516,6 +3516,111 @@ GUIDES.append(dict(
 ))
 
 
+GUIDES += [
+    dict(
+        slug="project-closeout",
+        title="Project Close-out Guide",
+        subtitle="How to finish a project well: check what was achieved, hand over cleanly, learn, tie up loose ends and say thank you.",
+        tag="Facilitator Run-Sheet · Run a Project · Close",
+        boards=[("Open board", "project-closeout-board.html"), ("SVG", "project-closeout-board.svg")],
+        lede="What would we tell the next team that runs a project like this?",
+        intro=("Projects often just stop: people move on, loose ends stay loose, and the lessons are forgotten. A close-out "
+               "session makes the ending deliberate. It compares <b>what was delivered</b> with the original goal, lists the "
+               "<b>benefits still to come</b> (most value usually arrives after the project ends) and who will check them, "
+               "confirms a clean <b>handover</b> to whoever runs the result, captures <b>what we learned</b> for the next "
+               "project, gives every <b>loose end</b> an owner, and makes time to <b>thank</b> people. In agile delivery much "
+               "of this happens continuously, but a project or programme with a defined end still needs a proper finish."),
+        glance=[("Duration", "60–90 min"), ("Group", "Team, sponsor,<br>support &amp; key stakeholders"),
+                ("Use when", "A project or major<br>phase is ending"), ("Output", "Handover, owners,<br>lessons &amp; thanks")],
+        before=["Print the board at A3, or load the SVG as a digital background",
+                "Bring the original goal and success measures, from the Project Kickoff board if you used it",
+                "Gather the actual results for each measure",
+                "Invite whoever will own the result after the project: support, operations or the business",
+                "Ask people to think about what they'd keep and change, beforehand"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–5", "Set the tone", "This is about learning and finishing well, not judging. Thank people up front."),
+                ("5–20", "1 · Did We Achieve It?", "Goal, what was delivered, and each measure's target and actual. What does the gap tell us?"),
+                ("20–30", "2 · Benefits Still to Come", "List benefits not yet realised, when to expect them, how to measure them and who owns them."),
+                ("30–45", "3 · Handover", "Walk the checklist with the new owners. Anything not done becomes a loose end."),
+                ("45–65", "4 · What We Learned", "Silent writing, then cluster: keep doing, do differently, surprises. Pick the top three."),
+                ("65–75", "5 · Loose Ends", "Every open item gets an owner and a date."),
+                ("75–85", "6 · Thanks & Celebrate", "Name the people and teams to thank, decide how to celebrate, and who to share lessons with.")],
+        sections_title="What a good close-out covers",
+        sections_intro="Finish the work, then finish the project.",
+        sections=[("Achievement", PURPLE, ["Goal vs. delivered", "Target vs. actual"]),
+                  ("Benefits", EMERALD, ["Most arrive later", "An owner checks them"]),
+                  ("Handover", BLUE, ["Support ready", "Nothing without an owner"]),
+                  ("Lessons", AMBER, ["Keep, change, surprises", "Shared, not archived"]),
+                  ("Thanks", FOREST, ["Name people", "Celebrate the finish"])],
+        tips=[("Learn, don't blame", "Ask what the system made easy or hard, not who got it wrong."),
+              ("Bring the next owners", "Handover works best with the people who'll run the result in the room."),
+              ("Benefits need an owner", "If no one is named to check the benefits, no one will."),
+              ("Make lessons travel", "Share the top three lessons with teams starting similar work, not just in a document."),
+              ("Celebrate properly", "Marking the end well helps people move on, and makes the next project easier to staff."),
+              ("Close the small things", "Accounts, licences, budgets and contracts left open cost money and create risk.")],
+        pitfalls=("skipping close-out because people have moved on; a lessons-learned document no one reads; no owner for "
+                  "benefits; handing over to people who weren't involved; blaming individuals; forgetting to say thank you."),
+        after=[("Within a week", "Send the summary, loose ends and owners to everyone involved."),
+               ("Within a month", "Share the top lessons with teams starting similar work."),
+               ("At each benefit date", "The owner checks the measure and reports it to the sponsor."),
+               ("Next project", "Bring these lessons to its kickoff and pre-mortem.")],
+        toolkit=PROJECT_TOOLKIT,
+        foot="“Who will check the benefits arrived, and when?”",
+    ),
+    dict(
+        slug="team-onboarding",
+        title="Team Onboarding Guide",
+        subtitle="How to help a new team member feel welcome, get set up and do useful work quickly, with a buddy and clear check-ins.",
+        tag="Facilitator Run-Sheet · Set Up the Team · Onboarding",
+        boards=[("Open board", "team-onboarding-board.html"), ("SVG", "team-onboarding-board.svg")],
+        lede="What do you wish someone had told you in your first week?",
+        intro=("A new person's first weeks shape how quickly they contribute and whether they stay. Good onboarding is "
+               "planned, not improvised: access ready <b>before day one</b>, a <b>first-week plan</b> that builds from meeting "
+               "people to finishing something small, a list of <b>people to meet</b>, a walk through <b>how we work here</b>, a "
+               "<b>buddy</b> to ask the questions people feel awkward asking, and <b>30, 60 and 90-day check-ins</b> that run "
+               "both ways. The new person is also a fresh pair of eyes: ask what they notice that the team has stopped seeing."),
+        glance=[("Duration", "30 min to plan,<br>then the first 90 days"), ("Group", "Team lead or SM,<br>buddy, new member"),
+                ("Use when", "Anyone joins<br>the team"), ("Output", "A ready start,<br>a buddy &amp; check-ins")],
+        before=["Print the board at A3, or load the SVG as a digital background",
+                "Start a week or two before the person joins, so access and equipment are ready",
+                "Choose a buddy: someone friendly and patient, not necessarily the most senior",
+                "Pick a small, real first task they can finish in the first week",
+                "Gather links to the team charter, Definition of Done, board and documentation"],
+        agenda_heads=["When", "Section", "Notes"],
+        agenda=[("2 weeks before", "1 · Before Day One", "Work through the checklist. Chase access early; it's the most common delay."),
+                ("Before day one", "2 · First Week", "Adapt the five steps to your team. Share the plan with the new person."),
+                ("Day 1", "5 · Buddy", "Introduce the buddy and agree how often you'll meet."),
+                ("Week 1", "3 · People to Meet", "Book short conversations inside and outside the team. Tick them off."),
+                ("Week 1–2", "4 · How We Work Here", "Walk through each item together, and invite questions and fresh ideas."),
+                ("Days 30 · 60 · 90", "6 · Check-ins", "Agree a goal for each, check in, and ask what the team could do better.")],
+        sections_title="What good onboarding looks like",
+        sections_intro="Welcome, set up, contribute, belong.",
+        sections=[("Before Day One", PURPLE, ["Access ready", "A plan shared"]),
+                  ("First Week", BLUE, ["One step a day", "Finish something small"]),
+                  ("People", SKY, ["Inside and outside the team", "Why each one matters"]),
+                  ("How We Work", EMERALD, ["Agreements, Done, board", "How to ask for help"]),
+                  ("30 · 60 · 90", FOREST, ["Clear goals", "Feedback both ways"])],
+        tips=[("Ready on day one", "Waiting days for a laptop or access sends a message; sort it before they start."),
+              ("Pair early", "Pairing on a real item teaches more about the code and the team than any document."),
+              ("Small first win", "Finishing something in week one builds confidence and shows the whole workflow."),
+              ("The buddy isn't the manager", "A buddy is for the questions people won't ask their manager."),
+              ("Ask what they notice", "New people spot friction the team has stopped seeing. Capture it for the retro."),
+              ("Update the charter", "When someone joins, revisit the team charter together: the team has changed.")],
+        pitfalls=("access that takes weeks; a pile of documents instead of a plan; no buddy, or a buddy with no time; a first "
+                  "task that's too big or not real; no check-ins after week one; treating onboarding as only HR's job."),
+        after=[("End of week 1", "First check-in: what's going well, what's confusing?"),
+               ("Day 30 · 60 · 90", "Check in against the goals, both ways."),
+               ("Next retro", "Bring what the new person noticed, and improve the onboarding plan."),
+               ("Next joiner", "Reuse and improve this board.")],
+        toolkit=("Onboarding builds on the <a href=\"facilitator-guide-team-charter.html\">Team Charter</a> (revisit it when someone "
+                 "joins), the <a href=\"facilitator-guide-skills-matrix.html\">Skills Matrix</a> (where they'll learn and pair), and "
+                 "<a href=\"facilitator-guide-pairing-mobbing.html\">Pairing &amp; Mobbing</a>. For a whole new team, use "
+                 "<a href=\"facilitator-guide-team-launch.html\">Team Launch</a> instead."),
+        foot="“What could the newest person see that we've stopped noticing?”",
+    ),
+]
+
+
 # ------------------------------------------------------------------ rendering
 
 def guide_css():
@@ -3566,6 +3671,8 @@ def render(g, css):
 
     boards = "".join(f'<a{" class=\"primary\"" if i == 0 else ""} href="{href}">{escape(label)} →</a>'
                      for i, (label, href) in enumerate(g["boards"]))
+    boards += "".join(f'<a href="pdf/{href[:-5]}.pdf" download>A3 PDF ↓</a>' for _, href in g["boards"][:1]
+                      if (OUT / "pdf" / f"{href[:-5]}.pdf").exists())
     boards += "".join(f'<a href="worked-example-{href}">Worked example →</a>' for _, href in g["boards"][:1]
                       if (OUT / f"worked-example-{href}").exists())
     boards += f'<a href="facilitator-guide-{g["slug"]}.docx" download>Word (editable) ↓</a>'

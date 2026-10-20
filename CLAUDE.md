@@ -10,10 +10,13 @@ A static site of printable agile facilitation tools: A3 landscape boards and pos
 
 ```sh
 python3 _generator/build_all.py     # run every generator in order; build_meta.py must run last
-python3 _generator/check_site.py    # links + anchors, metadata, SVG/Word validity, sitemap, cheat sheet overflow and page counts
+python3 _generator/check_site.py    # links + anchors, metadata, SVG/Word validity, sitemap, PDFs, cheat sheet overflow, contrast
+python3 _generator/build_pdfs.py    # A3 PDFs of every board into pdf/ (needs Chrome); only remakes changed boards
 ```
 
-Individual generators: `build_boards.py`, `build_guides.py`, `build_roles.py`, `build_glossary.py`, `build_antipatterns.py`, `build_scenarios.py`, `build_recipes.py`, `build_meta.py`. CI (`.github/workflows/checks.yml`) runs `build_all.py`, fails if `git diff` shows the committed output is stale, then runs `check_site.py`. So **always run `build_all.py` and commit its output**, and keep generators deterministic: no timestamps, sorted globs (Word files use a fixed zip timestamp and no compression for this reason). **Don't finish by running a single generator:** every generator rewrites its pages without the `<!-- meta -->` block, so running e.g. `build_glossary.py` after `build_meta.py` leaves stale output and fails CI. Re-run `build_all.py` last.
+**After changing any board**, run `build_all.py`, then `build_pdfs.py`, then `build_all.py` again (pages link to a PDF once it exists). PDFs carry timestamps so they aren't rebuilt in CI; `pdf/manifest.json` stores a fingerprint of each board's SVG and `check_site.py` fails if a PDF is missing or stale. `print-pack.html` (built by `build_recipes.py`) lists every PDF, grouped by the home page sections.
+
+Individual generators (all run by `build_all.py`; `build_pdfs.py` is separate): `build_boards.py`, `build_guides.py`, `build_roles.py`, `build_glossary.py`, `build_antipatterns.py`, `build_scenarios.py`, `build_recipes.py`, `build_meta.py`. CI (`.github/workflows/checks.yml`) runs `build_all.py`, fails if `git diff` shows the committed output is stale, then runs `check_site.py`. So **always run `build_all.py` and commit its output**, and keep generators deterministic: no timestamps, sorted globs (Word files use a fixed zip timestamp and no compression for this reason). **Don't finish by running a single generator:** every generator rewrites its pages without the `<!-- meta -->` block, so running e.g. `build_glossary.py` after `build_meta.py` leaves stale output and fails CI. Re-run `build_all.py` last.
 
 Each script regenerates everything it owns (there's no per-file target). They're idempotent.
 
@@ -81,4 +84,5 @@ If the tool introduces new terms, add them to `TERMS` in `build_glossary.py`. Op
 - **`÷` glyph:** in Geist / Geist Mono at board sizes it reads as `+`. Use `/` instead.
 - **`header_fields` labels:** the write-on line starts 96px after the label start, so keep labels to about 15 characters.
 - **`panel(num=...)`:** accepts letters too (the RAID board uses `"R"`, `"A"`, …). Pass `None` for no badge.
+- **Contrast (WCAG AA):** `check_site.py` measures text contrast on one page of each kind; keep it passing. Light-background small text uses `#5B6B82` (pages, `--muted`) or `MUTED = "#566578"` (boards), not `#94A3B8`/`#64748B`. On navy, use `#8291A6` or lighter, never `#475569`. White text sits on `#C2410C`, not the brand orange `#eb6c36` (3.1:1); keep the brand orange for bars, borders and accents. Faded board text uses `op=".88"`; only decorative glyphs (›, ↓) and write-over placeholder hints inside zones may be fainter. Board SVGs aren't covered by the automated check.
 - **Fonts and libraries:** Instrument Serif, Geist and Geist Mono. Boards' `.html` load them from Google Fonts; standalone `.svg` files `@import` them. No other external assets.

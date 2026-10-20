@@ -193,7 +193,7 @@ def build():
 <title>Anti-Pattern Catalogue</title>
 <link rel="stylesheet" href="{FONT_URL}">
 <style>
-:root{{--accent:{ACCENT};--navy:{NAVY};--ink:#1E293B;--muted:#64748B;--rule:#E2E8F0;}}
+:root{{--accent:{ACCENT};--navy:{NAVY};--ink:#1E293B;--muted:#5B6B82;--rule:#E2E8F0;}}
 *{{box-sizing:border-box;}}
 html,body{{margin:0;background:#F1F5F9;}}
 body{{font-family:'Geist',Inter,system-ui,sans-serif;color:var(--ink);font-size:14px;line-height:1.55;}}
@@ -206,12 +206,12 @@ header a.back{{color:#94A3B8;font:500 11px 'Geist Mono',monospace;letter-spacing
 .bar{{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}}
 .bar button{{font:500 11px 'Geist Mono',monospace;color:#fff;background:none;border:1px solid #334155;border-radius:14px;padding:5px 11px;cursor:pointer;}}
 .bar button:hover{{border-color:var(--accent);color:var(--accent);}}
-.bar button[aria-pressed="true"]{{background:var(--accent);border-color:var(--accent);}}
+.bar button[aria-pressed="true"]{{background:#C2410C;border-color:#C2410C;}}
 input{{font:14px 'Geist',system-ui,sans-serif;padding:8px 12px;border-radius:6px;border:1px solid #334155;background:#0F2236;color:#fff;width:100%;max-width:360px;margin-bottom:12px;}}
 input::placeholder{{color:#64748B;}}
 main{{padding:16px 0 48px;}}
 h2{{font:500 11px 'Geist Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:26px 0 10px;}}
-h2 span{{color:#94A3B8;margin-left:6px;}}
+h2 span{{color:#5B6B82;margin-left:6px;}}
 .grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:12px;}}
 .ap{{background:#fff;border:1px solid var(--rule);border-top:4px solid #991B1B;border-radius:8px;padding:14px 16px;}}
 .ap h3{{margin:0 0 8px;font-size:15px;line-height:1.35;}}
@@ -225,7 +225,7 @@ h2 span{{color:#94A3B8;margin-left:6px;}}
 .more h3{{margin:0 0 6px;font-size:15px;}}
 .more a{{color:#9A3412;}}
 .hidden{{display:none !important;}}
-footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#94A3B8;text-align:center;padding:0 16px 32px;}}
+footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-align:center;padding:0 16px 32px;}}
 @media print{{header{{padding:16px;}} input,.bar{{display:none;}} .ap{{break-inside:avoid;}}}}
 </style>
 </head>

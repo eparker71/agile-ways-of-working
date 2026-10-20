@@ -81,6 +81,8 @@ TOOLS = {
     "marginal": ("Marginal Gains Workshop", "marginal-gains-workshop-board.html", "facilitator-guide-marginal-gains.html", "marginal-gains"),
     "experiment": ("1% Experiment Canvas", "experiment-canvas.html", "facilitator-guide-experiment-canvas.html", "experiment-canvas"),
     "rootcause": ("Root Cause Analysis", "root-cause-board.html", "facilitator-guide-root-cause.html", "root-cause"),
+    "closeout": ("Project Close-out", "project-closeout-board.html", "facilitator-guide-project-closeout.html", "project-closeout"),
+    "onboarding": ("Team Onboarding", "team-onboarding-board.html", "facilitator-guide-team-onboarding.html", "team-onboarding"),
     "right-size": ("Right-Size Your Structure", "right-size-poster.html", "facilitator-guide-right-size.html", "right-size"),
     "sdlc": ("SDLC at a Glance", "sdlc-poster.html", "facilitator-guide-sdlc.html", "sdlc"),
     "pipeline": ("Delivery Pipeline Canvas", "delivery-pipeline-board.html", "facilitator-guide-delivery-pipeline.html", "delivery-pipeline"),
@@ -96,46 +98,46 @@ ROLES = [
      "You help the team deliver well: smooth flow, useful events, and impediments removed.",
      ["sm-cheat", "retro", "impediments"],
      ["sprint-planning", "sprint-review", "team-charter", "ai", "health", "kanban", "ageing", "buffer", "blockers", "pairing",
-      "skills", "example", "splitting", "rootcause", "experiment", "marginal", "lean-coffee", "jira", "adkar", "coaching", "psych-safety", "delivery-metrics", "backlog", "facilitation", "estimation", "vsm", "incident", "launch", "daily", "refinement", "cadences", "events", "spotter", "leading-safety", "sdlc", "pipeline", "release", "cd-health", "right-size", "sync", "dependency", "forecast"]),
+      "skills", "example", "splitting", "rootcause", "experiment", "marginal", "lean-coffee", "jira", "adkar", "coaching", "psych-safety", "delivery-metrics", "backlog", "facilitation", "estimation", "vsm", "incident", "launch", "daily", "refinement", "cadences", "events", "spotter", "leading-safety", "sdlc", "pipeline", "release", "cd-health", "right-size", "sync", "dependency", "forecast", "closeout", "onboarding"]),
     ("coach", "Agile Coach",
      "You help teams and leaders improve how they work, and coach the system beyond any one team.",
      ["health", "marginal", "topology"],
      ["sm-cheat", "retro", "team-charter", "ai", "experiment", "rootcause", "kanban", "ageing", "blockers", "skills",
-      "value", "okr", "ctp", "sync", "impediments", "lean-coffee", "adkar", "coaching", "psych-safety", "delegation", "cross-retro", "portfolio-kanban", "backlog", "facilitation", "vsm", "incident", "launch", "events", "cadences", "daily", "spotter", "leading-safety", "sdlc", "pipeline", "cd-health", "right-size"]),
+      "value", "okr", "ctp", "sync", "impediments", "lean-coffee", "adkar", "coaching", "psych-safety", "delegation", "cross-retro", "portfolio-kanban", "backlog", "facilitation", "vsm", "incident", "launch", "events", "cadences", "daily", "spotter", "leading-safety", "sdlc", "pipeline", "cd-health", "right-size", "onboarding"]),
     ("po", "Product Owner / Product Manager",
      "You decide what's worth building, for whom, and in what order, and you prove it worked.",
      ["vision", "ost", "prioritisation"],
      ["epic", "storymap", "splitting", "example", "sprint-planning", "sprint-review", "okr", "value", "forecast",
-      "stakeholder", "experiment", "jira", "portfolio-kanban", "backlog", "persona", "impact", "estimation", "facilitation", "launch", "refinement", "events", "sdlc", "release", "testing", "retro"]),
+      "stakeholder", "experiment", "jira", "portfolio-kanban", "backlog", "persona", "impact", "estimation", "facilitation", "launch", "refinement", "events", "sdlc", "release", "testing", "retro", "onboarding"]),
     ("pm", "Project Manager",
      "You get a defined piece of work delivered: scope, stakeholders, risks, forecasts and decisions.",
      ["kickoff", "raid", "status"],
      ["stakeholder", "premortem", "forecast", "prioritisation", "team-charter", "sprint-review", "dependency",
-      "impediments", "lean-coffee", "jira", "adkar", "psych-safety", "raci", "facilitation", "launch", "events", "daily", "spotter", "leading-safety", "sdlc", "release", "right-size", "estimation"]),
+      "impediments", "lean-coffee", "jira", "adkar", "psych-safety", "raci", "facilitation", "launch", "events", "daily", "spotter", "leading-safety", "sdlc", "release", "right-size", "estimation", "closeout"]),
     ("program", "Program Manager",
      "You deliver a programme of related projects and teams: shared outcomes, budget, stakeholders, dependencies and risks in the open.",
      ["okr", "dependency", "status"],
-     ["ctp", "sync", "topology", "raid", "forecast", "premortem", "value", "stakeholder", "impediments", "marginal", "adkar", "cross-retro", "portfolio-kanban", "delivery-metrics", "vsm", "raci", "facilitation", "launch", "events", "spotter", "leading-safety", "sdlc", "release", "pipeline", "right-size", "kickoff"]),
+     ["ctp", "sync", "topology", "raid", "forecast", "premortem", "value", "stakeholder", "impediments", "marginal", "adkar", "cross-retro", "portfolio-kanban", "delivery-metrics", "vsm", "raci", "facilitation", "launch", "events", "spotter", "leading-safety", "sdlc", "release", "pipeline", "right-size", "kickoff", "closeout"]),
     ("rte", "Release Train Engineer / Chief Scrum Master",
      "You facilitate a team of teams: big-room planning, the regular cross-team sync, system demos and inspect & adapt, "
      "and clearing impediments no single team can. Called a Release Train Engineer in SAFe and a Chief Scrum Master in Scrum@Scale.",
      ["ctp", "sync", "cross-retro"],
      ["dependency", "okr", "impediments", "blockers", "events", "cadences", "raid", "premortem", "forecast", "status", "value",
       "delivery-metrics", "vsm", "topology", "pipeline", "release", "sdlc", "portfolio-kanban", "stakeholder", "facilitation",
-      "lean-coffee", "sm-cheat", "health", "psych-safety", "leading-safety", "coaching", "marginal", "adkar", "spotter", "jira", "right-size"]),
+      "lean-coffee", "sm-cheat", "health", "psych-safety", "leading-safety", "coaching", "marginal", "adkar", "spotter", "jira", "right-size", "closeout"]),
     ("portfolio", "Portfolio Manager / PMO",
      "You decide where the organisation invests, and check that the investment delivers value.",
      ["portfolio-kanban", "value", "prioritisation"],
-     ["okr", "status", "kickoff", "premortem", "ctp", "topology", "stakeholder", "forecast", "adkar", "delegation", "delivery-metrics", "vsm", "raci", "impact", "events", "leading-safety", "sdlc", "right-size"]),
+     ["okr", "status", "kickoff", "premortem", "ctp", "topology", "stakeholder", "forecast", "adkar", "delegation", "delivery-metrics", "vsm", "raci", "impact", "events", "leading-safety", "sdlc", "right-size", "closeout"]),
     ("leader", "Executive / Sponsor",
      "You set direction, fund the work, remove the biggest obstacles, and shape how teams are organised.",
      ["value", "okr", "topology"],
-     ["vision", "status", "stakeholder", "premortem", "kickoff", "impediments", "ai", "health", "adkar", "portfolio-kanban", "delegation", "psych-safety", "coaching", "vsm", "raci", "impact", "events", "spotter", "leading-safety", "sdlc", "right-size"]),
+     ["vision", "status", "stakeholder", "premortem", "kickoff", "impediments", "ai", "health", "adkar", "portfolio-kanban", "delegation", "psych-safety", "coaching", "vsm", "raci", "impact", "events", "spotter", "leading-safety", "sdlc", "right-size", "closeout"]),
     ("eng", "Engineering Manager / Tech Lead",
      "You build capable teams and healthy systems: skills, flow, quality and sensible team boundaries.",
      ["skills", "topology", "kanban"],
      ["pairing", "ageing", "buffer", "blockers", "ai", "team-charter", "rootcause", "example", "splitting",
-      "dependency", "health", "impediments", "delivery-metrics", "psych-safety", "coaching", "delegation", "backlog", "vsm", "incident", "adr", "estimation", "launch", "daily", "refinement", "cadences", "spotter", "leading-safety", "pipeline", "testing", "release", "cd-health", "sdlc", "right-size", "experiment"]),
+      "dependency", "health", "impediments", "delivery-metrics", "psych-safety", "coaching", "delegation", "backlog", "vsm", "incident", "adr", "estimation", "launch", "daily", "refinement", "cadences", "spotter", "leading-safety", "pipeline", "testing", "release", "cd-health", "sdlc", "right-size", "experiment", "onboarding"]),
     ("ux", "Designer / Business Analyst",
      "You understand users and the problem, and help the team build the right thing, clearly specified.",
      ["ost", "storymap", "example"],
@@ -144,7 +146,7 @@ ROLES = [
      "You do the work, and you help decide how the team works and improves.",
      ["team-charter", "retro", "pairing"],
      ["ai", "sprint-planning", "sprint-review", "lean-coffee", "skills", "kanban", "buffer", "impediments", "example",
-      "splitting", "health", "psych-safety", "backlog", "estimation", "incident", "facilitation", "adr", "launch", "daily", "refinement", "events", "spotter", "pipeline", "testing", "release", "cd-health", "ageing", "experiment", "jira", "rootcause"]),
+      "splitting", "health", "psych-safety", "backlog", "estimation", "incident", "facilitation", "adr", "launch", "daily", "refinement", "events", "spotter", "pipeline", "testing", "release", "cd-health", "ageing", "experiment", "jira", "rootcause", "onboarding"]),
 ]
 
 for _id, _n, _d, start, also in ROLES:
@@ -191,7 +193,7 @@ def build_page():
 <title>Start Here by Role</title>
 <link rel="stylesheet" href="{FONT_URL}">
 <style>
-:root{{--accent:{ACCENT};--navy:{NAVY};--ink:#1E293B;--muted:#64748B;--rule:#E2E8F0;}}
+:root{{--accent:{ACCENT};--navy:{NAVY};--ink:#1E293B;--muted:#5B6B82;--rule:#E2E8F0;}}
 *{{box-sizing:border-box;}}
 html,body{{margin:0;background:#F1F5F9;}}
 body{{font-family:'Geist',Inter,system-ui,sans-serif;color:var(--ink);font-size:14px;line-height:1.5;}}
@@ -219,7 +221,7 @@ a.filter:hover{{text-decoration:underline;}}
 .tool.start{{background:var(--ink);border-color:var(--ink);}}
 .tool.start a{{color:#fff;font-weight:600;}}
 .tool.start a.g{{color:#94A3B8;border-color:#475569;font-weight:500;}}
-footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#94A3B8;text-align:center;padding:0 16px 32px;}}
+footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-align:center;padding:0 16px 32px;}}
 @media print{{header{{padding:20px 16px;}} nav,a.filter{{display:none;}} .role{{break-inside:avoid;box-shadow:none;}}}}
 </style>
 </head>
@@ -245,10 +247,10 @@ footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#94A3B8;text-
 
 FILTER_CSS = """/* roles:css */
 .rolebar{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;align-items:center;}
-.rolebar span{font:500 9px 'Geist Mono',monospace;letter-spacing:.12em;color:#64748B;text-transform:uppercase;margin-right:4px;}
+.rolebar span{font:500 9px 'Geist Mono',monospace;letter-spacing:.12em;color:#94A3B8;text-transform:uppercase;margin-right:4px;}
 .rolebar button{font:500 11px 'Geist Mono',monospace;letter-spacing:.04em;color:#fff;background:none;border:1px solid #334155;border-radius:14px;padding:5px 11px;cursor:pointer;}
 .rolebar button:hover{border-color:var(--accent);color:var(--accent);}
-.rolebar button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;}
+.rolebar button[aria-pressed="true"]{background:#C2410C;border-color:#C2410C;color:#fff;}
 .sections{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--rule);}
 .sections .wrap{display:flex;gap:10px;align-items:center;padding-top:8px;padding-bottom:8px;}
 .sections .links{display:flex;gap:2px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:thin;}

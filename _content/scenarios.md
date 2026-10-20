@@ -129,7 +129,7 @@ First moves:
 - Pair them on real work in their first week.
 Longer term:
 - Add them to the skills matrix, and revisit the charter together: a new member means a slightly new team.
-Tools: Team Charter, Pairing & Mobbing, Skills Matrix
+Tools: Team Onboarding, Team Charter, Pairing & Mobbing, Skills Matrix
 
 ## Two team members are in open conflict
 You'll notice: tension in meetings, side conversations, or people avoiding each other.

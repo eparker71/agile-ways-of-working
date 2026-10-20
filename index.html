@@ -19,7 +19,7 @@
 <!-- /meta -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
 <style>
-:root{--accent:#eb6c36;--navy:#0C1A2E;--ink:#1E293B;--muted:#64748B;--rule:#E2E8F0;}
+:root{--accent:#eb6c36;--navy:#0C1A2E;--ink:#1E293B;--muted:#5B6B82;--rule:#E2E8F0;}
 *{box-sizing:border-box;}
 html,body{margin:0;background:#F1F5F9;}
 body{font-family:'Geist',Inter,system-ui,sans-serif;color:var(--ink);font-size:14px;line-height:1.5;}
@@ -40,20 +40,20 @@ h2{font:500 10px 'Geist Mono',monospace;letter-spacing:.14em;text-transform:uppe
 .card a{font:500 11px 'Geist Mono',monospace;letter-spacing:.04em;color:var(--ink);text-decoration:none;border:1px solid var(--rule);border-radius:6px;padding:5px 10px;}
 .card a:hover{border-color:var(--accent);color:var(--accent);}
 .card a.primary{background:var(--ink);color:#fff;border-color:var(--ink);}
-.card a.primary:hover{background:var(--accent);border-color:var(--accent);color:#fff;}
-footer{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#94A3B8;text-align:center;padding:0 16px 32px;}
+.card a.primary:hover{background:#C2410C;border-color:#C2410C;color:#fff;}
+footer{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-align:center;padding:0 16px 32px;}
 .starthere{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:18px;}
 .starthere span{font:500 9px 'Geist Mono',monospace;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;margin-right:4px;}
 .starthere a{font:500 12px 'Geist',system-ui,sans-serif;color:#fff;text-decoration:none;background:rgba(255,255,255,.08);border-radius:6px;padding:5px 10px;}
-.starthere a:hover{background:var(--accent);}
+.starthere a:hover{background:#C2410C;}
 h2{scroll-margin-top:64px;}
 @media (max-width:640px){header{padding:28px 16px 22px;}.starthere{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-right:32px;-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 36px),transparent);}.starthere::-webkit-scrollbar{display:none;}.starthere span,.starthere a{flex:none;white-space:nowrap;}}
 /* roles:css */
 .rolebar{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;align-items:center;}
-.rolebar span{font:500 9px 'Geist Mono',monospace;letter-spacing:.12em;color:#64748B;text-transform:uppercase;margin-right:4px;}
+.rolebar span{font:500 9px 'Geist Mono',monospace;letter-spacing:.12em;color:#94A3B8;text-transform:uppercase;margin-right:4px;}
 .rolebar button{font:500 11px 'Geist Mono',monospace;letter-spacing:.04em;color:#fff;background:none;border:1px solid #334155;border-radius:14px;padding:5px 11px;cursor:pointer;}
 .rolebar button:hover{border-color:var(--accent);color:var(--accent);}
-.rolebar button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;}
+.rolebar button[aria-pressed="true"]{background:#C2410C;border-color:#C2410C;color:#fff;}
 .sections{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--rule);}
 .sections .wrap{display:flex;gap:10px;align-items:center;padding-top:8px;padding-bottom:8px;}
 .sections .links{display:flex;gap:2px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:thin;}
@@ -73,7 +73,7 @@ h2{scroll-margin-top:64px;}
 <header><div class="wrap">
   <h1>Agile Ways of Working Toolkit</h1>
   <p>Printable A3 boards, posters and facilitator guides for teams, facilitators and leaders, grouped by what you're trying to do. Open a board to view or print it, drop the SVG into Miro, Mural or FigJam, or download a guide in Word to adapt it.</p>
-  <nav class="starthere"><span>Start here</span><a href="start-here-by-role.html">Tools by role</a><a href="glossary.html">Glossary</a><a href="events-cadences-poster.html">Events at a glance</a><a href="right-size-poster.html">Right-size your project</a><a href="anti-patterns.html">Anti-patterns</a><a href="scenarios.html">Scenarios</a><a href="workshop-recipes.html">Workshop recipes</a><a href="scrum-master-agile-coach-cheat-sheet.html">Scrum Master &amp; Agile Coach cheat sheet</a><a href="jira-cheat-sheet.html">Jira cheat sheet</a><a href="make-it-yours.html">Make it yours</a><a href="about.html">About</a></nav>
+  <nav class="starthere"><span>Start here</span><a href="start-here-by-role.html">Tools by role</a><a href="glossary.html">Glossary</a><a href="events-cadences-poster.html">Events at a glance</a><a href="right-size-poster.html">Right-size your project</a><a href="anti-patterns.html">Anti-patterns</a><a href="scenarios.html">Scenarios</a><a href="workshop-recipes.html">Workshop recipes</a><a href="print-pack.html">Print pack (PDF)</a><a href="scrum-master-agile-coach-cheat-sheet.html">Scrum Master &amp; Agile Coach cheat sheet</a><a href="jira-cheat-sheet.html">Jira cheat sheet</a><a href="make-it-yours.html">Make it yours</a><a href="about.html">About</a></nav>
 <!-- roles:bar --><div class="rolebar"><span>I'm a…</span><button type="button" data-role="all" data-name="everyone">All tools</button><button type="button" data-role="sm" data-name="Scrum Master / Delivery Lead">Scrum Master</button><button type="button" data-role="coach" data-name="Agile Coach">Agile Coach</button><button type="button" data-role="po" data-name="Product Owner / Product Manager">Product Owner</button><button type="button" data-role="pm" data-name="Project Manager">Project Manager</button><button type="button" data-role="program" data-name="Program Manager">Program Manager</button><button type="button" data-role="rte" data-name="Release Train Engineer / Chief Scrum Master">Release Train Engineer</button><button type="button" data-role="portfolio" data-name="Portfolio Manager / PMO">Portfolio Manager</button><button type="button" data-role="leader" data-name="Executive / Sponsor">Executive</button><button type="button" data-role="eng" data-name="Engineering Manager / Tech Lead">Engineering Manager</button><button type="button" data-role="ux" data-name="Designer / Business Analyst">Designer</button><button type="button" data-role="team" data-name="Team Member">Team Member</button></div><!-- /roles:bar -->
 </div></header>
 <!-- roles:nav --><nav class="sections" aria-label="Sections"><div class="wrap"><div class="links"><a href="#setup" title="Set up the team">Team set-up</a><a href="#decide" title="Decide what to build">What to build</a><a href="#breakdown" title="Break down work">Break down</a><a href="#iterate" title="Run events &amp; iterations">Events</a><a href="#flow" title="Manage flow">Flow</a><a href="#engineering" title="Engineering practices">Engineering</a><a href="#improve" title="Reflect &amp; improve">Improve</a><a href="#project" title="Run a project">Projects</a><a href="#teams" title="Coordinate teams">Multi-team</a><a href="#lead" title="Lead the organisation">Leadership</a><a href="#facilitate" title="Facilitate &amp; coach">Facilitation</a></div><input type="search" placeholder="Search tools…" aria-label="Search tools"></div></nav><!-- /roles:nav -->
@@ -83,6 +83,7 @@ h2{scroll-margin-top:64px;}
   <div class="grid">
     <div class="card" data-roles="sm coach po pm program eng team"><div class="bar" style="background:#eb6c36"></div><div class="body"><h3>Team Launch (Sprint Zero)</h3><p>Get a new team or initiative ready in one or two weeks: a launch checklist linked to the right tools, a thin first slice, and a ready-to-start check.</p></div><div class="links"><a class="primary" href="team-launch-board.html">Open</a><a href="team-launch-board.svg">SVG</a><a href="facilitator-guide-team-launch.html">Guide</a></div></div>
     <div class="card" data-roles="sm coach pm eng team"><div class="bar" style="background:#581C87"></div><div class="body"><h3>Team Charter</h3><p>Purpose, members and roles, values, working agreements, how we decide, ways of working, and the Definitions of Ready and Done.</p></div><div class="links"><a class="primary" href="team-charter-board.html">Open</a><a href="team-charter-board.svg">SVG</a><a href="facilitator-guide-team-charter.html">Guide</a></div></div>
+    <div class="card" data-roles="sm coach po eng team"><div class="bar" style="background:#1E3A8A"></div><div class="body"><h3>Team Onboarding</h3><p>Before day one, a first-week plan, people to meet, how we work here, a buddy, and 30, 60 and 90-day check-ins.</p></div><div class="links"><a class="primary" href="team-onboarding-board.html">Open</a><a href="team-onboarding-board.svg">SVG</a><a href="facilitator-guide-team-onboarding.html">Guide</a></div></div>
     <div class="card" data-roles="sm coach leader eng team"><div class="bar" style="background:#1E3A8A"></div><div class="body"><h3>AI Working Agreement</h3><p>Where the team uses AI, guardrails, review rules, skills and sharing, risks to watch, and how to measure the impact.</p></div><div class="links"><a class="primary" href="ai-working-agreement-board.html">Open</a><a href="ai-working-agreement-board.svg">SVG</a><a href="facilitator-guide-ai-working-agreement.html">Guide</a></div></div>
     <div class="card" data-roles="sm coach eng team"><div class="bar" style="background:#065F46"></div><div class="body"><h3>Skills Matrix</h3><p>Map team skills on a 0–3 scale, find single points of failure, and plan learning so the team can swarm.</p></div><div class="links"><a class="primary" href="skills-matrix-board.html">Open</a><a href="skills-matrix-board.svg">SVG</a><a href="facilitator-guide-skills-matrix.html">Guide</a></div></div>
   </div>
@@ -163,6 +164,7 @@ h2{scroll-margin-top:64px;}
     <div class="card" data-roles="pm program portfolio leader"><div class="bar" style="background:#1E3A8A"></div><div class="body"><h3>RACI &amp; Decision Log</h3><p>Who is responsible, accountable, consulted and informed for each piece of work, plus a log of key decisions and why.</p></div><div class="links"><a class="primary" href="raci-decision-log-board.html">Open</a><a href="raci-decision-log-board.svg">SVG</a><a href="facilitator-guide-raci-decision-log.html">Guide</a></div></div>
     <div class="card" data-roles="sm po pm program rte portfolio"><div class="bar" style="background:#92400E"></div><div class="body"><h3>Release Forecast &amp; Burn-up</h3><p>A burn-up chart, throughput data, and a slow / likely / fast forecast that answers “when?” with a range.</p></div><div class="links"><a class="primary" href="release-forecast-board.html">Open</a><a href="release-forecast-board.svg">SVG</a><a href="facilitator-guide-release-forecast.html">Guide</a></div></div>
     <div class="card" data-roles="pm program rte portfolio leader"><div class="bar" style="background:#14532D"></div><div class="body"><h3>Outcome Status Report</h3><p>A one-page update: headline and confidence, outcomes, forecast range, delivered and learned, risks, and decisions needed.</p></div><div class="links"><a class="primary" href="status-report-board.html">Open</a><a href="status-report-board.svg">SVG</a><a href="facilitator-guide-status-report.html">Guide</a></div></div>
+    <div class="card" data-roles="sm pm program rte portfolio leader"><div class="bar" style="background:#581C87"></div><div class="body"><h3>Project Close-out</h3><p>Goal versus delivered, benefits still to come and their owners, handover, lessons learned, loose ends, and thanks.</p></div><div class="links"><a class="primary" href="project-closeout-board.html">Open</a><a href="project-closeout-board.svg">SVG</a><a href="facilitator-guide-project-closeout.html">Guide</a></div></div>
   </div>
 
   <h2 id="teams">Coordinate teams</h2>

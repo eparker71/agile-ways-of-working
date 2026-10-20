@@ -7,6 +7,8 @@ Checks:
   - every page has a title, a meta description and link-preview metadata
   - every SVG and every part of every Word file is well-formed XML
   - every page in sitemap.xml exists
+  - every board has an up-to-date A3 PDF in pdf/
+  - text on one page of each kind meets WCAG AA contrast (needs Chrome)
   - the two cheat sheets have no overflowing panels and print to the expected number of pages
     (needs Google Chrome or Chromium; skipped with a warning if neither is found)
 
@@ -97,6 +99,23 @@ def check_sitemap():
             fail(f"sitemap.xml lists missing page {loc}")
 
 
+def check_pdfs():
+    """Every board has an up-to-date A3 PDF (see build_pdfs.py)."""
+    import hashlib
+    import json
+    man = OUT / "pdf" / "manifest.json"
+    if not man.exists():
+        fail("pdf/manifest.json is missing (run build_pdfs.py)")
+        return
+    manifest = json.loads(man.read_text())
+    for svg in sorted(OUT.glob("*.svg")):
+        if not (OUT / f"{svg.stem}.html").exists():
+            continue
+        fp = hashlib.sha256(svg.read_bytes()).hexdigest()[:16]
+        if manifest.get(svg.stem) != fp or not (OUT / "pdf" / f"{svg.stem}.pdf").exists():
+            fail(f"pdf/{svg.stem}.pdf is missing or out of date (run build_pdfs.py, then build_all.py)")
+
+
 def find_chrome():
     for c in ("google-chrome", "google-chrome-stable", "chromium", "chromium-browser",
               "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"):
@@ -151,12 +170,61 @@ def check_cheat_sheets():
             os.remove(tmp)
 
 
+CONTRAST_PAGES = ["index.html", "sprint-planning-board.html", "facilitator-guide-sprint-planning.html",
+                  "facilitator-guide-marginal-gains.html", "scrum-master-agile-coach-cheat-sheet.html", "jira-cheat-sheet.html",
+                  "glossary.html", "start-here-by-role.html", "scenarios.html", "anti-patterns.html", "workshop-recipes.html",
+                  "print-pack.html", "about.html", "make-it-yours.html", "404.html"]
+
+CONTRAST_JS = r"""<!doctype html><html><head><meta charset="utf-8"></head><body><iframe id="f" style="width:1300px;height:900px;border:0"></iframe><script>
+var B=%s,pages=%s,i=0,res=[];
+function lum(c){var a=c.map(function(v){v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*a[0]+.7152*a[1]+.0722*a[2];}
+function parse(s){var m=s.match(/[\d.]+/g);return m?m.map(Number):[0,0,0,0];}
+function bgOf(el,w){while(el){var c=parse(w.getComputedStyle(el).backgroundColor);if(c.length<4||c[3]>0.9)return c.slice(0,3);
+ if(w.getComputedStyle(el).backgroundImage!=='none'&&el.tagName!=='BODY')return null;el=el.parentElement;}return [255,255,255];}
+var f=document.getElementById('f');
+function next(){if(i>=pages.length){var o=document.createElement('pre');o.id='contrast-result';o.textContent=JSON.stringify(res);document.body.appendChild(o);return;}
+f.onload=function(){setTimeout(function(){var d=f.contentDocument,w=f.contentWindow,seen={};
+d.querySelectorAll('body *:not(svg):not(svg *)').forEach(function(el){
+ var t=[].filter.call(el.childNodes,function(n){return n.nodeType===3&&n.textContent.trim()}).map(function(n){return n.textContent.trim()}).join(' ');
+ if(!t||el.closest('[aria-hidden="true"]'))return;var cs=w.getComputedStyle(el);if(cs.display==='none'||cs.visibility==='hidden'||!el.getBoundingClientRect().width)return;
+ var fg=parse(cs.color),bg=bgOf(el,w);if(!bg)return;var a=(fg.length>3?fg[3]:1)*parseFloat(cs.opacity);
+ var f3=fg.slice(0,3).map(function(v,k){return v*a+bg[k]*(1-a)});var L1=lum(f3),L2=lum(bg),cr=(Math.max(L1,L2)+.05)/(Math.min(L1,L2)+.05);
+ var size=parseFloat(cs.fontSize),large=size>=24||(size>=18.66&&parseInt(cs.fontWeight)>=700);
+ if(cr<(large?3:4.5)){var k=cs.color+'/'+bg;if(!seen[k]){seen[k]=1;res.push(pages[i]+': “'+t.slice(0,30)+'” '+cr.toFixed(2)+':1');}}});
+ i++;next();},800)};f.src=B+pages[i];}
+next();</script></body></html>"""
+
+
+def check_contrast():
+    """WCAG AA text contrast (4.5:1, or 3:1 for large text) on one page of each kind. Board SVGs aren't covered."""
+    chrome = find_chrome()
+    if not chrome:
+        warnings.append("Chrome not found: skipped the contrast check")
+        return
+    import json
+    with tempfile.TemporaryDirectory() as tmp:
+        harness = Path(tmp) / "contrast.html"
+        harness.write_text(CONTRAST_JS % (json.dumps(f"file://{OUT}/"), json.dumps(CONTRAST_PAGES)), encoding="utf-8")
+        dom = subprocess.run([chrome, "--headless=new", "--disable-gpu", "--no-sandbox", "--allow-file-access-from-files",
+                              "--window-size=1400,1000", "--virtual-time-budget=120000", "--dump-dom", f"file://{harness}"],
+                             capture_output=True, text=True, timeout=300).stdout
+    m = re.search(r'<pre id="contrast-result">(.*?)</pre>', dom, re.S)
+    if not m:
+        warnings.append("couldn't run the contrast check")
+        return
+    from html import unescape
+    for problem in json.loads(unescape(m.group(1))):
+        fail(f"low contrast: {problem}")
+
+
 if __name__ == "__main__":
     check_links()
     check_metadata()
     check_xml()
     check_sitemap()
+    check_pdfs()
     check_cheat_sheets()
+    check_contrast()
     for w in warnings:
         print("warning:", w)
     if errors:

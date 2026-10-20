@@ -25,7 +25,7 @@
       <stop offset="100%" stop-color="#BAE6FD"/>
     </linearGradient>
   </defs>
-<rect x="0" y="0" width="1680" height="1190" fill="url(#bg)"/><rect x="0" y="0" width="1680" height="4" fill="#eb6c36"/><rect x="0" y="4" width="1680" height="134" fill="#0C1A2E"/><text x="24" y="70" font-family="'Instrument Serif',Georgia,serif" font-size="42" font-weight="400" fill="white">SDLC at a Glance</text><text x="24" y="100" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" fill="#94A3B8">The software development lifecycle from idea to outcome: what happens at each stage, the question it answers, and the tools that help.</text><text x="24" y="120" font-family="'Geist Mono',Consolas,monospace" font-size="9" fill="#475569" letter-spacing=".06em">Agile Lifecycle · From Idea to Outcome · One Toolbox</text><text x="1356" y="66" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#475569" letter-spacing=".14em">TEAM</text><line x1="1452" y1="69" x2="1656" y2="69" stroke="#334155" stroke-width="1.2"/><text x="1356" y="96" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#475569" letter-spacing=".14em">DATE</text><line x1="1452" y1="99" x2="1656" y2="99" stroke="#334155" stroke-width="1.2"/>
+<rect x="0" y="0" width="1680" height="1190" fill="url(#bg)"/><rect x="0" y="0" width="1680" height="4" fill="#eb6c36"/><rect x="0" y="4" width="1680" height="134" fill="#0C1A2E"/><text x="24" y="70" font-family="'Instrument Serif',Georgia,serif" font-size="42" font-weight="400" fill="white">SDLC at a Glance</text><text x="24" y="100" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" fill="#94A3B8">The software development lifecycle from idea to outcome: what happens at each stage, the question it answers, and the tools that help.</text><text x="24" y="120" font-family="'Geist Mono',Consolas,monospace" font-size="9" fill="#8291A6" letter-spacing=".06em">Agile Lifecycle · From Idea to Outcome · One Toolbox</text><text x="1356" y="66" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#8291A6" letter-spacing=".14em">TEAM</text><line x1="1452" y1="69" x2="1656" y2="69" stroke="#334155" stroke-width="1.2"/><text x="1356" y="96" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#8291A6" letter-spacing=".14em">DATE</text><line x1="1452" y1="99" x2="1656" y2="99" stroke="#334155" stroke-width="1.2"/>
 <rect x="24" y="148" width="195.25" height="500" rx="10" fill="#EDE9FE" stroke="#581C87" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/>
 <path d="M24.0,200 V158 A10,10 0 0 1 34.0,148 H209.25 A10,10 0 0 1 219.25,158 V200 Z" fill="#581C87"/>
 <circle cx="45" cy="174" r="12" fill="white" fill-opacity=".18"/>
@@ -43,8 +43,8 @@
 <circle cx="42" cy="486" r="2.5" fill="#581C87"/>
 <text x="52" y="490" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#581C87">Portfolio Kanban</text>
 <line x1="38" y1="572" x2="205.25" y2="572" stroke="#581C87" stroke-width="1" stroke-opacity=".25"/>
-<text x="38" y="594" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#581C87" fill-opacity=".7" letter-spacing=".12em">TRADITIONAL GATE</text>
-<text x="38" y="614" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#64748B">Business case approved</text>
+<text x="38" y="594" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#581C87" fill-opacity=".88" letter-spacing=".12em">TRADITIONAL GATE</text>
+<text x="38" y="614" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#566578">Business case approved</text>
 <text x="224.25" y="398" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" fill="#1E293B" fill-opacity=".45">›</text>
 <rect x="229.25" y="148" width="195.25" height="500" rx="10" fill="#DBEAFE" stroke="#1E3A8A" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/>
 <path d="M229.25,200 V158 A10,10 0 0 1 239.25,148 H414.5 A10,10 0 0 1 424.5,158 V200 Z" fill="#1E3A8A"/>
@@ -63,8 +63,8 @@
 <circle cx="247.25" cy="486" r="2.5" fill="#1E3A8A"/>
 <text x="257.25" y="490" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#1E3A8A">Impact Map</text>
 <line x1="243.25" y1="572" x2="410.5" y2="572" stroke="#1E3A8A" stroke-width="1" stroke-opacity=".25"/>
-<text x="243.25" y="594" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#1E3A8A" fill-opacity=".7" letter-spacing=".12em">TRADITIONAL GATE</text>
-<text x="243.25" y="614" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#64748B">Requirements signed off</text>
+<text x="243.25" y="594" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#1E3A8A" fill-opacity=".88" letter-spacing=".12em">TRADITIONAL GATE</text>
+<text x="243.25" y="614" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#566578">Requirements signed off</text>
 <text x="429.5" y="398" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" fill="#1E293B" fill-opacity=".45">›</text>
 <rect x="434.5" y="148" width="195.25" height="500" rx="10" fill="#E0F2FE" stroke="#0C4A6E" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/>
 <path d="M434.5,200 V158 A10,10 0 0 1 444.5,148 H619.75 A10,10 0 0 1 629.75,158 V200 Z" fill="#0C4A6E"/>
@@ -85,8 +85,8 @@
 <circle cx="452.5" cy="508" r="2.5" fill="#0C4A6E"/>
 <text x="462.5" y="512" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#0C4A6E">Architecture Decision Record</text>
 <line x1="448.5" y1="572" x2="615.75" y2="572" stroke="#0C4A6E" stroke-width="1" stroke-opacity=".25"/>
-<text x="448.5" y="594" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#0C4A6E" fill-opacity=".7" letter-spacing=".12em">TRADITIONAL GATE</text>
-<text x="448.5" y="614" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#64748B">Design approved</text>
+<text x="448.5" y="594" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#0C4A6E" fill-opacity=".88" letter-spacing=".12em">TRADITIONAL GATE</text>
+<text x="448.5" y="614" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#566578">Design approved</text>
 <text x="634.75" y="398" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" fill="#1E293B" fill-opacity=".45">›</text>
 <rect x="639.75" y="148" width="195.25" height="500" rx="10" fill="#FEF3C7" stroke="#92400E" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/>
 <path d="M639.75,200 V158 A10,10 0 0 1 649.75,148 H825.0 A10,10 0 0 1 835.0,158 V200 Z" fill="#92400E"/>
@@ -107,8 +107,8 @@
 <circle cx="657.75" cy="508" r="2.5" fill="#92400E"/>
 <text x="667.75" y="512" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#92400E">Delivery Pipeline Canvas</text>
 <line x1="653.75" y1="572" x2="821" y2="572" stroke="#92400E" stroke-width="1" stroke-opacity=".25"/>
-<text x="653.75" y="594" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#92400E" fill-opacity=".7" letter-spacing=".12em">TRADITIONAL GATE</text>
-<text x="653.75" y="614" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#64748B">Code complete</text>
+<text x="653.75" y="594" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#92400E" fill-opacity=".88" letter-spacing=".12em">TRADITIONAL GATE</text>
+<text x="653.75" y="614" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#566578">Code complete</text>
 <text x="840" y="398" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" fill="#1E293B" fill-opacity=".45">›</text>
 <rect x="845" y="148" width="195.25" height="500" rx="10" fill="#FFEDD5" stroke="#9A3412" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/>
 <path d="M845.0,200 V158 A10,10 0 0 1 855.0,148 H1030.25 A10,10 0 0 1 1040.25,158 V200 Z" fill="#9A3412"/>
@@ -127,8 +127,8 @@
 <circle cx="863" cy="486" r="2.5" fill="#9A3412"/>
 <text x="873" y="490" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#9A3412">Definition of Done (Team</text><text x="873" y="504" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#9A3412">Charter)</text>
 <line x1="859" y1="572" x2="1026.25" y2="572" stroke="#9A3412" stroke-width="1" stroke-opacity=".25"/>
-<text x="859" y="594" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#9A3412" fill-opacity=".7" letter-spacing=".12em">TRADITIONAL GATE</text>
-<text x="859" y="614" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#64748B">Test sign-off (UAT)</text>
+<text x="859" y="594" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#9A3412" fill-opacity=".88" letter-spacing=".12em">TRADITIONAL GATE</text>
+<text x="859" y="614" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#566578">Test sign-off (UAT)</text>
 <text x="1045.25" y="398" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" fill="#1E293B" fill-opacity=".45">›</text>
 <rect x="1050.25" y="148" width="195.25" height="500" rx="10" fill="#D1FAE5" stroke="#065F46" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/>
 <path d="M1050.25,200 V158 A10,10 0 0 1 1060.25,148 H1235.5 A10,10 0 0 1 1245.5,158 V200 Z" fill="#065F46"/>
@@ -145,8 +145,8 @@
 <circle cx="1068.25" cy="464" r="2.5" fill="#065F46"/>
 <text x="1078.25" y="468" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#065F46">Release Forecast &amp; Burn-up</text>
 <line x1="1064.25" y1="572" x2="1231.5" y2="572" stroke="#065F46" stroke-width="1" stroke-opacity=".25"/>
-<text x="1064.25" y="594" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#065F46" fill-opacity=".7" letter-spacing=".12em">TRADITIONAL GATE</text>
-<text x="1064.25" y="614" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#64748B">Go-live approval (change</text><text x="1064.25" y="628" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#64748B">board)</text>
+<text x="1064.25" y="594" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#065F46" fill-opacity=".88" letter-spacing=".12em">TRADITIONAL GATE</text>
+<text x="1064.25" y="614" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#566578">Go-live approval (change</text><text x="1064.25" y="628" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#566578">board)</text>
 <text x="1250.5" y="398" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" fill="#1E293B" fill-opacity=".45">›</text>
 <rect x="1255.5" y="148" width="195.25" height="500" rx="10" fill="#FEE2E2" stroke="#991B1B" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/>
 <path d="M1255.5,200 V158 A10,10 0 0 1 1265.5,148 H1440.75 A10,10 0 0 1 1450.75,158 V200 Z" fill="#991B1B"/>
@@ -165,8 +165,8 @@
 <circle cx="1273.5" cy="486" r="2.5" fill="#991B1B"/>
 <text x="1283.5" y="490" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#991B1B">Continuous Delivery Health</text><text x="1283.5" y="504" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#991B1B">Check</text>
 <line x1="1269.5" y1="572" x2="1436.75" y2="572" stroke="#991B1B" stroke-width="1" stroke-opacity=".25"/>
-<text x="1269.5" y="594" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#991B1B" fill-opacity=".7" letter-spacing=".12em">TRADITIONAL GATE</text>
-<text x="1269.5" y="614" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#64748B">Handover to operations</text>
+<text x="1269.5" y="594" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#991B1B" fill-opacity=".88" letter-spacing=".12em">TRADITIONAL GATE</text>
+<text x="1269.5" y="614" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#566578">Handover to operations</text>
 <text x="1455.75" y="398" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" fill="#1E293B" fill-opacity=".45">›</text>
 <rect x="1460.75" y="148" width="195.25" height="500" rx="10" fill="#DCFCE7" stroke="#14532D" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/>
 <path d="M1460.75,200 V158 A10,10 0 0 1 1470.75,148 H1646.0 A10,10 0 0 1 1656.0,158 V200 Z" fill="#14532D"/>
@@ -185,47 +185,47 @@
 <circle cx="1478.75" cy="486" r="2.5" fill="#14532D"/>
 <text x="1488.75" y="490" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#14532D">Retrospective Kit</text>
 <line x1="1474.75" y1="572" x2="1642" y2="572" stroke="#14532D" stroke-width="1" stroke-opacity=".25"/>
-<text x="1474.75" y="594" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#14532D" fill-opacity=".7" letter-spacing=".12em">TRADITIONAL GATE</text>
-<text x="1474.75" y="614" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#64748B">Post-implementation review</text>
+<text x="1474.75" y="594" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#14532D" fill-opacity=".88" letter-spacing=".12em">TRADITIONAL GATE</text>
+<text x="1474.75" y="614" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#566578">Post-implementation review</text>
 <text x="840" y="676" text-anchor="middle" font-family="'Instrument Serif',Georgia,serif" font-size="12" font-style="italic" fill="#1E293B">↺  Learning feeds the next idea. In agile delivery the whole loop runs for every small slice, many times over, not once per project.</text>
-<rect x="24" y="696" width="1082" height="364" rx="10" fill="#F1F5F9" stroke="#334155" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M24,748 V706 A10,10 0 0 1 34,696 H1096 A10,10 0 0 1 1106,706 V748 Z" fill="#334155"/><text x="45" y="728" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Traditional SDLC and Agile Delivery</text><text x="1090" y="727" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".6" letter-spacing=".10em">SAME STAGES, DIFFERENT RHYTHM</text>
+<rect x="24" y="696" width="1082" height="364" rx="10" fill="#F1F5F9" stroke="#334155" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M24,748 V706 A10,10 0 0 1 34,696 H1096 A10,10 0 0 1 1106,706 V748 Z" fill="#334155"/><text x="45" y="728" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Traditional SDLC and Agile Delivery</text><text x="1090" y="727" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".88" letter-spacing=".10em">SAME STAGES, DIFFERENT RHYTHM</text>
 <text x="48" y="778" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="600" fill="#334155" letter-spacing=".1em"></text>
 <text x="218" y="778" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="600" fill="#334155" letter-spacing=".1em">TRADITIONAL (STAGE-GATE)</text>
 <text x="648" y="778" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="600" fill="#334155" letter-spacing=".1em">AGILE DELIVERY</text>
 <text x="48" y="804" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#334155">Planning</text>
-<text x="218" y="804" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#64748B">Detailed plan up front; change is controlled</text>
+<text x="218" y="804" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#566578">Detailed plan up front; change is controlled</text>
 <text x="648" y="804" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="500" fill="#065F46">Plan a little, often; change is expected</text>
 <line x1="42" y1="815" x2="1088" y2="815" stroke="#E2E8F0" stroke-width="1"/>
 <text x="48" y="832" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#334155">Requirements</text>
-<text x="218" y="832" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#64748B">Complete and signed off before building</text>
+<text x="218" y="832" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#566578">Complete and signed off before building</text>
 <text x="648" y="832" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="500" fill="#065F46">Discovered and refined just in time, with examples</text>
 <line x1="42" y1="843" x2="1088" y2="843" stroke="#E2E8F0" stroke-width="1"/>
 <text x="48" y="860" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#334155">Testing</text>
-<text x="218" y="860" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#64748B">A phase near the end</text>
+<text x="218" y="860" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#566578">A phase near the end</text>
 <text x="648" y="860" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="500" fill="#065F46">On every change, automated, from the start</text>
 <line x1="42" y1="871" x2="1088" y2="871" stroke="#E2E8F0" stroke-width="1"/>
 <text x="48" y="888" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#334155">Release</text>
-<text x="218" y="888" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#64748B">Rare, large and risky</text>
+<text x="218" y="888" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#566578">Rare, large and risky</text>
 <text x="648" y="888" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="500" fill="#065F46">Frequent, small and routine</text>
 <line x1="42" y1="899" x2="1088" y2="899" stroke="#E2E8F0" stroke-width="1"/>
 <text x="48" y="916" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#334155">Teams</text>
-<text x="218" y="916" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#64748B">Hand-offs between specialist groups</text>
+<text x="218" y="916" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#566578">Hand-offs between specialist groups</text>
 <text x="648" y="916" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="500" fill="#065F46">Cross-functional teams own the whole slice</text>
 <line x1="42" y1="927" x2="1088" y2="927" stroke="#E2E8F0" stroke-width="1"/>
 <text x="48" y="944" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#334155">Feedback</text>
-<text x="218" y="944" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#64748B">From users, after launch</text>
+<text x="218" y="944" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#566578">From users, after launch</text>
 <text x="648" y="944" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="500" fill="#065F46">From users, every iteration</text>
 <line x1="42" y1="955" x2="1088" y2="955" stroke="#E2E8F0" stroke-width="1"/>
 <text x="48" y="972" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#334155">Risk</text>
-<text x="218" y="972" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#64748B">Found late, when change is costly</text>
+<text x="218" y="972" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#566578">Found late, when change is costly</text>
 <text x="648" y="972" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="500" fill="#065F46">Found early, while change is cheap</text>
 <line x1="42" y1="983" x2="1088" y2="983" stroke="#E2E8F0" stroke-width="1"/>
 <text x="48" y="1000" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#334155">Progress</text>
-<text x="218" y="1000" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#64748B">Phases and documents completed</text>
+<text x="218" y="1000" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#566578">Phases and documents completed</text>
 <text x="648" y="1000" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="500" fill="#065F46">Working software and outcomes</text>
 <line x1="42" y1="1011" x2="1088" y2="1011" stroke="#E2E8F0" stroke-width="1"/>
 <text x="48" y="1028" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#334155">Governance</text>
-<text x="218" y="1028" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#64748B">Document gates between phases</text>
+<text x="218" y="1028" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#566578">Document gates between phases</text>
 <text x="648" y="1028" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="500" fill="#065F46">Evidence from working software, every iteration</text>
 <line x1="42" y1="1039" x2="1088" y2="1039" stroke="#E2E8F0" stroke-width="1"/>
 <rect x="1120" y="696" width="536" height="364" rx="10" fill="#EDE9FE" stroke="#581C87" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M1120,748 V706 A10,10 0 0 1 1130,696 H1646 A10,10 0 0 1 1656,706 V748 Z" fill="#581C87"/><text x="1141" y="728" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Keeping Governance, Losing the Delay</text>
@@ -241,5 +241,5 @@
 <text x="1154" y="958" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#581C87">Match approval to risk: small, routine</text><text x="1154" y="974" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#581C87">changes go straight through.</text>
 <circle cx="1142" cy="998" r="3" fill="#581C87"/>
 <text x="1154" y="1002" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#581C87">Invite risk, audit and security partners</text><text x="1154" y="1018" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#581C87">to reviews early, not just at the end.</text>
-<line x1="24" y1="1070" x2="1656" y2="1070" stroke="#E2E8F0" stroke-width="1"/><text x="24" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“Where in our lifecycle does work wait longest?”</text><line x1="832" y1="1078" x2="832" y2="1128" stroke="#E2E8F0" stroke-width="1"/><text x="848" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“Which gate could we replace with evidence from working software?”</text><text x="1656" y="1138" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#CBD5E1" letter-spacing=".08em">Agile Lifecycle · From Idea to Outcome · One Toolbox</text><text x="24" y="1138" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#94A3B8" letter-spacing=".06em">© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</text>
+<line x1="24" y1="1070" x2="1656" y2="1070" stroke="#E2E8F0" stroke-width="1"/><text x="24" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“Where in our lifecycle does work wait longest?”</text><line x1="832" y1="1078" x2="832" y2="1128" stroke="#E2E8F0" stroke-width="1"/><text x="848" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“Which gate could we replace with evidence from working software?”</text><text x="1656" y="1138" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#5B6B82" letter-spacing=".08em">Agile Lifecycle · From Idea to Outcome · One Toolbox</text><text x="24" y="1138" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#5B6B82" letter-spacing=".06em">© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</text>
 </svg>

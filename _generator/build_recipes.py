@@ -33,13 +33,14 @@ STARTER_KITS = [
       ("kanban", "one visible board for all the work"), ("sprint-planning", "plan each iteration around a goal"),
       ("retro", "improve a little every few weeks")],
      [("premortem", "if the work is risky"), ("stakeholder", "if many people care about the result"),
-      ("forecast", "when someone asks “when?”")]),
+      ("forecast", "when someone asks “when?”"), ("onboarding", "when someone joins"),
+      ("closeout", "when the project ends")]),
     ("Team of teams", "10–50 people · 2–5 teams", "#1E3A8A",
      [("right-size", "check you have enough structure, and not too much"), ("ctp", "plan together each planning period"),
       ("dependency", "see who needs what from whom"), ("sync", "a short weekly cross-team check-in"),
       ("raid", "one shared list of risks, assumptions, issues and dependencies"), ("status", "a one-page update for sponsors")],
      [("raci", "when decisions get lost or contested"), ("cross-retro", "when the same cross-team problems repeat"),
-      ("release", "for coordinated releases")]),
+      ("release", "for coordinated releases"), ("closeout", "to finish well and hand over")]),
     ("Programme", "50+ people · many teams", "#581C87",
      [("right-size", "set the level of governance on purpose"), ("okr", "outcomes everyone works toward"),
       ("portfolio-kanban", "decide what to fund and limit work in progress"), ("topology", "organise teams around the work"),
@@ -116,7 +117,7 @@ def card(r, slug):
             title, board, guide, _ = TOOLS[key]
             tool = f'<a href="{board}">{escape(title)}</a>' + (f' <a class="g" href="{guide}">guide</a>' if guide else "")
         else:
-            tool = '<span class="none">—</span>'
+            tool = '<span class="none" aria-hidden="true">—</span>'
         rows.append(f'<tr{"" if key else " class=\"brk\""}><td class="t">{clock(t)}</td><td class="m">{mins} min</td>'
                     f'<td class="tool">{tool}</td><td>{escape(what)}</td></tr>')
         t += mins
@@ -157,7 +158,7 @@ def build():
 <title>Workshop Recipes & Worked Examples</title>
 <link rel="stylesheet" href="{FONT_URL}">
 <style>
-:root{{--accent:{ACCENT};--navy:{NAVY};--ink:#1E293B;--muted:#64748B;--rule:#E2E8F0;}}
+:root{{--accent:{ACCENT};--navy:{NAVY};--ink:#1E293B;--muted:#5B6B82;--rule:#E2E8F0;}}
 *{{box-sizing:border-box;}}
 html,body{{margin:0;background:#F1F5F9;}}
 body{{font-family:'Geist',Inter,system-ui,sans-serif;color:var(--ink);font-size:14px;line-height:1.55;}}
@@ -170,7 +171,7 @@ header a.back{{color:#94A3B8;font:500 11px 'Geist Mono',monospace;letter-spacing
 .toc b{{display:block;font:600 9px 'Geist Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;}}
 .toc a{{display:block;color:#fff;text-decoration:none;font-size:13px;margin:0 0 6px;}}
 .toc a:hover{{color:var(--accent);}}
-.toc a span{{color:#64748B;font-size:11.5px;}}
+.toc a span{{color:#94A3B8;font-size:11.5px;}}
 main{{padding:8px 0 48px;}}
 h2{{font:500 11px 'Geist Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:28px 0 10px;}}
 .exs{{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}}
@@ -214,7 +215,7 @@ tr.brk td{{color:var(--muted);background:#F8FAFC;}}
 .more{{background:#fff;border:1px solid var(--rule);border-radius:8px;padding:16px 18px;margin-top:28px;font-size:13px;}}
 .more h3{{margin:0 0 6px;font-size:15px;}}
 code{{font:12px 'Geist Mono',monospace;background:#F1F5F9;border-radius:4px;padding:1px 5px;}}
-footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#94A3B8;text-align:center;padding:0 16px 32px;}}
+footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-align:center;padding:0 16px 32px;}}
 @media (max-width:820px){{.toc,.exs{{grid-template-columns:1fr 1fr;}} .kits{{grid-template-columns:1fr;}}}}
 @media (max-width:560px){{.toc,.exs,.cols{{grid-template-columns:1fr;}} td.t{{display:none;}} dl div{{grid-template-columns:1fr;}}}}
 @media print{{header{{padding:16px;}} .toc,.exs,#examples-h,.intro.ex-intro{{display:none;}} .rc{{break-inside:avoid;}}}}
@@ -245,5 +246,78 @@ footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#94A3B8;text-
     print(f"wrote workshop-recipes.html ({total} recipes in {len(areas)} areas)")
 
 
+def build_print_pack():
+    """print-pack.html: every board's A3 PDF, grouped like the home page. Lists only PDFs that exist in pdf/."""
+    index = (OUT / "index.html").read_text(encoding="utf-8")
+    groups, seen = [], set()
+    for m in re.finditer(r'<h2 id="([^"]+)">(.*?)</h2>(.*?)(?=<h2 id=|</main>|$)', index, re.S):
+        items = []
+        for c in re.finditer(r'<h3>(.*?)</h3>.*?class="primary" href="([^"]+)\.html"', m.group(3), re.S):
+            stem = c.group(2)
+            if (OUT / "pdf" / f"{stem}.pdf").exists() and stem not in seen:
+                seen.add(stem)
+                items.append((re.sub(r"<[^>]+>", "", c.group(1)), stem))
+        if items:
+            groups.append((re.sub(r"<[^>]+>", "", m.group(2)), items))
+    extra = [p.stem for p in sorted((OUT / "pdf").glob("*.pdf")) if p.stem not in seen]
+    named = {TOOLS[k][1][:-5]: TOOLS[k][0] for k in TOOLS}
+    if extra:
+        groups.append(("Worked examples and other boards",
+                       [(("Example: " + named.get(e[len("worked-example-"):], e)) if e.startswith("worked-example-")
+                         else named.get(e, e), e) for e in extra]))
+    total = sum(len(i) for _, i in groups)
+    size = lambda stem: f'{round((OUT / "pdf" / f"{stem}.pdf").stat().st_size / 1024):,} KB'
+    body = "\n".join(f'<section><h2>{t}</h2><ul>' + "".join(
+        f'<li><a href="pdf/{stem}.pdf" download>{title}</a><span>{size(stem)}</span><a class="v" href="{stem}.html">view</a></li>'
+        for title, stem in items) + "</ul></section>" for t, items in groups)
+    page = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Print Pack</title>
+<link rel="stylesheet" href="{FONT_URL}">
+<style>
+:root{{--accent:{ACCENT};--navy:{NAVY};--ink:#1E293B;--muted:#5B6B82;--rule:#E2E8F0;}}
+*{{box-sizing:border-box;}}
+html,body{{margin:0;background:#F1F5F9;}}
+body{{font-family:'Geist',Inter,system-ui,sans-serif;color:var(--ink);font-size:14px;line-height:1.55;}}
+header{{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:36px 16px 26px;}}
+.wrap{{max-width:1040px;margin:0 auto;padding:0 16px;}}
+h1{{font:400 44px/1.05 'Instrument Serif',Georgia,serif;margin:0 0 8px;}}
+header p{{color:#94A3B8;margin:0 0 6px;max-width:720px;}}
+header a.back{{color:#94A3B8;font:500 11px 'Geist Mono',monospace;letter-spacing:.06em;}}
+main{{padding:8px 0 48px;}}
+.cols{{columns:2 320px;column-gap:16px;}}
+section{{break-inside:avoid;background:#fff;border:1px solid var(--rule);border-radius:8px;padding:12px 16px;margin:0 0 16px;}}
+h2{{font:500 11px 'Geist Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:2px 0 8px;}}
+ul{{list-style:none;margin:0;padding:0;}}
+li{{display:flex;gap:10px;align-items:baseline;padding:5px 0;border-top:1px solid #F1F5F9;}}
+li:first-child{{border-top:none;}}
+li a{{color:var(--ink);font-weight:500;text-decoration:none;flex:1;}}
+li a:hover{{color:#9A3412;text-decoration:underline;}}
+li span{{color:var(--muted);font:500 11px 'Geist Mono',monospace;}}
+li a.v{{flex:none;font:500 11px 'Geist Mono',monospace;color:#9A3412;}}
+footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-align:center;padding:0 16px 32px;}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="back" href="index.html">← All tools</a>
+  <h1>Print Pack</h1>
+  <p>Every board and poster as a print-ready A3 landscape PDF ({total} in all), grouped like the home page. Print at A3, landscape, actual size, or larger for big groups.</p>
+</div></header>
+<main><div class="wrap"><div class="cols">
+{body}
+</div></div></main>
+<footer>{escape(CREDIT)}</footer>
+</body>
+</html>
+"""
+    (OUT / "print-pack.html").write_text(page, encoding="utf-8")
+    print(f"wrote print-pack.html ({total} PDFs)")
+
+
 if __name__ == "__main__":
     build()
+    build_print_pack()

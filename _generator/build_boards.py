@@ -19,7 +19,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from brand import ACCENT, NAVY, SANS, SERIF, MONO, FONT_URL, CREDIT  # noqa: E402  (edit brand.py to rebrand)
 INK = "#1E293B"
-MUTED = "#64748B"
+MUTED = "#566578"
 RULE = "#E2E8F0"
 WRITE = "#CBD5E1"  # write-on lines: visible on white and on tinted panels
 YELLOW = "#FDE047"
@@ -136,14 +136,14 @@ def header(title, subtitle, tagline, right=""):
         R(0, 4, W, 134, NAVY),
         T(24, 70, title, 42, "white", SERIF, weight=400),
         T(24, 100, subtitle, 13, "#94A3B8"),
-        T(24, 120, tagline, 9, "#475569", MONO, ls=".06em"),
+        T(24, 120, tagline, 9, "#8291A6", MONO, ls=".06em"),
         right,
     ])
 
 
 def legend(items, x=1356):
     """items: list of (kind, color, label); kind is 'sticky' or 'dot'."""
-    out = [T(x, 48 if len(items) != 3 else 44, "LEGEND", 8, "#475569", MONO, ls=".14em")]
+    out = [T(x, 48 if len(items) != 3 else 44, "LEGEND", 8, "#8291A6", MONO, ls=".14em")]
     if len(items) == 4:
         x0 = x
         pos = [(x0, 59), (x0 + 150, 59), (x0, 89), (x0 + 150, 89)]
@@ -162,7 +162,7 @@ def header_fields(labels, x=1356, x_end=1656):
     out = []
     for i, label in enumerate(labels):
         y = 66 + i * 30
-        out.append(T(x, y, label.upper(), 8, "#475569", MONO, ls=".14em"))
+        out.append(T(x, y, label.upper(), 8, "#8291A6", MONO, ls=".14em"))
         out.append(L(x + 96, y + 3, x_end, y + 3, "#334155", 1.2))
     return "".join(out)
 
@@ -180,7 +180,7 @@ def panel(x, y, w, h, num, title, color, note=None):
         tx = x + 44
     out.append(T(tx, y + 32, title, 14, "white", weight=600))
     if note:
-        out.append(T(x + w - 16, y + 31, note, 8.5, "white", MONO, anchor="end", ls=".10em", op=".6"))
+        out.append(T(x + w - 16, y + 31, note, 8.5, "white", MONO, anchor="end", ls=".10em", op=".88"))
     return "".join(out)
 
 
@@ -220,7 +220,7 @@ def strip_blank(y, label, hint="sprint, month, quarter…", x=24, w=1632):
     return "".join([R(x, y, w, 32, INK, 6), R(x, y, 6, 32, ACCENT, 3),
                     T(sx, y + 21, label, 11, "white", weight=600, ls=".12em"),
                     L(sx + lw, y + 24, sx + lw + 200, y + 24, "#94A3B8", 1.2),
-                    T(sx + lw + 100, y + 17, hint, 8.5, "#94A3B8", italic=True, anchor="middle", op=".8")])
+                    T(sx + lw + 100, y + 17, hint, 8.5, "#94A3B8", italic=True, anchor="middle", op=".88")])
 
 
 def card(x, y, w, h, title, accent, fields_):
@@ -245,8 +245,8 @@ def footer(left, right, tag=FOOT_TAG):
         T(24, 1106, f"“{left}”", 15, INK, SERIF, italic=True),
         L(832, 1078, 832, 1128, RULE, 1),
         T(848, 1106, f"“{right}”", 15, INK, SERIF, italic=True),
-        T(1656, 1138, tag, 8, "#CBD5E1", MONO, anchor="end", ls=".08em"),
-        T(24, 1138, CREDIT, 8, "#94A3B8", MONO, ls=".06em"),
+        T(1656, 1138, tag, 8, "#5B6B82", MONO, anchor="end", ls=".08em"),
+        T(24, 1138, CREDIT, 8, "#5B6B82", MONO, ls=".06em"),
     ])
 
 
@@ -262,7 +262,7 @@ def guide_for(slug):
 
 GUIDE_LINK_CSS = (f"a.guide{{position:fixed;right:16px;bottom:16px;font:500 12px 'Geist',system-ui,sans-serif;color:#fff;"
                   f"background:{NAVY};border-left:4px solid {ACCENT};padding:9px 14px;border-radius:6px;text-decoration:none;"
-                  f"box-shadow:0 6px 20px rgba(0,0,0,.25);}}\na.guide:hover{{background:{ACCENT};}}")
+                  f"box-shadow:0 6px 20px rgba(0,0,0,.25);}}\na.guide:hover{{background:#C2410C;}}\na.guide.pdf{{bottom:60px;}}")
 
 
 PHONE_CSS = ("p.phone{display:none;}"
@@ -277,6 +277,11 @@ def phone_note(svg_href, guide_href):
     return (f'<p class="phone"><b>This is an A3 board, made for printing or a big screen.</b>'
             f'Pinch to zoom, turn your phone sideways, or <a href="{svg_href}">open the SVG</a> to zoom in. '
             f'The <a href="{guide_href}">facilitator guide</a> is easy to read on a phone.</p>')
+
+
+def pdf_link(slug):
+    """Download button for the board's A3 PDF, once build_pdfs.py has made it."""
+    return f'<a class="guide pdf" href="pdf/{slug}.pdf" download>A3 PDF ↓</a>\n' if (OUT / "pdf" / f"{slug}.pdf").exists() else ""
 
 
 def write_board(slug, title, desc, body):
@@ -306,7 +311,7 @@ svg{{display:block;max-width:100%;height:auto;box-shadow:0 12px 40px rgba(0,0,0,
 </head>
 <body>
 <a class="guide" href="{guide_for(slug)}">Facilitator guide →</a>
-{svg_inline}
+{pdf_link(slug)}{svg_inline}
 {phone_note(f"{slug}.svg", guide_for(slug))}
 </body>
 </html>
@@ -615,9 +620,9 @@ def build_experiment_canvas():
     for i, (lead, hint) in enumerate(rows):
         ly = y + 86 + i * 56
         b.append(T(x + 18, ly, lead, 20, PURPLE[0], SERIF, italic=True))
-        b.append(T(x + 18 + text_w(lead, 20) * 0.82 + 12, ly, f"({hint})", 9, PURPLE[0], MONO, op=".55", ls=".04em"))
+        b.append(T(x + 18 + text_w(lead, 20) * 0.82 + 12, ly, f"({hint})", 9, PURPLE[0], MONO, op=".88", ls=".04em"))
         b.append(L(x + 18, ly + 26, x + w - 18, ly + 26, PURPLE[0], 1, ' stroke-opacity=".25"'))
-    b.append(T(x + w - 18, y + 306, "TIP: keep it small enough to start tomorrow", 8.5, PURPLE[0], MONO, anchor="end", op=".6", ls=".1em"))
+    b.append(T(x + w - 18, y + 306, "TIP: keep it small enough to start tomorrow", 8.5, PURPLE[0], MONO, anchor="end", op=".88", ls=".1em"))
 
     # 3 change
     x, w = 1257, 397
@@ -636,7 +641,7 @@ def build_experiment_canvas():
         bx = x + 18 + i * (bw + 12)
         b.append(R(bx, y + 66, bw, 118, "white", 6, f' stroke="{BLUE[0]}" stroke-opacity=".2"'))
         b.append(T(bx + 14, y + 88, lab.upper(), 9, BLUE[0], MONO, weight=600, ls=".1em"))
-        b.append(T(bx + 14, y + 104, hint, 10, BLUE[0], italic=True, op=".55"))
+        b.append(T(bx + 14, y + 104, hint, 10, BLUE[0], italic=True, op=".88"))
     b.append(field(x + 18, y + 226, "Leading indicator (early signal):", x + w - 18, BLUE[0]))
     b.append(field(x + 18, y + 266, "Guardrail (what must not get worse):", x + w - 18, BLUE[0]))
     b.append(L(x + 18, y + 300, x + w - 18, y + 300))
@@ -746,7 +751,7 @@ def build_lean_coffee():
         b.append(T(cx, top + 445, glyph, 18, col, weight=600, anchor="middle"))
         b.append(T(cx, top + 476, lab, 11, col, weight=600, anchor="middle"))
     b.append(T(x + w / 2, top + 496, "Majority ↑ extends the timer · otherwise pull the next topic", 9.5, dark,
-               italic=True, anchor="middle", op=".7"))
+               italic=True, anchor="middle", op=".88"))
 
     b.append(dashed(x + 10, x + w - 10, top + 514, dark))
     b.append(T(x + 18, top + 540, "Key takeaway:", 11, dark, weight=600))
@@ -790,7 +795,7 @@ def para(x, y, text_lines, size=11, fill=INK, step=None, **kw):
 def slot(x, y, w, h, fill, dark, hint):
     """Dashed placeholder sized for one sticky note."""
     return (R(x, y, w, h, fill, 6, f' fill-opacity=".35" stroke="{dark}" stroke-opacity=".35" stroke-dasharray="6,5" stroke-width="1.5"') +
-            T(x + w / 2, y + h / 2 + 4, hint, 10, dark, italic=True, anchor="middle", op=".55"))
+            T(x + w / 2, y + h / 2 + 4, hint, 10, dark, italic=True, anchor="middle", op=".88"))
 
 
 BREAKDOWN_TAG = "Break Down Work · Vertical Slicing · Deliver Value Early"
@@ -815,7 +820,7 @@ def build_epic_breakdown():
     hints = ["(the customers or users)", "(have this need or problem)", "(epic name)", "(what it is: product, service, capability)",
              "(provides this value)", "(the current solution or competitor)", "(does this better)"]
     for i, h in enumerate(hints):
-        b.append(T(x + w - 18, y + 90 + i * 34 - 6, h, 8.5, d, MONO, anchor="end", op=".45", ls=".04em"))
+        b.append(T(x + w - 18, y + 90 + i * 34 - 6, h, 8.5, d, MONO, anchor="end", op=".88", ls=".04em"))
 
     # 2 outcomes
     x, w = 846, 397
@@ -905,10 +910,10 @@ def build_story_map():
             f'<circle cx="46" cy="{y + 24}" r="12" fill="white" fill-opacity=".18"/>',
             T(46, y + 29, str(num), 11, "white", weight=600, anchor="middle"),
             T(68, y + 30, title, 14, "white", weight=600),
-            para(24 + 20, y + 54, desc, 10.5, "white", 15, op=".75"),
+            para(24 + 20, y + 54, desc, 10.5, "white", 15, op=".88"),
             R(264, y, 1392, h, light, 10, f' stroke="{dark}" stroke-opacity=".18" stroke-width="1.5"'),
             R(264, y, 1392, h, "url(#dots)", 10),
-            T(1640, y + 20, note, 8.5, dark, MONO, anchor="end", op=".5", ls=".1em"),
+            T(1640, y + 20, note, 8.5, dark, MONO, anchor="end", op=".88", ls=".1em"),
             "".join(R(300 + i * 150, y + 28, 110, h - 46, chip, 3, ' fill-opacity=".22"') for i in range(4)),
             T(300 + 4 * 150 + 20, y + h / 2 + 4, "…one sticky per step, left to right", 10, dark, italic=True, op=".4"),
         ])
@@ -926,7 +931,7 @@ def build_story_map():
             R(24, y, 230, h, light, 10, f' stroke="{dark}" stroke-opacity=".3" stroke-width="1.5"'),
             R(24, y, 6, h, dark, 3),
             T(44, y + 30, name, 15, dark, weight=600),
-            para(44, y + 52, sub, 10.5, dark, 15, op=".8"),
+            para(44, y + 52, sub, 10.5, dark, 15, op=".88"),
             field(44, y + h - 52, "Outcome:", 238, dark, 11),
             field(44, y + h - 20, "Target:", 238, dark, 11),
             R(264, y, 1392, h, light, 10, f' fill-opacity=".55" stroke="{dark}" stroke-opacity=".25" stroke-dasharray="6,5" stroke-width="1.5"'),
@@ -973,7 +978,7 @@ PATTERN_COLORS = [BLUE, PURPLE, FOREST, SKY, ORANGE, EMERALD, AMBER, RED, SLATE]
 
 def build_story_splitting():
     right = "".join([
-        T(1356, 50, "RUNNING EXAMPLE", 8, "#475569", MONO, ls=".14em"),
+        T(1356, 50, "RUNNING EXAMPLE", 8, "#8291A6", MONO, ls=".14em"),
         para(1356, 74, ["“As a shopper, I want to check out", "my basket so that I receive", "my order.”"], 15, "#CBD5E1", 19, font=SERIF, italic=True),
     ])
     b = [header("Story Splitting",
@@ -1045,7 +1050,7 @@ def build_story_splitting():
     for j, lab in enumerate(layers):
         ly = y + 98 + j * 52
         b.append(R(vx, ly, 364, 42, "white", 5, f' stroke="{d}" stroke-opacity=".2"'))
-        b.append(T(vx + 12, ly + 26, lab, 11, MUTED, op=".8"))
+        b.append(T(vx + 12, ly + 26, lab, 11, MUTED, op=".88"))
     for k in range(4):
         sx = vx + 124 + k * 60
         b.append(R(sx, y + 92, 44, 166, ACCENT, 5, ' fill-opacity=".8"'))
@@ -1098,7 +1103,7 @@ def build_example_mapping():
         b.append(panel(x, 266, cw, 586, i + 1, f"Rule {i + 1}", BLUE, "ACCEPTANCE CRITERION"))
         b.append(slot(x + 14, 332, cw - 28, 84, BLUE_ST, d, "Blue card: the rule"))
         b.append(T(x + 16, 444, "EXAMPLES", 9, FOREST[0], MONO, weight=600, ls=".12em"))
-        b.append(T(x + cw - 16, 444, "given · when · then", 9, FOREST[0], MONO, anchor="end", op=".55"))
+        b.append(T(x + cw - 16, 444, "given · when · then", 9, FOREST[0], MONO, anchor="end", op=".88"))
         b.append(sticky_zone(x + 10, 454, cw - 20, 386, d, "Green cards: concrete examples", chips=(GREEN,)))
 
     x, w = 1314, 342
@@ -1228,7 +1233,7 @@ def build_team_charter():
         x = 24 + i * 548
         d = color[0]
         b.append(panel(x, y, w, h, num, title, color, note))
-        b.append(T(x + 18, y + 78, hint, 10.5, d, italic=True, op=".7"))
+        b.append(T(x + 18, y + 78, hint, 10.5, d, italic=True, op=".88"))
         b.append(check_lines(x + 18, y + 110, x + w - 18, 6, d))
 
     x = 1120
@@ -1320,7 +1325,7 @@ def build_prioritisation():
         b.append(R(qx + 2, qy + 2, mx - gx0 - 4, my - gy0 - 4, lt, 6))
         b.append(R(qx + 2, qy + 2, mx - gx0 - 4, my - gy0 - 4, "url(#dots)", 6))
         b.append(T(qx + 16, qy + 28, name, 15, dk, weight=600))
-        b.append(T(qx + 16, qy + 46, sub, 10, dk, op=".75"))
+        b.append(T(qx + 16, qy + 46, sub, 10, dk, op=".88"))
     b.append(L(gx0, gy1, gx1, gy1, INK, 1.5))
     b.append(L(gx0, gy0, gx0, gy1, INK, 1.5))
     b.append(T(gx0, gy1 + 22, "LOW EFFORT", 9, MUTED, MONO, ls=".12em"))
@@ -1335,7 +1340,7 @@ def build_prioritisation():
     d = PURPLE[0]
     b.append(panel(x, y, w, h, 2, "Cost of Delay · WSJF", PURPLE, "CD3 · CALLED WSJF IN SAFe · HIGHEST SCORE FIRST"))
     b.append(T(x + 18, y + 76, "Score one column at a time across all items: 1, 2, 3, 5, 8, 13 (smallest item = 1). CoD = value + time + risk.",
-               10.5, d, italic=True, op=".75"))
+               10.5, d, italic=True, op=".88"))
     b.append(table(x + 18, y + 108, [("Item", 196), ("Value", 66), ("Time", 66), ("Risk / opp.", 92),
                                      ("CoD", 60), ("Job size", 80), ("CoD / size", 92), ("Rank", w - 36 - 652)], 5, d, 32))
 
@@ -1348,7 +1353,7 @@ def build_prioritisation():
                                           ("Could", "Nice if there's time", AMBER), ("Won't (this time)", "Agreed out", SLATE)]):
         cx = x + 10 + i * (mw + 10)
         b.append(T(cx + 6, y + 78, name, 13, col[0], weight=600))
-        b.append(T(cx + 6, y + 94, sub, 9.5, col[0], op=".7"))
+        b.append(T(cx + 6, y + 94, sub, 9.5, col[0], op=".88"))
         b.append(sticky_zone(cx, y + 104, mw, h - 116, col[0], "Stickies", chips=(YELLOW,)))
 
     # 4 roadmap
@@ -1362,7 +1367,7 @@ def build_prioritisation():
         d = col[0]
         b.append(R(cx, y + 64, rw, h - 76, col[1], 6, f' stroke="{d}" stroke-opacity=".2"'))
         b.append(T(cx + 14, y + 90, name.upper(), 12, d, MONO, weight=600, ls=".14em"))
-        b.append(T(cx + rw - 14, y + 90, sub, 10, d, anchor="end", op=".7"))
+        b.append(T(cx + rw - 14, y + 90, sub, 10, d, anchor="end", op=".88"))
         b.append(sticky_zone(cx + 8, y + 102, rw - 16, h - 166, d, chips=(YELLOW,)))
         b.append(field(cx + 14, y + h - 28, "Outcome:", cx + rw - 14, d))
 
@@ -1414,7 +1419,7 @@ def build_sprint_planning():
                                      ("Also planned", "Valuable, but they can move if the goal is at risk")]):
         cx = x + 10 + i * (hw + 10)
         b.append(T(cx + 6, y + 78, name, 13, d, weight=600))
-        b.append(T(cx + 6, y + 96, sub, 10, d, op=".7"))
+        b.append(T(cx + 6, y + 96, sub, 10, d, op=".88"))
         b.append(sticky_zone(cx, y + 106, hw, h - 118, d, chips=(YELLOW,)))
 
     x, w = 1257, 397
@@ -1439,7 +1444,7 @@ def build_sprint_planning():
         cx = x + 70 + i * 108
         b.append(f'<circle cx="{cx}" cy="{y + 92}" r="17" fill="white" stroke="{d}" stroke-opacity=".5" stroke-width="1.5"/>')
         b.append(T(cx, y + 98, str(i + 1), 14, d, weight=600, anchor="middle"))
-        b.append(T(cx, y + 128, lab, 9.5, d, anchor="middle", op=".8"))
+        b.append(T(cx, y + 128, lab, 9.5, d, anchor="middle", op=".88"))
     b.append(field(x + 18, y + 168, "Any 1s or 2s? Concerns raised:", x + w - 18, d))
 
     b.append(footer("If we only achieve one thing this sprint, what should it be?",
@@ -1496,7 +1501,7 @@ def build_sprint_review():
                                      ("Remove", "No longer worth doing")]):
         cx = x + 10 + i * (bw + 10)
         b.append(T(cx + 6, y + 78, name, 13, d, weight=600))
-        b.append(T(cx + 6, y + 94, sub, 9.5, d, op=".7"))
+        b.append(T(cx + 6, y + 94, sub, 9.5, d, op=".88"))
         b.append(sticky_zone(cx, y + 104, bw, h - 116, d, "Stickies", chips=(YELLOW,)))
 
     x, w = 1120, 536
@@ -1532,7 +1537,7 @@ def quad_grid(gx0, gy0, gx1, gy1, quads, x_lo, x_hi, x_name, y_name):
         out.append(R(qx + 2, qy + 2, mx - gx0 - 4, my - gy0 - 4, lt, 6))
         out.append(R(qx + 2, qy + 2, mx - gx0 - 4, my - gy0 - 4, "url(#dots)", 6))
         out.append(T(qx + 16, qy + 28, name, 15, dk, weight=600))
-        out.append(T(qx + 16, qy + 46, sub, 10, dk, op=".75"))
+        out.append(T(qx + 16, qy + 46, sub, 10, dk, op=".88"))
     out += [L(gx0, gy1, gx1, gy1, INK, 1.5), L(gx0, gy0, gx0, gy1, INK, 1.5),
             T(gx0, gy1 + 22, x_lo, 9, MUTED, MONO, ls=".12em"),
             T(gx1, gy1 + 22, x_hi, 9, MUTED, MONO, anchor="end", ls=".12em"),
@@ -1543,8 +1548,8 @@ def quad_grid(gx0, gy0, gx1, gy1, quads, x_lo, x_hi, x_name, y_name):
 
 def slider(x, y, w, name, color, lo="FLEX", hi="FIXED"):
     out = [T(x, y + 4, name, 12, color, weight=600),
-           T(x + 120, y + 4, lo, 8.5, color, MONO, op=".6", ls=".1em"),
-           T(x + w, y + 4, hi, 8.5, color, MONO, anchor="end", op=".6", ls=".1em")]
+           T(x + 120, y + 4, lo, 8.5, color, MONO, op=".88", ls=".1em"),
+           T(x + w, y + 4, hi, 8.5, color, MONO, anchor="end", op=".88", ls=".1em")]
     tx0, tx1 = x + 162, x + w - 50
     out.append(L(tx0, y, tx1, y, color, 2, ' stroke-opacity=".25"'))
     for i in range(5):
@@ -1560,7 +1565,7 @@ def kanban_cols(x, y, w, h, names, color, gap=10, chips=(YELLOW,)):
     for i, (name, sub) in enumerate(names):
         cx = x + i * (cw + gap)
         out.append(T(cx + 6, y + 14, name, 13, color, weight=600))
-        out.append(T(cx + 6, y + 30, sub, 9.5, color, op=".7"))
+        out.append(T(cx + 6, y + 30, sub, 9.5, color, op=".88"))
         out.append(sticky_zone(cx, y + 40, cw, h - 40, color, "Stickies", chips=chips))
     return "".join(out)
 
@@ -1596,7 +1601,7 @@ def build_project_kickoff():
     d = ORANGE[0]
     b.append(panel(x, y, w, h, 3, "Trade-off Sliders", ORANGE, "ONLY ONE CAN BE FULLY FIXED"))
     b.append(T(x + 18, y + 78, "Mark one dot per row. If everything is fixed, nothing can give when plans change.",
-               10.5, d, italic=True, op=".75"))
+               10.5, d, italic=True, op=".88"))
     for i, name in enumerate(["Scope", "Time", "Budget", "Quality", "Team size"]):
         b.append(slider(x + 18, y + 116 + i * 38, w - 36, name, d))
 
@@ -1843,7 +1848,7 @@ def build_cross_team_planning():
         cx = x + 60 + i * 100
         b.append(f'<circle cx="{cx}" cy="{y + 94}" r="16" fill="white" stroke="{d}" stroke-opacity=".5" stroke-width="1.5"/>')
         b.append(T(cx, y + 100, str(i + 1), 13, d, weight=600, anchor="middle"))
-    b.append(T(x + 18, y + 134, "Anyone at 1–2? Explore, adjust the plan, re-vote.", 10, d, italic=True, op=".75"))
+    b.append(T(x + 18, y + 134, "Anyone at 1–2? Explore, adjust the plan, re-vote.", 10, d, italic=True, op=".88"))
 
     x = 572
     d = RED[0]
@@ -1900,7 +1905,7 @@ def build_dependency_map():
     b.append(panel(x, y, w, h, 2, "Dependency Register", PURPLE, "ONE ROW PER DEPENDENCY"))
     b.append(table(x + 18, y + 84, [("#", 40), ("Needed by", 150), ("Provided by", 150), ("What", 330), ("By when", 120),
                                     ("Status", 130), ("Owner", w - 36 - 920)], 5, d, 34))
-    b.append(T(x + 18, y + h - 16, "Status: agreed · at risk · blocked · done", 9, d, MONO, op=".6", ls=".08em"))
+    b.append(T(x + 18, y + h - 16, "Status: agreed · at risk · blocked · done", 9, d, MONO, op=".88", ls=".08em"))
 
     x, w = 1120, 536
     d = FOREST[0]
@@ -2016,7 +2021,7 @@ def step_cards(x, y, w, h, steps, color, gap=10):
         out.append(T(cx + 22, y + 28, str(i + 1), 10.5, "white", weight=600, anchor="middle"))
         out.append(T(cx + 40, y + 29, title, 12, dark, weight=600))
         out.append(para(cx + 14, y + 56, body, 10.5, dark, 15))
-        out.append(T(cx + 14, y + h - 74, "Our note:", 9.5, dark, op=".6"))
+        out.append(T(cx + 14, y + h - 74, "Our note:", 9.5, dark, op=".88"))
         out.append(lines(cx + 14, y + h - 46, cx + cw - 14, 2, 24))
         if i < len(steps) - 1:
             out.append(T(cx + cw + gap / 2, y + h / 2 + 4, "›", 14, dark, anchor="middle", op=".5"))
@@ -2129,7 +2134,7 @@ def build_kanban_design():
         cx = x + 14 + i * (cw + 10)
         b.append(R(cx, y + 64, cw, h - 78, "white", 6, f' stroke="{d}" stroke-opacity=".2"'))
         b.append(T(cx + 12, y + 86, f"COLUMN {i + 1}", 9, d, MONO, weight=600, ls=".12em"))
-        b.append(T(cx + cw - 12, y + 86, hints[i], 9, d, italic=True, anchor="end", op=".55"))
+        b.append(T(cx + cw - 12, y + 86, hints[i], 9, d, italic=True, anchor="end", op=".88"))
         b.append(field(cx + 12, y + 120, "Name:", cx + cw - 12, d))
         b.append(field(cx + 12, y + 154, "WIP limit:", cx + cw - 12, d))
         b.append(T(cx + 12, y + 190, "Done when (exit policy):", 10.5, d, weight=600))
@@ -2147,7 +2152,7 @@ def build_kanban_design():
                                      ("Standard", "Most work, in priority order"), ("Intangible", "Improvement, tech debt")]):
         ry = y + 84 + 10 + i * 46 + 28
         b.append(T(x + 24, ry, cls, 12, d, weight=600))
-        b.append(T(x + 24 + 150, ry, hint, 10.5, d, italic=True, op=".65"))
+        b.append(T(x + 24 + 150, ry, hint, 10.5, d, italic=True, op=".88"))
 
     x, w = 1120, 536
     d = SLATE[0]
@@ -2174,7 +2179,7 @@ def build_kanban_design():
         cx = x + 18 + (j % 2) * 390
         cy = y + 86 + (j // 2) * 32
         b.append(checkbox(cx, cy, lab, d, 11))
-        b.append(T(cx + 130, cy, note, 10.5, d, italic=True, op=".7"))
+        b.append(T(cx + 130, cy, note, 10.5, d, italic=True, op=".88"))
 
     b.append(footer("Where does work wait, and is that visible on our board?",
                     "What would happen if we lowered this WIP limit by one?", FLOW_TAG))
@@ -2318,7 +2323,7 @@ def build_blocker_clustering():
 
 def build_skills_matrix():
     key = "".join([
-        T(1356, 48, "LEVELS", 8, "#475569", MONO, ls=".14em"),
+        T(1356, 48, "LEVELS", 8, "#8291A6", MONO, ls=".14em"),
         *[T(1356 + (i % 2) * 160, 72 + (i // 2) * 28, f"{n} = {lab}", 11, "#CBD5E1")
           for i, (n, lab) in enumerate([(0, "No experience"), (1, "Learning"), (2, "Can do it alone"), (3, "Can teach it")])],
     ])
@@ -2338,7 +2343,7 @@ def build_skills_matrix():
     for i in range(nskill):
         cx = gx0 + name_w + i * sk_w
         b.append(R(cx + 3, gy0, sk_w - 6, head_h - 6, "white", 4, f' stroke="{d}" stroke-opacity=".2"'))
-        b.append(T(cx + 10, gy0 + 16, f"SKILL {i + 1}", 8.5, d, MONO, op=".6", ls=".1em"))
+        b.append(T(cx + 10, gy0 + 16, f"SKILL {i + 1}", 8.5, d, MONO, op=".88", ls=".1em"))
         b.append(L(cx + 10, gy0 + 42, cx + sk_w - 10, gy0 + 42, WRITE, 1))
     wx = gx0 + name_w + nskill * sk_w
     b.append(T(wx + 10, gy0 + 40, "WANTS TO LEARN", 9, EMERALD[0], MONO, weight=600, ls=".12em"))
@@ -2414,7 +2419,7 @@ def build_impediments():
         b.append(R(rx, ry, rw, rh, "white", 6, f' stroke="{d}" stroke-opacity=".25"'))
         b.append(R(rx, ry, 5, rh, d, 3, f' fill-opacity="{.4 + k * .2:.1f}"'))
         b.append(T(rx + 18, ry + 22, lev, 9, d, MONO, weight=600, ls=".12em"))
-        b.append(T(rx + 18, ry + 42, role, 10.5, d, op=".75"))
+        b.append(T(rx + 18, ry + 42, role, 10.5, d, op=".88"))
         b.append(field(rx + 250, ry + 34, "Who:", rx + rw - 230, d))
         b.append(T(rx + rw - 210, ry + 34, after, 10.5, d))
         b.append(L(rx + rw - 120, ry + 37, rx + rw - 60, ry + 37, WRITE, 1))
@@ -2482,7 +2487,7 @@ def build_pairing_mobbing():
             elif c == r:
                 b.append(R(cx + 2, ry + 2, cell_w - 4, cell_h - 4, d, 4, ' fill-opacity=".12"'))
     b.append(T(gx0, y + h - 16, "Write names on the left. Add a tally where two people pair. Empty cells = pairs to try.",
-               10, d, italic=True, op=".7"))
+               10, d, italic=True, op=".88"))
 
     x, w = 738, 460
     d = SLATE[0]
@@ -2634,7 +2639,7 @@ def build_root_cause():
                            "Is it about the system, not a person?", "Is it within our control or influence?",
                            "Would it explain other problems too?"]):
         b.append(checkbox(x + 18, y + 88 + i * 32, m, d, 11))
-    b.append(T(x + 18, y + 256, "Any “no”? Ask why again, or test another branch.", 10.5, d, italic=True, op=".75"))
+    b.append(T(x + 18, y + 256, "Any “no”? Ask why again, or test another branch.", 10.5, d, italic=True, op=".88"))
 
     x = 572
     d = FOREST[0]
@@ -2676,7 +2681,7 @@ def build_value_metrics():
                                       ("Immediate tactical goal", "What we're working on now")]):
         cx = x + 18 + i * (gw + 16)
         b.append(T(cx, y + 80, name, 12, d, weight=600))
-        b.append(T(cx + gw, y + 80, hint, 10, d, italic=True, anchor="end", op=".6"))
+        b.append(T(cx + gw, y + 80, hint, 10, d, italic=True, anchor="end", op=".88"))
         b.append(lines(cx, y + 110, cx + gw, 2, 26))
 
     y, h = 312, 560
@@ -2748,7 +2753,7 @@ def build_opportunity_tree():
         bw = colw - 30
         b.append(R(ox - bw / 2, oy, bw, 120, BLUE[1], 8, f' stroke="{BLUE[0]}" stroke-opacity=".4"'))
         b.append(T(ox - bw / 2 + 14, oy + 22, f"OPPORTUNITY {i + 1}", 9, BLUE[0], MONO, weight=600, ls=".1em"))
-        b.append(T(ox - bw / 2 + 14, oy + 40, "A customer need, pain or desire", 9.5, BLUE[0], italic=True, op=".6"))
+        b.append(T(ox - bw / 2 + 14, oy + 40, "A customer need, pain or desire", 9.5, BLUE[0], italic=True, op=".88"))
         b.append(lines(ox - bw / 2 + 14, oy + 68, ox + bw / 2 - 14, 2, 24))
         # solutions
         sy = oy + 170
@@ -2766,7 +2771,7 @@ def build_opportunity_tree():
             b.append(T(sx + 10, sy + 324, "Result", 9.5, BLUE[0], weight=600))
             b.append(lines(sx + 10, sy + 350, sx + sw - 10, 1, 24))
     b.append(T(x + 20, y + h - 112, "Compare and contrast: explore at least two or three solutions per opportunity before choosing.",
-               10.5, d, italic=True, op=".7"))
+               10.5, d, italic=True, op=".88"))
     b.append(sticky_zone(x + 10, y + h - 98, w - 20, 86, d, "Parked opportunities and ideas", chips=(BLUE_ST, YELLOW)))
 
     x, w = 1120, 536
@@ -2780,7 +2785,7 @@ def build_opportunity_tree():
     d = FOREST[0]
     b.append(panel(x, y2, w, h2, 3, "Assumption Tests", FOREST, "SMALL, FAST, CHEAP"))
     b.append(table(x + 18, y2 + 82, [("Assumption", 150), ("Test", 140), ("Success if…", 120), ("Result", w - 36 - 410)], 6, d, 40))
-    b.append(T(x + 18, y2 + h2 - 14, "Types: desirable · viable · feasible · usable · ethical", 9, d, MONO, op=".6", ls=".06em"))
+    b.append(T(x + 18, y2 + h2 - 14, "Types: desirable · viable · feasible · usable · ethical", 9, d, MONO, op=".88", ls=".06em"))
 
     b.append(footer("Which customer need, if we solved it, would move our outcome most?",
                     "What must be true for this solution to work, and how could we find out this week?", "Envision · Continuous Discovery · Outcomes Over Output"))
@@ -2869,7 +2874,7 @@ def build_ai_agreement():
                                            ("Not for", RED, "e.g. decisions about people")]):
         cx = x + 18 + i * (cw3 + 14)
         b.append(T(cx, y + 80, name, 13, col[0], weight=600))
-        b.append(T(cx, y + 98, hint, 9.5, col[0], italic=True, op=".7"))
+        b.append(T(cx, y + 98, hint, 9.5, col[0], italic=True, op=".88"))
         b.append(lines(cx, y + 130, cx + cw3, 6, 26))
 
     x, w = 846, 810
@@ -2910,7 +2915,7 @@ def build_ai_agreement():
     d = FOREST[0]
     b.append(panel(x, y, w, h, 6, "Measure the Impact", FOREST, "IS IT ACTUALLY HELPING?"))
     b.append(table(x + 18, y + 84, [("Measure", 300), ("Before", 140), ("After", 140), ("What we noticed", w - 36 - 580)], 4, d, 34))
-    b.append(T(x + 18, y + h - 20, "Try: cycle time · defects found later · review time · rework · team confidence", 9, d, MONO, op=".6", ls=".06em"))
+    b.append(T(x + 18, y + h - 20, "Try: cycle time · defects found later · review time · rework · team confidence", 9, d, MONO, op=".88", ls=".06em"))
 
     x, w = 1120, 536
     d = SLATE[0]
@@ -2966,7 +2971,7 @@ def build_status_report():
     for j, lab in enumerate(["No", "Earlier", "Later"]):
         b.append(checkbox(x + 200 + j * 90, y + 226, lab, d, 11))
     b.append(field(x + 18, y + 270, "Why:", x + w - 18, d))
-    b.append(T(x + 18, y + 330, "See the Release Forecast board for the burn-up.", 10, d, italic=True, op=".7"))
+    b.append(T(x + 18, y + 330, "See the Release Forecast board for the burn-up.", 10, d, italic=True, op=".88"))
 
     y, h = 706, 354
     x, w = 24, 534
@@ -3052,10 +3057,10 @@ def build_adkar():
             cx = gx0 + group_w + i * el_w
             b.append(R(cx + 3, ry, el_w - 6, rh - 6, lt, 4, f' stroke="{dk}" stroke-opacity=".2"'))
             for k in range(5):
-                b.append(T(cx + el_w / 2 - 60 + k * 30, ry + 22, str(k + 1), 10, dk, MONO, anchor="middle", op=".35"))
+                b.append(T(cx + el_w / 2 - 60 + k * 30, ry + 22, str(k + 1), 10, dk, MONO, anchor="middle", op=".88"))
         b.append(R(bx + 3, ry, bar_w - 3, rh - 6, RED[1], 4, f' stroke="{RED[0]}" stroke-opacity=".2"'))
     b.append(T(gx0, y + h - 14, "Circle each score. Scores run 1 (not at all) to 5 (fully). The barrier point is the first element scored 3 or lower, "
-               "working left to right. Fix it before working on later elements.", 10, SLATE[0], italic=True, op=".75"))
+               "working left to right. Fix it before working on later elements.", 10, SLATE[0], italic=True, op=".88"))
 
     y, h = 656, 240
     cw = (1632 - 4 * 12) / 5
@@ -3063,7 +3068,7 @@ def build_adkar():
         x = 24 + i * (cw + 12)
         dk = color[0]
         b.append(panel(x, y, cw, h, name[0], name, color))
-        b.append(T(x + cw - 16, y + 31, sub, 9, "white", italic=True, anchor="end", op=".75"))
+        b.append(T(x + cw - 16, y + 31, sub, 9, "white", italic=True, anchor="end", op=".88"))
         b.append(T(x + 16, y + 76, "MISSING IF…", 8.5, dk, MONO, weight=600, ls=".12em"))
         b.append(para(x + 16, y + 96, missing, 10.5, dk, 16, italic=True))
         b.append(T(x + 16, y + 140, "WHAT HELPS", 8.5, dk, MONO, weight=600, ls=".12em"))
@@ -3112,7 +3117,7 @@ def build_portfolio_kanban():
         cx = x + 14 + i * (cw + 10)
         b.append(R(cx, y + 64, cw, h - 78, "white", 6, f' fill-opacity=".55" stroke="{d}" stroke-opacity=".2"'))
         b.append(T(cx + 12, y + 88, name, 13, d, weight=600))
-        b.append(T(cx + 12, y + 106, sub, 9.5, d, op=".7"))
+        b.append(T(cx + 12, y + 106, sub, 9.5, d, op=".88"))
         if wip:
             b.append(field(cx + 12, y + 134, "WIP limit:", cx + cw - 12, d, 10.5))
         b.append(field(cx + 12, y + 164, "Exit when:", cx + cw - 12, d, 10.5))
@@ -3143,7 +3148,7 @@ def build_portfolio_kanban():
     b.append(table(x + 18, y + 84, [("Type of work", 190), ("Target %", 75), ("Actual %", w - 36 - 265)], 6, d, 40))
     for i, t in enumerate(["New bets", "Grow existing", "Run & maintain", "Tech debt & enablers", "Unplanned buffer", "Total = 100%"]):
         b.append(T(x + 24, y + 84 + 10 + (i + 1) * 40 - 14, t, 11, d, weight=600 if i == 5 else None))
-    b.append(T(x + 18, y + h - 20, "Is the actual mix what we intended?", 10.5, d, italic=True, op=".75"))
+    b.append(T(x + 18, y + h - 20, "Is the actual mix what we intended?", 10.5, d, italic=True, op=".88"))
 
     x = 1257
     d = AMBER[0]
@@ -3184,7 +3189,7 @@ def build_delivery_metrics():
         b.append(R(cx, y + 64, cw, h - 78, "white", 6, f' stroke="{cd}" stroke-opacity=".25"'))
         b.append(R(cx, y + 64, cw, 5, cd, 3))
         b.append(T(cx + 16, y + 94, name, 14, cd, weight=600))
-        b.append(T(cx + cw - 16, y + 94, kind, 8.5, cd, MONO, anchor="end", op=".6", ls=".12em"))
+        b.append(T(cx + cw - 16, y + 94, kind, 8.5, cd, MONO, anchor="end", op=".88", ls=".12em"))
         b.append(para(cx + 16, y + 118, body, 10.5, cd, 16))
         for j, f in enumerate(["3 months ago:", "Now:", "Target:"]):
             b.append(field(cx + 16, y + 176 + j * 30, f, cx + cw - 16, cd))
@@ -3283,7 +3288,7 @@ def build_delegation():
     x, w = 24, 808
     d = RED[0]
     b.append(panel(x, y, w, h, 2, "Guardrails", RED, "LIMITS THAT ALWAYS APPLY"))
-    b.append(T(x + 18, y + 80, "e.g. budget limits, legal and policy rules, security standards", 10.5, d, italic=True, op=".7"))
+    b.append(T(x + 18, y + 80, "e.g. budget limits, legal and policy rules, security standards", 10.5, d, italic=True, op=".88"))
     b.append(lines(x + 18, y + 108, x + w - 18, 2, 26))
 
     x, w = 846, 810
@@ -3402,7 +3407,7 @@ def build_psych_safety():
         b.append(checkbox(x + 18, y + 88 + i * 30, m, d, 10.5))
     b.append(T(x + 18, y + 270, "Results", 11, d, weight=600))
     b.append(table(x + 18, y + 296, [("Statement", 110), ("Mostly agree", 120), ("Mostly disagree", 130), ("Change", w - 36 - 360)], 4, d, 40))
-    b.append(T(x + 18, y + h - 18, "Re-run every 2–3 months to see the trend.", 10, d, italic=True, op=".7"))
+    b.append(T(x + 18, y + h - 18, "Re-run every 2–3 months to see the trend.", 10, d, italic=True, op=".88"))
 
     y, h = 682, 378
     x, w = 24, 534
@@ -3506,7 +3511,7 @@ def level_panel(y, h, num, name, color, note, definition, size_line, template, g
     ax, aw = x + 18, 430
     out.append(para(ax, y + 80, definition, 12, dk, 17, weight=600))
     ty = y + 80 + len(definition) * 17 + 4
-    out.append(T(ax, ty, size_line, 8.5, dk, MONO, op=".7", ls=".1em"))
+    out.append(T(ax, ty, size_line, 8.5, dk, MONO, op=".88", ls=".1em"))
     out.append(T(ax, ty + 24, "TEMPLATE", 8.5, dk, MONO, weight=600, ls=".12em"))
     th = len(template) * 18 + 16
     out.append(R(ax, ty + 32, aw, th, "white", 6, f' stroke="{dk}" stroke-opacity=".2"'))
@@ -3519,7 +3524,7 @@ def level_panel(y, h, num, name, color, note, definition, size_line, template, g
 
 
 def build_backlog_anatomy():
-    right = "".join([T(1356, 60, "HOW TO READ IT", 8, "#475569", MONO, ls=".14em"),
+    right = "".join([T(1356, 60, "HOW TO READ IT", 8, "#8291A6", MONO, ls=".14em"),
                      T(1356, 86, "✓ Good example, and why it works", 11, "#86EFAC"),
                      T(1356, 112, "✗ Weak example, and what's wrong", 11, "#FCA5A5")])
     b = [header("Backlog Item Anatomy",
@@ -3561,11 +3566,11 @@ def build_backlog_anatomy():
     b.append(panel(x, y, w, h, 3, "Story", EMERALD, "A THIN VERTICAL SLICE"))
     ax, aw = x + 18, 430
     b.append(para(ax, y + 80, ["A thin, vertical slice of a feature that", "a user can use. Finishes in days."], 12, dk, 17, weight=600))
-    b.append(T(ax, y + 122, "DAYS · WITHIN YOUR SLE · ONE TEAM", 8.5, dk, MONO, op=".7", ls=".1em"))
+    b.append(T(ax, y + 122, "DAYS · WITHIN YOUR SLE · ONE TEAM", 8.5, dk, MONO, op=".88", ls=".1em"))
     b.append(T(ax, y + 150, "TEMPLATE", 8.5, dk, MONO, weight=600, ls=".12em"))
     b.append(R(ax, y + 160, aw, 76, "white", 6, f' stroke="{dk}" stroke-opacity=".2"'))
     b.append(para(ax + 14, y + 182, ["As a [type of user], I want [goal]", "so that [reason]."], 14, dk, 18, font=SERIF, italic=True))
-    b.append(T(ax + 14, y + 226, "+ acceptance criteria: Given · When · Then", 10, dk, op=".75"))
+    b.append(T(ax + 14, y + 226, "+ acceptance criteria: Given · When · Then", 10, dk, op=".88"))
     b.append(T(ax, y + 262, "INVEST", 9, dk, MONO, weight=600, ls=".12em"))
     b.append(T(ax + 60, y + 262, "Independent · Negotiable · Valuable · Estimable · Small · Testable", 9.5, dk))
     gx = x + 470
@@ -3671,7 +3676,7 @@ def build_value_stream_map():
     b.append(f'<path d="{path}" fill="none" stroke="{d}" stroke-width="2"/>')
     for i in range(n):
         cx = x + 14 + i * (cw + gap)
-        b.append(T(cx + cw / 2, ly_lo + 22, "work", 9, d, MONO, anchor="middle", op=".7"))
+        b.append(T(cx + cw / 2, ly_lo + 22, "work", 9, d, MONO, anchor="middle", op=".88"))
         b.append(L(cx + 20, ly_lo + 44, cx + cw - 20, ly_lo + 44, WRITE, 1))
         if i < n - 1:
             b.append(T(cx + cw + gap / 2, ly_hi - 8, "wait", 9, AMBER[0], MONO, anchor="middle"))
@@ -3685,7 +3690,7 @@ def build_value_stream_map():
                                    ("Most rework", "lowest % C&A")]):
         cx = x + 18 + i * (tw + 16)
         b.append(T(cx, y + 80, f, 13, d, weight=600))
-        b.append(T(cx, y + 98, hint, 9.5, d, italic=True, op=".65"))
+        b.append(T(cx, y + 98, hint, 9.5, d, italic=True, op=".88"))
         b.append(L(cx, y + 130, cx + tw, y + 130, WRITE))
 
     y, h = 890, 170
@@ -3788,7 +3793,7 @@ def build_raci():
     for i in range(nrole):
         cx = gx0 + act_w + i * rw
         b.append(R(cx + 3, gy, rw - 6, 46, "white", 4, f' stroke="{d}" stroke-opacity=".25"'))
-        b.append(T(cx + 10, gy + 16, f"ROLE {i + 1}", 8.5, d, MONO, op=".6", ls=".1em"))
+        b.append(T(cx + 10, gy + 16, f"ROLE {i + 1}", 8.5, d, MONO, op=".88", ls=".1em"))
         b.append(L(cx + 10, gy + 36, cx + rw - 10, gy + 36, WRITE, 1))
     rows = 8
     rh = (h - 70 - 54 - 12) / rows
@@ -3871,7 +3876,7 @@ def build_persona_journey():
         dk, lt = col
         b.append(R(gx0, ry, lab_w - 8, rh - 6, lt, 5))
         b.append(T(gx0 + 12, ry + 24, name, 12, dk, weight=600))
-        b.append(T(gx0 + 12, ry + 42, sub, 9.5, dk, op=".7"))
+        b.append(T(gx0 + 12, ry + 42, sub, 9.5, dk, op=".88"))
         if chip is None:
             mid = ry + (rh - 6) / 2
             b.append(R(gx0 + lab_w, ry, ns * sw, rh - 6, "white", 5, f' fill-opacity=".6" stroke="{dk}" stroke-opacity=".15"'))
@@ -3910,7 +3915,7 @@ def build_impact_map():
              "Features or activities that could cause it"]
     for (lab, cx, cw, col), hint in zip(cols, hints):
         b.append(T(x + cx, y + 82, lab, 9.5, col[0], MONO, weight=600, ls=".12em"))
-        b.append(T(x + cx, y + 98, hint, 9.5, col[0], italic=True, op=".7"))
+        b.append(T(x + cx, y + 98, hint, 9.5, col[0], italic=True, op=".88"))
     top, bot = y + 116, y + h - 16
     n = 6
     rowh = (bot - top) / n
@@ -4143,13 +4148,13 @@ def build_adr():
     x, w = 24, 808
     d = BLUE[0]
     b.append(panel(x, y, w, h, 2, "Context", BLUE, "WHAT FORCES ARE AT PLAY?"))
-    b.append(T(x + 18, y + 80, "The problem, the constraints, and why a decision is needed now", 10.5, d, italic=True, op=".7"))
+    b.append(T(x + 18, y + 80, "The problem, the constraints, and why a decision is needed now", 10.5, d, italic=True, op=".88"))
     b.append(lines(x + 18, y + 112, x + w - 18, 7, 26))
 
     x, w = 846, 810
     d = PURPLE[0]
     b.append(panel(x, y, w, h, 3, "Decision Drivers", PURPLE, "WHAT MATTERS MOST"))
-    b.append(T(x + 18, y + 80, "e.g. cost, performance, team skills, time to market, security, reversibility", 10.5, d, italic=True, op=".7"))
+    b.append(T(x + 18, y + 80, "e.g. cost, performance, team skills, time to market, security, reversibility", 10.5, d, italic=True, op=".88"))
     b.append(check_lines(x + 18, y + 116, x + w - 18, 6, d, 28))
 
     x, y, w, h = 24, 606, 1632, 290
@@ -4236,14 +4241,14 @@ def build_team_launch():
             iy = y + 128 + j * 66
             b.append(R(cx + 14, iy - 11, 13, 13, "white", 2, f' stroke="{dk}" stroke-opacity=".6" stroke-width="1.2"'))
             b.append(T(cx + 36, iy, item, 11.5, INK, weight=500))
-            b.append(T(cx + 36, iy + 17, "→ " + tool, 9.5, dk, MONO, op=".75"))
+            b.append(T(cx + 36, iy + 17, "→ " + tool, 9.5, dk, MONO, op=".88"))
             b.append(field(cx + 36, iy + 40, "Owner:", cx + cw - 14, dk, 10))
 
     y, h = 786, 274
     x, w = 24, 534
     d = EMERALD[0]
     b.append(panel(x, y, w, h, 4, "Thin First Slice", EMERALD, "DELIVER SOMETHING REAL"))
-    b.append(T(x + 18, y + 80, "However small, finish something a user could see or use.", 10.5, d, italic=True, op=".75"))
+    b.append(T(x + 18, y + 80, "However small, finish something a user could see or use.", 10.5, d, italic=True, op=".88"))
     for i, f in enumerate(["Slice:", "Who it's for:", "Done when:"]):
         b.append(field(x + 18, y + 116 + i * 36, f, x + w - 18, d))
     b.append(checkbox(x + 18, y + 240, "It runs end to end, from input to output (a walking skeleton)", d, 10.5))
@@ -4292,7 +4297,7 @@ def build_daily_sync():
     b.append(T(x + 18, y + 94, "We're working toward", 20, d, SERIF, italic=True))
     b.append(L(x + 228, y + 97, x + w - 200, y + 97, d, 1, ' stroke-opacity=".25"'))
     b.append(field(x + w - 186, y + 94, "Days left:", x + w - 18, d))
-    b.append(T(x + 18, y + 126, "Sprint goal, iteration goal, or the outcome the team is focused on this week", 10.5, d, italic=True, op=".65"))
+    b.append(T(x + 18, y + 126, "Sprint goal, iteration goal, or the outcome the team is focused on this week", 10.5, d, italic=True, op=".88"))
 
     x, w = 1120, 536
     d = SLATE[0]
@@ -4336,7 +4341,7 @@ def build_daily_sync():
                            "Do I see anything in the way?"]):
         b.append(T(x + 30, y + 252 + i * 24, q, 15, d, SERIF, italic=True))
     b.append(para(x + 18, y + 346, ["Useful, but easily becomes a status report.", "The Scrum Guide no longer requires them."],
-                  10, d, 14, italic=True, op=".7"))
+                  10, d, 14, italic=True, op=".88"))
 
     y, h = 736, 324
     x, w = 24, 534
@@ -4449,7 +4454,7 @@ def build_kanban_cadences():
         b.append(R(cx + 18, cy + 14, 13, 13, "white", 2, f' stroke="{dk}" stroke-opacity=".6" stroke-width="1.2"'))
         b.append(T(cx + 40, cy + 26, name, 13, dk, weight=600))
         if when:
-            b.append(T(cx + cw - 14, cy + 26, when, 9, dk, MONO, anchor="end", op=".7"))
+            b.append(T(cx + cw - 14, cy + 26, when, 9, dk, MONO, anchor="end", op=".88"))
         b.append(para(cx + 18, cy + 50, [p for p in purpose if p], 10.5, INK, 15))
         for j, f in enumerate(["When:", "Who:", "Inputs → outputs:"]):
             b.append(field(cx + 18, cy + 100 + j * 26, f, cx + cw - 14, dk, 10))
@@ -4746,7 +4751,7 @@ def build_delivery_pipeline():
         b.append(R(cx, y + 64, cw, h - 78, "white", 6, f' stroke="{cd}" stroke-opacity=".25"'))
         b.append(R(cx, y + 64, cw, 5, cd, 3))
         b.append(T(cx + 14, y + 94, name, 13, cd, weight=600))
-        b.append(T(cx + 14, y + 112, hint, 9.5, cd, op=".75"))
+        b.append(T(cx + 14, y + 112, hint, 9.5, cd, op=".88"))
         for j, f in enumerate(["Time:", "Waits before:", "Fails:", "Manual steps:", "Gate:", "Tool:", "Owner:"]):
             b.append(field(cx + 14, y + 148 + j * 30, f, cx + cw - 12, cd, 10.5))
         if i < 6:
@@ -4763,7 +4768,7 @@ def build_delivery_pipeline():
     for i, f in enumerate(right):
         b.append(field(x + w / 2 + 6, y + 90 + i * 40, f, x + w - 18, d))
     b.append(T(x + 18, y + h - 22, "Fast feedback matters most: aim for a build and test run that finishes in minutes, not hours.",
-               10, d, italic=True, op=".8"))
+               10, d, italic=True, op=".88"))
 
     x, w = 846, 810
     d = RED[0]
@@ -4816,7 +4821,7 @@ def build_test_strategy():
         b.append(T(cx, yt + lh / 2 + 4, name, 12 if i else 11, "white", weight=600, anchor="middle"))
         fx = x + 392
         b.append(T(fx, yt + 26, name.upper(), 9, dk, MONO, weight=600, ls=".12em"))
-        b.append(T(fx, yt + 42, hint, 10, dk, op=".75"))
+        b.append(T(fx, yt + 42, hint, 10, dk, op=".88"))
         for j, f in enumerate(["What we test:", "Automated:", "Runs when:", "Owner:"]):
             b.append(field(fx, yt + 68 + j * 28, f, x + w - 18, dk, 10.5))
         if i:
@@ -4969,7 +4974,7 @@ def build_cd_health_check():
     sx, nx = x + 590, x + 820
     b.append(T(sx + 70, y + 72, "SCORE", 8.5, d, MONO, weight=600, anchor="middle", ls=".12em"))
     # one text element (tspans) so the AI prompt reads it as a scale, not a numbered list
-    b.append(f'<text x="{sx + 14:g}" y="{y + 90}" text-anchor="middle" font-family="{MONO}" font-size="10" fill="{d}" fill-opacity=".7">'
+    b.append(f'<text x="{sx + 14:g}" y="{y + 90}" text-anchor="middle" font-family="{MONO}" font-size="10" fill="{d}" fill-opacity=".88">'
              + " ".join(f'<tspan x="{sx + 14 + k * 28:g}">{k + 1}</tspan>' for k in range(5)) + "</text>")
     b.append(T(nx, y + 80, "NOTES / EVIDENCE", 8.5, d, MONO, weight=600, ls=".12em"))
     cy = y + 92
@@ -4981,7 +4986,7 @@ def build_cd_health_check():
             b.append(R(x + 14, cy, w - 28, 50, "white", 6, f' stroke="{dk}" stroke-opacity=".18"'))
             b.append(R(x + 14, cy, 4, 50, dk, 2))
             b.append(T(x + 30, cy + 21, name, 12.5, dk, weight=600))
-            b.append(T(x + 30, cy + 39, desc, 10, INK, op=".8"))
+            b.append(T(x + 30, cy + 39, desc, 10, INK, op=".88"))
             for k in range(5):
                 b.append(f'<circle cx="{sx + 14 + k * 28:g}" cy="{cy + 25}" r="10" fill="white" stroke="{dk}" stroke-opacity=".45"/>')
             b.append(L(nx, cy + 22, x + w - 30, cy + 22, WRITE))
@@ -5069,7 +5074,7 @@ def build_sdlc_poster():
             b.append(para(cx + 28, ty, tl, 10.5, dk, 14, weight=600))
             ty += len(tl) * 14 + 8
         b.append(L(cx + 14, y + h - 76, cx + cw - 14, y + h - 76, dk, 1, ' stroke-opacity=".25"'))
-        b.append(T(cx + 14, y + h - 54, "TRADITIONAL GATE", 8, dk, MONO, weight=600, ls=".12em", op=".7"))
+        b.append(T(cx + 14, y + h - 54, "TRADITIONAL GATE", 8, dk, MONO, weight=600, ls=".12em", op=".88"))
         b.append(para(cx + 14, y + h - 34, _wrap(gate, cw - 28, 10.5), 10.5, MUTED, 14))
         if i < 7:
             b.append(T(cx + cw + gap / 2, y + h / 2, "›", 14, INK, anchor="middle", op=".45"))
@@ -5169,7 +5174,7 @@ def build_right_size():
         x = 24 + i * (cw + gap)
         b.append(panel(x, y, cw, h, i + 1, name, col, "LEVEL " + str(i + 1)))
         b.append(T(x + 18, y + 80, size, 14, dk, weight=600))
-        b.append(T(x + 18, y + 98, links, 10, dk, op=".7"))
+        b.append(T(x + 18, y + 98, links, 10, dk, op=".88"))
         top = y + 116
         ch = (h - 116 - 10) / len(cells)
         for j, ((text, tools), row) in enumerate(zip(cells, RIGHT_SIZE_ROWS)):
@@ -5205,7 +5210,7 @@ def build_right_size():
             b.append(L(pts[a_][0], pts[a_][1], pts[c_][0], pts[c_][1], d, 1, ' stroke-opacity=".35"'))
     for px, py in pts:
         b.append(f'<circle cx="{px:g}" cy="{py:g}" r="9" fill="{d}"/>')
-    b.append(T(cx, yy + hh - 16, "6 people: 15 links", 10, d, anchor="middle", op=".8"))
+    b.append(T(cx, yy + hh - 16, "6 people: 15 links", 10, d, anchor="middle", op=".88"))
     for k, (n, l_) in enumerate([("4 people", "6 links"), ("12 people", "66 links"), ("40 people", "780 links"),
                                  ("120 people", "7,140 links")]):
         ty = yy + 96 + k * 36
@@ -5225,7 +5230,7 @@ def build_right_size():
         b.append(T(cx2, yy + 84, title, 9, d, MONO, weight=600, ls=".14em"))
         b.append(bullets(cx2 + 4, yy + 110, items, d, 26))
     b.append(T(x + 18, yy + hh - 22, "Add structure when it solves a problem you have; remove it when it doesn't.", 10, d,
-               italic=True, op=".85"))
+               italic=True, op=".88"))
 
     b.append(footer("What's the least structure that would keep this project safe?",
                     "Which part of our process could we drop without anyone missing it?", PROJECT_TAG))
@@ -5234,6 +5239,136 @@ def build_right_size():
                 "planning, roles, events, tracking work, risks and dependencies, reporting and decisions need at each level and "
                 "the tools to use; factors that call for more structure; how coordination grows; and signs of too little or too much.",
                 "\n".join(b))
+
+
+# ---------------------------------------------------------------- project close-out
+
+def build_project_closeout():
+    b = [header("Project Close-out",
+                "Finish well: check what was achieved, hand over cleanly, capture what you learned, tie up loose ends and say thank you.",
+                "Run a Project · Close · Benefits Realisation · Lessons Learned",
+                header_fields(["Project", "Date"]))]
+
+    y, h = 148, 300
+    x, w = 24, 808
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 1, "Did We Achieve It?", PURPLE, "AGAINST THE ORIGINAL GOAL"))
+    for i, f in enumerate(["Original goal:", "What we delivered:"]):
+        b.append(field(x + 18, y + 84 + i * 32, f, x + w - 18, d))
+    b.append(table(x + 18, y + 170, [("Measure", 250), ("Target", 130), ("Actual", 130), ("What it tells us", w - 36 - 510)], 3, d, 32))
+
+    x, w = 846, 810
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 2, "Benefits Still to Come", EMERALD, "MOST VALUE ARRIVES AFTER THE PROJECT ENDS"))
+    b.append(table(x + 18, y + 86, [("Benefit", 260), ("Expected by", 130), ("Measured how", 230), ("Owner", w - 36 - 620)], 5, d, 34))
+
+    y, h = 462, 330
+    x, w = 24, 536
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 3, "Handover", BLUE, "WHO OWNS IT NOW?"))
+    for i, s in enumerate(["Support team trained and ready", "Documentation and runbooks handed over",
+                           "Open defects and backlog given an owner", "Monitoring and alerts owned",
+                           "Access, licences and accounts sorted", "Contracts and suppliers closed", "Budget closed and reported"]):
+        b.append(checkbox(x + 18, y + 86 + i * 28, s, d, 11))
+    b.append(field(x + 18, y + h - 26, "Handed to:", x + w - 18, d))
+
+    x, w = 574, 1082
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 4, "What We Learned", AMBER, "FOR THE NEXT PROJECT, NOT FOR THE ARCHIVE"))
+    sub = (w - 28 - 20) / 3
+    for i, (name, hint) in enumerate([("Keep doing", "What worked that we'd repeat?"), ("Do differently", "What would we change?"),
+                                      ("Surprises", "What did we not see coming?")]):
+        sx = x + 14 + i * (sub + 10)
+        b.append(T(sx + 4, y + 82, name.upper(), 9, d, MONO, weight=600, ls=".12em"))
+        b.append(sticky_zone(sx, y + 94, sub, h - 108, d, hint, chips=(YELLOW, GREEN) if i < 2 else (BLUE_ST,)))
+
+    y, h = 806, 254
+    x, w = 24, 808
+    d = RED[0]
+    b.append(panel(x, y, w, h, 5, "Loose Ends", RED, "NOTHING LEFT WITHOUT AN OWNER"))
+    b.append(table(x + 18, y + 86, [("Item", 420), ("Owner", 170), ("By when", w - 36 - 590)], 4, d, 34))
+
+    x, w = 846, 810
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 6, "Thanks & Celebrate", FOREST))
+    for i, f in enumerate(["People and teams to thank:", "", "How we'll celebrate:", "Share the story and lessons with:"]):
+        if f:
+            b.append(field(x + 18, y + 86 + i * 36, f, x + w - 18, d))
+        else:
+            b.append(L(x + 18, y + 90 + i * 36, x + w - 18, y + 90 + i * 36, WRITE))
+
+    b.append(footer("What would we tell the next team that runs a project like this?",
+                    "Who will check the benefits arrived, and when?", PROJECT_TAG))
+    write_board("project-closeout-board", "Project Close-out",
+                "A3 landscape board: goal versus what was delivered, benefits still to come with owners, a handover "
+                "checklist, lessons learned (keep doing, do differently, surprises), loose ends, and thanks.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- team onboarding
+
+def build_team_onboarding():
+    b = [header("Team Onboarding",
+                "Help a new team member feel welcome, get set up and do useful work quickly, with a buddy and clear check-ins.",
+                "Set Up the Team · Onboarding · First Week · 30 / 60 / 90 Days",
+                header_fields(["New member", "Start date"]))]
+
+    y, h = 148, 330
+    x, w = 24, 536
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 1, "Before Day One", PURPLE, "SO DAY ONE ISN'T ABOUT WAITING"))
+    for i, s in enumerate(["Laptop, accounts and access ready", "Added to channels, calendars and boards", "Buddy chosen and briefed",
+                           "Welcome message sent", "First-week plan shared", "A first small task picked", "Team told who's joining and when"]):
+        b.append(checkbox(x + 18, y + 86 + i * 32, s, d, 11))
+
+    x, w = 574, 1082
+    b.append(panel(x, y, w, h, 2, "First Week", BLUE, "ONE STEP A DAY · A PLAN, NOT A FIREHOSE"))
+    b.append(step_cards(x + 14, y + 66, w - 28, h - 80,
+                        [("Meet & set up", ["Meet the team and your", "buddy; get set up."]),
+                         ("Product & users", ["What we build, for whom,", "and why it matters."]),
+                         ("Pair", ["Pair on a small item", "with a teammate."]),
+                         ("Join in", ["Join the team's events;", "ask every question."]),
+                         ("Finish & check in", ["Finish something small;", "first check-in."])], BLUE))
+
+    y, h = 492, 300
+    x, w = 24, 808
+    d = SKY[0]
+    b.append(panel(x, y, w, h, 3, "People to Meet", SKY, "INSIDE AND OUTSIDE THE TEAM"))
+    b.append(table(x + 18, y + 86, [("Who", 200), ("Role", 170), ("Why talk to them", 320), ("Met", w - 36 - 690)], 6, d, 32))
+
+    x, w = 846, 810
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 4, "How We Work Here", EMERALD, "WALK THROUGH EACH ONE TOGETHER"))
+    for i, s in enumerate(["Team charter and working agreements", "Definition of Done", "Our board and workflow", "Events and when they happen",
+                           "How we decide", "How to ask for help", "Where documentation lives", "How we release",
+                           "Our tools and AI agreement", "Who our users are"]):
+        b.append(checkbox(x + 18 + (i % 2) * 392, y + 88 + (i // 2) * 38, s, d, 11))
+
+    y, h = 806, 254
+    x, w = 24, 536
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 5, "Buddy", AMBER, "A FRIENDLY FIRST CONTACT"))
+    for i, f in enumerate(["Buddy:", "We'll meet every:", "Ask me about:", "Until (date):"]):
+        b.append(field(x + 18, y + 86 + i * 38, f, x + w - 18, d))
+
+    x, w = 574, 1082
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 6, "30 · 60 · 90 Days", FOREST, "CHECK IN, BOTH WAYS"))
+    cw = (w - 28 - 20) / 3
+    for i, (name, hint) in enumerate([("30 days", "Settled in, doing real work"), ("60 days", "Working independently"),
+                                      ("90 days", "Fully part of the team")]):
+        cx = x + 14 + i * (cw + 10)
+        b.append(R(cx, y + 64, cw, h - 78, "white", 6, f' stroke="{d}" stroke-opacity=".2"'))
+        b.append(T(cx + 14, y + 88, name.upper(), 9, d, MONO, weight=600, ls=".12em"))
+        b.append(T(cx + 14, y + 106, hint, 10, d, op=".88"))
+        for j, f in enumerate(["Goal:", "Check-in date:", "How it's going:"]):
+            b.append(field(cx + 14, y + 140 + j * 30, f, cx + cw - 14, d, 10.5))
+        b.append(L(cx + 14, y + 234, cx + cw - 14, y + 234, WRITE))
+
+    b.append(footer("What do you wish someone had told you in your first week?",
+                    "What could the newest person see that we've stopped noticing?", LIFECYCLE_TAG))
+    write_board("team-onboarding-board", "Team Onboarding",
+                "A3 landscape board: before day one checklist, a first-week plan, people to meet, how we work here, "
+                "a buddy, and 30, 60 and 90-day check-ins.", "\n".join(b))
 
 
 # ---------------------------------------------------------------- worked examples
@@ -5307,6 +5442,7 @@ def write_example(base, title, layer, header=None):
     svg, page = clean(svg), clean(page)
     slug = f"worked-example-{base}"
     page = page.replace(f'<a href="{base}.svg">open the SVG</a>', f'<a href="{slug}.svg">open the SVG</a>')
+    page = page.replace(pdf_link(base), pdf_link(slug))
     (OUT / f"{slug}.svg").write_text(svg, encoding="utf-8")
     (OUT / f"{slug}.html").write_text(page, encoding="utf-8")
     print("wrote", slug)
@@ -5497,5 +5633,7 @@ if __name__ == "__main__":
     build_cd_health_check()
     build_sdlc_poster()
     build_right_size()
+    build_project_closeout()
+    build_team_onboarding()
     for make in EXAMPLES.values():   # worked examples read the blank boards, so they run last
         make()

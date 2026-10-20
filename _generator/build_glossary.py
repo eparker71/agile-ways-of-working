@@ -18,6 +18,10 @@ from brand import ACCENT, NAVY, CREDIT  # noqa: E402
 OUT = Path(__file__).resolve().parent.parent
 
 TERMS = [
+    ("Benefits realisation", "Checking, after a project ends, that the value it was meant to create really arrives, with a named "
+     "owner and dates to measure each benefit.", "Common in project and programme management.", ["closeout", "value"]),
+    ("Onboarding", "Helping a new team member get set up, understand how the team works and contribute, usually with a plan, a "
+     "buddy and check-ins over the first few months.", None, ["onboarding"]),
     ("Brooks's law", "Adding people to a late software project makes it later, because new people need time to get up to speed "
      "and every extra person adds communication overhead.", "From Fred Brooks, The Mythical Man-Month (1975).", ["right-size"]),
     ("Release Train Engineer (RTE)", "The facilitator and servant leader for a team of teams: runs big-room planning, the regular "
@@ -252,7 +256,7 @@ def build():
 <title>Glossary</title>
 <link rel="stylesheet" href="{FONT_URL}">
 <style>
-:root{{--accent:{ACCENT};--navy:{NAVY};--ink:#1E293B;--muted:#64748B;--rule:#E2E8F0;}}
+:root{{--accent:{ACCENT};--navy:{NAVY};--ink:#1E293B;--muted:#5B6B82;--rule:#E2E8F0;}}
 *{{box-sizing:border-box;}}
 html,body{{margin:0;background:#F1F5F9;}}
 body{{font-family:'Geist',Inter,system-ui,sans-serif;color:var(--ink);font-size:14px;line-height:1.55;}}
@@ -277,7 +281,7 @@ h2{{font:500 11px 'Geist Mono',monospace;letter-spacing:.14em;color:var(--muted)
 .term .see a{{color:var(--ink);}}
 .term .see a:hover{{color:var(--accent);}}
 .hidden{{display:none;}}
-footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#94A3B8;text-align:center;padding:0 16px 32px;}}
+footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-align:center;padding:0 16px 32px;}}
 @media print{{header{{padding:16px;}} input,.jump{{display:none;}} .term{{break-inside:avoid;}}}}
 </style>
 </head>

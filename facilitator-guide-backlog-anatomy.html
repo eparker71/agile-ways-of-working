@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
 <style>
 :root{
-  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#64748B; --rule:#E2E8F0; --paper:#FFFFFF;
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#5B6B82; --rule:#E2E8F0; --paper:#FFFFFF;
   --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
 }
 *{box-sizing:border-box;}
@@ -31,7 +31,7 @@ body{font-family:var(--sans);color:var(--ink);font-size:13px;line-height:1.55;pa
 .badge{position:absolute;top:14px;right:24px;font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;}
 .masthead h1{font:400 40px/1.05 var(--serif);margin:14px 0 8px;}
 .masthead p{margin:0;color:#94A3B8;font-size:13.5px;}
-.masthead .tag{margin-top:8px;font:9px var(--mono);color:#64748B;letter-spacing:.06em;}
+.masthead .tag{margin-top:8px;font:9px var(--mono);color:#94A3B8;letter-spacing:.06em;}
 .content{padding:28px 40px 36px;}
 h2{font:400 26px/1.15 var(--serif);margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;}
 h2 .n{font:600 11px var(--sans);color:#fff;background:var(--navy);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;flex:none;transform:translateY(-3px);}
@@ -62,14 +62,14 @@ tr:nth-child(even) td{background:#F8FAFC;}
 .tip b{display:block;margin-bottom:2px;}
 .flow{display:flex;align-items:stretch;gap:0;margin:14px 0 6px;flex-wrap:wrap;}
 .step{flex:1 1 0;min-width:120px;background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;position:relative;}
-.arrow{flex:none;align-self:center;color:var(--accent);font:600 16px var(--sans);padding:0 6px;}
+.arrow{flex:none;align-self:center;color:#C2410C;font:600 16px var(--sans);padding:0 6px;}
 .step b{display:block;font-size:12.5px;}
 .step small{color:var(--muted);font-size:11px;line-height:1.4;display:block;margin-top:2px;}
-.step .k{font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--accent);text-transform:uppercase;}
+.step .k{font:500 8.5px var(--mono);letter-spacing:.12em;color:#C2410C;text-transform:uppercase;}
 .callout{background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:12px 16px;margin:14px 0;}
 .callout b{color:#9A3412;}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
-footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display:flex;justify-content:space-between;gap:16px;font:8px var(--mono);letter-spacing:.08em;color:#94A3B8;}
+footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display:flex;justify-content:space-between;gap:16px;font:8px var(--mono);letter-spacing:.08em;color:#5B6B82;}
 @media (max-width:640px){
   .masthead,.content{padding-left:20px;padding-right:20px;}
   .glance{grid-template-columns:1fr 1fr;}
@@ -92,20 +92,20 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
 }
 .boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
 .boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
-.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
 .content a{color:#9A3412;}
 @media print{.boards{display:none;}}
 .spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
 .spec h3{margin:0 0 4px;font-size:15px;}
 .spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
 .spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
-.spec button:hover{background:var(--accent);}
+.spec button:hover{background:#C2410C;}
 .spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
 .spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
 @media print{.spec{display:none;}}
 .boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
 .boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
-.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
 .content a{color:#9A3412;}
 .example{border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:10px 0;}
 .example div{display:grid;grid-template-columns:30% 1fr;border-bottom:1px solid var(--rule);}
@@ -122,7 +122,7 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
     <h1>Backlog Item Anatomy Guide</h1>
     <p>How to use the poster to help teams write good epics, features and stories, and spot weak ones.</p>
     <div class="tag">Facilitator Run-Sheet · Break Down Work · Epics, Features &amp; Stories</div>
-    <div class="boards"><a class="primary" href="backlog-anatomy-poster.html">Open poster →</a><a href="backlog-anatomy-poster.svg">SVG →</a><a href="facilitator-guide-backlog-anatomy.docx" download>Word (editable) ↓</a></div>
+    <div class="boards"><a class="primary" href="backlog-anatomy-poster.html">Open poster →</a><a href="backlog-anatomy-poster.svg">SVG →</a><a href="pdf/backlog-anatomy-poster.pdf" download>A3 PDF ↓</a><a href="facilitator-guide-backlog-anatomy.docx" download>Word (editable) ↓</a></div>
   </header>
   <div class="content">
     <p class="lede">“Who is this for, and what will be better for them?”</p>
