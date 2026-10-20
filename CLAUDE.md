@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A static site of printable agile facilitation tools: A3 landscape boards (each as `.html` + `.svg`), A4 facilitator guides, two cheat sheets, a home page and a role guide. No build system, dependencies or tests; Python 3 standard library only. Published with GitHub Pages (legacy build from `main`, repo root, `.nojekyll`) at https://eparker71.github.io/my_agile_tools/. Pushing to `main` deploys.
+A static site of printable agile facilitation tools: A3 landscape boards (each as `.html` + `.svg`), A4 facilitator guides, two cheat sheets, a home page and a role guide. No build system, dependencies or tests; Python 3 standard library only. Published with GitHub Pages (legacy build from `main`, repo root, `.nojekyll`) at https://eparker71.github.io/agile-ways-of-working/. Pushing to `main` deploys.
 
 ## Commands
 

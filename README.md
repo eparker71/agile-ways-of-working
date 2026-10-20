@@ -2,7 +2,7 @@
 
 Printable boards and facilitator guides for teams and facilitators.
 
-**Live site:** https://eparker71.github.io/my_agile_tools/
+**Live site:** https://eparker71.github.io/agile-ways-of-working/
 
 To browse everything locally, open `index.html`. Not sure where to start? Open `start-here-by-role.html`, or use the **I'm a…** role filter at the top of the home page. It covers Scrum Masters, coaches, product owners, project, program and portfolio managers, executives, engineering managers, designers and team members.
 
