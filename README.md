@@ -48,6 +48,10 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | Product Vision Board | `product-vision-board` | `facilitator-guide-product-vision.html` |
 | Prioritisation Board | `prioritisation-board` | `facilitator-guide-prioritisation.html` |
 | Sprint Planning | `sprint-planning-board` | `facilitator-guide-sprint-planning.html` |
+| Daily Sync | `daily-sync-board` | `facilitator-guide-daily-sync.html` |
+| Backlog Refinement | `backlog-refinement-board` | `facilitator-guide-backlog-refinement.html` |
+| Kanban Cadences | `kanban-cadences-board` | `facilitator-guide-kanban-cadences.html` |
+| Events & Cadences poster | `events-cadences-poster` | `facilitator-guide-events-cadences.html` |
 | Sprint Review | `sprint-review-board` | `facilitator-guide-sprint-review.html` |
 | Project Kickoff | `project-kickoff-board` | `facilitator-guide-project-kickoff.html` |
 | Stakeholder Map | `stakeholder-map-board` | `facilitator-guide-stakeholder-map.html` |
@@ -92,8 +96,8 @@ The home page groups tools by what you're trying to do. No one framework is assu
 | Set up the team | Team Launch (Sprint Zero), Team Charter, AI Working Agreement, Skills Matrix |
 | Decide what to build | Product Vision Board, Persona & Journey Map, Opportunity Solution Tree, Impact Map, Prioritisation Board |
 | Break down work | Epic Breakdown Canvas, User Story Map, Story Splitting, Example Mapping, Backlog Item Anatomy, Estimation |
-| Plan & review iterations | Sprint Planning, Sprint Review |
-| Manage flow | Kanban Board Design, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Impediments Board, Value Stream Map |
+| Run events & iterations | Events & Cadences poster, Sprint Planning, Daily Sync, Backlog Refinement, Sprint Review |
+| Manage flow | Kanban Board Design, Kanban Cadences, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Impediments Board, Value Stream Map |
 | Engineering practices | Pairing & Mobbing, Delivery Metrics & Tech Debt, Architecture Decision Record, Blameless Incident Review |
 | Reflect & improve | Retrospective Kit, Team Health Check, Psychological Safety Check, Marginal Gains Workshop, 1% Experiment Canvas, Root Cause Analysis |
 | Run a project | Project Kickoff, Stakeholder Map, Pre-mortem, RAID Log, RACI & Decision Log, Release Forecast & Burn-up, Outcome Status Report |

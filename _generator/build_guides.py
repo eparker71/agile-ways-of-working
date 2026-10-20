@@ -2880,6 +2880,214 @@ GUIDES.append(dict(
 ))
 
 
+EVENTS_TOOLKIT = ("The event tools follow a team's rhythm: <a href=\"facilitator-guide-sprint-planning.html\">Sprint Planning</a> "
+                  "or replenishment, the <a href=\"facilitator-guide-daily-sync.html\">Daily Sync</a>, "
+                  "<a href=\"facilitator-guide-backlog-refinement.html\">Backlog Refinement</a>, "
+                  "<a href=\"facilitator-guide-sprint-review.html\">Sprint Review</a> and a retrospective from the Retro Kit. "
+                  "Teams working in continuous flow use the <a href=\"facilitator-guide-kanban-cadences.html\">Kanban Cadences</a>. "
+                  "The <a href=\"facilitator-guide-events-cadences.html\">Events &amp; Cadences</a> poster shows them all, "
+                  "including multi-team and leadership events.")
+
+GUIDES += [
+    # -------------------------------------------------------------- daily sync
+    dict(
+        slug="daily-sync",
+        title="Daily Sync Guide",
+        subtitle="How to run a short daily check that moves the team toward its goal, instead of a round of status updates.",
+        tag="Facilitator Run-Sheet · Run Events · Daily Scrum · Stand-up · Kanban Meeting",
+        boards=[("Open board", "daily-sync-board.html"), ("SVG", "daily-sync-board.svg")],
+        lede="What will we finish today?",
+        intro=("Most teams meet briefly every day, whether they call it the <b>Daily Scrum</b>, a <b>stand-up</b> or the "
+               "<b>Kanban meeting</b>. Its purpose is to inspect progress toward the goal and adapt the plan for the next day. "
+               "It often turns into a round of status reports to a manager. The board fixes that by putting the "
+               "<b>goal</b> at the top, <b>walking the board right to left</b> so finishing comes before starting, "
+               "focusing on <b>blocked and ageing</b> work, and moving detailed discussion to a <b>parking lot</b>. A weekly "
+               "health check keeps the habit honest."),
+        glance=[("Duration", "15 min, daily"), ("Group", "The team; others<br>may listen"),
+                ("Use when", "Every working day"), ("Output", "Today's plan<br>&amp; owned blockers")],
+        before=["Hold it at the same time and place every day, in front of the team's board",
+                "Put the current goal where everyone can see it",
+                "Agree who facilitates; rotating the role works well",
+                "For remote teams, share the board on screen and keep cameras optional"],
+        agenda_heads=["Minutes", "Step", "Facilitator notes"],
+        agenda=[("0–1", "1 · Goal", "Read the goal and the days left. Ask: are we on track?"),
+                ("1–10", "3 · Walk the board", "Start at the right: what's nearly done and what's needed to finish it? Then blocked and old items. Then what to finish today."),
+                ("10–13", "5 · Blockers & swarms", "Give each blocker an owner. Decide whether to swarm on anything."),
+                ("13–15", "Plan & park", "Confirm what we'll finish today. Note parking-lot topics and who stays for them."),
+                ("Weekly", "7 · Health check", "Tick the health check together and agree one thing to try if a check fails.")],
+        sections_title="Making it work",
+        sections_intro="What good looks like for each part of the board.",
+        sections=[("1 · Our Goal", PURPLE, ["Visible every day", "Discussion links back to it"]),
+                  ("3 · Walk the Board", BLUE, ["Right to left", "Oldest and blocked first", "Finish before starting"]),
+                  ("4 · Questions to Ask", EMERALD, ["About the work, not people", "The classic three are optional"]),
+                  ("5 · Blockers & Swarms", RED, ["Every blocker has an owner", "Swarm when the goal is at risk"]),
+                  ("6 · Parking Lot", AMBER, ["Details after the sync", "Only the people needed stay"]),
+                  ("7 · Health Check", FOREST, ["Weekly", "One change when a check fails"])],
+        tips=[("Talk about work items, not people", "Walking the board item by item avoids a round of personal status reports."),
+              ("Right to left", "Finishing work delivers value; starting it only adds to WIP."),
+              ("Keep it to 15 minutes", "If it overruns, the parking lot isn't being used. Move discussions after the sync."),
+              ("It's the team's meeting", "Managers and stakeholders can listen, but the team runs it and decides the plan."),
+              ("Rotate the facilitator", "Taking turns stops it becoming one person's update meeting."),
+              ("Look for the oldest item", "Work that's been open longest is usually the biggest risk to the goal.")],
+        pitfalls=("a status report to a manager; no reference to the goal; walking people instead of work; problem-solving in "
+                  "the meeting; overrunning; starting new work while items sit blocked; skipping it when “busy”."),
+        after=[("Straight away", "Parking-lot groups meet; blocker owners act."),
+               ("During the day", "Update the board as work moves, not just before the next sync."),
+               ("Weekly", "Run the health check and adjust the format."),
+               ("At the retro", "Ask whether the sync is helping the team reach its goal.")],
+        toolkit=EVENTS_TOOLKIT,
+        foot="“Who needs help, and who can give it?”",
+    ),
+
+    # -------------------------------------------------------------- backlog refinement
+    dict(
+        slug="backlog-refinement",
+        title="Backlog Refinement Guide",
+        subtitle="How to run a regular refinement session that gets the next items ordered, understood, split, sized and ready.",
+        tag="Facilitator Run-Sheet · Run Events · Backlog Refinement",
+        boards=[("Open board", "backlog-refinement-board.html"), ("SVG", "backlog-refinement-board.svg")],
+        lede="Which items do we need ready for the next iteration?",
+        intro=("Refinement is the ongoing work of getting the next few backlog items ready: <b>ordered</b> by value, "
+               "<b>understood</b> by the team, <b>split</b> small enough to finish in a few days, explored through <b>examples</b>, "
+               "and roughly <b>sized</b>. Scrum describes it as an ongoing activity rather than a formal event. Many teams "
+               "hold a regular session, often taking around 10% of their capacity. The board walks each item through six "
+               "steps and points to the toolkit tool for each one, so the session stays focused and finishes with ready items."),
+        glance=[("Duration", "45–90 min,<br>weekly"), ("Group", "PO, developers,<br>testers, experts"),
+                ("Use when", "Every week, or before<br>planning"), ("Output", "Ready items for the<br>next 1–2 iterations")],
+        before=["Print the board at A3, or load the SVG as a digital background",
+                "The PO brings the top items in order, with any context or data",
+                "Have the Story Splitting poster and Example Mapping board to hand",
+                "Agree the team's Definition of Ready, if you have one",
+                "Invite experts only for the items that need them"],
+        agenda_heads=["Minutes", "Step", "Facilitator notes"],
+        agenda=[("0–5", "1 · Session goal", "Agree which items to refine and the iteration they need to be ready for."),
+                ("5–15", "Order", "Confirm the order with the PO. Drop or defer anything no longer valuable."),
+                ("15–60", "Understand · Split · Examples", "For each item: who it's for and why, split it if it's too big, then map rules and examples."),
+                ("60–75", "Size", "Size the items quickly, or check they're small enough to count."),
+                ("75–85", "Ready?", "Check each item against the Definition of Ready. Record open questions with owners."),
+                ("85–90", "Close", "Read back what's ready and what isn't, and when the next session is.")],
+        sections_title="Making each step strong",
+        sections_intro="Quality checks for each step of the flow.",
+        sections=[("Order", BLUE, ["Most valuable first", "Drop what's no longer needed"]),
+                  ("Understand", PURPLE, ["Who it's for, and why", "What done looks like"]),
+                  ("Split", ORANGE, ["Finishes in a few days", "Vertical slices"]),
+                  ("Examples", FOREST, ["Rules and examples", "Questions have owners"]),
+                  ("Size", AMBER, ["Relative and quick", "Or just count small items"]),
+                  ("Ready?", RED, ["Checked against the DoR", "A guide, not a gate"])],
+        tips=[("Just in time", "Refine one or two iterations ahead. Refining further out wastes effort when plans change."),
+              ("Whole team", "Developers and testers find hidden work and risks the PO can't see alone."),
+              ("Timebox each item", "If an item takes more than 15–20 minutes, it probably needs splitting or a spike."),
+              ("Questions are progress", "An open question found now is cheaper than one found mid-iteration."),
+              ("Don't design it all", "Agree enough to start. The team will work out details while building."),
+              ("Little and often", "A short weekly session beats one long, tiring one before planning.")],
+        pitfalls=("refining too far ahead; the PO presenting while the team listens; designing solutions in detail; no "
+                  "splitting; endless debate on one item; treating the Definition of Ready as a gate."),
+        after=[("Straight away", "Update the backlog: splits, examples, sizes and open questions."),
+               ("Before planning", "Question owners find the answers."),
+               ("At planning", "Ready items go in first."),
+               ("At the retro", "Ask whether items arrived in planning ready enough.")],
+        toolkit=EVENTS_TOOLKIT,
+        foot="“What don't we know yet that would stop us starting?”",
+    ),
+
+    # -------------------------------------------------------------- kanban cadences
+    dict(
+        slug="kanban-cadences",
+        title="Kanban Cadences Guide",
+        subtitle="How to set up a rhythm of short, focused reviews that keep work flowing and services improving.",
+        tag="Facilitator Run-Sheet · Manage Flow · Inspired by the Kanban Method",
+        boards=[("Open board", "kanban-cadences-board.html"), ("SVG", "kanban-cadences-board.svg")],
+        lede="Which conversation would most improve our flow if we had it regularly?",
+        intro=("Teams working in continuous flow don't need iterations, but they still need feedback loops. The Kanban Method "
+               "(David J. Anderson) describes a set of <b>cadences</b>: a daily Kanban meeting, <b>replenishment</b> to choose what "
+               "to pull in next, delivery planning, a <b>service delivery review</b> of flow and service levels, and wider "
+               "operations, risk and strategy reviews. You don't need them all. Start with the daily meeting, replenishment and "
+               "a service delivery review, then add others as the system grows."),
+        glance=[("Duration", "60 min to design<br>the cadence"), ("Group", "The team, PO or<br>service manager"),
+                ("Use when", "Moving to flow, or<br>meetings feel random"), ("Output", "An agreed rhythm<br>of reviews")],
+        before=["Print the board at A3, or load the SVG as a digital background",
+                "List the meetings the team already holds, and how often",
+                "Bring flow data: lead time, throughput, items past their SLE, blocked time",
+                "Have your Kanban board and its WIP limits to hand"],
+        agenda_heads=["Minutes", "Step", "Facilitator notes"],
+        agenda=[("0–10", "Today", "List current meetings. Which ones help flow, and which could go?"),
+                ("10–30", "1 · Choose cadences", "Tick the cadences you'll run. Fill in when, who, and inputs and outputs for each."),
+                ("30–45", "2 · Replenishment", "Agree how you'll calculate free capacity and choose items to pull in."),
+                ("45–55", "3 · Service delivery review", "Agree the measures, their expectations or SLE, and who attends."),
+                ("55–60", "Close", "Put the cadences in the calendar and agree when to review the rhythm itself.")],
+        sections_title="The main cadences",
+        sections_intro="Start with the first three; add others as you grow.",
+        sections=[("Daily Kanban Meeting", BLUE, ["Walk the board right to left", "Blockers and ageing work"]),
+                  ("Replenishment", PURPLE, ["Pull to fill free WIP", "Clear selection policy"]),
+                  ("Service Delivery Review", ORANGE, ["Flow against expectations", "Customers or PO present"]),
+                  ("Delivery Planning", EMERALD, ["What's ready to release, and when"]),
+                  ("Operations · Risk · Strategy", SLATE, ["Wider, less frequent", "For several services or teams"])],
+        tips=[("Start small", "Three cadences done well beat seven done half-heartedly."),
+              ("Decouple the cadences", "Replenishment, delivery and review can each run at their own pace, unlike a single iteration."),
+              ("Pull, don't push", "Replenish only to fill free WIP. Never overload the system to look busy."),
+              ("Bring data", "Service delivery reviews work best with lead time and SLE data, not opinions."),
+              ("Invite the customer", "Hearing expectations directly keeps the service focused on what matters."),
+              ("Review the rhythm", "Every few months, ask whether each cadence is still worth its time.")],
+        pitfalls=("copying every cadence at once; replenishing beyond WIP limits; reviews without data; no customer voice; "
+                  "keeping meetings that no longer help."),
+        after=[("Straight away", "Book the cadences as recurring calendar events."),
+               ("First month", "Hold each at least once, and adjust timing and attendees."),
+               ("Every quarter", "Review the rhythm: add, drop or change a cadence."),
+               ("Always", "Bring service delivery review findings to the retrospective.")],
+        toolkit=EVENTS_TOOLKIT,
+        foot="“Are we meeting what our customers expect, and how do we know?”",
+    ),
+
+    # -------------------------------------------------------------- events & cadences poster
+    dict(
+        slug="events-cadences",
+        title="Events & Cadences Guide",
+        subtitle="How to use the poster to design a simple, purposeful set of events, whatever framework you use.",
+        tag="Facilitator Run-Sheet · Run Events · Scrum · Kanban · SAFe · LeSS · Scrum@Scale",
+        boards=[("Open poster", "events-cadences-poster.html"), ("SVG", "events-cadences-poster.svg")],
+        lede="Does every event we hold have a clear purpose and output?",
+        intro=("Frameworks name their events differently, but the needs underneath are the same: plan, sync, refine, review, "
+               "reflect, and do the same across teams and for the organisation. The poster lists <b>twelve common events</b> "
+               "with what each framework calls them, their <b>purpose</b>, typical <b>cadence and timebox</b>, who comes, the "
+               "<b>output</b>, and the tool in this kit that helps. Use it to design a lean set of events for a team or a "
+               "group of teams, or to translate between frameworks. Timeboxes are typical; Scrum's are maximums for each "
+               "week of a sprint."),
+        glance=[("Duration", "45–60 min"), ("Group", "Team, PO, coach,<br>or group leads"),
+                ("Use when", "Setting up, or when<br>meetings feel too many"), ("Output", "An agreed set of events<br>&amp; calendar")],
+        before=["Print the poster at A3, or share it on screen",
+                "List the meetings the team or group holds today, with their length and frequency",
+                "Bring the team's working agreements or charter",
+                "Invite the people who'd attend the events"],
+        agenda_heads=["Minutes", "Step", "Facilitator notes"],
+        agenda=[("0–10", "Today", "Map current meetings to the rows on the poster. Which rows are missing? Which meetings don't fit any row?"),
+                ("10–25", "Purpose", "For each event you keep, agree its purpose and output in one line."),
+                ("25–40", "Cadence", "Set the frequency and timebox. Merge or drop events with no clear output."),
+                ("40–50", "Tools", "Pick the toolkit board for each event and who facilitates."),
+                ("50–60", "Close", "Book the calendar, and agree when to review the set of events.")],
+        sections_title="Reading the poster",
+        sections_intro="How the three groups fit together.",
+        sections=[("Team events", BLUE, ["Plan, sync, refine, review, reflect", "Weekly to daily rhythm"]),
+                  ("Multi-team events", PURPLE, ["The same needs across teams", "Period or quarterly rhythm"]),
+                  ("Organisation events", FOREST, ["Funding and outcomes", "Monthly or quarterly"]),
+                  ("Also called", SLATE, ["Translate between frameworks", "Pick names your people use"])],
+        tips=[("Purpose first", "An event without a clear purpose and output is a candidate to drop."),
+              ("Fewer, better", "A lean set of well-run events beats a full calendar."),
+              ("Same needs, different names", "Use the “also called” column to stop arguments about terminology."),
+              ("Timebox everything", "Shorter, regular events are easier to keep focused than long, rare ones."),
+              ("Scale the timebox", "Scrum's timeboxes scale with sprint length; a two-week sprint needs half the time of a four-week one."),
+              ("Review the set", "Every quarter, ask which events still earn their time.")],
+        pitfalls=("adding every event from every framework; events with no output; long meetings with the wrong people; "
+                  "arguing about names instead of purpose; never reviewing the calendar."),
+        after=[("Straight away", "Put the agreed events in the calendar with their purpose in the invite."),
+               ("First month", "Use the toolkit board for each event."),
+               ("At retros", "Ask whether each event is helping."),
+               ("Every quarter", "Review the whole set with the poster.")],
+        toolkit=EVENTS_TOOLKIT,
+        foot="“Which event could we shorten, merge or drop?”",
+    ),
+]
+
+
 # ------------------------------------------------------------------ rendering
 
 def guide_css():

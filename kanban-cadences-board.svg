@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 1190" width="1680" height="1190" role="img" aria-labelledby="mg-title mg-desc">
+  <title id="mg-title">Kanban Cadences</title>
+  <desc id="mg-desc">A3 landscape board: eight Kanban cadences with typical timings and fields for when, who, inputs and outputs, plus replenishment and service delivery review panels.</desc>
+  <defs><style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap');</style>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#EFF6FF"/>
+    </linearGradient>
+    <filter id="fc" x="-4%" y="-4%" width="110%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity=".10"/>
+    </filter>
+    <filter id="fsm" x="-6%" y="-6%" width="114%" height="116%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity=".08"/>
+    </filter>
+    <pattern id="dots" patternUnits="userSpaceOnUse" width="20" height="20">
+      <circle cx="10" cy="10" r="1.2" fill="#000" fill-opacity=".055"/>
+    </pattern>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E0F2FE"/>
+      <stop offset="100%" stop-color="#F0F9FF"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7DD3FC"/>
+      <stop offset="100%" stop-color="#BAE6FD"/>
+    </linearGradient>
+  </defs>
+<rect x="0" y="0" width="1680" height="1190" fill="url(#bg)"/><rect x="0" y="0" width="1680" height="4" fill="#eb6c36"/><rect x="0" y="4" width="1680" height="134" fill="#0C1A2E"/><text x="24" y="70" font-family="'Instrument Serif',Georgia,serif" font-size="42" font-weight="400" fill="white">Kanban Cadences</text><text x="24" y="100" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" fill="#94A3B8">Set a rhythm of short, focused meetings that keep work flowing and services improving, with or without iterations.</text><text x="24" y="120" font-family="'Geist Mono',Consolas,monospace" font-size="9" fill="#475569" letter-spacing=".06em">Manage Flow · Inspired by the Kanban Method (David J. Anderson) · Feedback Loops · Replenishment</text><text x="1356" y="66" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#475569" letter-spacing=".14em">TEAM / SERVICE</text><line x1="1452" y1="69" x2="1656" y2="69" stroke="#334155" stroke-width="1.2"/><text x="1356" y="96" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#475569" letter-spacing=".14em">DATE</text><line x1="1452" y1="99" x2="1656" y2="99" stroke="#334155" stroke-width="1.2"/>
+<rect x="24" y="148" width="1632" height="430" rx="10" fill="#DBEAFE" stroke="#1E3A8A" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M24,200 V158 A10,10 0 0 1 34,148 H1646 A10,10 0 0 1 1656,158 V200 Z" fill="#1E3A8A"/><circle cx="45" cy="174" r="12" fill="white" fill-opacity=".18"/><text x="45" y="179" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">1</text><text x="68" y="180" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Our Cadences</text><text x="1640" y="179" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".6" letter-spacing=".10em">TYPICAL TIMINGS SHOWN · ADAPT TO YOUR CONTEXT · TICK THE ONES YOU'LL RUN</text>
+<rect x="38" y="212" width="392" height="170" rx="6" fill="white" stroke="#1E3A8A" stroke-opacity=".3"/>
+<rect x="38" y="212" width="5" height="170" rx="3" fill="#1E3A8A"/>
+<rect x="56" y="226" width="13" height="13" rx="2" fill="white" stroke="#1E3A8A" stroke-opacity=".6" stroke-width="1.2"/>
+<text x="78" y="238" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#1E3A8A">Daily Kanban Meeting</text>
+<text x="416" y="238" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="9" fill="#1E3A8A" fill-opacity=".7">Daily · 15 min</text>
+<text x="56" y="262" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">Walk the board, unblock work,</text><text x="56" y="277" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">decide what to finish today.</text>
+<text x="56" y="312" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#1E3A8A">When:</text><line x1="92" y1="316" x2="416" y2="316" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="56" y="338" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#1E3A8A">Who:</text><line x1="86.8" y1="342" x2="416" y2="342" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="56" y="364" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#1E3A8A">Inputs → outputs:</text><line x1="154.4" y1="368" x2="416" y2="368" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="442" y="212" width="392" height="170" rx="6" fill="white" stroke="#581C87" stroke-opacity=".3"/>
+<rect x="442" y="212" width="5" height="170" rx="3" fill="#581C87"/>
+<rect x="460" y="226" width="13" height="13" rx="2" fill="white" stroke="#581C87" stroke-opacity=".6" stroke-width="1.2"/>
+<text x="482" y="238" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#581C87">Replenishment</text>
+<text x="820" y="238" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="9" fill="#581C87" fill-opacity=".7">Weekly · 30–60 min</text>
+<text x="460" y="262" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">Choose which options to pull</text><text x="460" y="277" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">into the system next.</text>
+<text x="460" y="312" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#581C87">When:</text><line x1="496" y1="316" x2="820" y2="316" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="460" y="338" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#581C87">Who:</text><line x1="490.8" y1="342" x2="820" y2="342" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="460" y="364" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#581C87">Inputs → outputs:</text><line x1="558.4" y1="368" x2="820" y2="368" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="846" y="212" width="392" height="170" rx="6" fill="white" stroke="#065F46" stroke-opacity=".3"/>
+<rect x="846" y="212" width="5" height="170" rx="3" fill="#065F46"/>
+<rect x="864" y="226" width="13" height="13" rx="2" fill="white" stroke="#065F46" stroke-opacity=".6" stroke-width="1.2"/>
+<text x="886" y="238" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#065F46">Delivery Planning</text>
+<text x="1224" y="238" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="9" fill="#065F46" fill-opacity=".7">Per delivery · 30 min</text>
+<text x="864" y="262" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">Decide what's ready to hand</text><text x="864" y="277" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">over to customers, and when.</text>
+<text x="864" y="312" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#065F46">When:</text><line x1="900" y1="316" x2="1224" y2="316" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="864" y="338" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#065F46">Who:</text><line x1="894.8" y1="342" x2="1224" y2="342" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="864" y="364" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#065F46">Inputs → outputs:</text><line x1="962.4" y1="368" x2="1224" y2="368" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="1250" y="212" width="392" height="170" rx="6" fill="white" stroke="#9A3412" stroke-opacity=".3"/>
+<rect x="1250" y="212" width="5" height="170" rx="3" fill="#9A3412"/>
+<rect x="1268" y="226" width="13" height="13" rx="2" fill="white" stroke="#9A3412" stroke-opacity=".6" stroke-width="1.2"/>
+<text x="1290" y="238" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#9A3412">Service Delivery Review</text>
+<text x="1628" y="238" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="9" fill="#9A3412" fill-opacity=".7">Every 2 weeks · 45 min</text>
+<text x="1268" y="262" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">Check flow and service levels</text><text x="1268" y="277" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">against what customers expect.</text>
+<text x="1268" y="312" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#9A3412">When:</text><line x1="1304" y1="316" x2="1628" y2="316" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="1268" y="338" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#9A3412">Who:</text><line x1="1298.8" y1="342" x2="1628" y2="342" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="1268" y="364" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#9A3412">Inputs → outputs:</text><line x1="1366.4" y1="368" x2="1628" y2="368" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="38" y="394" width="392" height="170" rx="6" fill="white" stroke="#0C4A6E" stroke-opacity=".3"/>
+<rect x="38" y="394" width="5" height="170" rx="3" fill="#0C4A6E"/>
+<rect x="56" y="408" width="13" height="13" rx="2" fill="white" stroke="#0C4A6E" stroke-opacity=".6" stroke-width="1.2"/>
+<text x="78" y="420" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#0C4A6E">Operations Review</text>
+<text x="416" y="420" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="9" fill="#0C4A6E" fill-opacity=".7">Monthly · 60 min</text>
+<text x="56" y="444" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">Look across services for</text><text x="56" y="459" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">shared problems and capacity.</text>
+<text x="56" y="494" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#0C4A6E">When:</text><line x1="92" y1="498" x2="416" y2="498" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="56" y="520" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#0C4A6E">Who:</text><line x1="86.8" y1="524" x2="416" y2="524" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="56" y="546" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#0C4A6E">Inputs → outputs:</text><line x1="154.4" y1="550" x2="416" y2="550" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="442" y="394" width="392" height="170" rx="6" fill="white" stroke="#991B1B" stroke-opacity=".3"/>
+<rect x="442" y="394" width="5" height="170" rx="3" fill="#991B1B"/>
+<rect x="460" y="408" width="13" height="13" rx="2" fill="white" stroke="#991B1B" stroke-opacity=".6" stroke-width="1.2"/>
+<text x="482" y="420" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#991B1B">Risk Review</text>
+<text x="820" y="420" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="9" fill="#991B1B" fill-opacity=".7">Monthly · 30 min</text>
+<text x="460" y="444" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">Review blockers and risks</text><text x="460" y="459" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">that threaten delivery.</text>
+<text x="460" y="494" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#991B1B">When:</text><line x1="496" y1="498" x2="820" y2="498" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="460" y="520" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#991B1B">Who:</text><line x1="490.8" y1="524" x2="820" y2="524" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="460" y="546" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#991B1B">Inputs → outputs:</text><line x1="558.4" y1="550" x2="820" y2="550" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="846" y="394" width="392" height="170" rx="6" fill="white" stroke="#14532D" stroke-opacity=".3"/>
+<rect x="846" y="394" width="5" height="170" rx="3" fill="#14532D"/>
+<rect x="864" y="408" width="13" height="13" rx="2" fill="white" stroke="#14532D" stroke-opacity=".6" stroke-width="1.2"/>
+<text x="886" y="420" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#14532D">Strategy Review</text>
+<text x="1224" y="420" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="9" fill="#14532D" fill-opacity=".7">Quarterly · 1–2 h</text>
+<text x="864" y="444" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">Check direction, services and</text><text x="864" y="459" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">investment still fit the goals.</text>
+<text x="864" y="494" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#14532D">When:</text><line x1="900" y1="498" x2="1224" y2="498" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="864" y="520" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#14532D">Who:</text><line x1="894.8" y1="524" x2="1224" y2="524" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="864" y="546" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#14532D">Inputs → outputs:</text><line x1="962.4" y1="550" x2="1224" y2="550" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="1250" y="394" width="392" height="170" rx="6" fill="white" stroke="#334155" stroke-opacity=".3"/>
+<rect x="1250" y="394" width="5" height="170" rx="3" fill="#334155"/>
+<rect x="1268" y="408" width="13" height="13" rx="2" fill="white" stroke="#334155" stroke-opacity=".6" stroke-width="1.2"/>
+<text x="1290" y="420" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#334155">Our Own Cadence</text>
+<text x="1268" y="444" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">Add a review your team needs.</text>
+<text x="1268" y="494" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#334155">When:</text><line x1="1304" y1="498" x2="1628" y2="498" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="1268" y="520" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#334155">Who:</text><line x1="1298.8" y1="524" x2="1628" y2="524" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="1268" y="546" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#334155">Inputs → outputs:</text><line x1="1366.4" y1="550" x2="1628" y2="550" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="24" y="592" width="808" height="468" rx="10" fill="#EDE9FE" stroke="#581C87" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M24,644 V602 A10,10 0 0 1 34,592 H822 A10,10 0 0 1 832,602 V644 Z" fill="#581C87"/><circle cx="45" cy="618" r="12" fill="white" fill-opacity=".18"/><text x="45" y="623" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">2</text><text x="68" y="624" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Replenishment</text><text x="816" y="623" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".6" letter-spacing=".10em">WHAT DO WE PULL IN NEXT?</text>
+<text x="42" y="680" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#581C87">Space available (WIP limit minus items in progress):</text><line x1="349.44" y1="684" x2="814" y2="684" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="42" y="714" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#581C87">How we choose:</text><line x1="132.08" y1="718" x2="814" y2="718" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="42" y="760" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" font-weight="600" fill="#581C87">Options waiting</text>
+<rect x="34" y="770" width="381" height="278" rx="6" fill="url(#dots)"/><text x="224.5" y="903" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-style="italic" fill="#581C87" fill-opacity=".22">Candidate items</text><rect x="215.5" y="917" width="18" height="18" rx="2" fill="#FDE047" fill-opacity=".35"/>
+<text x="433" y="760" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" font-weight="600" fill="#581C87">Pulled in, and why</text>
+<text x="439" y="792" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="600" fill="#581C87" letter-spacing=".1em">ITEM</text><text x="609" y="792" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="600" fill="#581C87" letter-spacing=".1em">WHY NOW</text><line x1="433" y1="802" x2="814" y2="802" stroke="#581C87" stroke-width="1.2" stroke-opacity=".35"/><line x1="433" y1="842" x2="814" y2="842" stroke="#CBD5E1" stroke-width="1.5"/><line x1="433" y1="882" x2="814" y2="882" stroke="#CBD5E1" stroke-width="1.5"/><line x1="433" y1="922" x2="814" y2="922" stroke="#CBD5E1" stroke-width="1.5"/><line x1="433" y1="962" x2="814" y2="962" stroke="#CBD5E1" stroke-width="1.5"/><line x1="433" y1="1002" x2="814" y2="1002" stroke="#CBD5E1" stroke-width="1.5"/><line x1="433" y1="1042" x2="814" y2="1042" stroke="#CBD5E1" stroke-width="1.5"/><line x1="603" y1="780" x2="603" y2="1042" stroke="#581C87" stroke-width="1" stroke-opacity=".15"/>
+<rect x="846" y="592" width="810" height="468" rx="10" fill="#FFEDD5" stroke="#9A3412" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M846,644 V602 A10,10 0 0 1 856,592 H1646 A10,10 0 0 1 1656,602 V644 Z" fill="#9A3412"/><circle cx="867" cy="618" r="12" fill="white" fill-opacity=".18"/><text x="867" y="623" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">3</text><text x="890" y="624" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Service Delivery Review</text><text x="1640" y="623" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".6" letter-spacing=".10em">ARE WE MEETING EXPECTATIONS?</text>
+<text x="870" y="676" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="600" fill="#9A3412" letter-spacing=".1em">MEASURE</text><text x="1110" y="676" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="600" fill="#9A3412" letter-spacing=".1em">EXPECTATION / SLE</text><text x="1280" y="676" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="600" fill="#9A3412" letter-spacing=".1em">ACTUAL</text><text x="1400" y="676" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="600" fill="#9A3412" letter-spacing=".1em">ACTION</text><line x1="864" y1="686" x2="1638" y2="686" stroke="#9A3412" stroke-width="1.2" stroke-opacity=".35"/><line x1="864" y1="726" x2="1638" y2="726" stroke="#CBD5E1" stroke-width="1.5"/><line x1="864" y1="766" x2="1638" y2="766" stroke="#CBD5E1" stroke-width="1.5"/><line x1="864" y1="806" x2="1638" y2="806" stroke="#CBD5E1" stroke-width="1.5"/><line x1="864" y1="846" x2="1638" y2="846" stroke="#CBD5E1" stroke-width="1.5"/><line x1="864" y1="886" x2="1638" y2="886" stroke="#CBD5E1" stroke-width="1.5"/><line x1="864" y1="926" x2="1638" y2="926" stroke="#CBD5E1" stroke-width="1.5"/><line x1="1104" y1="664" x2="1104" y2="926" stroke="#9A3412" stroke-width="1" stroke-opacity=".15"/><line x1="1274" y1="664" x2="1274" y2="926" stroke="#9A3412" stroke-width="1" stroke-opacity=".15"/><line x1="1394" y1="664" x2="1394" y2="926" stroke="#9A3412" stroke-width="1" stroke-opacity=".15"/>
+<text x="870" y="712" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#9A3412">Lead time (85th percentile)</text>
+<text x="870" y="752" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#9A3412">Throughput per week</text>
+<text x="870" y="792" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#9A3412">Items past their SLE</text>
+<text x="870" y="832" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#9A3412">Blocked time</text>
+<text x="870" y="872" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#9A3412">Customer satisfaction</text>
+<text x="870" y="912" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-style="italic" fill="#9A3412">Our own measure</text>
+<text x="864" y="1020" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#9A3412">Top improvement to try:</text><line x1="1005.56" y1="1024" x2="1638" y2="1024" stroke="#CBD5E1" stroke-width="1.5"/>
+<line x1="24" y1="1070" x2="1656" y2="1070" stroke="#E2E8F0" stroke-width="1"/><text x="24" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“Which conversation would most improve our flow if we had it regularly?”</text><line x1="832" y1="1078" x2="832" y2="1128" stroke="#E2E8F0" stroke-width="1"/><text x="848" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“Are we meeting what our customers expect, and how do we know?”</text><text x="1656" y="1138" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#CBD5E1" letter-spacing=".08em">Manage Flow · Stop Starting, Start Finishing</text><text x="24" y="1138" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#94A3B8" letter-spacing=".06em">© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</text>
+</svg>

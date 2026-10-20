@@ -4257,6 +4257,304 @@ def build_team_launch():
                 "toolkit tools, a thin first slice, environment and tools, and a ready-to-start exit check.", "\n".join(b))
 
 
+# ---------------------------------------------------------------- daily sync
+
+EVENTS_TAG = "Run Events · Inspect & Adapt · Short, Regular, Purposeful"
+
+
+def build_daily_sync():
+    b = [header("Daily Sync",
+                "A short daily check on progress toward the goal: walk the board, raise blockers, and plan the day together.",
+                "Run Events · Daily Scrum · Stand-up · Kanban Meeting · 15 Minutes",
+                header_fields(["Team", "Time & place"]))]
+
+    y, h = 148, 140
+    x, w = 24, 1082
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 1, "Our Goal", PURPLE, "EVERY CONVERSATION POINTS HERE"))
+    b.append(T(x + 18, y + 94, "We're working toward", 20, d, SERIF, italic=True))
+    b.append(L(x + 228, y + 97, x + w - 200, y + 97, d, 1, ' stroke-opacity=".25"'))
+    b.append(field(x + w - 186, y + 94, "Days left:", x + w - 18, d))
+    b.append(T(x + 18, y + 126, "Sprint goal, iteration goal, or the outcome the team is focused on this week", 10.5, d, italic=True, op=".65"))
+
+    x, w = 1120, 536
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 2, "Ground Rules", SLATE))
+    for i, m in enumerate(["15 minutes, same time, same place", "For the team, not a status report",
+                           "Details go to the parking lot"]):
+        b.append(checkbox(x + 18, y + 80 + i * 24, m, d, 10.5))
+
+    x, y, w, h = 24, 302, 1082, 420
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 3, "Walk the Board", BLUE, "RIGHT TO LEFT · FINISH BEFORE YOU START"))
+    steps = ["What's nearly done, and what's needed to finish it?", "What's blocked or getting old? Who can help?",
+             "What will we finish today?", "Only then: what should we start?"]
+    for i, st in enumerate(steps):
+        sx = x + 18 + (i % 2) * 520
+        sy = y + 82 + (i // 2) * 26
+        b.append(f'<circle cx="{sx + 9}" cy="{sy - 4}" r="9" fill="{d}"/>')
+        b.append(T(sx + 9, sy, str(i + 1), 9.5, "white", weight=600, anchor="middle"))
+        b.append(T(sx + 26, sy, st, 11, d))
+    cols = ["Ready", "In progress", "Review / test", "Done"]
+    cw = (w - 20 - 3 * 10) / 4
+    zy = y + 150
+    for i, c in enumerate(cols):
+        cx = x + 10 + i * (cw + 10)
+        b.append(T(cx + 6, zy - 8, c.upper(), 9, d, MONO, weight=600, ls=".12em"))
+        b.append(sticky_zone(cx, zy, cw, h - 162, d, "Work items", chips=(YELLOW, PINK_ST)))
+    ay = y + 130
+    b.append(L(x + w - 40, ay, x + 40, ay, ACCENT, 2))
+    b.append(f'<path d="M{x + 52},{ay - 6} L{x + 40},{ay} L{x + 52},{ay + 6}" fill="{ACCENT}"/>')
+    b.append(T(x + w / 2, ay - 6, "WALK THIS WAY", 8.5, ACCENT, MONO, weight=600, anchor="middle", ls=".14em"))
+
+    x, w = 1120, 536
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 4, "Questions to Ask", EMERALD, "ABOUT THE WORK, NOT THE PEOPLE"))
+    b.append(T(x + 18, y + 82, "For each item on the board", 11, d, weight=600))
+    for i, q in enumerate(["What's needed to finish this?", "Is anything blocking it?", "Who can help, today?",
+                           "Is it older than our SLE?"]):
+        b.append(T(x + 30, y + 108 + i * 24, q, 15, d, SERIF, italic=True))
+    b.append(T(x + 18, y + 226, "The classic three questions", 11, d, weight=600))
+    for i, q in enumerate(["What did I do yesterday toward the goal?", "What will I do today toward the goal?",
+                           "Do I see anything in the way?"]):
+        b.append(T(x + 30, y + 252 + i * 24, q, 15, d, SERIF, italic=True))
+    b.append(para(x + 18, y + 346, ["Useful, but easily becomes a status report.", "The Scrum Guide no longer requires them."],
+                  10, d, 14, italic=True, op=".7"))
+
+    y, h = 736, 324
+    x, w = 24, 534
+    d = RED[0]
+    b.append(panel(x, y, w, h, 5, "Blockers & Swarms", RED, "ACT TODAY"))
+    b.append(table(x + 18, y + 84, [("Item", 160), ("Blocked by", 160), ("Swarm?", 70), ("Who", w - 36 - 390)], 5, d, 40))
+
+    x = 572
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 6, "Parking Lot", AMBER, "AFTER THE SYNC"))
+    b.append(bullets(x + 22, y + 74, ["Topics that need more than a minute", "Note who stays to discuss"], d))
+    b.append(dashed(x + 10, x + w - 10, y + 110, d))
+    b.append(sticky_zone(x + 10, y + 116, w - 20, h - 128, d, chips=(YELLOW,)))
+
+    x, w = 1120, 536
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 7, "Sync Health Check", FOREST, "ONCE A WEEK"))
+    for i, m in enumerate(["Finished within 15 minutes", "Talked about the goal, not just activity",
+                           "Oldest and blocked items discussed first", "Every blocker has an owner",
+                           "We know what we'll finish today", "Everyone could take part"]):
+        b.append(checkbox(x + 18, y + 86 + i * 30, m, d, 11))
+    b.append(field(x + 18, y + 284, "If a check fails, we'll try:", x + w - 18, d))
+
+    b.append(footer("What will we finish today?", "Who needs help, and who can give it?", EVENTS_TAG))
+    write_board("daily-sync-board", "Daily Sync",
+                "A3 landscape daily sync board: the goal, ground rules, a walk-the-board area read right to left, questions "
+                "to ask, blockers and swarms, a parking lot, and a weekly sync health check.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- backlog refinement
+
+def build_backlog_refinement():
+    b = [header("Backlog Refinement",
+                "Get the next few items ordered, understood, split, sized and ready, in one focused session.",
+                "Run Events · Backlog Refinement · Order → Understand → Split → Example → Size → Ready",
+                header_fields(["Team", "Date"]))]
+
+    x, y, w, h = 24, 148, 1632, 124
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 1, "Session Goal", SLATE, "REFINE JUST ENOUGH, JUST IN TIME"))
+    tw = (w - 36 - 2 * 16) / 3
+    for i, f in enumerate(["Items to refine:", "Ready for (iteration or date):", "Who's here:"]):
+        cx = x + 18 + i * (tw + 16)
+        b.append(field(cx, y + 92, f, cx + tw, d))
+
+    x, y, w, h = 24, 286, 1632, 476
+    b.append(panel(x, y, w, h, 2, "Refinement Flow", BLUE, "FOR EACH ITEM, IN ORDER · STOP WHEN IT'S READY"))
+    b.append(step_cards(x + 14, y + 66, w - 28, h - 80, [
+        ("Order", ["Is this still the most", "valuable next item?", "→ Prioritisation Board"]),
+        ("Understand", ["Who is it for, and why?", "What does done look like?", "→ Backlog Item Anatomy"]),
+        ("Split", ["Can we finish it in a few", "days? If not, slice it.", "→ Story Splitting"]),
+        ("Examples", ["Rules, examples and", "open questions.", "→ Example Mapping"]),
+        ("Size", ["Roughly how big, compared", "with things we've done?", "→ Estimation"]),
+        ("Ready?", ["Check it against our", "Definition of Ready.", "→ panel 4, below"])], BLUE))
+
+    y, h = 776, 284
+    x, w = 24, 1082
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 3, "Items Refined", EMERALD))
+    b.append(table(x + 18, y + 84, [("Item", 250), ("Split into", 220), ("Examples agreed", 140), ("Size", 80),
+                                    ("Ready?", 80), ("Open questions & owner", w - 36 - 770)], 5, d, 36))
+
+    x, w = 1120, 536
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 4, "Definition of Ready", AMBER, "A GUIDE, NOT A GATE"))
+    for i, m in enumerate(["Who it's for and why is clear", "Small enough to finish in a few days",
+                           "Examples or acceptance criteria agreed", "Dependencies known and handled",
+                           "No open question that would stop work"]):
+        b.append(checkbox(x + 18, y + 86 + i * 30, m, d, 11))
+    b.append(field(x + 18, y + 248, "Next refinement:", x + w - 18, d))
+
+    b.append(footer("Which items do we need ready for the next iteration?",
+                    "What don't we know yet that would stop us starting?", EVENTS_TAG))
+    write_board("backlog-refinement-board", "Backlog Refinement",
+                "A3 landscape backlog refinement board: session goal, a six-step flow (order, understand, split, examples, "
+                "size, ready) linked to the toolkit, an items-refined table, and a Definition of Ready check.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- kanban cadences
+
+CADENCES = [
+    ("Daily Kanban Meeting", BLUE, "Daily · 15 min", ["Walk the board, unblock work,", "decide what to finish today."]),
+    ("Replenishment", PURPLE, "Weekly · 30–60 min", ["Choose which options to pull", "into the system next."]),
+    ("Delivery Planning", EMERALD, "Per delivery · 30 min", ["Decide what's ready to hand", "over to customers, and when."]),
+    ("Service Delivery Review", ORANGE, "Every 2 weeks · 45 min", ["Check flow and service levels", "against what customers expect."]),
+    ("Operations Review", SKY, "Monthly · 60 min", ["Look across services for", "shared problems and capacity."]),
+    ("Risk Review", RED, "Monthly · 30 min", ["Review blockers and risks", "that threaten delivery."]),
+    ("Strategy Review", FOREST, "Quarterly · 1–2 h", ["Check direction, services and", "investment still fit the goals."]),
+    ("Our Own Cadence", SLATE, "", ["Add a review your team needs.", ""]),
+]
+
+
+def build_kanban_cadences():
+    b = [header("Kanban Cadences",
+                "Set a rhythm of short, focused meetings that keep work flowing and services improving, with or without iterations.",
+                "Manage Flow · Inspired by the Kanban Method (David J. Anderson) · Feedback Loops · Replenishment",
+                header_fields(["Team / service", "Date"]))]
+
+    x, y, w, h = 24, 148, 1632, 430
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 1, "Our Cadences", BLUE, "TYPICAL TIMINGS SHOWN · ADAPT TO YOUR CONTEXT · TICK THE ONES YOU'LL RUN"))
+    cw = (w - 28 - 3 * 12) / 4
+    ch = (h - 78 - 12) / 2
+    for i, (name, col, when, purpose) in enumerate(CADENCES):
+        r, c = divmod(i, 4)
+        cx, cy = x + 14 + c * (cw + 12), y + 64 + r * (ch + 12)
+        dk, lt = col
+        b.append(R(cx, cy, cw, ch, "white", 6, f' stroke="{dk}" stroke-opacity=".3"'))
+        b.append(R(cx, cy, 5, ch, dk, 3))
+        b.append(R(cx + 18, cy + 14, 13, 13, "white", 2, f' stroke="{dk}" stroke-opacity=".6" stroke-width="1.2"'))
+        b.append(T(cx + 40, cy + 26, name, 13, dk, weight=600))
+        if when:
+            b.append(T(cx + cw - 14, cy + 26, when, 9, dk, MONO, anchor="end", op=".7"))
+        b.append(para(cx + 18, cy + 50, [p for p in purpose if p], 10.5, INK, 15))
+        for j, f in enumerate(["When:", "Who:", "Inputs → outputs:"]):
+            b.append(field(cx + 18, cy + 100 + j * 26, f, cx + cw - 14, dk, 10))
+
+    y, h = 592, 468
+    x, w = 24, 808
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 2, "Replenishment", PURPLE, "WHAT DO WE PULL IN NEXT?"))
+    for i, f in enumerate(["Space available (WIP limit minus items in progress):", "How we choose:"]):
+        b.append(field(x + 18, y + 88 + i * 34, f, x + w - 18, d))
+    hw = (w - 46) / 2
+    b.append(T(x + 18, y + 168, "Options waiting", 12, d, weight=600))
+    b.append(sticky_zone(x + 10, y + 178, hw, h - 190, d, "Candidate items", chips=(YELLOW,)))
+    b.append(T(x + 28 + hw, y + 168, "Pulled in, and why", 12, d, weight=600))
+    b.append(table(x + 28 + hw, y + 200, [("Item", 170), ("Why now", hw - 170)], 6, d, 40))
+
+    x, w = 846, 810
+    d = ORANGE[0]
+    b.append(panel(x, y, w, h, 3, "Service Delivery Review", ORANGE, "ARE WE MEETING EXPECTATIONS?"))
+    b.append(table(x + 18, y + 84, [("Measure", 240), ("Expectation / SLE", 170), ("Actual", 120), ("Action", w - 36 - 530)], 6, d, 40))
+    for i, m in enumerate(["Lead time (85th percentile)", "Throughput per week", "Items past their SLE", "Blocked time",
+                           "Customer satisfaction", "Our own measure"]):
+        b.append(T(x + 24, y + 84 + 10 + (i + 1) * 40 - 14, m, 11, d, weight=600 if i < 5 else None, italic=i == 5))
+    b.append(field(x + 18, y + h - 40, "Top improvement to try:", x + w - 18, d))
+
+    b.append(footer("Which conversation would most improve our flow if we had it regularly?",
+                    "Are we meeting what our customers expect, and how do we know?", FLOW_TAG))
+    write_board("kanban-cadences-board", "Kanban Cadences",
+                "A3 landscape board: eight Kanban cadences with typical timings and fields for when, who, inputs and outputs, "
+                "plus replenishment and service delivery review panels.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- events & cadences poster
+
+EVENTS = [
+    ("TEAM", BLUE, [
+        ("Planning", "Sprint Planning (Scrum) · Replenishment (Kanban)", "Agree a goal and pull in the work that fits capacity",
+         "Each iteration · ≤ 2 h per week of iteration", "Team, PO", "A goal and a plan", "Sprint Planning"),
+        ("Daily sync", "Daily Scrum · Stand-up · Kanban meeting", "Inspect progress toward the goal and plan the next day",
+         "Daily · 15 min", "The team", "Today's plan, blockers raised", "Daily Sync"),
+        ("Refinement", "Backlog refinement · Grooming (older term)", "Get the next items understood, split and ready",
+         "Weekly or ongoing · ~10% of capacity", "Team, PO, experts", "Ready items", "Backlog Refinement"),
+        ("Review", "Sprint Review · Delivery planning (Kanban)", "Inspect what was built with stakeholders, adapt the backlog",
+         "Each iteration · ≤ 1 h per week of iteration", "Team, PO, stakeholders", "Feedback, a changed backlog", "Sprint Review"),
+        ("Retrospective", "Sprint Retrospective · Kaizen", "Inspect how we work and agree improvements",
+         "Each iteration · ≤ 45 min per week", "The team", "One to three improvements", "Retrospective Kit"),
+        ("Service review", "Service Delivery Review (Kanban)", "Check flow and service levels against expectations",
+         "Every 2–4 weeks · 30–60 min", "Team, customer or PO", "Flow improvements", "Kanban Cadences")]),
+    ("MULTI-TEAM", PURPLE, [
+        ("Big-room planning", "PI Planning (SAFe) · Multi-team planning (LeSS)", "Align several teams on shared objectives and a plan",
+         "Each quarter or period · 1–2 days", "All teams, leaders", "Objectives, team plans, risks", "Cross-Team Planning"),
+        ("Cross-team sync", "Scrum of Scrums · ART Sync (SAFe)", "Track shared progress, dependencies and blockers",
+         "1–2 × a week · 15–30 min", "One rep per team", "Owned blockers, decisions", "Cross-Team Sync"),
+        ("Joint review", "System Demo (SAFe) · Sprint Review (LeSS)", "See the integrated product working across teams",
+         "Each iteration or period · 1 h", "Teams, stakeholders", "Feedback on the whole product", "Sprint Review"),
+        ("Cross-team retro", "Inspect & Adapt (SAFe) · Overall Retrospective (LeSS)", "Fix problems that sit between teams",
+         "End of each period · 1.5–2 h", "Reps from every team, leaders", "One system improvement", "Cross-Team Retro")]),
+    ("ORGANISATION", FOREST, [
+        ("Portfolio review", "Lean portfolio review · MetaScrum (Scrum@Scale)", "Decide what to fund, start, stop and finish",
+         "Monthly or quarterly · 1–2 h", "Leaders, product heads", "An updated portfolio", "Portfolio Kanban"),
+        ("Outcome review", "OKR check-in · Strategy Review (Kanban)", "Check progress toward outcomes and adjust direction",
+         "Monthly or quarterly · 1 h", "Leaders, POs", "Adjusted objectives", "OKRs · Value Metrics")]),
+]
+
+
+def _wrap(text, width, size):
+    """Greedy word wrap using the same rough width estimate as text_w()."""
+    words, lines, cur = text.split(), [], ""
+    for wd in words:
+        trial = (cur + " " + wd).strip()
+        if text_w(trial, size) > width and cur:
+            lines.append(cur)
+            cur = wd
+        else:
+            cur = trial
+    if cur:
+        lines.append(cur)
+    return lines
+
+
+def build_events_poster():
+    b = [header("Events & Cadences",
+                "Every recurring event in one place: what it's for, how often, who comes, what it produces, and the tool to use.",
+                "Run Events · Scrum · Kanban · SAFe · LeSS · Scrum@Scale · One Toolbox",
+                header_fields(["Team", "Date"]))]
+    cols = [("Event", 150), ("Also called", 270), ("Purpose", 330), ("Cadence & timebox", 230), ("Who", 170),
+            ("Output", 200), ("Tool in this kit", 1632 - 36 - 1350)]
+    x0, y = 24, 148
+    b.append(R(x0, y, 1632, 34, NAVY, 6))
+    cx = x0 + 18
+    for name, cw in cols:
+        b.append(T(cx + 6, y + 22, name.upper(), 9, "white", MONO, weight=600, ls=".1em"))
+        cx += cw
+    y += 42
+    rows_total = sum(len(r) for _, _, r in EVENTS)
+    rh = (1060 - y - len(EVENTS) * 30) / rows_total
+    for group, (dk, lt), rows in EVENTS:
+        b.append(T(x0 + 4, y + 20, group, 10, dk, MONO, weight=600, ls=".14em"))
+        b.append(L(x0 + 4 + len(group) * 9, y + 16, x0 + 1632, y + 16, dk, 1, ' stroke-opacity=".3"'))
+        y += 30
+        for k, row in enumerate(rows):
+            b.append(R(x0, y, 1632, rh - 4, lt if k % 2 == 0 else "white", 6, f' stroke="{dk}" stroke-opacity=".15"'))
+            b.append(R(x0, y, 5, rh - 4, dk, 3))
+            cx = x0 + 18
+            for j, ((_, cw), val) in enumerate(zip(cols, row)):
+                if j == 0:
+                    b.append(T(cx + 6, y + 24, val, 13, dk, weight=600))
+                else:
+                    lines_ = _wrap(val, cw - 16, 10.5)[:3]
+                    b.append(para(cx + 6, y + 22, lines_, 10.5, dk if j == 6 else INK, 15,
+                                  weight=600 if j == 6 else None))
+                cx += cw
+            y += rh
+
+    b.append(footer("Does every event we hold have a clear purpose and output?",
+                    "Which event could we shorten, merge or drop?", EVENTS_TAG))
+    write_board("events-cadences-poster", "Events & Cadences",
+                "A3 landscape reference poster: twelve team, multi-team and organisation events, each with other names "
+                "used by Scrum, Kanban, SAFe, LeSS and Scrum@Scale, purpose, cadence, who, output and the toolkit tool.",
+                "\n".join(b))
+
+
 if __name__ == "__main__":
     build_retros()
     build_sailboat()
@@ -4312,3 +4610,7 @@ if __name__ == "__main__":
     build_facilitation_poster()
     build_adr()
     build_team_launch()
+    build_daily_sync()
+    build_backlog_refinement()
+    build_kanban_cadences()
+    build_events_poster()

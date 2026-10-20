@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kanban Cadences Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#64748B; --rule:#E2E8F0; --paper:#FFFFFF;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:13px;line-height:1.55;padding:24px 16px;}
+.page{max-width:820px;margin:0 auto 24px;background:var(--paper);box-shadow:0 12px 40px rgba(0,0,0,.22);}
+.masthead{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:28px 40px 26px;position:relative;}
+.badge{position:absolute;top:14px;right:24px;font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;}
+.masthead h1{font:400 40px/1.05 var(--serif);margin:14px 0 8px;}
+.masthead p{margin:0;color:#94A3B8;font-size:13.5px;}
+.masthead .tag{margin-top:8px;font:9px var(--mono);color:#64748B;letter-spacing:.06em;}
+.content{padding:28px 40px 36px;}
+h2{font:400 26px/1.15 var(--serif);margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;}
+h2 .n{font:600 11px var(--sans);color:#fff;background:var(--navy);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;flex:none;transform:translateY(-3px);}
+h3{font:600 13px var(--sans);margin:16px 0 6px;}
+p{margin:6px 0 10px;}
+.lede{font:italic 400 19px/1.35 var(--serif);color:var(--ink);border-left:4px solid var(--accent);padding:2px 0 2px 16px;margin:4px 0 20px;}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px;}
+.glance div{background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;}
+.glance b{display:block;font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+.glance span{font-weight:600;font-size:13px;}
+ul.check{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:28px;}
+ul.check li{padding-left:22px;position:relative;margin-bottom:5px;break-inside:avoid;}
+ul.check li::before{content:"";position:absolute;left:0;top:3px;width:11px;height:11px;border:1.4px solid var(--ink);border-radius:2px;opacity:.55;}
+table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:12.5px;}
+th{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--ink);text-align:left;padding:8px 10px;}
+th:first-child{border-left:5px solid var(--accent);}
+td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+td.t{font:500 11px var(--mono);white-space:nowrap;color:var(--muted);}
+td.a{font-weight:600;width:24%;}
+tr:nth-child(even) td{background:#F8FAFC;}
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;}
+.area{border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,.06);break-inside:avoid;}
+.area h4{margin:0;padding:7px 12px;color:#fff;font:600 12.5px var(--sans);}
+.area ul{margin:0;padding:8px 12px 10px 28px;font-size:12px;}
+.area li{margin-bottom:3px;}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.tip{border-top:2px solid var(--rule);padding-top:8px;}
+.tip b{display:block;margin-bottom:2px;}
+.flow{display:flex;align-items:stretch;gap:0;margin:14px 0 6px;flex-wrap:wrap;}
+.step{flex:1 1 0;min-width:120px;background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;position:relative;}
+.arrow{flex:none;align-self:center;color:var(--accent);font:600 16px var(--sans);padding:0 6px;}
+.step b{display:block;font-size:12.5px;}
+.step small{color:var(--muted);font-size:11px;line-height:1.4;display:block;margin-top:2px;}
+.step .k{font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--accent);text-transform:uppercase;}
+.callout{background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:12px 16px;margin:14px 0;}
+.callout b{color:#9A3412;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display:flex;justify-content:space-between;gap:16px;font:8px var(--mono);letter-spacing:.08em;color:#94A3B8;}
+@media (max-width:640px){
+  .masthead,.content{padding-left:20px;padding-right:20px;}
+  .glance{grid-template-columns:1fr 1fr;}
+  ul.check{columns:1;}
+  .areas,.tips,.two{grid-template-columns:1fr;}
+  .arrow{display:none;}
+  .flow{gap:8px;}
+  table{font-size:11.5px;}
+  td.t{white-space:normal;}
+}
+@media print{
+  @page{size:A4 portrait;margin:12mm 12mm 14mm;}
+  html,body{background:none;}
+  body{padding:0;font-size:11.5px;}
+  .page{box-shadow:none;max-width:none;margin:0;}
+  .masthead,th,.area h4,h2 .n{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  tr,.area,.tip,.step,.callout{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .pb{break-before:page;}
+}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.content a{color:#9A3412;}
+@media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:var(--accent);}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.content a{color:#9A3412;}
+.example{border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:10px 0;}
+.example div{display:grid;grid-template-columns:30% 1fr;border-bottom:1px solid var(--rule);}
+.example div:last-child{border-bottom:none;}
+.example b{background:#F8FAFC;padding:7px 12px;font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.example span{padding:7px 12px;font-size:12.5px;}
+@media (max-width:640px){.example div{grid-template-columns:1fr;}}
+@media print{.boards{display:none;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>Kanban Cadences Guide</h1>
+    <p>How to set up a rhythm of short, focused reviews that keep work flowing and services improving.</p>
+    <div class="tag">Facilitator Run-Sheet · Manage Flow · Inspired by the Kanban Method</div>
+    <div class="boards"><a class="primary" href="kanban-cadences-board.html">Open board →</a><a href="kanban-cadences-board.svg">SVG →</a><a href="facilitator-guide-kanban-cadences.docx" download>Word (editable) ↓</a></div>
+  </header>
+  <div class="content">
+    <p class="lede">“Which conversation would most improve our flow if we had it regularly?”</p>
+    <p>Teams working in continuous flow don't need iterations, but they still need feedback loops. The Kanban Method (David J. Anderson) describes a set of <b>cadences</b>: a daily Kanban meeting, <b>replenishment</b> to choose what to pull in next, delivery planning, a <b>service delivery review</b> of flow and service levels, and wider operations, risk and strategy reviews. You don't need them all. Start with the daily meeting, replenishment and a service delivery review, then add others as the system grows.</p>
+    <div class="glance"><div><b>Duration</b><span>60 min to design<br>the cadence</span></div><div><b>Group</b><span>The team, PO or<br>service manager</span></div><div><b>Use when</b><span>Moving to flow, or<br>meetings feel random</span></div><div><b>Output</b><span>An agreed rhythm<br>of reviews</span></div></div>
+    <h2><span class="n">1</span>Before the session</h2>
+    <ul class="check"><li>Print the board at A3, or load the SVG as a digital background</li><li>List the meetings the team already holds, and how often</li><li>Bring flow data: lead time, throughput, items past their SLE, blocked time</li><li>Have your Kanban board and its WIP limits to hand</li></ul>
+    <h2><span class="n">2</span>Agenda &amp; run-sheet</h2>
+    <table><thead><tr><th>Minutes</th><th>Step</th><th>Facilitator notes</th></tr></thead><tbody><tr><td class="t">0–10</td><td class="a">Today</td><td>List current meetings. Which ones help flow, and which could go?</td></tr><tr><td class="t">10–30</td><td class="a">1 · Choose cadences</td><td>Tick the cadences you'll run. Fill in when, who, and inputs and outputs for each.</td></tr><tr><td class="t">30–45</td><td class="a">2 · Replenishment</td><td>Agree how you'll calculate free capacity and choose items to pull in.</td></tr><tr><td class="t">45–55</td><td class="a">3 · Service delivery review</td><td>Agree the measures, their expectations or SLE, and who attends.</td></tr><tr><td class="t">55–60</td><td class="a">Close</td><td>Put the cadences in the calendar and agree when to review the rhythm itself.</td></tr></tbody></table>
+    <h2 class="pb"><span class="n">3</span>The main cadences</h2>
+    <p>Start with the first three; add others as you grow.</p>
+    <div class="areas"><div class="area" style="background:#DBEAFE;color:#1E3A8A"><h4 style="background:#1E3A8A">Daily Kanban Meeting</h4><ul><li>Walk the board right to left</li><li>Blockers and ageing work</li></ul></div><div class="area" style="background:#EDE9FE;color:#581C87"><h4 style="background:#581C87">Replenishment</h4><ul><li>Pull to fill free WIP</li><li>Clear selection policy</li></ul></div><div class="area" style="background:#FFEDD5;color:#9A3412"><h4 style="background:#9A3412">Service Delivery Review</h4><ul><li>Flow against expectations</li><li>Customers or PO present</li></ul></div><div class="area" style="background:#D1FAE5;color:#065F46"><h4 style="background:#065F46">Delivery Planning</h4><ul><li>What&#x27;s ready to release, and when</li></ul></div><div class="area" style="background:#F1F5F9;color:#334155"><h4 style="background:#334155">Operations · Risk · Strategy</h4><ul><li>Wider, less frequent</li><li>For several services or teams</li></ul></div></div>
+    <h2><span class="n">4</span>Facilitation tips</h2>
+    <div class="tips"><div class="tip"><b>Start small</b>Three cadences done well beat seven done half-heartedly.</div><div class="tip"><b>Decouple the cadences</b>Replenishment, delivery and review can each run at their own pace, unlike a single iteration.</div><div class="tip"><b>Pull, don&#x27;t push</b>Replenish only to fill free WIP. Never overload the system to look busy.</div><div class="tip"><b>Bring data</b>Service delivery reviews work best with lead time and SLE data, not opinions.</div><div class="tip"><b>Invite the customer</b>Hearing expectations directly keeps the service focused on what matters.</div><div class="tip"><b>Review the rhythm</b>Every few months, ask whether each cadence is still worth its time.</div></div>
+    <div class="callout"><b>Common pitfalls:</b> copying every cadence at once; replenishing beyond WIP limits; reviews without data; no customer voice; keeping meetings that no longer help.</div>
+    <h2><span class="n">5</span>After the session</h2>
+    <div class="two"><div><h3>Straight away</h3><p>Book the cadences as recurring calendar events.</p></div><div><h3>First month</h3><p>Hold each at least once, and adjust timing and attendees.</p></div><div><h3>Every quarter</h3><p>Review the rhythm: add, drop or change a cadence.</p></div><div><h3>Always</h3><p>Bring service delivery review findings to the retrospective.</p></div></div>
+    <h2><span class="n">6</span>How it fits the toolkit</h2>
+    <p>The event tools follow a team's rhythm: <a href="facilitator-guide-sprint-planning.html">Sprint Planning</a> or replenishment, the <a href="facilitator-guide-daily-sync.html">Daily Sync</a>, <a href="facilitator-guide-backlog-refinement.html">Backlog Refinement</a>, <a href="facilitator-guide-sprint-review.html">Sprint Review</a> and a retrospective from the Retro Kit. Teams working in continuous flow use the <a href="facilitator-guide-kanban-cadences.html">Kanban Cadences</a>. The <a href="facilitator-guide-events-cadences.html">Events &amp; Cadences</a> poster shows them all, including multi-team and leadership events.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Kanban Cadences”, a workshop board.
+
+Purpose: Set a rhythm of short, focused meetings that keep work flowing and services improving, with or without iterations.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+
+Header fields to fill in: Team / Service, Date
+
+Sections:
+1. Our Cadences: top full width, about 100% wide and 45% tall; header colour blue.
+   Subtitle: Typical timings shown · adapt to your context · tick the ones you&#x27;ll run
+   Content: Daily Kanban Meeting · Daily · 15 min · Replenishment · Weekly · 30–60 min · Delivery Planning · Per delivery · 30 min · Service Delivery Review · Every 2 weeks · 45 min · Walk the board, unblock work, · Choose which options to pull · Decide what&#x27;s ready to hand · Check flow and service levels · decide what to finish today. · into the system next. · over to customers, and when. · against what customers expect. · When: (×8) · Who: (×8) · Inputs → outputs: (×8) · Operations Review · Monthly · 60 min · Risk Review · Monthly · 30 min · Strategy Review · Quarterly · 1–2 h · Our Own Cadence · Look across services for · Review blockers and risks · Check direction, services and · Add a review your team needs. · shared problems and capacity. · that threaten delivery. · investment still fit the goals.
+2. Replenishment: bottom left, about 50% wide and 50% tall; header colour purple.
+   Subtitle: What do we pull in next?
+   Content: Space available (WIP limit minus items in progress): · How we choose: · Options waiting · Pulled in, and why · Item: · Why now: · Candidate items
+3. Service Delivery Review: bottom right, about 50% wide and 50% tall; header colour orange.
+   Subtitle: Are we meeting expectations?
+   Content: Measure: · Expectation / sle: · Actual: · Action: · Lead time (85th percentile) · Throughput per week · Items past their SLE · Blocked time · Customer satisfaction · Our own measure · Top improvement to try:
+
+Footer questions: “Which conversation would most improve our flow if we had it regularly?” “Are we meeting what our customers expect, and how do we know?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/kanban-cadences-board.html</pre></details></section>
+    <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
+    <footer><span>“Are we meeting what our customers expect, and how do we know?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
+  </div>
+</div>
+</body>
+</html>

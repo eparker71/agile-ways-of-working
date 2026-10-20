@@ -151,6 +151,17 @@ TERMS = [
      "Developed at Intercom.", ["prioritisation"]),
     ("ROAM", "A way to close out each risk with a decision: Resolved, Owned, Accepted or Mitigated.",
      "From SAFe's PI Planning.", ["raid", "ctp"]),
+    ("Daily Scrum", "The team's daily 15-minute event to inspect progress toward the sprint goal and plan the next day. Often "
+     "called a stand-up.", "A Scrum event.", ["daily", "events"]),
+    ("Inspect & Adapt", "A multi-team event at the end of a planning period: a demo of the integrated work, a review of "
+     "measures and a problem-solving workshop.", "A SAFe event; similar to LeSS's Overall Retrospective.", ["cross-retro", "events"]),
+    ("Replenishment", "A regular meeting where a team chooses which options to pull into its system next, to fill free WIP "
+     "capacity.", "A Kanban Method cadence.", ["cadences", "events"]),
+    ("Service delivery review", "A regular review of flow and service levels, such as lead time and SLE, against what "
+     "customers expect.", "A Kanban Method cadence.", ["cadences"]),
+    ("Stand-up", "A short daily team meeting, often held standing to keep it brief. See Daily Scrum.", None, ["daily"]),
+    ("System demo", "A demo of the integrated work of several teams, so stakeholders see the whole product working.",
+     "A SAFe event.", ["events", "sprint-review"]),
     ("Story points", "A relative measure of the size of backlog items, combining effort, complexity and uncertainty. Used with "
      "velocity for forecasting. Many teams now count items instead.", "Common in Scrum teams, but not part of the Scrum Guide.",
      ["sprint-planning", "forecast"]),
