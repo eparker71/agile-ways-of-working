@@ -1,4 +1,4 @@
-# Agile Facilitation Toolkit
+# Agile Ways of Working Toolkit
 
 Printable boards and facilitator guides for teams and facilitators.
 
