@@ -304,7 +304,7 @@ def build_index_filter():
                     for rid, name, *_ in ROLES)
     bar = (f'<!-- roles:bar --><div class="rolebar"><span>I\'m a…</span><button type="button" data-role="all" '
            f'data-name="everyone">All tools</button>{chips}</div><!-- /roles:bar -->')
-    s = re.sub(r"<!-- roles:bar -->.*?<!-- /roles:bar -->", "", s, flags=re.S)
+    s = re.sub(r"\n*<!-- roles:bar -->.*?<!-- /roles:bar -->\n", "\n", s, flags=re.S)
     s = s.replace("</div></header>", bar + "\n</div></header>", 1)
 
     # sticky section menu with search, built from the h2 ids in <main>
