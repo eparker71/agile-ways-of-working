@@ -46,7 +46,9 @@ Never edit generated files directly; edit the script and re-run.
 - `TOOLS`: key → (title, board, guide, href-prefix for matching index cards).
 - `ROLES`: id, name, description, three start-with tools, also-useful tools.
 
-It writes the role page and tags each index card by matching the card's `class="primary"` link against the prefixes. The filter is driven by the `#role=<id>` hash.
+It writes the role page, tags each index card by matching the card's `class="primary"` link against the prefixes, and generates the home page's sticky section menu (from `<h2 id="…">` headings, with short labels in `SHORT`) and search box. One script handles role filtering (`#role=<id>` hash) and search together, hiding empty sections and their menu links.
+
+**Home page structure:** `index.html` is grouped into task-based `<h2 id>` sections (set up the team, decide what to build, break down work, …, facilitate & coach). Reference pages (role guide, glossary, cheat sheets, Make It Yours) sit in the header's "Start here" strip, not as cards. A new section needs an `id` on its `<h2>` and, ideally, an entry in `SHORT`.
 
 **Adding a tool** touches five places:
 1. A `build_*` function, plus its call in `__main__`.

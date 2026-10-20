@@ -84,23 +84,23 @@ Each guide covers: when to use the tool, an at-a-glance summary, a prep checklis
 
 ## How the tools fit together
 
-The toolkit follows the agile lifecycle and doesn't assume any one framework:
+The home page groups tools by what you're trying to do. No one framework is assumed: take any tool from the box.
 
-| Phase | Tools |
+| Section | Tools |
 |---|---|
-| Form the team | Team Charter, AI Working Agreement |
-| Envision | Product Vision Board, Persona & Journey Map, Impact Map, Opportunity Solution Tree |
-| Plan | Prioritisation Board, then the break-down tools below |
-| Build in iterations | Sprint Planning, Estimation, Example Mapping, the cheat sheets |
-| Review | Sprint Review |
-| Reflect and improve | Retrospective Kit, Team Health Check, Marginal Gains Workshop, 1% Experiment Canvas, Root Cause Analysis, Blameless Incident Review |
+| Set up the team | Team Charter, AI Working Agreement, Skills Matrix |
+| Decide what to build | Product Vision Board, Persona & Journey Map, Opportunity Solution Tree, Impact Map, Prioritisation Board |
+| Break down work | Epic Breakdown Canvas, User Story Map, Story Splitting, Example Mapping, Backlog Item Anatomy, Estimation |
+| Plan & review iterations | Sprint Planning, Sprint Review |
+| Manage flow | Kanban Board Design, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Impediments Board, Value Stream Map |
+| Engineering practices | Pairing & Mobbing, Delivery Metrics & Tech Debt, Architecture Decision Record, Blameless Incident Review |
+| Reflect & improve | Retrospective Kit, Team Health Check, Psychological Safety Check, Marginal Gains Workshop, 1% Experiment Canvas, Root Cause Analysis |
+| Run a project | Project Kickoff, Stakeholder Map, Pre-mortem, RAID Log, RACI & Decision Log, Release Forecast & Burn-up, Outcome Status Report |
+| Coordinate teams | Objectives & Key Results, Cross-Team Planning, Dependency Map, Cross-Team Sync, Team Topology Design, Cross-Team Retro |
+| Lead the organisation | Value Metrics, Portfolio Kanban & Investment Mix, Delegation Board, ADKAR Change Readiness (ADKAR® is a registered trademark of Prosci, Inc.) |
+| Facilitate & coach | Facilitation Techniques, Lean Coffee, Coaching Conversation |
 
-Further sets sit around that loop:
-
-- **Run a project:** Project Kickoff, Stakeholder Map, Pre-mortem, Release Forecast & Burn-up, RAID Log, RACI & Decision Log, Outcome Status Report.
-- **Coordinate teams (program level):** Objectives & Key Results, Cross-Team Planning, Dependency Map, Cross-Team Sync, Team Topology Design, Cross-Team Retro.
-- **Lead the organisation:** Value Metrics, Portfolio Kanban & Investment Mix, Delegation Board, ADKAR Change Readiness (ADKAR® is a registered trademark of Prosci, Inc.).
-- **Manage flow:** Kanban Board Design, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Skills Matrix, Impediments Board, Pairing & Mobbing, Delivery Metrics & Tech Debt, Value Stream Map, Architecture Decision Record.
+The home page also has a **Start here** strip (role guide, glossary, cheat sheets, Make It Yours), a sticky section menu, a search box and the **I'm a…** role filter.
 
 **Diagnose** (Team Health Check) → **Explore** (Marginal Gains Workshop) → **Experiment** (1% Experiment Canvas) → **Reflect** (Retrospective Kit), then back round again. Lean Coffee and the Facilitation Techniques poster can be used at any point. The Psychological Safety Check sits alongside the Health Check, and the Coaching Conversation canvas supports one-to-one coaching.
 
@@ -120,7 +120,7 @@ python3 _generator/build_glossary.py # glossary.html
 - `brand.py` holds the brand: accent and header colours, fonts and the credit line. All four generators read it, so rebranding is one edit.
 - `build_boards.py` holds the shared visual components (header, panels, sticky zones, action cards, footer). Retro boards are built for each horizon in the `("sprint", "quarter")` list at the bottom.
 - `build_guides.py` holds each guide's content in the `GUIDES` list. It copies its styling from `facilitator-guide-marginal-gains.html`, and writes a Word copy of each guide with `docx_writer.py` (standard library only).
-- `build_roles.py` holds the `ROLES` table: which tools suit each role. It writes `start-here-by-role.html` and tags each `index.html` card with `data-roles` for the filter. Re-run it after adding a card.
+- `build_roles.py` holds the `ROLES` table: which tools suit each role. It writes `start-here-by-role.html`, tags each `index.html` card with `data-roles`, and builds the home page's sticky section menu (from the `<h2 id>` headings; short labels in `SHORT`), search box and role filter. Re-run it after adding a card or section.
 - `build_glossary.py` holds the `TERMS` list (definition, framework note, related tools). Links use the `TOOLS` table from `build_roles.py`.
 - These files are hand-written and are not overwritten by the scripts: the Marginal Gains boards, `facilitator-guide-marginal-gains.html`, `scrum-master-agile-coach-cheat-sheet.html`, `jira-cheat-sheet.html`, `make-it-yours.html` and `index.html` (apart from the role tags and filter, which `build_roles.py` maintains).
 

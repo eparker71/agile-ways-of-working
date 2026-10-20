@@ -229,38 +229,55 @@ FILTER_CSS = """/* roles:css */
 .rolebar button{font:500 11px 'Geist Mono',monospace;letter-spacing:.04em;color:#fff;background:none;border:1px solid #334155;border-radius:14px;padding:5px 11px;cursor:pointer;}
 .rolebar button:hover{border-color:var(--accent);color:var(--accent);}
 .rolebar button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;}
+.sections{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--rule);}
+.sections .wrap{display:flex;gap:10px;align-items:center;padding-top:8px;padding-bottom:8px;}
+.sections .links{display:flex;gap:2px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:thin;}
+.sections a{flex:none;font:500 11.5px 'Geist',system-ui,sans-serif;color:var(--ink);text-decoration:none;border-radius:6px;padding:5px 7px;white-space:nowrap;}
+.sections a:hover{background:#F1F5F9;color:#9A3412;}
+.sections input{flex:none;font:13px 'Geist',system-ui,sans-serif;padding:6px 10px;border:1px solid var(--rule);border-radius:6px;width:170px;}
 .rolenote{display:none;margin:0 0 4px;font-size:13px;color:var(--muted);}
 .rolenote.on{display:block;}
 .rolenote a{color:#9A3412;}
 .hidden{display:none !important;}
+@media (max-width:720px){.sections input{width:120px;}}
 /* /roles:css */
 """
+
+# short labels for the sticky section menu (h2 id -> label); falls back to the full heading
+SHORT = {"setup": "Team set-up", "decide": "What to build", "breakdown": "Break down", "iterate": "Iterations",
+         "flow": "Flow", "engineering": "Engineering", "improve": "Improve", "project": "Projects",
+         "teams": "Multi-team", "lead": "Leadership", "facilitate": "Facilitation"}
 
 FILTER_JS = """<!-- roles:js -->
 <script>
 (function(){
-  var buttons=document.querySelectorAll('.rolebar button'), note=document.querySelector('.rolenote');
-  function apply(role){
-    buttons.forEach(function(b){b.setAttribute('aria-pressed', String(b.dataset.role===(role||'all')));});
+  var buttons=document.querySelectorAll('.rolebar button'), note=document.querySelector('.rolenote'),
+      search=document.querySelector('.sections input'), role='all';
+  function apply(){
+    var q=(search && search.value || '').trim().toLowerCase();
+    buttons.forEach(function(b){b.setAttribute('aria-pressed', String(b.dataset.role===role));});
     document.querySelectorAll('.card').forEach(function(c){
-      var r=(c.dataset.roles||'').split(' ');
-      c.classList.toggle('hidden', !!role && role!=='all' && r.indexOf(role)<0);
+      var r=(c.dataset.roles||'').split(' '), okRole=role==='all' || r.indexOf(role)>=0,
+          okText=!q || c.textContent.toLowerCase().indexOf(q)>=0;
+      c.classList.toggle('hidden', !(okRole && okText));
     });
     document.querySelectorAll('main h2').forEach(function(h){
       var g=h.nextElementSibling, any=g && g.querySelector('.card:not(.hidden)');
       h.classList.toggle('hidden', !any); if(g) g.classList.toggle('hidden', !any);
+      var link=document.querySelector('.sections a[href="#'+h.id+'"]'); if(link) link.classList.toggle('hidden', !any);
     });
-    var b=document.querySelector('.rolebar button[data-role="'+role+'"]');
-    if(role && role!=='all' && b){
-      note.innerHTML='Showing tools for <b>'+b.dataset.name+'</b>. <a href="start-here-by-role.html#'+role+'">Where to start</a> · <a href="#" data-clear>Show all</a>';
-      note.classList.add('on');
-    } else note.classList.remove('on');
+    var b=document.querySelector('.rolebar button[data-role="'+role+'"]'), parts=[];
+    if(role!=='all' && b) parts.push('Showing tools for <b>'+b.dataset.name+'</b>. <a href="start-here-by-role.html#'+role+'">Where to start</a>');
+    if(q) parts.push('Matching “'+q.replace(/[<>&]/g,'')+'”');
+    if(parts.length){ note.innerHTML=parts.join(' · ')+' · <a href="#" data-clear>Show all</a>'; note.classList.add('on'); }
+    else note.classList.remove('on');
   }
   buttons.forEach(function(b){b.addEventListener('click',function(){
-    var r=b.dataset.role; history.replaceState(null,'',r==='all'?location.pathname:'#role='+r); apply(r);
+    role=b.dataset.role; history.replaceState(null,'',role==='all'?location.pathname:'#role='+role); apply();
   });});
-  note.addEventListener('click',function(e){ if(e.target.hasAttribute('data-clear')){e.preventDefault(); history.replaceState(null,'',location.pathname); apply('all');} });
-  var m=location.hash.match(/role=([a-z-]+)/); apply(m?m[1]:'all');
+  if(search) search.addEventListener('input', apply);
+  note.addEventListener('click',function(e){ if(e.target.hasAttribute('data-clear')){e.preventDefault(); role='all'; if(search) search.value=''; history.replaceState(null,'',location.pathname); apply();} });
+  var m=location.hash.match(/role=([a-z-]+)/); if(m) role=m[1]; apply();
 })();
 </script>
 <!-- /roles:js -->
@@ -282,6 +299,14 @@ def build_index_filter():
            f'data-name="everyone">All tools</button>{chips}</div><!-- /roles:bar -->')
     s = re.sub(r"<!-- roles:bar -->.*?<!-- /roles:bar -->", "", s, flags=re.S)
     s = s.replace("</div></header>", bar + "\n</div></header>", 1)
+
+    # sticky section menu with search, built from the h2 ids in <main>
+    heads = re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', s)
+    links = "".join(f'<a href="#{hid}" title="{name}">{SHORT.get(hid, name)}</a>' for hid, name in heads)
+    nav = (f'<!-- roles:nav --><nav class="sections" aria-label="Sections"><div class="wrap"><div class="links">{links}</div>'
+           f'<input type="search" placeholder="Search tools…" aria-label="Search tools"></div></nav><!-- /roles:nav -->')
+    s = re.sub(r"<!-- roles:nav -->.*?<!-- /roles:nav -->\n", "", s, flags=re.S)
+    s = s.replace("</div></header>\n", "</div></header>\n" + nav + "\n", 1)
 
     # note above the first section
     s = re.sub(r'<p class="rolenote"></p>\n', "", s)
