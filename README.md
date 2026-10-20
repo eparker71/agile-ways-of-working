@@ -35,6 +35,14 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | Story Splitting poster | `story-splitting-poster` | `facilitator-guide-story-splitting.html` |
 | Example Mapping | `example-mapping-board` | `facilitator-guide-example-mapping.html` |
 | Backlog Item Anatomy poster | `backlog-anatomy-poster` | `facilitator-guide-backlog-anatomy.html` |
+| Persona & Journey Map | `persona-journey-board` | `facilitator-guide-persona-journey.html` |
+| Impact Map | `impact-map-board` | `facilitator-guide-impact-map.html` |
+| Estimation | `estimation-board` | `facilitator-guide-estimation.html` |
+| RACI & Decision Log | `raci-decision-log-board` | `facilitator-guide-raci-decision-log.html` |
+| Value Stream Map | `value-stream-map-board` | `facilitator-guide-value-stream-map.html` |
+| Architecture Decision Record | `adr-board` | `facilitator-guide-adr.html` |
+| Blameless Incident Review | `incident-review-board` | `facilitator-guide-incident-review.html` |
+| Facilitation Techniques poster | `facilitation-techniques-poster` | `facilitator-guide-facilitation-techniques.html` |
 | Team Charter | `team-charter-board` | `facilitator-guide-team-charter.html` |
 | Product Vision Board | `product-vision-board` | `facilitator-guide-product-vision.html` |
 | Prioritisation Board | `prioritisation-board` | `facilitator-guide-prioritisation.html` |
@@ -81,20 +89,20 @@ The toolkit follows the agile lifecycle and doesn't assume any one framework:
 | Phase | Tools |
 |---|---|
 | Form the team | Team Charter, AI Working Agreement |
-| Envision | Product Vision Board, Opportunity Solution Tree |
+| Envision | Product Vision Board, Persona & Journey Map, Impact Map, Opportunity Solution Tree |
 | Plan | Prioritisation Board, then the break-down tools below |
-| Build in iterations | Sprint Planning, Example Mapping, the cheat sheets |
+| Build in iterations | Sprint Planning, Estimation, Example Mapping, the cheat sheets |
 | Review | Sprint Review |
-| Reflect and improve | Retrospective Kit, Team Health Check, Marginal Gains Workshop, 1% Experiment Canvas, Root Cause Analysis |
+| Reflect and improve | Retrospective Kit, Team Health Check, Marginal Gains Workshop, 1% Experiment Canvas, Root Cause Analysis, Blameless Incident Review |
 
 Further sets sit around that loop:
 
-- **Run a project:** Project Kickoff, Stakeholder Map, Pre-mortem, Release Forecast & Burn-up, RAID Log, Outcome Status Report.
+- **Run a project:** Project Kickoff, Stakeholder Map, Pre-mortem, Release Forecast & Burn-up, RAID Log, RACI & Decision Log, Outcome Status Report.
 - **Coordinate teams (program level):** Objectives & Key Results, Cross-Team Planning, Dependency Map, Cross-Team Sync, Team Topology Design, Cross-Team Retro.
 - **Lead the organisation:** Value Metrics, Portfolio Kanban & Investment Mix, Delegation Board, ADKAR Change Readiness (ADKAR® is a registered trademark of Prosci, Inc.).
-- **Manage flow:** Kanban Board Design, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Skills Matrix, Impediments Board, Pairing & Mobbing, Delivery Metrics & Tech Debt.
+- **Manage flow:** Kanban Board Design, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Skills Matrix, Impediments Board, Pairing & Mobbing, Delivery Metrics & Tech Debt, Value Stream Map, Architecture Decision Record.
 
-**Diagnose** (Team Health Check) → **Explore** (Marginal Gains Workshop) → **Experiment** (1% Experiment Canvas) → **Reflect** (Retrospective Kit), then back round again. Lean Coffee is a general-purpose facilitation format that can be used at any point. The Psychological Safety Check sits alongside the Health Check, and the Coaching Conversation canvas supports one-to-one coaching.
+**Diagnose** (Team Health Check) → **Explore** (Marginal Gains Workshop) → **Experiment** (1% Experiment Canvas) → **Reflect** (Retrospective Kit), then back round again. Lean Coffee and the Facilitation Techniques poster can be used at any point. The Psychological Safety Check sits alongside the Health Check, and the Coaching Conversation canvas supports one-to-one coaching.
 
 **Breaking down work** goes from big to small: Epic Breakdown Canvas (idea → MVP → features) → User Story Map (journey → release slices) → Story Splitting (stories small enough for a sprint) → Example Mapping (is each story understood and ready?). The Backlog Item Anatomy poster shows what a good epic, feature and story look like.
 

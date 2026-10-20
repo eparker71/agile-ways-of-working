@@ -3568,6 +3568,575 @@ def build_backlog_anatomy():
                 "\n".join(b))
 
 
+# ---------------------------------------------------------------- value stream map
+
+def wbox(x, y, w, h, label, dark, nlines=2, gap=24, fill="white"):
+    """Labelled write-on box."""
+    out = [R(x, y, w, h, fill, 6, f' stroke="{dark}" stroke-opacity=".3"'),
+           T(x + 12, y + 20, label, 8.5, dark, MONO, weight=600, ls=".1em")]
+    out.append(lines(x + 12, y + 46, x + w - 12, nlines, gap))
+    return "".join(out)
+
+
+def build_value_stream_map():
+    b = [header("Value Stream Map",
+                "Map every step from request to customer, see where work waits, and design a faster future state.",
+                "Manage Flow · Inspired by Lean Value Stream Mapping (Rother & Shook) · Wait vs. Work Time · Flow Efficiency",
+                header_fields(["Value stream", "Date"]))]
+
+    x, y, w, h = 24, 148, 1632, 120
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 1, "Scope", SLATE, "ONE STREAM, ONE TYPE OF WORK"))
+    qw = (w - 36 - 3 * 16) / 4
+    for i, f in enumerate(["Starts when:", "Ends when:", "Unit of work:", "Measured over:"]):
+        cx = x + 18 + i * (qw + 16)
+        b.append(field(cx, y + 92, f, cx + qw, d))
+
+    x, y, w, h = 24, 282, 1632, 430
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 2, "Current State", BLUE, "PROCESS STEPS LEFT TO RIGHT · WAITS BETWEEN THEM"))
+    n, gap = 6, 64
+    cw = (w - 28 - (n - 1) * gap) / n
+    by, bh = y + 74, 196
+    for i in range(n):
+        cx = x + 14 + i * (cw + gap)
+        b.append(R(cx, by, cw, bh, "white", 6, f' stroke="{d}" stroke-opacity=".35" stroke-width="1.5"'))
+        b.append(R(cx, by, cw, 30, d, 6))
+        b.append(R(cx, by + 24, cw, 6, d))
+        b.append(T(cx + 12, by + 20, f"STEP {i + 1}", 9, "white", MONO, weight=600, ls=".12em"))
+        for j, f in enumerate(["Name:", "Who:", "Work time:", "% complete & accurate:", "People / WIP:"]):
+            b.append(field(cx + 12, by + 58 + j * 30, f, cx + cw - 12, d, 10.5))
+        if i < n - 1:
+            tx = cx + cw + gap / 2
+            b.append(f'<path d="M{tx - 16:g},{by + bh / 2 + 14:g} L{tx:g},{by + bh / 2 - 14:g} L{tx + 16:g},{by + bh / 2 + 14:g} Z" '
+                     f'fill="{AMBER[1]}" stroke="{AMBER[0]}" stroke-width="1.5"/>')
+            b.append(T(tx, by + bh / 2 + 10, "W", 10, AMBER[0], weight=600, anchor="middle"))
+            b.append(T(tx, by + bh / 2 + 34, "wait", 9, AMBER[0], MONO, anchor="middle"))
+            b.append(L(tx - 24, by + bh / 2 + 56, tx + 24, by + bh / 2 + 56, AMBER[0], 1, ' stroke-opacity=".5"'))
+    # timeline ladder
+    ly_hi, ly_lo = y + 312, y + 360
+    b.append(T(x + 18, y + 300, "TIMELINE", 9, d, MONO, weight=600, ls=".12em"))
+    pts = []
+    for i in range(n):
+        cx = x + 14 + i * (cw + gap)
+        pts += [(cx, ly_lo), (cx + cw, ly_lo)]
+        if i < n - 1:
+            pts += [(cx + cw, ly_hi), (cx + cw + gap, ly_hi)]
+    path = "M" + " L".join(f"{px:g},{py:g}" for px, py in pts)
+    b.append(f'<path d="{path}" fill="none" stroke="{d}" stroke-width="2"/>')
+    for i in range(n):
+        cx = x + 14 + i * (cw + gap)
+        b.append(T(cx + cw / 2, ly_lo + 22, "work", 9, d, MONO, anchor="middle", op=".7"))
+        b.append(L(cx + 20, ly_lo + 44, cx + cw - 20, ly_lo + 44, WRITE, 1))
+        if i < n - 1:
+            b.append(T(cx + cw + gap / 2, ly_hi - 8, "wait", 9, AMBER[0], MONO, anchor="middle"))
+
+    x, y, w, h = 24, 726, 1632, 150
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 3, "Totals", PURPLE, "FLOW EFFICIENCY = WORK TIME / LEAD TIME"))
+    tw = (w - 36 - 4 * 16) / 5
+    for i, (f, hint) in enumerate([("Lead time", "first step to last"), ("Work time", "sum of all steps"),
+                                   ("Flow efficiency", "work / lead × 100"), ("Biggest wait", "where and how long"),
+                                   ("Most rework", "lowest % C&A")]):
+        cx = x + 18 + i * (tw + 16)
+        b.append(T(cx, y + 80, f, 13, d, weight=600))
+        b.append(T(cx, y + 98, hint, 9.5, d, italic=True, op=".65"))
+        b.append(L(cx, y + 130, cx + tw, y + 130, WRITE))
+
+    y, h = 890, 170
+    x, w = 24, 1082
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 4, "Future State Ideas", FOREST, "REMOVE WAITS · REDUCE HAND-OFFS · BUILD QUALITY IN"))
+    b.append(sticky_zone(x + 10, y + 64, w - 20, h - 76, d, chips=(GREEN, YELLOW)))
+
+    x, w = 1120, 536
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 5, "Improvement Plan", EMERALD))
+    b.append(table(x + 18, y + 80, [("Change", 260), ("Owner", 110), ("Check on", w - 36 - 370)], 2, d, 30))
+
+    b.append(footer("Where does work wait, and why?", "What would it take to halve the lead time?", FLOW_TAG))
+    write_board("value-stream-map-board", "Value Stream Map",
+                "A3 landscape value stream map: scope, six process steps with wait triangles and a timeline ladder, totals "
+                "including flow efficiency, future state ideas, and an improvement plan.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- blameless incident review
+
+def build_incident_review():
+    b = [header("Blameless Incident Review",
+                "Learn from an incident without blame: what happened, why it made sense at the time, and how to make it less likely.",
+                "Improve · Blameless Post-Incident Review · Learning from Incidents · Systems, Not People",
+                header_fields(["Incident", "Review date"]))]
+
+    y, h = 148, 170
+    x, w = 24, 1082
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 1, "Summary", SLATE, "FACTS ONLY"))
+    hw = (w - 54) / 2
+    for i, f in enumerate(["What happened:", "Impact (who, how long):"]):
+        b.append(field(x + 18, y + 86 + i * 36, f, x + 18 + hw, d))
+    for i, f in enumerate(["Detected by / how:", "Duration to recover:"]):
+        b.append(field(x + 36 + hw, y + 86 + i * 36, f, x + w - 18, d))
+    b.append(T(x + 18, y + 152, "Severity:", 11, d, weight=600))
+    for j, lab in enumerate(["1 · critical", "2 · major", "3 · minor", "4 · near miss"]):
+        b.append(checkbox(x + 100 + j * 140, y + 152, lab, d, 10.5))
+
+    x, w = 1120, 536
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 2, "Ground Rules", PURPLE, "READ ALOUD AT THE START"))
+    for i, m in enumerate(["We look at systems, not at who to blame", "People did what made sense with what they knew",
+                           "Curiosity over judgement: ask “how”, not “who”", "What we learn is shared openly"]):
+        b.append(checkbox(x + 18, y + 84 + i * 24, m, d, 10.5))
+
+    x, y, w, h = 24, 332, 1632, 290
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 3, "Timeline", BLUE, "WHAT DID PEOPLE KNOW AT EACH POINT?"))
+    b.append(table(x + 18, y + 84, [("Time", 120), ("What happened", 520), ("What we knew then", 420), ("What we did and why", w - 36 - 1060)], 5, d, 36))
+
+    y, h = 636, 280
+    x, w = 24, 1082
+    d = ORANGE[0]
+    b.append(panel(x, y, w, h, 4, "Contributing Factors", ORANGE, "USUALLY SEVERAL · RARELY ONE ROOT CAUSE"))
+    cats = ["Technology", "Process", "Knowledge", "Environment", "Communication"]
+    cw = (w - 20 - 4 * 8) / 5
+    for i, c in enumerate(cats):
+        cx = x + 10 + i * (cw + 8)
+        b.append(T(cx + 6, y + 80, c, 12, d, weight=600))
+        b.append(sticky_zone(cx, y + 90, cw, h - 102, d, "Stickies", chips=(PINK_ST,)))
+
+    x, w = 1120, 262
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 5, "What Helped", EMERALD))
+    b.append(sticky_zone(x + 10, y + 64, w - 20, h - 76, d, "Stickies", chips=(GREEN,)))
+    x = 1394
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 6, "Where We Got Lucky", AMBER))
+    b.append(sticky_zone(x + 10, y + 64, w - 20, h - 76, d, "Stickies", chips=(YELLOW,)))
+
+    x, y, w, h = 24, 930, 1632, 130
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 7, "Follow-up Actions", FOREST, "PREVENT · DETECT SOONER · RECOVER FASTER"))
+    b.append(table(x + 18, y + 76, [("Action", 640), ("Type: prevent / detect / recover", 340), ("Owner", 260), ("Due", w - 36 - 1240)], 1, d, 34))
+
+    b.append(footer("Why did it make sense to them at the time?",
+                    "What would make the next incident less likely, or easier to recover from?", FOOT_TAG))
+    write_board("incident-review-board", "Blameless Incident Review",
+                "A3 landscape blameless incident review: summary and severity, ground rules, a timeline of what people knew, "
+                "contributing factors, what helped, where we got lucky, and follow-up actions.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- RACI & decision log
+
+def build_raci():
+    b = [header("RACI & Decision Log",
+                "Agree who does, owns, advises on and hears about each piece of work, and keep a record of key decisions.",
+                "Run a Project · Responsibility Assignment (RACI) · Decision Log · One Accountable Person",
+                header_fields(["Project", "Date"]))]
+
+    x, y, w, h = 24, 148, 1632, 470
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 1, "RACI Matrix", BLUE, "R RESPONSIBLE · A ACCOUNTABLE (ONE ONLY) · C CONSULTED · I INFORMED"))
+    gx0, gy = x + 18, y + 70
+    act_w, nrole = 380, 8
+    rw = (w - 36 - act_w) / nrole
+    b.append(T(gx0 + 6, gy + 32, "WORK, DELIVERABLE OR DECISION", 9, d, MONO, weight=600, ls=".1em"))
+    for i in range(nrole):
+        cx = gx0 + act_w + i * rw
+        b.append(R(cx + 3, gy, rw - 6, 46, "white", 4, f' stroke="{d}" stroke-opacity=".25"'))
+        b.append(T(cx + 10, gy + 16, f"ROLE {i + 1}", 8.5, d, MONO, op=".6", ls=".1em"))
+        b.append(L(cx + 10, gy + 36, cx + rw - 10, gy + 36, WRITE, 1))
+    rows = 8
+    rh = (h - 70 - 54 - 12) / rows
+    for r in range(rows):
+        ry = gy + 54 + r * rh
+        b.append(R(gx0, ry, act_w - 6, rh - 5, "white", 4, f' stroke="{d}" stroke-opacity=".15"'))
+        b.append(L(gx0 + 10, ry + rh - 15, gx0 + act_w - 18, ry + rh - 15, WRITE, 1))
+        for i in range(nrole):
+            cx = gx0 + act_w + i * rw
+            b.append(R(cx + 3, ry, rw - 6, rh - 5, "white", 4, f' fill-opacity=".55" stroke="{d}" stroke-opacity=".12"'))
+
+    x, y, w, h = 24, 632, 1632, 110
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 2, "Check the Matrix", AMBER))
+    for i, m in enumerate(["Exactly one A in every row", "Every row has at least one R", "Few Cs: each one slows a decision",
+                           "No one is R for everything", "The people named have agreed"]):
+        b.append(checkbox(x + 18 + i * 322, y + 84, m, d, 11))
+
+    x, y, w, h = 24, 756, 1632, 304
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 3, "Decision Log", PURPLE, "WHAT WE DECIDED, WHY, AND WHEN TO REVISIT"))
+    b.append(table(x + 18, y + 84, [("#", 40), ("Date", 100), ("Decision", 380), ("Options considered", 340), ("Why", 360),
+                                    ("Decided by", 170), ("Revisit when", w - 36 - 1390)], 5, d, 38))
+
+    b.append(footer("Who is accountable for this, just one person?",
+                    "Why did we decide that, and what would make us revisit it?", PROJECT_TAG))
+    write_board("raci-decision-log-board", "RACI & Decision Log",
+                "A3 landscape RACI matrix for eight roles and eight work items, a matrix check, and a decision log.",
+                "\n".join(b))
+
+
+# ---------------------------------------------------------------- persona & journey map
+
+def build_persona_journey():
+    b = [header("Persona & Journey Map",
+                "Describe a real type of user, then map their journey: what they do, think and feel, and where to help.",
+                "Envision & Plan · Personas · Customer Journey Mapping · Jobs to Be Done",
+                legend([("sticky", YELLOW, "Yellow = Step"), ("sticky", BLUE_ST, "Blue = Thought"),
+                        ("sticky", PINK_ST, "Pink = Pain point"), ("sticky", GREEN, "Green = Opportunity")]))]
+
+    y, h = 148, 330
+    x, w = 24, 534
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 1, "Persona", PURPLE, "BASED ON EVIDENCE, NOT GUESSES"))
+    b.append(R(x + 18, y + 70, 120, 120, PURPLE[1], 8, f' stroke="{d}" stroke-opacity=".3" stroke-dasharray="5,4"'))
+    b.append(T(x + 78, y + 136, "sketch", 10, d, italic=True, anchor="middle", op=".5"))
+    for i, f in enumerate(["Name:", "Role / context:", "Tech comfort:"]):
+        b.append(field(x + 156, y + 94 + i * 34, f, x + w - 18, d))
+    for i, f in enumerate(["Goals:", "Frustrations:", "In their words:", "Evidence from:"]):
+        b.append(field(x + 18, y + 218 + i * 30, f, x + w - 18, d))
+
+    x, w = 572, 1084
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 2, "The Journey We're Mapping", BLUE))
+    b.append(field(x + 18, y + 90, "Scenario or goal:", x + w - 18, d))
+    b.append(field(x + 18, y + 128, "Starts when:", x + w / 2 - 10, d))
+    b.append(field(x + w / 2 + 10, y + 128, "Ends when:", x + w - 18, d))
+    b.append(T(x + 18, y + 176, "JOB TO BE DONE", 9, d, MONO, weight=600, ls=".12em"))
+    for i, lead in enumerate(["When…", "I want to…", "so I can…"]):
+        ly = y + 210 + i * 36
+        b.append(T(x + 18, ly, lead, 17, d, SERIF, italic=True))
+        b.append(L(x + 130, ly + 3, x + w - 18, ly + 3, d, 1, ' stroke-opacity=".25"'))
+
+    x, y, w, h = 24, 492, 1632, 568
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 3, "Journey Map", SLATE, "STAGES LEFT TO RIGHT · ONE ROW AT A TIME"))
+    lab_w, ns = 170, 5
+    sw = (w - 28 - lab_w) / ns
+    gx0, gy = x + 14, y + 64
+    for i in range(ns):
+        cx = gx0 + lab_w + i * sw
+        b.append(R(cx + 3, gy, sw - 6, 34, d, 5))
+        b.append(T(cx + 14, gy + 22, f"STAGE {i + 1}", 9, "white", MONO, weight=600, ls=".12em"))
+        b.append(L(cx + 96, gy + 25, cx + sw - 16, gy + 25, "#94A3B8", 1))
+    rows = [("Doing", "Steps they take", YELLOW, AMBER, 92), ("Thinking", "Questions, doubts", BLUE_ST, BLUE, 78),
+            ("Feeling", "Highs and lows", None, PURPLE, 88), ("Pain points", "What goes wrong", PINK_ST, RED, 88),
+            ("Opportunities", "How we could help", GREEN, FOREST, 88)]
+    ry = gy + 42
+    for name, sub, chip, col, rh in rows:
+        dk, lt = col
+        b.append(R(gx0, ry, lab_w - 8, rh - 6, lt, 5))
+        b.append(T(gx0 + 12, ry + 24, name, 12, dk, weight=600))
+        b.append(T(gx0 + 12, ry + 42, sub, 9.5, dk, op=".7"))
+        if chip is None:
+            mid = ry + (rh - 6) / 2
+            b.append(R(gx0 + lab_w, ry, ns * sw, rh - 6, "white", 5, f' fill-opacity=".6" stroke="{dk}" stroke-opacity=".15"'))
+            b.append(L(gx0 + lab_w + 30, mid, gx0 + lab_w + ns * sw - 10, mid, dk, 1, ' stroke-opacity=".3" stroke-dasharray="4,4"'))
+            b.append(T(gx0 + lab_w + 10, ry + 18, "+", 13, dk, weight=600))
+            b.append(T(gx0 + lab_w + 10, ry + rh - 14, "−", 13, dk, weight=600))
+            b.append(T(gx0 + lab_w + ns * sw - 14, mid - 6, "draw the emotion line across the stages", 9.5, dk, italic=True, anchor="end", op=".5"))
+        else:
+            for i in range(ns):
+                cx = gx0 + lab_w + i * sw
+                b.append(R(cx + 3, ry, sw - 6, rh - 6, lt, 5, f' fill-opacity=".5" stroke="{dk}" stroke-opacity=".15"'))
+                b.append(R(cx + 3, ry, sw - 6, rh - 6, "url(#dots)", 5))
+        ry += rh
+
+    b.append(footer("What is this person really trying to get done?",
+                    "Where in the journey do we lose them, and why?", "Envision · Understand Users · Outcomes Over Output"))
+    write_board("persona-journey-board", "Persona & Journey Map",
+                "A3 landscape persona and customer journey map: a persona, the scenario and job to be done, and a five-stage "
+                "journey with doing, thinking, feeling, pain points and opportunities.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- impact map
+
+def build_impact_map():
+    b = [header("Impact Map",
+                "Connect a business goal to the people who can help or hinder it, the behaviour changes you need, and what to build.",
+                "Envision & Plan · Inspired by Gojko Adzic's Impact Mapping · Why → Who → How → What",
+                header_fields(["Initiative", "Date"]))]
+
+    x, y, w, h = 24, 148, 1632, 762
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 1, "The Map", PURPLE, "READ LEFT TO RIGHT · EVERY DELIVERABLE TRACES BACK TO THE GOAL"))
+    cols = [("WHY · GOAL", 20, 290, EMERALD), ("WHO · ACTORS", 380, 320, BLUE), ("HOW · IMPACTS", 770, 380, ORANGE),
+            ("WHAT · DELIVERABLES", 1220, 392, AMBER)]
+    hints = ["The measurable business goal", "People who can help or get in the way", "How their behaviour needs to change",
+             "Features or activities that could cause it"]
+    for (lab, cx, cw, col), hint in zip(cols, hints):
+        b.append(T(x + cx, y + 82, lab, 9.5, col[0], MONO, weight=600, ls=".12em"))
+        b.append(T(x + cx, y + 98, hint, 9.5, col[0], italic=True, op=".7"))
+    top, bot = y + 116, y + h - 16
+    n = 6
+    rowh = (bot - top) / n
+    bh = 88
+    imp_y = [top + rowh * (k + 0.5) - bh / 2 for k in range(n)]
+    act_y = [(imp_y[2 * a] + imp_y[2 * a + 1]) / 2 for a in range(3)]
+    goal_y = (top + bot) / 2 - 70
+    gx, gw = x + 20, 290
+    ax, aw = x + 380, 320
+    ix, iw = x + 770, 380
+    dx, dw = x + 1220, 392
+    for a in range(3):
+        b.append(L(gx + gw, goal_y + 70, ax, act_y[a] + bh / 2, d, 1.5, ' stroke-opacity=".4"'))
+        for k in (2 * a, 2 * a + 1):
+            b.append(L(ax + aw, act_y[a] + bh / 2, ix, imp_y[k] + bh / 2, d, 1.5, ' stroke-opacity=".4"'))
+    for k in range(n):
+        b.append(L(ix + iw, imp_y[k] + bh / 2, dx, imp_y[k] + bh / 2, d, 1.5, ' stroke-opacity=".4"'))
+    b.append(R(gx, goal_y, gw, 140, EMERALD[1], 8, f' stroke="{EMERALD[0]}" stroke-opacity=".5" stroke-width="1.5"'))
+    b.append(T(gx + 14, goal_y + 22, "GOAL", 8.5, EMERALD[0], MONO, weight=600, ls=".1em"))
+    b.append(lines(gx + 14, goal_y + 50, gx + gw - 14, 2, 24))
+    b.append(field(gx + 14, goal_y + 118, "Measure:", gx + gw - 14, EMERALD[0], 10.5))
+    for a in range(3):
+        b.append(wbox(ax, act_y[a], aw, bh, f"ACTOR {a + 1}", BLUE[0], 2, 24, BLUE[1]))
+    for k in range(n):
+        b.append(wbox(ix, imp_y[k], iw, bh, f"IMPACT {k + 1}", ORANGE[0], 2, 24, ORANGE[1]))
+        b.append(wbox(dx, imp_y[k], dw, bh, f"DELIVERABLE {k + 1}", AMBER[0], 2, 24, AMBER[1]))
+
+    y, h = 924, 136
+    x, w = 24, 808
+    d = RED[0]
+    b.append(panel(x, y, w, h, 2, "Riskiest Assumption", RED))
+    b.append(field(x + 18, y + 84, "The impact we're least sure of:", x + w - 18, d))
+    b.append(field(x + 18, y + 116, "How we'll test it:", x + w - 18, d))
+
+    x, w = 846, 810
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 3, "First Step", FOREST))
+    b.append(field(x + 18, y + 84, "Deliverable to try first:", x + w - 18, d))
+    b.append(field(x + 18, y + 116, "We'll know the impact happened when:", x + w - 18, d))
+
+    b.append(footer("Whose behaviour has to change for us to reach this goal?",
+                    "If we built only one thing, which impact would it move?", "Envision · Outcomes Over Output · Impact Mapping"))
+    write_board("impact-map-board", "Impact Map",
+                "A3 landscape impact map: goal and measure, three actors, six impacts, six deliverables, the riskiest "
+                "assumption, and a first step.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- estimation
+
+def build_estimation():
+    b = [header("Estimation",
+                "Size work together quickly with planning poker, T-shirt sizes or affinity estimation, or decide not to estimate.",
+                "Iterate · Planning Poker · T-Shirt Sizing · Affinity Estimation · Relative, Not Absolute",
+                header_fields(["Team", "Date"]))]
+
+    y, h = 148, 330
+    x, w = 24, 808
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 1, "Planning Poker", PURPLE, "FOR A HANDFUL OF ITEMS"))
+    cards = ["1", "2", "3", "5", "8", "13", "20", "?", "☕"]
+    cwid = (w - 36 - 8 * 8) / 9
+    for i, c in enumerate(cards):
+        cx = x + 18 + i * (cwid + 8)
+        b.append(R(cx, y + 66, cwid, 70, "white", 6, f' stroke="{d}" stroke-opacity=".4" stroke-width="1.5"'))
+        b.append(T(cx + cwid / 2, y + 110, c, 22, d, SERIF, anchor="middle"))
+    steps = ["Read the item", "Pick a card privately", "Reveal together", "Highest and lowest explain", "Re-vote, two rounds at most"]
+    for i, s in enumerate(steps):
+        sx = x + 18 + i * 156
+        b.append(f'<circle cx="{sx + 9:g}" cy="{y + 164}" r="9" fill="{d}"/>')
+        b.append(T(sx + 9, y + 168, str(i + 1), 9.5, "white", weight=600, anchor="middle"))
+        b.append(T(sx + 24, y + 168, s, 10, d))
+    b.append(table(x + 18, y + 206, [("Item", 400), ("Round 1", 110), ("Round 2", 110), ("Estimate", w - 36 - 620)], 3, d, 30))
+
+    x, w = 846, 810
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 2, "T-Shirt Sizing", BLUE, "FOR MANY ITEMS, ROUGHLY"))
+    sizes = ["XS", "S", "M", "L", "XL"]
+    sw = (w - 20 - 4 * 10) / 5
+    for i, sz in enumerate(sizes):
+        cx = x + 10 + i * (sw + 10)
+        b.append(T(cx + sw / 2, y + 88, sz, 20, d, SERIF, anchor="middle"))
+        b.append(sticky_zone(cx, y + 100, sw, h - 150, d, "Items", chips=(YELLOW,)))
+    b.append(field(x + 18, y + h - 22, "Reference item that is an “M”:", x + w - 18, d))
+
+    y, h = 492, 400
+    x, w = 24, 1082
+    d = ORANGE[0]
+    b.append(panel(x, y, w, h, 3, "Affinity Estimation", ORANGE, "FOR A WHOLE BACKLOG IN AN HOUR"))
+    b.append(bullets(x + 22, y + 74, ["Silently place items left to right, smallest to largest. Anyone can move any item.",
+                                      "Then discuss items that keep moving, and draw size boundaries."], d))
+    zy = y + 114
+    b.append(sticky_zone(x + 10, zy, w - 20, h - 168, d, "Items, smallest on the left", chips=(YELLOW,)))
+    b.append(L(x + 30, y + h - 34, x + w - 30, y + h - 34, d, 2))
+    b.append(f'<path d="M{x + w - 30:g},{y + h - 40:g} L{x + w - 18:g},{y + h - 34:g} L{x + w - 30:g},{y + h - 28:g}" fill="{d}"/>')
+    for i, lab in enumerate(["1", "2", "3", "5", "8", "13"]):
+        tx = x + 60 + i * (w - 120) / 5
+        b.append(L(tx, y + h - 40, tx, y + h - 28, d, 1.5))
+        b.append(T(tx, y + h - 14, lab, 11, d, weight=600, anchor="middle"))
+    b.append(T(x + 30, y + h - 44, "SMALLER", 8.5, d, MONO, ls=".12em"))
+    b.append(T(x + w - 34, y + h - 44, "LARGER", 8.5, d, MONO, anchor="end", ls=".12em"))
+
+    x, w = 1120, 536
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 4, "Reference Items", EMERALD, "SHARED EXAMPLES KEEP SIZES CONSISTENT"))
+    b.append(table(x + 18, y + 84, [("Size", 70), ("Item everyone remembers", 260), ("Why this size", w - 36 - 330)], 6, d, 44))
+
+    y, h = 906, 154
+    x, w = 24, 1082
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 5, "Or Don't Estimate", SLATE, "COUNTING ITEMS OFTEN FORECASTS JUST AS WELL"))
+    b.append(bullets(x + 22, y + 78, ["If items are split small enough to finish within your SLE, count them instead of sizing them.",
+                                      "Forecast from throughput with the Release Forecast board."], d))
+    b.append(checkbox(x + 18, y + 136, "We'll try counting items instead of estimating for", d, 11))
+    b.append(L(x + 350, y + 139, x + 420, y + 139, d, 1, ' stroke-opacity=".4"'))
+    b.append(T(x + 428, y + 136, "iterations, then compare", 11, d))
+
+    x, w = 1120, 536
+    d = RED[0]
+    b.append(panel(x, y, w, h, 6, "Ground Rules", RED))
+    for i, m in enumerate(["Estimates belong to the people doing the work", "An estimate is a forecast, not a promise",
+                           "Never compare points between teams"]):
+        b.append(checkbox(x + 18, y + 82 + i * 26, m, d, 11))
+
+    b.append(footer("Is this bigger or smaller than the last thing we finished?",
+                    "Do we need a number, or do we just need to know it's small?", "Iterate · Relative Sizing · Forecast, Don't Promise"))
+    write_board("estimation-board", "Estimation",
+                "A3 landscape estimation board: planning poker cards and steps, T-shirt sizing columns, an affinity "
+                "estimation wall, reference items, the option not to estimate, and ground rules.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- facilitation techniques poster
+
+TECHNIQUES = [
+    ("Check-in", SLATE, ["Start: help everyone arrive", "and speak once early."],
+     ["Ask one light question", "Go round, a sentence each", "No discussion yet"], "Voices heard early speak up later."),
+    ("Silent Writing", PURPLE, ["Before discussing, so ideas", "aren't shaped by the loudest."],
+     ["Pose one clear question", "Everyone writes alone, 3–5 min", "One idea per sticky"], "Quiet people contribute as much as anyone."),
+    ("Think · Pair · Share", BLUE, ["To deepen ideas before the", "whole group hears them."],
+     ["Think alone for a minute", "Discuss in pairs", "Pairs share with the group"], "Pairs filter and strengthen ideas fast."),
+    ("Round-Robin", SKY, ["When a few voices dominate,", "or you need every view."],
+     ["Go round in order", "Each person speaks briefly", "“Pass” is always allowed"], "Equal airtime, without putting people on the spot."),
+    ("Affinity Clustering", EMERALD, ["To make sense of many", "ideas quickly."],
+     ["Put all stickies up", "Move similar ones together, silently", "Name each cluster"], "Silent moving avoids arguments about wording."),
+    ("Dot Voting", ORANGE, ["To prioritise a list in", "minutes."],
+     ["Give each person 3 dots", "Vote at the same time", "Count, then discuss the top items"], "Vote together, so no one follows the leader."),
+    ("Fist of Five", FOREST, ["To check support for a", "proposal or plan."],
+     ["Everyone shows 0–5 fingers", "Ask the lowest votes what's missing", "Adjust and re-vote"], "Low votes are information, not obstruction."),
+    ("Agreement Scale", AMBER, ["To show how far people", "really support a decision."],
+     ["Offer a 1–5 or 1–8 scale", "From “fully support” to “block”", "Discuss the spread"], "Shows lukewarm support that a yes/no vote hides."),
+    ("Timeboxing", RED, ["For any activity that could", "run on forever."],
+     ["Agree the time up front", "Show a visible timer", "At zero, decide: stop or extend"], "Ending on time builds trust in the process."),
+    ("Parking Lot", SLATE, ["When a useful topic is off", "the current agenda."],
+     ["Write it on the parking lot", "Move on", "Review it before closing"], "Respects the idea without derailing the session."),
+    ("Fishbowl", PURPLE, ["For a big group to hear a", "small, focused conversation."],
+     ["A few people talk in an inner circle", "Others listen around them", "Leave an empty chair to join"], "Lets a large group follow a real dialogue."),
+    ("Check-out", BLUE, ["End: capture value and", "close the session well."],
+     ["Each person says one takeaway", "Optional: rate the session 1–5", "Thank everyone"], "A score of 1–5 for time well spent tells you what to change."),
+]
+
+
+def build_facilitation_poster():
+    b = [header("Facilitation Techniques",
+                "Twelve simple techniques for better group conversations, plus tips for remote and hybrid sessions.",
+                "Facilitate · Include Every Voice · Diverge, Then Converge · Remote & Hybrid",
+                header_fields(["Session", "Facilitator"]))]
+    cw = (1632 - 3 * 12) / 4
+    ch = 252
+    for i, (name, col, when, how, tip) in enumerate(TECHNIQUES):
+        r, c = divmod(i, 4)
+        x, y = 24 + c * (cw + 12), 148 + r * (ch + 12)
+        dk, lt = col
+        b.append(R(x, y, cw, ch, lt, 10, f' stroke="{dk}" stroke-opacity=".2" stroke-width="1.5" filter="url(#fc)"'))
+        b.append(top_round(x, y, cw, 44, 10, dk))
+        b.append(f'<circle cx="{x + 22}" cy="{y + 22}" r="11" fill="white" fill-opacity=".2"/>')
+        b.append(T(x + 22, y + 26, str(i + 1), 10, "white", weight=600, anchor="middle"))
+        b.append(T(x + 42, y + 28, name, 14, "white", weight=600))
+        b.append(T(x + 18, y + 66, "WHEN", 8.5, dk, MONO, weight=600, ls=".12em"))
+        b.append(para(x + 18, y + 84, when, 11, dk, 15))
+        b.append(T(x + 18, y + 124, "HOW", 8.5, dk, MONO, weight=600, ls=".12em"))
+        for j, s in enumerate(how):
+            b.append(T(x + 18, y + 144 + j * 17, f"{j + 1}.", 10.5, dk, weight=600))
+            b.append(T(x + 34, y + 144 + j * 17, s, 10.5, INK))
+        b.append(L(x + 18, y + 206, x + cw - 18, y + 206, dk, 1, ' stroke-opacity=".2"'))
+        b.append(T(x + 18, y + 228, tip, 10.5, dk, italic=True))
+
+    y = 940
+    b.append(R(24, y, 1632, 120, NAVY, 10))
+    b.append(R(24, y, 6, 120, ACCENT, 3))
+    b.append(T(48, y + 30, "REMOTE & HYBRID", 9.5, ACCENT, MONO, weight=600, ls=".14em"))
+    tips = [("One shared board", "Everyone works in it, not just the facilitator."),
+            ("Everyone on their own device", "In hybrid sessions, room and remote are equal."),
+            ("Use chat for silent writing", "Then paste ideas onto the board."),
+            ("Name the roles", "Facilitator, timekeeper, scribe, tech help."),
+            ("Break every 50 minutes", "Screens tire people faster than rooms."),
+            ("Cameras optional", "Ask for voices and participation, not faces.")]
+    tw = (1632 - 48) / 3
+    for i, (t, s) in enumerate(tips):
+        r, c = divmod(i, 3)
+        tx = 48 + c * tw
+        ty = y + 60 + r * 34
+        b.append(T(tx, ty, t, 12, "white", weight=600))
+        b.append(T(tx + text_w(t, 12) + 14, ty, s, 11, "#94A3B8"))
+
+    b.append(footer("Who hasn't spoken yet, and how could we make it easy for them?",
+                    "Are we still exploring, or is it time to decide?", "Facilitate · Include Every Voice · Diverge, Then Converge"))
+    write_board("facilitation-techniques-poster", "Facilitation Techniques",
+                "A3 landscape reference poster: twelve facilitation techniques, each with when to use it, how to run it and a "
+                "tip, plus remote and hybrid facilitation tips.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- architecture decision record
+
+def build_adr():
+    b = [header("Architecture Decision Record",
+                "Record an important technical decision: its context, the options you considered, what you chose, and the trade-offs.",
+                "Manage Flow · Inspired by Michael Nygard's ADR Format · Decisions Worth Remembering",
+                header_fields(["ADR number", "Date"]))]
+
+    x, y, w, h = 24, 148, 1632, 130
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 1, "Title & Status", SLATE, "ONE DECISION PER RECORD"))
+    b.append(field(x + 18, y + 88, "Title (short, e.g. “Use event queues for order updates”):", x + 1000, d))
+    b.append(field(x + 1030, y + 88, "Deciders:", x + w - 18, d))
+    b.append(T(x + 18, y + 118, "Status:", 11, d, weight=600))
+    for j, lab in enumerate(["Proposed", "Accepted", "Rejected", "Deprecated", "Superseded by ADR #"]):
+        b.append(checkbox(x + 90 + j * 150, y + 118, lab, d, 10.5))
+    b.append(L(x + 90 + 4 * 150 + 160, y + 121, x + 90 + 4 * 150 + 220, y + 121, d, 1, ' stroke-opacity=".4"'))
+
+    y, h = 292, 300
+    x, w = 24, 808
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 2, "Context", BLUE, "WHAT FORCES ARE AT PLAY?"))
+    b.append(T(x + 18, y + 80, "The problem, the constraints, and why a decision is needed now", 10.5, d, italic=True, op=".7"))
+    b.append(lines(x + 18, y + 112, x + w - 18, 7, 26))
+
+    x, w = 846, 810
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 3, "Decision Drivers", PURPLE, "WHAT MATTERS MOST"))
+    b.append(T(x + 18, y + 80, "e.g. cost, performance, team skills, time to market, security, reversibility", 10.5, d, italic=True, op=".7"))
+    b.append(check_lines(x + 18, y + 116, x + w - 18, 6, d, 28))
+
+    x, y, w, h = 24, 606, 1632, 290
+    d = ORANGE[0]
+    b.append(panel(x, y, w, h, 4, "Options Considered", ORANGE, "AT LEAST TWO, INCLUDING “DO NOTHING”"))
+    b.append(table(x + 18, y + 84, [("Option", 300), ("Pros", 440), ("Cons", 440), ("Effort / cost", 220),
+                                    ("Chosen?", w - 36 - 1400)], 4, d, 44))
+
+    y, h = 910, 150
+    x, w = 24, 808
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 5, "Decision", FOREST))
+    b.append(T(x + 18, y + 86, "We will…", 18, d, SERIF, italic=True))
+    b.append(L(x + 110, y + 89, x + w - 18, y + 89, d, 1, ' stroke-opacity=".25"'))
+    b.append(L(x + 18, y + 124, x + w - 18, y + 124, d, 1, ' stroke-opacity=".25"'))
+
+    x, w = 846, 810
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 6, "Consequences", AMBER, "WHAT BECOMES EASIER, AND HARDER"))
+    hw = (w - 54) / 2
+    for i, (lab, col) in enumerate([("Easier / good", EMERALD[0]), ("Harder / trade-offs", RED[0])]):
+        cx = x + 18 + i * (hw + 18)
+        b.append(T(cx, y + 80, lab, 11, col, weight=600))
+        b.append(lines(cx, y + 106, cx + hw, 2, 26))
+
+    b.append(footer("Will someone joining next year understand why we did this?",
+                    "What would make us revisit this decision?", FLOW_TAG))
+    write_board("adr-board", "Architecture Decision Record",
+                "A3 landscape architecture decision record: title and status, context, decision drivers, options considered, "
+                "the decision, and its consequences.", "\n".join(b))
+
+
 if __name__ == "__main__":
     for horizon in ("sprint", "quarter"):
         build_retros(horizon)
@@ -3614,3 +4183,11 @@ if __name__ == "__main__":
     build_psych_safety()
     build_cross_team_retro()
     build_backlog_anatomy()
+    build_value_stream_map()
+    build_incident_review()
+    build_raci()
+    build_persona_journey()
+    build_impact_map()
+    build_estimation()
+    build_facilitation_poster()
+    build_adr()

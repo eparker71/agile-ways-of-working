@@ -18,6 +18,29 @@ from brand import ACCENT, NAVY, CREDIT  # noqa: E402
 OUT = Path(__file__).resolve().parent.parent
 
 TERMS = [
+    ("Affinity estimation", "Sizing a whole backlog quickly by silently placing items in order from smallest to largest, then "
+     "drawing size boundaries.", None, ["estimation"]),
+    ("Architecture decision record (ADR)", "A short document recording one important technical decision: its context, the "
+     "options considered, the decision and its consequences.", "Format described by Michael Nygard.", ["adr"]),
+    ("Blameless review", "A review of an incident that looks at how the system made it possible, not at who to blame, so people "
+     "share what really happened.", "Common in software reliability engineering.", ["incident", "rootcause"]),
+    ("Customer journey map", "A picture of the stages a user goes through to reach a goal, with what they do, think and feel, "
+     "pain points and opportunities.", None, ["persona"]),
+    ("Dot voting", "A quick way to prioritise: everyone places a few dots on the options at the same time, and the most dots "
+     "win.", None, ["facilitation", "lean-coffee"]),
+    ("Fist of five", "A quick check of support: everyone shows zero to five fingers at once, and the lowest votes explain what's "
+     "missing.", None, ["facilitation", "sprint-planning"]),
+    ("Impact mapping", "A tree from a business goal to the actors who affect it, the behaviour changes needed, and the "
+     "deliverables that might cause them.", "From Gojko Adzic.", ["impact"]),
+    ("Jobs to be done", "A way of describing what users want in terms of progress: “When [situation], I want to [motivation], so "
+     "I can [outcome].”", "Associated with Clayton Christensen and Tony Ulwick.", ["persona", "ost"]),
+    ("Persona", "A short, evidence-based description of a type of user: their context, goals and frustrations.", None,
+     ["persona", "vision"]),
+    ("RACI", "A matrix showing who is Responsible, Accountable, Consulted and Informed for each piece of work. Exactly one person "
+     "is accountable.", None, ["raci"]),
+    ("T-shirt sizing", "Rough relative sizing using XS, S, M, L and XL, useful for many items or for roadmaps.", None, ["estimation"]),
+    ("Value stream mapping", "Mapping every step from request to customer, with work and wait times, to find delays and improve "
+     "flow.", "A lean technique, popularised by Mike Rother and John Shook.", ["vsm"]),
     ("Acceptance criteria", "The conditions a backlog item must meet to be accepted. Often written as concrete examples in "
      "Given / When / Then form, so they double as tests.", None, ["example", "backlog"]),
     ("Backlog", "An ordered list of the work a team or product might do. The top is detailed and ready; the bottom is rough "
