@@ -105,6 +105,10 @@ TERMS = [
      ["retro", "cross-retro"]),
     ("Service level expectation (SLE)", "A forecast of how long a single item is likely to take, such as “85% of items finish "
      "within 8 days”.", "From the Kanban Guide.", ["ageing"]),
+    ("Sprint Zero", "A short, timeboxed set-up period before a team's first iteration: forming the team, agreeing the vision, "
+     "building a first backlog and setting up tools. Also called Iteration 0 or a team launch.",
+     "Not part of the Scrum Guide, which expects every sprint to deliver something usable. Disciplined Agile calls it inception.",
+     ["launch", "kickoff"]),
     ("Spike", "Time-boxed research to answer a question or reduce uncertainty. Its output is knowledge, not product.",
      "From Extreme Programming (XP).", ["splitting", "backlog"]),
     ("Sprint goal", "The single objective for a sprint, explaining why it's valuable. It guides trade-offs when plans change.",

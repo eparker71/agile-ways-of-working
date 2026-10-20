@@ -4165,6 +4165,98 @@ def build_adr():
                 "the decision, and its consequences.", "\n".join(b))
 
 
+# ---------------------------------------------------------------- team launch (sprint zero)
+
+LAUNCH = [
+    ("Why & What", PURPLE, [("Purpose and problem agreed", "Project Kickoff"), ("Product vision written", "Product Vision Board"),
+                            ("Users understood", "Persona & Journey Map"), ("Outcomes and measures", "Impact Map · OKRs"),
+                            ("Stakeholders mapped", "Stakeholder Map")]),
+    ("The Team", BLUE, [("Charter and working agreements", "Team Charter"), ("Roles and accountability clear", "RACI & Decision Log"),
+                        ("Skills and gaps known", "Skills Matrix"), ("AI use agreed", "AI Working Agreement"),
+                        ("Decision rights agreed", "Delegation Board")]),
+    ("The Backlog", EMERALD, [("Journey and first release slice", "User Story Map"), ("Epic shaped, with an MVP", "Epic Breakdown Canvas"),
+                              ("Items right-sized", "Story Splitting · Backlog Item Anatomy"), ("Top items understood", "Example Mapping"),
+                              ("First forecast range", "Release Forecast")]),
+    ("Ways of Working", ORANGE, [("Board, workflow and WIP limits", "Kanban Board Design"), ("Definition of Done agreed", "Team Charter"),
+                                 ("Cadence and events booked", "Sprint Planning · Review · Retro"), ("Risks named and owned", "Pre-mortem · RAID Log"),
+                                 ("First retro booked", "Retrospective Kit")]),
+]
+
+
+def build_team_launch():
+    b = [header("Team Launch",
+                "Get a new team or initiative ready to deliver in one or two weeks, and deliver something real while you do it.",
+                "Set Up the Team · Often Called Sprint Zero or Iteration 0 · Timeboxed · Thin First Slice",
+                header_fields(["Team", "Launch dates"]))]
+
+    y, h = 148, 140
+    x, w = 24, 1082
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 1, "Launch Goal", PURPLE, "THE LAUNCH IS DONE WHEN…"))
+    b.append(T(x + 18, y + 94, "We'll start delivering by", 20, d, SERIF, italic=True))
+    b.append(L(x + 262, y + 97, x + 470, y + 97, d, 1.2, ' stroke-opacity=".4"'))
+    b.append(T(x + 480, y + 94, "and by then we will have:", 20, d, SERIF, italic=True))
+    b.append(L(x + 18, y + 126, x + w - 18, y + 126, d, 1, ' stroke-opacity=".25"'))
+
+    x, w = 1120, 536
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 2, "Timebox", SLATE, "SHORT ON PURPOSE"))
+    for j, lab in enumerate(["1 week", "2 weeks", "Other:"]):
+        b.append(checkbox(x + 18 + j * 110, y + 84, lab, d, 11))
+    b.append(L(x + 18 + 2 * 110 + 76, y + 87, x + w - 18, y + 87, WRITE))
+    b.append(field(x + 18, y + 118, "Launch owner:", x + w / 2 - 10, d))
+    b.append(field(x + w / 2 + 10, y + 118, "Daily check-in at:", x + w - 18, d))
+
+    x, y, w, h = 24, 302, 1632, 470
+    b.append(panel(x, y, w, h, 3, "Launch Checklist", BLUE, "TICK WHEN DONE · EACH ITEM LINKS TO A TOOL · DO JUST ENOUGH"))
+    cw = (w - 28 - 3 * 12) / 4
+    for i, (group, col, items) in enumerate(LAUNCH):
+        cx = x + 14 + i * (cw + 12)
+        dk, lt = col
+        b.append(R(cx, y + 64, cw, h - 78, lt, 6, f' stroke="{dk}" stroke-opacity=".2"'))
+        b.append(T(cx + 14, y + 90, group, 14, dk, weight=600))
+        for j, (item, tool) in enumerate(items):
+            iy = y + 128 + j * 66
+            b.append(R(cx + 14, iy - 11, 13, 13, "white", 2, f' stroke="{dk}" stroke-opacity=".6" stroke-width="1.2"'))
+            b.append(T(cx + 36, iy, item, 11.5, INK, weight=500))
+            b.append(T(cx + 36, iy + 17, "→ " + tool, 9.5, dk, MONO, op=".75"))
+            b.append(field(cx + 36, iy + 40, "Owner:", cx + cw - 14, dk, 10))
+
+    y, h = 786, 274
+    x, w = 24, 534
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 4, "Thin First Slice", EMERALD, "DELIVER SOMETHING REAL"))
+    b.append(T(x + 18, y + 80, "However small, finish something a user could see or use.", 10.5, d, italic=True, op=".75"))
+    for i, f in enumerate(["Slice:", "Who it's for:", "Done when:"]):
+        b.append(field(x + 18, y + 116 + i * 36, f, x + w - 18, d))
+    b.append(checkbox(x + 18, y + 240, "It runs end to end, from input to output (a walking skeleton)", d, 10.5))
+
+    x = 572
+    d = SKY[0]
+    b.append(panel(x, y, w, h, 5, "Environment & Tools", SKY, "EVERYONE CAN WORK ON DAY ONE"))
+    for i, m in enumerate(["Code repository and access for everyone", "Build and deploy pipeline to a test environment",
+                           "Team board set up in the team's tool", "Shared channel, calendar and document space",
+                           "Development setup works on every machine", "Test data and environments available"]):
+        b.append(checkbox(x + 18, y + 86 + i * 30, m, d, 11))
+
+    x, w = 1120, 536
+    d = RED[0]
+    b.append(panel(x, y, w, h, 6, "Ready to Start?", RED, "THE EXIT CHECK"))
+    for i, m in enumerate(["Vision and first outcome agreed", "Top of the backlog ready for 1–2 iterations",
+                           "Definition of Done agreed", "First slice planned or already done",
+                           "Everyone can contribute from day one"]):
+        b.append(checkbox(x + 18, y + 86 + i * 28, m, d, 11))
+    b.append(R(x + 14, y + 222, w - 28, 40, RED[1], 6, f' stroke="{d}" stroke-opacity=".3"'))
+    b.append(T(x + 26, y + 247, "Watch for: running past the timebox · designing everything up front · delivering nothing",
+               9.5, d, italic=True))
+
+    b.append(footer("What's the least we need to agree before we can start delivering?",
+                    "What could we deliver this week, however small?", "Set Up the Team · Team Launch · Start Small, Start Now"))
+    write_board("team-launch-board", "Team Launch",
+                "A3 landscape team launch (Sprint Zero) board: launch goal and timebox, a 20-item launch checklist linking to "
+                "toolkit tools, a thin first slice, environment and tools, and a ready-to-start exit check.", "\n".join(b))
+
+
 if __name__ == "__main__":
     build_retros()
     build_sailboat()
@@ -4219,3 +4311,4 @@ if __name__ == "__main__":
     build_estimation()
     build_facilitation_poster()
     build_adr()
+    build_team_launch()

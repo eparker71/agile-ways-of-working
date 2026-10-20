@@ -43,6 +43,7 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | Architecture Decision Record | `adr-board` | `facilitator-guide-adr.html` |
 | Blameless Incident Review | `incident-review-board` | `facilitator-guide-incident-review.html` |
 | Facilitation Techniques poster | `facilitation-techniques-poster` | `facilitator-guide-facilitation-techniques.html` |
+| Team Launch (Sprint Zero) | `team-launch-board` | `facilitator-guide-team-launch.html` |
 | Team Charter | `team-charter-board` | `facilitator-guide-team-charter.html` |
 | Product Vision Board | `product-vision-board` | `facilitator-guide-product-vision.html` |
 | Prioritisation Board | `prioritisation-board` | `facilitator-guide-prioritisation.html` |
@@ -88,7 +89,7 @@ The home page groups tools by what you're trying to do. No one framework is assu
 
 | Section | Tools |
 |---|---|
-| Set up the team | Team Charter, AI Working Agreement, Skills Matrix |
+| Set up the team | Team Launch (Sprint Zero), Team Charter, AI Working Agreement, Skills Matrix |
 | Decide what to build | Product Vision Board, Persona & Journey Map, Opportunity Solution Tree, Impact Map, Prioritisation Board |
 | Break down work | Epic Breakdown Canvas, User Story Map, Story Splitting, Example Mapping, Backlog Item Anatomy, Estimation |
 | Plan & review iterations | Sprint Planning, Sprint Review |

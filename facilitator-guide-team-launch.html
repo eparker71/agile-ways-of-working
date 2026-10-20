@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Team Launch Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#64748B; --rule:#E2E8F0; --paper:#FFFFFF;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:13px;line-height:1.55;padding:24px 16px;}
+.page{max-width:820px;margin:0 auto 24px;background:var(--paper);box-shadow:0 12px 40px rgba(0,0,0,.22);}
+.masthead{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:28px 40px 26px;position:relative;}
+.badge{position:absolute;top:14px;right:24px;font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;}
+.masthead h1{font:400 40px/1.05 var(--serif);margin:14px 0 8px;}
+.masthead p{margin:0;color:#94A3B8;font-size:13.5px;}
+.masthead .tag{margin-top:8px;font:9px var(--mono);color:#64748B;letter-spacing:.06em;}
+.content{padding:28px 40px 36px;}
+h2{font:400 26px/1.15 var(--serif);margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;}
+h2 .n{font:600 11px var(--sans);color:#fff;background:var(--navy);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;flex:none;transform:translateY(-3px);}
+h3{font:600 13px var(--sans);margin:16px 0 6px;}
+p{margin:6px 0 10px;}
+.lede{font:italic 400 19px/1.35 var(--serif);color:var(--ink);border-left:4px solid var(--accent);padding:2px 0 2px 16px;margin:4px 0 20px;}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px;}
+.glance div{background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;}
+.glance b{display:block;font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+.glance span{font-weight:600;font-size:13px;}
+ul.check{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:28px;}
+ul.check li{padding-left:22px;position:relative;margin-bottom:5px;break-inside:avoid;}
+ul.check li::before{content:"";position:absolute;left:0;top:3px;width:11px;height:11px;border:1.4px solid var(--ink);border-radius:2px;opacity:.55;}
+table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:12.5px;}
+th{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--ink);text-align:left;padding:8px 10px;}
+th:first-child{border-left:5px solid var(--accent);}
+td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+td.t{font:500 11px var(--mono);white-space:nowrap;color:var(--muted);}
+td.a{font-weight:600;width:24%;}
+tr:nth-child(even) td{background:#F8FAFC;}
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;}
+.area{border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,.06);break-inside:avoid;}
+.area h4{margin:0;padding:7px 12px;color:#fff;font:600 12.5px var(--sans);}
+.area ul{margin:0;padding:8px 12px 10px 28px;font-size:12px;}
+.area li{margin-bottom:3px;}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.tip{border-top:2px solid var(--rule);padding-top:8px;}
+.tip b{display:block;margin-bottom:2px;}
+.flow{display:flex;align-items:stretch;gap:0;margin:14px 0 6px;flex-wrap:wrap;}
+.step{flex:1 1 0;min-width:120px;background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;position:relative;}
+.arrow{flex:none;align-self:center;color:var(--accent);font:600 16px var(--sans);padding:0 6px;}
+.step b{display:block;font-size:12.5px;}
+.step small{color:var(--muted);font-size:11px;line-height:1.4;display:block;margin-top:2px;}
+.step .k{font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--accent);text-transform:uppercase;}
+.callout{background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:12px 16px;margin:14px 0;}
+.callout b{color:#9A3412;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display:flex;justify-content:space-between;gap:16px;font:8px var(--mono);letter-spacing:.08em;color:#94A3B8;}
+@media (max-width:640px){
+  .masthead,.content{padding-left:20px;padding-right:20px;}
+  .glance{grid-template-columns:1fr 1fr;}
+  ul.check{columns:1;}
+  .areas,.tips,.two{grid-template-columns:1fr;}
+  .arrow{display:none;}
+  .flow{gap:8px;}
+  table{font-size:11.5px;}
+  td.t{white-space:normal;}
+}
+@media print{
+  @page{size:A4 portrait;margin:12mm 12mm 14mm;}
+  html,body{background:none;}
+  body{padding:0;font-size:11.5px;}
+  .page{box-shadow:none;max-width:none;margin:0;}
+  .masthead,th,.area h4,h2 .n{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  tr,.area,.tip,.step,.callout{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .pb{break-before:page;}
+}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.content a{color:#9A3412;}
+@media print{.boards{display:none;}}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.content a{color:#9A3412;}
+.example{border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:10px 0;}
+.example div{display:grid;grid-template-columns:30% 1fr;border-bottom:1px solid var(--rule);}
+.example div:last-child{border-bottom:none;}
+.example b{background:#F8FAFC;padding:7px 12px;font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.example span{padding:7px 12px;font-size:12.5px;}
+@media (max-width:640px){.example div{grid-template-columns:1fr;}}
+@media print{.boards{display:none;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>Team Launch Guide</h1>
+    <p>How to get a new team or initiative ready to deliver in one or two weeks, without endless up-front planning.</p>
+    <div class="tag">Facilitator Run-Sheet · Set Up the Team · Sprint Zero · Iteration 0</div>
+    <div class="boards"><a class="primary" href="team-launch-board.html">Open board →</a><a href="team-launch-board.svg">SVG →</a><a href="facilitator-guide-team-launch.docx" download>Word (editable) ↓</a></div>
+  </header>
+  <div class="content">
+    <p class="lede">“What&#x27;s the least we need to agree before we can start delivering?”</p>
+    <p>New teams and initiatives need a short period to get going: agree the purpose and vision, form the team, build a first backlog, and set up the board, tools and environments. It's often called <b>Sprint Zero</b> or <b>Iteration 0</b>; Disciplined Agile calls it inception. The Scrum Guide doesn't include it, because every sprint should deliver something usable, and the common criticism is that it drifts into weeks of design with nothing delivered. This board keeps it <b>timeboxed</b> to one or two weeks, uses a <b>checklist</b> that points to the right tool for each item, insists on a <b>thin first slice</b> of real work, and ends with a clear <b>ready-to-start</b> check.</p>
+    <div class="glance"><div><b>Duration</b><span>1–2 weeks,<br>timeboxed</span></div><div><b>Group</b><span>The new team,<br>PO and sponsor</span></div><div><b>Use when</b><span>A team forms, or a new<br>initiative starts</span></div><div><b>Output</b><span>A ready team<br>&amp; a first slice</span></div></div>
+    <h2><span class="n">1</span>Before the session</h2>
+    <ul class="check"><li>Print the board at A1 or A3 and put it on the team wall, or load the SVG as a digital board</li><li>Agree the timebox and the launch owner with the sponsor</li><li>Book the key sessions in the first week: kickoff, charter, vision, story map</li><li>Arrange access to tools and environments before day one, if you can</li><li>Pick only the checklist items this team needs; strike out the rest</li></ul>
+    <h2><span class="n">2</span>Agenda &amp; run-sheet</h2>
+    <table><thead><tr><th>When</th><th>Focus</th><th>Sessions and tools</th></tr></thead><tbody><tr><td class="t">Day 1</td><td class="a">Why and who</td><td>Project Kickoff (half day). Start the Team Charter. Set the launch goal and timebox on the board.</td></tr><tr><td class="t">Days 2–3</td><td class="a">What and for whom</td><td>Product Vision Board, Persona & Journey Map, and an Impact Map or OKRs for the first outcome.</td></tr><tr><td class="t">Days 3–5</td><td class="a">The backlog</td><td>User Story Map for the first release slice; Epic Breakdown for the main epic; split the top items.</td></tr><tr><td class="t">Week 1, throughout</td><td class="a">Environment</td><td>Repository, pipeline, board and access. Pair on the walking skeleton as soon as the tools work.</td></tr><tr><td class="t">Week 2, early</td><td class="a">Ways of working</td><td>Kanban Board Design, Definition of Done, Skills Matrix, AI Working Agreement, risks (Pre-mortem).</td></tr><tr><td class="t">Week 2, late</td><td class="a">Ready to start</td><td>Example Mapping on the top items, a first forecast, the exit check, then plan the first real iteration.</td></tr></tbody></table>
+    <h2 class="pb"><span class="n">3</span>Making the launch work</h2>
+    <p>What good looks like for each part of the board.</p>
+    <div class="areas"><div class="area" style="background:#EDE9FE;color:#581C87"><h4 style="background:#581C87">1 · Launch Goal</h4><ul><li>A date to start delivering</li><li>What “ready” means, in one line</li></ul></div><div class="area" style="background:#F1F5F9;color:#334155"><h4 style="background:#334155">2 · Timebox</h4><ul><li>One or two weeks</li><li>A daily check-in on progress</li></ul></div><div class="area" style="background:#DBEAFE;color:#1E3A8A"><h4 style="background:#1E3A8A">3 · Launch Checklist</h4><ul><li>Only the items you need</li><li>Each has an owner</li><li>Just enough, not perfect</li></ul></div><div class="area" style="background:#D1FAE5;color:#065F46"><h4 style="background:#065F46">4 · Thin First Slice</h4><ul><li>Something real by the end</li><li>End to end, however small</li></ul></div><div class="area" style="background:#E0F2FE;color:#0C4A6E"><h4 style="background:#0C4A6E">5 · Environment &amp; Tools</h4><ul><li>Everyone can work on day one</li><li>Pipeline to a test environment</li></ul></div><div class="area" style="background:#FEE2E2;color:#991B1B"><h4 style="background:#991B1B">6 · Ready to Start?</h4><ul><li>Every exit item ticked</li><li>If not, decide: extend briefly or start anyway</li></ul></div></div>
+    <h2><span class="n">4</span>Facilitation tips</h2>
+    <div class="tips"><div class="tip"><b>Timebox it hard</b>Set the end date first. Unfinished items carry into the first iteration, as backlog items.</div><div class="tip"><b>Just enough</b>Aim for a vision and backlog good enough to start, not complete. They&#x27;ll change once you learn.</div><div class="tip"><b>Deliver anyway</b>A walking skeleton or one usable story proves the tools, pipeline and team work together.</div><div class="tip"><b>Strike out what you don&#x27;t need</b>A small internal team may not need a RACI or a stakeholder map. Skip them.</div><div class="tip"><b>Start the habits early</b>Hold daily check-ins and a short retro at the end of the launch, so the rhythms start now.</div><div class="tip"><b>Don&#x27;t make it a phase</b>If the launch is turning into months of design, stop and start delivering.</div></div>
+    <div class="callout"><b>Common pitfalls:</b> no timebox; trying to complete every checklist item; detailed design of the whole solution; no working environment until week three; nothing delivered; repeating a “sprint zero” before every release.</div>
+    <h2><span class="n">5</span>After the session</h2>
+    <div class="two"><div><h3>End of the launch</h3><p>Run a short retro on the launch itself, and plan the first iteration.</p></div><div><h3>First iteration</h3><p>Carry over unfinished launch items as normal backlog items.</p></div><div><h3>After a month</h3><p>Revisit the Team Charter and Definition of Done with what you&#x27;ve learned.</p></div><div><h3>Next time</h3><p>Keep the checklist the team found useful for future launches.</p></div></div>
+    <h2><span class="n">6</span>How it fits the toolkit</h2>
+    <p>The launch board is a map of the toolkit's set-up tools: Project Kickoff, Team Charter, Product Vision Board, Persona &amp; Journey Map, User Story Map, Epic Breakdown, Kanban Board Design and the others named on each checklist item. Once the team is ready, it moves on to <a href="facilitator-guide-sprint-planning.html">Sprint Planning</a> or its first replenishment, and the rest of the lifecycle.</p>
+    <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
+    <footer><span>“What could we deliver this week, however small?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
+  </div>
+</div>
+</body>
+</html>

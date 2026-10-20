@@ -2823,6 +2823,61 @@ WAVE3_GUIDES = [
 ]
 GUIDES += WAVE3_GUIDES
 
+GUIDES.append(dict(
+    slug="team-launch",
+    title="Team Launch Guide",
+    subtitle="How to get a new team or initiative ready to deliver in one or two weeks, without endless up-front planning.",
+    tag="Facilitator Run-Sheet · Set Up the Team · Sprint Zero · Iteration 0",
+    boards=[("Open board", "team-launch-board.html"), ("SVG", "team-launch-board.svg")],
+    lede="What's the least we need to agree before we can start delivering?",
+    intro=("New teams and initiatives need a short period to get going: agree the purpose and vision, form the team, build a "
+           "first backlog, and set up the board, tools and environments. It's often called <b>Sprint Zero</b> or "
+           "<b>Iteration 0</b>; Disciplined Agile calls it inception. The Scrum Guide doesn't include it, because every sprint "
+           "should deliver something usable, and the common criticism is that it drifts into weeks of design with nothing "
+           "delivered. This board keeps it <b>timeboxed</b> to one or two weeks, uses a <b>checklist</b> that points to the "
+           "right tool for each item, insists on a <b>thin first slice</b> of real work, and ends with a clear "
+           "<b>ready-to-start</b> check."),
+    glance=[("Duration", "1–2 weeks,<br>timeboxed"), ("Group", "The new team,<br>PO and sponsor"),
+            ("Use when", "A team forms, or a new<br>initiative starts"), ("Output", "A ready team<br>&amp; a first slice")],
+    before=["Print the board at A1 or A3 and put it on the team wall, or load the SVG as a digital board",
+            "Agree the timebox and the launch owner with the sponsor",
+            "Book the key sessions in the first week: kickoff, charter, vision, story map",
+            "Arrange access to tools and environments before day one, if you can",
+            "Pick only the checklist items this team needs; strike out the rest"],
+    agenda_heads=["When", "Focus", "Sessions and tools"],
+    agenda=[("Day 1", "Why and who", "Project Kickoff (half day). Start the Team Charter. Set the launch goal and timebox on the board."),
+            ("Days 2–3", "What and for whom", "Product Vision Board, Persona & Journey Map, and an Impact Map or OKRs for the first outcome."),
+            ("Days 3–5", "The backlog", "User Story Map for the first release slice; Epic Breakdown for the main epic; split the top items."),
+            ("Week 1, throughout", "Environment", "Repository, pipeline, board and access. Pair on the walking skeleton as soon as the tools work."),
+            ("Week 2, early", "Ways of working", "Kanban Board Design, Definition of Done, Skills Matrix, AI Working Agreement, risks (Pre-mortem)."),
+            ("Week 2, late", "Ready to start", "Example Mapping on the top items, a first forecast, the exit check, then plan the first real iteration.")],
+    sections_title="Making the launch work",
+    sections_intro="What good looks like for each part of the board.",
+    sections=[("1 · Launch Goal", PURPLE, ["A date to start delivering", "What “ready” means, in one line"]),
+              ("2 · Timebox", SLATE, ["One or two weeks", "A daily check-in on progress"]),
+              ("3 · Launch Checklist", BLUE, ["Only the items you need", "Each has an owner", "Just enough, not perfect"]),
+              ("4 · Thin First Slice", EMERALD, ["Something real by the end", "End to end, however small"]),
+              ("5 · Environment & Tools", SKY, ["Everyone can work on day one", "Pipeline to a test environment"]),
+              ("6 · Ready to Start?", RED, ["Every exit item ticked", "If not, decide: extend briefly or start anyway"])],
+    tips=[("Timebox it hard", "Set the end date first. Unfinished items carry into the first iteration, as backlog items."),
+          ("Just enough", "Aim for a vision and backlog good enough to start, not complete. They'll change once you learn."),
+          ("Deliver anyway", "A walking skeleton or one usable story proves the tools, pipeline and team work together."),
+          ("Strike out what you don't need", "A small internal team may not need a RACI or a stakeholder map. Skip them."),
+          ("Start the habits early", "Hold daily check-ins and a short retro at the end of the launch, so the rhythms start now."),
+          ("Don't make it a phase", "If the launch is turning into months of design, stop and start delivering.")],
+    pitfalls=("no timebox; trying to complete every checklist item; detailed design of the whole solution; no working "
+              "environment until week three; nothing delivered; repeating a “sprint zero” before every release."),
+    after=[("End of the launch", "Run a short retro on the launch itself, and plan the first iteration."),
+           ("First iteration", "Carry over unfinished launch items as normal backlog items."),
+           ("After a month", "Revisit the Team Charter and Definition of Done with what you've learned."),
+           ("Next time", "Keep the checklist the team found useful for future launches.")],
+    toolkit=("The launch board is a map of the toolkit's set-up tools: Project Kickoff, Team Charter, Product Vision Board, "
+             "Persona &amp; Journey Map, User Story Map, Epic Breakdown, Kanban Board Design and the others named on each "
+             "checklist item. Once the team is ready, it moves on to <a href=\"facilitator-guide-sprint-planning.html\">Sprint "
+             "Planning</a> or its first replenishment, and the rest of the lifecycle."),
+    foot="“What could we deliver this week, however small?”",
+))
+
 
 # ------------------------------------------------------------------ rendering
 
