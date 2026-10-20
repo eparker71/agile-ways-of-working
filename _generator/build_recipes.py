@@ -298,6 +298,13 @@ li a{{color:var(--ink);font-weight:500;text-decoration:none;flex:1;}}
 li a:hover{{color:#9A3412;text-decoration:underline;}}
 li span{{color:var(--muted);font:500 11px 'Geist Mono',monospace;}}
 li a.v{{flex:none;font:500 11px 'Geist Mono',monospace;color:#9A3412;}}
+.how{{column-span:all;margin-top:8px;}}
+.how table{{width:100%;border-collapse:collapse;font-size:13px;margin:4px 0 6px;}}
+.how th{{text-align:left;font:600 9px 'Geist Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:6px 8px;border-bottom:1px solid var(--rule);}}
+.how td{{padding:7px 8px;border-bottom:1px solid #F1F5F9;vertical-align:top;}}
+.how td:first-child{{font-weight:600;white-space:nowrap;}}
+.how p{{margin:6px 0 2px;font-size:13px;color:var(--muted);}}
+@media (max-width:640px){{.how table,.how tr,.how td,.how th{{display:block;}} .how tr:first-child{{display:none;}} .how td{{border:none;padding:2px 0;}} .how tr{{border-bottom:1px solid var(--rule);padding:8px 0;}}}}
 footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-align:center;padding:0 16px 32px;}}
 </style>
 </head>
@@ -305,9 +312,19 @@ footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-
 <header><div class="wrap">
   <a class="back" href="index.html">← All tools</a>
   <h1>Print Pack</h1>
-  <p>Every board and poster as a print-ready A3 landscape PDF ({total} in all), grouped like the home page. Print at A3, landscape, actual size, or larger for big groups.</p>
+  <p>Every board and poster as a print-ready A3 landscape PDF ({total} in all), grouped like the home page. They print well on A3 or US 11×17 (Tabloid) paper, and scale up for wall posters: see <a href="#how-to-print" style="color:#FDBA74">how to print</a>.</p>
 </div></header>
-<main><div class="wrap"><div class="cols">
+<main><div class="wrap">
+<section class="how" id="how-to-print"><h2>How to print</h2>
+<table>
+<tr><th>Use</th><th>Paper</th><th>Printer settings</th></tr>
+<tr><td>Team board</td><td>A3, or 11×17 in (Tabloid / Ledger)</td><td>Landscape. A3: actual size. 11×17: <b>Fit to page</b> (about 94%, with narrow side margins).</td></tr>
+<tr><td>Wall poster</td><td>A2 or A1, or 18×24 / 24×36 in</td><td>Send the PDF to a print shop and ask for it scaled to fit. The PDFs are vector, so they stay sharp at any size.</td></tr>
+<tr><td>Personal copy</td><td>A4, or US Letter</td><td>Landscape, <b>Fit to page</b>. Readable for reference, but small for writing on.</td></tr>
+</table>
+<p>A sizes share the same shape, so the A3 PDF scales exactly to A4, A2 or A1. US sizes are a different shape, so expect some margin: at the sides on 11×17 and 24×36, at the top and bottom on Letter and 18×24. The cheat sheets print from their own pages: use A3, or 11×17 with Fit to page.</p>
+</section>
+<div class="cols">
 {body}
 </div></div></main>
 <footer>{escape(CREDIT)}</footer>

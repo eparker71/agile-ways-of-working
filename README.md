@@ -131,7 +131,7 @@ python3 _generator/check_site.py    # check links, metadata, files, PDFs, the ch
 python3 _generator/build_pdfs.py    # print-ready A3 PDFs of every board (needs Chrome); run after changing boards
 ```
 
-**Print-ready PDFs:** `pdf/` holds an A3 landscape PDF of every board and poster, listed on `print-pack.html`. After changing a board, run `build_all.py`, `build_pdfs.py`, then `build_all.py` again; the checks fail if a PDF is out of date.
+**Print-ready PDFs:** `pdf/` holds an A3 landscape PDF of every board and poster, listed on `print-pack.html` with printing guidance for A3, US 11×17 (Tabloid, print with Fit to page), wall-poster and personal sizes. After changing a board, run `build_all.py`, `build_pdfs.py`, then `build_all.py` again; the checks fail if a PDF is out of date.
 
 The individual generators are `build_boards.py`, `build_guides.py`, `build_roles.py`, `build_glossary.py`, `build_antipatterns.py`, `build_scenarios.py`, `build_recipes.py` and `build_meta.py`; `build_all.py` runs them in the right order.
 

@@ -281,7 +281,7 @@ def phone_note(svg_href, guide_href):
 
 def pdf_link(slug):
     """Download button for the board's A3 PDF, once build_pdfs.py has made it."""
-    return f'<a class="guide pdf" href="pdf/{slug}.pdf" download>A3 PDF ↓</a>\n' if (OUT / "pdf" / f"{slug}.pdf").exists() else ""
+    return f'<a class="guide pdf" href="pdf/{slug}.pdf" download title="A3 landscape. On 11×17 (Tabloid) paper, print with Fit to page.">A3 PDF ↓</a>\n' if (OUT / "pdf" / f"{slug}.pdf").exists() else ""
 
 
 def write_board(slug, title, desc, body):

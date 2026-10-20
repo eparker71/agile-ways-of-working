@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Print Pack</title>
 <!-- meta -->
-<meta name="description" content="Every board and poster as a print-ready A3 landscape PDF (74 in all), grouped like the home page. Print at A3, landscape, actual size, or larger for big groups.">
+<meta name="description" content="Every board and poster as a print-ready A3 landscape PDF (74 in all), grouped like the home page. They print well on A3 or US 11×17 (Tabloid) paper, and scale up for wall posters: see how to print .">
 <link rel="canonical" href="https://eparker71.github.io/agile-ways-of-working/print-pack.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Agile Ways of Working Toolkit">
 <meta property="og:title" content="Print Pack · Agile Ways of Working Toolkit">
-<meta property="og:description" content="Every board and poster as a print-ready A3 landscape PDF (74 in all), grouped like the home page. Print at A3, landscape, actual size, or larger for big groups.">
+<meta property="og:description" content="Every board and poster as a print-ready A3 landscape PDF (74 in all), grouped like the home page. They print well on A3 or US 11×17 (Tabloid) paper, and scale up for wall posters: see how to print .">
 <meta property="og:url" content="https://eparker71.github.io/agile-ways-of-working/print-pack.html">
 <meta property="og:image" content="https://eparker71.github.io/agile-ways-of-working/og-image.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
@@ -39,6 +39,13 @@ li a{color:var(--ink);font-weight:500;text-decoration:none;flex:1;}
 li a:hover{color:#9A3412;text-decoration:underline;}
 li span{color:var(--muted);font:500 11px 'Geist Mono',monospace;}
 li a.v{flex:none;font:500 11px 'Geist Mono',monospace;color:#9A3412;}
+.how{column-span:all;margin-top:8px;}
+.how table{width:100%;border-collapse:collapse;font-size:13px;margin:4px 0 6px;}
+.how th{text-align:left;font:600 9px 'Geist Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:6px 8px;border-bottom:1px solid var(--rule);}
+.how td{padding:7px 8px;border-bottom:1px solid #F1F5F9;vertical-align:top;}
+.how td:first-child{font-weight:600;white-space:nowrap;}
+.how p{margin:6px 0 2px;font-size:13px;color:var(--muted);}
+@media (max-width:640px){.how table,.how tr,.how td,.how th{display:block;} .how tr:first-child{display:none;} .how td{border:none;padding:2px 0;} .how tr{border-bottom:1px solid var(--rule);padding:8px 0;}}
 footer{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-align:center;padding:0 16px 32px;}
 </style>
 </head>
@@ -46,9 +53,19 @@ footer{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-a
 <header><div class="wrap">
   <a class="back" href="index.html">← All tools</a>
   <h1>Print Pack</h1>
-  <p>Every board and poster as a print-ready A3 landscape PDF (74 in all), grouped like the home page. Print at A3, landscape, actual size, or larger for big groups.</p>
+  <p>Every board and poster as a print-ready A3 landscape PDF (74 in all), grouped like the home page. They print well on A3 or US 11×17 (Tabloid) paper, and scale up for wall posters: see <a href="#how-to-print" style="color:#FDBA74">how to print</a>.</p>
 </div></header>
-<main><div class="wrap"><div class="cols">
+<main><div class="wrap">
+<section class="how" id="how-to-print"><h2>How to print</h2>
+<table>
+<tr><th>Use</th><th>Paper</th><th>Printer settings</th></tr>
+<tr><td>Team board</td><td>A3, or 11×17 in (Tabloid / Ledger)</td><td>Landscape. A3: actual size. 11×17: <b>Fit to page</b> (about 94%, with narrow side margins).</td></tr>
+<tr><td>Wall poster</td><td>A2 or A1, or 18×24 / 24×36 in</td><td>Send the PDF to a print shop and ask for it scaled to fit. The PDFs are vector, so they stay sharp at any size.</td></tr>
+<tr><td>Personal copy</td><td>A4, or US Letter</td><td>Landscape, <b>Fit to page</b>. Readable for reference, but small for writing on.</td></tr>
+</table>
+<p>A sizes share the same shape, so the A3 PDF scales exactly to A4, A2 or A1. US sizes are a different shape, so expect some margin: at the sides on 11×17 and 24×36, at the top and bottom on Letter and 18×24. The cheat sheets print from their own pages: use A3, or 11×17 with Fit to page.</p>
+</section>
+<div class="cols">
 <section><h2>Set up the team</h2><ul><li><a href="pdf/team-launch-board.pdf" download>Team Launch (Sprint Zero)</a><span>337 KB</span><a class="v" href="team-launch-board.html">view</a></li><li><a href="pdf/team-charter-board.pdf" download>Team Charter</a><span>380 KB</span><a class="v" href="team-charter-board.html">view</a></li><li><a href="pdf/team-onboarding-board.pdf" download>Team Onboarding</a><span>327 KB</span><a class="v" href="team-onboarding-board.html">view</a></li><li><a href="pdf/ai-working-agreement-board.pdf" download>AI Working Agreement</a><span>334 KB</span><a class="v" href="ai-working-agreement-board.html">view</a></li><li><a href="pdf/skills-matrix-board.pdf" download>Skills Matrix</a><span>268 KB</span><a class="v" href="skills-matrix-board.html">view</a></li></ul></section>
 <section><h2>Decide what to build</h2><ul><li><a href="pdf/product-vision-board.pdf" download>Product Vision Board</a><span>372 KB</span><a class="v" href="product-vision-board.html">view</a></li><li><a href="pdf/persona-journey-board.pdf" download>Persona &amp; Journey Map</a><span>584 KB</span><a class="v" href="persona-journey-board.html">view</a></li><li><a href="pdf/opportunity-solution-tree-board.pdf" download>Opportunity Solution Tree</a><span>385 KB</span><a class="v" href="opportunity-solution-tree-board.html">view</a></li><li><a href="pdf/impact-map-board.pdf" download>Impact Map</a><span>241 KB</span><a class="v" href="impact-map-board.html">view</a></li><li><a href="pdf/prioritisation-board.pdf" download>Prioritisation Board</a><span>489 KB</span><a class="v" href="prioritisation-board.html">view</a></li></ul></section>
 <section><h2>Break down work</h2><ul><li><a href="pdf/epic-breakdown-canvas.pdf" download>Epic Breakdown Canvas</a><span>354 KB</span><a class="v" href="epic-breakdown-canvas.html">view</a></li><li><a href="pdf/story-map-board.pdf" download>User Story Map</a><span>263 KB</span><a class="v" href="story-map-board.html">view</a></li><li><a href="pdf/story-splitting-poster.pdf" download>Story Splitting</a><span>392 KB</span><a class="v" href="story-splitting-poster.html">view</a></li><li><a href="pdf/example-mapping-board.pdf" download>Example Mapping</a><span>433 KB</span><a class="v" href="example-mapping-board.html">view</a></li><li><a href="pdf/backlog-anatomy-poster.pdf" download>Backlog Item Anatomy</a><span>319 KB</span><a class="v" href="backlog-anatomy-poster.html">view</a></li><li><a href="pdf/estimation-board.pdf" download>Estimation</a><span>414 KB</span><a class="v" href="estimation-board.html">view</a></li></ul></section>
