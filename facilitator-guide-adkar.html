@@ -82,6 +82,14 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
 .content a{color:#9A3412;}
 @media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:var(--accent);}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
 .boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
 .boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
@@ -121,6 +129,40 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
     <div class="two"><div><h3>Straight away</h3><p>Share the barrier points and actions with the sponsor and managers.</p></div><div><h3>Each week</h3><p>Owners act on their barrier points; managers check in with their teams.</p></div><div><h3>Monthly</h3><p>Re-score the grid. Barrier points should move right as the change takes hold.</p></div><div><h3>After go-live</h3><p>Keep reinforcing and measuring adoption until the new way is normal.</p></div></div>
     <h2><span class="n">6</span>How it fits the toolkit</h2>
     <p>ADKAR is about the people side of change. Use the <a href="facilitator-guide-stakeholder-map.html">Stakeholder Map</a> to find who's affected, the <a href="facilitator-guide-skills-matrix.html">Skills Matrix</a> and <a href="facilitator-guide-pairing-mobbing.html">Pairing &amp; Mobbing</a> to build Ability, the <a href="facilitator-guide-team-health-check.html">Team Health Check</a> to see how teams are coping, and <a href="facilitator-guide-value-metrics.html">Value Metrics</a> to show the change is paying off.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “ADKAR Change Readiness”, a workshop board.
+
+Purpose: Find where people are in a change, spot the barrier point, and act on it before moving on.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+
+Header fields to fill in: Change, Sponsor
+
+Sections:
+1. Change on a Page: top full width, about 100% wide and 15% tall; header colour slate grey.
+   Subtitle: What, why, who, when
+   Content: What&#x27;s changing: · Who&#x27;s affected: · Why now: · Key dates:
+2. Readiness Grid: middle full width, about 100% wide and 35% tall; header colour slate grey.
+   Subtitle: Score 1–5 · the first low score is the barrier point
+   Content: Person or group: · A · awareness: · D · desire: · K · knowledge: · A · ability: · R · reinforcement: · Barrier point: · 1. 2 (×15) · 3. 4 (×15) · 5. 1 (×10) · 2. 3 (×10) · 4. 5 (×10) · 5 (×5) · Circle each score. Scores run 1 (not at all) to 5 (fully). The barrier point is the first element scored 3 or lower, working left to right. Fix it before working on later elements.
+3. Awareness: bottom left, about 20% wide and 25% tall.
+   Content: Missing if…: · People ask “why are we doing this?” Rumours fill the silence · What helps: · Sponsor explains the why, early and often · Share the cost of not changing · Our action:
+4. Desire: bottom left, about 20% wide and 25% tall; header colour purple.
+   Content: Missing if…: · People understand, but resist or stall “What&#x27;s in it for me?” is unanswered · What helps: · Involve people in shaping the change · Managers discuss concerns one-to-one · Our action:
+5. Knowledge: bottom centre, about 20% wide and 25% tall; header colour sky blue.
+   Content: Missing if…: · Willing, but unsure what to do Lots of “how do I…?” questions · What helps: · Training, guides and worked examples · Show the new way on real work · Our action:
+6. Ability: bottom right, about 20% wide and 25% tall.
+   Content: Missing if…: · Know how, but can&#x27;t do it yet Old habits return under pressure · What helps: · Coaching, pairing and practice time · Remove blockers: tools, time, access · Our action:
+7. Reinforcement: bottom right, about 20% wide and 25% tall; header colour orange.
+   Content: Missing if…: · Early wins, then people slide back The old way is still rewarded · What helps: · Recognise and celebrate adoption · Measure use; fix what pulls people back · Our action:
+8. Action Plan: bottom left, about 65% wide and 15% tall; header colour red.
+   Subtitle: One action per barrier point
+   Content: Who (person or group): · Barrier point: · Action: · Owner: · By when:
+9. Reinforce &amp; Re-assess: bottom right, about 35% wide and 15% tall; header colour dark green.
+   Content: We&#x27;ll recognise success by: · We&#x27;ll measure adoption by: · Re-assess on:
+
+Footer questions: “Where is each group in this change, really?” “What&#x27;s the first thing stopping them, and what would help most?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/adkar-board.html</pre></details></section>
     <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
     <footer><span>“Where is each group in this change, really?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
   </div>

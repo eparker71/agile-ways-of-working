@@ -82,6 +82,14 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
 .content a{color:#9A3412;}
 @media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:var(--accent);}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
 .boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
 .boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
@@ -121,6 +129,36 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
     <div class="two"><div><h3>Straight away</h3><p>Share the improvements and owners with all teams.</p></div><div><h3>Next planning</h3><p>Plan the improvements into the Cross-Team Planning board&#x27;s capacity.</p></div><div><h3>During the period</h3><p>Track progress at the Cross-Team Sync.</p></div><div><h3>Next retro</h3><p>Review the improvements first: did they help?</p></div></div>
     <h2><span class="n">6</span>How it fits the toolkit</h2>
     <p>The program tools coordinate several teams: agree <a href="facilitator-guide-okr.html">Objectives &amp; Key Results</a>, plan together with the <a href="facilitator-guide-cross-team-planning.html">Cross-Team Planning</a> board, make links visible on the <a href="facilitator-guide-dependency-map.html">Dependency Map</a>, and keep in step with a regular <a href="facilitator-guide-cross-team-sync.html">Cross-Team Sync</a>. Each team still plans, reviews and improves with the team-level tools.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Cross-Team Retro”, a workshop board.
+
+Purpose: Reflect across teams at the end of a period: what worked, what didn&#x27;t, and one system problem to fix together.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+Key: Green = Went well · Pink = Problem · Blue = Idea · Dot = Vote
+
+Sections:
+1. What We Set Out to Do: top full width, about 100% wide and 15% tall; header colour slate grey.
+   Subtitle: Bring the shared objectives and the data
+   Content: Shared objective: · Planned value: · Achieved: · What we learned:
+2. Went Well Across Teams: middle left, about 35% wide and 45% tall; header colour emerald green.
+   Subtitle: Keep doing
+   Content: Where did teams help each other?
+3. Cross-Team Problems: middle centre, about 35% wide and 45% tall; header colour red.
+   Subtitle: Dot-vote the biggest
+   Content: Where did work wait between teams?
+4. Ideas: middle right, about 35% wide and 45% tall; header colour blue.
+   Subtitle: For any team to try
+   Content: What would make next period smoother?
+5. Solve the Top Problem: bottom left, about 65% wide and 35% tall; header colour purple.
+   Subtitle: In mixed-team groups
+   Content: Top problem (most dots): · Improvement: · Teams involved: · Owner: · Why 1? · Why 2? · Why 3? · Why 4? · Root cause:
+6. Follow Through: bottom right, about 35% wide and 35% tall; header colour dark green.
+   Subtitle: Into the next planning
+   Content: Improvements added to the next cross-team plan · Each improvement has an owner · Teams&#x27; own retros have the same themes? · Progress checked at the cross-team sync · We&#x27;ll measure success by: · Next cross-team retro:
+
+Footer questions: “What got in the way between teams, not within them?” “What one change would help every team next period?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/cross-team-retro-board.html</pre></details></section>
     <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
     <footer><span>“What one change would help every team next period?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
   </div>

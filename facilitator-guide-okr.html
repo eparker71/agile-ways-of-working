@@ -82,6 +82,14 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
 .content a{color:#9A3412;}
 @media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:var(--accent);}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
 .boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
 .boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
@@ -121,6 +129,35 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
     <div class="two"><div><h3>Straight away</h3><p>Publish the OKRs where every team can see them.</p></div><div><h3>Planning</h3><p>Use them as the shared objectives on the Cross-Team Planning board.</p></div><div><h3>Weekly</h3><p>Update confidence for each key result; discuss any that drop.</p></div><div><h3>End of period</h3><p>Score each key result, reflect on what you learned, and set the next OKRs.</p></div></div>
     <h2><span class="n">6</span>How it fits the toolkit</h2>
     <p>The program tools coordinate several teams: agree <a href="facilitator-guide-okr.html">Objectives &amp; Key Results</a>, plan together with the <a href="facilitator-guide-cross-team-planning.html">Cross-Team Planning</a> board, make links visible on the <a href="facilitator-guide-dependency-map.html">Dependency Map</a>, and keep in step with a regular <a href="facilitator-guide-cross-team-sync.html">Cross-Team Sync</a>. Each team still plans, reviews and improves with the team-level tools.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Objectives &amp; Key Results”, a workshop board.
+
+Purpose: Agree a few ambitious outcomes, how you&#x27;ll measure them, and the bets teams will make to move them.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+
+Header fields to fill in: Group / Team, Period
+
+Sections:
+1. Focus for This Period: top full width, about 100% wide and 15% tall; header colour slate grey.
+   Subtitle: Why these objectives, and why now?
+2. Objective 1: middle left, about 35% wide and 65% tall; header colour purple.
+   Subtitle: Qualitative · inspiring
+   Content: We will… · KEY RESULTS · MEASURABLE OUTCOMES · Key result: · Start: · Target: · Conf.: · Teams contributing: · Initiatives: the bets we&#x27;ll make
+3. Objective 2: middle centre, about 35% wide and 65% tall; header colour blue.
+   Subtitle: Qualitative · inspiring
+   Content: We will… · KEY RESULTS · MEASURABLE OUTCOMES · Key result: · Start: · Target: · Conf.: · Teams contributing: · Initiatives: the bets we&#x27;ll make
+4. Objective 3: middle right, about 35% wide and 65% tall; header colour emerald green.
+   Subtitle: Qualitative · inspiring
+   Content: We will… · KEY RESULTS · MEASURABLE OUTCOMES · Key result: · Start: · Target: · Conf.: · Teams contributing: · Initiatives: the bets we&#x27;ll make
+5. Check-in Rhythm: bottom left, about 50% wide and 20% tall; header colour amber.
+   Subtitle: Confidence 1–10 · score 0–1.0 at the end
+   Content: Weekly confidence check: · Mid-period review: · End-of-period scoring:
+6. Not Doing This Period: bottom right, about 50% wide and 20% tall; header colour red.
+   Subtitle: Focus means saying no
+
+Footer questions: “If we achieved only one of these, which would matter most?” “How will we know, without asking anyone, that we&#x27;ve succeeded?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/okr-board.html</pre></details></section>
     <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
     <footer><span>“How will we know, without asking anyone, that we&#x27;ve succeeded?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
   </div>

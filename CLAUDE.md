@@ -42,6 +42,8 @@ Never edit generated files directly; edit the script and re-run.
 
 **`build_guides.py`** holds guide content as dicts (in `GUIDES` and lists appended to it). Required keys: `slug, title, subtitle, tag, boards, lede, intro, glance, before, agenda_heads, agenda, sections_title, sections_intro, sections, tips, pitfalls, after, toolkit, foot`. `render()` turns each one into a fixed page layout, and `render_docx()` writes the matching Word file through `docx_writer.py`, a small zipfile-based WordprocessingML writer (headings, bullets, tables, bold/italic runs from simple HTML). Validate `.docx` output by parsing each XML part and with `textutil -convert txt`. `intro`, `before` and `toolkit` may contain HTML; most other fields are escaped. Shared "how it fits the toolkit" paragraphs are constants such as `LIFECYCLE_TOOLKIT`, `PROJECT_TOOLKIT`, `PROGRAM_TOOLKIT` and `FLOW_TOOLKIT`.
 
+**`board_spec.py`** builds each guide's "Recreate it in your whiteboard" AI prompt by parsing the board's SVG: rects with `filter="url(#fc)"` are sections (the white text in their header is the title and note), dashed rects inside a headerless panel are zones (e.g. Sailboat), and boards with no panels fall back to rows grouped by vertical gaps. It merges wrapped lines and list numbers. If you add a new layout primitive, check its spec with `python3 _generator/board_spec.py <board>.svg`. The Marginal Gains guide's prompt block is pasted in by hand, so regenerate it if that board changes.
+
 **`build_roles.py`** holds two tables, which are the single source of truth for the role feature:
 - `TOOLS`: key → (title, board, guide, href-prefix for matching index cards).
 - `ROLES`: id, name, description, three start-with tools, also-useful tools.

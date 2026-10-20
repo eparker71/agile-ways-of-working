@@ -82,6 +82,14 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
 .content a{color:#9A3412;}
 @media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:var(--accent);}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
 .boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
 .boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
@@ -121,6 +129,31 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
     <div class="two"><div><h3>Straight away</h3><p>Photograph the board. Update the backlog order and the roadmap in your tools.</p></div><div><h3>Share it</h3><p>Walk stakeholders through the roadmap and the reasons for the order.</p></div><div><h3>Next</h3><p>Break the Now items down with the Epic Canvas and Story Map, ready for Sprint Planning.</p></div><div><h3>Regularly</h3><p>Revisit the order at each Sprint Review, when feedback and data change the picture.</p></div></div>
     <h2><span class="n">6</span>How it fits the toolkit</h2>
     <p>The lifecycle tools follow the work from start to finish: a <a href="facilitator-guide-team-charter.html">Team Charter</a> when a team forms, a <a href="facilitator-guide-product-vision.html">Product Vision Board</a> to agree why the product exists, the <a href="facilitator-guide-prioritisation.html">Prioritisation Board</a> to decide what comes first, then <a href="facilitator-guide-sprint-planning.html">Sprint Planning</a> and <a href="facilitator-guide-sprint-review.html">Sprint Review</a> each iteration, with a retrospective from the Retro Kit to close the loop. The break-down tools (Epic Canvas, Story Map, Story Splitting, Example Mapping) sit between vision and planning.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Prioritisation Board”, a workshop board.
+
+Purpose: Compare value and effort, put a number on the cost of delay, agree what&#x27;s in, and lay out Now, Next and Later.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+
+Header fields to fill in: Product / Scope, Date
+
+Sections:
+1. Value vs. Effort: top left, about 50% wide and 65% tall; header colour blue.
+   Subtitle: Place each item on the grid
+   Content: Quick Wins · Big Bets · High value · low effort · do these first · High value · high effort · slice them first · Fill-ins · Money Pits · Low value · low effort · if there&#x27;s spare time · Low value · high effort · avoid or drop · Low effort: · Effort →: · High effort:
+2. Cost of Delay · WSJF: top right, about 50% wide and 30% tall; header colour purple.
+   Subtitle: Cd3 · called wsjf in safe · highest score first
+   Content: Score one column at a time across all items: 1, 2, 3, 5, 8, 13 (smallest item = 1). CoD = value + time + risk. · Item: · Value: · Time: · Risk / opp.: · Cod: · Job size: · Cod / size: · Rank:
+3. MoSCoW: middle right, about 50% wide and 30% tall; header colour orange.
+   Subtitle: For a fixed date or scope
+   Content: Must · Should · Could · Won&#x27;t (this time) · Fails without it · Important, not vital · Nice if there&#x27;s time · Agreed out
+4. Now · Next · Later: bottom full width, about 100% wide and 35% tall; header colour dark green.
+   Subtitle: A roadmap of outcomes, not dates
+   Content: Now: · Committed and in progress · Next: · Planned and being shaped · Later: · Ideas and options, not committed · Outcome: (×3)
+
+Footer questions: “What does it cost us, each week, to not have this yet?” “If we could only do one thing this quarter, what would it be?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/prioritisation-board.html</pre></details></section>
     <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
     <footer><span>“If we could only do one thing this quarter, what would it be?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
   </div>

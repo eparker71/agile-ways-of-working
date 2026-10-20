@@ -82,6 +82,14 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
 .content a{color:#9A3412;}
 @media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:var(--accent);}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
 .boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
 .boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
@@ -121,6 +129,29 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
     <div class="two"><div><h3>Straight away</h3><p>Leave the poster up in the team space and refer to it in refinement.</p></div><div><h3>Next refinement</h3><p>Check new items against the poster before they&#x27;re ready.</p></div><div><h3>Over time</h3><p>Add your own good examples from the team&#x27;s real backlog.</p></div><div><h3>With stakeholders</h3><p>Share the poster when stakeholders bring requests, so ideas arrive as outcomes.</p></div></div>
     <h2><span class="n">6</span>How it fits the toolkit</h2>
     <p>The break-down tools work from big to small: the <a href="facilitator-guide-epic-breakdown-canvas.html">Epic Breakdown Canvas</a> turns an idea into an MVP and features, the <a href="facilitator-guide-story-map.html">Story Map</a> lays out the user journey and release slices, the <a href="facilitator-guide-story-splitting.html">Story Splitting poster</a> makes stories small enough for a sprint, and <a href="facilitator-guide-example-mapping.html">Example Mapping</a> checks that each story is understood and ready. The <a href="facilitator-guide-backlog-anatomy.html">Backlog Item Anatomy</a> poster shows what a good epic, feature and story look like.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Backlog Item Anatomy”, a workshop board.
+
+Purpose: What a good epic, feature and story look like, with one running example from big bet to thin slice.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+Key: ✓ Good example, and why it works · ✗ Weak example, and what&#x27;s wrong
+
+Sections:
+1. Epic: top full width, about 100% wide and 25% tall; header colour purple.
+   Subtitle: The big bet
+   Content: A big bet that should deliver a business · ✓ GOOD · Reorder made easy · ✗ WEAK · Reorder platform · outcome. Broken into features. · We believe making it quick to repeat a past order, for · “Build the new reorder platform.” · WEEKS TO MONTHS · OFTEN SEVERAL TEAMS · returning customers, will increase repeat orders. We&#x27;ll know · Template: · when weekly repeat orders rise from 22% to 30% in 3 months. · We believe [doing this] for [these people] will achieve [this outcome]. We&#x27;ll know · A solution, not an outcome. No measure, so nobody can · Names the people, the outcome and a measure, so it can be proven wrong. · tell if it worked, or when to stop. · we&#x27;re right when [measure].
+2. Feature: middle full width, about 100% wide and 20% tall; header colour blue.
+   Subtitle: A usable capability
+   Content: Something users can see and use that · ✓ GOOD · One-tap reorder · ✗ WEAK · Reorder back end · delivers part of the epic&#x27;s value. · One-tap reorder of a past basket, so returning customers · “Reorder API and database changes.” · A FEW ITERATIONS · ONE OR TWO TEAMS · can repeat a weekly shop in under a minute. · Template: · A technical layer. Nobody can use it alone, so it · [Capability] so that [benefit]. · Usable on its own, with a clear benefit to a named user. · delivers no value until everything else is done.
+3. Story: bottom full width, about 100% wide and 30% tall; header colour emerald green.
+   Subtitle: A thin vertical slice
+   Content: A thin, vertical slice of a feature that · ✓ GOOD · SEE MY LAST ORDER · ✗ WEAK · TECHNICAL TASK · ✗ WEAK · TOO BIG · a user can use. Finishes in days. · As a returning customer, I want to see my last order on · “As a developer, I want a reorder · “As a customer, I want to reorder, · DAYS · WITHIN YOUR SLE · ONE TEAM · table so that the data is stored.” · edit my basket and schedule · the home page so that I can reorder it quickly. · delivery.” · Template: · Acceptance criteria: · As a [type of user], I want [goal] · Given I&#x27;ve ordered before, when I open the app, · so that [reason]. · then I see my last order with a Reorder button. · Given an item is out of stock, when I reorder, · + acceptance criteria: Given · When · Then · then I&#x27;m offered a substitute. · No user value. It&#x27;s a task · Three stories joined by “and”. · Invest: · Independent · Negotiable · Valuable · Estimable · Small · Testable · inside a real story. · Split it (see Story Splitting). · Valuable to a user, small, and testable from the criteria.
+
+Also on the board: Running example: · An online grocery service wants more customers to come back and order again. Follow it down the levels. · Task: · Spike: · Bug: · Enabler: · A step the team takes to finish a story. · Time-boxed research to answer a question. · Doesn&#x27;t work as agreed. · Technical work that makes future value possible, such as paying down debt. · Not tracked as value. · Its output is knowledge. · Fix fast, or order it like any other item.
+
+Footer questions: “Who is this for, and what will be better for them?” “Could a user use this slice on its own?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/backlog-anatomy-poster.html</pre></details></section>
     <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
     <footer><span>“Could a user use this slice on its own?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
   </div>

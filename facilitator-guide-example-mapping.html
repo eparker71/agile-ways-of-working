@@ -82,6 +82,14 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
 .content a{color:#9A3412;}
 @media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:var(--accent);}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
 .boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
 .boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
@@ -121,6 +129,37 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
     <div class="two"><div><h3>Straight away</h3><p>Add the rules as acceptance criteria and the examples as test cases on the backlog item.</p></div><div><h3>Questions</h3><p>Owners find the answers before planning. Re-map briefly once they&#x27;re answered.</p></div><div><h3>Split stories</h3><p>Add new stories from any split to the backlog, and map each one before it&#x27;s planned.</p></div><div><h3>During the sprint</h3><p>Use the examples as the basis for automated acceptance tests.</p></div></div>
     <h2><span class="n">6</span>How it fits the toolkit</h2>
     <p>The break-down tools work from big to small: the <a href="facilitator-guide-epic-breakdown-canvas.html">Epic Breakdown Canvas</a> turns an idea into an MVP and features, the <a href="facilitator-guide-story-map.html">Story Map</a> lays out the user journey and release slices, the <a href="facilitator-guide-story-splitting.html">Story Splitting poster</a> makes stories small enough for a sprint, and <a href="facilitator-guide-example-mapping.html">Example Mapping</a> checks that each story is understood and ready. The <a href="facilitator-guide-backlog-anatomy.html">Backlog Item Anatomy</a> poster shows what a good epic, feature and story look like.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Example Mapping”, a workshop board.
+
+Purpose: Explore one story through its rules, concrete examples and open questions, and find out if it&#x27;s ready.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+Key: Yellow = Story · Blue = Rule · Green = Example · Pink = Question
+
+Sections:
+1. Section 1: top full width, about 100% wide and 10% tall.
+   Content: As a… · I want… · so that… · Story card · TIMEBOX 25 MIN · ONE BLUE CARD PER RULE · GREEN EXAMPLES UNDER EACH RULE · PINK FOR ANYTHING UNKNOWN
+2. Rule 1: middle left, about 20% wide and 65% tall.
+   Subtitle: Acceptance criterion
+   Content: Blue card: the rule · Examples: · given · when · then · Green cards: concrete examples
+3. Rule 2: middle left, about 20% wide and 65% tall; header colour blue.
+   Subtitle: Acceptance criterion
+   Content: Blue card: the rule · Examples: · given · when · then · Green cards: concrete examples
+4. Rule 3: middle centre, about 20% wide and 65% tall.
+   Subtitle: Acceptance criterion
+   Content: Blue card: the rule · Examples: · given · when · then · Green cards: concrete examples
+5. Rule 4: middle right, about 20% wide and 65% tall; header colour blue.
+   Subtitle: Acceptance criterion
+   Content: Blue card: the rule · Examples: · given · when · then · Green cards: concrete examples
+6. Questions: middle right, about 20% wide and 65% tall; header colour pink.
+   Subtitle: Unknowns
+   Content: Anything nobody here can answer · Write who will find out · Don&#x27;t let one question stall the session · Pink cards: open questions
+
+Also on the board: OUTCOME: THUMB-VOTE AT THE END OF THE TIMEBOX · Decision · Split into… · Open questions · Ready to plan · few questions, rules are clear · Story A: · Owner: · Needs splitting · too many rules: split by rule · Story B: · Answer by: · Needs answers first · too many questions: find out
+
+Footer questions: “Lots of pink? We&#x27;re not ready yet.” “Lots of blue? The story is too big, so split it by rule.”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/example-mapping-board.html</pre></details></section>
     <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
     <footer><span>“Lots of blue? The story is too big, so split it by rule.”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
   </div>

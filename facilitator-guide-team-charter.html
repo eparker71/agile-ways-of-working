@@ -82,6 +82,14 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
 .content a{color:#9A3412;}
 @media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:var(--accent);}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
 .boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
 .boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
@@ -121,6 +129,43 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
     <div class="two"><div><h3>Straight away</h3><p>Photograph the board and put a copy where the team works, physically or online.</p></div><div><h3>First retro</h3><p>Ask: which agreements are we keeping? Which aren&#x27;t working? Update the charter.</p></div><div><h3>When the team changes</h3><p>Walk new members through it and invite them to challenge it.</p></div><div><h3>Every quarter</h3><p>Review the purpose and the Definition of Done. Raise the bar if the team is ready.</p></div></div>
     <h2><span class="n">6</span>How it fits the toolkit</h2>
     <p>The lifecycle tools follow the work from start to finish: a <a href="facilitator-guide-team-charter.html">Team Charter</a> when a team forms, a <a href="facilitator-guide-product-vision.html">Product Vision Board</a> to agree why the product exists, the <a href="facilitator-guide-prioritisation.html">Prioritisation Board</a> to decide what comes first, then <a href="facilitator-guide-sprint-planning.html">Sprint Planning</a> and <a href="facilitator-guide-sprint-review.html">Sprint Review</a> each iteration, with a retrospective from the Retro Kit to close the loop. The break-down tools (Epic Canvas, Story Map, Story Splitting, Example Mapping) sit between vision and planning.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Team Charter”, a workshop board.
+
+Purpose: Agree why the team exists, how it works together, and what Ready and Done mean, before the work starts.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+
+Header fields to fill in: Team, Date
+
+Sections:
+1. Purpose: top left, about 50% wide and 35% tall; header colour purple.
+   Subtitle: Why does this team exist?
+   Content: We exist to… · for… · We succeed when…
+2. Members &amp; Roles: top centre, about 25% wide and 35% tall; header colour blue.
+   Content: Name: · Role: · What i bring:
+3. Our Values: top right, about 25% wide and 35% tall; header colour emerald green.
+   Subtitle: What matters to us
+   Content: 3–5 values, each with an example of it in action
+4. Working Agreements: middle left, about 50% wide and 35% tall; header colour orange.
+   Subtitle: We agree to…
+   Content: Communication, core hours, meetings, feedback, how we handle interruptions · One agreement per sticky, written as “We…”
+5. How We Decide: middle centre, about 25% wide and 35% tall; header colour sky blue.
+   Content: Consent: no one objects · Consensus: everyone agrees · Majority vote · Consult, then one person decides · Delegated to an owner · Default method, and who decides what:
+6. Ways of Working: middle right, about 25% wide and 35% tall; header colour slate grey.
+   Subtitle: Cadence &amp; tools
+   Content: Iteration length: · Planning: · Daily sync: · Review: · Retro: · Board / tools: · Channels:
+7. Definition of Ready: bottom left, about 35% wide and 30% tall; header colour amber.
+   Subtitle: Before we start an item
+   Content: e.g. value is clear, it&#x27;s small enough, examples agreed
+8. Definition of Done: bottom centre, about 35% wide and 30% tall; header colour dark green.
+   Subtitle: Before we call it done
+   Content: e.g. tested, reviewed, documented, releasable
+9. Conflict &amp; Review: bottom right, about 35% wide and 30% tall; header colour red.
+   Content: When we disagree, we… · We review this charter: · Every quarter · When someone joins · When it stops working · Signed by the team:
+
+Footer questions: “What would make this the best team any of us has worked on?” “Which of these agreements will we find hardest to keep?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/team-charter-board.html</pre></details></section>
     <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
     <footer><span>“Which of these agreements will we find hardest to keep?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
   </div>

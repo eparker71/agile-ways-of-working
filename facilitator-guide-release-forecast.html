@@ -82,6 +82,14 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
 .content a{color:#9A3412;}
 @media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:var(--accent);}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
 .boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
 .boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
@@ -121,6 +129,31 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
     <div class="two"><div><h3>Straight away</h3><p>Share the range and assumptions with the sponsor and key stakeholders.</p></div><div><h3>Every iteration</h3><p>Update the data, re-plot the chart and re-forecast.</p></div><div><h3>At the Sprint Review</h3><p>Show the burn-up chart. Discuss scope trade-offs if the range moves.</p></div><div><h3>If the range slips</h3><p>Act early: cut scope, remove a dependency, or agree a new date range.</p></div></div>
     <h2><span class="n">6</span>How it fits the toolkit</h2>
     <p>The project tools work together: run a <a href="facilitator-guide-project-kickoff.html">Project Kickoff</a> first, then build the <a href="facilitator-guide-stakeholder-map.html">Stakeholder Map</a>, keep the <a href="facilitator-guide-raid-log.html">RAID Log</a> up to date, and refresh the <a href="facilitator-guide-release-forecast.html">Release Forecast</a> after every iteration. Inside the project, teams use the lifecycle tools (Team Charter, Prioritisation, Sprint Planning and Review) and the break-down tools.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Release Forecast &amp; Burn-up”, a workshop board.
+
+Purpose: Answer “when will it be done?” with a range, based on how fast the team actually finishes work.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+
+Header fields to fill in: Release / Scope, Forecast Date
+
+Sections:
+1. Burn-up Chart: top left, about 65% wide and 65% tall; header colour blue.
+   Subtitle: Plot after every iteration
+   Content: 1. 2 · 3. 4 · 5. 6 · 7. 8 · 9. 10 · 11. 12 · Iteration →: · Total scope · Done · Forecast range (fast / slow)
+2. Throughput Data: top right, about 35% wide and 65% tall; header colour emerald green.
+   Subtitle: Items finished per iteration
+   Content: Iteration: · Done: · Added: · Total scope: · Average per iteration: · Slowest 3, average: · Fastest 3, average:
+3. The Forecast: bottom left, about 50% wide and 35% tall; header colour amber.
+   Subtitle: Remaining / rate = iterations left
+   Content: Remaining items (incl. expected growth): · Scenario: · Rate / iteration: · Iterations left: · Date: · Slow · Likely · Fast
+4. What Would Change It: bottom right, about 50% wide and 35% tall; header colour red.
+   Subtitle: Update the forecast when these move
+   Content: Scope growth · team changes · dependencies · item size changing · Share the range and the assumptions, not just the likely date · Next forecast update:
+
+Footer questions: “When will it be done? Here&#x27;s the range, and here&#x27;s what it depends on.” “What would have to be true for the fast forecast to happen?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/release-forecast-board.html</pre></details></section>
     <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
     <footer><span>“What would have to be true for the fast forecast to happen?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
   </div>

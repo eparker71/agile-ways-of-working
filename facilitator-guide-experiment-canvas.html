@@ -82,6 +82,14 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
 .content a{color:#9A3412;}
 @media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:var(--accent);}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
 .boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
 .boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
@@ -123,6 +131,36 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
     <div class="two"><div><h3>Straight away</h3><p>Add the experiment to the team backlog. Book the mid-point check and the review.</p></div><div><h3>Mid-point</h3><p>Check the early-signal indicator. If it&#x27;s not started, find out why and remove the blocker.</p></div><div><h3>At the review</h3><p>Complete section 7 together. Decide persevere, pivot or stop, and record what you learned.</p></div><div><h3>Share</h3><p>Post completed canvases where other teams can see them, such as at the system demo or I&amp;A.</p></div></div>
     <h2><span class="n">7</span>How it fits the toolkit</h2>
     <p>The canvas is the <b>experiment</b> step. Ideas come from the <a href="facilitator-guide-marginal-gains.html">Marginal Gains Workshop</a>, a <a href="facilitator-guide-team-health-check.html">health check</a> or a retro. Results are reviewed in the next retrospective.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “1% Experiment Canvas”, a workshop board.
+
+Purpose: Turn one small improvement idea into a testable experiment with a clear owner, measure and review date.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+
+Header fields to fill in: Experiment #, Team
+
+Sections:
+1. Where&#x27;s the Friction?: top left, about 25% wide and 35% tall; header colour red.
+   Subtitle: From the board
+   Content: Board area (tick one): · Strategy · Dependencies · Outcomes · Engineering · Product · Delivery · Teams · Learning · The pain point we observed:
+2. Hypothesis: top centre, about 50% wide and 35% tall; header colour purple.
+   Subtitle: If · for · then · we&#x27;ll know
+   Content: If we… · (the change we will make) · for… · (who or which part of the system) · then we expect… · (the outcome or improvement) · We&#x27;ll know we&#x27;re right when we see… · (the signal or evidence) · TIP: keep it small enough to start tomorrow
+3. The 1% Change: top right, about 25% wide and 35% tall; header colour emerald green.
+   Content: What exactly will we do differently? · Smallest version we could try first:
+4. Measure: middle left, about 50% wide and 35% tall; header colour blue.
+   Subtitle: Baseline → target
+   Content: Baseline: · Target: · How &amp; where measured: · where we are today · what 1% better looks like · source, frequency · Leading indicator (early signal): · Guardrail (what must not get worse):
+5. Plan &amp; Timebox: middle centre, about 25% wide and 35% tall; header colour orange.
+   Content: Owner: · Supporters: · Start date: · Mid-point check-in: · Review date: · Timebox: · 1 iteration · 2 iterations · 1 quarter
+6. Risks &amp; Assumptions: middle right, about 25% wide and 35% tall; header colour amber.
+   Content: What must be true for this to work? · What could go wrong, and how will we spot it? · Who else needs to know or agree?
+
+Also on the board: 7 · RESULT &amp; DECISION: COMPLETE AT THE REVIEW · What happened? · Decision (tick one) · What did we learn? · Result vs. target: · Persevere · Pivot · Stop · It worked. · Promising. · No gain. · Make it standard. · Adjust and re-run. · Stop and share why. · Share the learning with:
+
+Footer questions: “What&#x27;s the smallest change that could prove us right or wrong?” “If this works, who else would benefit from knowing?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/experiment-canvas.html</pre></details></section>
     <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
     <footer><span>“If this works, who else would benefit from knowing?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
   </div>

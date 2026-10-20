@@ -82,6 +82,14 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
 .content a{color:#9A3412;}
 @media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:var(--accent);}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
 .boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
 .boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
@@ -121,6 +129,33 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
     <div class="two"><div><h3>Straight away</h3><p>Start the experiment on the biggest cluster and put its review date in the calendar.</p></div><div><h3>Each retro</h3><p>Glance at the log: any new patterns? Is the top cluster shrinking?</p></div><div><h3>Next cluster</h3><p>When the trend shows the fix worked, move on to the next biggest cluster.</p></div><div><h3>Outside causes</h3><p>Take clusters outside the team&#x27;s control to the Cross-Team Sync or to leaders, with the data.</p></div></div>
     <h2><span class="n">6</span>How it fits the toolkit</h2>
     <p>The flow pack works as a set. <a href="facilitator-guide-kanban-board-design.html">Kanban Board Design</a> makes the workflow visible and limits WIP. <a href="facilitator-guide-ageing-wip.html">Ageing WIP &amp; SLE</a> shows which items are at risk and sets the swarm triggers used in <a href="facilitator-guide-buffering-swarming.html">Buffering &amp; Swarming</a>. <a href="facilitator-guide-blocker-clustering.html">Blocker Clustering</a> finds why work gets stuck, and the <a href="facilitator-guide-skills-matrix.html">Skills Matrix</a> shows who can swarm. Bring the results to retrospectives and the Team Health Check.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Blocker Clustering”, a workshop board.
+
+Purpose: Log every blocker, cluster them by cause, and fix the cluster that costs the most days.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+Key: Pink Sticky = One blocker · Yellow Sticky = Cluster name
+
+Sections:
+1. Blocker Log: top left, about 65% wide and 45% tall; header colour red.
+   Subtitle: One row per blocker · cause, not person
+   Content: Date: · Item: · Blocked by (what): · Inside / outside team: · Days blocked:
+2. Blocker Stickies: top right, about 35% wide and 45% tall; header colour slate grey.
+   Subtitle: Keep them after they&#x27;re cleared
+   Content: A pink sticky on the card the moment it&#x27;s blocked · Write the cause and the start date · When it&#x27;s cleared, add the days and move it here
+3. Clusters: middle full width, about 100% wide and 35% tall; header colour orange.
+   Subtitle: Group similar causes · name each cluster
+   Content: Cluster: (×5) · Count: (×5) · Days: (×5)
+4. Fix the Biggest Cluster: bottom left, about 65% wide and 20% tall; header colour dark green.
+   Subtitle: By total days blocked, not count
+   Content: Biggest cluster: · Experiment to fix it: · Root cause: · Owner &amp; review date:
+5. Trend: bottom right, about 35% wide and 20% tall; header colour blue.
+   Subtitle: Is it working?
+   Content: Period: · Blockers: · Days blocked:
+
+Footer questions: “What keeps blocking us, and what does it cost?” “Which cluster, if we fixed it, would give us the most days back?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/blocker-clustering-board.html</pre></details></section>
     <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
     <footer><span>“What keeps blocking us, and what does it cost?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
   </div>

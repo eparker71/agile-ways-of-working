@@ -82,6 +82,14 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
 .content a{color:#9A3412;}
 @media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:var(--accent);}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
 </style>
 </head>
 <body>
@@ -187,6 +195,36 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
     </div>
     <p style="color:var(--muted);font-size:12px">Rotate retro formats (Start/Stop/Continue, 4 Ls, Mad/Sad/Glad, Sailboat) so conversations stay fresh. Bring experiment results into each retro so learning compounds.</p>
 
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Marginal Gains Workshop”, a workshop board.
+
+Purpose: What 1% improvement would help us deliver customer value faster, better, and more predictably?
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+Key: Yellow Sticky = Friction / Pain Point · Green Sticky = 1% Improvement Idea
+
+Sections:
+1. Strategy: top left, about 25% wide and 40% tall.
+   Content: Priorities · Alignment · Decision Making
+2. Outcomes: top centre, about 25% wide and 40% tall.
+   Content: Customer Value · Metrics · Business Impact
+3. Product: top centre, about 25% wide and 40% tall.
+   Content: Roadmap · Backlog · Feature Readiness
+4. Teams: top right, about 25% wide and 40% tall.
+   Content: Collaboration · Capacity · Ways of Working
+5. Dependencies: middle left, about 25% wide and 40% tall.
+   Content: Cross-Team Coord. · Handoffs · Waiting
+6. Engineering: middle centre, about 25% wide and 40% tall.
+   Content: CI/CD · Quality · Technical Debt · Environments
+7. Delivery: middle centre, about 25% wide and 40% tall.
+   Content: Flow · Releases · Predictability
+8. Learning: middle right, about 25% wide and 40% tall.
+   Content: Experiments · Retrospectives · Continuous Improvement
+
+Also on the board: sprint, month, quarter… · TOP EXPERIMENTS FOR OUR NEXT · Experiment #1 · Experiment #2 · Experiment #3 · Owner: (×3) · Success Measure: (×3)
+
+Footer questions: “Where do we lose momentum today?” “What small change could make this area 1% better in the next few weeks?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/marginal-gains-workshop-board.html</pre></details></section>
     <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a> · Guides for every board are listed there.</p>
 
     <footer><span>“Where do we lose momentum today?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>

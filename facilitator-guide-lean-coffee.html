@@ -82,6 +82,14 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
 .content a{color:#9A3412;}
 @media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:var(--accent);}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
 .boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
 .boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
@@ -121,6 +129,27 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
     <div class="two"><div><h3>Straight away</h3><p>Photograph the board. Share the Discussed column and the actions with participants.</p></div><div><h3>Actions</h3><p>Track actions where the group will see them, such as the team board or community page.</p></div><div><h3>Unfinished topics</h3><p>Carry high-vote topics that weren&#x27;t reached to the top of the next session&#x27;s To Discuss column.</p></div><div><h3>Next session</h3><p>Start by reviewing last time&#x27;s actions in two minutes, then brainstorm.</p></div></div>
     <h2><span class="n">6</span>How it fits the toolkit</h2>
     <p>Lean Coffee is a flexible <b>facilitate</b> tool. Use it to surface topics before a <a href="facilitator-guide-marginal-gains.html">Marginal Gains Workshop</a>, or as a lightweight alternative to a retrospective when the team wants an open conversation.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Lean Coffee”, a workshop board.
+
+Purpose: A structured, agenda-less meeting: the group sets the topics, votes on them, and talks about what matters most.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+Key: Yellow Sticky = Discussion Topic · Green Sticky = Takeaway / Action · Dot = Vote (3 per person)
+
+Sections:
+1. To Discuss: middle left, about 35% wide and 70% tall; header colour blue.
+   Content: What do we want to talk about? · One topic per sticky, pitched in a sentence · Dot-vote, then sort by votes (most at the top)
+2. Discussing: middle centre, about 25% wide and 70% tall; header colour orange.
+   Subtitle: Now
+   Content: What are we discussing now? · Current topic: · Place the top-voted topic here · Timebox (tick each round): · 8 min · + 4 min · + 2 min · WHEN THE TIMER ENDS, VOTE · ↑ · → · ↓ · Keep going · Wrap up · Move on · Majority ↑ extends the timer · otherwise pull the next topic · Key takeaway:
+3. Discussed: middle right, about 35% wide and 70% tall; header colour emerald green.
+   Content: What have we covered? · Move the topic here when the group moves on · Add a green sticky with the key takeaway
+
+Also on the board: Brainstorm topics · Pitch &amp; dot-vote · Discuss the top topic · Keep going or move on? · Capture takeaways · 5 min · one topic per sticky · One sentence each · 3 dots per person · Start the 8-minute timer · Vote ↑ → ↓ when time is up · Green sticky, then move to Discussed · TAKEAWAYS &amp; ACTIONS · Action #1 · Action #2 · Action #3 · Owner: (×3) · Done when: (×3)
+
+Footer questions: “What&#x27;s the most valuable thing we could talk about right now?” “Has this conversation run its course, or is there more value to unlock?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/lean-coffee-board.html</pre></details></section>
     <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
     <footer><span>“Has this conversation run its course, or is there more value to unlock?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
   </div>

@@ -82,6 +82,14 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
 .content a{color:#9A3412;}
 @media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:var(--accent);}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
 .boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
 .boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
@@ -121,6 +129,28 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
     <div class="two"><div><h3>Within 24 hours</h3><p>Photograph or export the board. Add each action to the team backlog with its owner, and share a short summary.</p></div><div><h3>During the sprint / quarter</h3><p>Check actions at stand-up or in the weekly sync. Unblock early rather than reporting failure at the next retro.</p></div><div><h3>At the next retro</h3><p>Open by reviewing each action: done, in progress, or dropped, and why. Celebrate the ones that worked.</p></div><div><h3>Running remotely</h3><p>Lock the SVG as a background, pre-create sticky stacks in both colours, use built-in voting and a visible timer.</p></div></div>
     <h2><span class="n">6</span>How it fits the toolkit</h2>
     <p>Feed experiment results from the <a href="experiment-canvas.html">1% Experiment Canvas</a> into each retro, and rotate formats (<a href="facilitator-guide-retro-start-stop-continue.html">Start · Stop · Continue</a>, <a href="facilitator-guide-retro-4ls.html">4 Ls</a>, <a href="facilitator-guide-retro-mad-sad-glad.html">Mad · Sad · Glad</a>, <a href="facilitator-guide-retro-sailboat.html">Sailboat</a>) so conversations stay fresh. If the same theme keeps coming back, it is a system issue: take it to a <a href="facilitator-guide-marginal-gains.html">Marginal Gains Workshop</a>.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “The 4 Ls Retrospective”, a workshop board.
+
+Purpose: Reflect on recent work through four lenses: what we liked, learned, lacked and longed for.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+Key: Yellow Sticky = What Happened · Green Sticky = Idea / Action · Dot = Vote (3 per person)
+
+Sections:
+1. Liked: middle left, about 25% wide and 75% tall.
+   Content: What did we enjoy? · Moments of good collaboration · Things that went better than expected
+2. Learned: middle centre, about 25% wide and 75% tall; header colour blue.
+   Content: What did we discover? · New skills, tools or insights · Surprises about users or the system
+3. Lacked: middle centre, about 25% wide and 75% tall.
+   Content: What was missing? · Information, people or time · Clarity, focus or support
+4. Longed For: middle right, about 25% wide and 75% tall; header colour purple.
+   Content: What do we wish we had? · Things that would make work easier · Changes we&#x27;d love to see
+
+Also on the board: sprint, month, quarter… · ACTIONS WE&#x27;LL TAKE INTO OUR NEXT · Action #1 · Action #2 · Action #3 · Owner: (×3) · Done when: (×3)
+
+Footer questions: “What did we learn that we don&#x27;t want to forget?” “Which ‘lacked’ or ‘longed for’ could we fix by 1% next time?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/retro-board-4ls.html</pre></details></section>
     <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
     <footer><span>“Which ‘lacked’ or ‘longed for’ could we fix by 1%?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
   </div>

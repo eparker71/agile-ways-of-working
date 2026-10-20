@@ -82,6 +82,14 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
 .content a{color:#9A3412;}
 @media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:var(--accent);}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
 .boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
 .boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
@@ -121,6 +129,28 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
     <div class="two"><div><h3>Straight away</h3><p>Photograph the map in sections. Transfer stories to the backlog, keeping their slice and order.</p></div><div><h3>Refine</h3><p>Split any Release 1 story that is too big using the Story Splitting poster, then use Example Mapping on each.</p></div><div><h3>Each sprint</h3><p>Move completed stories, adjust slices as you learn, and review the map at Sprint Review.</p></div><div><h3>After release</h3><p>Check the slice&#x27;s outcome. Did users reach their goal? Re-slice what&#x27;s next.</p></div></div>
     <h2><span class="n">6</span>How it fits the toolkit</h2>
     <p>The break-down tools work from big to small: the <a href="facilitator-guide-epic-breakdown-canvas.html">Epic Breakdown Canvas</a> turns an idea into an MVP and features, the <a href="facilitator-guide-story-map.html">Story Map</a> lays out the user journey and release slices, the <a href="facilitator-guide-story-splitting.html">Story Splitting poster</a> makes stories small enough for a sprint, and <a href="facilitator-guide-example-mapping.html">Example Mapping</a> checks that each story is understood and ready. The <a href="facilitator-guide-backlog-anatomy.html">Backlog Item Anatomy</a> poster shows what a good epic, feature and story look like.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “User Story Map”, a workshop board.
+
+Purpose: Map the user&#x27;s journey, then slice it into releases that each deliver a complete, usable path.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+Key: Blue Sticky = Activity (backbone) · Yellow Sticky = User Task · Green Sticky = Story / Detail
+
+Sections:
+Rows, top to bottom (each is a full-width band; the first label in bold is the row heading):
+1. Persona / user: · Their goal: · Product / epic:
+2. Activities: USER JOURNEY → LEFT TO RIGHT, IN THE ORDER USERS DO THINGS · The backbone: the big things · …one sticky per step, left to right · users do, in order
+3. User Tasks: Under each activity: · The walking skeleton: steps · …one sticky per step, left to right · within each activity
+4. RELEASE SLICES: STORIES GO BELOW EACH TASK, MOST IMPORTANT AT THE TOP. EACH SLICE IS A COMPLETE PATH
+5. Release 1 · MVP: The thinnest slice that lets a user reach their goal end-to-end · Stories for this slice, under the task they belong to
+6. Outcome: · Target:
+7. Release 2: Makes the journey better: · more options, fewer errors · Stories for this slice, under the task they belong to
+8. Outcome: · Target:
+9. Later: Nice to have. · Revisit after learning from earlier releases · Stories for this slice, under the task they belong to · Outcome: · Target:
+
+Footer questions: “What&#x27;s the smallest slice that lets a user reach their goal end-to-end?” “What will we learn from releasing this slice?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/story-map-board.html</pre></details></section>
     <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
     <footer><span>“What will we learn from releasing this slice?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
   </div>

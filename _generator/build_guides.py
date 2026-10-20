@@ -15,6 +15,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from brand import ACCENT, NAVY, CREDIT, SITE, AUTHOR, FONT_URL as _FONT_URL  # noqa: E402  (edit brand.py to rebrand)
 from docx_writer import Doc  # noqa: E402
+from board_spec import spec as board_spec  # noqa: E402
 FONT_URL = _FONT_URL.replace("&", "&amp;")
 
 BLUE, EMERALD, PURPLE, ORANGE = ("#1E3A8A", "#DBEAFE"), ("#065F46", "#D1FAE5"), ("#581C87", "#EDE9FE"), ("#9A3412", "#FFEDD5")
@@ -2892,6 +2893,32 @@ def li(items):
     return "".join(f"<li>{i}</li>" for i in items)
 
 
+def guide_spec(g):
+    """The AI whiteboard prompt for the guide's board, read from the board's SVG (or "" if there isn't one)."""
+    board = g["boards"][0][1]
+    svg = OUT / board.replace(".html", ".svg")
+    if not svg.exists():
+        return ""
+    return board_spec(svg, f"https://{SITE}/{board}")
+
+
+SPEC_NOTE = ("Paste this into your whiteboard's AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, "
+             "to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact "
+             "copy, import the SVG as a locked background instead.")
+
+
+def spec_html(g):
+    text = guide_spec(g)
+    if not text:
+        return ""
+    return ('<section class="spec"><h3>Recreate it in your whiteboard</h3>'
+            f'<p>{escape(SPEC_NOTE)}</p>'
+            '<button type="button" onclick="(function(b){var t=b.parentNode.querySelector(\'pre\').textContent;'
+            'navigator.clipboard.writeText(t).then(function(){b.textContent=\'Copied ✓\';setTimeout(function(){b.textContent=\'Copy AI prompt\'},2000)})})(this)">'
+            'Copy AI prompt</button>'
+            f'<details><summary>Show the prompt</summary><pre>{escape(text)}</pre></details></section>')
+
+
 def render(g, css):
     n = 0
 
@@ -2941,6 +2968,7 @@ def render(g, css):
         f'<div class="two">{after}</div>',
         h2("How it fits the toolkit"),
         f'<p>{g["toolkit"]}</p>',
+        spec_html(g),
         f'<p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>',
         f'<footer><span>{escape(g["foot"])}</span><span>{escape(CREDIT)}</span></footer>',
     ]
@@ -3003,6 +3031,13 @@ def render_docx(g):
         d.labelled(t + ":", desc)
     d.heading("How it fits the toolkit")
     d.para(g["toolkit"])
+    text = guide_spec(g)
+    if text:
+        d.heading("Recreate it in your whiteboard")
+        d.para(SPEC_NOTE, "Small")
+        for line in text.split("\n"):
+            if line.strip():
+                d.para(escape(line))
     d.para(f"Boards: https://{SITE}/{g['boards'][0][1]}  ·  Online guide: https://{SITE}/facilitator-guide-{g['slug']}.html", "Small")
     d.para(CREDIT + " · Adapt it freely; please keep the credit and say what you changed.", "Small")
     d.save(OUT / f"facilitator-guide-{g['slug']}.docx")

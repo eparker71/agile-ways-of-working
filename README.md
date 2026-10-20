@@ -10,7 +10,7 @@ Each board comes as:
 - **`.html`**: view in a browser or print. Boards print at A3 landscape; guides print at A4 portrait.
 - **`.svg`**: import into Miro, Mural or FigJam as a locked background, or edit it in Figma, Inkscape or Illustrator.
 
-Each generated facilitator guide also comes as an editable **Word (`.docx`)** file.
+Each generated facilitator guide also comes as an editable **Word (`.docx`)** file. Every guide also has a **"Recreate it in your whiteboard"** section: an AI prompt, read automatically from the board, that you can paste into Miro AI, Atlassian Rovo or another assistant to build an editable, native version of the board.
 
 ## Licence and reuse
 
@@ -120,6 +120,7 @@ python3 _generator/build_glossary.py # glossary.html
 
 - `brand.py` holds the brand: accent and header colours, fonts and the credit line. All four generators read it, so rebranding is one edit.
 - `build_boards.py` holds the shared visual components (header, panels, sticky zones, action cards, footer). Boards don't assume a cadence: where a period matters, they leave a blank to write in (sprint, month, quarter). The old `-sprint` / `-quarter` page names redirect to the single boards (`REDIRECTS`).
+- `board_spec.py` reads a board's SVG (panels, positions, colours and text) and turns it into the whiteboard prompt shown in each guide.
 - `build_guides.py` holds each guide's content in the `GUIDES` list. It copies its styling from `facilitator-guide-marginal-gains.html`, and writes a Word copy of each guide with `docx_writer.py` (standard library only).
 - `build_roles.py` holds the `ROLES` table: which tools suit each role. It writes `start-here-by-role.html`, tags each `index.html` card with `data-roles`, and builds the home page's sticky section menu (from the `<h2 id>` headings; short labels in `SHORT`), search box and role filter. Re-run it after adding a card or section.
 - `build_glossary.py` holds the `TERMS` list (definition, framework note, related tools). Links use the `TOOLS` table from `build_roles.py`.

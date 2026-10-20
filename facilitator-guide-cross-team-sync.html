@@ -82,6 +82,14 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
 .content a{color:#9A3412;}
 @media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:var(--accent);}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
 .boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
 .boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
@@ -121,6 +129,27 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
     <div class="two"><div><h3>Straight away</h3><p>Share the decisions and actions with all teams.</p></div><div><h3>Within a day</h3><p>Owners act on impediments, or escalate those they can&#x27;t solve.</p></div><div><h3>Next sync</h3><p>Start by reviewing actions and impediments from last time.</p></div><div><h3>Retro</h3><p>Bring recurring impediments to a cross-team retrospective.</p></div></div>
     <h2><span class="n">6</span>How it fits the toolkit</h2>
     <p>The program tools coordinate several teams: agree <a href="facilitator-guide-okr.html">Objectives &amp; Key Results</a>, plan together with the <a href="facilitator-guide-cross-team-planning.html">Cross-Team Planning</a> board, make links visible on the <a href="facilitator-guide-dependency-map.html">Dependency Map</a>, and keep in step with a regular <a href="facilitator-guide-cross-team-sync.html">Cross-Team Sync</a>. Each team still plans, reviews and improves with the team-level tools.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Cross-Team Sync”, a workshop board.
+
+Purpose: A short, regular check across teams: progress toward shared objectives, dependencies, and what&#x27;s blocking whom.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+
+Header fields to fill in: Group, Date
+
+Sections:
+1. Team Updates: top full width, about 100% wide and 50% tall; header colour blue.
+   Subtitle: One person per team · about 2 minutes each
+   Content: Team: · Progress toward shared objectives: · Next up: · Blocked by / needs: · Dependencies at risk: · Conf. 1–5:
+2. Cross-Team Impediments: bottom left, about 65% wide and 50% tall; header colour orange.
+   Subtitle: Problems no single team can solve
+   Content: New · Being worked · Resolved · Raised today · Has an owner and a next step · Say what fixed it
+3. Decisions &amp; Actions: bottom right, about 35% wide and 50% tall; header colour dark green.
+   Content: Decision / action: · Owner: · Due:
+
+Footer questions: “What&#x27;s blocking another team that we could help with today?” “Are we still on track for the shared objectives?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/cross-team-sync-board.html</pre></details></section>
     <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
     <footer><span>“Are we still on track for the shared objectives?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
   </div>

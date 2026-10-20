@@ -82,6 +82,14 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
 .content a{color:#9A3412;}
 @media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:var(--accent);}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
 .boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
 .boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
@@ -121,6 +129,33 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
     <div class="two"><div><h3>Straight away</h3><p>Rebuild the physical or digital board to match the design. Write the policies on it.</p></div><div><h3>First week</h3><p>Walk the board right to left at every daily sync. Notice when limits bite.</p></div><div><h3>Each retro</h3><p>Ask: is the board still showing reality? Adjust one thing at a time.</p></div><div><h3>After a month</h3><p>Start the Ageing WIP chart using the cycle time data the board now gives you.</p></div></div>
     <h2><span class="n">6</span>How it fits the toolkit</h2>
     <p>The flow pack works as a set. <a href="facilitator-guide-kanban-board-design.html">Kanban Board Design</a> makes the workflow visible and limits WIP. <a href="facilitator-guide-ageing-wip.html">Ageing WIP &amp; SLE</a> shows which items are at risk and sets the swarm triggers used in <a href="facilitator-guide-buffering-swarming.html">Buffering &amp; Swarming</a>. <a href="facilitator-guide-blocker-clustering.html">Blocker Clustering</a> finds why work gets stuck, and the <a href="facilitator-guide-skills-matrix.html">Skills Matrix</a> shows who can swarm. Bring the results to retrospectives and the Team Health Check.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Kanban Board Design”, a workshop board.
+
+Purpose: Design a board that shows how work really flows: columns, WIP limits, exit policies and classes of service.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+
+Header fields to fill in: Team, Date
+
+Sections:
+1. Workflow Columns: top full width, about 100% wide and 40% tall; header colour blue.
+   Subtitle: Left to right · one column per real state or queue
+   Content: Column 1: · e.g. Options · Column 2: · e.g. Ready · Column 3: · e.g. Building · Column 4: · e.g. Waiting for review · Column 5: · e.g. Testing · Column 6: · e.g. Ready to release · Column 7: · Done · Name: (×7) · WIP limit: (×7) · Done when (exit policy): (×7) · Active (×7) · Queue (×7)
+2. Classes of Service: middle left, about 65% wide and 35% tall; header colour purple.
+   Subtitle: How we treat different kinds of work
+   Content: Class: · When to use it: · Our policy: · Limit: · Expedite · Urgent, high cost of delay now · Fixed date · Value drops after a date · Standard · Most work, in priority order · Intangible · Improvement, tech debt
+3. Board Policies: middle right, about 35% wide and 35% tall; header colour slate grey.
+   Subtitle: Write them on the board
+   Content: We pull work when: · Blocked items are marked by: · Replenishment: when &amp; who: · We walk the board at: · Definition of Done lives at: · Policies reviewed every:
+4. Cards &amp; Swimlanes: bottom left, about 50% wide and 20% tall; header colour sky blue.
+   Content: Each card shows: · Title · Owner · Age (days) · Blocked flag · Class of service · Due date · Swimlanes (if any):
+5. Flow Metrics to Watch: bottom right, about 50% wide and 20% tall; header colour dark green.
+   Subtitle: Learn, don&#x27;t judge
+   Content: WIP · items in progress · Throughput · items done per week · Cycle time · start to done, in days · Work item age · how long open items have run · Blocked time · days items spend blocked · Flow efficiency · active time / total time
+
+Footer questions: “Where does work wait, and is that visible on our board?” “What would happen if we lowered this WIP limit by one?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/kanban-board-design.html</pre></details></section>
     <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
     <footer><span>“What would happen if we lowered this WIP limit by one?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
   </div>

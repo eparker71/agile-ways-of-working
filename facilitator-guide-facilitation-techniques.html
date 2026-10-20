@@ -82,6 +82,14 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
 .content a{color:#9A3412;}
 @media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:var(--accent);}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
 .boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
 .boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
@@ -121,6 +129,45 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
     <div class="two"><div><h3>After each session</h3><p>Use the check-out scores to adjust the next design.</p></div><div><h3>Over time</h3><p>Build a short list of favourite techniques for each kind of meeting.</p></div><div><h3>Share</h3><p>Teach one technique to others on your team each month.</p></div><div><h3>Go further</h3><p>Explore other facilitation libraries and books once these feel natural.</p></div></div>
     <h2><span class="n">6</span>How it fits the toolkit</h2>
     <p>The techniques appear throughout the toolkit: silent writing and dot voting in the retros and Lean Coffee, fist of five in Sprint and Cross-Team Planning, and timeboxing in Example Mapping. The <a href="scrum-master-agile-coach-cheat-sheet.html">Scrum Master &amp; Agile Coach Cheat Sheet</a> has more facilitation moves and decision methods.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Facilitation Techniques”, a workshop board.
+
+Purpose: Twelve simple techniques for better group conversations, plus tips for remote and hybrid sessions.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+
+Header fields to fill in: Session, Facilitator
+
+Sections:
+1. Check-in: top left, about 25% wide and 30% tall.
+   Content: When: · Start: help everyone arrive and speak once early. · How: · 1. Ask one light question · 2. Go round, a sentence each · 3. No discussion yet · Voices heard early speak up later.
+2. Silent Writing: top centre, about 25% wide and 30% tall.
+   Content: When: · Before discussing, so ideas aren&#x27;t shaped by the loudest. · How: · 1. Pose one clear question · 2. Everyone writes alone, 3–5 min · 3. One idea per sticky · Quiet people contribute as much as anyone.
+3. Think · Pair · Share: top centre, about 25% wide and 30% tall.
+   Content: When: · To deepen ideas before the whole group hears them. · How: · 1. Think alone for a minute · 2. Discuss in pairs · 3. Pairs share with the group · Pairs filter and strengthen ideas fast.
+4. Round-Robin: top right, about 25% wide and 30% tall.
+   Content: When: · When a few voices dominate, or you need every view. · How: · 1. Go round in order · 2. Each person speaks briefly · 3. “Pass” is always allowed · Equal airtime, without putting people on the spot.
+5. Affinity Clustering: middle left, about 25% wide and 30% tall.
+   Content: When: · To make sense of many ideas quickly. · How: · 1. Put all stickies up · 2. Move similar ones together, silently · 3. Name each cluster · Silent moving avoids arguments about wording.
+6. Dot Voting: middle centre, about 25% wide and 30% tall.
+   Content: When: · To prioritise a list in minutes. · How: · 1. Give each person 3 dots · 2. Vote at the same time · 3. Count, then discuss the top items · Vote together, so no one follows the leader.
+7. Fist of Five: middle centre, about 25% wide and 30% tall.
+   Content: When: · To check support for a proposal or plan. · How: · 1. Everyone shows 0–5 fingers · 2. Ask the lowest votes what&#x27;s missing · 3. Adjust and re-vote · Low votes are information, not obstruction.
+8. Agreement Scale: middle right, about 25% wide and 30% tall.
+   Content: When: · To show how far people really support a decision. · How: · 1. Offer a 1–5 or 1–8 scale · 2. From “fully support” to “block” · 3. Discuss the spread · Shows lukewarm support that a yes/no vote hides.
+9. Timeboxing: bottom left, about 25% wide and 30% tall.
+   Content: When: · For any activity that could run on forever. · How: · 1. Agree the time up front · 2. Show a visible timer · 3. At zero, decide: stop or extend · Ending on time builds trust in the process.
+10. Parking Lot: bottom centre, about 25% wide and 30% tall.
+   Content: When: · When a useful topic is off the current agenda. · How: · 1. Write it on the parking lot · 2. Move on · 3. Review it before closing · Respects the idea without derailing the session.
+11. Fishbowl: bottom centre, about 25% wide and 30% tall.
+   Content: When: · For a big group to hear a small, focused conversation. · How: · 1. A few people talk in an inner circle · 2. Others listen around them · 3. Leave an empty chair to join · Lets a large group follow a real dialogue.
+12. Check-out: bottom right, about 25% wide and 30% tall.
+   Content: When: · End: capture value and close the session well. · How: · 1. Each person says one takeaway · 2. Optional: rate the session 1–5 · 3. Thank everyone · A score of 1–5 for time well spent tells you what to change.
+
+Also on the board: Remote &amp; hybrid: · One shared board · Everyone works in it, not just the facilitator. · Everyone on their own device · In hybrid sessions, room and remote are equal. · Use chat for silent writing · Then paste ideas onto the board. · Name the roles · Facilitator, timekeeper, scribe, tech help. · Break every 50 minutes · Screens tire people faster than rooms. · Cameras optional · Ask for voices and participation, not faces.
+
+Footer questions: “Who hasn&#x27;t spoken yet, and how could we make it easy for them?” “Are we still exploring, or is it time to decide?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/facilitation-techniques-poster.html</pre></details></section>
     <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
     <footer><span>“Are we still exploring, or is it time to decide?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
   </div>

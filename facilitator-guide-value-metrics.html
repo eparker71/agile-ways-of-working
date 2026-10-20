@@ -82,6 +82,14 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
 .content a{color:#9A3412;}
 @media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:var(--accent);}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
 .boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
 .boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
 .boards a.primary{background:var(--accent);border-color:var(--accent);}
@@ -121,6 +129,39 @@ footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display
     <div class="two"><div><h3>Straight away</h3><p>Share the board with the teams and stakeholders affected.</p></div><div><h3>This month</h3><p>Start the experiments and set up the data you&#x27;re missing.</p></div><div><h3>Each review</h3><p>Update the measures, look at trends, and decide what to keep or change.</p></div><div><h3>Quarterly</h3><p>Revisit the goals, and feed insights into OKRs and the Prioritisation Board.</p></div></div>
     <h2><span class="n">6</span>How it fits the toolkit</h2>
     <p>Value metrics sit above the rest of the toolkit: use them with <a href="facilitator-guide-okr.html">OKRs</a> to set direction, the <a href="facilitator-guide-prioritisation.html">Prioritisation Board</a> to decide what to fund, and the flow pack (for example <a href="facilitator-guide-ageing-wip.html">Ageing WIP</a>) to improve time to market. The <a href="facilitator-guide-status-report.html">Outcome Status Report</a> is a good place to share them.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Value Metrics”, a workshop board.
+
+Purpose: Measure the value you deliver and your ability to deliver more, then pick experiments to improve it.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+
+Header fields to fill in: Product / Org, Date
+
+Sections:
+1. Goals: top full width, about 100% wide and 15% tall; header colour slate grey.
+   Subtitle: Big and far · next milestone · now
+   Content: Strategic goal · The big, long-term ambition · Intermediate goal · The next milestone toward it · Immediate tactical goal · What we&#x27;re working on now
+2. Current Value: middle left, about 25% wide and 60% tall.
+   Subtitle: Value delivered today
+   Content: How much value do customers get now? · Example measures: · Customer satisfaction · Usage / adoption · Revenue per customer · Employee satisfaction · Our measure: · Now: · Target: · Trend: · What the numbers tell us:
+3. Unrealised Value: middle centre, about 25% wide and 60% tall; header colour purple.
+   Subtitle: Value still on the table
+   Content: How much more value could we deliver? · Example measures: · Market share gap · Unmet customer needs · Demand we can&#x27;t serve · Competitor gaps · Our measure: · Now: · Target: · Trend: · What the numbers tell us:
+4. Time to Market: middle centre, about 25% wide and 60% tall.
+   Subtitle: How fast we learn &amp; deliver
+   Content: How quickly can we deliver and learn? · Example measures: · Lead / cycle time · Release frequency · Time to first feedback · Time to fix · Our measure: · Now: · Target: · Trend: · What the numbers tell us:
+5. Ability to Innovate: middle right, about 25% wide and 60% tall; header colour orange.
+   Subtitle: What slows new value
+   Content: What stops us delivering new value? · Example measures: · % time on new features · Technical debt · Defect trends · Time lost to blockers · Our measure: · Now: · Target: · Trend: · What the numbers tell us:
+6. Experiments to Improve: bottom left, about 65% wide and 20% tall; header colour dark green.
+   Subtitle: One per key value area at most
+   Content: Area: · Experiment: · MEASURE WE EXPECT TO MOVE · Owner:
+7. Review Rhythm: bottom right, about 35% wide and 20% tall; header colour amber.
+   Content: Measures updated every: · Reviewed with leaders at: · Next review:
+
+Footer questions: “How do we know we&#x27;re delivering value, not just output?” “What&#x27;s stopping us from delivering more value, sooner?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/value-metrics-board.html</pre></details></section>
     <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
     <footer><span>“What&#x27;s stopping us from delivering more value, sooner?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
   </div>
