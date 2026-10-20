@@ -10,8 +10,9 @@ A static site of printable agile facilitation tools: A3 landscape boards (each a
 
 ```sh
 python3 _generator/build_boards.py   # every generated board → <slug>.svg + <slug>.html
-python3 _generator/build_guides.py   # every generated guide → facilitator-guide-<slug>.html
+python3 _generator/build_guides.py   # every generated guide → facilitator-guide-<slug>.html + .docx
 python3 _generator/build_roles.py    # start-here-by-role.html + role tags/filter in index.html
+python3 _generator/build_glossary.py # glossary.html (imports TOOLS from build_roles.py)
 ```
 
 Each script regenerates everything it owns (there's no per-file target). They're idempotent.
@@ -20,8 +21,9 @@ Each script regenerates everything it owns (there's no per-file target). They're
 
 Never edit generated files directly; edit the script and re-run.
 
-- **Generated:** every board except Marginal Gains, every `facilitator-guide-*.html` except Marginal Gains, `start-here-by-role.html`.
-- **Hand-written:** `marginal-gains-workshop-board-{sprint,quarter}.{svg,html}`, `facilitator-guide-marginal-gains.html`, `scrum-master-agile-coach-cheat-sheet.html`, `jira-cheat-sheet.html`, `index.html`.
+- **Generated:** every board except Marginal Gains, every `facilitator-guide-*.html` except Marginal Gains, `start-here-by-role.html`, `glossary.html`.
+- **Hand-written:** `marginal-gains-workshop-board-{sprint,quarter}.{svg,html}`, `facilitator-guide-marginal-gains.html`, `scrum-master-agile-coach-cheat-sheet.html`, `jira-cheat-sheet.html`, `make-it-yours.html`, `index.html`, `LICENSE.md`.
+- **Brand:** colours, fonts and the credit line (© author · CC BY 4.0 · site) live in `_generator/brand.py` and are imported by all four generators. The hand-written pages carry the same values by hand, so update them too when rebranding.
 - `index.html` is hand-written **except** the regions `build_roles.py` maintains: the `<!-- roles:… -->` / `/* roles:css */` blocks and each card's `data-roles` attribute.
 - `build_guides.py` copies its CSS from `facilitator-guide-marginal-gains.html` at run time, so editing that file's `<style>` restyles every guide.
 - `jira-cheat-sheet.html` was assembled from the main cheat sheet's CSS; the two share styles by copy, not by reference.
@@ -36,7 +38,9 @@ Never edit generated files directly; edit the script and re-run.
 - Usual layout: content from y=148 to y=1060, 24px outer margin, 14px gaps; rows often split 808 / 397 / 397 or 1082 / 536 wide.
 - `write_board` adds a fixed "Facilitator guide →" link from `guide_for(slug)`. That function strips `-board`/`-poster` (`retro-board-X-{sprint,quarter}` → `facilitator-guide-retro-X.html`), so a guide's `slug` must match.
 
-**`build_guides.py`** holds guide content as dicts (in `GUIDES` and lists appended to it). Required keys: `slug, title, subtitle, tag, boards, lede, intro, glance, before, agenda_heads, agenda, sections_title, sections_intro, sections, tips, pitfalls, after, toolkit, foot`. `render()` turns each one into a fixed page layout. `intro`, `before` and `toolkit` may contain HTML; most other fields are escaped. Shared "how it fits the toolkit" paragraphs are constants such as `LIFECYCLE_TOOLKIT`, `PROJECT_TOOLKIT`, `PROGRAM_TOOLKIT` and `FLOW_TOOLKIT`.
+**Licensing:** content is CC BY 4.0 and `_generator/` code is MIT (`LICENSE.md`). Every page and board shows the credit line; keep it on new pages.
+
+**`build_guides.py`** holds guide content as dicts (in `GUIDES` and lists appended to it). Required keys: `slug, title, subtitle, tag, boards, lede, intro, glance, before, agenda_heads, agenda, sections_title, sections_intro, sections, tips, pitfalls, after, toolkit, foot`. `render()` turns each one into a fixed page layout, and `render_docx()` writes the matching Word file through `docx_writer.py`, a small zipfile-based WordprocessingML writer (headings, bullets, tables, bold/italic runs from simple HTML). Validate `.docx` output by parsing each XML part and with `textutil -convert txt`. `intro`, `before` and `toolkit` may contain HTML; most other fields are escaped. Shared "how it fits the toolkit" paragraphs are constants such as `LIFECYCLE_TOOLKIT`, `PROJECT_TOOLKIT`, `PROGRAM_TOOLKIT` and `FLOW_TOOLKIT`.
 
 **`build_roles.py`** holds two tables, which are the single source of truth for the role feature:
 - `TOOLS`: key → (title, board, guide, href-prefix for matching index cards).
@@ -51,7 +55,7 @@ It writes the role page and tags each index card by matching the card's `class="
 4. Entries in `TOOLS` and `ROLES` in `build_roles.py`, then re-run it.
 5. Rows in `README.md`'s tool table and lifecycle sections.
 
-Optionally, add a link in the cheat sheet's "Your Toolkit" panel.
+If the tool introduces new terms, add them to `TERMS` in `build_glossary.py`. Optionally, add a link in the cheat sheet's "Your Toolkit" panel.
 
 ## Verifying changes
 

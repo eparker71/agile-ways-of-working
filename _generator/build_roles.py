@@ -14,8 +14,10 @@ from html import escape
 from pathlib import Path
 
 OUT = Path(__file__).resolve().parent.parent
-FONT_URL = ("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600"
-            "&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap")
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from brand import ACCENT, NAVY, CREDIT, FONT_URL as _FONT_URL  # noqa: E402  (edit brand.py to rebrand)
+FONT_URL = _FONT_URL.replace("&", "&amp;")
 
 # key: (title, board page, guide page or None, href prefix used to match index cards)
 TOOLS = {
@@ -33,6 +35,7 @@ TOOLS = {
     "forecast": ("Release Forecast & Burn-up", "release-forecast-board.html", "facilitator-guide-release-forecast.html", "release-forecast"),
     "raid": ("RAID Log", "raid-log-board.html", "facilitator-guide-raid-log.html", "raid-log"),
     "status": ("Outcome Status Report", "status-report-board.html", "facilitator-guide-status-report.html", "status-report"),
+    "backlog": ("Backlog Item Anatomy", "backlog-anatomy-poster.html", "facilitator-guide-backlog-anatomy.html", "backlog-anatomy"),
     "epic": ("Epic Breakdown Canvas", "epic-breakdown-canvas.html", "facilitator-guide-epic-breakdown-canvas.html", "epic-breakdown"),
     "storymap": ("User Story Map", "story-map-board.html", "facilitator-guide-story-map.html", "story-map"),
     "splitting": ("Story Splitting", "story-splitting-poster.html", "facilitator-guide-story-splitting.html", "story-splitting"),
@@ -72,17 +75,17 @@ ROLES = [
      "You help the team deliver well: smooth flow, useful events, and impediments removed.",
      ["sm-cheat", "retro", "impediments"],
      ["sprint-planning", "sprint-review", "team-charter", "ai", "health", "kanban", "ageing", "buffer", "blockers", "pairing",
-      "skills", "example", "splitting", "rootcause", "experiment", "marginal", "lean-coffee", "jira", "adkar", "coaching", "psych-safety", "delivery-metrics"]),
+      "skills", "example", "splitting", "rootcause", "experiment", "marginal", "lean-coffee", "jira", "adkar", "coaching", "psych-safety", "delivery-metrics", "backlog"]),
     ("coach", "Agile Coach",
      "You help teams and leaders improve how they work, and coach the system beyond any one team.",
      ["health", "marginal", "topology"],
      ["sm-cheat", "retro", "team-charter", "ai", "experiment", "rootcause", "kanban", "ageing", "blockers", "skills",
-      "value", "okr", "ctp", "sync", "impediments", "lean-coffee", "adkar", "coaching", "psych-safety", "delegation", "cross-retro", "portfolio-kanban"]),
+      "value", "okr", "ctp", "sync", "impediments", "lean-coffee", "adkar", "coaching", "psych-safety", "delegation", "cross-retro", "portfolio-kanban", "backlog"]),
     ("po", "Product Owner / Product Manager",
      "You decide what's worth building, for whom, and in what order, and you prove it worked.",
      ["vision", "ost", "prioritisation"],
      ["epic", "storymap", "splitting", "example", "sprint-planning", "sprint-review", "okr", "value", "forecast",
-      "stakeholder", "experiment", "jira", "portfolio-kanban"]),
+      "stakeholder", "experiment", "jira", "portfolio-kanban", "backlog"]),
     ("pm", "Project Manager",
      "You get a defined piece of work delivered: scope, stakeholders, risks, forecasts and decisions.",
      ["kickoff", "raid", "status"],
@@ -104,16 +107,16 @@ ROLES = [
      "You build capable teams and healthy systems: skills, flow, quality and sensible team boundaries.",
      ["skills", "topology", "kanban"],
      ["pairing", "ageing", "buffer", "blockers", "ai", "team-charter", "rootcause", "example", "splitting",
-      "dependency", "health", "impediments", "delivery-metrics", "psych-safety", "coaching", "delegation"]),
+      "dependency", "health", "impediments", "delivery-metrics", "psych-safety", "coaching", "delegation", "backlog"]),
     ("ux", "Designer / Business Analyst",
      "You understand users and the problem, and help the team build the right thing, clearly specified.",
      ["ost", "storymap", "example"],
-     ["vision", "splitting", "epic", "sprint-review", "premortem", "pairing"]),
+     ["vision", "splitting", "epic", "sprint-review", "premortem", "pairing", "backlog"]),
     ("team", "Team Member",
      "You do the work, and you help decide how the team works and improves.",
      ["team-charter", "retro", "pairing"],
      ["ai", "sprint-planning", "sprint-review", "lean-coffee", "skills", "kanban", "buffer", "impediments", "example",
-      "splitting", "health", "psych-safety"]),
+      "splitting", "health", "psych-safety", "backlog"]),
 ]
 
 for _id, _n, _d, start, also in ROLES:
@@ -123,7 +126,7 @@ for _id, _n, _d, start, also in ROLES:
 
 def roles_for(href):
     """Role ids for the index card whose Open link is href."""
-    if href.startswith("start-here-by-role"):
+    if href.startswith(("start-here-by-role", "glossary", "make-it-yours")):
         return [rid for rid, *_ in ROLES]
     for key, (_, _, _, prefix) in TOOLS.items():
         if href.startswith(prefix):
@@ -160,7 +163,7 @@ def build_page():
 <title>Start Here by Role</title>
 <link rel="stylesheet" href="{FONT_URL}">
 <style>
-:root{{--accent:#eb6c36;--navy:#0C1A2E;--ink:#1E293B;--muted:#64748B;--rule:#E2E8F0;}}
+:root{{--accent:{ACCENT};--navy:{NAVY};--ink:#1E293B;--muted:#64748B;--rule:#E2E8F0;}}
 *{{box-sizing:border-box;}}
 html,body{{margin:0;background:#F1F5F9;}}
 body{{font-family:'Geist',Inter,system-ui,sans-serif;color:var(--ink);font-size:14px;line-height:1.5;}}
@@ -202,7 +205,7 @@ footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#94A3B8;text-
 <main><div class="wrap">
 {chr(10).join(sections)}
 </div></main>
-<footer>Systems-Thinking · Continuous Improvement · Team-Led Change</footer>
+<footer>{escape(CREDIT)}</footer>
 </body>
 </html>
 """

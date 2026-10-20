@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Make It Yours</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{--accent:#eb6c36;--navy:#0C1A2E;--ink:#1E293B;--muted:#64748B;--rule:#E2E8F0;}
+*{box-sizing:border-box;}
+html,body{margin:0;background:#F1F5F9;}
+body{font-family:'Geist',Inter,system-ui,sans-serif;color:var(--ink);font-size:14.5px;line-height:1.6;}
+header{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:36px 16px 28px;}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px;}
+h1{font:400 44px/1.05 'Instrument Serif',Georgia,serif;margin:0 0 8px;}
+header p{color:#94A3B8;margin:0;max-width:680px;}
+header a.back{color:#94A3B8;font:500 11px 'Geist Mono',monospace;letter-spacing:.06em;}
+main{padding:24px 0 48px;}
+section{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:20px 24px;margin:0 0 16px;box-shadow:0 1px 3px rgba(0,0,0,.05);}
+section.lic{border-left:4px solid var(--accent);}
+h2{font:400 26px/1.15 'Instrument Serif',Georgia,serif;margin:0 0 4px;}
+.lbl{font:600 9px 'Geist Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#9A3412;}
+p{margin:8px 0;}
+ol,ul{margin:8px 0;padding-left:22px;}
+li{margin:4px 0;}
+a{color:#9A3412;}
+code{font:500 12.5px 'Geist Mono',monospace;background:#F1F5F9;border:1px solid var(--rule);border-radius:4px;padding:1px 5px;}
+blockquote{margin:10px 0;padding:8px 14px;border-left:3px solid var(--accent);background:#FFF7ED;font-size:13.5px;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;}
+.grid div{border:1px solid var(--rule);border-radius:8px;padding:10px 14px;}
+.grid b{display:block;}
+footer{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#94A3B8;text-align:center;padding:0 16px 32px;}
+@media (max-width:640px){.grid{grid-template-columns:1fr;}}
+@media print{section{break-inside:avoid;box-shadow:none;}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="back" href="index.html">← All tools</a>
+  <h1>Make It Yours</h1>
+  <p>Every board, guide and page here can be copied and changed to fit your teams. Pick the route that matches what you want to change and the tools you're comfortable with.</p>
+</div></header>
+<main><div class="wrap">
+
+<section class="lic">
+  <div class="lbl">The licence</div>
+  <h2>Free to use, adapt and share, with credit</h2>
+  <p>The content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 (CC BY 4.0)</a>, and the generator code under the MIT licence. You can use it, adapt it and share your version, including commercially, as long as you give credit, link to the licence and say what you changed. For example:</p>
+  <blockquote>Based on the Agile Ways of Working Toolkit by Eric Parker (eparker71.github.io/agile-ways-of-working), licensed under CC BY 4.0. Changes: adapted for our teams.</blockquote>
+  <p>Third-party names stay their owners'. ADKAR® is a registered trademark of Prosci, Inc., for example. The licence covers the writing here, not their trademarks or materials. <a href="https://github.com/eparker71/agile-ways-of-working/blob/main/LICENSE.md">Full licence</a>.</p>
+</section>
+
+<section>
+  <div class="lbl">Route 1 · No editing</div>
+  <h2>Print it, or put it on a whiteboard</h2>
+  <ul>
+    <li><b>Print:</b> open any board's page and print at A3 landscape (larger is better for teams). Guides print at A4 portrait.</li>
+    <li><b>Digital whiteboard:</b> download the board's <b>SVG</b> and add it to Miro, Mural or FigJam, then lock it as a background and add stickies on top. Most whiteboard tools import an SVG as a flat image, so you can't edit its labels there. Use Route 2 for that.</li>
+  </ul>
+</section>
+
+<section>
+  <div class="lbl">Route 2 · Change a board's wording or colours</div>
+  <h2>Edit the SVG in a design tool</h2>
+  <p>The SVGs hold real, editable text, not pictures of text. Open one in:</p>
+  <div class="grid">
+    <div><b>Figma</b>Drag the SVG onto the canvas. Double-click text to edit; select shapes to recolour.</div>
+    <div><b>Inkscape</b> (free)File → Open. Use the text tool to edit labels; Object → Fill and Stroke for colours.</div>
+    <div><b>Adobe Illustrator or Affinity Designer</b>Open the SVG directly; everything is grouped by panel.</div>
+    <div><b>A text editor</b>For quick wording changes, open the <code>.svg</code> and edit the text between <code>&lt;text&gt;</code> tags.</div>
+  </div>
+  <p><b>Install the fonts first</b> so the text looks right. All three are free from Google Fonts: <a href="https://fonts.google.com/specimen/Instrument+Serif">Instrument Serif</a>, <a href="https://fonts.google.com/specimen/Geist">Geist</a> and <a href="https://fonts.google.com/specimen/Geist+Mono">Geist Mono</a>. Without them, your design tool will use other fonts.</p>
+  <p>Keep the small credit line at the bottom left of each board, and add a note saying what you changed.</p>
+</section>
+
+<section>
+  <div class="lbl">Route 3 · Change a guide</div>
+  <h2>Download the Word version</h2>
+  <p>Every facilitator guide has a <b>Word (editable) ↓</b> link next to its board links. The <code>.docx</code> file has the same content as the web page: run-sheet tables, prompts, tips and follow-up. Change the timings, prompts or examples to suit your sessions, in Word, Google Docs or LibreOffice. The Marginal Gains guide is the one exception: it's only available as a web page.</p>
+</section>
+
+<section>
+  <div class="lbl">Route 4 · Change everything, consistently</div>
+  <h2>Copy the repository and regenerate</h2>
+  <p>Most files are generated from a few Python scripts (standard library only, no installs needed). That makes it easy to rebrand everything or rewrite many tools at once.</p>
+  <ol>
+    <li>On <a href="https://github.com/eparker71/agile-ways-of-working">GitHub</a>, click <b>Use this template</b> to make your own copy. Or download the ZIP.</li>
+    <li>Rebrand in one place: edit <code>_generator/brand.py</code> to change the accent colour, header colour, fonts and credit line.</li>
+    <li>Change content in <code>_generator/build_boards.py</code> (boards), <code>build_guides.py</code> (guides and Word files), <code>build_roles.py</code> (role page) and <code>build_glossary.py</code> (glossary).</li>
+    <li>Regenerate:
+      <br><code>python3 _generator/build_boards.py</code>
+      <br><code>python3 _generator/build_guides.py</code>
+      <br><code>python3 _generator/build_roles.py</code>
+      <br><code>python3 _generator/build_glossary.py</code></li>
+    <li>Publish your own site: in your copy's GitHub settings, open <b>Pages</b> and deploy from the <code>main</code> branch, root folder.</li>
+  </ol>
+  <p>A few pages are hand-written and don't read <code>brand.py</code>: the home page, the two cheat sheets, and the Marginal Gains board and guide. Edit those directly. The README lists the details.</p>
+</section>
+
+<section>
+  <div class="lbl">Before you share your version</div>
+  <h2>A quick checklist</h2>
+  <ul>
+    <li>Keep the credit line, and say what you changed.</li>
+    <li>Make it clear your version is yours, and not endorsed by the original author.</li>
+    <li>Keep the credits to the people whose ideas a tool is based on, and any trademark notices.</li>
+    <li>If you improve something, consider sharing it back as an issue or pull request on GitHub.</li>
+  </ul>
+</section>
+
+</div></main>
+<footer>&copy; 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</footer>
+</body>
+</html>

@@ -11,8 +11,11 @@ from html import escape
 from pathlib import Path
 
 OUT = Path(__file__).resolve().parent.parent
-FONT_URL = ("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600"
-            "&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap")
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from brand import ACCENT, NAVY, CREDIT, SITE, AUTHOR, FONT_URL as _FONT_URL  # noqa: E402  (edit brand.py to rebrand)
+from docx_writer import Doc  # noqa: E402
+FONT_URL = _FONT_URL.replace("&", "&amp;")
 
 BLUE, EMERALD, PURPLE, ORANGE = ("#1E3A8A", "#DBEAFE"), ("#065F46", "#D1FAE5"), ("#581C87", "#EDE9FE"), ("#9A3412", "#FFEDD5")
 RED, AMBER, FOREST, SKY = ("#991B1B", "#FEE2E2"), ("#92400E", "#FEF3C7"), ("#14532D", "#DCFCE7"), ("#0C4A6E", "#E0F2FE")
@@ -378,7 +381,8 @@ BREAKDOWN_TOOLKIT = ("The break-down tools work from big to small: the <a href=\
                      "Canvas</a> turns an idea into an MVP and features, the <a href=\"facilitator-guide-story-map.html\">Story Map</a> lays out "
                      "the user journey and release slices, the <a href=\"facilitator-guide-story-splitting.html\">Story Splitting poster</a> "
                      "makes stories small enough for a sprint, and <a href=\"facilitator-guide-example-mapping.html\">Example Mapping</a> "
-                     "checks that each story is understood and ready.")
+                     "checks that each story is understood and ready. The <a href=\"facilitator-guide-backlog-anatomy.html\">"
+                     "Backlog Item Anatomy</a> poster shows what a good epic, feature and story look like.")
 
 BREAKDOWN_GUIDES = [
     # -------------------------------------------------------------- epic breakdown
@@ -2366,11 +2370,62 @@ GUIDES += [
 ]
 
 
+GUIDES.append(dict(
+    slug="backlog-anatomy",
+    title="Backlog Item Anatomy Guide",
+    subtitle="How to use the poster to help teams write good epics, features and stories, and spot weak ones.",
+    tag="Facilitator Run-Sheet · Break Down Work · Epics, Features & Stories",
+    boards=[("Open poster", "backlog-anatomy-poster.html"), ("SVG", "backlog-anatomy-poster.svg")],
+    lede="Who is this for, and what will be better for them?",
+    intro=("Teams often write epics that are just big tasks, features that are technical layers, and stories that "
+           "deliver nothing on their own. The poster shows each level with a <b>definition</b>, a <b>template</b>, a "
+           "<b>good example</b> and a <b>weak example</b>, using one running example so people can see how a big bet "
+           "becomes a thin slice. It also covers <b>INVEST</b> (from Bill Wake), acceptance criteria in "
+           "<b>Given / When / Then</b> form, and the other kinds of backlog item. Names vary by framework and tool: in "
+           "SAFe an epic sits above features, while in Jira an epic sits directly above stories. Use the levels your "
+           "organisation uses, and see the <a href=\"glossary.html\">glossary</a> for the differences."),
+    glance=[("Duration", "45–60 min<br>as a workshop"), ("Group", "Team, PO, BA,<br>stakeholders"),
+            ("Use when", "Onboarding, or the backlog<br>is hard to work with"), ("Output", "Rewritten items<br>&amp; shared standards")],
+    before=["Print the poster at A3 and pin it where the team refines its backlog",
+            "Pick 6–10 real backlog items: a mix of epics, features and stories, good and bad",
+            "Write each on a card or sticky, without saying which level it is",
+            "Bring the team's Definition of Ready, if it has one"],
+    agenda_heads=["Time", "Step", "Facilitator notes"],
+    agenda=[("0–10", "Walk the poster", "Read the running example from top to bottom. Ask: how does the story serve the epic's outcome?"),
+            ("10–25", "Sort", "In pairs, sort the real items: which level is each, and is it good or weak? Use the poster's templates."),
+            ("25–45", "Rewrite", "Rewrite the weak ones using the templates. Split anything that's too big with the Story Splitting poster."),
+            ("45–55", "Agree standards", "Agree two or three standards the team will apply, and add them to the Definition of Ready."),
+            ("55–60", "Close", "Pick who will tidy the rest of the backlog, and when.")],
+    sections_title="What good looks like at each level",
+    sections_intro="Quick checks to apply when writing or refining items.",
+    sections=[("Epic", PURPLE, ["An outcome, not a solution", "A measure that could prove it wrong", "Broken into features"]),
+              ("Feature", BLUE, ["Usable on its own", "A clear benefit to a named user", "Fits in a planning period"]),
+              ("Story", EMERALD, ["A vertical slice", "Passes INVEST", "Has acceptance criteria"]),
+              ("Acceptance criteria", AMBER, ["Given · When · Then", "Concrete and testable", "Agreed before work starts"]),
+              ("Task · Spike · Bug · Enabler", SLATE, ["Tasks live inside stories", "Spikes are time-boxed", "Enablers make future value possible"])],
+    tips=[("Start from the user", "Every level should say who benefits. If it can't, it's probably a task."),
+          ("Outcomes at the top", "Epics need a measure. Without one, nobody can tell when to stop investing."),
+          ("Watch for “and”", "A story with “and” in it is usually two stories."),
+          ("Avoid developer stories", "“As a developer, I want…” almost always hides a technical task. Find the user story it serves."),
+          ("Criteria make it testable", "Writing two or three Given / When / Then examples often reveals the story is too big."),
+          ("Templates are a start", "A good conversation matters more than perfect wording. The template prompts the conversation.")],
+    pitfalls=("using the story template for everything, including tasks; epics with no outcome or measure; features split by "
+              "technical layer; acceptance criteria written after the work; arguing about labels instead of value."),
+    after=[("Straight away", "Leave the poster up in the team space and refer to it in refinement."),
+           ("Next refinement", "Check new items against the poster before they're ready."),
+           ("Over time", "Add your own good examples from the team's real backlog."),
+           ("With stakeholders", "Share the poster when stakeholders bring requests, so ideas arrive as outcomes.")],
+    toolkit=BREAKDOWN_TOOLKIT,
+    foot="“Could a user use this slice on its own?”",
+))
+
+
 # ------------------------------------------------------------------ rendering
 
 def guide_css():
     src = (OUT / "facilitator-guide-marginal-gains.html").read_text(encoding="utf-8")
     css = re.search(r"<style>(.*?)</style>", src, re.S).group(1)
+    css = css.replace("#eb6c36", ACCENT).replace("#0C1A2E", NAVY)
     return css.rstrip() + "\n" + EXTRA_CSS.strip() + "\n"
 
 
@@ -2389,6 +2444,7 @@ def render(g, css):
 
     boards = "".join(f'<a{" class=\"primary\"" if i == 0 else ""} href="{href}">{escape(label)} →</a>'
                      for i, (label, href) in enumerate(g["boards"]))
+    boards += f'<a href="facilitator-guide-{g["slug"]}.docx" download>Word (editable) ↓</a>'
     glance = "".join(f"<div><b>{k}</b><span>{v}</span></div>" for k, v in g["glance"])
     heads = "".join(f"<th>{h}</th>" for h in g["agenda_heads"])
     rows = []
@@ -2426,8 +2482,8 @@ def render(g, css):
         f'<div class="two">{after}</div>',
         h2("How it fits the toolkit"),
         f'<p>{g["toolkit"]}</p>',
-        f'<p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a></p>',
-        f'<footer><span>{escape(g["foot"])}</span><span>Systems-Thinking · Continuous Improvement · Team-Led Change</span></footer>',
+        f'<p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>',
+        f'<footer><span>{escape(g["foot"])}</span><span>{escape(CREDIT)}</span></footer>',
     ]
 
     return f"""<!DOCTYPE html>
@@ -2456,9 +2512,47 @@ def render(g, css):
 """
 
 
+def render_docx(g):
+    """An editable Word copy of the guide, with the same content as the HTML page."""
+    d = Doc(g["title"], AUTHOR)
+    d.heading(g["title"], 0)
+    d.para(g["subtitle"], italic=True)
+    d.para(g["tag"], "Small")
+    d.quote(f"“{g['lede']}”")
+    d.para(g["intro"])
+    d.table([k for k, _ in g["glance"]], [[v for _, v in g["glance"]]])
+    d.heading("Before the session")
+    d.bullets(g["before"])
+    d.heading("Agenda & run-sheet")
+    n = len(g["agenda_heads"])
+    widths = [1300, 2300, 5400] if n == 3 else None
+    d.table(g["agenda_heads"], [list(r) for r in g["agenda"]], widths)
+    d.heading(g["sections_title"])
+    d.para(g["sections_intro"])
+    for name, _color, prompts in g["sections"]:
+        d.heading(name, 2)
+        d.bullets(prompts)
+    if g.get("example"):
+        d.heading("Worked example")
+        d.table(["", "Example"], [list(r) for r in g["example"]], [2700, 6300])
+    d.heading("Facilitation tips")
+    for t, desc in g["tips"]:
+        d.labelled(t + ".", desc)
+    d.labelled("Common pitfalls:", g["pitfalls"])
+    d.heading("After the session")
+    for t, desc in g["after"]:
+        d.labelled(t + ":", desc)
+    d.heading("How it fits the toolkit")
+    d.para(g["toolkit"])
+    d.para(f"Boards: https://{SITE}/{g['boards'][0][1]}  ·  Online guide: https://{SITE}/facilitator-guide-{g['slug']}.html", "Small")
+    d.para(CREDIT + " · Adapt it freely; please keep the credit and say what you changed.", "Small")
+    d.save(OUT / f"facilitator-guide-{g['slug']}.docx")
+
+
 if __name__ == "__main__":
     css = guide_css()
     for g in GUIDES:
         path = OUT / f"facilitator-guide-{g['slug']}.html"
         path.write_text(render(g, css), encoding="utf-8")
-        print("wrote", path.name)
+        render_docx(g)
+        print("wrote", path.name, "+ .docx")

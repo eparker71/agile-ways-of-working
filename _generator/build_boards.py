@@ -14,14 +14,9 @@ from pathlib import Path
 OUT = Path(__file__).resolve().parent.parent
 W, H = 1680, 1190
 
-SANS = "'Geist',Inter,system-ui,sans-serif"
-SERIF = "'Instrument Serif',Georgia,serif"
-MONO = "'Geist Mono',Consolas,monospace"
-FONT_URL = ("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1"
-            "&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap")
-
-ACCENT = "#eb6c36"
-NAVY = "#0C1A2E"
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from brand import ACCENT, NAVY, SANS, SERIF, MONO, FONT_URL, CREDIT  # noqa: E402  (edit brand.py to rebrand)
 INK = "#1E293B"
 MUTED = "#64748B"
 RULE = "#E2E8F0"
@@ -239,6 +234,7 @@ def footer(left, right, tag=FOOT_TAG):
         L(832, 1078, 832, 1128, RULE, 1),
         T(848, 1106, f"“{right}”", 15, INK, SERIF, italic=True),
         T(1656, 1138, tag, 8, "#CBD5E1", MONO, anchor="end", ls=".08em"),
+        T(24, 1138, CREDIT, 8, "#94A3B8", MONO, ls=".06em"),
     ])
 
 
@@ -252,9 +248,9 @@ def guide_for(slug):
     return f"facilitator-guide-{slug.removesuffix('-board').removesuffix('-poster')}.html"
 
 
-GUIDE_LINK_CSS = ("a.guide{position:fixed;right:16px;bottom:16px;font:500 12px 'Geist',system-ui,sans-serif;color:#fff;"
-                  "background:#0C1A2E;border-left:4px solid #eb6c36;padding:9px 14px;border-radius:6px;text-decoration:none;"
-                  "box-shadow:0 6px 20px rgba(0,0,0,.25);}\na.guide:hover{background:#eb6c36;}")
+GUIDE_LINK_CSS = (f"a.guide{{position:fixed;right:16px;bottom:16px;font:500 12px 'Geist',system-ui,sans-serif;color:#fff;"
+                  f"background:{NAVY};border-left:4px solid {ACCENT};padding:9px 14px;border-radius:6px;text-decoration:none;"
+                  f"box-shadow:0 6px 20px rgba(0,0,0,.25);}}\na.guide:hover{{background:{ACCENT};}}")
 
 
 def write_board(slug, title, desc, body):
@@ -3446,6 +3442,132 @@ def build_cross_team_retro():
                 "ideas, problem solving for the top problem, and follow-through.", "\n".join(b))
 
 
+# ---------------------------------------------------------------- backlog item anatomy poster
+
+def example_card(x, y, w, h, good, title, body, why, size=11.5):
+    dk, lt = (EMERALD if good else RED)
+    out = [R(x, y, w, h, lt, 8, f' stroke="{dk}" stroke-opacity=".35" stroke-width="1.5"'),
+           R(x, y, 5, h, dk, 3),
+           T(x + 18, y + 24, ("✓ GOOD · " if good else "✗ WEAK · ") + title, 9.5, dk, MONO, weight=600, ls=".1em")]
+    out.append(para(x + 18, y + 48, body, size, INK, round(size * 1.45)))
+    out.append(para(x + 18, y + h - 14 - (len(why) - 1) * 15, why, 10.5, dk, 15, italic=True))
+    return "".join(out)
+
+
+def level_panel(y, h, num, name, color, note, definition, size_line, template, good, weak):
+    dk, lt = color
+    x, w = 24, 1632
+    out = [panel(x, y, w, h, num, name, color, note)]
+    ax, aw = x + 18, 430
+    out.append(para(ax, y + 80, definition, 12, dk, 17, weight=600))
+    ty = y + 80 + len(definition) * 17 + 4
+    out.append(T(ax, ty, size_line, 8.5, dk, MONO, op=".7", ls=".1em"))
+    out.append(T(ax, ty + 24, "TEMPLATE", 8.5, dk, MONO, weight=600, ls=".12em"))
+    th = len(template) * 18 + 16
+    out.append(R(ax, ty + 32, aw, th, "white", 6, f' stroke="{dk}" stroke-opacity=".2"'))
+    out.append(para(ax + 14, ty + 53, template, 14, dk, 18, font=SERIF, italic=True))
+    gx = x + 470
+    cw = (w - 470 - 18 - 14) / 2
+    out.append(example_card(gx, y + 64, cw, h - 78, True, *good))
+    out.append(example_card(gx + cw + 14, y + 64, cw, h - 78, False, *weak))
+    return "".join(out)
+
+
+def build_backlog_anatomy():
+    right = "".join([T(1356, 60, "HOW TO READ IT", 8, "#475569", MONO, ls=".14em"),
+                     T(1356, 86, "✓ Good example, and why it works", 11, "#86EFAC"),
+                     T(1356, 112, "✗ Weak example, and what's wrong", 11, "#FCA5A5")])
+    b = [header("Backlog Item Anatomy",
+                "What a good epic, feature and story look like, with one running example from big bet to thin slice.",
+                "Break Down Work · Epics, Features & Stories · INVEST (Bill Wake) · Given / When / Then",
+                right)]
+
+    b.append(R(24, 148, 1632, 52, NAVY, 8))
+    b.append(R(24, 148, 6, 52, ACCENT, 3))
+    b.append(T(48, 180, "RUNNING EXAMPLE", 9, ACCENT, MONO, weight=600, ls=".14em"))
+    b.append(T(190, 181, "An online grocery service wants more customers to come back and order again. Follow it down the levels.",
+               14, "white", SERIF, italic=True))
+
+    b.append(level_panel(214, 230, 1, "Epic", PURPLE, "THE BIG BET",
+                         ["A big bet that should deliver a business", "outcome. Broken into features."],
+                         "WEEKS TO MONTHS · OFTEN SEVERAL TEAMS",
+                         ["We believe [doing this] for [these people]", "will achieve [this outcome]. We'll know", "we're right when [measure]."],
+                         ("Reorder made easy", ["We believe making it quick to repeat a past order, for",
+                                                "returning customers, will increase repeat orders. We'll know",
+                                                "when weekly repeat orders rise from 22% to 30% in 3 months."],
+                          ["Names the people, the outcome and a measure, so it can be proven wrong."]),
+                         ("Reorder platform", ["“Build the new reorder platform.”"],
+                          ["A solution, not an outcome. No measure, so nobody can", "tell if it worked, or when to stop."])))
+
+    b.append(level_panel(458, 200, 2, "Feature", BLUE, "A USABLE CAPABILITY",
+                         ["Something users can see and use that", "delivers part of the epic's value."],
+                         "A FEW ITERATIONS · ONE OR TWO TEAMS",
+                         ["[Capability] so that [benefit]."],
+                         ("One-tap reorder", ["One-tap reorder of a past basket, so returning customers",
+                                              "can repeat a weekly shop in under a minute."],
+                          ["Usable on its own, with a clear benefit to a named user."]),
+                         ("Reorder back end", ["“Reorder API and database changes.”"],
+                          ["A technical layer. Nobody can use it alone, so it", "delivers no value until everything else is done."])))
+
+    # story: custom, with acceptance criteria and two weak examples
+    y, h = 672, 292
+    x, w = 24, 1632
+    dk, lt = EMERALD
+    b.append(panel(x, y, w, h, 3, "Story", EMERALD, "A THIN VERTICAL SLICE"))
+    ax, aw = x + 18, 430
+    b.append(para(ax, y + 80, ["A thin, vertical slice of a feature that", "a user can use. Finishes in days."], 12, dk, 17, weight=600))
+    b.append(T(ax, y + 122, "DAYS · WITHIN YOUR SLE · ONE TEAM", 8.5, dk, MONO, op=".7", ls=".1em"))
+    b.append(T(ax, y + 150, "TEMPLATE", 8.5, dk, MONO, weight=600, ls=".12em"))
+    b.append(R(ax, y + 160, aw, 76, "white", 6, f' stroke="{dk}" stroke-opacity=".2"'))
+    b.append(para(ax + 14, y + 182, ["As a [type of user], I want [goal]", "so that [reason]."], 14, dk, 18, font=SERIF, italic=True))
+    b.append(T(ax + 14, y + 226, "+ acceptance criteria: Given · When · Then", 10, dk, op=".75"))
+    b.append(T(ax, y + 262, "INVEST", 9, dk, MONO, weight=600, ls=".12em"))
+    b.append(T(ax + 60, y + 262, "Independent · Negotiable · Valuable · Estimable · Small · Testable", 9.5, dk))
+    gx = x + 470
+    gw = 600
+    b.append(R(gx, y + 64, gw, h - 78, EMERALD[1], 8, f' stroke="{dk}" stroke-opacity=".35" stroke-width="1.5"'))
+    b.append(R(gx, y + 64, 5, h - 78, dk, 3))
+    b.append(T(gx + 18, y + 88, "✓ GOOD · SEE MY LAST ORDER", 9.5, dk, MONO, weight=600, ls=".1em"))
+    b.append(para(gx + 18, y + 112, ["As a returning customer, I want to see my last order on",
+                                     "the home page so that I can reorder it quickly."], 11.5, INK, 17))
+    b.append(T(gx + 18, y + 160, "ACCEPTANCE CRITERIA", 8.5, dk, MONO, weight=600, ls=".12em"))
+    b.append(para(gx + 18, y + 180, ["Given I've ordered before, when I open the app,",
+                                     "then I see my last order with a Reorder button.",
+                                     "Given an item is out of stock, when I reorder,",
+                                     "then I'm offered a substitute."], 11, INK, 16))
+    b.append(T(gx + 18, y + h - 22, "Valuable to a user, small, and testable from the criteria.", 10.5, dk, italic=True))
+    wx = gx + gw + 14
+    ww = (x + w - 18 - wx - 12) / 2
+    b.append(example_card(wx, y + 64, ww, h - 78, False, "TECHNICAL TASK",
+                          ["“As a developer, I want a reorder", "table so that the data is stored.”"],
+                          ["No user value. It's a task", "inside a real story."], 11))
+    b.append(example_card(wx + ww + 12, y + 64, ww, h - 78, False, "TOO BIG",
+                          ["“As a customer, I want to reorder,", "edit my basket and schedule", "delivery.”"],
+                          ["Three stories joined by “and”.", "Split it (see Story Splitting)."], 11))
+
+    # also on the backlog
+    y = 978
+    others = [("Task", "A step the team takes to finish a story. Not tracked as value."),
+              ("Spike", "Time-boxed research to answer a question. Its output is knowledge."),
+              ("Bug", "Doesn't work as agreed. Fix fast, or order it like any other item."),
+              ("Enabler", "Technical work that makes future value possible, such as paying down debt.")]
+    cw = (1632 - 3 * 12) / 4
+    for i, (name, body) in enumerate(others):
+        cx = 24 + i * (cw + 12)
+        b.append(R(cx, y, cw, 82, "white", 8, f' stroke="{RULE}" stroke-width="1.5"'))
+        b.append(R(cx, y, 5, 82, SLATE[0], 3))
+        b.append(T(cx + 18, y + 26, name.upper(), 9.5, SLATE[0], MONO, weight=600, ls=".12em"))
+        b.append(para(cx + 18, y + 50, [body[:body.index('.') + 1]] + ([body[body.index('.') + 2:]] if body.index('.') + 2 < len(body) else []),
+                      10.5, INK, 15))
+
+    b.append(footer("Who is this for, and what will be better for them?",
+                    "Could a user use this slice on its own?", BREAKDOWN_TAG))
+    write_board("backlog-anatomy-poster", "Backlog Item Anatomy",
+                "A3 landscape reference poster: definitions, templates, and good and weak examples of an epic, a feature "
+                "and a story, using one running example, plus INVEST, acceptance criteria, and other backlog item types.",
+                "\n".join(b))
+
+
 if __name__ == "__main__":
     for horizon in ("sprint", "quarter"):
         build_retros(horizon)
@@ -3491,3 +3613,4 @@ if __name__ == "__main__":
     build_coaching_conversation()
     build_psych_safety()
     build_cross_team_retro()
+    build_backlog_anatomy()
