@@ -110,7 +110,7 @@ a.primary{{background:#eb6c36;}}
 <body><main>
 <h1>That page isn't here</h1>
 <p>It may have moved or been renamed. Every tool is listed on the home page, where you can search by name or filter by role.</p>
-<a class="primary" href="{BASE}">All tools</a><a href="{BASE}start-here-by-role.html">Tools by role</a><a href="{BASE}scenarios.html">Scenario Playbook</a><a href="{BASE}glossary.html">Glossary</a>
+<a class="primary" href="{BASE}">All tools</a><a href="{BASE}start-here-by-role.html">Tools by role</a><a href="{BASE}scenarios.html">Scenario Playbook</a><a href="{BASE}glossary.html">Glossary</a><a href="{BASE}about.html">About</a>
 </main></body>
 </html>
 """, encoding="utf-8")

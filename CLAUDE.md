@@ -26,7 +26,7 @@ Each script regenerates everything it owns (there's no per-file target). They're
 Never edit generated files directly; edit the script and re-run.
 
 - **Generated:** every board except Marginal Gains, every `facilitator-guide-*.html` except Marginal Gains, `start-here-by-role.html`, `glossary.html`, `anti-patterns.html`, `scenarios.html`. `_content/scenarios.md` is hand-edited content (the format is explained at its top); `.github/ISSUE_TEMPLATE/scenario.yml` is the public suggestion form.
-- **Hand-written:** `marginal-gains-workshop-board.{svg,html}`, `facilitator-guide-marginal-gains.html`, `scrum-master-agile-coach-cheat-sheet.html`, `jira-cheat-sheet.html`, `make-it-yours.html`, `index.html`, `LICENSE.md`.
+- **Hand-written:** `marginal-gains-workshop-board.{svg,html}`, `facilitator-guide-marginal-gains.html`, `scrum-master-agile-coach-cheat-sheet.html`, `jira-cheat-sheet.html`, `make-it-yours.html`, `about.html`, `index.html`, `LICENSE.md`.
 - **Brand:** colours, fonts and the credit line (© author · CC BY 4.0 · site) live in `_generator/brand.py` and are imported by all four generators. The hand-written pages carry the same values by hand, so update them too when rebranding.
 - `index.html` is hand-written **except** the regions `build_roles.py` maintains: the `<!-- roles:… -->` / `/* roles:css */` blocks and each card's `data-roles` attribute.
 - `build_guides.py` copies its CSS from `facilitator-guide-marginal-gains.html` at run time, so editing that file's `<style>` restyles every guide.
