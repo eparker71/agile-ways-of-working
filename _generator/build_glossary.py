@@ -18,6 +18,12 @@ from brand import ACCENT, NAVY, CREDIT  # noqa: E402
 OUT = Path(__file__).resolve().parent.parent
 
 TERMS = [
+    ("Release Train Engineer (RTE)", "The facilitator and servant leader for a team of teams: runs big-room planning, the regular "
+     "cross-team sync, system demos and inspect & adapt, and clears impediments no single team can.",
+     "SAFe's name for the role. Scrum@Scale's Chief Scrum Master is similar.", ["ctp", "sync", "cross-retro"]),
+    ("Agile Release Train (ART)", "A long-lived team of agile teams, typically 50 to 125 people, that plans, delivers and improves "
+     "together on a shared cadence toward common goals.", "SAFe term. Other names: team of teams; Scrum of Scrums (Scrum@Scale).",
+     ["ctp", "sync", "dependency"]),
     ("Continuous integration (CI)", "Everyone merges small changes into the main branch often, at least daily, and every merge is "
      "built and tested automatically, so problems show up within minutes.", "Practice popularised by Extreme Programming (XP).",
      ["pipeline", "cd-health"]),
