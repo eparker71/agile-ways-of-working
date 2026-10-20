@@ -700,7 +700,8 @@ LIFECYCLE_GUIDES = [
               ("Evidence over opinion", "Mark stickies that are backed by data. Treat the rest as assumptions to test."),
               ("Say who it's not for", "Excluding a group is a strategic choice, and makes later trade-offs easier."),
               ("Measures make it real", "A vision with no measure of success can't be proven wrong, so it can't guide decisions."),
-              ("Revisit it", "Bring the board to quarterly planning and update it when evidence changes the picture.")],
+              ("Revisit it", "Bring the board to quarterly planning and update it when evidence changes the picture."),
+              ("Basics, performance, delighters", "The Kano model is a useful lens for the Product box: which features users simply expect, which add satisfaction the more you have, and which would delight them?")],
         pitfalls=("a vision that is a feature list; target group “everyone”; needs invented in the room with no evidence; "
                   "skipping measures; treating assumptions as facts; never testing the riskiest assumption."),
         after=[("Straight away", "Photograph the board and share it with stakeholders who weren't there."),
@@ -716,12 +717,12 @@ LIFECYCLE_GUIDES = [
         slug="prioritisation",
         title="Prioritisation Board Guide",
         subtitle="How to compare options by value, effort and cost of delay, agree scope, and build a Now / Next / Later roadmap.",
-        tag="Facilitator Run-Sheet · Plan · Value vs. Effort · Cost of Delay · MoSCoW · Now / Next / Later",
+        tag="Facilitator Run-Sheet · Plan · Value vs. Effort · Cost of Delay (WSJF) · MoSCoW · Now / Next / Later",
         boards=[("Open board", "prioritisation-board.html"), ("SVG", "prioritisation-board.svg")],
         lede="What does it cost us, each week, to not have this yet?",
         intro=("Most teams have more good ideas than capacity. The board combines four complementary techniques: a quick "
-               "<b>value vs. effort</b> grid to sort many items, <b>cost of delay</b> (CD3, from Don Reinertsen) to rank the top few "
-               "with numbers, <b>MoSCoW</b> to agree scope for a fixed date, and a <b>Now / Next / Later</b> roadmap to share the "
+               "<b>value vs. effort</b> grid to sort many items, <b>cost of delay</b> to rank the top few with numbers (CD3 from Don "
+               "Reinertsen, which SAFe calls <b>WSJF</b>, Weighted Shortest Job First), <b>MoSCoW</b> to agree scope for a fixed date, and a <b>Now / Next / Later</b> roadmap to share the "
                "result. Use the parts you need: a quick sort might only use the grid and the roadmap."),
         glance=[("Duration", "60–120 min"), ("Group", "PO / PM, team reps,<br>stakeholders"),
                 ("Use when", "Quarterly planning, or<br>too many priorities"), ("Output", "A ranked list &amp;<br>a roadmap")],
@@ -733,14 +734,14 @@ LIFECYCLE_GUIDES = [
         agenda_heads=["Time", "Section", "Facilitator notes"],
         agenda=[("0–10", "Frame", "Recap the product goal or vision. Agree the scope: which items, and for what time horizon."),
                 ("10–35", "1 · Value vs. Effort", "Place each sticky on the grid. Compare items to each other, not to an absolute scale. Discuss the outliers."),
-                ("35–60", "2 · Cost of Delay", "Take the top 5–8 items. Score value, time criticality and risk reduction relative to each other. Divide by size and rank."),
+                ("35–60", "2 · Cost of Delay (WSJF)", "Take the top 5–8 items. Score one column at a time across all items: value, then time criticality, then risk reduction. The smallest item in each column scores 1. Add them up for the cost of delay, divide by job size and rank."),
                 ("60–75", "3 · MoSCoW", "If there's a fixed date or release, sort the ranked items into Must, Should, Could and Won't (this time)."),
                 ("75–100", "4 · Now · Next · Later", "Place the items on the roadmap and write the outcome for each column. Only Now is committed."),
                 ("100–110", "Close", "Read the roadmap back. Confirm the decision owner agrees, and who will share it with stakeholders.")],
         sections_title="Using each technique well",
         sections_intro="What each part is for, and what to watch for.",
         sections=[("1 · Value vs. Effort", BLUE, ["Relative placement is enough", "Big bets: slice before committing", "Drop the money pits"]),
-                  ("2 · Cost of Delay", PURPLE, ["Score each column relative to the lowest item", "CoD / size gives the order", "Use it for the top few only"]),
+                  ("2 · Cost of Delay (WSJF)", PURPLE, ["One column at a time, across all items", "Smallest item scores 1 in each column", "CoD / job size gives the order"]),
                   ("3 · MoSCoW", ORANGE, ["Musts should be about 60% of capacity", "Won't means not this time", "Needs a fixed date or scope"]),
                   ("4 · Now · Next · Later", FOREST, ["Outcomes, not dates", "Now is committed; Later is options", "Keep Next short"])],
         tips=[("Compare, don't score in isolation", "Ask “is this more or less valuable than that?” Relative judgements are faster and more reliable."),
@@ -748,8 +749,9 @@ LIFECYCLE_GUIDES = [
               ("Slice the big bets", "High-value, high-effort items usually hide a smaller, high-value slice. Use the Epic Canvas or Story Map."),
               ("Protect the Could list", "If everything is a Must, MoSCoW stops working. Push back until Musts fit comfortably."),
               ("One decision owner", "The group advises; one person decides. Say who before you start."),
-              ("Roadmaps change", "Review Now / Next / Later every iteration or month. Moving items is learning, not failure.")],
-        pitfalls=("scoring items in isolation; letting the loudest stakeholder set the order; everything as a Must; "
+              ("Roadmaps change", "Review Now / Next / Later every iteration or month. Moving items is learning, not failure."),
+              ("Other scoring models", "RICE (reach × impact × confidence, divided by effort) suits teams with usage data; the Kano model sorts features into basics, performance and delighters. Pick one model and use it consistently.")],
+        pitfalls=("scoring all of one item's columns before moving to the next (score one column across every item instead); scoring items in isolation; letting the loudest stakeholder set the order; everything as a Must; "
                   "a roadmap full of dates and features instead of outcomes; using cost of delay for 50 items; never revisiting it."),
         after=[("Straight away", "Photograph the board. Update the backlog order and the roadmap in your tools."),
                ("Share it", "Walk stakeholders through the roadmap and the reasons for the order."),
@@ -1065,7 +1067,8 @@ PP_GUIDES = [
               ("Owners, not committees", "Every row needs one named person who will act."),
               ("Keep it short", "If the log has 80 rows, nobody reads it. Close, merge and prioritise."),
               ("Review in the open", "A short review in the team's regular rhythm keeps it current and shared."),
-              ("Escalate early", "Issues the team can't solve go to the decision forum straight away.")],
+              ("Escalate early", "Issues the team can't solve go to the decision forum straight away."),
+              ("ROAM for shared risks", "In multi-team planning, SAFe sorts each risk as Resolved, Owned, Accepted or Mitigated. It's a quick way to make sure every risk ends with a decision.")],
         pitfalls=("vague risks with no cause or effect; no owners; never closing items; reviewing only at steering meetings; "
                   "assumptions that are never tested; dependencies the other team doesn't know about."),
         after=[("Straight away", "Photograph the board or move it into your tool. Tell owners what they own."),
@@ -1109,7 +1112,7 @@ PP_GUIDES = [
                   ("2 · Context & Constraints", SLATE, ["Fixed dates are real", "Capacity changes are known"]),
                   ("3 · Team Plans", BLUE, ["Each team planned its own row", "Last iteration has slack", "Milestones placed"]),
                   ("4 · Confidence Vote", FOREST, ["Every team votes", "Low votes change the plan"]),
-                  ("5 · Risks to the Plan", RED, ["Each has an owner and response", "Big ones go to the RAID Log"]),
+                  ("5 · Risks to the Plan", RED, ["Each has an owner and response", "Sort them ROAM: resolved, owned, accepted, mitigated", "Big ones go to the RAID Log"]),
                   ("6 · Capacity Split", SKY, ["Agreed before planning", "Includes a buffer for unplanned work"])],
         tips=[("Teams plan their own work", "Leaders set objectives and priorities. Teams decide how much they can do."),
               ("Plan to capacity, not hope", "Use each team's real throughput. Leave the last iteration lighter for catch-up and improvement."),

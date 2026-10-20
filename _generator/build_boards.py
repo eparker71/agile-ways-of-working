@@ -1259,7 +1259,7 @@ def build_product_vision():
 def build_prioritisation():
     b = [header("Prioritisation Board",
                 "Compare value and effort, put a number on the cost of delay, agree what's in, and lay out Now, Next and Later.",
-                "Plan · Value vs. Effort · Cost of Delay (CD3) · MoSCoW · Now / Next / Later Roadmap",
+                "Plan · Value vs. Effort · Cost of Delay (CD3 / WSJF) · MoSCoW · Now / Next / Later Roadmap",
                 header_fields(["Product / scope", "Date"]))]
 
     # 1 value vs effort
@@ -1288,11 +1288,11 @@ def build_prioritisation():
     # 2 cost of delay
     x, y, w, h = 846, 148, 810, 290
     d = PURPLE[0]
-    b.append(panel(x, y, w, h, 2, "Cost of Delay", PURPLE, "HIGHEST COST OF DELAY / SIZE GOES FIRST"))
-    b.append(T(x + 18, y + 76, "Score each column 1, 2, 3, 5, 8 or 13, relative to the lowest item. CoD = value + time + risk.",
+    b.append(panel(x, y, w, h, 2, "Cost of Delay · WSJF", PURPLE, "CD3 · CALLED WSJF IN SAFe · HIGHEST SCORE FIRST"))
+    b.append(T(x + 18, y + 76, "Score one column at a time across all items: 1, 2, 3, 5, 8, 13 (smallest item = 1). CoD = value + time + risk.",
                10.5, d, italic=True, op=".75"))
-    b.append(table(x + 18, y + 108, [("Item", 214), ("Value", 76), ("Time", 76), ("Risk / opp.", 92),
-                                     ("CoD", 76), ("Size", 76), ("CoD / Size", 92), ("Rank", w - 36 - 702)], 5, d, 32))
+    b.append(table(x + 18, y + 108, [("Item", 196), ("Value", 66), ("Time", 66), ("Risk / opp.", 92),
+                                     ("CoD", 60), ("Job size", 80), ("CoD / size", 92), ("Rank", w - 36 - 652)], 5, d, 32))
 
     # 3 moscow
     x, y, w, h = 846, 452, 810, 296
@@ -1324,7 +1324,7 @@ def build_prioritisation():
     b.append(footer("What does it cost us, each week, to not have this yet?",
                     "If we could only do one thing this quarter, what would it be?", "Plan · Prioritise · Deliver Value Early"))
     write_board("prioritisation-board", "Prioritisation Board",
-                "A3 landscape prioritisation board: value vs. effort grid, cost of delay table (CD3), MoSCoW columns, "
+                "A3 landscape prioritisation board: value vs. effort grid, cost of delay table (CD3 / WSJF), MoSCoW columns, "
                 "and a Now / Next / Later roadmap.", "\n".join(b))
 
 

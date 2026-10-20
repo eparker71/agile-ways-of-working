@@ -32,7 +32,7 @@ TERMS = [
      "From the Kanban Method.", ["kanban"]),
     ("Cognitive load", "How much a team has to hold in its head to do its work: domains, systems and tools. Too much slows "
      "everything down.", "From Team Topologies (Skelton & Pais).", ["topology"]),
-    ("Cost of delay", "The value lost for each week an item isn't delivered. Dividing it by size (CD3) gives a priority order.",
+    ("Cost of delay", "The value lost for each week an item isn't delivered. Dividing it by size (CD3, or WSJF in SAFe) gives a priority order.",
      "Popularised by Don Reinertsen.", ["prioritisation", "portfolio-kanban"]),
     ("Cycle time", "How long an item takes from starting work to done. Look at percentiles, not averages. Compare lead time.",
      None, ["ageing", "kanban"]),
@@ -111,6 +111,25 @@ TERMS = [
      "From the Kanban Guide.", ["ageing"]),
     ("WIP (work in progress)", "The number of items started but not finished. Limiting WIP shortens cycle time and improves "
      "focus.", None, ["kanban", "portfolio-kanban"]),
+    ("Delegation poker", "A game for agreeing decision rights: for each decision area, everyone shows a card from 1 (Tell) to 7 "
+     "(Delegate) at once, then discusses the differences.", "From Management 3.0 (Jurgen Appelo).", ["delegation"]),
+    ("Kano model", "A way to classify features by how they affect satisfaction: basics users simply expect, performance features "
+     "where more is better, and delighters nobody asked for.", "From Professor Noriaki Kano.", ["vision", "ost"]),
+    ("MoSCoW", "Sorting scope into Must have, Should have, Could have and Won't have (this time), usually for a fixed date or "
+     "release.", "From Dai Clegg; part of the DSDM method.", ["prioritisation"]),
+    ("Planning poker", "An estimation technique: everyone reveals a card at once (often 1, 2, 3, 5, 8, 13), the highest and "
+     "lowest explain, and the group re-votes. It avoids anchoring on the first opinion.",
+     "Described by James Grenning; popularised by Mike Cohn.", ["sprint-planning", "splitting"]),
+    ("RICE", "A scoring model: Reach × Impact × Confidence, divided by Effort. Suits product teams that have usage data.",
+     "Developed at Intercom.", ["prioritisation"]),
+    ("ROAM", "A way to close out each risk with a decision: Resolved, Owned, Accepted or Mitigated.",
+     "From SAFe's PI Planning.", ["raid", "ctp"]),
+    ("Story points", "A relative measure of the size of backlog items, combining effort, complexity and uncertainty. Used with "
+     "velocity for forecasting. Many teams now count items instead.", "Common in Scrum teams, but not part of the Scrum Guide.",
+     ["sprint-planning", "forecast"]),
+    ("WSJF (Weighted Shortest Job First)", "Ranking work by cost of delay divided by job size, so the most value per unit of "
+     "effort, soonest, goes first.", "SAFe's name for CD3, from Don Reinertsen's work on cost of delay.",
+     ["prioritisation", "portfolio-kanban"]),
     ("Working agreement", "A short set of norms a team agrees on, such as how it communicates, decides and handles "
      "interruptions.", None, ["team-charter", "ai"]),
 ]
