@@ -21,3 +21,6 @@ YEAR = "2026"
 LICENCE = "CC BY 4.0"
 SITE = "eparker71.github.io/agile-ways-of-working"
 CREDIT = f"© {YEAR} {AUTHOR} · {LICENCE} · {SITE}"
+# Where this copy is published. Used for canonical URLs, link previews and the sitemap; change it to your own
+# site in a copy, but keep SITE (in the credit line) pointing to the original.
+PUBLISH_AT = "eparker71.github.io/agile-ways-of-working"

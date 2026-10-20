@@ -18,10 +18,10 @@ from html import escape, unescape
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from brand import SITE  # noqa: E402
+from brand import PUBLISH_AT  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent
-BASE = f"https://{SITE}/"
+BASE = f"https://{PUBLISH_AT}/"
 SITE_NAME = "Agile Ways of Working Toolkit"
 
 

@@ -92,7 +92,7 @@ def check_sitemap():
     if not sm.exists():
         fail("sitemap.xml is missing (run build_meta.py)")
         return
-    for loc in re.findall(r"<loc>[^<]*/agile-ways-of-working/([^<]*)</loc>", sm.read_text()):
+    for loc in re.findall(r"<loc>https://[^/<]+(?:/[^/<]+)?/([^/<]*)</loc>", sm.read_text()):
         if loc and not (OUT / loc).exists():
             fail(f"sitemap.xml lists missing page {loc}")
 
