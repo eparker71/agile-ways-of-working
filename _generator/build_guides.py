@@ -3458,6 +3458,64 @@ GUIDES += [
 ]
 
 
+GUIDES.append(dict(
+    slug="right-size",
+    title="Right-Size Your Structure Guide",
+    subtitle="How to decide how much structure a project needs as it grows from one team to many, and spot when you have too little or too much.",
+    tag="Facilitator Run-Sheet · Run a Project · Just Enough Structure",
+    boards=[("Open poster", "right-size-poster.html"), ("SVG", "right-size-poster.svg")],
+    lede="What's the least structure that would keep this project safe?",
+    intro=("A project of four people and a project of forty need different things. The work isn't harder; the "
+           "<b>coordination</b> is. The number of links between people grows much faster than the number of people: four "
+           "people have 6, forty have 780. Fred Brooks made the point in <i>The Mythical Man-Month</i>: adding people adds "
+           "communication overhead. The poster shows three levels, <b>one team</b>, a <b>team of teams</b> and a "
+           "<b>programme</b>, and what planning, roles, events, tracking, risks, reporting and decisions need at each, with "
+           "the tool to use. Size isn't the only factor, so it also lists what should <b>turn the dial up</b>, such as risk, "
+           "regulation or many dependencies. The size bands are rules of thumb drawn from Scrum's guidance of ten or fewer "
+           "people per team, SAFe's release trains of 50 to 125 people, and Team Topologies; adjust them to your context."),
+    glance=[("Duration", "45–60 min"), ("Group", "Project or programme lead,<br>sponsor, team leads"),
+            ("Use when", "Starting a project,<br>or it has grown"), ("Output", "A right-sized set<br>of practices")],
+    before=["Print the poster at A3, or share it on screen",
+            "Count the people and teams involved, including suppliers and part-time contributors",
+            "List the practices, meetings and reports the project uses today",
+            "Note any risk, regulation, fixed dates or key dependencies"],
+    agenda_heads=["Time", "Section", "Facilitator notes"],
+    agenda=[("0–5", "Which level?", "Count people and teams. Which column are we in today, and where are we heading?"),
+            ("5–15", "4 · Turn the Dial Up", "Tick the factors that apply. Two or more? Borrow the next level's practices for those areas."),
+            ("15–35", "1–3 · Row by row", "For each row, compare what we do today with the poster. Mark gaps (too little) and extras (too much)."),
+            ("35–45", "6 · Signs", "Which signs of too little or too much do we see? They show where to act first."),
+            ("45–55", "Decide", "Pick up to three changes: practices to add and, just as important, ones to drop."),
+            ("55–60", "Review date", "Agree when to check again, ideally when the team size changes or each quarter.")],
+    sections_title="The three levels",
+    sections_intro="Add structure when it solves a problem you have.",
+    sections=[("One Team", EMERALD, ["3–10 people", "Conversation over documents", "One board, short events"]),
+              ("Team of Teams", BLUE, ["10–50 people, 2–5 teams", "Shared planning and sync", "RAID log, decision log"]),
+              ("Programme", PURPLE, ["50+ people", "Outcomes at the top", "Portfolio and governance"]),
+              ("Turn the Dial Up", AMBER, ["Risk and regulation", "Dependencies, fixed dates", "Distributed teams"]),
+              ("Wrong Size", RED, ["Too little: surprises", "Too much: bureaucracy"])],
+    tips=[("Start light", "Begin with the least structure that could work, then add what problems show you need."),
+          ("Remove as well as add", "Each quarter, ask what you could stop doing. Structure tends to pile up."),
+          ("Same tools, more of them", "Bigger projects mostly add cross-team versions of team practices, not a different method."),
+          ("Watch the transitions", "Problems often appear when a project grows past a level boundary without changing how it works."),
+          ("Size isn't everything", "A small, high-risk or regulated project may need more structure than a big, simple one."),
+          ("Keep teams small", "Grow by adding teams, not by making teams bigger; keep each team to about ten people or fewer.")],
+    pitfalls=("using the big-programme toolkit on a four-person project; keeping one-team habits at forty people; "
+              "adding reports and meetings without removing any; treating the size bands as rules; growing one team past "
+              "twelve or so instead of splitting it."),
+    after=[("Straight away", "Start the practices you added, and stop the ones you dropped."),
+           ("In a month", "Check the signs of too little or too much again."),
+           ("When size changes", "Revisit the poster whenever teams are added or removed."),
+           ("Quarterly", "Review the whole set of practices as part of a retrospective.")],
+    toolkit=("Use the poster to choose tools. For a single team, start with the <a href=\"facilitator-guide-team-charter.html\">Team "
+             "Charter</a> and <a href=\"facilitator-guide-events-cadences.html\">Events &amp; Cadences</a>. For a team of teams, add "
+             "<a href=\"facilitator-guide-cross-team-planning.html\">Cross-Team Planning</a>, the <a href=\"facilitator-guide-raid-log.html\">RAID "
+             "Log</a> and the <a href=\"facilitator-guide-status-report.html\">Outcome Status Report</a>. For a programme, add "
+             "<a href=\"facilitator-guide-portfolio-kanban.html\">Portfolio Kanban</a> and <a href=\"facilitator-guide-team-topology.html\">Team "
+             "Topology Design</a>. The <a href=\"workshop-recipes.html#starter-kits\">starter kits</a> list the tools for each level in order."),
+    foot="“Which part of our process could we drop without anyone missing it?”",
+))
+
+
 # ------------------------------------------------------------------ rendering
 
 def guide_css():

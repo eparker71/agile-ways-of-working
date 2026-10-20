@@ -7,6 +7,7 @@ eight colour-coded area pairs, dotted sticky-note zones and footer prompts.
 
 Run:  python3 _generator/build_boards.py      (writes into the parent folder)
 """
+import math
 import re
 from html import escape
 from pathlib import Path
@@ -5123,6 +5124,118 @@ def build_sdlc_poster():
                 "delivery and how to keep governance without the delay.", "\n".join(b))
 
 
+# ---------------------------------------------------------------- right-size your structure
+
+RIGHT_SIZE_ROWS = ["Planning", "Roles", "Events", "Tracking work", "Risks & dependencies", "Reporting", "Decisions & governance"]
+RIGHT_SIZE = [
+    ("One Team", EMERALD, "3–10 people · 1 team", "4 people: 6 links", [
+        ("A short planning conversation each iteration, and a simple roadmap.", "Sprint Planning · Prioritisation Board"),
+        ("A product owner or lead sets priorities; the team shares the rest.", "Team Charter"),
+        ("Daily sync, planning, review and retro, kept short.", "Events & Cadences"),
+        ("One visible board. Conversation fills the gaps.", "Kanban Board Design"),
+        ("Raise them in the daily sync and planning; note the big ones.", "Pre-mortem"),
+        ("Show working software at the review, plus a short note to the sponsor.", "Sprint Review"),
+        ("Decide in the room. Write down only what people will ask about later.", "Team Charter (How We Decide)")]),
+    ("Team of Teams", BLUE, "10–50 people · 2–5 teams", "40 people: 780 links", [
+        ("Plan together each planning period, with shared objectives.", "Cross-Team Planning · OKRs"),
+        ("Add a programme manager or RTE to coordinate, and one product lead across teams.", "RACI & Decision Log"),
+        ("Add a weekly cross-team sync, a joint demo and a joint retro.", "Cross-Team Sync · Cross-Team Retro"),
+        ("A shared view of features across teams; each team keeps its own board.", "Dependency Map"),
+        ("A shared RAID log and dependency map, reviewed every week.", "RAID Log · Dependency Map"),
+        ("A one-page outcome status report and a forecast range.", "Outcome Status Report · Release Forecast"),
+        ("A decision log, a shared Definition of Done and clear decision rights.", "RACI & Decision Log · Delegation Board")]),
+    ("Programme", PURPLE, "50+ people · many teams", "120 people: 7,140 links", [
+        ("Outcomes set at the top; big-room planning for each group of teams.", "OKRs · Portfolio Kanban"),
+        ("Programme and portfolio leads, an RTE per group of teams, architecture and product leads.", "Team Topology Design"),
+        ("Add portfolio reviews, and inspect & adapt across the whole programme.", "Events & Cadences · Value Metrics"),
+        ("A portfolio board of initiatives, with work in progress limited at the top.", "Portfolio Kanban & Investment Mix"),
+        ("Managed across groups of teams, with an owner at each level.", "RAID Log · Value Stream Map"),
+        ("Outcome and value measures for leaders, rolled up from the same data.", "Value Metrics · Outcome Status Report"),
+        ("Light governance: evidence from working software, risk-based approval, delegated decisions.",
+         "SDLC at a Glance · Delegation Board · ADKAR")]),
+]
+
+
+def build_right_size():
+    b = [header("Right-Size Your Structure",
+                "How much structure a project needs as it grows from one team to many: just enough to stay safe, no more.",
+                "Run a Project · Inspired by Brooks's law (Fred Brooks), Scrum's small teams, SAFe's release trains and Team Topologies",
+                header_fields(["Project", "Date"]))]
+
+    y, h, gap = 148, 912, 14
+    cw = (1182 - 2 * gap) / 3
+    for i, (name, col, size, links, cells) in enumerate(RIGHT_SIZE):
+        dk = col[0]
+        x = 24 + i * (cw + gap)
+        b.append(panel(x, y, cw, h, i + 1, name, col, "LEVEL " + str(i + 1)))
+        b.append(T(x + 18, y + 80, size, 14, dk, weight=600))
+        b.append(T(x + 18, y + 98, links, 10, dk, op=".7"))
+        top = y + 116
+        ch = (h - 116 - 10) / len(cells)
+        for j, ((text, tools), row) in enumerate(zip(cells, RIGHT_SIZE_ROWS)):
+            cy = top + j * ch
+            b.append(R(x + 12, cy, cw - 24, ch - 8, "white", 6, f' stroke="{dk}" stroke-opacity=".15"'))
+            b.append(T(x + 24, cy + 18, row.upper(), 8, dk, MONO, weight=600, ls=".12em"))
+            tl = _wrap(text, cw - 52, 10.5)[:3]
+            b.append(para(x + 24, cy + 36, tl, 10.5, INK, 15))
+            ty = cy + 36 + len(tl) * 15 + 4
+            b.append(para(x + 24, ty, _wrap(tools, cw - 52, 10), 10, dk, 14, weight=600))
+        if i < 2:
+            b.append(T(x + cw + gap / 2, y + 30, "›", 16, INK, anchor="middle", op=".45"))
+
+    x, w = 1220, 436
+    yy, hh = 148, 330
+    d = AMBER[0]
+    b.append(panel(x, yy, w, hh, 4, "Turn the Dial Up If…", AMBER, "SIZE ISN'T EVERYTHING"))
+    factors = ["High risk, safety or regulation", "Many dependencies on others", "A fixed date or contract",
+               "Many stakeholders or senior visibility", "People across sites or time zones", "New team, domain or technology",
+               "Long duration (many months)"]
+    for k, f in enumerate(factors):
+        b.append(checkbox(x + 18, yy + 86 + k * 30, f, d, 11))
+    b.append(para(x + 18, yy + hh - 32, ["Two or more ticked? Borrow the next level's", "practices for those areas only."], 10, d, 14,
+                  italic=True))
+
+    yy, hh = 492, 260
+    d = SKY[0]
+    b.append(panel(x, yy, w, hh, 5, "Coordination Grows Fast", SKY, "LINKS = N × (N − 1) / 2"))
+    cx, cy, r = x + 104, yy + 152, 62
+    pts = [(cx + r * math.cos(math.pi * (0.5 + 2 * k / 6)), cy - r * math.sin(math.pi * (0.5 + 2 * k / 6))) for k in range(6)]
+    for a_ in range(6):
+        for c_ in range(a_ + 1, 6):
+            b.append(L(pts[a_][0], pts[a_][1], pts[c_][0], pts[c_][1], d, 1, ' stroke-opacity=".35"'))
+    for px, py in pts:
+        b.append(f'<circle cx="{px:g}" cy="{py:g}" r="9" fill="{d}"/>')
+    b.append(T(cx, yy + hh - 16, "6 people: 15 links", 10, d, anchor="middle", op=".8"))
+    for k, (n, l_) in enumerate([("4 people", "6 links"), ("12 people", "66 links"), ("40 people", "780 links"),
+                                 ("120 people", "7,140 links")]):
+        ty = yy + 96 + k * 36
+        b.append(T(x + 210, ty, n, 11, INK))
+        b.append(T(x + w - 18, ty, l_, 14, d, weight=600, anchor="end"))
+        b.append(L(x + 210, ty + 10, x + w - 18, ty + 10, RULE, 1))
+
+    yy, hh = 766, 294
+    d = RED[0]
+    b.append(panel(x, yy, w, hh, 6, "Signs It's the Wrong Size", RED))
+    half = (w - 36) / 2
+    for k, (title, items) in enumerate([("TOO LITTLE", ["Surprises arrive late", "Teams block each other", "The same questions, again",
+                                                         "No one knows the plan"]),
+                                        ("TOO MUCH", ["Meetings about meetings", "Reports no one reads", "Decisions wait for sign-off",
+                                                      "Process for its own sake"])]):
+        cx2 = x + 18 + k * (half + 0)
+        b.append(T(cx2, yy + 84, title, 9, d, MONO, weight=600, ls=".14em"))
+        b.append(bullets(cx2 + 4, yy + 110, items, d, 26))
+    b.append(T(x + 18, yy + hh - 22, "Add structure when it solves a problem you have; remove it when it doesn't.", 10, d,
+               italic=True, op=".85"))
+
+    b.append(footer("What's the least structure that would keep this project safe?",
+                    "Which part of our process could we drop without anyone missing it?", PROJECT_TAG))
+    write_board("right-size-poster", "Right-Size Your Structure",
+                "A3 landscape reference poster: three levels of project size (one team, team of teams, programme), with what "
+                "planning, roles, events, tracking work, risks and dependencies, reporting and decisions need at each level and "
+                "the tools to use; factors that call for more structure; how coordination grows; and signs of too little or too much.",
+                "\n".join(b))
+
+
 # ---------------------------------------------------------------- worked examples
 # Filled-in copies of real boards for a fictional team (the "Basket team" at an online grocery service, the same
 # running example as the Backlog Item Anatomy poster). Each example reads the generated blank board and adds a layer
@@ -5383,5 +5496,6 @@ if __name__ == "__main__":
     build_release_readiness()
     build_cd_health_check()
     build_sdlc_poster()
+    build_right_size()
     for make in EXAMPLES.values():   # worked examples read the blank boards, so they run last
         make()

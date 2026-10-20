@@ -25,6 +25,44 @@ EXAMPLES = [("team-charter", "Team Charter", "A new team's purpose, values, agre
             ("retro", "Start · Stop · Continue", "Stickies with dot votes, and three actions with owners and a done-when.")]
 
 
+# Starter kits: the minimum toolset for each project size (see the Right-Size Your Structure poster).
+# Each entry: (tool key from TOOLS, why it's in the kit). "start" items come first, in order; "grow" items when needed.
+STARTER_KITS = [
+    ("One team", "3–10 people", "#065F46",
+     [("team-charter", "agree purpose, roles and how you'll work"), ("prioritisation", "decide what comes first"),
+      ("kanban", "one visible board for all the work"), ("sprint-planning", "plan each iteration around a goal"),
+      ("retro", "improve a little every few weeks")],
+     [("premortem", "if the work is risky"), ("stakeholder", "if many people care about the result"),
+      ("forecast", "when someone asks “when?”")]),
+    ("Team of teams", "10–50 people · 2–5 teams", "#1E3A8A",
+     [("right-size", "check you have enough structure, and not too much"), ("ctp", "plan together each planning period"),
+      ("dependency", "see who needs what from whom"), ("sync", "a short weekly cross-team check-in"),
+      ("raid", "one shared list of risks, assumptions, issues and dependencies"), ("status", "a one-page update for sponsors")],
+     [("raci", "when decisions get lost or contested"), ("cross-retro", "when the same cross-team problems repeat"),
+      ("release", "for coordinated releases")]),
+    ("Programme", "50+ people · many teams", "#581C87",
+     [("right-size", "set the level of governance on purpose"), ("okr", "outcomes everyone works toward"),
+      ("portfolio-kanban", "decide what to fund and limit work in progress"), ("topology", "organise teams around the work"),
+      ("value", "show whether the investment is paying off"), ("delegation", "push decisions to the right level")],
+     [("adkar", "when the programme changes how people work"), ("vsm", "to find delays across the whole system"),
+      ("sdlc", "to replace document gates with evidence")]),
+]
+
+
+def kits_html():
+    out = []
+    for name, size, colour, start, grow in STARTER_KITS:
+        def item(k, why):
+            if k not in TOOLS:
+                sys.exit(f"STARTER_KITS: unknown tool key “{k}”")
+            title, board, guide, _ = TOOLS[k]
+            return f'<li><a href="{board}">{escape(title)}</a> <span>{escape(why)}</span></li>'
+        out.append(f'<div class="kit" style="--k:{colour}"><h3>{escape(name)}</h3><p class="size">{escape(size)}</p>'
+                   f'<b>Start with</b><ol>{"".join(item(k, w) for k, w in start)}</ol>'
+                   f'<b>Add as you grow</b><ul>{"".join(item(k, w) for k, w in grow)}</ul></div>')
+    return "".join(out)
+
+
 def minutes(t):
     m = re.match(r"(\d+)\s*min", t)
     if not m:
@@ -143,6 +181,15 @@ h2{{font:500 11px 'Geist Mono',monospace;letter-spacing:.14em;text-transform:upp
 .ex span{{padding:2px 12px 12px;color:var(--muted);font-size:12.5px;}}
 .intro{{color:var(--muted);margin:0 0 12px;max-width:760px;}}
 .intro a{{color:#9A3412;}}
+.kits{{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}}
+.kit{{background:#fff;border:1px solid var(--rule);border-top:4px solid var(--k);border-radius:8px;padding:14px 18px;}}
+.kit h3{{margin:0;font:400 24px/1.1 'Instrument Serif',Georgia,serif;}}
+.kit .size{{margin:2px 0 10px;color:var(--muted);font:500 11px 'Geist Mono',monospace;}}
+.kit b{{display:block;font:600 9px 'Geist Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--k);margin-top:8px;}}
+.kit ol,.kit ul{{margin:4px 0 0;padding-left:20px;font-size:13px;}}
+.kit li{{margin:4px 0;}}
+.kit li a{{color:var(--ink);font-weight:500;}}
+.kit li span{{display:block;color:var(--muted);font-size:12px;}}
 .rc{{background:#fff;border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:16px 20px;margin:0 0 14px;scroll-margin-top:12px;}}
 .rc:target{{box-shadow:0 0 0 3px rgba(235,108,54,.35);}}
 .rc h3{{margin:0 0 8px;font:400 26px/1.1 'Instrument Serif',Georgia,serif;}}
@@ -168,7 +215,7 @@ tr.brk td{{color:var(--muted);background:#F8FAFC;}}
 .more h3{{margin:0 0 6px;font-size:15px;}}
 code{{font:12px 'Geist Mono',monospace;background:#F1F5F9;border-radius:4px;padding:1px 5px;}}
 footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#94A3B8;text-align:center;padding:0 16px 32px;}}
-@media (max-width:820px){{.toc,.exs{{grid-template-columns:1fr 1fr;}}}}
+@media (max-width:820px){{.toc,.exs{{grid-template-columns:1fr 1fr;}} .kits{{grid-template-columns:1fr;}}}}
 @media (max-width:560px){{.toc,.exs,.cols{{grid-template-columns:1fr;}} td.t{{display:none;}} dl div{{grid-template-columns:1fr;}}}}
 @media print{{header{{padding:16px;}} .toc,.exs,#examples-h,.intro.ex-intro{{display:none;}} .rc{{break-inside:avoid;}}}}
 </style>
@@ -177,11 +224,14 @@ footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#94A3B8;text-
 <header><div class="wrap">
   <a class="back" href="index.html">← All tools</a>
   <h1>Workshop Recipes</h1>
-  <p>{total} ready-made agendas that combine tools from the toolkit, with timings, preparation and follow-up. Use them as they are, or as a starting point. Below them are worked examples: real boards filled in for a fictional team.</p>
+  <p>{total} ready-made agendas that combine tools from the toolkit, with timings, preparation and follow-up. Use them as they are, or as a starting point. Below them are <a href="#starter-kits" style="color:#FDBA74">starter kits</a> for each size of project, and worked examples: real boards filled in for a fictional team.</p>
   <nav class="toc">{toc}</nav>
 </div></header>
 <main><div class="wrap">
 {sections}
+<h2 id="starter-kits">Starter kits by project size</h2>
+<p class="intro">The minimum set of tools for each size of project, in the order to use them. A four-person project needs far less structure than a forty-person one; see <a href="right-size-poster.html">Right-Size Your Structure</a> for why, and for when to turn the dial up.</p>
+<div class="kits">{kits_html()}</div>
 <h2 id="examples">Worked examples</h2>
 <p class="intro ex-intro">What a finished board can look like, filled in by the “Basket team”, a fictional team at an online grocery service (the same example as the <a href="backlog-anatomy-poster.html">Backlog Item Anatomy</a> poster). Each one has a link back to the blank board.</p>
 <div class="exs">{"".join(ex)}</div>

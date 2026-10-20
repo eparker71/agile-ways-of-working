@@ -18,6 +18,8 @@ from brand import ACCENT, NAVY, CREDIT  # noqa: E402
 OUT = Path(__file__).resolve().parent.parent
 
 TERMS = [
+    ("Brooks's law", "Adding people to a late software project makes it later, because new people need time to get up to speed "
+     "and every extra person adds communication overhead.", "From Fred Brooks, The Mythical Man-Month (1975).", ["right-size"]),
     ("Release Train Engineer (RTE)", "The facilitator and servant leader for a team of teams: runs big-room planning, the regular "
      "cross-team sync, system demos and inspect & adapt, and clears impediments no single team can.",
      "SAFe's name for the role. Scrum@Scale's Chief Scrum Master is similar.", ["ctp", "sync", "cross-retro"]),

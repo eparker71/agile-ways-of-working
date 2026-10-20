@@ -76,6 +76,17 @@ Longer term:
 - Set WIP limits, track work item age, and agree a service level expectation.
 Tools: Daily Sync, Kanban Board Design, Ageing WIP & SLE
 
+## The project has grown from 5 to 40 people
+You'll notice: decisions get lost, teams duplicate or undo each other's work, meetings multiply, and nobody can see the whole plan.
+First moves:
+- Split the work into small, stable teams of ten or fewer, each owning a clear part of the product.
+- Start a weekly cross-team sync and a shared dependency map.
+- Agree who decides what, and start a decision log.
+Longer term:
+- Plan together each planning period with shared objectives, and hold a joint demo and retro.
+- Review your practices against the next level up, and drop the habits that no longer help.
+Tools: Right-Size Your Structure, Cross-Team Planning, Cross-Team Sync, Dependency Map, RACI & Decision Log, Team Topology Design
+
 ## Releases are slow, scary and happen late at night
 You'll notice: big releases every few weeks or months, long release meetings, people on standby, and changes held back "for the next release".
 First moves:

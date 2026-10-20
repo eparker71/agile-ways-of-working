@@ -73,6 +73,7 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | Delegation Board | `delegation-board` | `facilitator-guide-delegation.html` |
 | Leading for Psychological Safety poster | `leading-psych-safety-poster` | `facilitator-guide-leading-psych-safety.html` |
 | Delivery Metrics & Tech Debt | `delivery-metrics-board` | `facilitator-guide-delivery-metrics.html` |
+| Right-Size Your Structure poster | `right-size-poster` | `facilitator-guide-right-size.html` |
 | SDLC at a Glance poster | `sdlc-poster` | `facilitator-guide-sdlc.html` |
 | Delivery Pipeline Canvas | `delivery-pipeline-board` | `facilitator-guide-delivery-pipeline.html` |
 | Test Strategy | `test-strategy-board` | `facilitator-guide-test-strategy.html` |
@@ -107,7 +108,7 @@ The home page groups tools by what you're trying to do. No one framework is assu
 | Manage flow | Kanban Board Design, Kanban Cadences, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Impediments Board, Value Stream Map |
 | Engineering practices | SDLC at a Glance, Delivery Pipeline Canvas, Test Strategy, Release Readiness & Strategy, Continuous Delivery Health Check, Pairing & Mobbing, Delivery Metrics & Tech Debt, Architecture Decision Record, Blameless Incident Review |
 | Reflect & improve | Retrospective Kit, Team Health Check, Psychological Safety Check, Anti-Pattern Spotter, Marginal Gains Workshop, 1% Experiment Canvas, Root Cause Analysis |
-| Run a project | Project Kickoff, Stakeholder Map, Pre-mortem, RAID Log, RACI & Decision Log, Release Forecast & Burn-up, Outcome Status Report |
+| Run a project | Right-Size Your Structure, Project Kickoff, Stakeholder Map, Pre-mortem, RAID Log, RACI & Decision Log, Release Forecast & Burn-up, Outcome Status Report |
 | Coordinate teams | Objectives & Key Results, Cross-Team Planning, Dependency Map, Cross-Team Sync, Team Topology Design, Cross-Team Retro |
 | Lead the organisation | Value Metrics, Portfolio Kanban & Investment Mix, Delegation Board, Leading for Psychological Safety, ADKAR Change Readiness (ADKAR® is a registered trademark of Prosci, Inc.) |
 | Facilitate & coach | Facilitation Techniques, Lean Coffee, Coaching Conversation |
