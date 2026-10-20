@@ -233,7 +233,7 @@ footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#94A3B8;text-
 <header><div class="wrap">
   <a class="back" href="index.html">← All tools</a>
   <h1>Anti-Pattern Catalogue</h1>
-  <p>{len(ANTIPATTERNS)} common anti-patterns, each with why it hurts, what to try, and the tool that helps. Start from a symptom you recognise. To find them with your team, use the <a href="anti-pattern-spotter-board.html">Anti-Pattern Spotter board</a>.</p>
+  <p>{len(ANTIPATTERNS)} common anti-patterns, each with why it hurts, what to try, and the tool that helps. Start from a symptom you recognise. To find them with your team, use the <a href="anti-pattern-spotter-board.html">Anti-Pattern Spotter board</a>. For one-off situations, such as a deadline moving or a key person leaving, see the <a href="scenarios.html">Scenario Playbook</a>.</p>
   <input type="search" placeholder="Search symptoms, e.g. “retro” or “blocked”…" aria-label="Search anti-patterns">
   <div class="bar">{chips}</div>
 </div></header>

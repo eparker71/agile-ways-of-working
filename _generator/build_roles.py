@@ -140,7 +140,7 @@ for _id, _n, _d, start, also in ROLES:
 
 def roles_for(href):
     """Role ids for the index card whose Open link is href."""
-    if href.startswith(("start-here-by-role", "glossary", "make-it-yours", "anti-patterns")):
+    if href.startswith(("start-here-by-role", "glossary", "make-it-yours", "anti-patterns", "scenarios")):
         return [rid for rid, *_ in ROLES]
     for key, (_, _, _, prefix) in TOOLS.items():
         if href.startswith(prefix):
