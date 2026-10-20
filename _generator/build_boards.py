@@ -4555,6 +4555,73 @@ def build_events_poster():
                 "\n".join(b))
 
 
+# ---------------------------------------------------------------- anti-pattern spotter
+
+def build_antipattern_spotter():
+    from build_antipatterns import ANTIPATTERNS, AREAS
+    b = [header("Anti-Pattern Spotter",
+                "Tick the anti-patterns you recognise, vote on the ones that hurt most, and pick a tool to tackle each.",
+                "Reflect & Improve · Common Anti-Patterns · Spot · Vote · Act · See the Anti-Pattern Catalogue",
+                legend([("dot", ACCENT, "Dot = Vote (3 per person)"), ("dot", "#CBD5E1", "Tick = We recognise this")]))]
+
+    x, y, w, h = 24, 148, 1632, 96
+    b.append(R(x, y, w, h, NAVY, 10))
+    b.append(R(x, y, 6, h, ACCENT, 3))
+    b.append(T(x + 24, y + 30, "HOW TO USE IT", 9.5, ACCENT, MONO, weight=600, ls=".14em"))
+    steps = [("Spot", "Tick every symptom you recognise, alone and in silence."),
+             ("Vote", "Three dots each on the ones that hurt most."),
+             ("Act", "Take the top three into the table below.")]
+    for i, (t, s) in enumerate(steps):
+        sx = x + 24 + i * 540
+        b.append(f'<circle cx="{sx + 11}" cy="{y + 62}" r="11" fill="{ACCENT}"/>')
+        b.append(T(sx + 11, y + 66, str(i + 1), 10.5, "white", weight=600, anchor="middle"))
+        b.append(T(sx + 30, y + 67, t, 14, "white", weight=600))
+        b.append(T(sx + 30 + text_w(t, 14) + 14, y + 67, s, 11.5, "#CBD5E1"))
+
+    colours = {"events": BLUE, "backlog": EMERALD, "flow": ORANGE, "teams": PURPLE, "scaling": SKY,
+               "leadership": FOREST, "metrics": AMBER}
+    cw = (1632 - 3 * 14) / 4
+    ph = 270
+    for i, (aid, name) in enumerate(AREAS + [("own", "Our Own")]):
+        r, c = divmod(i, 4)
+        px, py = 24 + c * (cw + 14), 258 + r * (ph + 14)
+        col = colours.get(aid, SLATE)
+        d = col[0]
+        b.append(panel(px, py, cw, ph, None, name, col))
+        items = [a[2] for a in ANTIPATTERNS if a[0] == aid][:4] if aid != "own" else []
+        for j in range(4):
+            iy = py + 84 + j * 46
+            b.append(R(px + 18, iy - 11, 13, 13, "white", 2, f' stroke="{d}" stroke-opacity=".6" stroke-width="1.2"'))
+            if items:
+                b.append(T(px + 40, iy, items[j], 11.5, INK))
+            else:
+                b.append(L(px + 40, iy + 3, px + cw - 90, iy + 3, WRITE))
+            for k in range(3):
+                b.append(f'<circle cx="{px + cw - 66 + k * 22:g}" cy="{iy - 4}" r="7" fill="white" stroke="{d}" '
+                         f'stroke-opacity=".35" stroke-dasharray="2,2"/>')
+            b.append(L(px + 40, iy + 22, px + cw - 18, iy + 22, d, 1, ' stroke-opacity=".08"'))
+
+    x, y, w, h = 24, 826, 1082, 234
+    d = RED[0]
+    b.append(panel(x, y, w, h, 1, "Our Top Three", RED, "WHY HERE? WHAT WILL WE TRY?"))
+    b.append(table(x + 18, y + 82, [("Anti-pattern", 250), ("Why it's happening here", 330), ("Tool to try", 210),
+                                    ("Owner", 120), ("Check on", w - 36 - 910)], 3, d, 42))
+
+    x, w = 1120, 536
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 2, "Next Time", FOREST))
+    for i, m in enumerate(["Re-run the spotter in 6–8 weeks", "Compare which ticks have gone",
+                           "Look up each symptom in the catalogue"]):
+        b.append(checkbox(x + 18, y + 86 + i * 30, m, d, 11))
+    b.append(field(x + 18, y + 200, "Next session:", x + w - 18, d))
+
+    b.append(footer("Which of these would we be embarrassed for a new joiner to see?",
+                    "If we fixed only one, which would make the biggest difference?", FOOT_TAG))
+    write_board("anti-pattern-spotter-board", "Anti-Pattern Spotter",
+                "A3 landscape board: seven areas of common agile anti-patterns, four symptoms each with checkboxes and vote "
+                "dots, a panel for your own, a top-three action table, and next steps.", "\n".join(b))
+
+
 if __name__ == "__main__":
     build_retros()
     build_sailboat()
@@ -4614,3 +4681,4 @@ if __name__ == "__main__":
     build_backlog_refinement()
     build_kanban_cadences()
     build_events_poster()
+    build_antipattern_spotter()

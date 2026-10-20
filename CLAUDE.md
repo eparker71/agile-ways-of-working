@@ -13,6 +13,7 @@ python3 _generator/build_boards.py   # every generated board → <slug>.svg + <s
 python3 _generator/build_guides.py   # every generated guide → facilitator-guide-<slug>.html + .docx
 python3 _generator/build_roles.py    # start-here-by-role.html + role tags/filter in index.html
 python3 _generator/build_glossary.py # glossary.html (imports TOOLS from build_roles.py)
+python3 _generator/build_antipatterns.py # anti-patterns.html (ANTIPATTERNS list; build_boards.py reads it for the Spotter board)
 ```
 
 Each script regenerates everything it owns (there's no per-file target). They're idempotent.
@@ -21,7 +22,7 @@ Each script regenerates everything it owns (there's no per-file target). They're
 
 Never edit generated files directly; edit the script and re-run.
 
-- **Generated:** every board except Marginal Gains, every `facilitator-guide-*.html` except Marginal Gains, `start-here-by-role.html`, `glossary.html`.
+- **Generated:** every board except Marginal Gains, every `facilitator-guide-*.html` except Marginal Gains, `start-here-by-role.html`, `glossary.html`, `anti-patterns.html`.
 - **Hand-written:** `marginal-gains-workshop-board.{svg,html}`, `facilitator-guide-marginal-gains.html`, `scrum-master-agile-coach-cheat-sheet.html`, `jira-cheat-sheet.html`, `make-it-yours.html`, `index.html`, `LICENSE.md`.
 - **Brand:** colours, fonts and the credit line (© author · CC BY 4.0 · site) live in `_generator/brand.py` and are imported by all four generators. The hand-written pages carry the same values by hand, so update them too when rebranding.
 - `index.html` is hand-written **except** the regions `build_roles.py` maintains: the `<!-- roles:… -->` / `/* roles:css */` blocks and each card's `data-roles` attribute.

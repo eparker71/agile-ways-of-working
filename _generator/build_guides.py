@@ -3087,6 +3087,59 @@ GUIDES += [
     ),
 ]
 
+GUIDES.append(dict(
+    slug="anti-pattern-spotter",
+    title="Anti-Pattern Spotter Guide",
+    subtitle="How to help a team spot the anti-patterns holding it back, choose the ones that matter, and act on them.",
+    tag="Facilitator Run-Sheet · Reflect & Improve · Common Anti-Patterns",
+    boards=[("Open board", "anti-pattern-spotter-board.html"), ("SVG", "anti-pattern-spotter-board.svg")],
+    lede="If we fixed only one, which would make the biggest difference?",
+    intro=("Every team slips into habits that quietly slow it down: daily syncs that turn into status reports, stories that "
+           "are really tasks, too much work in progress. Naming them is the first step to fixing them. The board lists "
+           "<b>28 common anti-patterns</b> in seven areas, from events and the backlog to leadership and metrics. People "
+           "<b>tick</b> the ones they recognise, <b>vote</b> on those that hurt most, then choose a <b>tool</b> to tackle the "
+           "top three. Each symptom has a fuller entry, with why it hurts and what to try, in the "
+           "<a href=\"anti-patterns.html\">Anti-Pattern Catalogue</a>."),
+    glance=[("Duration", "45–60 min"), ("Group", "One team, or a<br>group of teams"),
+            ("Use when", "Something feels off,<br>or every quarter"), ("Output", "Top three anti-patterns<br>&amp; actions")],
+    before=["Print the board at A3 or larger, or load the SVG as a digital background",
+            "Open the Anti-Pattern Catalogue so you can read out fuller descriptions",
+            "Dot stickers (three per person) and markers",
+            "Agree that this is about the system, not about blaming anyone",
+            "For leaders and teams together, consider anonymous ticking first"],
+    agenda_heads=["Minutes", "Step", "Facilitator notes"],
+    agenda=[("0–5", "Frame", "Explain that every team has some of these. The aim is to pick a few to improve, not to score the team."),
+            ("5–15", "Spot", "Everyone ticks the symptoms they recognise, in silence. Add any missing ones in the Our Own panel."),
+            ("15–20", "Vote", "Three dots each on the anti-patterns that hurt most."),
+            ("20–40", "Understand", "For the top three, read the catalogue entry and discuss why it's happening here."),
+            ("40–55", "Act", "Pick a tool to try for each, with an owner and a date to check."),
+            ("55–60", "Close", "Book a re-run in six to eight weeks.")],
+    sections_title="Using each part well",
+    sections_intro="What to aim for on each part of the board.",
+    sections=[("Spot", BLUE, ["Silent and individual", "Honest, not defensive"]),
+              ("Vote", ORANGE, ["Three dots each", "Hurt most, not easiest"]),
+              ("Our Own", SLATE, ["Add what's missing", "In the team's words"]),
+              ("Our Top Three", RED, ["Why it's happening here", "A tool and an owner"]),
+              ("Next Time", FOREST, ["Re-run regularly", "Celebrate ticks that go"])],
+    tips=[("Normalise it", "Every team has anti-patterns. Saying so up front makes honest ticking easier."),
+          ("Symptoms, not people", "The board names patterns in the system, never individuals."),
+          ("Three is plenty", "Working on three anti-patterns well beats a long list of good intentions."),
+          ("Ask why here", "The same anti-pattern has different causes in different teams. Discuss yours."),
+          ("Use the catalogue", "Each entry says why the pattern hurts and what to try, which keeps discussion constructive."),
+          ("Track progress", "Re-running the board shows which ticks have disappeared, a visible sign of improvement.")],
+    pitfalls=("using it to judge a team or a person; trying to fix everything at once; voting on the easiest instead of "
+              "the most harmful; no owners; never re-running it."),
+    after=[("Straight away", "Start the three actions, using the tools you chose."),
+           ("Each retro", "Check progress on the top three."),
+           ("In 6–8 weeks", "Re-run the spotter and compare."),
+           ("Share patterns", "Coaches can collect anonymised results across teams to spot system-wide issues.")],
+    toolkit=("The spotter is a way in to the rest of the toolkit: every symptom points to a tool. Use it with the "
+             "<a href=\"anti-patterns.html\">Anti-Pattern Catalogue</a>, the <a href=\"facilitator-guide-team-health-check.html\">"
+             "Team Health Check</a> and the <a href=\"facilitator-guide-psych-safety.html\">Psychological Safety Check</a> "
+             "to understand how a team is doing."),
+    foot="“Which of these would we be embarrassed for a new joiner to see?”",
+))
+
 
 # ------------------------------------------------------------------ rendering
 

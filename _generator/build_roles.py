@@ -25,6 +25,7 @@ TOOLS = {
     "jira": ("Jira Cheat Sheet", "jira-cheat-sheet.html", None, "jira-cheat-sheet"),
     "lean-coffee": ("Lean Coffee", "lean-coffee-board.html", "facilitator-guide-lean-coffee.html", "lean-coffee"),
     "launch": ("Team Launch (Sprint Zero)", "team-launch-board.html", "facilitator-guide-team-launch.html", "team-launch"),
+    "spotter": ("Anti-Pattern Spotter", "anti-pattern-spotter-board.html", "facilitator-guide-anti-pattern-spotter.html", "anti-pattern-spotter"),
     "team-charter": ("Team Charter", "team-charter-board.html", "facilitator-guide-team-charter.html", "team-charter"),
     "ai": ("AI Working Agreement", "ai-working-agreement-board.html", "facilitator-guide-ai-working-agreement.html", "ai-working-agreement"),
     "vision": ("Product Vision Board", "product-vision-board.html", "facilitator-guide-product-vision.html", "product-vision"),
@@ -88,12 +89,12 @@ ROLES = [
      "You help the team deliver well: smooth flow, useful events, and impediments removed.",
      ["sm-cheat", "retro", "impediments"],
      ["sprint-planning", "sprint-review", "team-charter", "ai", "health", "kanban", "ageing", "buffer", "blockers", "pairing",
-      "skills", "example", "splitting", "rootcause", "experiment", "marginal", "lean-coffee", "jira", "adkar", "coaching", "psych-safety", "delivery-metrics", "backlog", "facilitation", "estimation", "vsm", "incident", "launch", "daily", "refinement", "cadences", "events"]),
+      "skills", "example", "splitting", "rootcause", "experiment", "marginal", "lean-coffee", "jira", "adkar", "coaching", "psych-safety", "delivery-metrics", "backlog", "facilitation", "estimation", "vsm", "incident", "launch", "daily", "refinement", "cadences", "events", "spotter"]),
     ("coach", "Agile Coach",
      "You help teams and leaders improve how they work, and coach the system beyond any one team.",
      ["health", "marginal", "topology"],
      ["sm-cheat", "retro", "team-charter", "ai", "experiment", "rootcause", "kanban", "ageing", "blockers", "skills",
-      "value", "okr", "ctp", "sync", "impediments", "lean-coffee", "adkar", "coaching", "psych-safety", "delegation", "cross-retro", "portfolio-kanban", "backlog", "facilitation", "vsm", "incident", "launch", "events", "cadences", "daily"]),
+      "value", "okr", "ctp", "sync", "impediments", "lean-coffee", "adkar", "coaching", "psych-safety", "delegation", "cross-retro", "portfolio-kanban", "backlog", "facilitation", "vsm", "incident", "launch", "events", "cadences", "daily", "spotter"]),
     ("po", "Product Owner / Product Manager",
      "You decide what's worth building, for whom, and in what order, and you prove it worked.",
      ["vision", "ost", "prioritisation"],
@@ -103,11 +104,11 @@ ROLES = [
      "You get a defined piece of work delivered: scope, stakeholders, risks, forecasts and decisions.",
      ["kickoff", "raid", "status"],
      ["stakeholder", "premortem", "forecast", "prioritisation", "team-charter", "sprint-review", "dependency",
-      "impediments", "lean-coffee", "jira", "adkar", "psych-safety", "raci", "facilitation", "launch", "events", "daily"]),
+      "impediments", "lean-coffee", "jira", "adkar", "psych-safety", "raci", "facilitation", "launch", "events", "daily", "spotter"]),
     ("program", "Program Manager / Release Train Engineer",
      "You keep several teams aligned on shared outcomes, with dependencies and risks in the open.",
      ["ctp", "dependency", "sync"],
-     ["okr", "topology", "status", "raid", "forecast", "premortem", "value", "stakeholder", "impediments", "marginal", "adkar", "cross-retro", "portfolio-kanban", "delivery-metrics", "vsm", "raci", "facilitation", "launch", "events"]),
+     ["okr", "topology", "status", "raid", "forecast", "premortem", "value", "stakeholder", "impediments", "marginal", "adkar", "cross-retro", "portfolio-kanban", "delivery-metrics", "vsm", "raci", "facilitation", "launch", "events", "spotter"]),
     ("portfolio", "Portfolio Manager / PMO",
      "You decide where the organisation invests, and check that the investment delivers value.",
      ["portfolio-kanban", "value", "prioritisation"],
@@ -115,12 +116,12 @@ ROLES = [
     ("leader", "Executive / Sponsor",
      "You set direction, fund the work, remove the biggest obstacles, and shape how teams are organised.",
      ["value", "okr", "topology"],
-     ["vision", "status", "stakeholder", "premortem", "kickoff", "impediments", "ai", "health", "adkar", "portfolio-kanban", "delegation", "psych-safety", "coaching", "vsm", "raci", "impact", "events"]),
+     ["vision", "status", "stakeholder", "premortem", "kickoff", "impediments", "ai", "health", "adkar", "portfolio-kanban", "delegation", "psych-safety", "coaching", "vsm", "raci", "impact", "events", "spotter"]),
     ("eng", "Engineering Manager / Tech Lead",
      "You build capable teams and healthy systems: skills, flow, quality and sensible team boundaries.",
      ["skills", "topology", "kanban"],
      ["pairing", "ageing", "buffer", "blockers", "ai", "team-charter", "rootcause", "example", "splitting",
-      "dependency", "health", "impediments", "delivery-metrics", "psych-safety", "coaching", "delegation", "backlog", "vsm", "incident", "adr", "estimation", "launch", "daily", "refinement", "cadences"]),
+      "dependency", "health", "impediments", "delivery-metrics", "psych-safety", "coaching", "delegation", "backlog", "vsm", "incident", "adr", "estimation", "launch", "daily", "refinement", "cadences", "spotter"]),
     ("ux", "Designer / Business Analyst",
      "You understand users and the problem, and help the team build the right thing, clearly specified.",
      ["ost", "storymap", "example"],
@@ -129,7 +130,7 @@ ROLES = [
      "You do the work, and you help decide how the team works and improves.",
      ["team-charter", "retro", "pairing"],
      ["ai", "sprint-planning", "sprint-review", "lean-coffee", "skills", "kanban", "buffer", "impediments", "example",
-      "splitting", "health", "psych-safety", "backlog", "estimation", "incident", "facilitation", "adr", "launch", "daily", "refinement", "events"]),
+      "splitting", "health", "psych-safety", "backlog", "estimation", "incident", "facilitation", "adr", "launch", "daily", "refinement", "events", "spotter"]),
 ]
 
 for _id, _n, _d, start, also in ROLES:
@@ -139,7 +140,7 @@ for _id, _n, _d, start, also in ROLES:
 
 def roles_for(href):
     """Role ids for the index card whose Open link is href."""
-    if href.startswith(("start-here-by-role", "glossary", "make-it-yours")):
+    if href.startswith(("start-here-by-role", "glossary", "make-it-yours", "anti-patterns")):
         return [rid for rid, *_ in ROLES]
     for key, (_, _, _, prefix) in TOOLS.items():
         if href.startswith(prefix):
