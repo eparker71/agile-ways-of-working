@@ -251,7 +251,8 @@ FILTER_CSS = """/* roles:css */
 .rolenote.on{display:block;}
 .rolenote a{color:#9A3412;}
 .hidden{display:none !important;}
-@media (max-width:720px){.sections input{width:120px;}}
+@media (max-width:720px){.sections input{width:120px;}.sections .links{padding-right:28px;-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 36px),transparent);}}
+@media (max-width:640px){.rolebar{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-right:32px;-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 36px),transparent);}.rolebar::-webkit-scrollbar{display:none;}.rolebar span,.rolebar button{flex:none;white-space:nowrap;}}
 /* /roles:css */
 """
 

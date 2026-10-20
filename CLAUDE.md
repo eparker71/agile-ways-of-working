@@ -69,7 +69,7 @@ If the tool introduces new terms, add them to `TERMS` in `build_glossary.py`. Op
 
 There are no tests; verify by rendering with headless Chrome (`/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`):
 - **Screenshot a board:** `--headless=new --hide-scrollbars --window-size=1728,1238 --virtual-time-budget=4000 --screenshot=<png> file://<path>`. Look for text overlapping panel edges, legends or other text. `text_w()` is only a rough width estimate.
-- **Page count:** `--print-to-pdf`, then count `/Type /Page` objects. Guides should print to 3–4 A4 pages; the main cheat sheet to exactly 2 A3 pages; the Jira sheet to 1.
+- **Page count:** `--print-to-pdf`, then count `/Type /Page` objects. Boards should print to exactly 1 A3 landscape page; guides to 3–4 A4 pages; the main cheat sheet to exactly 2 A3 pages; the Jira sheet to 1.
 - **Cheat sheet overflow:** inject a script that compares `scrollHeight` with `clientHeight` on `.panel`/`.pb` at a 1660px-wide window, and dump the DOM with `--dump-dom`. The main cheat sheet is nearly full. Adding a line to one panel can overflow a different panel in the same grid row, often Team Development on side 2. Rebalancing the `.s2` grid columns has worked better than shrinking text.
 - **Links:** after edits, check that every relative `href` in `*.html` exists on disk.
 - Headless Chrome won't render narrower than 500px. The `.tbl` tables scrolling sideways inside their panel on phones is intentional.

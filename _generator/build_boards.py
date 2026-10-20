@@ -264,6 +264,20 @@ GUIDE_LINK_CSS = (f"a.guide{{position:fixed;right:16px;bottom:16px;font:500 12px
                   f"box-shadow:0 6px 20px rgba(0,0,0,.25);}}\na.guide:hover{{background:{ACCENT};}}")
 
 
+PHONE_CSS = ("p.phone{display:none;}"
+             "@media (max-width:700px){body{flex-direction:column;align-items:stretch;padding:12px 12px 72px;min-height:0;}"
+             "p.phone{display:block;margin:14px 2px 0;font:14px/1.5 'Geist',system-ui,sans-serif;color:#0C1A2E;}"
+             "p.phone b{display:block;font-weight:600;margin-bottom:2px;}p.phone a{color:#9A3412;}}"
+             "@media print{p.phone{display:none !important;}}")
+
+
+def phone_note(svg_href, guide_href):
+    """Shown on phones only: the board is A3, so say how to read it."""
+    return (f'<p class="phone"><b>This is an A3 board, made for printing or a big screen.</b>'
+            f'Pinch to zoom, turn your phone sideways, or <a href="{svg_href}">open the SVG</a> to zoom in. '
+            f'The <a href="{guide_href}">facilitator guide</a> is easy to read on a phone.</p>')
+
+
 def write_board(slug, title, desc, body):
     svg_open = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" '
                 f'role="img" aria-labelledby="mg-title mg-desc">\n'
@@ -285,12 +299,14 @@ html,body{{margin:0;padding:0;background:#B0BEC5;}}
 body{{display:flex;justify-content:center;align-items:flex-start;padding:24px;box-sizing:border-box;min-height:100vh;}}
 svg{{display:block;max-width:100%;height:auto;box-shadow:0 12px 40px rgba(0,0,0,.22);}}
 {GUIDE_LINK_CSS}
-@media print{{@page{{size:A3 landscape;margin:0;}}html,body{{background:none;}}body{{padding:0;}}svg{{box-shadow:none;width:100%;}}a.guide{{display:none;}}}}
+{PHONE_CSS}
+@media print{{@page{{size:A3 landscape;margin:0;}}html,body{{background:none;}}body{{padding:0;}}svg{{box-shadow:none;width:100%;max-height:296mm;}}html,body{{height:297mm;overflow:hidden;}}a.guide{{display:none;}}}}
 </style>
 </head>
 <body>
 <a class="guide" href="{guide_for(slug)}">Facilitator guide →</a>
 {svg_inline}
+{phone_note(f"{slug}.svg", guide_for(slug))}
 </body>
 </html>
 """
@@ -5177,6 +5193,7 @@ def write_example(base, title, layer, header=None):
         return re.sub(r'<text[^>]*>sprint, month, quarter…</text>', "", t)
     svg, page = clean(svg), clean(page)
     slug = f"worked-example-{base}"
+    page = page.replace(f'<a href="{base}.svg">open the SVG</a>', f'<a href="{slug}.svg">open the SVG</a>')
     (OUT / f"{slug}.svg").write_text(svg, encoding="utf-8")
     (OUT / f"{slug}.html").write_text(page, encoding="utf-8")
     print("wrote", slug)
