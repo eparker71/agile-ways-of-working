@@ -95,10 +95,19 @@ TERMS = [
      "is the whole group working together.", "From Extreme Programming (XP).", ["pairing"]),
     ("Planning period", "A fixed span, often a quarter, for which several teams plan together.",
      "SAFe calls this a Program Increment (PI).", ["ctp"]),
+    ("ESVP", "A quick, anonymous check-in at the start of a retrospective: each person says whether they feel like an "
+     "Explorer, Shopper, Vacationer or Prisoner, which shows how engaged and safe the group feels.", None, ["retro"]),
+    ("Learning zone", "The state where a team has both high psychological safety and high standards, so people speak up "
+     "and stretch. Without standards it's a comfort zone; without safety, an anxiety zone.", "From Amy Edmondson.",
+     ["leading-safety", "psych-safety"]),
+    ("Prime Directive", "A statement read at the start of a retrospective: everyone did the best job they could with what "
+     "they knew at the time. It sets a tone of learning, not blame.", "From Norm Kerth's book Project Retrospectives.",
+     ["retro", "incident"]),
     ("Product goal", "The longer-term objective a product is working toward. Backlog items should move toward it.",
      "A Scrum term.", ["vision"]),
     ("Psychological safety", "A shared belief that it's safe to take interpersonal risks: to speak up, ask for help, admit a "
-     "mistake or disagree.", "From Amy Edmondson's research.", ["psych-safety"]),
+     "mistake or disagree. It isn't about being nice or lowering standards: the goal is high safety and high standards.",
+     "From Amy Edmondson's research.", ["psych-safety", "leading-safety"]),
     ("Refinement", "The ongoing work of clarifying, splitting and ordering backlog items so the top of the backlog is ready.",
      "Scrum calls it Product Backlog refinement; it isn't a formal event.", ["splitting", "example"]),
     ("Retrospective", "A regular session where the team inspects how it works and agrees improvements to try.", None,

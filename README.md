@@ -71,6 +71,7 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | ADKAR Change Readiness | `adkar-board` | `facilitator-guide-adkar.html` |
 | Portfolio Kanban & Investment Mix | `portfolio-kanban-board` | `facilitator-guide-portfolio-kanban.html` |
 | Delegation Board | `delegation-board` | `facilitator-guide-delegation.html` |
+| Leading for Psychological Safety poster | `leading-psych-safety-poster` | `facilitator-guide-leading-psych-safety.html` |
 | Delivery Metrics & Tech Debt | `delivery-metrics-board` | `facilitator-guide-delivery-metrics.html` |
 | Coaching Conversation (GROW) | `coaching-conversation-board` | `facilitator-guide-coaching-conversation.html` |
 | Psychological Safety Check | `psych-safety-board` | `facilitator-guide-psych-safety.html` |
@@ -103,7 +104,7 @@ The home page groups tools by what you're trying to do. No one framework is assu
 | Reflect & improve | Retrospective Kit, Team Health Check, Psychological Safety Check, Anti-Pattern Spotter, Marginal Gains Workshop, 1% Experiment Canvas, Root Cause Analysis |
 | Run a project | Project Kickoff, Stakeholder Map, Pre-mortem, RAID Log, RACI & Decision Log, Release Forecast & Burn-up, Outcome Status Report |
 | Coordinate teams | Objectives & Key Results, Cross-Team Planning, Dependency Map, Cross-Team Sync, Team Topology Design, Cross-Team Retro |
-| Lead the organisation | Value Metrics, Portfolio Kanban & Investment Mix, Delegation Board, ADKAR Change Readiness (ADKAR® is a registered trademark of Prosci, Inc.) |
+| Lead the organisation | Value Metrics, Portfolio Kanban & Investment Mix, Delegation Board, Leading for Psychological Safety, ADKAR Change Readiness (ADKAR® is a registered trademark of Prosci, Inc.) |
 | Facilitate & coach | Facilitation Techniques, Lean Coffee, Coaching Conversation |
 
 The home page also has a **Start here** strip (role guide, glossary, cheat sheets, Make It Yours), a sticky section menu, a search box and the **I'm a…** role filter.

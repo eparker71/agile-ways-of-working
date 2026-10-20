@@ -4622,6 +4622,88 @@ def build_antipattern_spotter():
                 "dots, a panel for your own, a top-three action table, and next steps.", "\n".join(b))
 
 
+# ---------------------------------------------------------------- leading for psychological safety
+
+def build_leading_safety():
+    b = [header("Leading for Psychological Safety",
+                "What leaders can do every day to make it safe to speak up, ask for help and admit mistakes, without lowering the bar.",
+                "Lead the Organisation · Inspired by Amy Edmondson's Work · Set the Stage · Invite · Respond",
+                header_fields(["Leader", "Date"]))]
+
+    moves = [("1", "Set the Stage", PURPLE, "FRAME THE WORK",
+              ["Say the work is uncertain and needs everyone's", "input. Be open that you don't have all the answers."],
+              ["Explain why each person's view matters", "Name the risks and unknowns out loud", "Share a mistake of your own"],
+              ["“This is new for all of us.”", "“I could be wrong about this.”"]),
+             ("2", "Invite Participation", BLUE, "ASK, THEN LISTEN",
+              ["Ask genuine questions and build ways for", "people to contribute, especially the quiet ones."],
+              ["Ask open questions, then wait", "Use silent writing and round-robins", "Speak last in discussions"],
+              ["“What are we missing?”", "“Who sees this differently?”"]),
+             ("3", "Respond Productively", EMERALD, "WHAT YOU DO NEXT DECIDES IT",
+              ["How you react to bad news, questions and", "failure tells people whether to speak again."],
+              ["Thank people for raising problems", "Treat failure as learning: ask what happened", "Still address real misconduct, fairly"],
+              ["“Thank you for telling me early.”", "“What can we learn from this?”"])]
+    cw = (1632 - 2 * 14) / 3
+    for i, (n, name, col, note, means, do, say) in enumerate(moves):
+        x, y, h = 24 + i * (cw + 14), 148, 340
+        d = col[0]
+        b.append(panel(x, y, cw, h, n, name, col, note))
+        b.append(para(x + 18, y + 82, means, 11.5, d, 17, weight=500))
+        b.append(T(x + 18, y + 136, "DO", 8.5, d, MONO, weight=600, ls=".12em"))
+        for j, s in enumerate(do):
+            b.append(T(x + 18, y + 160 + j * 22, "✓", 11, d, weight=600))
+            b.append(T(x + 36, y + 160 + j * 22, s, 11, INK))
+        b.append(T(x + 18, y + 246, "SAY", 8.5, d, MONO, weight=600, ls=".12em"))
+        for j, s in enumerate(say):
+            b.append(T(x + 18, y + 274 + j * 28, s, 17, d, SERIF, italic=True))
+
+    y, h = 502, 360
+    x, w = 24, 808
+    b.append(panel(x, y, w, h, 4, "Safety and Standards", SLATE, "SAFETY IS NOT THE SAME AS COMFORT"))
+    b.append(quad_grid(x + 54, y + 70, x + w - 18, y + h - 52,
+                       [("Comfort Zone", "Safe, but little is asked of people", AMBER),
+                        ("Learning Zone", "Safe to speak up, and high standards: aim here", EMERALD),
+                        ("Apathy Zone", "Not safe, and little expected", SLATE),
+                        ("Anxiety Zone", "High pressure, but unsafe to speak up", RED)],
+                       "LOW STANDARDS", "HIGH STANDARDS", "ACCOUNTABILITY →", "PSYCHOLOGICAL SAFETY →"))
+
+    x, w = 846, 810
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 5, "Phrases to Use and Avoid", SLATE))
+    use = ["“What would you do?”", "“Help me understand.”", "“What did we learn?”", "“I'd value your view on this.”",
+           "“Thanks for flagging that.”", "“Let's look at the process, not the person.”"]
+    avoid = ["“Who's responsible for this?”", "“That's not how we do it here.”", "“Why didn't you tell me sooner?”",
+             "“Any questions? No? Good.”", "“Just make it work.”", "“I don't want problems, I want solutions.”"]
+    hw = (w - 54) / 2
+    for k, (title, items, col) in enumerate([("Try saying", use, EMERALD[0]), ("Avoid saying", avoid, RED[0])]):
+        cx = x + 18 + k * (hw + 18)
+        b.append(T(cx, y + 80, title.upper(), 9, col, MONO, weight=600, ls=".12em"))
+        for j, s in enumerate(items):
+            b.append(T(cx, y + 112 + j * 38, s, 15, col, SERIF, italic=True))
+
+    y, h = 876, 184
+    x, w = 24, 1082
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 6, "Daily Habits", FOREST, "SMALL, REPEATED, VISIBLE"))
+    habits = ["Open meetings by asking for risks and concerns", "Admit a mistake or a doubt each week",
+              "Close decisions with a fist of five", "Thank the person who brings the hardest news",
+              "Ask the quietest person first, sometimes", "Follow up on what people raised"]
+    for j, m in enumerate(habits):
+        b.append(checkbox(x + 18 + (j % 2) * 530, y + 86 + (j // 2) * 30, m, d, 11))
+
+    x, w = 1120, 536
+    d = RED[0]
+    b.append(panel(x, y, w, h, 7, "Warning Signs", RED, "TIME TO ACT"))
+    b.append(bullets(x + 22, y + 82, ["Meetings go quiet when you speak", "Bad news reaches you late, or second-hand",
+                                      "Status is always green", "No one asks questions or disagrees"], d, 22))
+
+    b.append(footer("When did someone last tell you something you didn't want to hear, and how did you react?",
+                    "What would make it easier to say “I don't know” here?", LEAD_TAG))
+    write_board("leading-psych-safety-poster", "Leading for Psychological Safety",
+                "A3 landscape poster for leaders: three moves (set the stage, invite participation, respond productively) with "
+                "things to do and say, a safety and standards grid, phrases to use and avoid, daily habits and warning signs.",
+                "\n".join(b))
+
+
 if __name__ == "__main__":
     build_retros()
     build_sailboat()
@@ -4682,3 +4764,4 @@ if __name__ == "__main__":
     build_kanban_cadences()
     build_events_poster()
     build_antipattern_spotter()
+    build_leading_safety()

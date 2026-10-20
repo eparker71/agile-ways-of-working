@@ -48,7 +48,7 @@ RETRO_TOOLKIT = ("Feed experiment results from the <a href=\"experiment-canvas.h
 
 def retro_agenda(write_note, discuss_note, extra_first=None):
     rows = [("0–5", "0–10", "Set the stage",
-             "Read the Prime Directive (“everyone did the best job they could…”). Review last time's actions and any experiment results."),
+             "Read Norm Kerth's Prime Directive (“everyone did the best job they could…”). Run a quick anonymous safety check: a 1–5 vote, or Explorer / Shopper / Vacationer / Prisoner. If it's low, talk about that first. Then review last time's actions."),
             *( [extra_first] if extra_first else [] ),
             (("8–15", "15–30") if extra_first else ("5–15", "10–30")) + ("Silent writing", write_note),
             ("15–25", "30–50", "Read out & cluster", "Each person places and briefly reads their stickies. Group duplicates and name each cluster."),
@@ -68,6 +68,7 @@ RETRO_BEFORE = [
     "Have data to hand: velocity or throughput, cycle time, escaped defects, any experiment results",
     "For quarter retros, invite key stakeholders and bring trends across the sprints",
     "Make sure the room (or call) is the team only, unless the team agrees otherwise",
+    "Prepare the safety check: blank stickies for anonymous 1–5 votes, or four ESVP labels (Explorer, Shopper, Vacationer, Prisoner)",
 ]
 
 RETRO_TIPS = [
@@ -2303,7 +2304,8 @@ GUIDES += [
               ("Talk about situations", "“When we discussed X, it felt risky to disagree” helps. Naming people doesn't."),
               ("Small experiments", "Try one change, such as round-robin input or a devil's advocate role, and check it."),
               ("Don't shoot the messenger", "A low score is a gift of honesty. Thank the team for it."),
-              ("Not a performance measure", "Never use the results to evaluate a manager or team.")],
+              ("Not a performance measure", "Never use the results to evaluate a manager or team."),
+              ("Safety isn't comfort", "High safety with low standards is a comfort zone. Aim for the learning zone: safe to speak up, and high standards.")],
         pitfalls=("leaders in the room during voting; asking who voted low; sharing results without the team's agreement; "
                   "treating it as a score to hit; no follow-up; running it once and never again."),
         after=[("Straight away", "Photograph the results, then clear the board so votes aren't on display."),
@@ -2313,7 +2315,8 @@ GUIDES += [
         toolkit=("Psychological safety underpins everything else. Use it alongside the "
                  "<a href=\"facilitator-guide-team-health-check.html\">Team Health Check</a>, run safer retros from the Retro "
                  "Kit, agree norms in the <a href=\"facilitator-guide-team-charter.html\">Team Charter</a>, and use the "
-                 "<a href=\"facilitator-guide-coaching-conversation.html\">Coaching Conversation</a> canvas for one-to-one follow-up."),
+                 "<a href=\"facilitator-guide-coaching-conversation.html\">Coaching Conversation</a> canvas for one-to-one follow-up. "
+                 "Leaders can use the <a href=\"facilitator-guide-leading-psych-safety.html\">Leading for Psychological Safety</a> poster for daily habits."),
         foot="“When did someone last speak up, and what happened next?”",
     ),
 
@@ -3138,6 +3141,59 @@ GUIDES.append(dict(
              "Team Health Check</a> and the <a href=\"facilitator-guide-psych-safety.html\">Psychological Safety Check</a> "
              "to understand how a team is doing."),
     foot="“Which of these would we be embarrassed for a new joiner to see?”",
+))
+
+GUIDES.append(dict(
+    slug="leading-psych-safety",
+    title="Leading for Psychological Safety Guide",
+    subtitle="How leaders can build a team where people speak up, ask for help and admit mistakes, without lowering standards.",
+    tag="Facilitator Run-Sheet · Lead the Organisation · Inspired by Amy Edmondson's Work",
+    boards=[("Open poster", "leading-psych-safety-poster.html"), ("SVG", "leading-psych-safety-poster.svg")],
+    lede="When did someone last tell you something you didn't want to hear, and how did you react?",
+    intro=("Psychological safety, the shared belief that it's safe to take interpersonal risks, is built or broken mostly by "
+           "how leaders behave. Amy Edmondson describes three moves: <b>set the stage</b> by framing work as uncertain and "
+           "everyone's input as needed; <b>invite participation</b> through genuine questions and structures for input; and "
+           "<b>respond productively</b> to bad news, questions and failure. The poster turns these into things to do and "
+           "say, plus daily habits and warning signs. Its <b>safety and standards</b> grid answers a common worry: "
+           "psychological safety isn't about being nice or lowering the bar. The goal is the learning zone, where both are "
+           "high. This is original writing inspired by Edmondson's research."),
+    glance=[("Duration", "45–60 min workshop,<br>then daily habits"), ("Group", "Leaders and managers,<br>or one leader with a coach"),
+            ("Use when", "After a low safety check,<br>or a new leader starts"), ("Output", "Chosen habits<br>&amp; a check-in date")],
+    before=["Print the poster at A3 and keep it where you work, or share it on screen",
+            "If the team has run a Psychological Safety Check, bring the anonymised results",
+            "Think of a recent moment when someone brought you bad news, and how you reacted",
+            "Book a follow-up in four to six weeks"],
+    agenda_heads=["Minutes", "Step", "Facilitator notes"],
+    agenda=[("0–10", "Why it matters", "Discuss what happens when people stay quiet: late bad news, hidden mistakes, missed ideas."),
+            ("10–25", "1–3 · The three moves", "Read each move. For each, leaders note one thing they already do and one they'll try."),
+            ("25–35", "4 · Safety and standards", "Where is the team on the grid today? What would move it toward the learning zone?"),
+            ("35–45", "5 · Phrases", "Pick two phrases to start using and one to stop. Practise them out loud."),
+            ("45–55", "6 · Daily habits", "Each leader picks two or three habits to try for a month."),
+            ("55–60", "7 · Warning signs · Close", "Agree which warning signs to watch for, and when to check in.")],
+    sections_title="The three moves",
+    sections_intro="What each move looks like in practice.",
+    sections=[("Set the Stage", PURPLE, ["Frame work as learning", "Admit uncertainty", "Explain why input matters"]),
+              ("Invite Participation", BLUE, ["Genuine questions", "Structures for input", "Speak last"]),
+              ("Respond Productively", EMERALD, ["Thank the messenger", "Curiosity about failure", "Fair consequences for misconduct"]),
+              ("Safety and Standards", SLATE, ["Aim for the learning zone", "Safety without standards is comfort"]),
+              ("Warning Signs", RED, ["Silence when you speak", "Late bad news", "Always-green status"])],
+    tips=[("Go first", "Admitting your own mistakes and doubts gives everyone else permission to do the same."),
+          ("Your reaction is the message", "One dismissive response to bad news can undo months of encouragement."),
+          ("Ask, then wait", "Silence after a question feels long. Waiting is what lets people answer."),
+          ("Keep the bar high", "Safety and accountability work together. Be clear about expectations and safe about problems."),
+          ("Practise the phrases", "Saying them aloud in the session makes them easier to use under pressure."),
+          ("Ask for feedback", "Ask the team, or a coach, how safe it feels to challenge you, and act on what you hear.")],
+    pitfalls=("treating safety as being nice or avoiding conflict; lowering standards; announcing safety instead of "
+              "showing it; reacting badly to the first piece of bad news; tracking it as a team score; doing it once."),
+    after=[("This week", "Try your chosen habits and phrases in real meetings."),
+           ("Each week", "Notice the warning signs, and one moment you handled well or badly."),
+           ("In 4–6 weeks", "Check in with a coach or peer. Re-run the team's Psychological Safety Check."),
+           ("Ongoing", "Keep the poster visible, and add habits as earlier ones become natural.")],
+    toolkit=("Use the poster with the <a href=\"facilitator-guide-psych-safety.html\">Psychological Safety Check</a> to see "
+             "how the team feels, the <a href=\"facilitator-guide-coaching-conversation.html\">Coaching Conversation</a> canvas "
+             "for one-to-ones, and the <a href=\"facilitator-guide-facilitation-techniques.html\">Facilitation Techniques</a> "
+             "poster for structures that invite participation."),
+    foot="“What would make it easier to say “I don't know” here?”",
 ))
 
 

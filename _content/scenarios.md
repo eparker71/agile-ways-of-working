@@ -133,6 +133,33 @@ Longer term:
 - Reduce single points of failure across the team.
 Tools: Skills Matrix, Pairing & Mobbing, Architecture Decision Record
 
+## Someone was shut down or embarrassed in a meeting
+You'll notice: they go quiet afterwards, and others say less too.
+First moves:
+- Check in with the person privately, and listen.
+- If you saw it, address it with the person who did it, privately and soon.
+Longer term:
+- Agree meeting norms in the team charter, and use structures that give everyone a voice.
+Tools: Team Charter, Facilitation Techniques, Psychological Safety Check
+
+## A leader reacts badly to bad news
+You'll notice: problems stop being reported, or arrive late and softened.
+First moves:
+- Give the leader specific, private feedback on the effect their reaction had.
+- Agree how bad news will be raised, and thank the next person who brings it.
+Longer term:
+- Coach leaders on responding productively, and report confidence rather than traffic lights.
+Tools: Leading for Psychological Safety, Coaching Conversation, Outcome Status Report
+
+## People hide mistakes until it's too late
+You'll notice: problems surface at the last minute, with an "I didn't want to worry anyone".
+First moves:
+- Treat the next mistake that's raised with thanks and curiosity, publicly.
+- Run a blameless review of the latest one.
+Longer term:
+- Make learning from mistakes a normal part of retrospectives, and check psychological safety regularly.
+Tools: Blameless Incident Review, Leading for Psychological Safety, Psychological Safety Check
+
 # Product & backlog
 
 ## Stakeholders keep adding work mid-iteration
