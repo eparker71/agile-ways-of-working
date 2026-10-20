@@ -48,6 +48,7 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | Opportunity Solution Tree | `opportunity-solution-tree-board` | `facilitator-guide-opportunity-solution-tree.html` |
 | AI Working Agreement | `ai-working-agreement-board` | `facilitator-guide-ai-working-agreement.html` |
 | Outcome Status Report | `status-report-board` | `facilitator-guide-status-report.html` |
+| ADKAR Change Readiness | `adkar-board` | `facilitator-guide-adkar.html` |
 | Buffering & Swarming | `buffering-swarming-board` | `facilitator-guide-buffering-swarming.html` |
 | Kanban Board Design | `kanban-board-design` | `facilitator-guide-kanban-board-design.html` |
 | Ageing WIP & SLE | `ageing-wip-board` | `facilitator-guide-ageing-wip.html` |
@@ -77,7 +78,7 @@ Further sets sit around that loop:
 
 - **Run a project:** Project Kickoff, Stakeholder Map, Pre-mortem, Release Forecast & Burn-up, RAID Log, Outcome Status Report.
 - **Coordinate teams (program level):** Objectives & Key Results, Cross-Team Planning, Dependency Map, Cross-Team Sync, Team Topology Design.
-- **Lead and measure:** Value Metrics.
+- **Lead change and measure:** Value Metrics, ADKAR Change Readiness (ADKAR® is a registered trademark of Prosci, Inc.).
 - **Manage flow:** Kanban Board Design, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Skills Matrix, Impediments Board, Pairing & Mobbing.
 
 **Diagnose** (Team Health Check) → **Explore** (Marginal Gains Workshop) → **Experiment** (1% Experiment Canvas) → **Reflect** (Retrospective Kit), then back round again. Lean Coffee is a general-purpose facilitation format that can be used at any point.

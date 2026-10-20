@@ -1991,6 +1991,62 @@ WAVE1_GUIDES = [
 ]
 GUIDES += WAVE1_GUIDES
 
+GUIDES.append(dict(
+    slug="adkar",
+    title="ADKAR Change Readiness Guide",
+    subtitle="How to find where people are in a change, spot the barrier point, and act on the right thing first.",
+    tag="Facilitator Run-Sheet · Lead Change · Inspired by Prosci's ADKAR® Model",
+    boards=[("Open board", "adkar-board.html"), ("SVG", "adkar-board.svg")],
+    lede="What's the first thing stopping them, and what would help most?",
+    intro=("Organisations change only when people do, one person at a time. The ADKAR® model, created by Jeff Hiatt and "
+           "developed by Prosci, describes five things each person needs, in order: <b>Awareness</b> of why the change is "
+           "needed, <b>Desire</b> to support it, <b>Knowledge</b> of how to change, <b>Ability</b> to do it in practice, and "
+           "<b>Reinforcement</b> to make it stick. Scoring each element shows the <b>barrier point</b>: the first one that's "
+           "missing. Effort spent on later elements is wasted until it's fixed; training doesn't help people who don't yet "
+           "see why. Use it for any change, from a new way of working to a new tool or an agile transformation. "
+           "ADKAR® is a registered trademark of Prosci, Inc."),
+    glance=[("Duration", "60–90 min, then<br>re-assess monthly"), ("Group", "Change lead, sponsor,<br>managers, coaches"),
+            ("Use when", "A change is planned,<br>or has stalled"), ("Output", "Barrier points<br>&amp; targeted actions")],
+    before=["Print the board at A3, or load the SVG as a digital background",
+            "Agree the change you're assessing, and its sponsor",
+            "List the groups or people affected; the Stakeholder Map is a good source",
+            "Gather evidence: survey results, questions people ask, adoption data, manager feedback",
+            "Decide whether to score groups together or ask people to score themselves (often more honest)"],
+    agenda_heads=["Time", "Section", "Facilitator notes"],
+    agenda=[("0–10", "1 · Change on a Page", "Write what's changing, why now, who's affected and the key dates."),
+            ("10–20", "The model", "Walk through the five elements and the idea of the barrier point. Use the element panels for examples."),
+            ("20–45", "2 · Readiness Grid", "For each person or group, score each element 1–5 from evidence. Circle the barrier point: the first score of 3 or lower."),
+            ("45–65", "Element panels", "For each barrier point, look at what helps for that element and write your own action."),
+            ("65–80", "3 · Action Plan", "One action per barrier point, with an owner and a date. Focus effort on the earliest barriers."),
+            ("80–90", "4 · Reinforce · Close", "Agree how you'll recognise success, measure adoption, and when to re-assess.")],
+    sections_title="The five elements",
+    sections_intro="Each must be in place before the next can work.",
+    sections=[("Awareness", BLUE, ["Do people know why?", "Sponsor and managers explain it", "Share the cost of not changing"]),
+              ("Desire", PURPLE, ["Do people want to take part?", "Involve them in shaping it", "Address what's in it for them"]),
+              ("Knowledge", SKY, ["Do people know how?", "Training, guides, examples"]),
+              ("Ability", EMERALD, ["Can they do it for real?", "Coaching, practice, time", "Remove blockers"]),
+              ("Reinforcement", ORANGE, ["Will it last?", "Recognition, measures", "Stop rewarding the old way"]),
+              ("Barrier point", RED, ["The first score of 3 or lower", "Fix it before later elements"])],
+    tips=[("Order matters", "Training (Knowledge) won't help if people don't see why (Awareness) or don't want to (Desire)."),
+          ("Score from evidence", "Use what people say and do, not what leaders hope. Self-scores are often more honest."),
+          ("Groups differ", "Different groups often have different barrier points. Plan separate actions."),
+          ("Desire is personal", "It can't be ordered. Listen to concerns and involve people in shaping the change."),
+          ("Ability needs time", "Knowing isn't doing. Plan practice, coaching and pairing, and expect a dip at first."),
+          ("Don't skip reinforcement", "Without it, people drift back. Measure adoption and recognise it.")],
+    pitfalls=("starting with training; scoring from leaders' assumptions; one plan for everyone; treating resistance as a "
+              "character flaw; declaring success at go-live; never re-assessing."),
+    after=[("Straight away", "Share the barrier points and actions with the sponsor and managers."),
+           ("Each week", "Owners act on their barrier points; managers check in with their teams."),
+           ("Monthly", "Re-score the grid. Barrier points should move right as the change takes hold."),
+           ("After go-live", "Keep reinforcing and measuring adoption until the new way is normal.")],
+    toolkit=("ADKAR is about the people side of change. Use the <a href=\"facilitator-guide-stakeholder-map.html\">Stakeholder "
+             "Map</a> to find who's affected, the <a href=\"facilitator-guide-skills-matrix.html\">Skills Matrix</a> and "
+             "<a href=\"facilitator-guide-pairing-mobbing.html\">Pairing &amp; Mobbing</a> to build Ability, the "
+             "<a href=\"facilitator-guide-team-health-check.html\">Team Health Check</a> to see how teams are coping, and "
+             "<a href=\"facilitator-guide-value-metrics.html\">Value Metrics</a> to show the change is paying off."),
+    foot="“Where is each group in this change, really?”",
+))
+
 
 # ------------------------------------------------------------------ rendering
 

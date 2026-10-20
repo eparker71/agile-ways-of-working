@@ -2954,6 +2954,103 @@ def build_status_report():
                 "delivered and learned, top risks and issues, and decisions needed.", "\n".join(b))
 
 
+# ---------------------------------------------------------------- ADKAR change readiness
+
+ADKAR = [("Awareness", BLUE, "of why the change is needed",
+          ["People ask “why are we doing this?”", "Rumours fill the silence"],
+          ["Sponsor explains the why, early and often", "Share the cost of not changing"]),
+         ("Desire", PURPLE, "to support and take part",
+          ["People understand, but resist or stall", "“What's in it for me?” is unanswered"],
+          ["Involve people in shaping the change", "Managers discuss concerns one-to-one"]),
+         ("Knowledge", SKY, "of how to change",
+          ["Willing, but unsure what to do", "Lots of “how do I…?” questions"],
+          ["Training, guides and worked examples", "Show the new way on real work"]),
+         ("Ability", EMERALD, "to do it in practice",
+          ["Know how, but can't do it yet", "Old habits return under pressure"],
+          ["Coaching, pairing and practice time", "Remove blockers: tools, time, access"]),
+         ("Reinforcement", ORANGE, "to make it stick",
+          ["Early wins, then people slide back", "The old way is still rewarded"],
+          ["Recognise and celebrate adoption", "Measure use; fix what pulls people back"])]
+
+
+def build_adkar():
+    b = [header("ADKAR Change Readiness",
+                "Find where people are in a change, spot the barrier point, and act on it before moving on.",
+                "Lead Change · Inspired by Prosci's ADKAR® Model (Jeff Hiatt) · The People Side of Change",
+                header_fields(["Change", "Sponsor"]))]
+
+    x, y, w, h = 24, 148, 1632, 150
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 1, "Change on a Page", SLATE, "WHAT, WHY, WHO, WHEN"))
+    hw = (w - 54) / 2
+    for i, f in enumerate(["What's changing:", "Why now:"]):
+        b.append(field(x + 18, y + 84 + i * 34, f, x + 18 + hw, d))
+    for i, f in enumerate(["Who's affected:", "Key dates:"]):
+        b.append(field(x + 36 + hw, y + 84 + i * 34, f, x + w - 18, d))
+
+    x, y, w, h = 24, 312, 1632, 330
+    d = INK
+    b.append(panel(x, y, w, h, 2, "Readiness Grid", (SLATE[0], "#FFFFFF"), "SCORE 1–5 · THE FIRST LOW SCORE IS THE BARRIER POINT"))
+    gx0, gy = x + 18, y + 72
+    group_w, el_w = 250, 222
+    bar_w = w - 36 - group_w - 5 * el_w
+    b.append(T(gx0 + 6, gy + 22, "PERSON OR GROUP", 9, SLATE[0], MONO, weight=600, ls=".12em"))
+    for i, (name, (dk, lt), _, _, _) in enumerate(ADKAR):
+        cx = gx0 + group_w + i * el_w
+        b.append(R(cx + 3, gy, el_w - 6, 32, dk, 5))
+        b.append(T(cx + el_w / 2, gy + 21, f"{name[0]} · {name.upper()}", 10, "white", MONO, weight=600, anchor="middle", ls=".1em"))
+    bx = gx0 + group_w + 5 * el_w
+    b.append(R(bx + 3, gy, bar_w - 3, 32, RED[0], 5))
+    b.append(T(bx + bar_w / 2 + 1, gy + 21, "BARRIER POINT", 10, "white", MONO, weight=600, anchor="middle", ls=".1em"))
+    rows, rh = 5, 37
+    for r in range(rows):
+        ry = gy + 40 + r * rh
+        b.append(R(gx0, ry, group_w - 6, rh - 6, SLATE[1], 4, f' stroke="{SLATE[0]}" stroke-opacity=".15"'))
+        b.append(L(gx0 + 10, ry + rh - 14, gx0 + group_w - 18, ry + rh - 14, WRITE, 1))
+        for i, (_, (dk, lt), _, _, _) in enumerate(ADKAR):
+            cx = gx0 + group_w + i * el_w
+            b.append(R(cx + 3, ry, el_w - 6, rh - 6, lt, 4, f' stroke="{dk}" stroke-opacity=".2"'))
+            for k in range(5):
+                b.append(T(cx + el_w / 2 - 60 + k * 30, ry + 22, str(k + 1), 10, dk, MONO, anchor="middle", op=".35"))
+        b.append(R(bx + 3, ry, bar_w - 3, rh - 6, RED[1], 4, f' stroke="{RED[0]}" stroke-opacity=".2"'))
+    b.append(T(gx0, y + h - 14, "Circle each score. Scores run 1 (not at all) to 5 (fully). The barrier point is the first element scored 3 or lower, "
+               "working left to right. Fix it before working on later elements.", 10, SLATE[0], italic=True, op=".75"))
+
+    y, h = 656, 240
+    cw = (1632 - 4 * 12) / 5
+    for i, (name, color, sub, missing, helps) in enumerate(ADKAR):
+        x = 24 + i * (cw + 12)
+        dk = color[0]
+        b.append(panel(x, y, cw, h, name[0], name, color))
+        b.append(T(x + cw - 16, y + 31, sub, 9, "white", italic=True, anchor="end", op=".75"))
+        b.append(T(x + 16, y + 76, "MISSING IF…", 8.5, dk, MONO, weight=600, ls=".12em"))
+        b.append(para(x + 16, y + 96, missing, 10.5, dk, 16, italic=True))
+        b.append(T(x + 16, y + 140, "WHAT HELPS", 8.5, dk, MONO, weight=600, ls=".12em"))
+        b.append(bullets(x + 22, y + 156, helps, dk, 18))
+        b.append(field(x + 16, y + 214, "Our action:", x + cw - 16, dk))
+
+    y, h = 910, 150
+    x, w = 24, 1082
+    d = RED[0]
+    b.append(panel(x, y, w, h, 3, "Action Plan", RED, "ONE ACTION PER BARRIER POINT"))
+    b.append(table(x + 18, y + 76, [("Who (person or group)", 220), ("Barrier point", 160), ("Action", 400), ("Owner", 140),
+                                    ("By when", w - 36 - 920)], 2, d, 26))
+
+    x, w = 1120, 536
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 4, "Reinforce & Re-assess", FOREST))
+    for i, f in enumerate(["We'll recognise success by:", "We'll measure adoption by:", "Re-assess on:"]):
+        b.append(field(x + 18, y + 80 + i * 26, f, x + w - 18, d))
+
+    b.append(footer("Where is each group in this change, really?",
+                    "What's the first thing stopping them, and what would help most?",
+                    "ADKAR® is a registered trademark of Prosci, Inc. · Lead Change"))
+    write_board("adkar-board", "ADKAR Change Readiness",
+                "A3 landscape change readiness board based on the ADKAR model: change on a page, a readiness grid scoring "
+                "awareness, desire, knowledge, ability and reinforcement with a barrier point, one panel per element with "
+                "signs and helpful actions, an action plan, and reinforcement and re-assessment.", "\n".join(b))
+
+
 if __name__ == "__main__":
     for horizon in ("sprint", "quarter"):
         build_retros(horizon)
@@ -2992,3 +3089,4 @@ if __name__ == "__main__":
     build_team_topology()
     build_ai_agreement()
     build_status_report()
+    build_adkar()
