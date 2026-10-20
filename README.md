@@ -122,12 +122,14 @@ python3 _generator/build_all.py     # run every generator, in order (build_meta.
 python3 _generator/check_site.py    # check links, metadata, files and the cheat sheets
 ```
 
-The individual generators are `build_boards.py`, `build_guides.py`, `build_roles.py`, `build_glossary.py`, `build_antipatterns.py`, `build_scenarios.py` and `build_meta.py`; `build_all.py` runs them in the right order.
+The individual generators are `build_boards.py`, `build_guides.py`, `build_roles.py`, `build_glossary.py`, `build_antipatterns.py`, `build_scenarios.py`, `build_recipes.py` and `build_meta.py`; `build_all.py` runs them in the right order.
 
 **Automated checks:** on every push and pull request, GitHub Actions (`.github/workflows/checks.yml`) rebuilds the site, fails if the committed files don't match what the generators produce, and runs `check_site.py`.
 
 - `brand.py` holds the brand: accent and header colours, fonts and the credit line. All four generators read it, so rebranding is one edit.
 - `build_boards.py` holds the shared visual components (header, panels, sticky zones, action cards, footer). Boards don't assume a cadence: where a period matters, they leave a blank to write in (sprint, month, quarter). The old `-sprint` / `-quarter` page names redirect to the single boards (`REDIRECTS`).
+- `build_recipes.py` makes `workshop-recipes.html` from `_content/recipes.md`: ready-made agendas that combine tools (each step is `length | tool title | what happens`), plus the worked examples.
+- Worked examples (`worked-example-*.html/svg`) are made by `build_boards.py` (`EXAMPLES`): each reads a generated blank board and adds a layer of handwriting and sticky notes for the fictional "Basket team". Their guides link to them automatically.
 - `build_meta.py` runs last. It adds a description, link-preview (Open Graph) tags, a canonical URL and the favicon to every page, and writes `sitemap.xml`, `robots.txt` and `404.html`. The preview image `og-image.png` is made from `_generator/og-card.html`.
 - `board_spec.py` reads a board's SVG (panels, positions, colours and text) and turns it into the whiteboard prompt shown in each guide.
 - `build_guides.py` holds each guide's content in the `GUIDES` list. It copies its styling from `facilitator-guide-marginal-gains.html`, and writes a Word copy of each guide with `docx_writer.py` (standard library only).

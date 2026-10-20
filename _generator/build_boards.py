@@ -4704,6 +4704,199 @@ def build_leading_safety():
                 "\n".join(b))
 
 
+# ---------------------------------------------------------------- worked examples
+# Filled-in copies of real boards for a fictional team (the "Basket team" at an online grocery service, the same
+# running example as the Backlog Item Anatomy poster). Each example reads the generated blank board and adds a layer
+# of handwriting and sticky notes on top, so it always matches the current board.
+
+HAND = "'Caveat','Segoe Print','Bradley Hand',cursive"
+HAND_URL = "https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap"
+PEN = "#1D4ED8"
+
+
+def hand(x, y, text, size=19, fill=PEN, anchor=None):
+    return T(x, y, text, size, fill, HAND, weight=500, anchor=anchor)
+
+
+def after(x, label, size=11):
+    """x position for handwriting written after a field() label."""
+    return x + text_w(label, size) + 16
+
+
+def tick(bx, by, col=PEN):
+    """Tick inside a checkbox drawn by checkbox(bx, by, ...)."""
+    return f'<path d="M{bx + 2:g},{by - 5:g} l3.5,4.5 l7,-10" fill="none" stroke="{col}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>'
+
+
+def note(x, y, text, color=YELLOW, w=150, h=80, rot=0, size=17):
+    words, lines_, cur = text.split(), [], ""
+    for wd in words:
+        trial = (cur + " " + wd).strip()
+        if len(trial) * size * 0.42 > w - 16 and cur:
+            lines_.append(cur)
+            cur = wd
+        else:
+            cur = trial
+    lines_.append(cur)
+    cy = y + h / 2 - (len(lines_) - 1) * size * 0.55 + size * 0.35
+    body = "".join(T(x + w / 2, cy + i * size * 1.1, ln, size, INK, HAND, weight=500, anchor="middle") for i, ln in enumerate(lines_))
+    return (f'<g transform="rotate({rot} {x + w / 2:g} {y + h / 2:g})">'
+            + R(x, y, w, h, color, 3, ' filter="url(#fsm)"') + body + "</g>")
+
+
+def dots(x, y, n, col=ACCENT):
+    return "".join(f'<circle cx="{x + i * 14:g}" cy="{y}" r="5.5" fill="{col}"/>' for i in range(n))
+
+
+def write_example(base, title, layer, header=None):
+    stamp = (f'<g transform="rotate(-3 1150 66)"><rect x="1010" y="48" width="280" height="36" rx="5" fill="none" '
+             f'stroke="{ACCENT}" stroke-width="2"/>' + T(1150, 71, "WORKED EXAMPLE · FICTIONAL TEAM", 10.5, ACCENT, MONO,
+                                                          weight=600, anchor="middle", ls=".12em") + "</g>")
+    head = "".join(hand(1462, 64 + i * 30, v, 20, "#FDE68A") for i, v in enumerate(header or []))
+    group = f'<g class="worked-example">{stamp}{head}{layer}</g>\n'
+    imp = f"<style>@import url('{HAND_URL.replace('&', '&amp;')}');</style>"
+    svg = (OUT / f"{base}.svg").read_text(encoding="utf-8")
+    svg = svg.replace("<defs>", "<defs>" + imp, 1).replace("</svg>", group + "</svg>")
+    svg = re.sub(r'<title id="mg-title">(.*?)</title>', lambda m: f'<title id="mg-title">Example: {m.group(1)}</title>', svg, count=1)
+    svg = re.sub(r'<desc id="mg-desc">', '<desc id="mg-desc">Worked example for a fictional team. ', svg, count=1)
+    page = (OUT / f"{base}.html").read_text(encoding="utf-8")
+    page = re.sub(r"<!-- meta -->.*?<!-- /meta -->\n", "", page, flags=re.S)
+    page = page.replace("</svg>", group + "</svg>", 1)
+    page = page.replace('<link rel="stylesheet"', f'<link rel="stylesheet" href="{HAND_URL.replace("&", "&amp;")}">\n<link rel="stylesheet"', 1)
+    page = re.sub(r"<title>(.*?)</title>", lambda m: f"<title>Example: {title}</title>", page, count=1)
+    page = re.sub(r'<title id="mg-title">(.*?)</title>', lambda m: f'<title id="mg-title">Example: {m.group(1)}</title>', page, count=1)
+    page = re.sub(r'<desc id="mg-desc">', '<desc id="mg-desc">Worked example for a fictional team. ', page, count=1)
+    page = page.replace('<a class="guide"', f'<a class="guide" style="right:auto;left:16px" href="{base}.html">← Blank board</a>\n<a class="guide"', 1)
+    # hide the blank board's placeholders: sticky-zone hints, sample chips and the write-in hint
+    def clean(t):
+        t = re.sub(r'<text[^>]*fill-opacity="\.22"[^>]*>[^<]*</text>', "", t)
+        t = re.sub(r'<rect x="[^"]*" y="[^"]*" width="18" height="18" rx="2" fill="#[0-9A-Fa-f]{6}" fill-opacity="\.35"/>', "", t)
+        return re.sub(r'<text[^>]*>sprint, month, quarter…</text>', "", t)
+    svg, page = clean(svg), clean(page)
+    slug = f"worked-example-{base}"
+    (OUT / f"{slug}.svg").write_text(svg, encoding="utf-8")
+    (OUT / f"{slug}.html").write_text(page, encoding="utf-8")
+    print("wrote", slug)
+
+
+def example_team_charter():
+    L_ = []
+    L_ += [hand(220, 242, "help returning customers repeat their weekly shop"), hand(66, 275, "in under a minute, so they keep choosing us."),
+           hand(220, 308, "busy households who order groceries every week."),
+           hand(220, 374, "weekly repeat orders rise from 22% to 30%"), hand(66, 407, "and customers say reordering is “easy”.")]
+    rows = [("Priya", "Product owner", "Customer research"), ("Sam", "Developer", "Payments, APIs"),
+            ("Jo", "Developer", "Front end, accessibility"), ("Alex", "Tester", "Test automation"),
+            ("Mei", "Designer", "Journeys, prototypes"), ("Tom", "Scrum Master", "Facilitation")]
+    for i, (a, b_, c) in enumerate(rows):
+        y = 266 + i * 32
+        L_ += [hand(868, y, a, 17), hand(988, y, b_, 17), hand(1098, y, c, 17)]
+    L_ += [note(1290, 262, "Customer first", YELLOW, 150, 70, -3), note(1460, 262, "Finish before starting", YELLOW, 150, 70, 2),
+           note(1375, 350, "Speak up early", YELLOW, 150, 70, -1)]
+    L_ += [note(60, 580, "We pair on anything risky", YELLOW, 160, 78, -2), note(240, 586, "Core hours 10:00–15:00", YELLOW, 160, 78, 1),
+           note(420, 580, "Reviews within one working day", YELLOW, 160, 78, -1), note(600, 588, "It's fine to say “I don't know”", YELLOW, 160, 78, 2),
+           note(150, 668, "Cameras optional, voices welcome", YELLOW, 170, 72, 1)]
+    L_ += [tick(864, 548), tick(864, 632), hand(866, 724, "Consent by default. Priya decides scope; the team decides how.", 16)]
+    vals = [("Iteration length:", "2 weeks"), ("Planning:", "Mon 10:00, 1 hour"), ("Daily sync:", "09:30, 15 min"),
+            ("Review:", "Fri, every other week"), ("Retro:", "Fri, after the review"), ("Board / tools:", "Jira + Miro"),
+            ("Channels:", "#basket-team")]
+    for i, (lab, v) in enumerate(vals):
+        L_.append(hand(after(1275, lab), 546 + i * 30, v, 17))
+    for i, v in enumerate(["Who it's for and why is clear", "Small enough to finish in a few days", "Examples agreed",
+                           "Dependencies known"]):
+        L_ += [tick(42, 886 + i * 30), hand(66, 884 + i * 30, v, 17)]
+    for i, v in enumerate(["Code reviewed by a second person", "Automated tests pass", "Accessible (WCAG AA)",
+                           "Deployed to staging", "Priya has accepted it"]):
+        L_ += [tick(590, 886 + i * 30), hand(614, 884 + i * 30, v, 17)]
+    L_ += [hand(1138, 884, "talk in person within a day; if we're stuck,", 17), hand(1138, 912, "Tom facilitates.", 17),
+           tick(1138, 976), tick(1306, 976), hand(after(1138, "Signed by the team:"), 1018, "Priya · Sam · Jo · Alex · Mei · Tom", 17)]
+    write_example("team-charter-board", "Team Charter", "".join(L_), ["Basket team", "3 March"])
+
+
+def example_sprint_planning():
+    L_ = [hand(286, 245, "returning customers can see their last order", 20),
+          hand(66, 281, "on the home page and reorder it in one tap.", 20),
+          hand(after(42, "We'll know we've achieved it when…"), 328, "a test user reorders in under 60 seconds", 17),
+          hand(after(42, "It supports this product goal:"), 368, "Reorder made easy (repeat orders 22% → 30%)", 17)]
+    caps = [("Working days:", "9 (one public holiday)"), ("People available:", "5 of 6"), ("Holidays & absences:", "Jo off Thu–Fri"),
+            ("Other commitments:", "Support rota, 1 person"), ("Recent throughput (last 3):", "7 · 9 · 8 items"),
+            ("Capacity this sprint:", "about 7 items (80%)")]
+    for i, (lab, v) in enumerate(caps):
+        L_.append(hand(after(864, lab), 232 + i * 30, v, 16))
+    for i in (0, 1, 2, 3, 5):
+        L_.append(tick(1275, 234 + i * 30))
+    goal = ["Show last order on the home page", "Reorder button adds every item", "Offer a substitute if out of stock",
+            "Track reorder events"]
+    also = ["Save a basket as a favourite", "Reorder from order history", "Tidy the basket API (tech debt)"]
+    for i, t in enumerate(goal):
+        L_.append(note(52 + (i % 2) * 190, 560 + (i // 2) * 110, t, YELLOW, 170, 84, [-2, 1, 2, -1][i]))
+    for i, t in enumerate(also):
+        L_.append(note(660 + (i % 2) * 190, 560 + (i // 2) * 110, t, YELLOW, 170, 84, [1, -2, 2][i]))
+    L_ += [note(1290, 580, "Stock API is owned by the Warehouse team: needed by Wed", PINK_ST, 170, 96, -2),
+           note(1470, 600, "Analytics events need privacy sign-off", YELLOW, 160, 90, 2)]
+    for i, (lab, v) in enumerate([("Day 1, we start with:", "Last-order card (Sam and Jo pair)"),
+                                  ("Pairing / swarming on:", "Out-of-stock rules (Alex and Priya)"),
+                                  ("First thing to finish:", "Last-order card, by Wednesday")]):
+        L_.append(hand(after(42, lab), 948 + i * 34, v, 17))
+    for k, n in ((2, 1), (3, 3), (4, 2)):
+        cx = 916 + k * 108
+        L_.append(hand(cx + 24, 964, "|" * n, 24, PEN))
+    L_.append(hand(after(864, "Any 1s or 2s? Concerns raised:"), 1030, "None. Alex is worried about test data; Alex owns it.", 16))
+    write_example("sprint-planning-board", "Sprint Planning", "".join(L_), ["Basket team", "Sprint 14 · 3–14 Mar"])
+
+
+def example_prioritisation():
+    L_ = [note(110, 290, "Reorder last basket", GREEN, 150, 70, -3), note(280, 330, "Save favourites", GREEN, 140, 66, 2),
+          note(500, 300, "Subscription orders", BLUE_ST, 150, 70, 2), note(640, 380, "Personalised offers", BLUE_ST, 150, 70, -2),
+          note(150, 560, "Dark mode", YELLOW, 130, 60, 1), note(560, 560, "Rebuild checkout from scratch", PINK_ST, 170, 76, -2)]
+    rows = [("Reorder last basket", "8", "8", "3", "19", "2", "9.5", "1"), ("Save favourites", "5", "3", "2", "10", "2", "5.0", "2"),
+            ("Subscription orders", "13", "5", "5", "23", "8", "2.9", "3"), ("Personalised offers", "8", "3", "8", "19", "13", "1.5", "4")]
+    widths = [196, 66, 66, 92, 60, 80, 92]
+    for r, row in enumerate(rows):
+        x = 870
+        for c, v in enumerate(row):
+            L_.append(hand(x, 290 + r * 32, v, 17))
+            x += widths[c] if c < len(widths) else 0
+    for i, t in enumerate(["Reorder last basket", "Save favourites", "Reorder from history", "Subscriptions (next quarter)"]):
+        L_.append(note(866 + i * 200, 600, t, YELLOW, 150, 76, [-2, 1, 2, -1][i]))
+    road = [(["Reorder last basket", "Save favourites"], "Repeat orders 22% → 26%"),
+            (["Subscription orders", "Reorder reminders"], "Repeat orders → 30%"),
+            (["Personalised offers", "Family accounts"], "Bigger baskets")]
+    for i, (items, outcome) in enumerate(road):
+        cx = 34 + i * 541.3
+        for j, t in enumerate(items):
+            L_.append(note(cx + 40 + j * 200, 890, t, YELLOW, 170, 78, [-2, 2][j]))
+        L_.append(hand(after(cx + 14, "Outcome:"), 1032, outcome, 17))
+    write_example("prioritisation-board", "Prioritisation Board", "".join(L_), ["Reorder made easy", "10 March"])
+
+
+def example_retro():
+    cw = (1632 - 28) / 3
+    cols = [["Pair on risky stories", "Demo to a real user", "Write examples before coding"],
+            ["Starting new work while items are blocked", "Long debates in planning", "Skipping the retro when busy"],
+            ["Walking the board every morning", "Friday demos", "Celebrating small wins"]]
+    votes = [[3, 1, 2], [4, 2, 0], [1, 0, 1]]
+    L_ = []
+    for c, items in enumerate(cols):
+        x = 24 + c * (cw + 14)
+        for i, t in enumerate(items):
+            nx, ny = x + 40 + (i % 2) * 230, 380 + (i // 2) * 200 + (i % 2) * 40
+            L_.append(note(nx, ny, t, YELLOW if c != 0 or i else GREEN, 190, 96, [-3, 2, -1][i]))
+            if votes[c][i]:
+                L_.append(dots(nx + 20, ny + 112, votes[c][i]))
+    L_.append(hand(880, 887, "sprint 14", 19, "#FDE68A"))
+    acts = [("Pair on anything touching payments", "Sam", "every payments story has a pair"),
+            ("WIP limit of 3 items in progress", "Tom", "the limit is on the board and kept for 2 weeks"),
+            ("Example Mapping before planning", "Priya", "top 3 items mapped before each planning")]
+    for i, (a, o, d) in enumerate(acts):
+        x = 24 + i * 548
+        L_ += [hand(x + 118, 940, a, 17), hand(after(x + 22, "Owner:"), 976, o, 17), hand(after(x + 22, "Done when:"), 1012, d, 16)]
+    write_example("retro-board-start-stop-continue", "Start · Stop · Continue", "".join(L_))
+
+
+EXAMPLES = {"team-charter-board": example_team_charter, "sprint-planning-board": example_sprint_planning,
+            "prioritisation-board": example_prioritisation, "retro-board-start-stop-continue": example_retro}
+
+
 if __name__ == "__main__":
     build_retros()
     build_sailboat()
@@ -4765,3 +4958,5 @@ if __name__ == "__main__":
     build_events_poster()
     build_antipattern_spotter()
     build_leading_safety()
+    for make in EXAMPLES.values():   # worked examples read the blank boards, so they run last
+        make()

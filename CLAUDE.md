@@ -13,9 +13,11 @@ python3 _generator/build_all.py     # run every generator in order; build_meta.p
 python3 _generator/check_site.py    # links + anchors, metadata, SVG/Word validity, sitemap, cheat sheet overflow and page counts
 ```
 
-Individual generators: `build_boards.py`, `build_guides.py`, `build_roles.py`, `build_glossary.py`, `build_antipatterns.py`, `build_scenarios.py`, `build_meta.py`. CI (`.github/workflows/checks.yml`) runs `build_all.py`, fails if `git diff` shows the committed output is stale, then runs `check_site.py`. So **always run `build_all.py` and commit its output**, and keep generators deterministic: no timestamps, sorted globs (Word files use a fixed zip timestamp for this reason).
+Individual generators: `build_boards.py`, `build_guides.py`, `build_roles.py`, `build_glossary.py`, `build_antipatterns.py`, `build_scenarios.py`, `build_recipes.py`, `build_meta.py`. CI (`.github/workflows/checks.yml`) runs `build_all.py`, fails if `git diff` shows the committed output is stale, then runs `check_site.py`. So **always run `build_all.py` and commit its output**, and keep generators deterministic: no timestamps, sorted globs (Word files use a fixed zip timestamp for this reason).
 
 Each script regenerates everything it owns (there's no per-file target). They're idempotent.
+
+**Worked examples & recipes:** `EXAMPLES` in build_boards.py builds `worked-example-<board>.{svg,html}` by reading the blank board and appending a `<g class="worked-example">` layer (Caveat handwriting via `hand()`, stickies via `note()`, `tick()` for checkboxes); placeholders are stripped by `clean()`. Coordinates are hand-placed, so re-screenshot an example after changing its board's layout. A guide links to its worked example if `worked-example-<first board>` exists. `build_recipes.py` reads `_content/recipes.md` (tool titles must match TOOLS) and writes workshop-recipes.html with the example gallery.
 
 **Metadata:** `build_meta.py` inserts a `<!-- meta -->` block after `<title>` in every non-redirect page (description taken from the page itself, Open Graph/Twitter tags, canonical URL, favicon), and writes `sitemap.xml`, `robots.txt` and `404.html` (absolute links, since Pages serves it from any path). Hand-written pages get the block too; don't edit inside it. Regenerate `og-image.png` by screenshotting `_generator/og-card.html` at 1200×630 with headless Chrome.
 

@@ -3247,6 +3247,8 @@ def render(g, css):
 
     boards = "".join(f'<a{" class=\"primary\"" if i == 0 else ""} href="{href}">{escape(label)} →</a>'
                      for i, (label, href) in enumerate(g["boards"]))
+    boards += "".join(f'<a href="worked-example-{href}">Worked example →</a>' for _, href in g["boards"][:1]
+                      if (OUT / f"worked-example-{href}").exists())
     boards += f'<a href="facilitator-guide-{g["slug"]}.docx" download>Word (editable) ↓</a>'
     glance = "".join(f"<div><b>{k}</b><span>{v}</span></div>" for k, v in g["glance"])
     heads = "".join(f"<th>{h}</th>" for h in g["agenda_heads"])
