@@ -9,15 +9,15 @@ A static site of printable agile facilitation tools: A3 landscape boards (each a
 ## Commands
 
 ```sh
-python3 _generator/build_boards.py   # every generated board → <slug>.svg + <slug>.html
-python3 _generator/build_guides.py   # every generated guide → facilitator-guide-<slug>.html + .docx
-python3 _generator/build_roles.py    # start-here-by-role.html + role tags/filter in index.html
-python3 _generator/build_glossary.py # glossary.html (imports TOOLS from build_roles.py)
-python3 _generator/build_antipatterns.py # anti-patterns.html (ANTIPATTERNS list; build_boards.py reads it for the Spotter board)
-python3 _generator/build_scenarios.py   # scenarios.html from _content/scenarios.md (plain Markdown; Tools: lines must use TOOLS titles)
+python3 _generator/build_all.py     # run every generator in order; build_meta.py must run last
+python3 _generator/check_site.py    # links + anchors, metadata, SVG/Word validity, sitemap, cheat sheet overflow and page counts
 ```
 
+Individual generators: `build_boards.py`, `build_guides.py`, `build_roles.py`, `build_glossary.py`, `build_antipatterns.py`, `build_scenarios.py`, `build_meta.py`. CI (`.github/workflows/checks.yml`) runs `build_all.py`, fails if `git diff` shows the committed output is stale, then runs `check_site.py`. So **always run `build_all.py` and commit its output**, and keep generators deterministic: no timestamps, sorted globs (Word files use a fixed zip timestamp for this reason).
+
 Each script regenerates everything it owns (there's no per-file target). They're idempotent.
+
+**Metadata:** `build_meta.py` inserts a `<!-- meta -->` block after `<title>` in every non-redirect page (description taken from the page itself, Open Graph/Twitter tags, canonical URL, favicon), and writes `sitemap.xml`, `robots.txt` and `404.html` (absolute links, since Pages serves it from any path). Hand-written pages get the block too; don't edit inside it. Regenerate `og-image.png` by screenshotting `_generator/og-card.html` at 1200×630 with headless Chrome.
 
 ## Generated vs hand-written
 

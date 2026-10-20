@@ -108,9 +108,13 @@ class Doc:
             "word/numbering.xml": NUMBERING,
             "docProps/core.xml": CORE.format(title=xesc(self.title), author=xesc(self.author)),
         }
-        with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as z:
+        with zipfile.ZipFile(path, "w", zipfile.ZIP_STORED) as z:
             for name, data in files.items():
-                z.writestr(name, data)
+                # fixed timestamp and no compression, so every machine produces byte-identical files
+                # (compressed output can vary between zlib versions; the CI check relies on this)
+                info = zipfile.ZipInfo(name, date_time=(2026, 1, 1, 0, 0, 0))
+                info.compress_type = zipfile.ZIP_STORED
+                z.writestr(info, data)
 
 
 CONTENT_TYPES = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

@@ -1,0 +1,29 @@
+name: Site checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Rebuild every generated file
+        run: python3 _generator/build_all.py
+
+      - name: Generated files match the sources
+        run: |
+          if ! git diff --quiet; then
+            git diff --stat
+            echo "::error::Generated files are out of date. Run python3 _generator/build_all.py and commit the result."
+            exit 1
+          fi
+
+      - name: Check links, metadata, files and cheat sheets
+        run: python3 _generator/check_site.py
