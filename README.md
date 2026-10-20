@@ -73,6 +73,11 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | Delegation Board | `delegation-board` | `facilitator-guide-delegation.html` |
 | Leading for Psychological Safety poster | `leading-psych-safety-poster` | `facilitator-guide-leading-psych-safety.html` |
 | Delivery Metrics & Tech Debt | `delivery-metrics-board` | `facilitator-guide-delivery-metrics.html` |
+| SDLC at a Glance poster | `sdlc-poster` | `facilitator-guide-sdlc.html` |
+| Delivery Pipeline Canvas | `delivery-pipeline-board` | `facilitator-guide-delivery-pipeline.html` |
+| Test Strategy | `test-strategy-board` | `facilitator-guide-test-strategy.html` |
+| Release Readiness & Strategy | `release-readiness-board` | `facilitator-guide-release-readiness.html` |
+| Continuous Delivery Health Check | `cd-health-check-board` | `facilitator-guide-cd-health-check.html` |
 | Coaching Conversation (GROW) | `coaching-conversation-board` | `facilitator-guide-coaching-conversation.html` |
 | Psychological Safety Check | `psych-safety-board` | `facilitator-guide-psych-safety.html` |
 | Anti-Pattern Spotter | `anti-pattern-spotter-board` | `facilitator-guide-anti-pattern-spotter.html` |
@@ -100,7 +105,7 @@ The home page groups tools by what you're trying to do. No one framework is assu
 | Break down work | Epic Breakdown Canvas, User Story Map, Story Splitting, Example Mapping, Backlog Item Anatomy, Estimation |
 | Run events & iterations | Events & Cadences poster, Sprint Planning, Daily Sync, Backlog Refinement, Sprint Review |
 | Manage flow | Kanban Board Design, Kanban Cadences, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Impediments Board, Value Stream Map |
-| Engineering practices | Pairing & Mobbing, Delivery Metrics & Tech Debt, Architecture Decision Record, Blameless Incident Review |
+| Engineering practices | SDLC at a Glance, Delivery Pipeline Canvas, Test Strategy, Release Readiness & Strategy, Continuous Delivery Health Check, Pairing & Mobbing, Delivery Metrics & Tech Debt, Architecture Decision Record, Blameless Incident Review |
 | Reflect & improve | Retrospective Kit, Team Health Check, Psychological Safety Check, Anti-Pattern Spotter, Marginal Gains Workshop, 1% Experiment Canvas, Root Cause Analysis |
 | Run a project | Project Kickoff, Stakeholder Map, Pre-mortem, RAID Log, RACI & Decision Log, Release Forecast & Burn-up, Outcome Status Report |
 | Coordinate teams | Objectives & Key Results, Cross-Team Planning, Dependency Map, Cross-Team Sync, Team Topology Design, Cross-Team Retro |

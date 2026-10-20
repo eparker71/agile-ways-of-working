@@ -18,6 +18,38 @@ from brand import ACCENT, NAVY, CREDIT  # noqa: E402
 OUT = Path(__file__).resolve().parent.parent
 
 TERMS = [
+    ("Continuous integration (CI)", "Everyone merges small changes into the main branch often, at least daily, and every merge is "
+     "built and tested automatically, so problems show up within minutes.", "Practice popularised by Extreme Programming (XP).",
+     ["pipeline", "cd-health"]),
+    ("Continuous delivery (CD)", "Keeping the software ready to release at any time: every change that passes the pipeline could "
+     "go to production at the push of a button.", "Described by Jez Humble and David Farley.", ["pipeline", "cd-health", "release"]),
+    ("Continuous deployment", "Going one step further than continuous delivery: every change that passes the pipeline goes to "
+     "production automatically, with no manual release step.", None, ["pipeline", "release"]),
+    ("Delivery pipeline", "The automated path a change takes from commit to production: build, test, checks, deploy and release. "
+     "Also called a CI/CD pipeline or deployment pipeline.", None, ["pipeline"]),
+    ("DevOps", "A way of working where development and operations share responsibility for building, releasing and running "
+     "software, supported by automation and fast feedback.", None, ["pipeline", "cd-health", "incident"]),
+    ("DORA metrics", "Four measures of delivery performance from the DORA research programme: deployment frequency, lead time for "
+     "changes, change failure rate, and time to restore service.", "DORA: DevOps Research and Assessment.", ["delivery-metrics", "cd-health"]),
+    ("Trunk-based development", "Working in small changes merged to one main branch (the trunk) at least daily, instead of long-lived "
+     "branches that are hard to merge.", None, ["cd-health", "pipeline"]),
+    ("Feature flag", "A switch in the code that turns a feature on or off without deploying again, so code can be deployed "
+     "switched off and released later, or to some users only. Also called a feature toggle.", None, ["release", "cd-health"]),
+    ("Canary release", "Releasing a change to a small share of users first, watching for problems, then widening it.", None, ["release"]),
+    ("Blue-green deployment", "Running two copies of production: the new version goes to the idle copy, traffic switches to it, "
+     "and switching back undoes the release.", None, ["release"]),
+    ("Rollback", "Undoing a release by returning to the previous version. The alternative, fixing the problem with a new release, "
+     "is called rolling forward or fixing forward.", None, ["release", "incident"]),
+    ("Shift left", "Finding problems earlier in the lifecycle, when they're cheaper to fix: agreeing examples before coding, and "
+     "checking quality, security and accessibility as you go.", None, ["testing", "example"]),
+    ("Test pyramid", "A guide to balancing automated tests: many fast unit tests, fewer integration tests and a small number of slow "
+     "end-to-end tests.", "Popularised by Mike Cohn.", ["testing"]),
+    ("Exploratory testing", "People testing the software freely, learning as they go, to find problems that scripted tests don't "
+     "look for.", None, ["testing"]),
+    ("Go / no-go", "A short decision, against a checklist agreed in advance, on whether a release goes ahead.", None, ["release"]),
+    ("SDLC (software development lifecycle)", "The stages software goes through from idea to use: typically discover, design, build, "
+     "test, release, operate and learn. Traditional SDLCs run them once, in order; agile delivery runs the loop many times.", None,
+     ["sdlc"]),
     ("Affinity estimation", "Sizing a whole backlog quickly by silently placing items in order from smallest to largest, then "
      "drawing size boundaries.", None, ["estimation"]),
     ("Architecture decision record (ADR)", "A short document recording one important technical decision: its context, the "

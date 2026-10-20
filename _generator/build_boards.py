@@ -4704,6 +4704,409 @@ def build_leading_safety():
                 "\n".join(b))
 
 
+# ---------------------------------------------------------------- CI/CD and SDLC pack
+
+ENG_TAG = "Engineering Practices · Continuous Delivery · Build Quality In"
+
+
+def build_delivery_pipeline():
+    b = [header("Delivery Pipeline Canvas",
+                "Map how a change gets from a developer's commit to customers, find where it waits or fails, and pick the next fix.",
+                "Engineering Practices · Continuous Integration & Delivery · Inspired by Continuous Delivery (Humble & Farley)",
+                header_fields(["Team / system", "Date"]))]
+
+    x, y, w, h = 24, 148, 1632, 400
+    b.append(panel(x, y, w, h, 1, "Pipeline Stages", BLUE, "FROM COMMIT TO CUSTOMER · ADD OR RENAME STAGES TO MATCH YOURS"))
+    stages = [("Commit & review", "Merge to main, peer review", PURPLE), ("Build", "Compile, package, version", BLUE),
+              ("Automated tests", "Unit, integration, end-to-end", SKY), ("Quality & security", "Scans, checks, approvals", AMBER),
+              ("Deploy to test", "Staging or pre-production", ORANGE), ("Release", "Production, to users", EMERALD),
+              ("Monitor", "Is it working for users?", RED)]
+    gap = 12
+    cw = (w - 28 - gap * 6) / 7
+    for i, (name, hint, col) in enumerate(stages):
+        cx = x + 14 + i * (cw + gap)
+        cd = col[0]
+        b.append(R(cx, y + 64, cw, h - 78, "white", 6, f' stroke="{cd}" stroke-opacity=".25"'))
+        b.append(R(cx, y + 64, cw, 5, cd, 3))
+        b.append(T(cx + 14, y + 94, name, 13, cd, weight=600))
+        b.append(T(cx + 14, y + 112, hint, 9.5, cd, op=".75"))
+        for j, f in enumerate(["Time:", "Waits before:", "Fails:", "Manual steps:", "Gate:", "Tool:", "Owner:"]):
+            b.append(field(cx + 14, y + 148 + j * 30, f, cx + cw - 12, cd, 10.5))
+        if i < 6:
+            b.append(T(cx + cw + gap / 2, y + 64 + (h - 78) / 2, "›", 16, INK, anchor="middle", op=".45"))
+
+    y, h = 562, 290
+    x, w = 24, 808
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 2, "Totals & Signals", PURPLE, "THE WHOLE PIPELINE"))
+    left = ["Commit to production, typical:", "Of that, time spent waiting:", "Pipeline runs per day:", "Runs that fail:"]
+    right = ["Time to fix a broken build:", "Flaky or skipped steps:", "Deploys per week:", "Releases rolled back:"]
+    for i, f in enumerate(left):
+        b.append(field(x + 18, y + 90 + i * 40, f, x + w / 2 - 14, d))
+    for i, f in enumerate(right):
+        b.append(field(x + w / 2 + 6, y + 90 + i * 40, f, x + w - 18, d))
+    b.append(T(x + 18, y + h - 22, "Fast feedback matters most: aim for a build and test run that finishes in minutes, not hours.",
+               10, d, italic=True, op=".8"))
+
+    x, w = 846, 810
+    d = RED[0]
+    b.append(panel(x, y, w, h, 3, "Bottlenecks & Pain", RED, "WHERE DOES WORK WAIT, FAIL OR NEED A PERSON?"))
+    b.append(sticky_zone(x + 16, y + 66, w - 32, h - 82, d, chips=(YELLOW, PINK_ST)))
+
+    y, h = 866, 194
+    x, w = 24, 808
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 4, "Next Improvement", FOREST, "ONE CHANGE AT A TIME"))
+    for i, f in enumerate(["The change we'll make:", "Expected effect (which number moves?):", "Owner:", "Check it on:"]):
+        b.append(field(x + 18, y + 82 + i * 30, f, x + w - 18, d))
+
+    x, w = 846, 810
+    d = SKY[0]
+    b.append(panel(x, y, w, h, 5, "Signs of a Healthy Pipeline", SKY, "TICK WHAT'S TRUE TODAY"))
+    signs = ["Every change goes through the same pipeline", "Main is always releasable", "A broken build is fixed first",
+             "Tests and config live in version control", "Deploying is one click, or none", "We can roll back in minutes"]
+    for i, s in enumerate(signs):
+        b.append(checkbox(x + 18 + (i % 2) * 392, y + 88 + (i // 2) * 34, s, d, 11))
+
+    b.append(footer("Where does a change spend most of its time waiting?",
+                    "What would it take to release any day we choose?", ENG_TAG))
+    write_board("delivery-pipeline-board", "Delivery Pipeline Canvas",
+                "A3 landscape board: seven pipeline stages from commit to monitoring, each with time, waits, failures, "
+                "manual steps, gates, tools and owner; pipeline totals, bottlenecks, the next improvement, and signs of a healthy pipeline.",
+                "\n".join(b))
+
+
+def build_test_strategy():
+    b = [header("Test Strategy",
+                "Agree what you test at each level, how much is automated, where the quality gates sit, and what to test hardest.",
+                "Engineering Practices · Build Quality In · Inspired by the Test Pyramid (Mike Cohn)",
+                header_fields(["Team / product", "Date"]))]
+
+    x, y, w, h = 24, 148, 808, 760
+    b.append(panel(x, y, w, h, 1, "Test Pyramid", BLUE, "MANY FAST TESTS AT THE BOTTOM, FEW SLOW ONES AT THE TOP"))
+    layers = [("Exploratory", "People testing what scripts can't", PURPLE),
+              ("End-to-end / UI", "Whole journeys, through the interface", ORANGE),
+              ("Integration / API", "Services and components together", SKY),
+              ("Unit", "Small pieces of code, in isolation", EMERALD)]
+    top, bot, cx = y + 84, y + h - 24, x + 196
+    lh = (bot - top) / 4
+    hw = lambda yy: 46 + 124 * (yy - top) / (bot - top)
+    for i, (name, hint, col) in enumerate(layers):
+        yt, yb = top + i * lh, top + (i + 1) * lh
+        dk, lt = col
+        pts = f"{cx - hw(yt):g},{yt + 3:g} {cx + hw(yt):g},{yt + 3:g} {cx + hw(yb):g},{yb - 3:g} {cx - hw(yb):g},{yb - 3:g}"
+        b.append(f'<polygon points="{pts}" fill="{dk}" fill-opacity=".88"/>')
+        b.append(T(cx, yt + lh / 2 + 4, name, 12 if i else 11, "white", weight=600, anchor="middle"))
+        fx = x + 392
+        b.append(T(fx, yt + 26, name.upper(), 9, dk, MONO, weight=600, ls=".12em"))
+        b.append(T(fx, yt + 42, hint, 10, dk, op=".75"))
+        for j, f in enumerate(["What we test:", "Automated:", "Runs when:", "Owner:"]):
+            b.append(field(fx, yt + 68 + j * 28, f, x + w - 18, dk, 10.5))
+        if i:
+            b.append(dashed(fx, x + w - 18, yt, dk))
+
+    x, w, h = 846, 810, 380
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 2, "Quality Gates", PURPLE, "WHAT MUST PASS, AND WHERE IN THE PIPELINE"))
+    b.append(table(x + 18, y + 86, [("Where", 150), ("Check", 300), ("Blocks release?", 140), ("Owner", w - 36 - 590)], 8, d, 32))
+
+    y2, h2 = y + h + 14, 760 - h - 14
+    x, w = 846, 398
+    d = AMBER[0]
+    b.append(panel(x, y2, w, h2, 3, "Shift Left", AMBER, "FIND PROBLEMS EARLIER"))
+    for i, s in enumerate(["Examples agreed before coding", "Testers join refinement", "Tests written with the code",
+                           "Accessibility checked early", "Security checked early", "Performance tested early", "Test data on demand"]):
+        b.append(checkbox(x + 18, y2 + 86 + i * 32, s, d, 11))
+
+    x, w = 1258, 398
+    d = RED[0]
+    b.append(panel(x, y2, w, h2, 4, "Test Hardest", RED, "HIGHEST RISK"))
+    b.append(sticky_zone(x + 16, y2 + 66, w - 32, h2 - 82, d, "Where would a bug hurt most?", chips=(YELLOW, PINK_ST)))
+
+    y, h = 922, 138
+    x, w = 24, 808
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 5, "Our Definition of Done Says", FOREST, "THE QUALITY BAR FOR EVERY ITEM"))
+    b.append(lines(x + 18, y + 86, x + w - 18, 2, 30))
+
+    x, w = 846, 810
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 6, "Test Debt", SLATE, "FLAKY, SLOW OR MISSING TESTS"))
+    for i, f in enumerate(["Fix first:", "Time set aside each iteration:"]):
+        b.append(field(x + 18, y + 84 + i * 32, f, x + w - 18, d))
+
+    b.append(footer("How would we know, within minutes, that we'd broken something?",
+                    "Which bug would hurt our users most, and are we testing for it?", ENG_TAG))
+    write_board("test-strategy-board", "Test Strategy",
+                "A3 landscape board: a four-level test pyramid with what is tested, automation, timing and owner at each level; "
+                "quality gates; shift-left practices; the riskiest areas; the Definition of Done; and test debt.", "\n".join(b))
+
+
+def build_release_readiness():
+    b = [header("Release Readiness & Strategy",
+                "Plan how a change reaches users, check it's ready, know how to undo it, and tell the people who need to know.",
+                "Engineering Practices · Separate Deploy from Release · Go / No-Go",
+                header_fields(["Release", "Target date"]))]
+
+    y, h = 148, 300
+    x, w = 24, 536
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 1, "What's Releasing", PURPLE))
+    for i, f in enumerate(["Release / version:", "Outcome for users:", "Main changes:", "Who's affected:",
+                           "Deploy date:", "Switch-on date:"]):
+        b.append(field(x + 18, y + 86 + i * 34, f, x + w - 18, d))
+
+    x, w = 574, 1082
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 2, "Release Approach", BLUE, "TICK ONE OR COMBINE · DEPLOYING ISN'T THE SAME AS RELEASING"))
+    opts = [("Big bang", ["Everyone gets it at once.", "Simple, but the riskiest."]),
+            ("Feature flag", ["Deploy switched off, then turn it", "on when ready, for some or all."]),
+            ("Canary", ["A small share of users first,", "then more if all is well."]),
+            ("Blue-green", ["Switch traffic to a new copy;", "switch back if it goes wrong."]),
+            ("Phased rollout", ["By region, customer group", "or channel, one at a time."]),
+            ("Beta / early access", ["Volunteers try it first and", "give feedback."])]
+    cw, ch = (w - 28 - 20) / 3, (h - 64 - 14 - 10) / 2
+    for i, (name, body) in enumerate(opts):
+        cx, cy = x + 14 + (i % 3) * (cw + 10), y + 64 + (i // 3) * (ch + 10)
+        b.append(R(cx, cy, cw, ch, "white", 6, f' stroke="{d}" stroke-opacity=".2"'))
+        b.append(checkbox(cx + 14, cy + 28, "", d))
+        b.append(T(cx + 34, cy + 28, name, 13, d, weight=600))
+        b.append(para(cx + 14, cy + 52, body, 10.5, d, 16))
+
+    y, h = 462, 360
+    x, w = 24, 808
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 3, "Go / No-Go Checklist", FOREST, "AGREE THE LIST BEFORE THE DAY"))
+    checks = ["Definition of Done met for every item", "Pipeline green, no open critical defects",
+              "Performance and security checks done", "Rollback tested, not just written down",
+              "Monitoring and alerts ready", "Support and operations briefed",
+              "Release notes and messages ready", "Data migration rehearsed (if any)",
+              "Change approval recorded (if needed)", "Someone on hand after release"]
+    for i, s in enumerate(checks):
+        b.append(checkbox(x + 18 + (i % 2) * 392, y + 90 + (i // 2) * 36, s, d, 11))
+    b.append(L(x + 18, y + 274, x + w - 18, y + 274, d, 1, ' stroke-opacity=".2"'))
+    b.append(T(x + 18, y + 306, "Decision:", 11, d, weight=600))
+    b.append(checkbox(x + 96, y + 306, "Go", d))
+    b.append(checkbox(x + 156, y + 306, "No-go", d))
+    b.append(field(x + 240, y + 306, "Decided by:", x + 520, d))
+    b.append(field(x + 536, y + 306, "When:", x + w - 18, d))
+
+    x, w = 846, 810
+    d = RED[0]
+    b.append(panel(x, y, w, h, 4, "Rollback & Recovery", RED, "PLAN TO UNDO IT BEFORE YOU DO IT"))
+    for i, f in enumerate(["If it goes wrong, we'll see:", "We'll undo it by:", "Time to undo:", "Who decides to roll back:",
+                           "What we can't undo (data, messages):", "Rollback last tested on:"]):
+        b.append(field(x + 18, y + 90 + i * 42, f, x + w - 18, d))
+
+    y, h = 836, 224
+    x, w = 24, 1082
+    d = SKY[0]
+    b.append(panel(x, y, w, h, 5, "Who Needs to Know", SKY, "USERS, SUPPORT, SALES, OTHER TEAMS"))
+    b.append(table(x + 18, y + 86, [("Audience", 210), ("What they need to know", 380), ("When", 140), ("How", 160),
+                                    ("Owner", w - 36 - 890)], 4, d, 30))
+
+    x, w = 1120, 536
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 6, "After Release", AMBER))
+    for i, f in enumerate(["Check the outcome on:", "Remove the feature flag by:", "What we learned:"]):
+        b.append(field(x + 18, y + 86 + i * 36, f, x + w - 18, d))
+    b.append(L(x + 18, y + 194, x + w - 18, y + 194, WRITE))
+
+    b.append(footer("If this goes wrong at the worst moment, what's our plan?",
+                    "Could we release this a little at a time?", ENG_TAG))
+    write_board("release-readiness-board", "Release Readiness & Strategy",
+                "A3 landscape board: what's releasing, six release approaches (big bang, feature flag, canary, blue-green, "
+                "phased, beta), a go/no-go checklist, rollback and recovery, who needs to know, and after-release checks.",
+                "\n".join(b))
+
+
+CD_PRACTICES = [
+    ("BUILD & INTEGRATE", BLUE, [
+        ("Version control for everything", "Code, tests, configuration and infrastructure are all versioned."),
+        ("Small, short-lived branches", "Work merges to main at least daily (trunk-based development)."),
+        ("Continuous integration", "Every merge builds and tests automatically, in minutes.")]),
+    ("TEST", SKY, [
+        ("Test automation we trust", "A green run means we're confident; flaky tests get fixed."),
+        ("Test data on demand", "Anyone can get realistic test data without waiting."),
+        ("Security built in", "Security checks run in the pipeline, not just before release.")]),
+    ("DEPLOY & RELEASE", EMERALD, [
+        ("Automated deployment", "Deploying to any environment is one click, or none."),
+        ("Deploy separate from release", "Feature flags or similar let us switch features on later."),
+        ("Small batches", "Changes reach production in small pieces, often.")]),
+    ("RUN & LEARN", RED, [
+        ("Monitoring & observability", "We know quickly when something's wrong for users."),
+        ("Fast recovery", "We can roll back or fix forward in minutes, and practise it."),
+        ("Learning from failure", "Incidents lead to blameless reviews and real changes.")]),
+]
+
+
+def build_cd_health_check():
+    b = [header("Continuous Delivery Health Check",
+                "Score twelve practices that make releasing safe and routine, find the biggest gaps, and pick experiments to close them.",
+                "Engineering Practices · Inspired by DORA research, Accelerate (Forsgren, Humble & Kim) and Continuous Delivery (Humble & Farley)",
+                header_fields(["Team", "Date"]))]
+
+    x, y, w, h = 24, 148, 1082, 912
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 1, "Practices", SLATE, "VOTE SILENTLY · 1 NOT YET · 3 SOMETIMES · 5 ALWAYS"))
+    sx, nx = x + 590, x + 820
+    b.append(T(sx + 70, y + 72, "SCORE", 8.5, d, MONO, weight=600, anchor="middle", ls=".12em"))
+    # one text element (tspans) so the AI prompt reads it as a scale, not a numbered list
+    b.append(f'<text x="{sx + 14:g}" y="{y + 90}" text-anchor="middle" font-family="{MONO}" font-size="10" fill="{d}" fill-opacity=".7">'
+             + " ".join(f'<tspan x="{sx + 14 + k * 28:g}">{k + 1}</tspan>' for k in range(5)) + "</text>")
+    b.append(T(nx, y + 80, "NOTES / EVIDENCE", 8.5, d, MONO, weight=600, ls=".12em"))
+    cy = y + 92
+    for group, (dk, lt), items in CD_PRACTICES:
+        b.append(T(x + 18, cy + 18, group, 9, dk, MONO, weight=600, ls=".14em"))
+        b.append(L(x + 30 + text_w(group, 9) * 1.25, cy + 14, x + w - 18, cy + 14, dk, 1, ' stroke-opacity=".25"'))
+        cy += 26
+        for name, desc in items:
+            b.append(R(x + 14, cy, w - 28, 50, "white", 6, f' stroke="{dk}" stroke-opacity=".18"'))
+            b.append(R(x + 14, cy, 4, 50, dk, 2))
+            b.append(T(x + 30, cy + 21, name, 12.5, dk, weight=600))
+            b.append(T(x + 30, cy + 39, desc, 10, INK, op=".8"))
+            for k in range(5):
+                b.append(f'<circle cx="{sx + 14 + k * 28:g}" cy="{cy + 25}" r="10" fill="white" stroke="{dk}" stroke-opacity=".45"/>')
+            b.append(L(nx, cy + 22, x + w - 30, cy + 22, WRITE))
+            b.append(L(nx, cy + 40, x + w - 30, cy + 40, WRITE))
+            cy += 54
+        cy += 4
+
+    x, w = 1120, 536
+    y, h = 148, 420
+    d = RED[0]
+    b.append(panel(x, y, w, h, 2, "Biggest Gaps", RED, "LOWEST SCORES · WIDEST SPREAD"))
+    b.append(sticky_zone(x + 16, y + 66, w - 32, h - 82, d, chips=(YELLOW, PINK_ST)))
+
+    y, h = 582, 290
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 3, "Experiments", FOREST, "ONE OR TWO, SMALL"))
+    for i, f in enumerate(["Practice:", "We'll try:", "Owner / check on:", "Practice:", "We'll try:", "Owner / check on:"]):
+        b.append(field(x + 18, y + 86 + i * 32 + (14 if i > 2 else 0), f, x + w - 18, d))
+    b.append(dashed(x + 18, x + w - 18, y + 172, d))
+
+    y, h = 886, 174
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 4, "Trend", BLUE, "REPEAT EVERY QUARTER"))
+    for i, f in enumerate(["Last check (date and total):", "This check (total out of 60):", "Next check:"]):
+        b.append(field(x + 18, y + 84 + i * 32, f, x + w - 18, d))
+
+    b.append(footer("Which practice, if it improved, would make releasing least scary?",
+                    "Where do our scores disagree most, and why?", ENG_TAG))
+    write_board("cd-health-check-board", "Continuous Delivery Health Check",
+                "A3 landscape board: twelve continuous delivery practices in four groups, each scored 1 to 5 with notes; "
+                "biggest gaps, experiments, and a quarterly trend.", "\n".join(b))
+
+
+SDLC_STAGES = [
+    ("Idea", PURPLE, "A problem or opportunity is raised and weighed against other work.", "Is this worth exploring?",
+     ["Product Vision Board", "Prioritisation Board", "Portfolio Kanban"], "Business case approved"),
+    ("Discover", BLUE, "Understand users, the problem and the options before committing.", "What problem, for whom?",
+     ["Persona & Journey Map", "Opportunity Solution Tree", "Impact Map"], "Requirements signed off"),
+    ("Design", SKY, "Shape the solution into slices and stories, with examples and key technical decisions.",
+     "What's the smallest valuable slice?", ["User Story Map", "Epic Breakdown Canvas", "Example Mapping", "Architecture Decision Record"],
+     "Design approved"),
+    ("Build", AMBER, "Write code and tests together, integrate continuously and keep work flowing.",
+     "Is main always releasable?", ["Sprint Planning", "Pairing & Mobbing", "Kanban Board Design", "Delivery Pipeline Canvas"],
+     "Code complete"),
+    ("Test", ORANGE, "Automated checks on every change, plus exploratory testing for what automation can't see.",
+     "How do we know it works?", ["Test Strategy", "Example Mapping", "Definition of Done (Team Charter)"], "Test sign-off (UAT)"),
+    ("Release", EMERALD, "Deploy safely, then switch on for users at the right pace, with a way back.",
+     "Can we release, and undo it, safely?", ["Release Readiness & Strategy", "Release Forecast & Burn-up"],
+     "Go-live approval (change board)"),
+    ("Operate", RED, "Monitor, support users and recover quickly when something goes wrong.", "Would we know if it broke?",
+     ["Blameless Incident Review", "Delivery Metrics & Tech Debt", "Continuous Delivery Health Check"], "Handover to operations"),
+    ("Learn", FOREST, "Measure the outcome, review what happened and feed the learning back in.",
+     "Did it make the difference we hoped?", ["Sprint Review", "Value Metrics", "Retrospective Kit"], "Post-implementation review"),
+]
+
+
+def build_sdlc_poster():
+    b = [header("SDLC at a Glance",
+                "The software development lifecycle from idea to outcome: what happens at each stage, the question it answers, and the tools that help.",
+                "Agile Lifecycle · From Idea to Outcome · One Toolbox",
+                header_fields(["Team", "Date"]))]
+    y, h, gap = 148, 500, 10
+    cw = (1632 - 7 * gap) / 8
+    for i, (name, (dk, lt), what, q, tools, gate) in enumerate(SDLC_STAGES):
+        cx = 24 + i * (cw + gap)
+        b.append(R(cx, y, cw, h, lt, 10, f' stroke="{dk}" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"'))
+        b.append(top_round(cx, y, cw, 52, 10, dk))
+        b.append(f'<circle cx="{cx + 21:g}" cy="{y + 26}" r="12" fill="white" fill-opacity=".18"/>')
+        b.append(T(cx + 21, y + 31, str(i + 1), 11, "white", weight=600, anchor="middle"))
+        b.append(T(cx + 42, y + 32, name, 15, "white", weight=600))
+        ty = y + 82
+        b.append(T(cx + 14, ty, "WHAT HAPPENS", 8, dk, MONO, weight=600, ls=".12em"))
+        wl = _wrap(what, cw - 28, 10.5)
+        b.append(para(cx + 14, ty + 20, wl, 10.5, INK, 15))
+        ty += 20 + len(wl) * 15 + 18
+        b.append(T(cx + 14, ty, "KEY QUESTION", 8, dk, MONO, weight=600, ls=".12em"))
+        ql = _wrap(f"“{q}”", cw - 28, 13)
+        b.append(para(cx + 14, ty + 22, ql, 13, dk, 17, font=SERIF, italic=True))
+        ty = y + 276
+        b.append(T(cx + 14, ty, "TOOLS IN THIS KIT", 8, dk, MONO, weight=600, ls=".12em"))
+        ty += 22
+        for t in tools:
+            tl = _wrap(t, cw - 40, 10.5)
+            b.append(f'<circle cx="{cx + 18:g}" cy="{ty - 4}" r="2.5" fill="{dk}"/>')
+            b.append(para(cx + 28, ty, tl, 10.5, dk, 14, weight=600))
+            ty += len(tl) * 14 + 8
+        b.append(L(cx + 14, y + h - 76, cx + cw - 14, y + h - 76, dk, 1, ' stroke-opacity=".25"'))
+        b.append(T(cx + 14, y + h - 54, "TRADITIONAL GATE", 8, dk, MONO, weight=600, ls=".12em", op=".7"))
+        b.append(para(cx + 14, y + h - 34, _wrap(gate, cw - 28, 10.5), 10.5, MUTED, 14))
+        if i < 7:
+            b.append(T(cx + cw + gap / 2, y + h / 2, "›", 14, INK, anchor="middle", op=".45"))
+
+    b.append(T(840, y + h + 28, "↺  Learning feeds the next idea. In agile delivery the whole loop runs for every small slice, "
+               "many times over, not once per project.", 12, INK, SERIF, italic=True, anchor="middle"))
+
+    y, h = 696, 364
+    x, w = 24, 1082
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, None, "Traditional SDLC and Agile Delivery", SLATE, "SAME STAGES, DIFFERENT RHYTHM"))
+    rows = [("Planning", "Detailed plan up front; change is controlled", "Plan a little, often; change is expected"),
+            ("Requirements", "Complete and signed off before building", "Discovered and refined just in time, with examples"),
+            ("Testing", "A phase near the end", "On every change, automated, from the start"),
+            ("Release", "Rare, large and risky", "Frequent, small and routine"),
+            ("Teams", "Hand-offs between specialist groups", "Cross-functional teams own the whole slice"),
+            ("Feedback", "From users, after launch", "From users, every iteration"),
+            ("Risk", "Found late, when change is costly", "Found early, while change is cheap"),
+            ("Progress", "Phases and documents completed", "Working software and outcomes"),
+            ("Governance", "Document gates between phases", "Evidence from working software, every iteration")]
+    cols = [("", 170), ("Traditional (stage-gate)", 430), ("Agile delivery", 430)]
+    cx = x + 18
+    for name, cwid in cols:
+        b.append(T(cx + 6, y + 82, name.upper(), 8.5, d, MONO, weight=600, ls=".1em"))
+        cx += cwid
+    for i, (a, t, ag) in enumerate(rows):
+        ry = y + 108 + i * 28
+        b.append(T(x + 24, ry, a, 11, d, weight=600))
+        b.append(T(x + 194, ry, t, 11, MUTED))
+        b.append(T(x + 624, ry, ag, 11, EMERALD[0], weight=500))
+        b.append(L(x + 18, ry + 11, x + w - 18, ry + 11, RULE, 1))
+
+    x, w = 1120, 536
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, None, "Keeping Governance, Losing the Delay", PURPLE))
+    tips = [["Keep the questions each gate asks,", "and answer them with evidence every iteration."],
+            ["Put compliance checks in the", "Definition of Done, not a final phase."],
+            ["Let the pipeline produce audit evidence:", "tests run, approvals, who deployed what."],
+            ["Review working software, not documents", "about software."],
+            ["Match approval to risk: small, routine", "changes go straight through."],
+            ["Invite risk, audit and security partners", "to reviews early, not just at the end."]]
+    for i, t in enumerate(tips):
+        ty = y + 86 + i * 44
+        b.append(f'<circle cx="{x + 22}" cy="{ty - 4}" r="3" fill="{d}"/>')
+        b.append(para(x + 34, ty, t, 11, d, 16))
+
+    b.append(footer("Where in our lifecycle does work wait longest?",
+                    "Which gate could we replace with evidence from working software?", "Agile Lifecycle · From Idea to Outcome · One Toolbox"))
+    write_board("sdlc-poster", "SDLC at a Glance",
+                "A3 landscape reference poster: eight software development lifecycle stages from idea to learn, each with what "
+                "happens, its key question, the toolkit tools that help and the traditional gate; plus traditional vs. agile "
+                "delivery and how to keep governance without the delay.", "\n".join(b))
+
+
 # ---------------------------------------------------------------- worked examples
 # Filled-in copies of real boards for a fictional team (the "Basket team" at an online grocery service, the same
 # running example as the Backlog Item Anatomy poster). Each example reads the generated blank board and adds a layer
@@ -4958,5 +5361,10 @@ if __name__ == "__main__":
     build_events_poster()
     build_antipattern_spotter()
     build_leading_safety()
+    build_delivery_pipeline()
+    build_test_strategy()
+    build_release_readiness()
+    build_cd_health_check()
+    build_sdlc_poster()
     for make in EXAMPLES.values():   # worked examples read the blank boards, so they run last
         make()

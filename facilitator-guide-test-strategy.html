@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test Strategy Guide</title>
+<!-- meta -->
+<meta name="description" content="How to agree what to test at each level, how much to automate, where quality gates sit, and what to test hardest.">
+<link rel="canonical" href="https://eparker71.github.io/agile-ways-of-working/facilitator-guide-test-strategy.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agile Ways of Working Toolkit">
+<meta property="og:title" content="Test Strategy Guide · Agile Ways of Working Toolkit">
+<meta property="og:description" content="How to agree what to test at each level, how much to automate, where quality gates sit, and what to test hardest.">
+<meta property="og:url" content="https://eparker71.github.io/agile-ways-of-working/facilitator-guide-test-strategy.html">
+<meta property="og:image" content="https://eparker71.github.io/agile-ways-of-working/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /meta -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#64748B; --rule:#E2E8F0; --paper:#FFFFFF;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:13px;line-height:1.55;padding:24px 16px;}
+.page{max-width:820px;margin:0 auto 24px;background:var(--paper);box-shadow:0 12px 40px rgba(0,0,0,.22);}
+.masthead{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:28px 40px 26px;position:relative;}
+.badge{position:absolute;top:14px;right:24px;font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;}
+.masthead h1{font:400 40px/1.05 var(--serif);margin:14px 0 8px;}
+.masthead p{margin:0;color:#94A3B8;font-size:13.5px;}
+.masthead .tag{margin-top:8px;font:9px var(--mono);color:#64748B;letter-spacing:.06em;}
+.content{padding:28px 40px 36px;}
+h2{font:400 26px/1.15 var(--serif);margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;}
+h2 .n{font:600 11px var(--sans);color:#fff;background:var(--navy);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;flex:none;transform:translateY(-3px);}
+h3{font:600 13px var(--sans);margin:16px 0 6px;}
+p{margin:6px 0 10px;}
+.lede{font:italic 400 19px/1.35 var(--serif);color:var(--ink);border-left:4px solid var(--accent);padding:2px 0 2px 16px;margin:4px 0 20px;}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px;}
+.glance div{background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;}
+.glance b{display:block;font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+.glance span{font-weight:600;font-size:13px;}
+ul.check{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:28px;}
+ul.check li{padding-left:22px;position:relative;margin-bottom:5px;break-inside:avoid;}
+ul.check li::before{content:"";position:absolute;left:0;top:3px;width:11px;height:11px;border:1.4px solid var(--ink);border-radius:2px;opacity:.55;}
+table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:12.5px;}
+th{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--ink);text-align:left;padding:8px 10px;}
+th:first-child{border-left:5px solid var(--accent);}
+td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+td.t{font:500 11px var(--mono);white-space:nowrap;color:var(--muted);}
+td.a{font-weight:600;width:24%;}
+tr:nth-child(even) td{background:#F8FAFC;}
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;}
+.area{border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,.06);break-inside:avoid;}
+.area h4{margin:0;padding:7px 12px;color:#fff;font:600 12.5px var(--sans);}
+.area ul{margin:0;padding:8px 12px 10px 28px;font-size:12px;}
+.area li{margin-bottom:3px;}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.tip{border-top:2px solid var(--rule);padding-top:8px;}
+.tip b{display:block;margin-bottom:2px;}
+.flow{display:flex;align-items:stretch;gap:0;margin:14px 0 6px;flex-wrap:wrap;}
+.step{flex:1 1 0;min-width:120px;background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;position:relative;}
+.arrow{flex:none;align-self:center;color:var(--accent);font:600 16px var(--sans);padding:0 6px;}
+.step b{display:block;font-size:12.5px;}
+.step small{color:var(--muted);font-size:11px;line-height:1.4;display:block;margin-top:2px;}
+.step .k{font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--accent);text-transform:uppercase;}
+.callout{background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:12px 16px;margin:14px 0;}
+.callout b{color:#9A3412;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display:flex;justify-content:space-between;gap:16px;font:8px var(--mono);letter-spacing:.08em;color:#94A3B8;}
+@media (max-width:640px){
+  .masthead,.content{padding-left:20px;padding-right:20px;}
+  .glance{grid-template-columns:1fr 1fr;}
+  ul.check{columns:1;}
+  .areas,.tips,.two{grid-template-columns:1fr;}
+  .arrow{display:none;}
+  .flow{gap:8px;}
+  table{font-size:11.5px;}
+  td.t{white-space:normal;}
+}
+@media print{
+  @page{size:A4 portrait;margin:12mm 12mm 14mm;}
+  html,body{background:none;}
+  body{padding:0;font-size:11.5px;}
+  .page{box-shadow:none;max-width:none;margin:0;}
+  .masthead,th,.area h4,h2 .n{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  tr,.area,.tip,.step,.callout{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .pb{break-before:page;}
+}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.content a{color:#9A3412;}
+@media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:var(--accent);}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.content a{color:#9A3412;}
+.example{border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:10px 0;}
+.example div{display:grid;grid-template-columns:30% 1fr;border-bottom:1px solid var(--rule);}
+.example div:last-child{border-bottom:none;}
+.example b{background:#F8FAFC;padding:7px 12px;font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.example span{padding:7px 12px;font-size:12.5px;}
+@media (max-width:640px){.example div{grid-template-columns:1fr;}}
+@media print{.boards{display:none;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>Test Strategy Guide</h1>
+    <p>How to agree what to test at each level, how much to automate, where quality gates sit, and what to test hardest.</p>
+    <div class="tag">Facilitator Run-Sheet · Engineering Practices · Build Quality In</div>
+    <div class="boards"><a class="primary" href="test-strategy-board.html">Open board →</a><a href="test-strategy-board.svg">SVG →</a><a href="facilitator-guide-test-strategy.docx" download>Word (editable) ↓</a></div>
+  </header>
+  <div class="content">
+    <p class="lede">“How would we know, within minutes, that we&#x27;d broken something?”</p>
+    <p>Quality can't be tested in at the end; it's built in all the way through. The <b>test pyramid</b>, popularised by Mike Cohn, is a simple guide: have <b>many fast unit tests</b>, fewer <b>integration</b> tests, a small number of slow <b>end-to-end</b> tests, and <b>exploratory testing</b> by people for what scripts can't find. <b>Shift left</b> means finding problems earlier, when they're cheap to fix: agreeing examples before coding, and checking security, accessibility and performance as you go rather than at the end. The board helps the whole team, not just testers, agree how quality is built in and who owns each part.</p>
+    <div class="glance"><div><b>Duration</b><span>60–90 min</span></div><div><b>Group</b><span>The whole team,<br>including testers</span></div><div><b>Use when</b><span>Bugs reach production,<br>or testing is a bottleneck</span></div><div><b>Output</b><span>An agreed strategy<br>&amp; quality gates</span></div></div>
+    <h2><span class="n">1</span>Before the session</h2>
+    <ul class="check"><li>Print the board at A3, or load the SVG as a digital background</li><li>Bring rough numbers: how many tests at each level, how long they take, how many are flaky</li><li>List recent bugs that reached production, and where they could have been caught</li><li>Bring the team's Definition of Done</li><li>Optionally, bring the Delivery Pipeline Canvas to see where tests run</li></ul>
+    <h2><span class="n">2</span>Agenda &amp; run-sheet</h2>
+    <table><thead><tr><th>Time</th><th>Section</th><th>Facilitator notes</th></tr></thead><tbody><tr><td class="t">0–10</td><td class="a">Recent escapes</td><td>Look at bugs that reached production. Where could each have been caught earlier?</td></tr><tr><td class="t">10–35</td><td class="a">1 · Test Pyramid</td><td>For each level: what we test, how much is automated, when it runs and who owns it. Is the shape a pyramid, or an ice-cream cone?</td></tr><tr><td class="t">35–50</td><td class="a">2 · Quality Gates</td><td>List the checks that must pass, where they run in the pipeline, and whether they block a release.</td></tr><tr><td class="t">50–60</td><td class="a">3 · Shift Left</td><td>Tick what you do today. Pick one practice to start.</td></tr><tr><td class="t">60–70</td><td class="a">4 · Test Hardest</td><td>Silent writing: where would a bug hurt users most? Make sure those areas are well covered.</td></tr><tr><td class="t">70–80</td><td class="a">5 · Definition of Done</td><td>Write the quality bar every item must meet. Update the team's Definition of Done to match.</td></tr><tr><td class="t">80–90</td><td class="a">6 · Test Debt</td><td>Agree which flaky, slow or missing tests to fix first, and the time set aside for it.</td></tr></tbody></table>
+    <h2 class="pb"><span class="n">3</span>The four levels</h2>
+    <p>Push each test as low down the pyramid as it can go.</p>
+    <div class="areas"><div class="area" style="background:#D1FAE5;color:#065F46"><h4 style="background:#065F46">Unit</h4><ul><li>Small pieces of code</li><li>Thousands, in seconds</li><li>Written with the code</li></ul></div><div class="area" style="background:#E0F2FE;color:#0C4A6E"><h4 style="background:#0C4A6E">Integration / API</h4><ul><li>Services together</li><li>Contracts between teams</li></ul></div><div class="area" style="background:#FFEDD5;color:#9A3412"><h4 style="background:#9A3412">End-to-end / UI</h4><ul><li>Key user journeys only</li><li>Slow and brittle if overused</li></ul></div><div class="area" style="background:#EDE9FE;color:#581C87"><h4 style="background:#581C87">Exploratory</h4><ul><li>People exploring</li><li>Finds what no one thought of</li></ul></div><div class="area" style="background:#F1F5F9;color:#334155"><h4 style="background:#334155">Quality Gates</h4><ul><li>Automated where possible</li><li>Block only for real risks</li></ul></div></div>
+    <h2><span class="n">4</span>Facilitation tips</h2>
+    <div class="tips"><div class="tip"><b>Quality is the team&#x27;s job</b>Developers, testers and the product owner all own quality; testers bring the expertise.</div><div class="tip"><b>Watch the shape</b>Lots of slow end-to-end tests and few unit tests (an ice-cream cone) makes feedback slow and flaky.</div><div class="tip"><b>Fix flaky tests fast</b>A test that fails at random teaches people to ignore red builds.</div><div class="tip"><b>Test by risk</b>Spend most effort where a bug would hurt users or the business most.</div><div class="tip"><b>Examples first</b>Agreeing examples in refinement or Example Mapping prevents many bugs before any code exists.</div><div class="tip"><b>Keep people exploring</b>Automation checks what you expect; exploratory testing finds what you didn&#x27;t.</div></div>
+    <div class="callout"><b>Common pitfalls:</b> leaving testing to the end, or to testers alone; chasing a coverage number instead of risk; too many slow UI tests; ignoring flaky tests; quality gates that block for everything, so people work around them.</div>
+    <h2><span class="n">5</span>After the session</h2>
+    <div class="two"><div><h3>Straight away</h3><p>Update the Definition of Done and add the shift-left practice to working agreements.</p></div><div><h3>Each iteration</h3><p>Spend the agreed time on test debt.</p></div><div><h3>Monthly</h3><p>Check how many bugs escaped, and where they could have been caught.</p></div><div><h3>Quarterly</h3><p>Revisit the pyramid and the gates as the product changes.</p></div></div>
+    <h2><span class="n">6</span>How it fits the toolkit</h2>
+    <p>The delivery engineering tools work as a set. <a href="facilitator-guide-sdlc.html">SDLC at a Glance</a> shows where each stage of the lifecycle fits. The <a href="facilitator-guide-delivery-pipeline.html">Delivery Pipeline Canvas</a> maps how changes reach production, the <a href="facilitator-guide-test-strategy.html">Test Strategy</a> decides how quality is built in, and <a href="facilitator-guide-release-readiness.html">Release Readiness &amp; Strategy</a> plans each release. The <a href="facilitator-guide-cd-health-check.html">Continuous Delivery Health Check</a> tracks the practices over time, and <a href="facilitator-guide-delivery-metrics.html">Delivery Metrics &amp; Tech Debt</a> measures the results. For the wider flow from idea to customer, use the <a href="facilitator-guide-value-stream-map.html">Value Stream Map</a>.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Test Strategy”, a workshop board.
+
+Purpose: Agree what you test at each level, how much is automated, where the quality gates sit, and what to test hardest.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+
+Header fields to fill in: Team / Product, Date
+
+Sections:
+1. Test Pyramid: middle left, about 50% wide and 85% tall; header colour blue.
+   Subtitle: Many fast tests at the bottom, few slow ones at the top
+   Content: Exploratory: · People testing what scripts can&#x27;t · What we test: (×4) · Exploratory · Automated: (×4) · Runs when: (×4) · Owner: (×4) · End-to-end / ui: · Whole journeys, through the interface · End-to-end / UI · Integration / api: · Services and components together · Integration / API · Unit: · Small pieces of code, in isolation · Unit
+2. Quality Gates: top right, about 50% wide and 40% tall; header colour purple.
+   Subtitle: What must pass, and where in the pipeline
+   Content: Where: · Check: · Blocks release? · Owner:
+3. Shift Left: middle centre, about 25% wide and 40% tall; header colour amber.
+   Subtitle: Find problems earlier
+   Content: Examples agreed before coding · Testers join refinement · Tests written with the code · Accessibility checked early · Security checked early · Performance tested early · Test data on demand
+4. Test Hardest: middle right, about 25% wide and 40% tall; header colour red.
+   Subtitle: Highest risk
+   Content: Where would a bug hurt most?
+5. Our Definition of Done Says: bottom left, about 50% wide and 15% tall; header colour dark green.
+   Subtitle: The quality bar for every item
+6. Test Debt: bottom right, about 50% wide and 15% tall; header colour slate grey.
+   Subtitle: Flaky, slow or missing tests
+   Content: Fix first: · Time set aside each iteration:
+
+Footer questions: “How would we know, within minutes, that we&#x27;d broken something?” “Which bug would hurt our users most, and are we testing for it?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/test-strategy-board.html</pre></details></section>
+    <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
+    <footer><span>“Which bug would hurt our users most, and are we testing for it?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
+  </div>
+</div>
+</body>
+</html>

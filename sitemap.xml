@@ -11,6 +11,7 @@
   <url><loc>https://eparker71.github.io/agile-ways-of-working/backlog-refinement-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/blocker-clustering-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/buffering-swarming-board.html</loc></url>
+  <url><loc>https://eparker71.github.io/agile-ways-of-working/cd-health-check-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/coaching-conversation-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/cross-team-planning-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/cross-team-retro-board.html</loc></url>
@@ -18,6 +19,7 @@
   <url><loc>https://eparker71.github.io/agile-ways-of-working/daily-sync-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/delegation-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/delivery-metrics-board.html</loc></url>
+  <url><loc>https://eparker71.github.io/agile-ways-of-working/delivery-pipeline-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/dependency-map-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/epic-breakdown-canvas.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/estimation-board.html</loc></url>
@@ -34,6 +36,7 @@
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-backlog-refinement.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-blocker-clustering.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-buffering-swarming.html</loc></url>
+  <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-cd-health-check.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-coaching-conversation.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-cross-team-planning.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-cross-team-retro.html</loc></url>
@@ -41,6 +44,7 @@
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-daily-sync.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-delegation.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-delivery-metrics.html</loc></url>
+  <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-delivery-pipeline.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-dependency-map.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-epic-breakdown-canvas.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-estimation.html</loc></url>
@@ -69,11 +73,13 @@
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-raci-decision-log.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-raid-log.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-release-forecast.html</loc></url>
+  <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-release-readiness.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-retro-4ls.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-retro-mad-sad-glad.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-retro-sailboat.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-retro-start-stop-continue.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-root-cause.html</loc></url>
+  <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-sdlc.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-skills-matrix.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-sprint-planning.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-sprint-review.html</loc></url>
@@ -85,6 +91,7 @@
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-team-health-check.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-team-launch.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-team-topology.html</loc></url>
+  <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-test-strategy.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-value-metrics.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/facilitator-guide-value-stream-map.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/glossary.html</loc></url>
@@ -112,6 +119,7 @@
   <url><loc>https://eparker71.github.io/agile-ways-of-working/raci-decision-log-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/raid-log-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/release-forecast-board.html</loc></url>
+  <url><loc>https://eparker71.github.io/agile-ways-of-working/release-readiness-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/retro-board-4ls.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/retro-board-mad-sad-glad.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/retro-board-sailboat.html</loc></url>
@@ -119,6 +127,7 @@
   <url><loc>https://eparker71.github.io/agile-ways-of-working/root-cause-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/scenarios.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/scrum-master-agile-coach-cheat-sheet.html</loc></url>
+  <url><loc>https://eparker71.github.io/agile-ways-of-working/sdlc-poster.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/skills-matrix-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/sprint-planning-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/sprint-review-board.html</loc></url>
@@ -131,6 +140,7 @@
   <url><loc>https://eparker71.github.io/agile-ways-of-working/team-health-check-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/team-launch-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/team-topology-board.html</loc></url>
+  <url><loc>https://eparker71.github.io/agile-ways-of-working/test-strategy-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/value-metrics-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/value-stream-map-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-prioritisation-board.html</loc></url>

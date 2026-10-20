@@ -3197,6 +3197,267 @@ GUIDES.append(dict(
 ))
 
 
+# ------------------------------------------------------------------ CI/CD and SDLC pack
+
+ENG_TOOLKIT = ("The delivery engineering tools work as a set. <a href=\"facilitator-guide-sdlc.html\">SDLC at a Glance</a> shows "
+               "where each stage of the lifecycle fits. The <a href=\"facilitator-guide-delivery-pipeline.html\">Delivery Pipeline "
+               "Canvas</a> maps how changes reach production, the <a href=\"facilitator-guide-test-strategy.html\">Test Strategy</a> "
+               "decides how quality is built in, and <a href=\"facilitator-guide-release-readiness.html\">Release Readiness &amp; "
+               "Strategy</a> plans each release. The <a href=\"facilitator-guide-cd-health-check.html\">Continuous Delivery Health "
+               "Check</a> tracks the practices over time, and <a href=\"facilitator-guide-delivery-metrics.html\">Delivery Metrics "
+               "&amp; Tech Debt</a> measures the results. For the wider flow from idea to customer, use the "
+               "<a href=\"facilitator-guide-value-stream-map.html\">Value Stream Map</a>.")
+
+GUIDES += [
+    dict(
+        slug="delivery-pipeline",
+        title="Delivery Pipeline Canvas Guide",
+        subtitle="How to map the path from a developer's commit to customers, find where changes wait or fail, and pick the next fix.",
+        tag="Facilitator Run-Sheet · Engineering Practices · Continuous Integration & Delivery",
+        boards=[("Open board", "delivery-pipeline-board.html"), ("SVG", "delivery-pipeline-board.svg")],
+        lede="Where does a change spend most of its time waiting?",
+        intro=("A <b>delivery pipeline</b> is the automated path a change takes from a developer's commit to running in front of "
+               "users: build, test, check, deploy, release and monitor. <b>Continuous integration</b> (CI) means everyone merges "
+               "small changes to the main branch often, and every merge is built and tested automatically. <b>Continuous delivery</b> "
+               "(CD) means every change that passes is ready to release at any time. The canvas makes the pipeline visible to the "
+               "whole team, including people who don't work on it every day, so you can see where time goes and choose one "
+               "improvement. The ideas come from Jez Humble and David Farley's <i>Continuous Delivery</i>."),
+        glance=[("Duration", "60–90 min"), ("Group", "The team, with whoever<br>runs the pipeline"),
+                ("Use when", "Releases are slow,<br>painful or risky"), ("Output", "A shared map<br>&amp; one improvement")],
+        before=["Print the board at A3, or load the SVG as a digital background",
+                "Ask someone who knows the pipeline to sketch its real stages; rename the board's stages to match",
+                "Pull rough numbers if you can: how long each stage takes, how often it fails, how many deploys a week",
+                "Invite testers, operations and security people as well as developers",
+                "Non-engineers are welcome: the map is meant to be understood by everyone"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–10", "Why we're here", "Ask: how long does a one-line change take to reach users? Write the guesses down."),
+                ("10–35", "1 · Pipeline Stages", "Walk a recent change through each stage. Fill in time, waits, failures, manual steps, gates, tools and owner."),
+                ("35–45", "2 · Totals & Signals", "Add up commit to production and how much of it is waiting. Compare with the opening guesses."),
+                ("45–60", "3 · Bottlenecks & Pain", "Silent writing: where does work wait, fail or need a person? Cluster and dot-vote."),
+                ("60–75", "4 · Next Improvement", "Pick one change for the top bottleneck. Agree which number should move, an owner and a check date."),
+                ("75–85", "5 · Healthy Pipeline", "Tick the signs that are true today. Note the ones to work toward.")],
+        sections_title="What to look for",
+        sections_intro="Most of the time a change takes is usually waiting, not working.",
+        sections=[("Waits", BLUE, ["Queues for review or approval", "Shared environments", "Batching changes up"]),
+                  ("Failures", RED, ["Flaky tests", "Broken builds left red", "Environment differences"]),
+                  ("Manual steps", AMBER, ["Hand-run scripts", "Tickets to other teams", "Copy-paste config"]),
+                  ("Gates", PURPLE, ["Which ones catch real problems?", "Which could be automated?"]),
+                  ("Feedback speed", EMERALD, ["Minutes, not hours", "Fast tests run first"])],
+        tips=[("Follow one real change", "A real recent change gives real numbers and stories; a generic walk-through hides the waits."),
+              ("Count the waiting", "Ask how long work sits between stages, not just how long each stage runs."),
+              ("Make it understandable", "Use plain names for stages, so product owners and managers can follow it too."),
+              ("One improvement at a time", "Fix the biggest bottleneck, measure, then move on. The constraint will move."),
+              ("A red build is everyone's problem", "Agree that fixing a broken main branch comes before starting new work."),
+              ("Keep it current", "Redraw the map when the pipeline changes, and revisit it every few months.")],
+        pitfalls=("mapping the pipeline as designed, not as it really runs; blaming the people who own a slow stage; "
+                  "trying to fix everything at once; adding gates instead of removing waits; leaving out testing, security or operations."),
+        after=[("Straight away", "Add the chosen improvement to the backlog, with its owner and check date."),
+               ("Each iteration", "Track the number you expect to move."),
+               ("Monthly", "Review deployment frequency and lead time on the Delivery Metrics & Tech Debt board."),
+               ("Quarterly", "Re-map the pipeline, or run the Continuous Delivery Health Check.")],
+        toolkit=ENG_TOOLKIT,
+        foot="“What would it take to release any day we choose?”",
+    ),
+    dict(
+        slug="test-strategy",
+        title="Test Strategy Guide",
+        subtitle="How to agree what to test at each level, how much to automate, where quality gates sit, and what to test hardest.",
+        tag="Facilitator Run-Sheet · Engineering Practices · Build Quality In",
+        boards=[("Open board", "test-strategy-board.html"), ("SVG", "test-strategy-board.svg")],
+        lede="How would we know, within minutes, that we'd broken something?",
+        intro=("Quality can't be tested in at the end; it's built in all the way through. The <b>test pyramid</b>, popularised "
+               "by Mike Cohn, is a simple guide: have <b>many fast unit tests</b>, fewer <b>integration</b> tests, a small number "
+               "of slow <b>end-to-end</b> tests, and <b>exploratory testing</b> by people for what scripts can't find. "
+               "<b>Shift left</b> means finding problems earlier, when they're cheap to fix: agreeing examples before coding, "
+               "and checking security, accessibility and performance as you go rather than at the end. The board helps the "
+               "whole team, not just testers, agree how quality is built in and who owns each part."),
+        glance=[("Duration", "60–90 min"), ("Group", "The whole team,<br>including testers"),
+                ("Use when", "Bugs reach production,<br>or testing is a bottleneck"), ("Output", "An agreed strategy<br>&amp; quality gates")],
+        before=["Print the board at A3, or load the SVG as a digital background",
+                "Bring rough numbers: how many tests at each level, how long they take, how many are flaky",
+                "List recent bugs that reached production, and where they could have been caught",
+                "Bring the team's Definition of Done",
+                "Optionally, bring the Delivery Pipeline Canvas to see where tests run"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–10", "Recent escapes", "Look at bugs that reached production. Where could each have been caught earlier?"),
+                ("10–35", "1 · Test Pyramid", "For each level: what we test, how much is automated, when it runs and who owns it. Is the shape a pyramid, or an ice-cream cone?"),
+                ("35–50", "2 · Quality Gates", "List the checks that must pass, where they run in the pipeline, and whether they block a release."),
+                ("50–60", "3 · Shift Left", "Tick what you do today. Pick one practice to start."),
+                ("60–70", "4 · Test Hardest", "Silent writing: where would a bug hurt users most? Make sure those areas are well covered."),
+                ("70–80", "5 · Definition of Done", "Write the quality bar every item must meet. Update the team's Definition of Done to match."),
+                ("80–90", "6 · Test Debt", "Agree which flaky, slow or missing tests to fix first, and the time set aside for it.")],
+        sections_title="The four levels",
+        sections_intro="Push each test as low down the pyramid as it can go.",
+        sections=[("Unit", EMERALD, ["Small pieces of code", "Thousands, in seconds", "Written with the code"]),
+                  ("Integration / API", SKY, ["Services together", "Contracts between teams"]),
+                  ("End-to-end / UI", ORANGE, ["Key user journeys only", "Slow and brittle if overused"]),
+                  ("Exploratory", PURPLE, ["People exploring", "Finds what no one thought of"]),
+                  ("Quality Gates", SLATE, ["Automated where possible", "Block only for real risks"])],
+        tips=[("Quality is the team's job", "Developers, testers and the product owner all own quality; testers bring the expertise."),
+              ("Watch the shape", "Lots of slow end-to-end tests and few unit tests (an ice-cream cone) makes feedback slow and flaky."),
+              ("Fix flaky tests fast", "A test that fails at random teaches people to ignore red builds."),
+              ("Test by risk", "Spend most effort where a bug would hurt users or the business most."),
+              ("Examples first", "Agreeing examples in refinement or Example Mapping prevents many bugs before any code exists."),
+              ("Keep people exploring", "Automation checks what you expect; exploratory testing finds what you didn't.")],
+        pitfalls=("leaving testing to the end, or to testers alone; chasing a coverage number instead of risk; too many slow UI "
+                  "tests; ignoring flaky tests; quality gates that block for everything, so people work around them."),
+        after=[("Straight away", "Update the Definition of Done and add the shift-left practice to working agreements."),
+               ("Each iteration", "Spend the agreed time on test debt."),
+               ("Monthly", "Check how many bugs escaped, and where they could have been caught."),
+               ("Quarterly", "Revisit the pyramid and the gates as the product changes.")],
+        toolkit=ENG_TOOLKIT,
+        foot="“Which bug would hurt our users most, and are we testing for it?”",
+    ),
+    dict(
+        slug="release-readiness",
+        title="Release Readiness & Strategy Guide",
+        subtitle="How to plan how a change reaches users, decide go or no-go, know how to undo it, and tell the people who need to know.",
+        tag="Facilitator Run-Sheet · Engineering Practices · Separate Deploy from Release",
+        boards=[("Open board", "release-readiness-board.html"), ("SVG", "release-readiness-board.svg")],
+        lede="If this goes wrong at the worst moment, what's our plan?",
+        intro=("<b>Deploying</b> puts new code into production; <b>releasing</b> makes it available to users. Keeping them separate "
+               "is one of the most useful ideas in modern delivery: with <b>feature flags</b>, <b>canary</b> releases, "
+               "<b>blue-green</b> switches or <b>phased rollouts</b>, a team can deploy safely and then release a little at a "
+               "time, watching as it goes. The board walks through the release approach, a go/no-go checklist agreed in advance, "
+               "a rollback plan, who needs to know, and the checks after release. It's useful for engineering teams and for project "
+               "and programme managers coordinating a larger release."),
+        glance=[("Duration", "45–60 min,<br>a week or so before"), ("Group", "Team, product owner,<br>support &amp; operations"),
+                ("Use when", "Any release that's large,<br>risky or visible"), ("Output", "A release plan<br>&amp; a go/no-go decision")],
+        before=["Print the board at A3, or load the SVG as a digital background",
+                "List what's in the release and who it affects",
+                "Check what your platform supports: feature flags, canary or blue-green deployment",
+                "Invite support, operations and anyone who talks to customers",
+                "Find out whether a formal change approval is needed, and its lead time"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–10", "1 · What's Releasing", "Agree the version, the outcome for users, the main changes, who's affected, and the deploy and switch-on dates."),
+                ("10–20", "2 · Release Approach", "Choose how users will get it. Can we release a little at a time instead of all at once?"),
+                ("20–30", "3 · Go / No-Go Checklist", "Agree the checklist now, so the go decision on the day is quick and calm."),
+                ("30–40", "4 · Rollback & Recovery", "How will we know it's gone wrong, and how will we undo it? What can't be undone?"),
+                ("40–50", "5 · Who Needs to Know", "List each audience, what they need, when and how, and who tells them."),
+                ("50–55", "6 · After Release", "Set the date to check the outcome and to remove any feature flag."),
+                ("Release day", "Go / no-go", "Run through the checklist, record the decision, and keep someone on hand afterwards.")],
+        sections_title="Ways to release",
+        sections_intro="Smaller and more gradual is usually safer.",
+        sections=[("Feature flag", BLUE, ["Deploy switched off", "Turn on for some, then all", "Remove the flag later"]),
+                  ("Canary", AMBER, ["A small share first", "Watch, then widen"]),
+                  ("Blue-green", EMERALD, ["Two copies of production", "Switch traffic back to undo"]),
+                  ("Phased rollout", SKY, ["By region or group", "Learn between phases"]),
+                  ("Big bang", RED, ["Everyone at once", "Needs the strongest rollback"])],
+        tips=[("Agree the checklist early", "Deciding what “ready” means on release day leads to pressure and shortcuts."),
+              ("Test the rollback", "A rollback plan that's never been tried is a hope, not a plan."),
+              ("Know what can't be undone", "Data migrations, emails and payments often can't be rolled back; plan for them separately."),
+              ("Release a little at a time", "A canary or phased rollout turns one big risk into several small ones."),
+              ("Remove old flags", "Every flag left in place adds complexity; set a date to take it out."),
+              ("Make releases boring", "The goal is releases so small and frequent that they stop needing a meeting.")],
+        pitfalls=("treating deploy and release as the same thing; writing the checklist on the day; an untested rollback; "
+                  "forgetting support or customer-facing teams; leaving feature flags in forever; releasing on a Friday evening with no one around."),
+        after=[("Release day", "Watch the monitoring closely and keep the agreed person on hand."),
+               ("Within a week", "Check the outcome measure, and roll out further if it's going well."),
+               ("By the agreed date", "Remove the feature flag and any old code."),
+               ("Next retro", "Review what went well and what to change for the next release.")],
+        toolkit=ENG_TOOLKIT,
+        foot="“Could we release this a little at a time?”",
+    ),
+    dict(
+        slug="cd-health-check",
+        title="Continuous Delivery Health Check Guide",
+        subtitle="How to score twelve practices that make releasing safe and routine, find the biggest gaps, and pick experiments.",
+        tag="Facilitator Run-Sheet · Engineering Practices · Inspired by DORA research",
+        boards=[("Open board", "cd-health-check-board.html"), ("SVG", "cd-health-check-board.svg")],
+        lede="Which practice, if it improved, would make releasing least scary?",
+        intro=("Research by the DORA programme, described in <i>Accelerate</i> by Nicole Forsgren, Jez Humble and Gene Kim, found "
+               "that a set of technical practices predicts both faster and more stable delivery. This health check groups twelve "
+               "of them into four areas: <b>build and integrate</b>, <b>test</b>, <b>deploy and release</b>, and <b>run and "
+               "learn</b>. Like the Team Health Check, the team scores each practice silently, then talks about the spread. The "
+               "wording is original to this toolkit and isn't the official DORA list; it's a conversation starter, not an "
+               "audit or a maturity rating."),
+        glance=[("Duration", "60 min"), ("Group", "The team,<br>with its tech lead"),
+                ("Use when", "Quarterly, or when<br>delivery feels stuck"), ("Output", "Scores, gaps<br>&amp; one or two experiments")],
+        before=["Print the board at A3, or load the SVG as a digital background",
+                "Give each person five dot stickers per practice, or use anonymous digital voting",
+                "Bring the last check's scores if this isn't the first time",
+                "Bring delivery metrics (deployment frequency, lead time, failure rate, recovery time) if you have them",
+                "Make clear the results stay with the team"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–5", "Set up", "Explain the scale: 1 not yet, 3 sometimes, 5 always. Scores are for learning, not comparison."),
+                ("5–20", "1 · Practices", "Everyone scores every practice silently, then reveals. Mark the median and the spread."),
+                ("20–35", "Discuss the spread", "Start with the widest spread: why do we see it differently? Note evidence beside each practice."),
+                ("35–45", "2 · Biggest Gaps", "Stickies for the lowest scores and the gaps that hurt most. Dot-vote the top one or two."),
+                ("45–55", "3 · Experiments", "For each top gap, a small experiment with an owner and a check-in date."),
+                ("55–60", "4 · Trend", "Record the total and the date of the next check.")],
+        sections_title="The four areas",
+        sections_intro="Each area builds on the one before.",
+        sections=[("Build & Integrate", BLUE, ["Version control for everything", "Short-lived branches", "Fast CI"]),
+                  ("Test", SKY, ["Trusted automation", "Test data on demand", "Security built in"]),
+                  ("Deploy & Release", EMERALD, ["Automated deployment", "Deploy separate from release", "Small batches"]),
+                  ("Run & Learn", RED, ["Monitoring", "Fast recovery", "Blameless learning"]),
+                  ("Trend", SLATE, ["Repeat every quarter", "Compare with yourselves"])],
+        tips=[("Vote first, then talk", "Silent scoring stops the loudest or most senior voice setting everyone's score."),
+              ("The spread is the story", "When some say 1 and others 5, people are seeing different parts of the system. Find out why."),
+              ("Ask for evidence", "“What makes you say 4?” turns opinions into facts the team can act on."),
+              ("Pick one or two", "Twelve practices can feel like a lot. Small experiments on the biggest gap beat a long improvement plan."),
+              ("Never compare teams", "Different products and starting points make team league tables meaningless and harmful."),
+              ("Link to the numbers", "Over time, check whether better practice scores show up in your delivery metrics.")],
+        pitfalls=("treating it as a maturity audit or scoring teams against each other; discussing before voting; trying to "
+                  "improve everything at once; ignoring practices outside the team's control instead of raising them; doing it once."),
+        after=[("Straight away", "Add the experiments to the backlog with owners and dates."),
+               ("Each iteration", "Check progress on the experiments at the retrospective."),
+               ("Monthly", "Watch the delivery metrics for the effect."),
+               ("Quarterly", "Repeat the health check and compare the trend.")],
+        toolkit=ENG_TOOLKIT,
+        foot="“Where do our scores disagree most, and why?”",
+    ),
+    dict(
+        slug="sdlc",
+        title="SDLC at a Glance Guide",
+        subtitle="How to use the lifecycle poster to show where each stage fits, which tools help, and how governance can work without delay.",
+        tag="Facilitator Run-Sheet · Agile Lifecycle · From Idea to Outcome",
+        boards=[("Open poster", "sdlc-poster.html"), ("SVG", "sdlc-poster.svg")],
+        lede="Where in our lifecycle does work wait longest?",
+        intro=("The <b>software development lifecycle</b> (SDLC) describes how software goes from an idea to something people "
+               "use. Traditional SDLCs, such as waterfall, run each stage once, in order, with an approval <b>gate</b> between "
+               "stages. Agile delivery keeps the same stages but runs the whole loop many times, for small slices of value, with "
+               "feedback at every turn. The poster shows eight stages, from <b>idea</b> to <b>learn</b>, with what happens in each, "
+               "its key question, the tools in this kit that help, and the traditional gate it replaces. It's useful for "
+               "explaining agile delivery to people used to stage gates, such as a PMO, governance or audit, and for helping a "
+               "team see the whole picture."),
+        glance=[("Duration", "30–45 min<br>as a workshop"), ("Group", "A team, leaders,<br>a PMO or governance group"),
+                ("Use when", "Moving from stage gates,<br>or onboarding"), ("Output", "A shared picture<br>&amp; ideas for change")],
+        before=["Print the poster at A3, or share it on screen",
+                "Bring your organisation's current lifecycle or governance process, if it has one",
+                "List the approvals a typical change needs today, and how long each takes",
+                "Invite people from governance, risk or the PMO if the conversation is about gates"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–10", "Walk the stages", "Read across the eight stages. Which feel strong for us, and which are weak or missing?"),
+                ("10–20", "Where work waits", "Mark where work waits longest today, often at gates and hand-offs."),
+                ("20–30", "Traditional vs. agile", "Read the comparison. Where are we on each row today?"),
+                ("30–40", "Keeping governance", "For one gate, list the questions it asks, and how working software could answer them sooner."),
+                ("40–45", "Next step", "Pick one tool from the poster to try at our weakest stage, or one gate to rethink.")],
+        sections_title="The eight stages",
+        sections_intro="In agile delivery the loop runs for every slice, not once per project.",
+        sections=[("Idea & Discover", PURPLE, ["Is it worth it?", "What problem, for whom?"]),
+                  ("Design & Build", AMBER, ["Smallest valuable slice", "Main always releasable"]),
+                  ("Test & Release", EMERALD, ["Quality built in", "Release safely, undo safely"]),
+                  ("Operate & Learn", RED, ["Know when it breaks", "Did it make a difference?"]),
+                  ("Governance", SLATE, ["Keep the questions", "Answer them with evidence"])],
+        tips=[("Same stages, different rhythm", "Agile doesn't skip design or testing; it does a little of each, continuously."),
+              ("Start with the questions", "Every gate exists to answer a question. Keep the question; change how it's answered."),
+              ("Bring governance in", "Risk, audit and PMO colleagues are partners. Involve them early, not at the end."),
+              ("Look for waiting", "The biggest delays are usually between stages, not within them."),
+              ("Use it to navigate", "Each stage points to tools in this kit; use the poster as a map to the rest of the toolkit."),
+              ("Not a new process", "The poster describes stages, not a method to follow. Fit it to how your organisation works.")],
+        pitfalls=("presenting agile as having no governance; replacing one set of document gates with another; treating the "
+                  "stages as phases to finish one at a time; leaving operations and learning out; using it to argue rather than to understand."),
+        after=[("Straight away", "Try the chosen tool at the weakest stage."),
+               ("Within a month", "Meet governance colleagues to rethink one gate."),
+               ("Quarterly", "Revisit where work waits, using the Value Stream Map."),
+               ("Onboarding", "Use the poster to show new joiners how work flows and where tools fit.")],
+        toolkit=ENG_TOOLKIT,
+        foot="“Which gate could we replace with evidence from working software?”",
+    ),
+]
+
+
 # ------------------------------------------------------------------ rendering
 
 def guide_css():

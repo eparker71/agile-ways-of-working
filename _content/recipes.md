@@ -139,6 +139,24 @@ After:
 - Try the new board for two weeks, then review it at the retrospective.
 - Start walking the board right to left in the daily sync, using Buffering & Swarming when items stall.
 
+## Make releases routine
+For: a team whose releases are slow, risky or stressful, with whoever runs the pipeline.
+Time: 3 hours
+Outcome: a shared map of the pipeline, a test strategy, a safer way to release, and the first improvements.
+Before:
+- Pull rough numbers: deploys per week, time from commit to production, failed releases and recovery time.
+- List bugs that reached production recently.
+Agenda:
+- 15 min | SDLC at a Glance | Where our lifecycle is strong and weak, and where work waits.
+- 45 min | Delivery Pipeline Canvas | Walk a real change from commit to users; find the biggest bottleneck.
+- 15 min | - | Break
+- 40 min | Test Strategy | The shape of our tests, the quality gates, and what to test hardest.
+- 35 min | Release Readiness & Strategy | Plan the next release: approach, go/no-go checklist and rollback.
+- 30 min | Continuous Delivery Health Check | Score the practices and pick one or two experiments.
+After:
+- Track deployment frequency and lead time on the Delivery Metrics & Tech Debt board.
+- Repeat the health check in a quarter, and re-map the pipeline when it changes.
+
 ## After an incident
 For: the team and anyone else involved, within a week of a significant incident.
 Time: 2 hours

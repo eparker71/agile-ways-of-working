@@ -76,6 +76,39 @@ Longer term:
 - Set WIP limits, track work item age, and agree a service level expectation.
 Tools: Daily Sync, Kanban Board Design, Ageing WIP & SLE
 
+## Releases are slow, scary and happen late at night
+You'll notice: big releases every few weeks or months, long release meetings, people on standby, and changes held back "for the next release".
+First moves:
+- Map the delivery pipeline with the team and find where changes wait longest.
+- Plan the next release with a tested rollback and an agreed go/no-go checklist.
+- Try releasing one change behind a feature flag, switched on later.
+Longer term:
+- Release smaller batches, more often, until releases become routine.
+- Automate the manual steps, starting with the one that causes most delay or errors.
+Tools: Delivery Pipeline Canvas, Release Readiness & Strategy, Continuous Delivery Health Check, Delivery Metrics & Tech Debt
+
+## Bugs keep reaching production
+You'll notice: users find problems before the team does, hotfixes interrupt planned work, and testing happens in a rush at the end.
+First moves:
+- Look at recent escaped bugs: where could each have been caught earlier?
+- Agree examples for the next few stories before coding starts.
+- Fix or remove the flakiest tests, so a red build means something.
+Longer term:
+- Agree a test strategy, with most checks automated and low in the pyramid.
+- Add the quality bar to the Definition of Done, and test hardest where risk is highest.
+Tools: Test Strategy, Example Mapping, Root Cause Analysis, Blameless Incident Review
+
+## Governance wants sign-off at every stage
+You'll notice: work waits for approval boards and documents, teams batch changes to get through gates, and agile feels slowed down.
+First moves:
+- List each gate, the question it's really asking, and how long it takes.
+- Invite governance or risk colleagues to a review, to see working software and evidence.
+- Offer evidence from the pipeline (tests run, approvals, who deployed what) instead of documents.
+Longer term:
+- Agree risk-based approval, so small, routine changes go straight through.
+- Build compliance checks into the Definition of Done and the pipeline.
+Tools: SDLC at a Glance, Delivery Pipeline Canvas, Value Stream Map, Stakeholder Map
+
 # Team
 
 ## A new person joins the team

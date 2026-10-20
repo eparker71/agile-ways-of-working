@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Delivery Pipeline Canvas Guide</title>
+<!-- meta -->
+<meta name="description" content="How to map the path from a developer&#x27;s commit to customers, find where changes wait or fail, and pick the next fix.">
+<link rel="canonical" href="https://eparker71.github.io/agile-ways-of-working/facilitator-guide-delivery-pipeline.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agile Ways of Working Toolkit">
+<meta property="og:title" content="Delivery Pipeline Canvas Guide · Agile Ways of Working Toolkit">
+<meta property="og:description" content="How to map the path from a developer&#x27;s commit to customers, find where changes wait or fail, and pick the next fix.">
+<meta property="og:url" content="https://eparker71.github.io/agile-ways-of-working/facilitator-guide-delivery-pipeline.html">
+<meta property="og:image" content="https://eparker71.github.io/agile-ways-of-working/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /meta -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#64748B; --rule:#E2E8F0; --paper:#FFFFFF;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:13px;line-height:1.55;padding:24px 16px;}
+.page{max-width:820px;margin:0 auto 24px;background:var(--paper);box-shadow:0 12px 40px rgba(0,0,0,.22);}
+.masthead{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:28px 40px 26px;position:relative;}
+.badge{position:absolute;top:14px;right:24px;font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;}
+.masthead h1{font:400 40px/1.05 var(--serif);margin:14px 0 8px;}
+.masthead p{margin:0;color:#94A3B8;font-size:13.5px;}
+.masthead .tag{margin-top:8px;font:9px var(--mono);color:#64748B;letter-spacing:.06em;}
+.content{padding:28px 40px 36px;}
+h2{font:400 26px/1.15 var(--serif);margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;}
+h2 .n{font:600 11px var(--sans);color:#fff;background:var(--navy);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;flex:none;transform:translateY(-3px);}
+h3{font:600 13px var(--sans);margin:16px 0 6px;}
+p{margin:6px 0 10px;}
+.lede{font:italic 400 19px/1.35 var(--serif);color:var(--ink);border-left:4px solid var(--accent);padding:2px 0 2px 16px;margin:4px 0 20px;}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px;}
+.glance div{background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;}
+.glance b{display:block;font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+.glance span{font-weight:600;font-size:13px;}
+ul.check{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:28px;}
+ul.check li{padding-left:22px;position:relative;margin-bottom:5px;break-inside:avoid;}
+ul.check li::before{content:"";position:absolute;left:0;top:3px;width:11px;height:11px;border:1.4px solid var(--ink);border-radius:2px;opacity:.55;}
+table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:12.5px;}
+th{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--ink);text-align:left;padding:8px 10px;}
+th:first-child{border-left:5px solid var(--accent);}
+td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+td.t{font:500 11px var(--mono);white-space:nowrap;color:var(--muted);}
+td.a{font-weight:600;width:24%;}
+tr:nth-child(even) td{background:#F8FAFC;}
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;}
+.area{border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,.06);break-inside:avoid;}
+.area h4{margin:0;padding:7px 12px;color:#fff;font:600 12.5px var(--sans);}
+.area ul{margin:0;padding:8px 12px 10px 28px;font-size:12px;}
+.area li{margin-bottom:3px;}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.tip{border-top:2px solid var(--rule);padding-top:8px;}
+.tip b{display:block;margin-bottom:2px;}
+.flow{display:flex;align-items:stretch;gap:0;margin:14px 0 6px;flex-wrap:wrap;}
+.step{flex:1 1 0;min-width:120px;background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;position:relative;}
+.arrow{flex:none;align-self:center;color:var(--accent);font:600 16px var(--sans);padding:0 6px;}
+.step b{display:block;font-size:12.5px;}
+.step small{color:var(--muted);font-size:11px;line-height:1.4;display:block;margin-top:2px;}
+.step .k{font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--accent);text-transform:uppercase;}
+.callout{background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:12px 16px;margin:14px 0;}
+.callout b{color:#9A3412;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display:flex;justify-content:space-between;gap:16px;font:8px var(--mono);letter-spacing:.08em;color:#94A3B8;}
+@media (max-width:640px){
+  .masthead,.content{padding-left:20px;padding-right:20px;}
+  .glance{grid-template-columns:1fr 1fr;}
+  ul.check{columns:1;}
+  .areas,.tips,.two{grid-template-columns:1fr;}
+  .arrow{display:none;}
+  .flow{gap:8px;}
+  table{font-size:11.5px;}
+  td.t{white-space:normal;}
+}
+@media print{
+  @page{size:A4 portrait;margin:12mm 12mm 14mm;}
+  html,body{background:none;}
+  body{padding:0;font-size:11.5px;}
+  .page{box-shadow:none;max-width:none;margin:0;}
+  .masthead,th,.area h4,h2 .n{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  tr,.area,.tip,.step,.callout{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .pb{break-before:page;}
+}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.content a{color:#9A3412;}
+@media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:var(--accent);}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.content a{color:#9A3412;}
+.example{border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:10px 0;}
+.example div{display:grid;grid-template-columns:30% 1fr;border-bottom:1px solid var(--rule);}
+.example div:last-child{border-bottom:none;}
+.example b{background:#F8FAFC;padding:7px 12px;font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.example span{padding:7px 12px;font-size:12.5px;}
+@media (max-width:640px){.example div{grid-template-columns:1fr;}}
+@media print{.boards{display:none;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>Delivery Pipeline Canvas Guide</h1>
+    <p>How to map the path from a developer&#x27;s commit to customers, find where changes wait or fail, and pick the next fix.</p>
+    <div class="tag">Facilitator Run-Sheet · Engineering Practices · Continuous Integration &amp; Delivery</div>
+    <div class="boards"><a class="primary" href="delivery-pipeline-board.html">Open board →</a><a href="delivery-pipeline-board.svg">SVG →</a><a href="facilitator-guide-delivery-pipeline.docx" download>Word (editable) ↓</a></div>
+  </header>
+  <div class="content">
+    <p class="lede">“Where does a change spend most of its time waiting?”</p>
+    <p>A <b>delivery pipeline</b> is the automated path a change takes from a developer's commit to running in front of users: build, test, check, deploy, release and monitor. <b>Continuous integration</b> (CI) means everyone merges small changes to the main branch often, and every merge is built and tested automatically. <b>Continuous delivery</b> (CD) means every change that passes is ready to release at any time. The canvas makes the pipeline visible to the whole team, including people who don't work on it every day, so you can see where time goes and choose one improvement. The ideas come from Jez Humble and David Farley's <i>Continuous Delivery</i>.</p>
+    <div class="glance"><div><b>Duration</b><span>60–90 min</span></div><div><b>Group</b><span>The team, with whoever<br>runs the pipeline</span></div><div><b>Use when</b><span>Releases are slow,<br>painful or risky</span></div><div><b>Output</b><span>A shared map<br>&amp; one improvement</span></div></div>
+    <h2><span class="n">1</span>Before the session</h2>
+    <ul class="check"><li>Print the board at A3, or load the SVG as a digital background</li><li>Ask someone who knows the pipeline to sketch its real stages; rename the board's stages to match</li><li>Pull rough numbers if you can: how long each stage takes, how often it fails, how many deploys a week</li><li>Invite testers, operations and security people as well as developers</li><li>Non-engineers are welcome: the map is meant to be understood by everyone</li></ul>
+    <h2><span class="n">2</span>Agenda &amp; run-sheet</h2>
+    <table><thead><tr><th>Time</th><th>Section</th><th>Facilitator notes</th></tr></thead><tbody><tr><td class="t">0–10</td><td class="a">Why we're here</td><td>Ask: how long does a one-line change take to reach users? Write the guesses down.</td></tr><tr><td class="t">10–35</td><td class="a">1 · Pipeline Stages</td><td>Walk a recent change through each stage. Fill in time, waits, failures, manual steps, gates, tools and owner.</td></tr><tr><td class="t">35–45</td><td class="a">2 · Totals & Signals</td><td>Add up commit to production and how much of it is waiting. Compare with the opening guesses.</td></tr><tr><td class="t">45–60</td><td class="a">3 · Bottlenecks & Pain</td><td>Silent writing: where does work wait, fail or need a person? Cluster and dot-vote.</td></tr><tr><td class="t">60–75</td><td class="a">4 · Next Improvement</td><td>Pick one change for the top bottleneck. Agree which number should move, an owner and a check date.</td></tr><tr><td class="t">75–85</td><td class="a">5 · Healthy Pipeline</td><td>Tick the signs that are true today. Note the ones to work toward.</td></tr></tbody></table>
+    <h2 class="pb"><span class="n">3</span>What to look for</h2>
+    <p>Most of the time a change takes is usually waiting, not working.</p>
+    <div class="areas"><div class="area" style="background:#DBEAFE;color:#1E3A8A"><h4 style="background:#1E3A8A">Waits</h4><ul><li>Queues for review or approval</li><li>Shared environments</li><li>Batching changes up</li></ul></div><div class="area" style="background:#FEE2E2;color:#991B1B"><h4 style="background:#991B1B">Failures</h4><ul><li>Flaky tests</li><li>Broken builds left red</li><li>Environment differences</li></ul></div><div class="area" style="background:#FEF3C7;color:#92400E"><h4 style="background:#92400E">Manual steps</h4><ul><li>Hand-run scripts</li><li>Tickets to other teams</li><li>Copy-paste config</li></ul></div><div class="area" style="background:#EDE9FE;color:#581C87"><h4 style="background:#581C87">Gates</h4><ul><li>Which ones catch real problems?</li><li>Which could be automated?</li></ul></div><div class="area" style="background:#D1FAE5;color:#065F46"><h4 style="background:#065F46">Feedback speed</h4><ul><li>Minutes, not hours</li><li>Fast tests run first</li></ul></div></div>
+    <h2><span class="n">4</span>Facilitation tips</h2>
+    <div class="tips"><div class="tip"><b>Follow one real change</b>A real recent change gives real numbers and stories; a generic walk-through hides the waits.</div><div class="tip"><b>Count the waiting</b>Ask how long work sits between stages, not just how long each stage runs.</div><div class="tip"><b>Make it understandable</b>Use plain names for stages, so product owners and managers can follow it too.</div><div class="tip"><b>One improvement at a time</b>Fix the biggest bottleneck, measure, then move on. The constraint will move.</div><div class="tip"><b>A red build is everyone&#x27;s problem</b>Agree that fixing a broken main branch comes before starting new work.</div><div class="tip"><b>Keep it current</b>Redraw the map when the pipeline changes, and revisit it every few months.</div></div>
+    <div class="callout"><b>Common pitfalls:</b> mapping the pipeline as designed, not as it really runs; blaming the people who own a slow stage; trying to fix everything at once; adding gates instead of removing waits; leaving out testing, security or operations.</div>
+    <h2><span class="n">5</span>After the session</h2>
+    <div class="two"><div><h3>Straight away</h3><p>Add the chosen improvement to the backlog, with its owner and check date.</p></div><div><h3>Each iteration</h3><p>Track the number you expect to move.</p></div><div><h3>Monthly</h3><p>Review deployment frequency and lead time on the Delivery Metrics &amp; Tech Debt board.</p></div><div><h3>Quarterly</h3><p>Re-map the pipeline, or run the Continuous Delivery Health Check.</p></div></div>
+    <h2><span class="n">6</span>How it fits the toolkit</h2>
+    <p>The delivery engineering tools work as a set. <a href="facilitator-guide-sdlc.html">SDLC at a Glance</a> shows where each stage of the lifecycle fits. The <a href="facilitator-guide-delivery-pipeline.html">Delivery Pipeline Canvas</a> maps how changes reach production, the <a href="facilitator-guide-test-strategy.html">Test Strategy</a> decides how quality is built in, and <a href="facilitator-guide-release-readiness.html">Release Readiness &amp; Strategy</a> plans each release. The <a href="facilitator-guide-cd-health-check.html">Continuous Delivery Health Check</a> tracks the practices over time, and <a href="facilitator-guide-delivery-metrics.html">Delivery Metrics &amp; Tech Debt</a> measures the results. For the wider flow from idea to customer, use the <a href="facilitator-guide-value-stream-map.html">Value Stream Map</a>.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Delivery Pipeline Canvas”, a workshop board.
+
+Purpose: Map how a change gets from a developer&#x27;s commit to customers, find where it waits or fails, and pick the next fix.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+
+Header fields to fill in: Team / System, Date
+
+Sections:
+1. Pipeline Stages: top full width, about 100% wide and 45% tall; header colour blue.
+   Subtitle: From commit to customer · add or rename stages to match yours
+   Content: Commit &amp; review · Build · Automated tests · Quality &amp; security · Deploy to test · Release · Monitor · Merge to main, peer review · Compile, package, version · Unit, integration, end-to-end · Scans, checks, approvals · Staging or pre-production · Production, to users · Is it working for users? · Time: (×7) · Waits before: (×7) · Fails: (×7) · Manual steps: (×7) · Gate: (×7) · Tool: (×7) · Owner: (×7)
+2. Totals &amp; Signals: middle left, about 50% wide and 30% tall; header colour purple.
+   Subtitle: The whole pipeline
+   Content: Commit to production, typical: · Time to fix a broken build: · Of that, time spent waiting: · Flaky or skipped steps: · Pipeline runs per day: · Deploys per week: · Runs that fail: · Releases rolled back: · Fast feedback matters most: aim for a build and test run that finishes in minutes, not hours.
+3. Bottlenecks &amp; Pain: middle right, about 50% wide and 30% tall; header colour red.
+   Subtitle: Where does work wait, fail or need a person?
+4. Next Improvement: bottom left, about 50% wide and 20% tall; header colour dark green.
+   Subtitle: One change at a time
+   Content: The change we&#x27;ll make: · Expected effect (which number moves?): · Owner: · Check it on:
+5. Signs of a Healthy Pipeline: bottom right, about 50% wide and 20% tall; header colour sky blue.
+   Subtitle: Tick what&#x27;s true today
+   Content: Every change goes through the same pipeline · Main is always releasable · A broken build is fixed first · Tests and config live in version control · Deploying is one click, or none · We can roll back in minutes
+
+Footer questions: “Where does a change spend most of its time waiting?” “What would it take to release any day we choose?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/delivery-pipeline-board.html</pre></details></section>
+    <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
+    <footer><span>“What would it take to release any day we choose?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
+  </div>
+</div>
+</body>
+</html>

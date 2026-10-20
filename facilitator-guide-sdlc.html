@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SDLC at a Glance Guide</title>
+<!-- meta -->
+<meta name="description" content="How to use the lifecycle poster to show where each stage fits, which tools help, and how governance can work without delay.">
+<link rel="canonical" href="https://eparker71.github.io/agile-ways-of-working/facilitator-guide-sdlc.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agile Ways of Working Toolkit">
+<meta property="og:title" content="SDLC at a Glance Guide · Agile Ways of Working Toolkit">
+<meta property="og:description" content="How to use the lifecycle poster to show where each stage fits, which tools help, and how governance can work without delay.">
+<meta property="og:url" content="https://eparker71.github.io/agile-ways-of-working/facilitator-guide-sdlc.html">
+<meta property="og:image" content="https://eparker71.github.io/agile-ways-of-working/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /meta -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#64748B; --rule:#E2E8F0; --paper:#FFFFFF;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:13px;line-height:1.55;padding:24px 16px;}
+.page{max-width:820px;margin:0 auto 24px;background:var(--paper);box-shadow:0 12px 40px rgba(0,0,0,.22);}
+.masthead{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:28px 40px 26px;position:relative;}
+.badge{position:absolute;top:14px;right:24px;font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;}
+.masthead h1{font:400 40px/1.05 var(--serif);margin:14px 0 8px;}
+.masthead p{margin:0;color:#94A3B8;font-size:13.5px;}
+.masthead .tag{margin-top:8px;font:9px var(--mono);color:#64748B;letter-spacing:.06em;}
+.content{padding:28px 40px 36px;}
+h2{font:400 26px/1.15 var(--serif);margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;}
+h2 .n{font:600 11px var(--sans);color:#fff;background:var(--navy);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;flex:none;transform:translateY(-3px);}
+h3{font:600 13px var(--sans);margin:16px 0 6px;}
+p{margin:6px 0 10px;}
+.lede{font:italic 400 19px/1.35 var(--serif);color:var(--ink);border-left:4px solid var(--accent);padding:2px 0 2px 16px;margin:4px 0 20px;}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px;}
+.glance div{background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;}
+.glance b{display:block;font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+.glance span{font-weight:600;font-size:13px;}
+ul.check{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:28px;}
+ul.check li{padding-left:22px;position:relative;margin-bottom:5px;break-inside:avoid;}
+ul.check li::before{content:"";position:absolute;left:0;top:3px;width:11px;height:11px;border:1.4px solid var(--ink);border-radius:2px;opacity:.55;}
+table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:12.5px;}
+th{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--ink);text-align:left;padding:8px 10px;}
+th:first-child{border-left:5px solid var(--accent);}
+td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+td.t{font:500 11px var(--mono);white-space:nowrap;color:var(--muted);}
+td.a{font-weight:600;width:24%;}
+tr:nth-child(even) td{background:#F8FAFC;}
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;}
+.area{border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,.06);break-inside:avoid;}
+.area h4{margin:0;padding:7px 12px;color:#fff;font:600 12.5px var(--sans);}
+.area ul{margin:0;padding:8px 12px 10px 28px;font-size:12px;}
+.area li{margin-bottom:3px;}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.tip{border-top:2px solid var(--rule);padding-top:8px;}
+.tip b{display:block;margin-bottom:2px;}
+.flow{display:flex;align-items:stretch;gap:0;margin:14px 0 6px;flex-wrap:wrap;}
+.step{flex:1 1 0;min-width:120px;background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;position:relative;}
+.arrow{flex:none;align-self:center;color:var(--accent);font:600 16px var(--sans);padding:0 6px;}
+.step b{display:block;font-size:12.5px;}
+.step small{color:var(--muted);font-size:11px;line-height:1.4;display:block;margin-top:2px;}
+.step .k{font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--accent);text-transform:uppercase;}
+.callout{background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:12px 16px;margin:14px 0;}
+.callout b{color:#9A3412;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display:flex;justify-content:space-between;gap:16px;font:8px var(--mono);letter-spacing:.08em;color:#94A3B8;}
+@media (max-width:640px){
+  .masthead,.content{padding-left:20px;padding-right:20px;}
+  .glance{grid-template-columns:1fr 1fr;}
+  ul.check{columns:1;}
+  .areas,.tips,.two{grid-template-columns:1fr;}
+  .arrow{display:none;}
+  .flow{gap:8px;}
+  table{font-size:11.5px;}
+  td.t{white-space:normal;}
+}
+@media print{
+  @page{size:A4 portrait;margin:12mm 12mm 14mm;}
+  html,body{background:none;}
+  body{padding:0;font-size:11.5px;}
+  .page{box-shadow:none;max-width:none;margin:0;}
+  .masthead,th,.area h4,h2 .n{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  tr,.area,.tip,.step,.callout{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .pb{break-before:page;}
+}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.content a{color:#9A3412;}
+@media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:var(--accent);}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.content a{color:#9A3412;}
+.example{border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:10px 0;}
+.example div{display:grid;grid-template-columns:30% 1fr;border-bottom:1px solid var(--rule);}
+.example div:last-child{border-bottom:none;}
+.example b{background:#F8FAFC;padding:7px 12px;font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.example span{padding:7px 12px;font-size:12.5px;}
+@media (max-width:640px){.example div{grid-template-columns:1fr;}}
+@media print{.boards{display:none;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>SDLC at a Glance Guide</h1>
+    <p>How to use the lifecycle poster to show where each stage fits, which tools help, and how governance can work without delay.</p>
+    <div class="tag">Facilitator Run-Sheet · Agile Lifecycle · From Idea to Outcome</div>
+    <div class="boards"><a class="primary" href="sdlc-poster.html">Open poster →</a><a href="sdlc-poster.svg">SVG →</a><a href="facilitator-guide-sdlc.docx" download>Word (editable) ↓</a></div>
+  </header>
+  <div class="content">
+    <p class="lede">“Where in our lifecycle does work wait longest?”</p>
+    <p>The <b>software development lifecycle</b> (SDLC) describes how software goes from an idea to something people use. Traditional SDLCs, such as waterfall, run each stage once, in order, with an approval <b>gate</b> between stages. Agile delivery keeps the same stages but runs the whole loop many times, for small slices of value, with feedback at every turn. The poster shows eight stages, from <b>idea</b> to <b>learn</b>, with what happens in each, its key question, the tools in this kit that help, and the traditional gate it replaces. It's useful for explaining agile delivery to people used to stage gates, such as a PMO, governance or audit, and for helping a team see the whole picture.</p>
+    <div class="glance"><div><b>Duration</b><span>30–45 min<br>as a workshop</span></div><div><b>Group</b><span>A team, leaders,<br>a PMO or governance group</span></div><div><b>Use when</b><span>Moving from stage gates,<br>or onboarding</span></div><div><b>Output</b><span>A shared picture<br>&amp; ideas for change</span></div></div>
+    <h2><span class="n">1</span>Before the session</h2>
+    <ul class="check"><li>Print the poster at A3, or share it on screen</li><li>Bring your organisation's current lifecycle or governance process, if it has one</li><li>List the approvals a typical change needs today, and how long each takes</li><li>Invite people from governance, risk or the PMO if the conversation is about gates</li></ul>
+    <h2><span class="n">2</span>Agenda &amp; run-sheet</h2>
+    <table><thead><tr><th>Time</th><th>Section</th><th>Facilitator notes</th></tr></thead><tbody><tr><td class="t">0–10</td><td class="a">Walk the stages</td><td>Read across the eight stages. Which feel strong for us, and which are weak or missing?</td></tr><tr><td class="t">10–20</td><td class="a">Where work waits</td><td>Mark where work waits longest today, often at gates and hand-offs.</td></tr><tr><td class="t">20–30</td><td class="a">Traditional vs. agile</td><td>Read the comparison. Where are we on each row today?</td></tr><tr><td class="t">30–40</td><td class="a">Keeping governance</td><td>For one gate, list the questions it asks, and how working software could answer them sooner.</td></tr><tr><td class="t">40–45</td><td class="a">Next step</td><td>Pick one tool from the poster to try at our weakest stage, or one gate to rethink.</td></tr></tbody></table>
+    <h2 class="pb"><span class="n">3</span>The eight stages</h2>
+    <p>In agile delivery the loop runs for every slice, not once per project.</p>
+    <div class="areas"><div class="area" style="background:#EDE9FE;color:#581C87"><h4 style="background:#581C87">Idea &amp; Discover</h4><ul><li>Is it worth it?</li><li>What problem, for whom?</li></ul></div><div class="area" style="background:#FEF3C7;color:#92400E"><h4 style="background:#92400E">Design &amp; Build</h4><ul><li>Smallest valuable slice</li><li>Main always releasable</li></ul></div><div class="area" style="background:#D1FAE5;color:#065F46"><h4 style="background:#065F46">Test &amp; Release</h4><ul><li>Quality built in</li><li>Release safely, undo safely</li></ul></div><div class="area" style="background:#FEE2E2;color:#991B1B"><h4 style="background:#991B1B">Operate &amp; Learn</h4><ul><li>Know when it breaks</li><li>Did it make a difference?</li></ul></div><div class="area" style="background:#F1F5F9;color:#334155"><h4 style="background:#334155">Governance</h4><ul><li>Keep the questions</li><li>Answer them with evidence</li></ul></div></div>
+    <h2><span class="n">4</span>Facilitation tips</h2>
+    <div class="tips"><div class="tip"><b>Same stages, different rhythm</b>Agile doesn&#x27;t skip design or testing; it does a little of each, continuously.</div><div class="tip"><b>Start with the questions</b>Every gate exists to answer a question. Keep the question; change how it&#x27;s answered.</div><div class="tip"><b>Bring governance in</b>Risk, audit and PMO colleagues are partners. Involve them early, not at the end.</div><div class="tip"><b>Look for waiting</b>The biggest delays are usually between stages, not within them.</div><div class="tip"><b>Use it to navigate</b>Each stage points to tools in this kit; use the poster as a map to the rest of the toolkit.</div><div class="tip"><b>Not a new process</b>The poster describes stages, not a method to follow. Fit it to how your organisation works.</div></div>
+    <div class="callout"><b>Common pitfalls:</b> presenting agile as having no governance; replacing one set of document gates with another; treating the stages as phases to finish one at a time; leaving operations and learning out; using it to argue rather than to understand.</div>
+    <h2><span class="n">5</span>After the session</h2>
+    <div class="two"><div><h3>Straight away</h3><p>Try the chosen tool at the weakest stage.</p></div><div><h3>Within a month</h3><p>Meet governance colleagues to rethink one gate.</p></div><div><h3>Quarterly</h3><p>Revisit where work waits, using the Value Stream Map.</p></div><div><h3>Onboarding</h3><p>Use the poster to show new joiners how work flows and where tools fit.</p></div></div>
+    <h2><span class="n">6</span>How it fits the toolkit</h2>
+    <p>The delivery engineering tools work as a set. <a href="facilitator-guide-sdlc.html">SDLC at a Glance</a> shows where each stage of the lifecycle fits. The <a href="facilitator-guide-delivery-pipeline.html">Delivery Pipeline Canvas</a> maps how changes reach production, the <a href="facilitator-guide-test-strategy.html">Test Strategy</a> decides how quality is built in, and <a href="facilitator-guide-release-readiness.html">Release Readiness &amp; Strategy</a> plans each release. The <a href="facilitator-guide-cd-health-check.html">Continuous Delivery Health Check</a> tracks the practices over time, and <a href="facilitator-guide-delivery-metrics.html">Delivery Metrics &amp; Tech Debt</a> measures the results. For the wider flow from idea to customer, use the <a href="facilitator-guide-value-stream-map.html">Value Stream Map</a>.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “SDLC at a Glance”, a workshop board.
+
+Purpose: The software development lifecycle from idea to outcome: what happens at each stage, the question it answers, and the tools that help.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+
+Header fields to fill in: Team, Date
+
+Sections:
+1. Idea: top left, about 10% wide and 55% tall.
+   Content: What happens: · A problem or opportunity is raised and weighed against other work. · Key question: · “Is this worth exploring?” · Tools in this kit: · Product Vision Board · Prioritisation Board · Portfolio Kanban · Traditional gate: · Business case approved
+2. Discover: top left, about 10% wide and 55% tall; header colour blue.
+   Content: What happens: · Understand users, the problem and the options before committing. · Key question: · “What problem, for whom?” · Tools in this kit: · Persona &amp; Journey Map · Opportunity Solution Tree · Impact Map · Traditional gate: · Requirements signed off
+3. Design: top left, about 10% wide and 55% tall; header colour sky blue.
+   Content: What happens: · Shape the solution into slices and stories, with examples and key technical decisions. · Key question: · “What&#x27;s the smallest valuable slice?” · Tools in this kit: · User Story Map · Epic Breakdown Canvas · Example Mapping · Architecture Decision Record · Traditional gate: · Design approved
+4. Build: top centre, about 10% wide and 55% tall; header colour amber.
+   Content: What happens: · Write code and tests together, integrate continuously and keep work flowing. · Key question: · “Is main always releasable?” · Tools in this kit: · Sprint Planning · Pairing &amp; Mobbing · Kanban Board Design · Delivery Pipeline Canvas · Traditional gate: · Code complete
+5. Test: top centre, about 10% wide and 55% tall.
+   Content: What happens: · Automated checks on every change, plus exploratory testing for what automation can&#x27;t see. · Key question: · “How do we know it works?” · Tools in this kit: · Test Strategy · Example Mapping · Definition of Done (Team Charter) · Traditional gate: · Test sign-off (UAT)
+6. Release: top right, about 10% wide and 55% tall; header colour emerald green.
+   Content: What happens: · Deploy safely, then switch on for users at the right pace, with a way back. · Key question: · “Can we release, and undo it, safely?” · Tools in this kit: · Release Readiness &amp; Strategy · Release Forecast &amp; Burn-up · Traditional gate: · Go-live approval (change board)
+7. Operate: top right, about 10% wide and 55% tall; header colour red.
+   Content: What happens: · Monitor, support users and recover quickly when something goes wrong. · Key question: · “Would we know if it broke?” · Tools in this kit: · Blameless Incident Review · Delivery Metrics &amp; Tech Debt · Continuous Delivery Health Check · Traditional gate: · Handover to operations
+8. Learn: top right, about 10% wide and 55% tall; header colour dark green.
+   Content: What happens: · Measure the outcome, review what happened and feed the learning back in. · Key question: · “Did it make the difference we hoped?” · Tools in this kit: · Sprint Review · Value Metrics · Retrospective Kit · Traditional gate: · Post-implementation review
+9. Traditional SDLC and Agile Delivery: bottom left, about 65% wide and 40% tall; header colour slate grey.
+   Subtitle: Same stages, different rhythm
+   Content: Traditional (stage-gate): · Agile delivery: · Planning · Detailed plan up front; change is controlled · Plan a little, often; change is expected · Requirements · Complete and signed off before building · Discovered and refined just in time, with examples · Testing · A phase near the end · On every change, automated, from the start · Release · Rare, large and risky · Frequent, small and routine · Teams · Hand-offs between specialist groups · Cross-functional teams own the whole slice · Feedback · From users, after launch · From users, every iteration · Risk · Found late, when change is costly · Found early, while change is cheap · Progress · Phases and documents completed · Working software and outcomes · Governance · Document gates between phases · Evidence from working software, every iteration
+10. Keeping Governance, Losing the Delay: bottom right, about 35% wide and 40% tall; header colour purple.
+   Content: Keep the questions each gate asks, and answer them with evidence every iteration. · Put compliance checks in the Definition of Done, not a final phase. · Let the pipeline produce audit evidence: · tests run, approvals, who deployed what. · Review working software, not documents about software. · Match approval to risk: small, routine changes go straight through. · Invite risk, audit and security partners to reviews early, not just at the end.
+
+Also on the board: ↺ Learning feeds the next idea. In agile delivery the whole loop runs for every small slice, many times over, not once per project.
+
+Footer questions: “Where in our lifecycle does work wait longest?” “Which gate could we replace with evidence from working software?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/sdlc-poster.html</pre></details></section>
+    <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
+    <footer><span>“Which gate could we replace with evidence from working software?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
+  </div>
+</div>
+</body>
+</html>
