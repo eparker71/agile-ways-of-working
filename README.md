@@ -49,6 +49,12 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | AI Working Agreement | `ai-working-agreement-board` | `facilitator-guide-ai-working-agreement.html` |
 | Outcome Status Report | `status-report-board` | `facilitator-guide-status-report.html` |
 | ADKAR Change Readiness | `adkar-board` | `facilitator-guide-adkar.html` |
+| Portfolio Kanban & Investment Mix | `portfolio-kanban-board` | `facilitator-guide-portfolio-kanban.html` |
+| Delegation Board | `delegation-board` | `facilitator-guide-delegation.html` |
+| Delivery Metrics & Tech Debt | `delivery-metrics-board` | `facilitator-guide-delivery-metrics.html` |
+| Coaching Conversation (GROW) | `coaching-conversation-board` | `facilitator-guide-coaching-conversation.html` |
+| Psychological Safety Check | `psych-safety-board` | `facilitator-guide-psych-safety.html` |
+| Cross-Team Retro | `cross-team-retro-board` | `facilitator-guide-cross-team-retro.html` |
 | Buffering & Swarming | `buffering-swarming-board` | `facilitator-guide-buffering-swarming.html` |
 | Kanban Board Design | `kanban-board-design` | `facilitator-guide-kanban-board-design.html` |
 | Ageing WIP & SLE | `ageing-wip-board` | `facilitator-guide-ageing-wip.html` |
@@ -77,11 +83,11 @@ The toolkit follows the agile lifecycle and doesn't assume any one framework:
 Further sets sit around that loop:
 
 - **Run a project:** Project Kickoff, Stakeholder Map, Pre-mortem, Release Forecast & Burn-up, RAID Log, Outcome Status Report.
-- **Coordinate teams (program level):** Objectives & Key Results, Cross-Team Planning, Dependency Map, Cross-Team Sync, Team Topology Design.
-- **Lead change and measure:** Value Metrics, ADKAR Change Readiness (ADKAR® is a registered trademark of Prosci, Inc.).
-- **Manage flow:** Kanban Board Design, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Skills Matrix, Impediments Board, Pairing & Mobbing.
+- **Coordinate teams (program level):** Objectives & Key Results, Cross-Team Planning, Dependency Map, Cross-Team Sync, Team Topology Design, Cross-Team Retro.
+- **Lead the organisation:** Value Metrics, Portfolio Kanban & Investment Mix, Delegation Board, ADKAR Change Readiness (ADKAR® is a registered trademark of Prosci, Inc.).
+- **Manage flow:** Kanban Board Design, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Skills Matrix, Impediments Board, Pairing & Mobbing, Delivery Metrics & Tech Debt.
 
-**Diagnose** (Team Health Check) → **Explore** (Marginal Gains Workshop) → **Experiment** (1% Experiment Canvas) → **Reflect** (Retrospective Kit), then back round again. Lean Coffee is a general-purpose facilitation format that can be used at any point.
+**Diagnose** (Team Health Check) → **Explore** (Marginal Gains Workshop) → **Experiment** (1% Experiment Canvas) → **Reflect** (Retrospective Kit), then back round again. Lean Coffee is a general-purpose facilitation format that can be used at any point. The Psychological Safety Check sits alongside the Health Check, and the Coaching Conversation canvas supports one-to-one coaching.
 
 **Breaking down work** goes from big to small: Epic Breakdown Canvas (idea → MVP → features) → User Story Map (journey → release slices) → Story Splitting (stories small enough for a sprint) → Example Mapping (is each story understood and ready?).
 

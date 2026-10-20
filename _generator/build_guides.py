@@ -1738,7 +1738,7 @@ WAVE1_GUIDES = [
         slug="value-metrics",
         title="Value Metrics Guide",
         subtitle="How to measure the value you deliver and your ability to deliver more, using four key value areas.",
-        tag="Facilitator Run-Sheet · Lead & Measure · Inspired by Evidence-Based Management",
+        tag="Facilitator Run-Sheet · Lead the Organisation · Inspired by Evidence-Based Management",
         boards=[("Open board", "value-metrics-board.html"), ("SVG", "value-metrics-board.svg")],
         lede="How do we know we're delivering value, not just output?",
         intro=("Velocity and on-time delivery say little about whether customers are better off. This board is based on "
@@ -1995,7 +1995,7 @@ GUIDES.append(dict(
     slug="adkar",
     title="ADKAR Change Readiness Guide",
     subtitle="How to find where people are in a change, spot the barrier point, and act on the right thing first.",
-    tag="Facilitator Run-Sheet · Lead Change · Inspired by Prosci's ADKAR® Model",
+    tag="Facilitator Run-Sheet · Lead the Organisation · Inspired by Prosci's ADKAR® Model",
     boards=[("Open board", "adkar-board.html"), ("SVG", "adkar-board.svg")],
     lede="What's the first thing stopping them, and what would help most?",
     intro=("Organisations change only when people do, one person at a time. The ADKAR® model, created by Jeff Hiatt and "
@@ -2046,6 +2046,324 @@ GUIDES.append(dict(
              "<a href=\"facilitator-guide-value-metrics.html\">Value Metrics</a> to show the change is paying off."),
     foot="“Where is each group in this change, really?”",
 ))
+
+
+LEAD_TOOLKIT = ("The leadership tools work together: <a href=\"facilitator-guide-value-metrics.html\">Value Metrics</a> show "
+                "whether investment is paying off, the <a href=\"facilitator-guide-portfolio-kanban.html\">Portfolio Kanban</a> "
+                "decides what to fund and limits how much runs at once, the <a href=\"facilitator-guide-delegation.html\">Delegation "
+                "Board</a> makes decision rights explicit, and <a href=\"facilitator-guide-adkar.html\">ADKAR Change Readiness</a> "
+                "helps people through the change. <a href=\"facilitator-guide-okr.html\">OKRs</a> and "
+                "<a href=\"facilitator-guide-team-topology.html\">Team Topology Design</a> connect them to the teams.")
+
+GUIDES += [
+    # -------------------------------------------------------------- portfolio kanban
+    dict(
+        slug="portfolio-kanban",
+        title="Portfolio Kanban & Investment Mix Guide",
+        subtitle="How to limit how many big initiatives run at once, decide with a lean business case, and balance investment.",
+        tag="Facilitator Run-Sheet · Lead the Organisation · Lean Portfolio Management",
+        boards=[("Open board", "portfolio-kanban-board.html"), ("SVG", "portfolio-kanban-board.svg")],
+        lede="What would we stop to make room for this?",
+        intro=("Most organisations start far more initiatives than they can finish, so everything moves slowly. A "
+               "<b>portfolio Kanban</b> applies the same flow ideas as a team board to big initiatives: every idea enters a "
+               "funnel, moves forward only when there's capacity, and each column has a <b>WIP limit</b> and exit criteria. A "
+               "<b>lean business case</b> replaces long proposals with a testable hypothesis and an MVP, and the <b>investment "
+               "mix</b> keeps new bets, growth, maintenance and tech debt in a deliberate balance. These ideas come from lean "
+               "portfolio management and the Kanban Method."),
+        glance=[("Duration", "2 h to set up<br>60 min each review"), ("Group", "Portfolio leaders,<br>product heads, finance"),
+                ("Use when", "Too much in flight,<br>or funding is annual"), ("Output", "A limited, visible<br>portfolio &amp; a mix")],
+        before=["Print the board at A1 or A3, or load the SVG as a digital background",
+                "List every current initiative and every proposal waiting for approval",
+                "Gather what's known about each: stage, cost so far, expected outcome",
+                "Bring the strategy, OKRs and any Value Metrics",
+                "Invite the people who can stop as well as start initiatives"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–25", "1 · Place initiatives", "Put each initiative in the column that reflects reality, not plans. Count how many are in Implementing."),
+                ("25–45", "WIP limits & exits", "Agree a WIP limit and exit criteria for each column. Most portfolios need to stop or pause some work to meet them."),
+                ("45–70", "2 · Lean Business Case", "For one initiative in Analysing, complete the case: hypothesis, MVP, cost range, cost of delay and go/no-go."),
+                ("70–90", "3 · Investment Mix", "Agree the target split by type of work, then estimate the actual split today."),
+                ("90–110", "Decide", "Use the gaps to decide what to stop, pause or pull forward. Stop something to start something."),
+                ("110–120", "4 · Review", "Agree the review cadence and decision forum.")],
+        sections_title="Making each part work",
+        sections_intro="Quality checks for the board.",
+        sections=[("1 · Portfolio Kanban", BLUE, ["Reality, not the plan", "WIP limits are respected", "Exit criteria are clear"]),
+                  ("2 · Lean Business Case", PURPLE, ["A testable hypothesis", "An MVP, not the full scope", "Go/no-go agreed up front"]),
+                  ("3 · Investment Mix", EMERALD, ["Target agreed by leaders", "Actual compared regularly"]),
+                  ("4 · Portfolio Review", AMBER, ["A regular cadence", "Outcomes checked, not just spend"])],
+        tips=[("Count what's in flight", "Seeing everything in one place is often enough to start the conversation about stopping."),
+              ("Stop to start", "Make it a rule: a new initiative enters Implementing only when another leaves."),
+              ("Fund the MVP first", "Approve the smallest test of the hypothesis, then decide again with evidence."),
+              ("Show cost of delay", "Ranking by cost of delay, not by who shouts loudest, makes trade-offs visible."),
+              ("Protect the mix", "Without a target, run-and-maintain and urgent work slowly squeeze out new bets and debt."),
+              ("Review often", "Quarterly or monthly reviews beat annual funding cycles for adapting to what you learn.")],
+        pitfalls=("no WIP limits, so everything stays in flight; business cases that are full project plans; approving everything; "
+                  "never stopping an initiative; tracking spend but not outcomes; an investment mix nobody checks."),
+        after=[("Straight away", "Communicate what's paused or stopped, and why."),
+               ("Each review", "Update the board, check WIP limits and the mix, and decide what moves."),
+               ("Per initiative", "When an MVP finishes, decide persevere, pivot or stop from its evidence."),
+               ("Quarterly", "Compare outcomes with Value Metrics and adjust the target mix.")],
+        toolkit=LEAD_TOOLKIT,
+        foot="“Which initiative, if it were the only one, would we finish first?”",
+    ),
+
+    # -------------------------------------------------------------- delivery metrics
+    dict(
+        slug="delivery-metrics",
+        title="Delivery Metrics & Tech Debt Guide",
+        subtitle="How to track delivery speed and stability with four key metrics, and keep technical debt visible and managed.",
+        tag="Facilitator Run-Sheet · Manage Flow · Inspired by DORA · Technical Debt Quadrant",
+        boards=[("Open board", "delivery-metrics-board.html"), ("SVG", "delivery-metrics-board.svg")],
+        lede="Are we getting faster without getting less stable?",
+        intro=("The four key metrics from the DORA research programme (DevOps Research and Assessment) balance <b>speed</b> "
+               "(deployment frequency and lead time for changes) with <b>stability</b> (change failure rate and recovery time). "
+               "Improving one pair at the expense of the other shows up straight away. The <b>tech debt register</b> makes "
+               "debt visible with its <b>interest</b>, the ongoing cost of leaving it, and Martin Fowler's <b>technical debt "
+               "quadrant</b> helps the team talk about why the debt exists without blame."),
+        glance=[("Duration", "60–90 min to set up<br>30 min monthly"), ("Group", "Eng manager,<br>tech lead, team"),
+                ("Use when", "Releases feel slow<br>or risky"), ("Output", "Baselines, a debt<br>register &amp; a plan")],
+        before=["Print the board at A3, or load the SVG as a digital background",
+                "Pull data for the four metrics from your pipeline, release and incident tools, if you can",
+                "Agree definitions: what counts as a deployment, a failure and a recovery",
+                "Ask the team to list known technical debt in advance",
+                "Bring the Blocker Clustering and Ageing WIP boards if you use them"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–25", "1 · Four Key Metrics", "Agree definitions, then fill in 3 months ago, now and target for each. Note where the data comes from."),
+                ("25–30", "Read the pattern", "Speed up but stability down? Or the reverse? Discuss what the pattern says."),
+                ("30–60", "2 · Tech Debt Register", "List the main debt items with where they are, the interest they cost, effort and an owner."),
+                ("60–70", "3 · Debt Quadrant", "Place each item in a quadrant. Talk about the reckless ones without blame: what made it happen?"),
+                ("70–80", "4 · Time to Pay It Down", "Agree a share of each iteration for debt and enablers, and what you'll pay down first."),
+                ("80–90", "5 · Review", "Agree how often to review the metrics and the register.")],
+        sections_title="Reading the metrics",
+        sections_intro="Look at the four together; they're designed to balance each other.",
+        sections=[("Deployment Frequency", EMERALD, ["More often, smaller releases", "Lower risk per release"]),
+                  ("Lead Time for Changes", SKY, ["Commit to production", "Look for waiting time"]),
+                  ("Change Failure Rate", ORANGE, ["% of releases needing a fix", "Rises if speed outruns quality"]),
+                  ("Recovery Time", RED, ["How fast you restore service", "Practice and automation help"]),
+                  ("Tech Debt Register", PURPLE, ["Interest, not just size", "Owned and prioritised"])],
+        tips=[("Trends, not league tables", "Compare a team with its own past, never with other teams."),
+              ("Balance speed and stability", "If one pair improves while the other worsens, slow down and find out why."),
+              ("Debt has interest", "Prioritise the debt that slows every change, not the debt that's merely ugly."),
+              ("Make time explicit", "A fixed share of each iteration for debt beats waiting for a quiet period that never comes."),
+              ("No blame in the quadrant", "Reckless debt usually comes from pressure or missing skills. Fix the cause."),
+              ("Automate the data", "Collect the metrics from your tools so measuring doesn't become a chore.")],
+        pitfalls=("using the metrics to rank teams or people; gaming deployment counts; ignoring stability; a debt list with no "
+                  "interest or owner; no time set aside to pay debt down; arguing about definitions forever."),
+        after=[("Straight away", "Add the top debt items to the backlog with their interest noted."),
+               ("Each iteration", "Spend the agreed share on debt and enablers."),
+               ("Monthly", "Update the four metrics and review the trend with the team."),
+               ("Quarterly", "Share the trend and debt progress in the Value Metrics review (ability to innovate).")],
+        toolkit=FLOW_TOOLKIT,
+        foot="“Which debt is costing us most every week we leave it?”",
+    ),
+
+    # -------------------------------------------------------------- delegation
+    dict(
+        slug="delegation",
+        title="Delegation Board Guide",
+        subtitle="How to agree who decides what, at which of seven levels, and how to move decisions toward the team over time.",
+        tag="Facilitator Run-Sheet · Lead the Organisation · Inspired by Management 3.0",
+        boards=[("Open board", "delegation-board.html"), ("SVG", "delegation-board.svg")],
+        lede="Which decisions could the team make without us?",
+        intro=("Empowerment isn't all or nothing. The delegation board, from Jurgen Appelo's Management 3.0, uses <b>seven "
+               "levels</b> from <b>Tell</b> (the leader decides) to <b>Delegate</b> (the team decides and doesn't need to report "
+               "back). For each <b>decision area</b>, the leader and team agree today's level and where they want to get to. "
+               "Making it explicit avoids two common problems: teams waiting for permission they already have, and leaders "
+               "overruling decisions they'd said were delegated."),
+        glance=[("Duration", "60–90 min"), ("Group", "A leader and<br>their team"),
+                ("Use when", "Decision rights are<br>unclear or contested"), ("Output", "Agreed levels<br>&amp; guardrails")],
+        before=["Print the board at A3, or load the SVG as a digital background",
+                "List decision areas the team cares about, or ask the team to bring them",
+                "Leaders: think about which areas you're genuinely ready to delegate further",
+                "Bring any policies or limits that always apply (budget, legal, security)",
+                "Optionally, use delegation poker cards (1–7) for voting"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–10", "The seven levels", "Walk through the levels with an example for each. Stress that every level is fine for some decisions."),
+                ("10–25", "Decision areas", "List 6–9 decision areas. Use the hints on the board if the team is stuck."),
+                ("25–55", "Agree levels", "For each area, everyone votes a level at once (delegation poker). Discuss differences, then mark today's level."),
+                ("55–70", "Where we're heading", "Draw an arrow to the level you want to reach, and set a review date."),
+                ("70–80", "2 · Guardrails", "Write the limits that apply at every level, such as budget or policy."),
+                ("80–90", "3 · Next Steps · Close", "Agree which area moves up first, and post the board where everyone can see it.")],
+        sections_title="The seven levels",
+        sections_intro="Each level describes who decides and how the other party is involved.",
+        sections=[("1 Tell · 2 Sell", RED, ["The leader decides", "Sell explains why"]),
+                  ("3 Consult", AMBER, ["Leader asks, then decides", "Input is genuinely considered"]),
+                  ("4 Agree", PURPLE, ["Decided together", "Takes the most time"]),
+                  ("5 Advise · 6 Inquire", BLUE, ["The team decides", "Leader advises or hears afterwards"]),
+                  ("7 Delegate", EMERALD, ["The team decides alone", "No need to report back"]),
+                  ("Guardrails", SLATE, ["Limits at every level", "Written down, not assumed"])],
+        tips=[("Every level is valid", "The aim isn't level 7 for everything. It's clarity about the right level for each area."),
+              ("Vote simultaneously", "Delegation poker stops people anchoring on the leader's view."),
+              ("Leaders go first in trust", "Moving an area up one level is a small, concrete way to build trust."),
+              ("Guardrails enable delegation", "Clear limits make it easier for leaders to let go."),
+              ("Keep your word", "Overruling a delegated decision costs more trust than never delegating it."),
+              ("Revisit it", "As the team grows, move areas up. Review every few months.")],
+        pitfalls=("leaders announcing levels instead of agreeing them; everything at level 7 on paper but not in practice; "
+                  "overruling delegated decisions; vague decision areas; no guardrails; never reviewing it."),
+        after=[("Straight away", "Post the board where the team and leader can both see it."),
+               ("When a decision comes up", "Check the board first: who decides, at what level?"),
+               ("At the review date", "Move areas up where the team is ready; discuss any that went wrong."),
+               ("When people change", "Revisit the board with new leaders or team members.")],
+        toolkit=LEAD_TOOLKIT,
+        foot="“What would we need to trust to move this up one level?”",
+    ),
+
+    # -------------------------------------------------------------- coaching conversation
+    dict(
+        slug="coaching-conversation",
+        title="Coaching Conversation Guide",
+        subtitle="How to run a one-to-one coaching conversation with the GROW model: goal, reality, options and will.",
+        tag="Facilitator Run-Sheet · Facilitate · GROW Model (Sir John Whitmore)",
+        boards=[("Open board", "coaching-conversation-board.html"), ("SVG", "coaching-conversation-board.svg")],
+        lede="What do you want to be different by the end of this conversation?",
+        intro=("Coaching helps people find their own answers rather than being told what to do. The <b>GROW</b> model, "
+               "popularised by Sir John Whitmore in <i>Coaching for Performance</i>, gives a one-to-one conversation a simple "
+               "shape: agree the <b>Goal</b>, explore the current <b>Reality</b>, generate <b>Options</b>, and finish with the "
+               "coachee's <b>Will</b>, their committed next steps. The canvas starts with a short contract and ends with the "
+               "coach's own reflection. Scrum Masters, agile coaches, managers and mentors can all use it."),
+        glance=[("Duration", "30–60 min"), ("Group", "One coach,<br>one coachee"),
+                ("Use when", "1:1s, career talks,<br>stuck problems"), ("Output", "The coachee's own<br>commitments")],
+        before=["Print the canvas at A3, or use it on screen; the coachee can keep it afterwards",
+                "Book a private space and enough uninterrupted time",
+                "Agree in advance that this is coaching, not a performance review",
+                "Clear your head: plan to ask more than you tell"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–5", "1 · Contract", "Ask what they want from the conversation. Agree confidentiality and how long you have."),
+                ("5–15", "2 · Goal", "Help them describe what they want and what success looks like. Make it specific."),
+                ("15–30", "3 · Reality", "Explore what's happening now, what they've tried, and what's in their control. Listen more than talk."),
+                ("30–45", "4 · Options", "Generate many options. Keep asking “what else?” Hold back your own ideas, or offer them last."),
+                ("45–55", "5 · Will", "Ask which option they'll take, the first step, what might stop them, and how committed they are."),
+                ("55–60", "6 · Commitments · 7 · Reflection", "They write the commitments in their own words. Afterwards, reflect on your coaching.")],
+        sections_title="Using each stage well",
+        sections_intro="What to aim for in each part of the conversation.",
+        sections=[("Goal", PURPLE, ["Their goal, not yours", "Specific and meaningful"]),
+                  ("Reality", BLUE, ["Facts and feelings", "What they control"]),
+                  ("Options", EMERALD, ["Quantity before quality", "Their ideas first"]),
+                  ("Will", ORANGE, ["A first step and a date", "Commitment 1–10"]),
+                  ("Coach's Reflection", AMBER, ["Did I ask or tell?", "What will I follow up?"])],
+        tips=[("Ask, then wait", "Silence gives people room to think. Count to five before you speak."),
+              ("Open questions", "Start with what, how and who. “Why” can sound like judgement; use it gently."),
+              ("Their words", "Write commitments in the coachee's words, not your summary."),
+              ("Loop back", "If options stall, return to Reality or Goal. GROW isn't strictly one-way."),
+              ("Low commitment is useful", "If they say 5 out of 10, ask what would make it an 8."),
+              ("Follow up", "Start the next conversation by asking how the commitments went.")],
+        pitfalls=("giving advice too early; turning it into a status update; setting the goal for them; leading questions; "
+                  "running out of time before Will; no follow-up."),
+        after=[("Straight away", "Give the coachee the canvas or a photo of it."),
+               ("Before the next one", "Read your reflection notes and the commitments."),
+               ("Next conversation", "Start with the commitments: what happened, what did you learn?"),
+               ("For yourself", "Ask for feedback on your coaching every few sessions.")],
+        toolkit=("Coaching conversations connect to the rest of the toolkit: use the "
+                 "<a href=\"scrum-master-agile-coach-cheat-sheet.html\">Scrum Master &amp; Agile Coach Cheat Sheet</a> for "
+                 "coaching stances and powerful questions, the <a href=\"facilitator-guide-skills-matrix.html\">Skills Matrix</a> "
+                 "for learning goals, and <a href=\"facilitator-guide-adkar.html\">ADKAR</a> when the topic is a change someone is "
+                 "going through."),
+        foot="“What's the smallest step you could take this week?”",
+    ),
+
+    # -------------------------------------------------------------- psychological safety
+    dict(
+        slug="psych-safety",
+        title="Psychological Safety Check Guide",
+        subtitle="How to run an anonymous check of how safe it feels to speak up, and act on what the team learns.",
+        tag="Facilitator Run-Sheet · Diagnose · Inspired by Amy Edmondson's Research",
+        boards=[("Open board", "psych-safety-board.html"), ("SVG", "psych-safety-board.svg")],
+        lede="What would make it easier to say what you really think here?",
+        intro=("Psychological safety is the shared belief that it's safe to take interpersonal risks: to speak up, ask for "
+               "help, admit a mistake or disagree. Amy Edmondson's research, and Google's Project Aristotle, found it to be one "
+               "of the strongest signs of an effective team. This board uses seven statements, written for this toolkit and "
+               "inspired by Edmondson's work, with an <b>anonymous</b> five-point vote. It's a conversation starter, not a "
+               "validated survey. What matters most is how the team and its leaders respond to the results."),
+        glance=[("Duration", "45–60 min"), ("Group", "One team; leaders<br>step out to vote"),
+                ("Use when", "Quiet retros, conflict,<br>or every quarter"), ("Output", "A picture of safety<br>&amp; experiments")],
+        before=["Print the board at A3, or run the vote in an anonymous online form",
+                "Agree with leaders that they'll step out while the team votes, and won't ask who voted what",
+                "Decide in advance who sees the results; by default, only the team",
+                "Bring dot stickers or markers",
+                "Think about facilitation: someone outside the team's reporting line often helps"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–5", "Why", "Explain the purpose and the rules: anonymous, no one explains their vote, results stay with the team."),
+                ("5–15", "1 · The Check", "Everyone places one dot per statement, privately. Turn the board away, or use an online form."),
+                ("15–20", "2 · Results", "Count agree and disagree for each statement. Note the change from last time."),
+                ("20–35", "3 · What We Notice", "Discuss patterns: which statements are lowest, and what might explain it? Talk about situations, not people."),
+                ("35–45", "4 · What Leaders Can Do", "If leaders rejoin, share the patterns and ask them to pick behaviours to practise."),
+                ("45–55", "5 · Our Experiments", "Agree one or two small experiments and when to check them.")],
+        sections_title="Reading the results",
+        sections_intro="Look for patterns, not a single score.",
+        sections=[("Mistakes & risk (1, 4)", RED, ["Low here: people hide errors", "Celebrate learning from failure"]),
+                  ("Speaking up (2, 7)", PURPLE, ["Low here: quiet meetings", "Ask for dissent explicitly"]),
+                  ("Belonging (3, 6)", BLUE, ["Low here: people feel outside", "Check who's not being heard"]),
+                  ("Help (5)", EMERALD, ["Low here: people struggle alone", "Normalise asking"]),
+                  ("Change over time", SLATE, ["Trend matters most", "Re-run every 2–3 months"])],
+        tips=[("Anonymity is everything", "If people suspect they can be identified, the results will look better than reality."),
+              ("Leaders model it", "Safety grows when leaders admit mistakes, ask questions and thank people for bad news."),
+              ("Talk about situations", "“When we discussed X, it felt risky to disagree” helps. Naming people doesn't."),
+              ("Small experiments", "Try one change, such as round-robin input or a devil's advocate role, and check it."),
+              ("Don't shoot the messenger", "A low score is a gift of honesty. Thank the team for it."),
+              ("Not a performance measure", "Never use the results to evaluate a manager or team.")],
+        pitfalls=("leaders in the room during voting; asking who voted low; sharing results without the team's agreement; "
+                  "treating it as a score to hit; no follow-up; running it once and never again."),
+        after=[("Straight away", "Photograph the results, then clear the board so votes aren't on display."),
+               ("Next few weeks", "Run the experiments and notice what changes in meetings."),
+               ("Each retro", "Check in: is it easier to speak up? What's helping?"),
+               ("Every 2–3 months", "Re-run the check and compare. Feed themes into the Team Health Check.")],
+        toolkit=("Psychological safety underpins everything else. Use it alongside the "
+                 "<a href=\"facilitator-guide-team-health-check.html\">Team Health Check</a>, run safer retros from the Retro "
+                 "Kit, agree norms in the <a href=\"facilitator-guide-team-charter.html\">Team Charter</a>, and use the "
+                 "<a href=\"facilitator-guide-coaching-conversation.html\">Coaching Conversation</a> canvas for one-to-one follow-up."),
+        foot="“When did someone last speak up, and what happened next?”",
+    ),
+
+    # -------------------------------------------------------------- cross-team retro
+    dict(
+        slug="cross-team-retro",
+        title="Cross-Team Retro Guide",
+        subtitle="How to run a retrospective across several teams that finds and fixes problems no single team can solve.",
+        tag="Facilitator Run-Sheet · Coordinate Teams · Joint Retrospective · Inspect & Adapt",
+        boards=[("Open board", "cross-team-retro-board.html"), ("SVG", "cross-team-retro-board.svg")],
+        lede="What got in the way between teams, not within them?",
+        intro=("Team retros improve how each team works, but many problems live between teams: hand-offs, dependencies, "
+               "shared environments and unclear decisions. A cross-team retro, held at the end of a planning period, brings "
+               "representatives from every team together to review the <b>shared objectives</b>, collect what went well and "
+               "what didn't <b>across teams</b>, and solve the biggest system problem in mixed-team groups. SAFe calls this "
+               "the Inspect &amp; Adapt event's problem-solving workshop."),
+        glance=[("Duration", "90–120 min"), ("Group", "Reps from every team,<br>POs, leaders"),
+                ("Use when", "End of each planning<br>period"), ("Output", "One system fix<br>&amp; owners")],
+        before=["Print the board at A1 or A3, or use a digital board with breakout areas",
+                "Bring the shared objectives and their results from the Cross-Team Planning board",
+                "Ask each team to bring the top cross-team themes from their own retros",
+                "Bring the Dependency Map and the Impediments boards",
+                "Green, pink and blue stickies, dot stickers and markers"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–15", "1 · What We Set Out to Do", "Review the shared objectives: planned value, achieved, and what was learned."),
+                ("15–40", "2–4 · Gather", "Silent writing on green, pink and blue stickies. Focus on between-team topics. Cluster duplicates."),
+                ("40–45", "Dot vote", "Three dots each on the cross-team problems. Pick the top one or two."),
+                ("45–80", "5 · Solve the Top Problem", "In mixed-team groups, run 5 Whys to a root cause and propose improvements."),
+                ("80–95", "Agree improvements", "Groups share proposals. Agree which to do, the teams involved and an owner."),
+                ("95–105", "6 · Follow Through", "Add improvements to the next cross-team plan and agree how to measure success.")],
+        sections_title="Making each part strong",
+        sections_intro="Quality checks for the board.",
+        sections=[("1 · What We Set Out to Do", SLATE, ["Data, not opinions", "Learning, not blame"]),
+                  ("2 · Went Well Across Teams", EMERALD, ["Specific examples", "Worth repeating"]),
+                  ("3 · Cross-Team Problems", RED, ["Between teams, not within", "Dot-voted"]),
+                  ("4 · Ideas", BLUE, ["Anyone can contribute", "Small and testable"]),
+                  ("5 · Solve the Top Problem", PURPLE, ["Mixed-team groups", "A root cause, not a symptom"]),
+                  ("6 · Follow Through", FOREST, ["Improvements in the next plan", "Each has an owner"])],
+        tips=[("Focus between teams", "Steer team-internal issues back to team retros. This session is for the system."),
+              ("Mix the groups", "Problem-solving groups with people from several teams see the whole picture."),
+              ("One problem, solved", "Fixing one system problem well beats a long list of half-fixes."),
+              ("Leaders as participants", "Leaders can remove system constraints that teams can't. Invite them to help solve."),
+              ("Plan it in", "Put improvements into the next planning period's capacity, or they won't happen."),
+              ("Close the loop", "Start the next cross-team retro by reviewing the last one's improvements.")],
+        pitfalls=("teams airing internal issues; blaming other teams; too many improvements; no owners; improvements not "
+                  "planned into the next period; skipping it when a period goes well."),
+        after=[("Straight away", "Share the improvements and owners with all teams."),
+               ("Next planning", "Plan the improvements into the Cross-Team Planning board's capacity."),
+               ("During the period", "Track progress at the Cross-Team Sync."),
+               ("Next retro", "Review the improvements first: did they help?")],
+        toolkit=PROGRAM_TOOLKIT,
+        foot="“What one change would help every team next period?”",
+    ),
+]
 
 
 # ------------------------------------------------------------------ rendering

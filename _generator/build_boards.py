@@ -2617,13 +2617,13 @@ def build_root_cause():
 
 # ---------------------------------------------------------------- value metrics (EBM)
 
-LEAD_TAG = "Lead & Measure · Outcomes Over Output · Evidence, Not Opinion"
+LEAD_TAG = "Lead the Organisation · Outcomes Over Output · Evidence, Not Opinion"
 
 
 def build_value_metrics():
     b = [header("Value Metrics",
                 "Measure the value you deliver and your ability to deliver more, then pick experiments to improve it.",
-                "Lead & Measure · Inspired by Evidence-Based Management (Scrum.org) · Four Key Value Areas",
+                "Lead the Organisation · Inspired by Evidence-Based Management (Scrum.org) · Four Key Value Areas",
                 header_fields(["Product / org", "Date"]))]
 
     x, y, w, h = 24, 148, 1632, 150
@@ -2976,7 +2976,7 @@ ADKAR = [("Awareness", BLUE, "of why the change is needed",
 def build_adkar():
     b = [header("ADKAR Change Readiness",
                 "Find where people are in a change, spot the barrier point, and act on it before moving on.",
-                "Lead Change · Inspired by Prosci's ADKAR® Model (Jeff Hiatt) · The People Side of Change",
+                "Lead the Organisation · Inspired by Prosci's ADKAR® Model (Jeff Hiatt) · The People Side of Change",
                 header_fields(["Change", "Sponsor"]))]
 
     x, y, w, h = 24, 148, 1632, 150
@@ -3044,11 +3044,406 @@ def build_adkar():
 
     b.append(footer("Where is each group in this change, really?",
                     "What's the first thing stopping them, and what would help most?",
-                    "ADKAR® is a registered trademark of Prosci, Inc. · Lead Change"))
+                    "ADKAR® is a registered trademark of Prosci, Inc. · Lead the Organisation"))
     write_board("adkar-board", "ADKAR Change Readiness",
                 "A3 landscape change readiness board based on the ADKAR model: change on a page, a readiness grid scoring "
                 "awareness, desire, knowledge, ability and reinforcement with a barrier point, one panel per element with "
                 "signs and helpful actions, an action plan, and reinforcement and re-assessment.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- portfolio kanban & investment mix
+
+def build_portfolio_kanban():
+    b = [header("Portfolio Kanban & Investment Mix",
+                "Limit how many big initiatives run at once, decide with a lean business case, and keep investment balanced.",
+                "Lead the Organisation · Lean Portfolio Management · Limit Portfolio WIP · Stop Starting, Start Finishing",
+                header_fields(["Portfolio", "Date"]))]
+
+    x, y, w, h = 24, 148, 1632, 470
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 1, "Portfolio Kanban", BLUE, "ONE STICKY PER INITIATIVE · PULL, DON'T PUSH"))
+    cols = [("Funnel", "Every new idea lands here", False), ("Reviewing", "Worth a closer look?", True),
+            ("Analysing", "Lean business case", True), ("Ready", "Approved, waiting for capacity", True),
+            ("Implementing", "MVP first, then persevere or pivot", True), ("Done", "Outcome measured", False)]
+    n = len(cols)
+    cw = (w - 28 - (n - 1) * 10) / n
+    for i, (name, sub, wip) in enumerate(cols):
+        cx = x + 14 + i * (cw + 10)
+        b.append(R(cx, y + 64, cw, h - 78, "white", 6, f' fill-opacity=".55" stroke="{d}" stroke-opacity=".2"'))
+        b.append(T(cx + 12, y + 88, name, 13, d, weight=600))
+        b.append(T(cx + 12, y + 106, sub, 9.5, d, op=".7"))
+        if wip:
+            b.append(field(cx + 12, y + 134, "WIP limit:", cx + cw - 12, d, 10.5))
+        b.append(field(cx + 12, y + 164, "Exit when:", cx + cw - 12, d, 10.5))
+        b.append(sticky_zone(cx + 6, y + 178, cw - 12, h - 198, d, "Initiatives", chips=(YELLOW,)))
+
+    y, h = 632, 428
+    x, w = 24, 808
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 2, "Lean Business Case", PURPLE, "ONE PAGE PER INITIATIVE IN ANALYSING"))
+    b.append(field(x + 18, y + 86, "Initiative:", x + w - 18, d))
+    b.append(field(x + 18, y + 122, "Problem or opportunity:", x + w - 18, d))
+    b.append(T(x + 18, y + 162, "Hypothesis", 11, d, weight=600))
+    for i, lead in enumerate(["We believe…", "will result in…", "We'll know when…"]):
+        b.append(field(x + 30, y + 190 + i * 30, lead, x + w - 18, d))
+    b.append(field(x + 18, y + 298, "Smallest version (MVP):", x + w - 18, d))
+    b.append(field(x + 18, y + 334, "Cost range:", x + w / 2 - 10, d))
+    b.append(T(x + w / 2 + 10, y + 334, "Cost of delay:", 11, d))
+    for j, lab in enumerate(["High", "Medium", "Low"]):
+        b.append(checkbox(x + w / 2 + 110 + j * 80, y + 334, lab, d, 10.5))
+    b.append(field(x + 18, y + 372, "Go / no-go criteria:", x + w - 18, d))
+    b.append(T(x + 18, y + 408, "Decision:", 11, d, weight=600))
+    for j, lab in enumerate(["Go to Ready", "Not now", "Stop"]):
+        b.append(checkbox(x + 100 + j * 130, y + 408, lab, d, 10.5))
+
+    x, w = 846, 397
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 3, "Investment Mix", EMERALD, "AGREE THE SPLIT UP FRONT"))
+    b.append(table(x + 18, y + 84, [("Type of work", 190), ("Target %", 75), ("Actual %", w - 36 - 265)], 6, d, 40))
+    for i, t in enumerate(["New bets", "Grow existing", "Run & maintain", "Tech debt & enablers", "Unplanned buffer", "Total = 100%"]):
+        b.append(T(x + 24, y + 84 + 10 + (i + 1) * 40 - 14, t, 11, d, weight=600 if i == 5 else None))
+    b.append(T(x + 18, y + h - 20, "Is the actual mix what we intended?", 10.5, d, italic=True, op=".75"))
+
+    x = 1257
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 4, "Portfolio Review", AMBER))
+    for i, f in enumerate(["Review cadence:", "Decision forum:"]):
+        b.append(field(x + 18, y + 88 + i * 34, f, x + w - 18, d))
+    for i, m in enumerate(["WIP limits respected", "Stop something to start something", "Funding checked against outcomes",
+                           "Done items had their outcome measured", "Mix compared with the target"]):
+        b.append(checkbox(x + 18, y + 176 + i * 30, m, d, 11))
+    b.append(field(x + 18, y + 346, "Next review:", x + w - 18, d))
+
+    b.append(footer("What would we stop to make room for this?",
+                    "Which initiative, if it were the only one, would we finish first?", LEAD_TAG))
+    write_board("portfolio-kanban-board", "Portfolio Kanban & Investment Mix",
+                "A3 landscape portfolio board: a six-column portfolio Kanban with WIP limits and exit criteria, a lean "
+                "business case, an investment mix table, and a portfolio review checklist.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- delivery metrics & tech debt
+
+def build_delivery_metrics():
+    b = [header("Delivery Metrics & Tech Debt",
+                "Track how quickly and safely you deliver, keep technical debt visible, and plan time to pay it down.",
+                "Manage Flow · Inspired by DORA's Four Key Metrics · Technical Debt Quadrant (Martin Fowler)",
+                header_fields(["Team / system", "Date"]))]
+
+    x, y, w, h = 24, 148, 1632, 330
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 1, "Four Key Delivery Metrics", BLUE, "TWO FOR SPEED · TWO FOR STABILITY · TRACK THE TREND"))
+    keys = [("Deployment Frequency", EMERALD, "SPEED", ["How often we release", "to production."]),
+            ("Lead Time for Changes", SKY, "SPEED", ["Time from code committed", "to running in production."]),
+            ("Change Failure Rate", ORANGE, "STABILITY", ["% of releases that cause a", "failure needing a fix."]),
+            ("Recovery Time", RED, "STABILITY", ["Time to restore service", "after a failed release."])]
+    cw = (w - 28 - 3 * 12) / 4
+    for i, (name, col, kind, body) in enumerate(keys):
+        cx = x + 14 + i * (cw + 12)
+        cd = col[0]
+        b.append(R(cx, y + 64, cw, h - 78, "white", 6, f' stroke="{cd}" stroke-opacity=".25"'))
+        b.append(R(cx, y + 64, cw, 5, cd, 3))
+        b.append(T(cx + 16, y + 94, name, 14, cd, weight=600))
+        b.append(T(cx + cw - 16, y + 94, kind, 8.5, cd, MONO, anchor="end", op=".6", ls=".12em"))
+        b.append(para(cx + 16, y + 118, body, 10.5, cd, 16))
+        for j, f in enumerate(["3 months ago:", "Now:", "Target:"]):
+            b.append(field(cx + 16, y + 176 + j * 30, f, cx + cw - 16, cd))
+        b.append(field(cx + 16, y + 266, "Measured from:", cx + cw - 16, cd))
+        for j, lab in enumerate(["Better", "Same", "Worse"]):
+            b.append(checkbox(cx + 16 + j * 90, y + 300, lab, cd, 10.5))
+
+    y, h = 492, 400
+    x, w = 24, 1082
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 2, "Tech Debt Register", PURPLE, "THE INTEREST IS WHAT IT COSTS TO LEAVE IT"))
+    b.append(table(x + 18, y + 84, [("Debt", 230), ("Where", 140), ("Interest: cost of leaving it", 300), ("Effort S/M/L", 110),
+                                    ("Type", 110), ("Owner", w - 36 - 890)], 8, d, 36))
+
+    x, w = 1120, 536
+    b.append(panel(x, y, w, h, 3, "Debt Quadrant", AMBER, "WHY THE DEBT EXISTS"))
+    b.append(quad_grid(x + 54, y + 70, x + w - 18, y + h - 52,
+                       [("Reckless · Deliberate", "“No time for design.”", RED), ("Prudent · Deliberate", "“Ship now, fix later, knowingly.”", EMERALD),
+                        ("Reckless · Inadvertent", "“What's good design?”", ORANGE), ("Prudent · Inadvertent", "“Now we know how we should have built it.”", BLUE)],
+                       "RECKLESS", "PRUDENT", "", "DELIBERATE ↑"))
+
+    y, h = 906, 154
+    x, w = 24, 808
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 4, "Time to Pay It Down", FOREST))
+    for i, f in enumerate(["% of each iteration for debt & enablers:", "This iteration we'll pay down:"]):
+        b.append(field(x + 18, y + 86 + i * 34, f, x + w - 18, d))
+
+    x, w = 846, 810
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 5, "Review", SLATE, "LEARN, DON'T COMPARE TEAMS"))
+    for i, f in enumerate(["Metrics reviewed every:", "What the trends tell us:"]):
+        b.append(field(x + 18, y + 86 + i * 34, f, x + w - 18, d))
+
+    b.append(footer("Are we getting faster without getting less stable?",
+                    "Which debt is costing us most every week we leave it?", FLOW_TAG))
+    write_board("delivery-metrics-board", "Delivery Metrics & Tech Debt",
+                "A3 landscape board: four key delivery metrics (deployment frequency, lead time, change failure rate, "
+                "recovery time), a tech debt register, a debt quadrant, time to pay down debt, and a review.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- delegation board
+
+DELEGATION = [("Tell", "I decide and tell you"), ("Sell", "I decide and explain why"), ("Consult", "I ask you, then I decide"),
+              ("Agree", "We decide together"), ("Advise", "I advise, you decide"), ("Inquire", "You decide, then tell me"),
+              ("Delegate", "You decide; no need to tell me")]
+
+
+def build_delegation():
+    b = [header("Delegation Board",
+                "Make decision rights explicit: for each area, agree how much the team decides, and move it up over time.",
+                "Lead the Organisation · Inspired by Management 3.0 (Jurgen Appelo) · Seven Levels of Delegation",
+                header_fields(["Team", "Leader"]))]
+
+    x, y, w, h = 24, 148, 1632, 150
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, None, "Seven Levels of Delegation", PURPLE, "FROM LEADER DECIDES TO TEAM DECIDES"))
+    n = len(DELEGATION)
+    cw = (w - 28 - (n - 1) * 8) / n
+    for i, (name, mean) in enumerate(DELEGATION):
+        cx = x + 14 + i * (cw + 8)
+        b.append(R(cx, y + 64, cw, 72, "white", 6, f' stroke="{d}" stroke-opacity="{.15 + i * .08:.2f}" stroke-width="1.5"'))
+        b.append(f'<circle cx="{cx + 22:g}" cy="{y + 88}" r="11" fill="{d}" fill-opacity="{.35 + i * .1:.2f}"/>')
+        b.append(T(cx + 22, y + 92, str(i + 1), 10.5, "white", weight=600, anchor="middle"))
+        b.append(T(cx + 42, y + 93, name, 13, d, weight=600))
+        b.append(T(cx + 14, y + 120, mean, 10.5, d, italic=True))
+
+    x, y, w, h = 24, 312, 1632, 560
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 1, "Decision Areas", BLUE, "MARK TODAY'S LEVEL · ARROW TO WHERE WE'RE HEADING"))
+    gx0, gy = x + 18, y + 70
+    area_w, rev_w = 340, 170
+    lv_w = (w - 36 - area_w - rev_w) / n
+    b.append(T(gx0 + 6, gy + 20, "DECISION AREA", 9, d, MONO, weight=600, ls=".12em"))
+    for i, (name, _) in enumerate(DELEGATION):
+        cx = gx0 + area_w + i * lv_w
+        b.append(R(cx + 3, gy, lv_w - 6, 30, PURPLE[0], 5, f' fill-opacity="{.35 + i * .1:.2f}"'))
+        b.append(T(cx + lv_w / 2, gy + 20, f"{i + 1} · {name.upper()}", 9.5, "white", MONO, weight=600, anchor="middle", ls=".08em"))
+    b.append(T(gx0 + area_w + n * lv_w + 10, gy + 20, "REVIEW BY", 9, d, MONO, weight=600, ls=".12em"))
+    hints = ["e.g. Hiring into the team", "e.g. Tools and technology", "e.g. How we plan our work", "e.g. Working hours",
+             "e.g. Spending up to a limit", "e.g. Architecture choices", "e.g. Who works on what", "e.g. Release timing", ""]
+    rows = 9
+    rh = (h - 70 - 38 - 12) / rows
+    for r in range(rows):
+        ry = gy + 38 + r * rh
+        b.append(R(gx0, ry, area_w - 6, rh - 6, "white", 4, f' stroke="{d}" stroke-opacity=".15"'))
+        b.append(T(gx0 + 12, ry + 18, hints[r], 9.5, d, italic=True, op=".45"))
+        b.append(L(gx0 + 12, ry + rh - 16, gx0 + area_w - 20, ry + rh - 16, WRITE, 1))
+        for i in range(n):
+            cx = gx0 + area_w + i * lv_w
+            b.append(R(cx + 3, ry, lv_w - 6, rh - 6, "white", 4, f' fill-opacity=".6" stroke="{d}" stroke-opacity=".12"'))
+        rx = gx0 + area_w + n * lv_w
+        b.append(R(rx + 3, ry, rev_w - 3, rh - 6, "white", 4, f' fill-opacity=".6" stroke="{d}" stroke-opacity=".12"'))
+
+    y, h = 886, 174
+    x, w = 24, 808
+    d = RED[0]
+    b.append(panel(x, y, w, h, 2, "Guardrails", RED, "LIMITS THAT ALWAYS APPLY"))
+    b.append(T(x + 18, y + 80, "e.g. budget limits, legal and policy rules, security standards", 10.5, d, italic=True, op=".7"))
+    b.append(lines(x + 18, y + 108, x + w - 18, 2, 26))
+
+    x, w = 846, 810
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 3, "Next Steps", FOREST))
+    for i, m in enumerate(["Agreed with the team, not just announced", "Posted where everyone can see it",
+                           "One area moves up a level next", "Review the board every few months"]):
+        b.append(checkbox(x + 18 + (i % 2) * 390, y + 90 + (i // 2) * 34, m, d, 11))
+
+    b.append(footer("Which decisions could the team make without us?",
+                    "What would we need to trust to move this up one level?", LEAD_TAG))
+    write_board("delegation-board", "Delegation Board",
+                "A3 landscape delegation board: the seven levels of delegation, a decision-area grid with a review "
+                "column, guardrails, and next steps.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- coaching conversation (GROW)
+
+def build_coaching_conversation():
+    b = [header("Coaching Conversation",
+                "A simple structure for one-to-one coaching: agree the goal, explore reality and options, and commit to action.",
+                "Facilitate · GROW Model (Sir John Whitmore) · Ask More Than Tell · One-to-One Coaching",
+                header_fields(["Coachee", "Date"]))]
+
+    x, y, w, h = 24, 148, 1632, 120
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 1, "Contract", SLATE, "AGREE THIS FIRST"))
+    b.append(field(x + 18, y + 86, "What do you want from this conversation?", x + 1100, d))
+    b.append(checkbox(x + 1130, y + 86, "Confidentiality agreed", d, 11))
+    b.append(field(x + 1330, y + 86, "Time:", x + w - 18, d))
+
+    y, h = 282, 560
+    grow = [(2, "Goal", PURPLE, "WHAT DO YOU WANT?", ["What would you like to achieve?", "What would success look like?",
+                                                     "Why does this matter to you now?", "How will you know you've got there?"]),
+            (3, "Reality", BLUE, "WHERE ARE YOU NOW?", ["What's happening at the moment?", "What have you tried so far?",
+                                                        "What's getting in the way?", "What's within your control?"]),
+            (4, "Options", EMERALD, "WHAT COULD YOU DO?", ["What could you do?", "What else? And what else?",
+                                                           "What would you advise a friend?", "What if there were no limits?"]),
+            (5, "Will", ORANGE, "WHAT WILL YOU DO?", ["Which option will you take?", "What's the first step, and when?",
+                                                      "What might stop you?", "How committed are you, 1–10?"])]
+    cw = (1632 - 3 * 14) / 4
+    for i, (num, name, color, note, qs) in enumerate(grow):
+        x = 24 + i * (cw + 14)
+        dk = color[0]
+        b.append(panel(x, y, cw, h, num, name, color, note))
+        b.append(T(x + 18, y + 80, "QUESTIONS TO TRY", 8.5, dk, MONO, weight=600, ls=".12em"))
+        for j, q in enumerate(qs):
+            b.append(T(x + 18, y + 106 + j * 24, q, 14, dk, SERIF, italic=True))
+        b.append(T(x + 18, y + 220, "NOTES", 8.5, dk, MONO, weight=600, ls=".12em"))
+        b.append(lines(x + 18, y + 252, x + cw - 18, 11, 26))
+
+    y, h = 856, 204
+    x, w = 24, 1082
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 6, "Commitments", FOREST, "IN THE COACHEE'S WORDS"))
+    b.append(table(x + 18, y + 82, [("Action", 520), ("By when", 160), ("Support needed", w - 36 - 680)], 3, d, 34))
+
+    x, w = 1120, 536
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 7, "Coach's Reflection", AMBER, "AFTERWARDS"))
+    for i, f in enumerate(["What I noticed:", "Did I ask more than tell?", "Follow up on:"]):
+        b.append(field(x + 18, y + 86 + i * 36, f, x + w - 18, d))
+
+    b.append(footer("What do you want to be different by the end of this conversation?",
+                    "What's the smallest step you could take this week?", "Facilitate · Coaching · Ask, Don't Tell"))
+    write_board("coaching-conversation-board", "Coaching Conversation",
+                "A3 landscape GROW coaching canvas: contract, goal, reality, options and will panels with questions and "
+                "notes, commitments, and the coach's reflection.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- psychological safety check
+
+PSAFE = ["I can admit a mistake here without it being held against me.",
+         "We raise problems and difficult topics openly.",
+         "Different views and backgrounds are welcomed on this team.",
+         "It's safe to try something new here, even if it might fail.",
+         "I can ask anyone on the team for help.",
+         "People on this team have my back.",
+         "My ideas are listened to and used."]
+
+
+def build_psych_safety():
+    b = [header("Psychological Safety Check",
+                "An anonymous check of how safe it feels to speak up, take risks and admit mistakes, and what to do about it.",
+                "Diagnose · Inspired by Amy Edmondson's Research · Anonymous · Not a Validated Survey",
+                legend([("dot", "#94A3B8", "Dot = One anonymous vote"), ("sticky", YELLOW, "Yellow Sticky = Observation")]))]
+
+    x, y, w, h = 24, 148, 1082, 520
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 1, "The Check", PURPLE, "ONE DOT PER STATEMENT · VOTE PRIVATELY"))
+    st_w = 470
+    scale = ["Strongly disagree", "Disagree", "Neutral", "Agree", "Strongly agree"]
+    sc_w = (w - 36 - st_w) / 5
+    gx0, gy = x + 18, y + 70
+    for i, lab in enumerate(scale):
+        cx = gx0 + st_w + i * sc_w
+        b.append(T(cx + sc_w / 2, gy + 14, lab.upper(), 8.5, d, MONO, weight=600, anchor="middle", ls=".06em"))
+    rh = (h - 70 - 26 - 14) / len(PSAFE)
+    for r, stmt in enumerate(PSAFE):
+        ry = gy + 26 + r * rh
+        b.append(R(gx0, ry, st_w - 8, rh - 6, "white", 4, f' stroke="{d}" stroke-opacity=".15"'))
+        b.append(T(gx0 + 12, ry + rh / 2 + 1, f"{r + 1}.", 11, d, weight=600))
+        b.append(T(gx0 + 32, ry + rh / 2 + 1, stmt, 11, d))
+        for i in range(5):
+            cx = gx0 + st_w + i * sc_w
+            shade = [RED[1], ORANGE[1], SLATE[1], EMERALD[1], FOREST[1]][i]
+            b.append(R(cx + 3, ry, sc_w - 6, rh - 6, shade, 4, f' stroke="{d}" stroke-opacity=".12"'))
+            b.append(R(cx + 3, ry, sc_w - 6, rh - 6, "url(#dots)", 4))
+
+    x, w = 1120, 536
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 2, "Run It Safely", SLATE, "SAFETY FIRST, OR THE RESULTS LIE"))
+    for i, m in enumerate(["Votes are anonymous (board turned away, or an online form)", "Leaders and managers step out while voting",
+                           "Results stay with the team unless it chooses to share", "No one is asked to explain their vote",
+                           "Talk about patterns, not individuals"]):
+        b.append(checkbox(x + 18, y + 88 + i * 30, m, d, 10.5))
+    b.append(T(x + 18, y + 270, "Results", 11, d, weight=600))
+    b.append(table(x + 18, y + 296, [("Statement", 110), ("Mostly agree", 120), ("Mostly disagree", 130), ("Change", w - 36 - 360)], 4, d, 40))
+    b.append(T(x + 18, y + h - 18, "Re-run every 2–3 months to see the trend.", 10, d, italic=True, op=".7"))
+
+    y, h = 682, 378
+    x, w = 24, 534
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 3, "What We Notice", BLUE, "PATTERNS, NOT PEOPLE"))
+    b.append(bullets(x + 22, y + 74, ["Where are votes lowest? What might explain it?", "What would make it easier to speak up?"], d))
+    b.append(dashed(x + 10, x + w - 10, y + 110, d))
+    b.append(sticky_zone(x + 10, y + 116, w - 20, h - 128, d, chips=(YELLOW,)))
+
+    x = 572
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 4, "What Leaders Can Do", EMERALD, "MODEL IT"))
+    for i, m in enumerate(["Frame work as learning, not just doing", "Admit your own mistakes and doubts",
+                           "Ask genuine questions, then listen", "Thank people for bad news and dissent",
+                           "Respond to failure with curiosity, not blame", "Make it clear every voice is wanted",
+                           "Follow up on what people raise"]):
+        b.append(checkbox(x + 18, y + 88 + i * 32, m, d, 11))
+
+    x, w = 1120, 536
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 5, "Our Experiments", FOREST, "SMALL CHANGES · CHECK THEM"))
+    b.append(table(x + 18, y + 84, [("Experiment", 260), ("Who", 100), ("Check on", w - 36 - 360)], 6, d, 40))
+
+    b.append(footer("What would make it easier to say what you really think here?",
+                    "When did someone last speak up, and what happened next?", "Diagnose · Team Health · Psychological Safety"))
+    write_board("psych-safety-board", "Psychological Safety Check",
+                "A3 landscape psychological safety check: seven statements with a five-point anonymous dot vote, "
+                "guidance to run it safely, results, observations, leader behaviours, and experiments.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- cross-team retro
+
+def build_cross_team_retro():
+    b = [header("Cross-Team Retro",
+                "Reflect across teams at the end of a period: what worked, what didn't, and one system problem to fix together.",
+                "Coordinate Teams · Inspect & Adapt (SAFe) · Joint Retrospective · Fix the System",
+                legend([("sticky", GREEN, "Green = Went well"), ("sticky", PINK_ST, "Pink = Problem"),
+                        ("sticky", BLUE_ST, "Blue = Idea"), ("dot", ACCENT, "Dot = Vote")]))]
+
+    x, y, w, h = 24, 148, 1632, 150
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 1, "What We Set Out to Do", SLATE, "BRING THE SHARED OBJECTIVES AND THE DATA"))
+    b.append(table(x + 18, y + 80, [("Shared objective", 560), ("Planned value", 160), ("Achieved", 160), ("What we learned", w - 36 - 880)], 2, d, 26))
+
+    y, h = 312, 400
+    for i, (num, name, col, note, chip, prompt) in enumerate([
+            (2, "Went Well Across Teams", EMERALD, "KEEP DOING", GREEN, "Where did teams help each other?"),
+            (3, "Cross-Team Problems", RED, "DOT-VOTE THE BIGGEST", PINK_ST, "Where did work wait between teams?"),
+            (4, "Ideas", BLUE, "FOR ANY TEAM TO TRY", BLUE_ST, "What would make next period smoother?")]):
+        x = 24 + i * 548
+        w = 534 if i < 2 else 536
+        d = col[0]
+        b.append(panel(x, y, w, h, num, name, col, note))
+        b.append(bullets(x + 22, y + 74, [prompt], d))
+        b.append(dashed(x + 10, x + w - 10, y + 92, d))
+        b.append(sticky_zone(x + 10, y + 98, w - 20, h - 110, d, chips=(chip,)))
+
+    y, h = 726, 334
+    x, w = 24, 1082
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 5, "Solve the Top Problem", PURPLE, "IN MIXED-TEAM GROUPS"))
+    lw = 470
+    b.append(field(x + 18, y + 86, "Top problem (most dots):", x + lw, d))
+    for i in range(4):
+        b.append(field(x + 18, y + 124 + i * 34, f"Why {i + 1}?", x + lw, d))
+    b.append(field(x + 18, y + 270, "Root cause:", x + lw, d))
+    b.append(table(x + lw + 30, y + 86, [("Improvement", 260), ("Teams involved", 150), ("Owner", w - 36 - lw - 12 - 410)], 5, d, 40))
+
+    x, w = 1120, 536
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 6, "Follow Through", FOREST, "INTO THE NEXT PLANNING"))
+    for i, m in enumerate(["Improvements added to the next cross-team plan", "Each improvement has an owner",
+                           "Teams' own retros have the same themes?", "Progress checked at the cross-team sync"]):
+        b.append(checkbox(x + 18, y + 88 + i * 30, m, d, 11))
+    b.append(field(x + 18, y + 236, "We'll measure success by:", x + w - 18, d))
+    b.append(field(x + 18, y + 276, "Next cross-team retro:", x + w - 18, d))
+
+    b.append(footer("What got in the way between teams, not within them?",
+                    "What one change would help every team next period?", PROGRAM_TAG))
+    write_board("cross-team-retro-board", "Cross-Team Retro",
+                "A3 landscape cross-team retrospective: shared objectives and results, went well, cross-team problems, "
+                "ideas, problem solving for the top problem, and follow-through.", "\n".join(b))
 
 
 if __name__ == "__main__":
@@ -3090,3 +3485,9 @@ if __name__ == "__main__":
     build_ai_agreement()
     build_status_report()
     build_adkar()
+    build_portfolio_kanban()
+    build_delivery_metrics()
+    build_delegation()
+    build_coaching_conversation()
+    build_psych_safety()
+    build_cross_team_retro()

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio Kanban &amp; Investment Mix Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#64748B; --rule:#E2E8F0; --paper:#FFFFFF;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:13px;line-height:1.55;padding:24px 16px;}
+.page{max-width:820px;margin:0 auto 24px;background:var(--paper);box-shadow:0 12px 40px rgba(0,0,0,.22);}
+.masthead{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:28px 40px 26px;position:relative;}
+.badge{position:absolute;top:14px;right:24px;font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;}
+.masthead h1{font:400 40px/1.05 var(--serif);margin:14px 0 8px;}
+.masthead p{margin:0;color:#94A3B8;font-size:13.5px;}
+.masthead .tag{margin-top:8px;font:9px var(--mono);color:#64748B;letter-spacing:.06em;}
+.content{padding:28px 40px 36px;}
+h2{font:400 26px/1.15 var(--serif);margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;}
+h2 .n{font:600 11px var(--sans);color:#fff;background:var(--navy);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;flex:none;transform:translateY(-3px);}
+h3{font:600 13px var(--sans);margin:16px 0 6px;}
+p{margin:6px 0 10px;}
+.lede{font:italic 400 19px/1.35 var(--serif);color:var(--ink);border-left:4px solid var(--accent);padding:2px 0 2px 16px;margin:4px 0 20px;}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px;}
+.glance div{background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;}
+.glance b{display:block;font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+.glance span{font-weight:600;font-size:13px;}
+ul.check{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:28px;}
+ul.check li{padding-left:22px;position:relative;margin-bottom:5px;break-inside:avoid;}
+ul.check li::before{content:"";position:absolute;left:0;top:3px;width:11px;height:11px;border:1.4px solid var(--ink);border-radius:2px;opacity:.55;}
+table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:12.5px;}
+th{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--ink);text-align:left;padding:8px 10px;}
+th:first-child{border-left:5px solid var(--accent);}
+td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+td.t{font:500 11px var(--mono);white-space:nowrap;color:var(--muted);}
+td.a{font-weight:600;width:24%;}
+tr:nth-child(even) td{background:#F8FAFC;}
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;}
+.area{border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,.06);break-inside:avoid;}
+.area h4{margin:0;padding:7px 12px;color:#fff;font:600 12.5px var(--sans);}
+.area ul{margin:0;padding:8px 12px 10px 28px;font-size:12px;}
+.area li{margin-bottom:3px;}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.tip{border-top:2px solid var(--rule);padding-top:8px;}
+.tip b{display:block;margin-bottom:2px;}
+.flow{display:flex;align-items:stretch;gap:0;margin:14px 0 6px;flex-wrap:wrap;}
+.step{flex:1 1 0;min-width:120px;background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;position:relative;}
+.arrow{flex:none;align-self:center;color:var(--accent);font:600 16px var(--sans);padding:0 6px;}
+.step b{display:block;font-size:12.5px;}
+.step small{color:var(--muted);font-size:11px;line-height:1.4;display:block;margin-top:2px;}
+.step .k{font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--accent);text-transform:uppercase;}
+.callout{background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:12px 16px;margin:14px 0;}
+.callout b{color:#9A3412;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display:flex;justify-content:space-between;gap:16px;font:8px var(--mono);letter-spacing:.08em;color:#94A3B8;}
+@media (max-width:640px){
+  .masthead,.content{padding-left:20px;padding-right:20px;}
+  .glance{grid-template-columns:1fr 1fr;}
+  ul.check{columns:1;}
+  .areas,.tips,.two{grid-template-columns:1fr;}
+  .arrow{display:none;}
+  .flow{gap:8px;}
+  table{font-size:11.5px;}
+  td.t{white-space:normal;}
+}
+@media print{
+  @page{size:A4 portrait;margin:12mm 12mm 14mm;}
+  html,body{background:none;}
+  body{padding:0;font-size:11.5px;}
+  .page{box-shadow:none;max-width:none;margin:0;}
+  .masthead,th,.area h4,h2 .n{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  tr,.area,.tip,.step,.callout{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .pb{break-before:page;}
+}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.content a{color:#9A3412;}
+@media print{.boards{display:none;}}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.content a{color:#9A3412;}
+.example{border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:10px 0;}
+.example div{display:grid;grid-template-columns:30% 1fr;border-bottom:1px solid var(--rule);}
+.example div:last-child{border-bottom:none;}
+.example b{background:#F8FAFC;padding:7px 12px;font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.example span{padding:7px 12px;font-size:12.5px;}
+@media (max-width:640px){.example div{grid-template-columns:1fr;}}
+@media print{.boards{display:none;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>Portfolio Kanban &amp; Investment Mix Guide</h1>
+    <p>How to limit how many big initiatives run at once, decide with a lean business case, and balance investment.</p>
+    <div class="tag">Facilitator Run-Sheet · Lead the Organisation · Lean Portfolio Management</div>
+    <div class="boards"><a class="primary" href="portfolio-kanban-board.html">Open board →</a><a href="portfolio-kanban-board.svg">SVG →</a></div>
+  </header>
+  <div class="content">
+    <p class="lede">“What would we stop to make room for this?”</p>
+    <p>Most organisations start far more initiatives than they can finish, so everything moves slowly. A <b>portfolio Kanban</b> applies the same flow ideas as a team board to big initiatives: every idea enters a funnel, moves forward only when there's capacity, and each column has a <b>WIP limit</b> and exit criteria. A <b>lean business case</b> replaces long proposals with a testable hypothesis and an MVP, and the <b>investment mix</b> keeps new bets, growth, maintenance and tech debt in a deliberate balance. These ideas come from lean portfolio management and the Kanban Method.</p>
+    <div class="glance"><div><b>Duration</b><span>2 h to set up<br>60 min each review</span></div><div><b>Group</b><span>Portfolio leaders,<br>product heads, finance</span></div><div><b>Use when</b><span>Too much in flight,<br>or funding is annual</span></div><div><b>Output</b><span>A limited, visible<br>portfolio &amp; a mix</span></div></div>
+    <h2><span class="n">1</span>Before the session</h2>
+    <ul class="check"><li>Print the board at A1 or A3, or load the SVG as a digital background</li><li>List every current initiative and every proposal waiting for approval</li><li>Gather what's known about each: stage, cost so far, expected outcome</li><li>Bring the strategy, OKRs and any Value Metrics</li><li>Invite the people who can stop as well as start initiatives</li></ul>
+    <h2><span class="n">2</span>Agenda &amp; run-sheet</h2>
+    <table><thead><tr><th>Time</th><th>Section</th><th>Facilitator notes</th></tr></thead><tbody><tr><td class="t">0–25</td><td class="a">1 · Place initiatives</td><td>Put each initiative in the column that reflects reality, not plans. Count how many are in Implementing.</td></tr><tr><td class="t">25–45</td><td class="a">WIP limits & exits</td><td>Agree a WIP limit and exit criteria for each column. Most portfolios need to stop or pause some work to meet them.</td></tr><tr><td class="t">45–70</td><td class="a">2 · Lean Business Case</td><td>For one initiative in Analysing, complete the case: hypothesis, MVP, cost range, cost of delay and go/no-go.</td></tr><tr><td class="t">70–90</td><td class="a">3 · Investment Mix</td><td>Agree the target split by type of work, then estimate the actual split today.</td></tr><tr><td class="t">90–110</td><td class="a">Decide</td><td>Use the gaps to decide what to stop, pause or pull forward. Stop something to start something.</td></tr><tr><td class="t">110–120</td><td class="a">4 · Review</td><td>Agree the review cadence and decision forum.</td></tr></tbody></table>
+    <h2 class="pb"><span class="n">3</span>Making each part work</h2>
+    <p>Quality checks for the board.</p>
+    <div class="areas"><div class="area" style="background:#DBEAFE;color:#1E3A8A"><h4 style="background:#1E3A8A">1 · Portfolio Kanban</h4><ul><li>Reality, not the plan</li><li>WIP limits are respected</li><li>Exit criteria are clear</li></ul></div><div class="area" style="background:#EDE9FE;color:#581C87"><h4 style="background:#581C87">2 · Lean Business Case</h4><ul><li>A testable hypothesis</li><li>An MVP, not the full scope</li><li>Go/no-go agreed up front</li></ul></div><div class="area" style="background:#D1FAE5;color:#065F46"><h4 style="background:#065F46">3 · Investment Mix</h4><ul><li>Target agreed by leaders</li><li>Actual compared regularly</li></ul></div><div class="area" style="background:#FEF3C7;color:#92400E"><h4 style="background:#92400E">4 · Portfolio Review</h4><ul><li>A regular cadence</li><li>Outcomes checked, not just spend</li></ul></div></div>
+    <h2><span class="n">4</span>Facilitation tips</h2>
+    <div class="tips"><div class="tip"><b>Count what&#x27;s in flight</b>Seeing everything in one place is often enough to start the conversation about stopping.</div><div class="tip"><b>Stop to start</b>Make it a rule: a new initiative enters Implementing only when another leaves.</div><div class="tip"><b>Fund the MVP first</b>Approve the smallest test of the hypothesis, then decide again with evidence.</div><div class="tip"><b>Show cost of delay</b>Ranking by cost of delay, not by who shouts loudest, makes trade-offs visible.</div><div class="tip"><b>Protect the mix</b>Without a target, run-and-maintain and urgent work slowly squeeze out new bets and debt.</div><div class="tip"><b>Review often</b>Quarterly or monthly reviews beat annual funding cycles for adapting to what you learn.</div></div>
+    <div class="callout"><b>Common pitfalls:</b> no WIP limits, so everything stays in flight; business cases that are full project plans; approving everything; never stopping an initiative; tracking spend but not outcomes; an investment mix nobody checks.</div>
+    <h2><span class="n">5</span>After the session</h2>
+    <div class="two"><div><h3>Straight away</h3><p>Communicate what&#x27;s paused or stopped, and why.</p></div><div><h3>Each review</h3><p>Update the board, check WIP limits and the mix, and decide what moves.</p></div><div><h3>Per initiative</h3><p>When an MVP finishes, decide persevere, pivot or stop from its evidence.</p></div><div><h3>Quarterly</h3><p>Compare outcomes with Value Metrics and adjust the target mix.</p></div></div>
+    <h2><span class="n">6</span>How it fits the toolkit</h2>
+    <p>The leadership tools work together: <a href="facilitator-guide-value-metrics.html">Value Metrics</a> show whether investment is paying off, the <a href="facilitator-guide-portfolio-kanban.html">Portfolio Kanban</a> decides what to fund and limits how much runs at once, the <a href="facilitator-guide-delegation.html">Delegation Board</a> makes decision rights explicit, and <a href="facilitator-guide-adkar.html">ADKAR Change Readiness</a> helps people through the change. <a href="facilitator-guide-okr.html">OKRs</a> and <a href="facilitator-guide-team-topology.html">Team Topology Design</a> connect them to the teams.</p>
+    <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a></p>
+    <footer><span>“Which initiative, if it were the only one, would we finish first?”</span><span>Systems-Thinking · Continuous Improvement · Team-Led Change</span></footer>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Psychological Safety Check Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#64748B; --rule:#E2E8F0; --paper:#FFFFFF;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:13px;line-height:1.55;padding:24px 16px;}
+.page{max-width:820px;margin:0 auto 24px;background:var(--paper);box-shadow:0 12px 40px rgba(0,0,0,.22);}
+.masthead{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:28px 40px 26px;position:relative;}
+.badge{position:absolute;top:14px;right:24px;font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;}
+.masthead h1{font:400 40px/1.05 var(--serif);margin:14px 0 8px;}
+.masthead p{margin:0;color:#94A3B8;font-size:13.5px;}
+.masthead .tag{margin-top:8px;font:9px var(--mono);color:#64748B;letter-spacing:.06em;}
+.content{padding:28px 40px 36px;}
+h2{font:400 26px/1.15 var(--serif);margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;}
+h2 .n{font:600 11px var(--sans);color:#fff;background:var(--navy);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;flex:none;transform:translateY(-3px);}
+h3{font:600 13px var(--sans);margin:16px 0 6px;}
+p{margin:6px 0 10px;}
+.lede{font:italic 400 19px/1.35 var(--serif);color:var(--ink);border-left:4px solid var(--accent);padding:2px 0 2px 16px;margin:4px 0 20px;}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px;}
+.glance div{background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;}
+.glance b{display:block;font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+.glance span{font-weight:600;font-size:13px;}
+ul.check{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:28px;}
+ul.check li{padding-left:22px;position:relative;margin-bottom:5px;break-inside:avoid;}
+ul.check li::before{content:"";position:absolute;left:0;top:3px;width:11px;height:11px;border:1.4px solid var(--ink);border-radius:2px;opacity:.55;}
+table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:12.5px;}
+th{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--ink);text-align:left;padding:8px 10px;}
+th:first-child{border-left:5px solid var(--accent);}
+td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+td.t{font:500 11px var(--mono);white-space:nowrap;color:var(--muted);}
+td.a{font-weight:600;width:24%;}
+tr:nth-child(even) td{background:#F8FAFC;}
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;}
+.area{border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,.06);break-inside:avoid;}
+.area h4{margin:0;padding:7px 12px;color:#fff;font:600 12.5px var(--sans);}
+.area ul{margin:0;padding:8px 12px 10px 28px;font-size:12px;}
+.area li{margin-bottom:3px;}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.tip{border-top:2px solid var(--rule);padding-top:8px;}
+.tip b{display:block;margin-bottom:2px;}
+.flow{display:flex;align-items:stretch;gap:0;margin:14px 0 6px;flex-wrap:wrap;}
+.step{flex:1 1 0;min-width:120px;background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;position:relative;}
+.arrow{flex:none;align-self:center;color:var(--accent);font:600 16px var(--sans);padding:0 6px;}
+.step b{display:block;font-size:12.5px;}
+.step small{color:var(--muted);font-size:11px;line-height:1.4;display:block;margin-top:2px;}
+.step .k{font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--accent);text-transform:uppercase;}
+.callout{background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:12px 16px;margin:14px 0;}
+.callout b{color:#9A3412;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display:flex;justify-content:space-between;gap:16px;font:8px var(--mono);letter-spacing:.08em;color:#94A3B8;}
+@media (max-width:640px){
+  .masthead,.content{padding-left:20px;padding-right:20px;}
+  .glance{grid-template-columns:1fr 1fr;}
+  ul.check{columns:1;}
+  .areas,.tips,.two{grid-template-columns:1fr;}
+  .arrow{display:none;}
+  .flow{gap:8px;}
+  table{font-size:11.5px;}
+  td.t{white-space:normal;}
+}
+@media print{
+  @page{size:A4 portrait;margin:12mm 12mm 14mm;}
+  html,body{background:none;}
+  body{padding:0;font-size:11.5px;}
+  .page{box-shadow:none;max-width:none;margin:0;}
+  .masthead,th,.area h4,h2 .n{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  tr,.area,.tip,.step,.callout{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .pb{break-before:page;}
+}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.content a{color:#9A3412;}
+@media print{.boards{display:none;}}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:var(--accent);border-color:var(--accent);}
+.content a{color:#9A3412;}
+.example{border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:10px 0;}
+.example div{display:grid;grid-template-columns:30% 1fr;border-bottom:1px solid var(--rule);}
+.example div:last-child{border-bottom:none;}
+.example b{background:#F8FAFC;padding:7px 12px;font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.example span{padding:7px 12px;font-size:12.5px;}
+@media (max-width:640px){.example div{grid-template-columns:1fr;}}
+@media print{.boards{display:none;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>Psychological Safety Check Guide</h1>
+    <p>How to run an anonymous check of how safe it feels to speak up, and act on what the team learns.</p>
+    <div class="tag">Facilitator Run-Sheet · Diagnose · Inspired by Amy Edmondson&#x27;s Research</div>
+    <div class="boards"><a class="primary" href="psych-safety-board.html">Open board →</a><a href="psych-safety-board.svg">SVG →</a></div>
+  </header>
+  <div class="content">
+    <p class="lede">“What would make it easier to say what you really think here?”</p>
+    <p>Psychological safety is the shared belief that it's safe to take interpersonal risks: to speak up, ask for help, admit a mistake or disagree. Amy Edmondson's research, and Google's Project Aristotle, found it to be one of the strongest signs of an effective team. This board uses seven statements, written for this toolkit and inspired by Edmondson's work, with an <b>anonymous</b> five-point vote. It's a conversation starter, not a validated survey. What matters most is how the team and its leaders respond to the results.</p>
+    <div class="glance"><div><b>Duration</b><span>45–60 min</span></div><div><b>Group</b><span>One team; leaders<br>step out to vote</span></div><div><b>Use when</b><span>Quiet retros, conflict,<br>or every quarter</span></div><div><b>Output</b><span>A picture of safety<br>&amp; experiments</span></div></div>
+    <h2><span class="n">1</span>Before the session</h2>
+    <ul class="check"><li>Print the board at A3, or run the vote in an anonymous online form</li><li>Agree with leaders that they'll step out while the team votes, and won't ask who voted what</li><li>Decide in advance who sees the results; by default, only the team</li><li>Bring dot stickers or markers</li><li>Think about facilitation: someone outside the team's reporting line often helps</li></ul>
+    <h2><span class="n">2</span>Agenda &amp; run-sheet</h2>
+    <table><thead><tr><th>Time</th><th>Section</th><th>Facilitator notes</th></tr></thead><tbody><tr><td class="t">0–5</td><td class="a">Why</td><td>Explain the purpose and the rules: anonymous, no one explains their vote, results stay with the team.</td></tr><tr><td class="t">5–15</td><td class="a">1 · The Check</td><td>Everyone places one dot per statement, privately. Turn the board away, or use an online form.</td></tr><tr><td class="t">15–20</td><td class="a">2 · Results</td><td>Count agree and disagree for each statement. Note the change from last time.</td></tr><tr><td class="t">20–35</td><td class="a">3 · What We Notice</td><td>Discuss patterns: which statements are lowest, and what might explain it? Talk about situations, not people.</td></tr><tr><td class="t">35–45</td><td class="a">4 · What Leaders Can Do</td><td>If leaders rejoin, share the patterns and ask them to pick behaviours to practise.</td></tr><tr><td class="t">45–55</td><td class="a">5 · Our Experiments</td><td>Agree one or two small experiments and when to check them.</td></tr></tbody></table>
+    <h2 class="pb"><span class="n">3</span>Reading the results</h2>
+    <p>Look for patterns, not a single score.</p>
+    <div class="areas"><div class="area" style="background:#FEE2E2;color:#991B1B"><h4 style="background:#991B1B">Mistakes &amp; risk (1, 4)</h4><ul><li>Low here: people hide errors</li><li>Celebrate learning from failure</li></ul></div><div class="area" style="background:#EDE9FE;color:#581C87"><h4 style="background:#581C87">Speaking up (2, 7)</h4><ul><li>Low here: quiet meetings</li><li>Ask for dissent explicitly</li></ul></div><div class="area" style="background:#DBEAFE;color:#1E3A8A"><h4 style="background:#1E3A8A">Belonging (3, 6)</h4><ul><li>Low here: people feel outside</li><li>Check who&#x27;s not being heard</li></ul></div><div class="area" style="background:#D1FAE5;color:#065F46"><h4 style="background:#065F46">Help (5)</h4><ul><li>Low here: people struggle alone</li><li>Normalise asking</li></ul></div><div class="area" style="background:#F1F5F9;color:#334155"><h4 style="background:#334155">Change over time</h4><ul><li>Trend matters most</li><li>Re-run every 2–3 months</li></ul></div></div>
+    <h2><span class="n">4</span>Facilitation tips</h2>
+    <div class="tips"><div class="tip"><b>Anonymity is everything</b>If people suspect they can be identified, the results will look better than reality.</div><div class="tip"><b>Leaders model it</b>Safety grows when leaders admit mistakes, ask questions and thank people for bad news.</div><div class="tip"><b>Talk about situations</b>“When we discussed X, it felt risky to disagree” helps. Naming people doesn&#x27;t.</div><div class="tip"><b>Small experiments</b>Try one change, such as round-robin input or a devil&#x27;s advocate role, and check it.</div><div class="tip"><b>Don&#x27;t shoot the messenger</b>A low score is a gift of honesty. Thank the team for it.</div><div class="tip"><b>Not a performance measure</b>Never use the results to evaluate a manager or team.</div></div>
+    <div class="callout"><b>Common pitfalls:</b> leaders in the room during voting; asking who voted low; sharing results without the team&#x27;s agreement; treating it as a score to hit; no follow-up; running it once and never again.</div>
+    <h2><span class="n">5</span>After the session</h2>
+    <div class="two"><div><h3>Straight away</h3><p>Photograph the results, then clear the board so votes aren&#x27;t on display.</p></div><div><h3>Next few weeks</h3><p>Run the experiments and notice what changes in meetings.</p></div><div><h3>Each retro</h3><p>Check in: is it easier to speak up? What&#x27;s helping?</p></div><div><h3>Every 2–3 months</h3><p>Re-run the check and compare. Feed themes into the Team Health Check.</p></div></div>
+    <h2><span class="n">6</span>How it fits the toolkit</h2>
+    <p>Psychological safety underpins everything else. Use it alongside the <a href="facilitator-guide-team-health-check.html">Team Health Check</a>, run safer retros from the Retro Kit, agree norms in the <a href="facilitator-guide-team-charter.html">Team Charter</a>, and use the <a href="facilitator-guide-coaching-conversation.html">Coaching Conversation</a> canvas for one-to-one follow-up.</p>
+    <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a></p>
+    <footer><span>“When did someone last speak up, and what happened next?”</span><span>Systems-Thinking · Continuous Improvement · Team-Led Change</span></footer>
+  </div>
+</div>
+</body>
+</html>
