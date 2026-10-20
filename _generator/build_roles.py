@@ -71,10 +71,10 @@ TOOLS = {
     "adr": ("Architecture Decision Record", "adr-board.html", "facilitator-guide-adr.html", "adr-board"),
     "value": ("Value Metrics", "value-metrics-board.html", "facilitator-guide-value-metrics.html", "value-metrics"),
     "health": ("Team Health Check", "team-health-check-board.html", "facilitator-guide-team-health-check.html", "team-health-check"),
-    "marginal": ("Marginal Gains Workshop", "marginal-gains-workshop-board-sprint.html", "facilitator-guide-marginal-gains.html", "marginal-gains"),
+    "marginal": ("Marginal Gains Workshop", "marginal-gains-workshop-board.html", "facilitator-guide-marginal-gains.html", "marginal-gains"),
     "experiment": ("1% Experiment Canvas", "experiment-canvas.html", "facilitator-guide-experiment-canvas.html", "experiment-canvas"),
     "rootcause": ("Root Cause Analysis", "root-cause-board.html", "facilitator-guide-root-cause.html", "root-cause"),
-    "retro": ("Retrospective Kit", "retro-board-start-stop-continue-sprint.html", "facilitator-guide-retro-start-stop-continue.html", "retro-board-"),
+    "retro": ("Retrospective Kit", "retro-board-start-stop-continue.html", "facilitator-guide-retro-start-stop-continue.html", "retro-board-"),
 }
 
 # id, name, what you're there to do, start with (3), also useful

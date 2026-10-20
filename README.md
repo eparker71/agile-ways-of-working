@@ -22,14 +22,14 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 
 | Tool | Board files | Guide |
 |---|---|---|
-| Marginal Gains Workshop | `marginal-gains-workshop-board-sprint`, `-quarter` | `facilitator-guide-marginal-gains.html` |
+| Marginal Gains Workshop | `marginal-gains-workshop-board` | `facilitator-guide-marginal-gains.html` |
 | 1% Experiment Canvas | `experiment-canvas` | `facilitator-guide-experiment-canvas.html` |
 | Team Health Check | `team-health-check-board` | `facilitator-guide-team-health-check.html` |
 | Lean Coffee | `lean-coffee-board` | `facilitator-guide-lean-coffee.html` |
-| Retro: Start · Stop · Continue | `retro-board-start-stop-continue-sprint`, `-quarter` | `facilitator-guide-retro-start-stop-continue.html` |
-| Retro: The 4 Ls | `retro-board-4ls-sprint`, `-quarter` | `facilitator-guide-retro-4ls.html` |
-| Retro: Mad · Sad · Glad | `retro-board-mad-sad-glad-sprint`, `-quarter` | `facilitator-guide-retro-mad-sad-glad.html` |
-| Retro: Sailboat | `retro-board-sailboat-sprint`, `-quarter` | `facilitator-guide-retro-sailboat.html` |
+| Retro: Start · Stop · Continue | `retro-board-start-stop-continue` | `facilitator-guide-retro-start-stop-continue.html` |
+| Retro: The 4 Ls | `retro-board-4ls` | `facilitator-guide-retro-4ls.html` |
+| Retro: Mad · Sad · Glad | `retro-board-mad-sad-glad` | `facilitator-guide-retro-mad-sad-glad.html` |
+| Retro: Sailboat | `retro-board-sailboat` | `facilitator-guide-retro-sailboat.html` |
 | Epic Breakdown Canvas | `epic-breakdown-canvas` | `facilitator-guide-epic-breakdown-canvas.html` |
 | User Story Map | `story-map-board` | `facilitator-guide-story-map.html` |
 | Story Splitting poster | `story-splitting-poster` | `facilitator-guide-story-splitting.html` |
@@ -118,7 +118,7 @@ python3 _generator/build_glossary.py # glossary.html
 ```
 
 - `brand.py` holds the brand: accent and header colours, fonts and the credit line. All four generators read it, so rebranding is one edit.
-- `build_boards.py` holds the shared visual components (header, panels, sticky zones, action cards, footer). Retro boards are built for each horizon in the `("sprint", "quarter")` list at the bottom.
+- `build_boards.py` holds the shared visual components (header, panels, sticky zones, action cards, footer). Boards don't assume a cadence: where a period matters, they leave a blank to write in (sprint, month, quarter). The old `-sprint` / `-quarter` page names redirect to the single boards (`REDIRECTS`).
 - `build_guides.py` holds each guide's content in the `GUIDES` list. It copies its styling from `facilitator-guide-marginal-gains.html`, and writes a Word copy of each guide with `docx_writer.py` (standard library only).
 - `build_roles.py` holds the `ROLES` table: which tools suit each role. It writes `start-here-by-role.html`, tags each `index.html` card with `data-roles`, and builds the home page's sticky section menu (from the `<h2 id>` headings; short labels in `SHORT`), search box and role filter. Re-run it after adding a card or section.
 - `build_glossary.py` holds the `TERMS` list (definition, framework note, related tools). Links use the `TOOLS` table from `build_roles.py`.

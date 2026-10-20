@@ -22,7 +22,7 @@ Each script regenerates everything it owns (there's no per-file target). They're
 Never edit generated files directly; edit the script and re-run.
 
 - **Generated:** every board except Marginal Gains, every `facilitator-guide-*.html` except Marginal Gains, `start-here-by-role.html`, `glossary.html`.
-- **Hand-written:** `marginal-gains-workshop-board-{sprint,quarter}.{svg,html}`, `facilitator-guide-marginal-gains.html`, `scrum-master-agile-coach-cheat-sheet.html`, `jira-cheat-sheet.html`, `make-it-yours.html`, `index.html`, `LICENSE.md`.
+- **Hand-written:** `marginal-gains-workshop-board.{svg,html}`, `facilitator-guide-marginal-gains.html`, `scrum-master-agile-coach-cheat-sheet.html`, `jira-cheat-sheet.html`, `make-it-yours.html`, `index.html`, `LICENSE.md`.
 - **Brand:** colours, fonts and the credit line (© author · CC BY 4.0 · site) live in `_generator/brand.py` and are imported by all four generators. The hand-written pages carry the same values by hand, so update them too when rebranding.
 - `index.html` is hand-written **except** the regions `build_roles.py` maintains: the `<!-- roles:… -->` / `/* roles:css */` blocks and each card's `data-roles` attribute.
 - `build_guides.py` copies its CSS from `facilitator-guide-marginal-gains.html` at run time, so editing that file's `<style>` restyles every guide.
@@ -34,7 +34,7 @@ Never edit generated files directly; edit the script and re-run.
 - Primitives: `T` (text), `R`, `L`, `field` (label + write-on line), `lines`, `checkbox`, `sticky`, `para`.
 - Components: `header` (navy band to y≈138; right side takes `legend(...)` or `header_fields([...])`), `panel(x, y, w, h, num, title, color, note)`, `sticky_zone`, `table`, `quad_grid`, `kanban_cols`, `step_cards`, `footer`.
 - Colour pairs are `(dark, light)` tuples (`BLUE`, `EMERALD`, `PURPLE`, `ORANGE`, `RED`, `AMBER`, `FOREST`, `SKY`, `SLATE`); `ACCENT` is the orange brand colour.
-- Each tool is a `build_<name>()` function ending in `write_board(slug, title, desc, body)`, and is called from `__main__`. Retro boards are built per horizon from the `("sprint", "quarter")` loop.
+- Each tool is a `build_<name>()` function ending in `write_board(slug, title, desc, body)`, and is called from `__main__`. Boards are cadence-neutral: one board per tool, with a write-in blank (`strip_blank`) where the period matters. `write_redirects()` turns the old `retro-board-*-{sprint,quarter}.html` and `marginal-gains-workshop-board-{sprint,quarter}.html` names into redirect pages; it overwrites those files, so never reuse those names. Prefer "iteration" to "sprint" except on Scrum-named tools (Sprint Planning, Sprint Review).
 - Usual layout: content from y=148 to y=1060, 24px outer margin, 14px gaps; rows often split 808 / 397 / 397 or 1082 / 536 wide.
 - `write_board` adds a fixed "Facilitator guide →" link from `guide_for(slug)`. That function strips `-board`/`-poster` (`retro-board-X-{sprint,quarter}` → `facilitator-guide-retro-X.html`), so a guide's `slug` must match.
 

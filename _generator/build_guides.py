@@ -61,7 +61,7 @@ def retro_agenda(write_note, discuss_note, extra_first=None):
 
 
 RETRO_BEFORE = [
-    "Pick the <b>sprint</b> board (60 min) or <b>quarter</b> board (2 h) and print at A3, or load the SVG into Miro / Mural / FigJam",
+    "Print the board at A3, or load the SVG into Miro / Mural / FigJam. Write the period on the actions strip (sprint, month or quarter); allow about 60 min for a sprint and 2 h for a quarter",
     "Yellow and green stickies, markers, dot stickers (3 per person)",
     "Bring the actions from the last retro and their status",
     "Have data to hand: velocity or throughput, cycle time, escaped defects, any experiment results",
@@ -268,8 +268,7 @@ GUIDES = [
         title="Start · Stop · Continue Guide",
         subtitle="How to run the classic three-column retrospective, for a sprint or a quarter.",
         tag="Facilitator Run-Sheet · Retrospective Kit · Reflect, Learn, Adapt",
-        boards=[("Sprint board", "retro-board-start-stop-continue-sprint.html"), ("Quarter board", "retro-board-start-stop-continue-quarter.html"),
-                ("SVG · Sprint", "retro-board-start-stop-continue-sprint.svg"), ("SVG · Quarter", "retro-board-start-stop-continue-quarter.svg")],
+        boards=[("Open board", "retro-board-start-stop-continue.html"), ("SVG", "retro-board-start-stop-continue.svg")],
         lede="If we could only change one thing, what would it be?",
         intro=("A simple, action-oriented format: what should we start, stop, and keep doing? It works well for new teams, "
                "short timeboxes, and teams that want to focus on behaviour change rather than a long look back."),
@@ -293,8 +292,7 @@ GUIDES = [
         title="The 4 Ls Retrospective Guide",
         subtitle="How to run a Liked, Learned, Lacked, Longed For retrospective, for a sprint or a quarter.",
         tag="Facilitator Run-Sheet · Retrospective Kit · Reflect, Learn, Adapt",
-        boards=[("Sprint board", "retro-board-4ls-sprint.html"), ("Quarter board", "retro-board-4ls-quarter.html"),
-                ("SVG · Sprint", "retro-board-4ls-sprint.svg"), ("SVG · Quarter", "retro-board-4ls-quarter.svg")],
+        boards=[("Open board", "retro-board-4ls.html"), ("SVG", "retro-board-4ls.svg")],
         lede="What did we learn that we don't want to forget?",
         intro=("The 4 Ls balances positives and gaps, and puts learning in the spotlight. It suits the end of a project, a release "
                "or a quarter, and teams that want a reflective conversation rather than only listing problems."),
@@ -319,8 +317,7 @@ GUIDES = [
         title="Mad · Sad · Glad Guide",
         subtitle="How to run an emotion-focused retrospective, for a sprint or a quarter.",
         tag="Facilitator Run-Sheet · Retrospective Kit · Reflect, Learn, Adapt",
-        boards=[("Sprint board", "retro-board-mad-sad-glad-sprint.html"), ("Quarter board", "retro-board-mad-sad-glad-quarter.html"),
-                ("SVG · Sprint", "retro-board-mad-sad-glad-sprint.svg"), ("SVG · Quarter", "retro-board-mad-sad-glad-quarter.svg")],
+        boards=[("Open board", "retro-board-mad-sad-glad.html"), ("SVG", "retro-board-mad-sad-glad.svg")],
         lede="What's behind the strongest feelings on this board?",
         intro=("Mad · Sad · Glad surfaces how the work <em>felt</em>, which often reveals issues that a process-focused retro misses. "
                "It suits teams after a stressful period, teams where morale is uncertain, and anyone wanting to build empathy. "
@@ -348,8 +345,7 @@ GUIDES = [
         title="Sailboat Retrospective Guide",
         subtitle="How to run a visual retrospective about goals, help, impediments and risks, for a sprint or a quarter.",
         tag="Facilitator Run-Sheet · Retrospective Kit · Reflect, Learn, Adapt",
-        boards=[("Sprint board", "retro-board-sailboat-sprint.html"), ("Quarter board", "retro-board-sailboat-quarter.html"),
-                ("SVG · Sprint", "retro-board-sailboat-sprint.svg"), ("SVG · Quarter", "retro-board-sailboat-quarter.svg")],
+        boards=[("Open board", "retro-board-sailboat.html"), ("SVG", "retro-board-sailboat.svg")],
         lede="Which anchor, if cut, would let us sail fastest?",
         intro=("The sailboat metaphor helps teams look both back and forward: the <b>island</b> is our goal, the <b>wind</b> is what "
                "pushes us forward, <b>anchors</b> are what slow us down, and <b>rocks</b> are the risks ahead. Including risks "

@@ -211,6 +211,17 @@ def strip(y, label, x=24, w=1632):
             T(x + w / 2, y + 21, label, 11, "white", weight=600, anchor="middle", ls=".12em"))
 
 
+def strip_blank(y, label, hint="sprint, month, quarter…", x=24, w=1632):
+    """Dark strip with a label and a write-in line, e.g. 'ACTIONS FOR OUR NEXT ______'."""
+    lw = len(label) * 11 * 0.68 + 16
+    total = lw + 220
+    sx = x + (w - total) / 2
+    return "".join([R(x, y, w, 32, INK, 6), R(x, y, 6, 32, ACCENT, 3),
+                    T(sx, y + 21, label, 11, "white", weight=600, ls=".12em"),
+                    L(sx + lw, y + 24, sx + lw + 200, y + 24, "#94A3B8", 1.2),
+                    T(sx + lw + 100, y + 17, hint, 8.5, "#94A3B8", italic=True, anchor="middle", op=".8")])
+
+
 def card(x, y, w, h, title, accent, fields_):
     out = [R(x, y, w, h, "white", 8, f' stroke="{RULE}" stroke-width="1.5" filter="url(#fsm)"'),
            R(x, y, 5, h, accent, 3),
@@ -242,7 +253,7 @@ def footer(left, right, tag=FOOT_TAG):
 
 def guide_for(slug):
     """Facilitator guide that documents a board slug."""
-    m = re.match(r"retro-board-(.+)-(sprint|quarter)$", slug)
+    m = re.match(r"retro-board-(.+?)(?:-(?:sprint|quarter))?$", slug)
     if m:
         return f"facilitator-guide-retro-{m.group(1)}.html"
     return f"facilitator-guide-{slug.removesuffix('-board').removesuffix('-poster')}.html"
@@ -288,6 +299,23 @@ svg{{display:block;max-width:100%;height:auto;box-shadow:0 12px 40px rgba(0,0,0,
     print("wrote", slug)
 
 
+REDIRECTS = {f"{old}-{h}": old for old in ["retro-board-start-stop-continue", "retro-board-4ls", "retro-board-mad-sad-glad",
+                                          "retro-board-sailboat", "marginal-gains-workshop-board"] for h in ("sprint", "quarter")}
+
+
+def write_redirects():
+    """Old -sprint / -quarter pages now point to the single board, so existing links keep working."""
+    for old, new in REDIRECTS.items():
+        (OUT / f"{old}.html").write_text(
+            f'<!DOCTYPE html>\n<html lang="en"><head><meta charset="UTF-8"><title>Moved</title>'
+            f'<meta http-equiv="refresh" content="0; url={new}.html"><link rel="canonical" href="{new}.html"></head>'
+            f'<body><p>This board has moved to <a href="{new}.html">{new}.html</a>.</p></body></html>\n', encoding="utf-8")
+        old_svg = OUT / f"{old}.svg"
+        if old_svg.exists():
+            old_svg.unlink()
+    print("wrote", len(REDIRECTS), "redirects")
+
+
 RETRO_LEGEND = [("sticky", YELLOW, "Yellow Sticky = What Happened"),
                 ("sticky", GREEN, "Green Sticky = Idea / Action"),
                 ("dot", ACCENT, "Dot = Vote (3 per person)")]
@@ -296,7 +324,7 @@ RETRO_TAG = "Retrospective Kit · Team Reflection · Continuous Improvement"
 
 # ---------------------------------------------------------------- retro: column formats
 
-def retro_columns(slug, title, subtitle, cols, foot_left, foot_right, horizon):
+def retro_columns(slug, title, subtitle, cols, foot_left, foot_right):
     n = len(cols)
     gap = 14
     cw = (1632 - gap * (n - 1)) / n
@@ -311,18 +339,18 @@ def retro_columns(slug, title, subtitle, cols, foot_left, foot_right, horizon):
         zy = 264 + len(prompts) * 18 + 14
         body.append(dashed(x + 10, x + cw - 10, zy, dark))
         body.append(sticky_zone(x + 10, zy + 6, cw - 20, 852 - 12 - zy - 6, dark, chips=(YELLOW, GREEN)))
-    body.append(strip(866, f"ACTIONS WE'LL TAKE INTO THE NEXT {horizon.upper()}"))
+    body.append(strip_blank(866, "ACTIONS WE'LL TAKE INTO OUR NEXT"))
     body.append(three_cards(906, "Action", ["Owner:", "Done when:"]))
     body.append(footer(foot_left, foot_right, RETRO_TAG))
     desc = (f"A3 landscape retrospective board: {', '.join(c[0] for c in cols)}. "
-            f"Sticky-note zones per column and three action slots for the next {horizon}.")
-    write_board(f"{slug}-{horizon}", title, desc, "\n".join(body))
+            "Sticky-note zones per column and three action slots for the next sprint, month or quarter.")
+    write_board(slug, title, desc, "\n".join(body))
 
 
-def build_retros(h):
+def build_retros():
     retro_columns(
         "retro-board-start-stop-continue", "Start · Stop · Continue",
-        f"Looking back at the last {h}, what should we change about how we work together?",
+        "Looking back at recent work, what should we change about how we work together?",
         [("Start", EMERALD, "What should we start doing?",
           ["New practices worth trying", "Experiments we keep putting off", "Things other teams do well"]),
          ("Stop", RED, "What should we stop doing?",
@@ -330,11 +358,11 @@ def build_retros(h):
          ("Continue", BLUE, "What should we keep doing?",
           ["What's working well", "Practices worth protecting", "Wins worth amplifying"])],
         "If we could only change one thing, what would it be?",
-        "What's the smallest step we can take on it tomorrow?", h)
+        "What's the smallest step we can take on it tomorrow?")
 
     retro_columns(
         "retro-board-4ls", "The 4 Ls Retrospective",
-        f"Reflect on the last {h} through four lenses: what we liked, learned, lacked and longed for.",
+        "Reflect on recent work through four lenses: what we liked, learned, lacked and longed for.",
         [("Liked", FOREST, "What did we enjoy?",
           ["Moments of good collaboration", "Things that went better than expected"]),
          ("Learned", BLUE, "What did we discover?",
@@ -344,11 +372,11 @@ def build_retros(h):
          ("Longed For", PURPLE, "What do we wish we had?",
           ["Things that would make work easier", "Changes we'd love to see"])],
         "What did we learn that we don't want to forget?",
-        f"Which ‘lacked’ or ‘longed for’ could we fix by 1% next {h}?", h)
+        "Which ‘lacked’ or ‘longed for’ could we fix by 1% next time?")
 
     retro_columns(
         "retro-board-mad-sad-glad", "Mad · Sad · Glad",
-        f"How did the last {h} feel? Surface the emotions behind the work, then decide what to act on.",
+        "How has work felt lately? Surface the emotions behind it, then decide what to act on.",
         [("Mad", RED, "What frustrated us?",
           ["Blockers and recurring problems", "Things outside our control", "Moments we felt stuck"]),
          ("Sad", SKY, "What disappointed us?",
@@ -356,12 +384,12 @@ def build_retros(h):
          ("Glad", EMERALD, "What made us happy?",
           ["Wins and achievements", "People who helped us", "Moments we were proud of"])],
         "What's behind the strongest feelings on this board?",
-        f"What would turn one ‘mad’ into a ‘glad’ next {h}?", h)
+        "What would turn one ‘mad’ into a ‘glad’ next time?")
 
 
 # ---------------------------------------------------------------- retro: sailboat
 
-def build_sailboat(horizon):
+def build_sailboat():
     x0, y0, w, h = 24, 148, 1632, 704
     water = 540
     b = [header("Sailboat Retrospective",
@@ -428,17 +456,17 @@ def build_sailboat(horizon):
     b.append(zone(44, 168, 470, 352, 1, "WIND", "What pushes us forward?",
                   ["Strengths, support and momentum", "What's helping us go faster?"], FOREST[0]))
     b.append(zone(1100, 168, 536, 170, 2, "ISLAND", "Where are we heading?",
-                  [f"Our goal for the next {horizon}"], EMERALD[0]))
+                  ["Our goal for the next sprint, month or quarter"], EMERALD[0]))
     b.append(zone(44, 572, 600, 264, 3, "ANCHORS", "What's holding us back?",
                   ["Impediments, waste, slow handoffs"], RED[0]))
     b.append(zone(1000, 572, 636, 264, 4, "ROCKS", "What risks lie ahead?",
                   ["Dependencies, unknowns, deadlines"], AMBER[0]))
 
-    b.append(strip(866, f"ACTIONS WE'LL TAKE INTO THE NEXT {horizon.upper()}"))
+    b.append(strip_blank(866, "ACTIONS WE'LL TAKE INTO OUR NEXT"))
     b.append(three_cards(906, "Action", ["Owner:", "Done when:"]))
     b.append(footer("Which anchor, if cut, would let us sail fastest?",
-                    f"What can we do next {horizon} to steer clear of the rocks?", RETRO_TAG))
-    write_board(f"retro-board-sailboat-{horizon}", "Sailboat Retrospective",
+                    "What can we do next time to steer clear of the rocks?", RETRO_TAG))
+    write_board("retro-board-sailboat", "Sailboat Retrospective",
                 "A3 landscape sailboat retrospective: Island (goal), Wind (what helps), Anchors (what slows us) "
                 "and Rocks (risks), with sticky-note zones and three action slots.", "\n".join(b))
 
@@ -602,7 +630,7 @@ def build_experiment_canvas():
     for i, lab in enumerate(["Owner:", "Supporters:", "Start date:", "Mid-point check-in:", "Review date:"]):
         b.append(field(x + 18, y + 84 + i * 36, lab, x + w - 18, ORANGE[0]))
     b.append(T(x + 18, y + 278, "Timebox:", 11, ORANGE[0], weight=600))
-    for i, lab in enumerate(["1 sprint", "2 sprints", "1 quarter"]):
+    for i, lab in enumerate(["1 iteration", "2 iterations", "1 quarter"]):
         b.append(checkbox(x + 92 + i * 96, y + 278, lab, ORANGE[0], 10.5))
 
     # 6 risks
@@ -811,7 +839,7 @@ def build_epic_breakdown():
     d = FOREST[0]
     b.append(panel(x, y, w, 284, 5, "First Stories", FOREST, "FROM THE MVP FEATURES"))
     b.append(bullets(x + 22, y + 74, ["Slice vertically: each story is usable end-to-end",
-                                      "Too big for a sprint? Use the Story Splitting poster"], d))
+                                      "Too big for an iteration? Use the Story Splitting poster"], d))
     b.append(dashed(x + 10, x + w - 10, y + 104, d))
     b.append(sticky_zone(x + 10, y + 110, w - 20, 162, d, chips=(YELLOW,)))
 
@@ -932,7 +960,7 @@ def build_story_splitting():
         para(1356, 74, ["“As a shopper, I want to check out", "my basket so that I receive", "my order.”"], 15, "#CBD5E1", 19, font=SERIF, italic=True),
     ])
     b = [header("Story Splitting",
-                "When a story is too big to finish in a sprint, split it into thin, vertical slices that each deliver value.",
+                "When a story is too big to finish in an iteration, split it into thin, vertical slices that each deliver value.",
                 "Break Down Work · INVEST · SPIDR · Story Splitting Patterns · Vertical Slicing", right)]
 
     # INVEST row
@@ -940,7 +968,7 @@ def build_story_splitting():
               ("N", "Negotiable", ["Is it a conversation,", "not a contract?"]),
               ("V", "Valuable", ["Does a user or customer", "get value from it?"]),
               ("E", "Estimable", ["Do we understand it", "well enough to size it?"]),
-              ("S", "Small", ["Can we finish it in a", "few days, well within a sprint?"]),
+              ("S", "Small", ["Can we finish it in a", "few days, well within an iteration?"]),
               ("T", "Testable", ["Do we know how to", "prove it's done?"])]
     iw = (1632 - 5 * 12) / 6
     for i, (letter, word, q) in enumerate(invest):
@@ -1012,7 +1040,7 @@ def build_story_splitting():
     d = EMERALD[0]
     b.append(panel(x, y, w, 308, None, "Is It a Good Split?", EMERALD))
     b.append(T(x + 22, y + 84, "AFTER SPLITTING, CHECK EACH SLICE", 9, d, MONO, weight=600, ls=".1em"))
-    b.append(bullets(x + 26, y + 106, ["Delivers value or learning by itself", "Fits comfortably in a sprint: aim for several per sprint",
+    b.append(bullets(x + 26, y + 106, ["Delivers value or learning by itself", "Fits comfortably in an iteration: aim for several per iteration",
                                        "Has clear acceptance criteria", "The team can estimate it", "Still passes INVEST"], d, 22))
     b.append(T(x + 420, y + 84, "CHOOSE THE SPLIT THAT…", 9, d, MONO, weight=600, ls=".1em"))
     b.append(bullets(x + 424, y + 106, ["Lets you deprioritise or drop a slice", "Makes slices of roughly equal size",
@@ -2026,7 +2054,7 @@ def build_buffering_swarming():
     d = RED[0]
     b.append(panel(x, y, w, h, 4, "Swarm Triggers", RED, "WHEN WE STOP STARTING AND SWARM"))
     rules = [("An item is blocked for more than", "hours"), ("An item is older than", "days (our 85% SLE)"),
-             ("A sprint-goal item is at risk with", "days left"), ("A production incident at severity", "or higher"),
+             ("An item the goal depends on is at risk with", "days left"), ("A production incident at severity", "or higher"),
              ("A column is at its WIP limit", "")]
     for i, (a, c) in enumerate(rules):
         b.append(rule_line(x + 18, y + 90 + i * 34, a, c, x + w - 18, d))
@@ -4138,9 +4166,9 @@ def build_adr():
 
 
 if __name__ == "__main__":
-    for horizon in ("sprint", "quarter"):
-        build_retros(horizon)
-        build_sailboat(horizon)
+    build_retros()
+    build_sailboat()
+    write_redirects()
     build_health_check()
     build_experiment_canvas()
     build_lean_coffee()
