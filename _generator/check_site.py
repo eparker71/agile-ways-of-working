@@ -106,9 +106,14 @@ def find_chrome():
     return None
 
 
-OVERFLOW_JS = """<script>setTimeout(function(){var r=[];document.querySelectorAll('.panel,.pb,.sheet,.body').forEach(function(e){
+OVERFLOW_JS = """<script>
+// Measure only once the web fonts have loaded: the fallback font is wider and causes false overflows.
+function measure(){var r=[];document.querySelectorAll('.panel,.pb,.sheet,.body').forEach(function(e){
 if(e.scrollHeight>e.clientHeight+1||e.scrollWidth>e.clientWidth+1){var h=e.querySelector('h2');r.push((h?h.textContent:e.className)+' by '+(e.scrollHeight-e.clientHeight)+'px');}});
-var o=document.createElement('pre');o.id='overflow-result';o.textContent='OVERFLOW='+r.join(' | ');document.body.appendChild(o);},500)</script></body>"""
+var o=document.createElement('pre');o.id='overflow-result';o.textContent='FONTS='+(document.fonts.check('12px Geist')?'ok':'missing')+';OVERFLOW='+r.join(' | ');document.body.appendChild(o);}
+var done=false;function go(){if(!done){done=true;setTimeout(measure,300);}}
+document.fonts.ready.then(go);setTimeout(go,15000);
+</script></body>"""
 
 
 def check_cheat_sheets():
@@ -116,7 +121,7 @@ def check_cheat_sheets():
     if not chrome:
         warnings.append("Chrome not found: skipped the cheat sheet overflow and page-count checks")
         return
-    base = [chrome, "--headless=new", "--disable-gpu", "--no-sandbox", "--virtual-time-budget=6000"]
+    base = [chrome, "--headless=new", "--disable-gpu", "--no-sandbox", "--virtual-time-budget=20000"]
     for name, pages_expected in (("scrum-master-agile-coach-cheat-sheet.html", 2), ("jira-cheat-sheet.html", 1)):
         src = (OUT / name).read_text(encoding="utf-8")
         with tempfile.NamedTemporaryFile("w", suffix=".html", dir=OUT, delete=False, encoding="utf-8") as t:
@@ -125,11 +130,13 @@ def check_cheat_sheets():
         try:
             dom = subprocess.run(base + ["--window-size=1660,1200", "--dump-dom", f"file://{tmp}"],
                                  capture_output=True, text=True, timeout=120).stdout
-            m = re.search(r'<pre id="overflow-result">OVERFLOW=([^<]*)</pre>', dom)
+            m = re.search(r'<pre id="overflow-result">FONTS=(\w+);OVERFLOW=([^<]*)</pre>', dom)
             if m is None:
                 warnings.append(f"{name}: couldn't measure overflow")
-            elif m.group(1).strip():
-                fail(f"{name}: panels overflow: {m.group(1).strip()}")
+            elif m.group(1) != "ok":
+                warnings.append(f"{name}: web fonts didn't load, so overflow wasn't checked")
+            elif m.group(2).strip():
+                fail(f"{name}: panels overflow: {m.group(2).strip()}")
             pdf = tmp + ".pdf"
             subprocess.run(base + ["--no-pdf-header-footer", f"--print-to-pdf={pdf}", f"file://{OUT / name}"],
                            capture_output=True, timeout=120)
