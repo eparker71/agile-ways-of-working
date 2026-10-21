@@ -4261,6 +4261,57 @@ GUIDES += [
                  "Incident Review</a>."),
         foot="“Which cause, if we removed it, would stop the problem coming back?”",
     ),
+    dict(
+        slug="waste-walk",
+        title="Waste Walk Guide",
+        subtitle="How to go and see the work, spot the eight wastes in it, and remove the one that costs the most.",
+        tag="Facilitator Run-Sheet · Manage Flow · Lean · Go and See",
+        boards=[("Open board", "waste-walk-board.html"), ("SVG", "waste-walk-board.svg")],
+        lede="Where does work wait, and what are people doing while it waits?",
+        intro=("A <b>waste walk</b> is a lean habit: instead of discussing a process in a meeting room, you go where the work "
+               "happens (the <i>gemba</i>) and watch it, looking for the <b>eight wastes</b>: hand-offs, partly done work, task "
+               "switching, waiting, features nobody uses, over-processing, defects and unused skills. In knowledge work the "
+               "&ldquo;walk&rdquo; might be following one piece of work through its tools and queues, sitting with the people who "
+               "do it, or watching a hand-off happen. The board collects what you see under each waste, adds up roughly what each "
+               "costs per week, and ends with one change to try. The <a href=\"facilitator-guide-lean-principles.html\">Lean "
+               "Principles</a> poster explains the eight wastes."),
+        glance=[("Duration", "60–90 min walk,<br>30 min to sort"), ("Group", "2–5 walkers, with<br>the people doing the work"),
+                ("Use when", "Work feels slow,<br>or before a VSM"), ("Output", "Wastes, their cost,<br>&amp; one change")],
+        before=["Print the board at A3 or 11×17, or share it on screen",
+                "Pick one process with a clear start and end, such as “request to release” or “new joiner to first commit”",
+                "Ask the people who do the work if you can watch, and explain it's about the process, not them",
+                "Bring pink stickies and pens for every walker"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–10", "Set up the walk", "Agree the process, start and end. Read the ground rules aloud."),
+                ("10–70", "Go and see", "Follow real work. Ask “what happens next?” and “what are you waiting for?” One sticky per waste."),
+                ("70–85", "Sort", "Put each sticky under its waste. Tally how often each was seen."),
+                ("85–95", "Cost it", "Roughly how many hours a week does each waste cost? Rank by cost, not count."),
+                ("95–110", "Remove one", "Pick the costliest waste you can change. Agree a countermeasure, an owner and a check date.")],
+        sections_title="What to look for",
+        sections_intro="In knowledge work, most waste hides between people and tools, not inside tasks.",
+        sections=[("Waiting", RED, ["Approvals, answers, environments", "Usually the biggest"]),
+                  ("Partly done work", ORANGE, ["Started, not finished", "Hidden in long queues"]),
+                  ("Hand-offs", AMBER, ["Each one loses knowledge", "and adds a wait"]),
+                  ("Task switching", PURPLE, ["Too much on the go", "No time to finish"]),
+                  ("Rework", SLATE, ["Defects and misunderstandings", "Found late, fixed twice"])],
+        tips=[("Watch, don't audit", "People will show you the real process only if they trust it's not about them."),
+              ("Follow the work", "Pick one item and trace it end to end; it shows waits that no one person sees."),
+              ("Ask about waiting", "“What are you waiting for?” finds more waste than “What are you doing?”"),
+              ("Facts, not names", "Write what happened, never who did it."),
+              ("Cost beats count", "One long wait can cost more than twenty small hand-offs. Rank by hours lost."),
+              ("Remove one thing", "A single change that sticks beats a list of twenty that don't.")],
+        pitfalls=("walking the official process instead of the real one; blaming individuals; collecting wastes and doing nothing; "
+                  "trying to remove everything at once; walking other teams' work but not your own."),
+        after=[("This week", "Start the countermeasure, and make the waste visible on the team board."),
+               ("At the check date", "Did the waste shrink? Keep the change, adjust it, or try another."),
+               ("Next quarter", "Walk the same process again and compare."),
+               ("Go deeper", "Map the whole flow with the Value Stream Map, or take a stubborn waste through an A3.")],
+        toolkit=("Read the eight wastes on the <a href=\"facilitator-guide-lean-principles.html\">Lean Principles</a> poster first. "
+                 "Map the whole flow and its waits with the <a href=\"facilitator-guide-value-stream-map.html\">Value Stream Map</a>, "
+                 "take a stubborn waste through <a href=\"facilitator-guide-a3-problem-solving.html\">A3 Problem-Solving</a>, and "
+                 "track blocked time with <a href=\"facilitator-guide-blocker-clustering.html\">Blocker Clustering</a>."),
+        foot="“Which waste, if we removed it, would give us the most time back?”",
+    ),
 ]
 
 

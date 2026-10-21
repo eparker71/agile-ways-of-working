@@ -6096,7 +6096,7 @@ LEAN_PRINCIPLES = [
     ("Value", BLUE, "Define value from the customer's point of view: what they would pay for, or miss if it were gone.",
      "Who is this for, and what will change for them?", ["Product Vision Board", "Persona & Journey Map"]),
     ("Value stream", PURPLE, "Map every step from request to customer, and question each step that adds no value.",
-     "Which steps would the customer pay for?", ["Value Stream Map"]),
+     "Which steps would the customer pay for?", ["Value Stream Map", "Waste Walk"]),
     ("Flow", SKY, "Make work move smoothly in small batches, without waiting, hand-offs or interruptions.",
      "Where does work wait, and why?", ["Kanban Board Design", "Ageing WIP & SLE"]),
     ("Pull", EMERALD, "Start new work only when there is capacity and a real need, not because a plan said so.",
@@ -6195,6 +6195,63 @@ def build_lean_principles():
                 "A3 landscape reference poster: the five lean principles (value, value stream, flow, pull, perfection) with a "
                 "question and toolkit tools for each, the eight wastes in a factory and in knowledge work, the two pillars, "
                 "and four lean habits.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- waste walk
+
+def build_waste_walk():
+    b = [header("Waste Walk",
+                "Go and see how work really flows, spot the eight wastes, and pick the one worth removing first.",
+                "Manage Flow · Lean · Go and See (Gemba) · The Eight Wastes",
+                header_fields(["Process / team", "Date"]))]
+
+    x, y, w, h = 24, 148, 1632, 150
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 1, "The Walk", SLATE, "GO WHERE THE WORK HAPPENS"))
+    for i, f in enumerate(["Process we're walking:", "Walkers:"]):
+        b.append(field(x + 18, y + 86 + i * 36, f, x + 760, d))
+    for i, f in enumerate(["Starts when:", "Ends when:"]):
+        b.append(field(x + 790, y + 86 + i * 36, f, x + 1180, d))
+    for i, m in enumerate(["Watch real work, not the official process", "Ask, don't judge", "Note facts, not names"]):
+        b.append(checkbox(x + 1210, y + 78 + i * 26, m, d, 10.5))
+
+    y, h = 312, 470
+    d = RED[0]
+    b.append(panel(x, y, w, h, 2, "Waste Spotted", RED, "ONE STICKY PER EXAMPLE · UNDER THE WASTE IT BELONGS TO"))
+    gap = 8
+    cw = (w - 20 - 7 * gap) / 8
+    for i, (waste, _fac, know) in enumerate(LEAN_WASTES):
+        cx = x + 10 + i * (cw + gap)
+        b.append(R(cx, y + 64, cw, h - 78, "white", 6, f' fill-opacity=".55" stroke="{d}" stroke-opacity=".2"'))
+        # one <text> per waste so the whiteboard prompt keeps each name with its meaning
+        kl = _wrap(know, cw - 24, 9.5)
+        b.append(f'<text x="{cx + 12:g}" y="{y + 88}" font-family="{SANS}" fill="{d}">'
+                 f'<tspan font-size="12.5" font-weight="600">{escape(waste)}</tspan><tspan fill-opacity="0">: </tspan>'
+                 + "".join(f'<tspan x="{cx + 12:g}" dy="{18 if j == 0 else 13}" font-size="9.5" fill-opacity=".88">'
+                           f'{escape(ln)}{" " if j < len(kl) - 1 else ""}</tspan>' for j, ln in enumerate(kl)) + "</text>")
+        b.append(sticky_zone(cx + 6, y + 146, cw - 12, h - 222, d, "Examples", chips=(PINK_ST,)))
+        b.append(field(cx + 12, y + h - 50, "Seen:", cx + cw - 12, d, 10))
+        b.append(field(cx + 12, y + h - 24, "Hours / week:", cx + cw - 12, d, 10))
+
+    y, h = 796, 264
+    x, w = 24, 808
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 3, "Biggest Wastes", PURPLE, "BY COST, NOT BY COUNT"))
+    b.append(table(x + 18, y + 84, [("Waste", 160), ("Where we saw it", 280), ("Cost per week", 130), ("Likely cause", w - 36 - 570)], 4, d, 36))
+
+    x, w = 846, 810
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 4, "Remove One", FOREST, "ONE CHANGE AT A TIME"))
+    for i, f in enumerate(["Waste to tackle first:", "Countermeasure:", "Owner:", "Check on:"]):
+        b.append(field(x + 18, y + 86 + i * 34, f, x + w - 18, d))
+    b.append(checkbox(x + 18, y + 230, "Stubborn or cross-team? Work it through on an A3 Problem-Solving board", d, 10.5))
+
+    b.append(footer("Where does work wait, and what are people doing while it waits?",
+                    "Which waste, if we removed it, would give us the most time back?",
+                    "Manage Flow · Lean · Go and See · Remove Waste"))
+    write_board("waste-walk-board", "Waste Walk",
+                "A3 landscape waste walk board: scope and ground rules for going to see the work, a column for each of the "
+                "eight wastes with examples and their weekly cost, the biggest wastes, and one change to remove.", "\n".join(b))
 
 
 # ---------------------------------------------------------------- A3 problem-solving
@@ -8719,6 +8776,7 @@ if __name__ == "__main__":
     build_event_storming()
     build_cynefin()
     build_lean_principles()
+    build_waste_walk()
     build_a3_problem_solving()
     for make in EXAMPLES.values():   # worked examples read the blank boards, so they run last
         make()

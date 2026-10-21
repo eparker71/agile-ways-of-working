@@ -43,6 +43,7 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | RACI & Decision Log | `raci-decision-log-board` | `facilitator-guide-raci-decision-log.html` |
 | Value Stream Map | `value-stream-map-board` | `facilitator-guide-value-stream-map.html` |
 | Lean Principles poster | `lean-principles-poster` | `facilitator-guide-lean-principles.html` |
+| Waste Walk | `waste-walk-board` | `facilitator-guide-waste-walk.html` |
 | A3 Problem-Solving | `a3-problem-solving-board` | `facilitator-guide-a3-problem-solving.html` |
 | Architecture Decision Record | `adr-board` | `facilitator-guide-adr.html` |
 | Event Storming | `event-storming-board` | `facilitator-guide-event-storming.html` |
@@ -121,7 +122,7 @@ The home page groups tools by what you're trying to do. No one framework is assu
 | Decide what to build | Product Vision Board, Persona & Journey Map, Opportunity Solution Tree, Impact Map, Prioritisation Board, Now · Next · Later Roadmap, Product Bet Canvas, Design Sprint |
 | Break down work | Epic Breakdown Canvas, User Story Map, Story Splitting, Example Mapping, Backlog Item Anatomy, Estimation |
 | Run events & iterations | Events & Cadences poster, Sprint Planning, Daily Sync, Backlog Refinement, Sprint Review |
-| Manage flow | Lean Principles, Kanban Board Design, Kanban Cadences, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Impediments Board, Value Stream Map |
+| Manage flow | Lean Principles, Waste Walk, Kanban Board Design, Kanban Cadences, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Impediments Board, Value Stream Map |
 | Engineering practices | SDLC at a Glance, Delivery Pipeline Canvas, Test Strategy, Release Readiness & Strategy, Continuous Delivery Health Check, Pairing & Mobbing, Delivery Metrics & Tech Debt, Architecture Decision Record, Event Storming, Blameless Incident Review |
 | Reflect & improve | Retrospective Kit, Team Health Check, Psychological Safety Check, Anti-Pattern Spotter, Marginal Gains Workshop, 1% Experiment Canvas, Root Cause Analysis, A3 Problem-Solving |
 | Run a project | Right-Size Your Structure, Project Kickoff, Stakeholder Map, Pre-mortem, RAID Log, RACI & Decision Log, Release Forecast & Burn-up, Outcome Status Report, Project Close-out |

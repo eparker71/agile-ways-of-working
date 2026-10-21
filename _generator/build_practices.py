@@ -35,7 +35,7 @@ PRACTICES = [
      ["Waiting time is measured, not just work time", "Hand-offs and approvals are questioned, not assumed",
       "The team looks for waste at its retros, using the eight wastes"],
      "From lean thinking, which grew out of the Toyota Production System.",
-     ["lean", "vsm", "blockers", "ageing", "marginal", "a3"],
+     ["lean", "waste", "vsm", "blockers", "ageing", "marginal", "a3"],
      ["Teams wait on each other", "Recurring blockers", "Too much work in progress"]),
     ("finish", "work", "Stop starting, start finishing",
      "Limit work in progress so work flows to done instead of piling up half-finished.",

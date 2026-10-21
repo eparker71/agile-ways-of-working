@@ -106,7 +106,7 @@ INDUSTRIES = [
      "Changes cost more once something is built, parts have long lead times, and testing needs physical builds. You "
      "can still work iteratively: short build-test-learn cycles on prototypes, and flow on the factory floor.",
      ["vsm", "kanban", "premortem"],
-     ["rootcause", "a3", "marginal", "experiment", "dependency", "ctp", "raid", "forecast", "testing", "adr", "incident",
+     ["rootcause", "a3", "waste", "marginal", "experiment", "dependency", "ctp", "raid", "forecast", "testing", "adr", "incident",
       "design-sprint"],
      [("Iteration", "build-test cycle"), ("Increment", "prototype, build"), ("Spike", "proof of concept"),
       ("Definition of Done", "passes test and inspection"), ("Minimum viable product (MVP)", "engineering prototype")],
@@ -135,7 +135,7 @@ INDUSTRIES = [
      "strong improvement tradition (small Plan-Do-Study-Act cycles), and the toolkit fits it well: map the patient "
      "pathway, test small changes safely, and make it safe to speak up.",
      ["vsm", "experiment", "incident"],
-     ["rootcause", "a3", "kanban", "daily", "blockers", "persona", "stakeholder", "psych-safety", "health", "marginal", "adkar",
+     ["rootcause", "a3", "waste", "kanban", "daily", "blockers", "persona", "stakeholder", "psych-safety", "health", "marginal", "adkar",
       "raci"],
      [("Value stream", "patient pathway"), ("Experiment", "PDSA cycle (Plan-Do-Study-Act)"), ("Stand-up", "safety huddle"),
       ("Persona", "patient or carer"), ("Blocker", "delay in the pathway"), ("Retrospective", "debrief")],
