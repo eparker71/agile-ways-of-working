@@ -34,7 +34,13 @@ EXAMPLES = [("team-charter", "Team Charter", "A new team's purpose, values, agre
             ("example", "Example Mapping", "One story's four rules, concrete examples, open questions and a decision to split it."),
             ("event-storming", "Event Storming", "An online order from reorder to delivery: events, commands, policies and hotspots."),
             ("stakeholder", "Stakeholder Map", "Eleven stakeholders on the grid, a register, a communication plan and watch-outs."),
-            ("raid", "RAID Log", "The project's live risks, assumptions, issues and dependencies, each with an owner.")]
+            ("raid", "RAID Log", "The project's live risks, assumptions, issues and dependencies, each with an owner."),
+            ("dependency", "Dependency Map", "Six teams over five iterations, red strings to five dependencies, one at risk, and one to remove."),
+            ("ctp", "Cross-Team Planning", "Three shared objectives, five teams' plans with milestones and risks, and a confidence vote."),
+            ("kanban", "Kanban Board Design", "Seven columns with WIP limits and exit policies, classes of service and board policies."),
+            ("status", "Outcome Status Report", "A one-line headline, outcomes against targets, a forecast range and the decisions needed."),
+            ("value", "Value Metrics", "Goals, measures in the four key value areas, what they tell us, and two experiments."),
+            ("cynefin", "Cynefin® Sense-Making", "The team's open questions sorted into domains, and safe-to-fail experiments for one.")]
 
 
 # Starter kits: the minimum toolset for each project size (see the Right-Size Your Structure poster).
