@@ -275,7 +275,7 @@ PHONE_CSS = ("p.phone{display:none;}"
 def phone_note(svg_href, guide_href):
     """Shown on phones only: the board is A3, so say how to read it."""
     return (f'<p class="phone"><b>This is an A3 board, made for printing or a big screen.</b>'
-            f'Pinch to zoom, turn your phone sideways, or <a href="{svg_href}">open the SVG</a> to zoom in. '
+            f'Pinch to zoom, turn your phone sideways, or <a href="{svg_href}">open the editable image (SVG)</a> to zoom in. '
             f'The <a href="{guide_href}">facilitator guide</a> is easy to read on a phone.</p>')
 
 
@@ -6197,7 +6197,7 @@ def write_example(base, title, layer, header=None, strip=()):
         return t
     svg, page = clean(svg), clean(page)
     slug = f"worked-example-{base}"
-    page = page.replace(f'<a href="{base}.svg">open the SVG</a>', f'<a href="{slug}.svg">open the SVG</a>')
+    page = page.replace(f'<a href="{base}.svg">open the editable image (SVG)</a>', f'<a href="{slug}.svg">open the editable image (SVG)</a>')
     page = page.replace(pdf_link(base), pdf_link(slug))
     (OUT / f"{slug}.svg").write_text(svg, encoding="utf-8")
     (OUT / f"{slug}.html").write_text(page, encoding="utf-8")

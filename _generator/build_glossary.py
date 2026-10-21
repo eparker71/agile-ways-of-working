@@ -18,6 +18,9 @@ from brand import ACCENT, NAVY, CREDIT  # noqa: E402
 OUT = Path(__file__).resolve().parent.parent
 
 TERMS = [
+    ("SVG (editable image)", "The file format of the boards: an image that stays sharp at any size and holds real, editable text. "
+     "Open it in a web browser, add it to Miro, Mural or FigJam as a background, or change the words and colours in Figma "
+     "or Inkscape. On the site it's labelled “Editable image”.", None, []),
     ("AI autonomy levels", "How much an AI tool or agent may do on its own: it assists while a person decides, it acts and a "
      "person approves the result, or it acts alone within set limits and people check afterwards.", None, ["ai-delivery", "ai"]),
     ("Event Storming", "A workshop where business experts and engineers map a domain as a timeline of domain events on orange "

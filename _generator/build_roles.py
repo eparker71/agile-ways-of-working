@@ -16,7 +16,7 @@ from pathlib import Path
 OUT = Path(__file__).resolve().parent.parent
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from brand import ACCENT, NAVY, CREDIT, FONT_URL as _FONT_URL  # noqa: E402  (edit brand.py to rebrand)
+from brand import ACCENT, NAVY, CREDIT, FONT_URL as _FONT_URL, SVG_LABEL, SVG_TIP  # noqa: E402  (edit brand.py to rebrand)
 FONT_URL = _FONT_URL.replace("&", "&amp;")
 
 # key: (title, board page, guide page or None, href prefix used to match index cards)
@@ -345,7 +345,7 @@ def build_index_filter():
     s = re.sub(r'<p class="rolenote"></p>\n', "", s)
     s = s.replace("<main><div class=\"wrap\">\n", "<main><div class=\"wrap\">\n<p class=\"rolenote\"></p>\n", 1)
 
-    # data-roles on each card, and an "Example" link when the card's board has a worked example
+    # data-roles on each card, the board-file link's plain label, and an "Example" link when the board has a worked example
     def tag(m):
         card_open, rest = m.group(1), m.group(2)
         href = re.search(r'class="primary" href="([^"]+)"', rest)
@@ -354,6 +354,8 @@ def build_index_filter():
         if roles is not None:
             card_open = card_open[:-1] + f' data-roles="{" ".join(roles)}">'
         rest = re.sub(r'<a class="ex" href="worked-example-[^"]+">Example</a>', "", rest)
+        rest = re.sub(r'<a href="([^"]+\.svg)"[^>]*>[^<]*</a>',
+                      lambda v: f'<a href="{v.group(1)}" title="{escape(SVG_TIP)}">{SVG_LABEL}</a>', rest)
         if href and (OUT / f"worked-example-{href.group(1)}").exists():
             rest = re.sub(r'(<div class="links">.*?)(</div></div>\n)$',
                           lambda l: f'{l.group(1)}<a class="ex" href="worked-example-{href.group(1)}">Example</a>{l.group(2)}',

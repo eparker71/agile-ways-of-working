@@ -13,7 +13,7 @@ from pathlib import Path
 OUT = Path(__file__).resolve().parent.parent
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from brand import ACCENT, NAVY, CREDIT, SITE, AUTHOR, FONT_URL as _FONT_URL  # noqa: E402  (edit brand.py to rebrand)
+from brand import ACCENT, NAVY, CREDIT, SITE, AUTHOR, FONT_URL as _FONT_URL, SVG_LABEL, SVG_TIP  # noqa: E402  (edit brand.py to rebrand)
 from docx_writer import Doc  # noqa: E402
 from board_spec import spec as board_spec  # noqa: E402
 FONT_URL = _FONT_URL.replace("&", "&amp;")
@@ -4200,7 +4200,9 @@ def render(g, css):
         c = f' class="{cls}"' if cls else ""
         return f'<h2{c}><span class="n">{n}</span>{text}</h2>'
 
-    boards = "".join(f'<a{" class=\"primary\"" if i == 0 else ""} href="{href}">{escape(label)} →</a>'
+    # a board's .svg link is labelled in plain words, with a tooltip saying what an SVG is
+    boards = "".join(f'<a{" class=\"primary\"" if i == 0 else ""} href="{href}"'
+                     + (f' title="{escape(SVG_TIP)}">{SVG_LABEL} →</a>' if href.endswith(".svg") else f'>{escape(label)} →</a>')
                      for i, (label, href) in enumerate(g["boards"]))
     boards += "".join(f'<a href="pdf/{href[:-5]}.pdf" download>A3 PDF ↓</a>' for _, href in g["boards"][:1]
                       if (OUT / "pdf" / f"{href[:-5]}.pdf").exists())
