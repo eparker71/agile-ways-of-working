@@ -4,7 +4,7 @@ Printable boards and facilitator guides for teams and facilitators.
 
 **Live site:** https://eparker71.github.io/agile-ways-of-working/
 
-To browse everything locally, open `index.html`. Terms are defined in `glossary.html`, and `good-practices.html` sets out 20 good practices the toolkit is built on, each with the tools that put it into practice, and `anti-patterns.html` is a searchable catalogue of 42 common anti-patterns with what to try; the two link to each other. `scenarios.html` is the **Scenario Playbook**: a running list of common situations (a deadline moves earlier, a key person leaves…) with first moves, longer-term fixes and tools. Add to it by editing `_content/scenarios.md`, or suggest one through a GitHub issue. Not sure where to start? Open `start-here-by-role.html`, or use the **I'm a…** role filter at the top of the home page. It covers Scrum Masters, coaches, product owners, project, program and portfolio managers, executives, engineering managers, designers and team members.
+To browse everything locally, open `index.html`. Terms are defined in `glossary.html`, and `good-practices.html` sets out 20 good practices the toolkit is built on, each with the tools that put it into practice, and `anti-patterns.html` is a searchable catalogue of 42 common anti-patterns with what to try; the two link to each other. `scenarios.html` is the **Scenario Playbook**: a running list of common situations (a deadline moves earlier, a key person leaves…) with first moves, longer-term fixes and tools. Add to it by editing `_content/scenarios.md`, or suggest one through a GitHub issue. `tools-by-industry.html` suggests where to start in eight kinds of work (software, marketing, HR, IT operations, data, hardware, public sector, non-profit and education), with the words people there use and what to skip. Not sure where to start? Open `start-here-by-role.html`, or use the **I'm a…** role filter at the top of the home page. It covers Scrum Masters, coaches, product owners, project, program and portfolio managers, executives, engineering managers, designers and team members.
 
 Each board comes as:
 - **`.html`**: view in a browser or print. Boards print at A3 landscape; guides print at A4 portrait.
@@ -143,7 +143,7 @@ python3 _generator/build_pdfs.py    # print-ready A3 PDFs of every board (needs 
 
 **Print-ready PDFs:** `pdf/` holds an A3 landscape PDF of every board and poster, listed on `print-pack.html` with printing guidance for A3, US 11×17 (Tabloid, print with Fit to page), wall-poster and personal sizes. After changing a board, run `build_all.py`, `build_pdfs.py`, then `build_all.py` again; the checks fail if a PDF is out of date.
 
-The individual generators are `build_boards.py`, `build_guides.py`, `build_roles.py`, `build_glossary.py`, `build_antipatterns.py`, `build_practices.py`, `build_scenarios.py`, `build_recipes.py` and `build_meta.py`; `build_all.py` runs them in the right order.
+The individual generators are `build_boards.py`, `build_guides.py`, `build_roles.py`, `build_glossary.py`, `build_antipatterns.py`, `build_practices.py`, `build_industries.py`, `build_scenarios.py`, `build_recipes.py` and `build_meta.py`; `build_all.py` runs them in the right order.
 
 **Automated checks:** on every push and pull request, GitHub Actions (`.github/workflows/checks.yml`) rebuilds the site, fails if the committed files don't match what the generators produce, and runs `check_site.py`.
 
