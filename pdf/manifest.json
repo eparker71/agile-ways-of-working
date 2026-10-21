@@ -82,6 +82,7 @@
  "worked-example-adkar-board": "398bc79bdeb32b41",
  "worked-example-adr-board": "53a49799b4d4cc82",
  "worked-example-ageing-wip-board": "ca65516fe00c1e7c",
+ "worked-example-ai-delivery-board": "31b3e513d67efe7d",
  "worked-example-ai-working-agreement-board": "f38e612efdc5e6f4",
  "worked-example-backlog-refinement-board": "5b73fce95d759298",
  "worked-example-blocker-clustering-board": "308088cc8c78b5ea",
@@ -97,6 +98,7 @@
  "worked-example-delivery-metrics-board": "9fd684a530dd4b65",
  "worked-example-delivery-pipeline-board": "3555340db096d238",
  "worked-example-dependency-map-board": "49d1ae6e9dfcdfb9",
+ "worked-example-design-sprint-board": "7b81a03685dfd041",
  "worked-example-epic-breakdown-canvas": "a0b3c225f5a2c5c6",
  "worked-example-estimation-board": "10e5e63fb1fdc314",
  "worked-example-event-storming-board": "bdc6c0bc723fee5b",
@@ -108,6 +110,7 @@
  "worked-example-kanban-board-design": "0c553f5a4a278df3",
  "worked-example-kanban-cadences-board": "523963d14bd3440b",
  "worked-example-lean-coffee-board": "85e6abc7ce75df63",
+ "worked-example-motivation-board": "aa003bbceb0ef7ee",
  "worked-example-okr-board": "d62dedae6fb455dd",
  "worked-example-opportunity-solution-tree-board": "dd8ddeef5acca093",
  "worked-example-pairing-mobbing-board": "2fd9d4130637c48f",
@@ -139,6 +142,7 @@
  "worked-example-team-onboarding-board": "72792f7d04031639",
  "worked-example-team-topology-board": "e811359a1a5b4d08",
  "worked-example-test-strategy-board": "ed27bf8748831232",
+ "worked-example-user-manual-board": "caaecc87b9d3219e",
  "worked-example-value-metrics-board": "5c2470a3c707803f",
  "worked-example-value-stream-map-board": "fbffa4e90ebd6f8a"
 }

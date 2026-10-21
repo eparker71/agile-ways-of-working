@@ -80,7 +80,11 @@ EXAMPLES = [("team-charter", "Team Charter", "A new team's purpose, values, agre
             ("testing", "Test Strategy", "What each level of the pyramid tests, the quality gates, and where to test hardest."),
             ("release", "Release Readiness & Strategy", "Substitutes behind a flag in one store: go/no-go, rollback plan and who to tell."),
             ("cd-health", "Continuous Delivery Health Check", "Twelve practices scored (39 of 60), the biggest gaps, and two experiments."),
-            ("roadmap", "Now · Next · Later Roadmap", "Three goals with work in Now, Next and Later, what we're not doing, and assumptions to test.")]
+            ("roadmap", "Now · Next · Later Roadmap", "Three goals with work in Now, Next and Later, what we're not doing, and assumptions to test."),
+            ("user-manual", "Personal User Manual", "Four teammates' guides to working with them: focus, contact, feedback and what drains them."),
+            ("motivation", "Motivation & Recognition", "Jo's ten motivators ranked and tested against a change, plus three kudo cards."),
+            ("design-sprint", "Design Sprint", "Five days on staples subscriptions: map, sketch, decide, prototype, and five customer tests."),
+            ("ai-delivery", "AI in Delivery", "Where AI fits at each stage and how autonomous it is, guardrails, risks and who's accountable.")]
 
 
 # Starter kits: the minimum toolset for each project size (see the Right-Size Your Structure poster).

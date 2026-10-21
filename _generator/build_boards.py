@@ -6134,7 +6134,7 @@ def dots(x, y, n, col=ACCENT):
     return "".join(f'<circle cx="{x + i * 14:g}" cy="{y}" r="5.5" fill="{col}"/>' for i in range(n))
 
 
-def write_example(base, title, layer, header=None):
+def write_example(base, title, layer, header=None, strip=()):
     stamp = (f'<g transform="rotate(-3 1150 66)"><rect x="1010" y="48" width="280" height="36" rx="5" fill="none" '
              f'stroke="{ACCENT}" stroke-width="2"/>' + T(1150, 71, "WORKED EXAMPLE · FICTIONAL TEAM", 10.5, ACCENT, MONO,
                                                           weight=600, anchor="middle", ls=".12em") + "</g>")
@@ -6159,7 +6159,10 @@ def write_example(base, title, layer, header=None):
         t = re.sub(r'<rect x="[^"]*" y="[^"]*" width="18" height="18" rx="2" fill="#[0-9A-Fa-f]{6}" fill-opacity="\.35"/>', "", t)
         t = re.sub(r'<text[^>]*font-style="italic"[^>]*fill-opacity="\.(?:3|4|45|5)"[^>]*>[^<]*</text>', "", t)
         t = re.sub(r'<rect [^>]*rx="3" fill="#[0-9A-Fa-f]{6}" fill-opacity="\.22"/>', "", t)
-        return re.sub(r'<text[^>]*>sprint, month, quarter…</text>', "", t)
+        t = re.sub(r'<text[^>]*>sprint, month, quarter…</text>', "", t)
+        for label in strip:  # extra placeholder labels this example covers or empties
+            t = re.sub(rf'<text[^>]*>{re.escape(label)}</text>', "", t)
+        return t
     svg, page = clean(svg), clean(page)
     slug = f"worked-example-{base}"
     page = page.replace(f'<a href="{base}.svg">open the SVG</a>', f'<a href="{slug}.svg">open the SVG</a>')
@@ -8268,6 +8271,129 @@ def example_roadmap():
     write_example("roadmap-board", "Now · Next · Later Roadmap", "".join(L_), ["Online grocery", "Priya", "6 June"])
 
 
+def example_user_manual():
+    people = [("Priya", "Product owner", "09:00–17:30", [
+                  ["I've talked to customers that", "week"], ["a message; I reply within the", "hour"], ["in person, with an example"],
+                  ["drains: status meetings;", "energises: customer calls"], ["“no” means “not yet”, not", "“never”"],
+                  ["customer research, priorities"]]),
+              ("Sam", "Developer", "08:00–16:00", [
+                  ["I get a long block of focus", "time in the morning"], ["chat after 13:00; mornings", "are for focus"],
+                  ["in writing first, then talk"], ["drains: context switching;", "energises: hard problems"],
+                  ["quiet in meetings isn't", "disagreeing"], ["payments, APIs, debugging"]]),
+              ("Jo", "Developer", "10:00–18:30", [
+                  ["I'm pairing, or have music", "on and a clear task"], ["chat any time; I'll say if", "I'm busy"],
+                  ["straight away, kindly"], ["drains: unclear tickets;", "energises: shipping things"],
+                  ["I ask lots of questions", "because I'm interested"], ["front end, accessibility"]]),
+              ("Mei", "Designer", "09:30–17:30, Thu off", [
+                  ["I've seen the real problem,", "not just the solution"], ["tag me in the design", "channel"],
+                  ["show me where users", "struggled"], ["drains: pixel debates;", "energises: user testing"],
+                  ["a sketch is a question, not", "a decision"], ["journeys, prototypes, research"]])]
+    hh = (1060 - 148 - 14) / 2
+    L_ = []
+    for k, (name, role, hours, answers) in enumerate(people):
+        x, w = (24, 808) if k % 2 == 0 else (846, 810)
+        y = 148 + (k // 2) * (hh + 14)
+        L_ += [hand(after(x + 18, "Name:"), y + 80, name, 17), hand(after(x + 306, "Role:"), y + 80, role, 16),
+               hand(after(x + 536, "Hours / time zone:"), y + 80, hours, 15)]
+        cw = (w - 60) / 2
+        for i, lines_ in enumerate(answers):
+            px, py = x + 18 + (i % 2) * (cw + 24), y + 126 + (i // 2) * 106
+            L_ += [hand(px + 2, py + 23 + j * 24, t, 16) for j, t in enumerate(lines_)]
+    write_example("user-manual-board", "Personal User Manual", "".join(L_), ["Basket team", "5 March"])
+
+
+def example_motivation():
+    order = ["Status", "Power", "Order", "Honour", "Acceptance", "Freedom", "Goal", "Relatedness", "Curiosity", "Mastery"]
+    move = {"Mastery": -1, "Curiosity": -1, "Relatedness": -1, "Order": 1, "Freedom": 1}  # -1 up (more), 1 down (less)
+    cw = (1632 - 28 - 90) / 10
+    L_ = [hand(after(42, "The change we're testing:"), 468, "learning payments by pairing with Sam for the next three months", 17)]
+    for i, name in enumerate(order):
+        cx = 38 + i * (cw + 10)
+        y = {-1: 506, 0: 594, 1: 682}[move.get(name, 0)]
+        L_.append(note(cx + 6, y, name, BLUE_ST, cw - 12, 64, (-2, 1, 2, -1)[i % 4], 17))
+    L_ += [hand(after(42, lab), 904 + i * 36, v, 15) for i, (lab, v) in enumerate([
+        ("What surprised me:", "status matters least; mastery most"), ("What I need more of:", "hard problems with someone to learn from"),
+        ("What I'll ask for:", "keep some solo front-end work"), ("What I can offer others:", "accessibility pairing")])]
+    kw = (1082 - 48) / 3
+    kudos = [(0, "Alex", "finding the price bug before", "the promo went live", "Priya"),
+             (2, "Sam", "patient pairing on payments", "code all week", "Jo"),
+             (1, "Store Ops pickers", "great feedback on the", "substitute screen", "Mei")]
+    for i, (box, to, f1, f2, frm) in enumerate(kudos):
+        kx = 588 + i * (kw + 10)
+        L_ += [tick(kx + 14 + box * 108, 916), hand(after(kx + 14, "To:"), 946, to, 16),
+               hand(after(kx + 14, "For:"), 978, f1, 15), hand(kx + 16, 1005, f2, 15), hand(after(kx + 14, "From:"), 1030, frm, 16)]
+    write_example("motivation-board", "Motivation & Recognition", "".join(L_), ["Jo", "12 May"],
+                  strip=[f"Card {i}" for i in range(1, 11)])
+
+
+def example_design_sprint():
+    L_ = [hand(after(42, "The challenge:"), 230, "would families set up a staples subscription, and keep it?", 16),
+          hand(after(42, "Long-term goal (in two years…):"), 264, "1 in 4 weekly shoppers has a staples subscription", 16),
+          hand(after(42, "Sprint questions (what could stop us?):"), 298, "will they trust auto-add? Can they", 16),
+          hand(46, 330, "change it easily? Will it feel like a lock-in?", 16)]
+    L_ += [hand(after(864 + (i % 2) * 392, lab), 226 + (i // 2) * 40, v, 16) for i, (lab, v) in enumerate([
+        ("Decider:", "Priya"), ("Facilitator:", "Tom"), ("Customer expert:", "customer service lead"), ("Tech expert:", "Sam"),
+        ("Design:", "Mei"), ("Business / money:", "Finance partner")])]
+    cw = (1632 - 56) / 5
+    days = [([("Journey: pick staples → set day → skip a week", YELLOW), ("HMW make skipping easy?", YELLOW)],
+             "first set-up and the first skip"),
+            ([("Sketch: a staples shelf", YELLOW), ("Sketch: a “usual” toggle", YELLOW)], "7 four-step sketches"),
+            ([("Heat-map dots on the toggle", YELLOW), ("Storyboard: 8 frames", YELLOW)], "a “usual” toggle, skip anytime"),
+            ([("Clickable mock-up in a day", YELLOW), ("Interview script", YELLOW)], "clickable mobile mock-up"),
+            ([("4 of 5 set it up unaided", GREEN), ("“Skip” was hard to find", PINK_ST)], "trust needs an easy skip")]
+    for i, (stickies, out) in enumerate(days):
+        x = 24 + i * (cw + 14)
+        L_ += [note(x + 26 + (k % 2) * 30, 594 + k * 100, t, col, cw - 70, 84, (-2, 2)[k], 15) for k, (t, col) in enumerate(stickies)]
+        lab = SPRINT_DAYS[i][4]
+        L_.append(hand(after(x + 18, lab), 818, out, 14))
+    marks = [("Families set it up without help", ["✓", "✓", "✓", "✗", "✓"]),
+             ("They feel in control (skip, change)", ["?", "✗", "✓", "✗", "?"]),
+             ("They'd pay for it each week", ["✓", "?", "✓", "✓", "✗"])]
+    rest = (1082 - 36 - 482) / 5
+    for i, (q, ms) in enumerate(marks):
+        y = 970 + i * 30
+        L_.append(hand(48, y, q, 16))
+        L_ += [hand(48 + 482 + k * rest + rest / 2, y, m, 18, {"✓": EMERALD[0], "✗": "#DC2626"}.get(m, PEN), anchor="middle")
+               for k, m in enumerate(ms)]
+    L_ += [tick(1388, 952), hand(after(1138, "First step and owner:"), 1018, "make skip one tap, test again on 20 June: Mei", 15)]
+    write_example("design-sprint-board", "Design Sprint", "".join(L_), ["Staples subscriptions", "9–13 June", "Priya"])
+
+
+def example_ai_delivery():
+    rows = [("summarise interviews", 0, "researcher reads all"), ("draft acceptance criteria", 0, "agreed at refinement"),
+            ("code suggestions, tests", 1, "review + tests + scans"), ("generate test data", 1, "Alex checks samples"),
+            ("release notes draft", 1, "Priya approves"), ("triage support tickets", 2, "weekly sample check")]
+    L_ = []
+    for i, (use, lvl, check) in enumerate(rows):
+        y = 118 + 148 + i * 34
+        L_ += [hand(238, y - 4, use, 15), tick((636, 751, 866)[lvl], y), hand(948, y - 4, check, 15)]
+    L_ += [tick(42, 576 + i * 30) for i in range(7) if i != 4]
+    L_.append(hand(330, 696, "← not yet", 15, "#DC2626"))
+    for i, row in enumerate([("Invented API fields", "2×3", "tests catch them"), ("Customer data in prompts", "1×3", "approved tools only"),
+                             ("Agent closes real tickets", "2×2", "weekly sample; can pause it"),
+                             ("Skills fade", "2×2", "pair; keep reading code")]):
+        x = 598
+        for c, v in enumerate(row):
+            L_.append(hand(x, 613 + i * 36, v, 15))
+            x += (210, 70)[c] if c < 2 else 0
+    L_ += [hand(after(1142, lab), 574 + i * 34, v, 15) for i, (lab, v) in enumerate([
+        ("Owns the AI policy:", "Head of Digital"), ("Approves new tools:", "IT security"), ("Approves agent access:", "Platform lead"),
+        ("Reviews AI incidents:", "incident review, as usual"), ("Trains and supports people:", "Sam and Mei"),
+        ("Questions go to:", "#ai-help")])]
+    for i, (before, now, target) in enumerate([("7 days", "6 days", "5 days"), ("12%", "11%", "under 10%"),
+                                               ("1 in 9", "1 in 10", "same or better"), ("3.6 / 5", "3.9 / 5", "4 / 5")]):
+        y = 918 + i * 34
+        L_ += [hand(382, y, before, 16), hand(522, y, now, 16), hand(662, y, target, 16)]
+    for i, row in enumerate([("Agent drafts support replies; a person sends them", "customer service lead", "1 July"),
+                             ("AI writes test data from real order patterns", "Alex", "Sprint 20")]):
+        x = 870
+        for c, v in enumerate(row):
+            L_.append(hand(x, 919 + i * 34, v, 15))
+            x += (420, 160)[c] if c < 2 else 0
+    L_.append(hand(after(864, "We review this whole board every:"), 1026, "quarter, with the AI Working Agreement", 15))
+    write_example("ai-delivery-board", "AI in Delivery", "".join(L_), ["Basket group", "Head of Digital", "September"])
+
+
 EXAMPLES = {"team-charter-board": example_team_charter, "sprint-planning-board": example_sprint_planning,
             "prioritisation-board": example_prioritisation, "retro-board-start-stop-continue": example_retro,
             "team-topology-board": example_team_topology, "skills-matrix-board": example_skills_matrix,
@@ -8298,7 +8424,9 @@ EXAMPLES = {"team-charter-board": example_team_charter, "sprint-planning-board":
             "root-cause-board": example_root_cause, "project-closeout-board": example_project_closeout,
             "team-onboarding-board": example_team_onboarding, "delivery-pipeline-board": example_delivery_pipeline,
             "test-strategy-board": example_test_strategy, "release-readiness-board": example_release_readiness,
-            "cd-health-check-board": example_cd_health, "roadmap-board": example_roadmap}
+            "cd-health-check-board": example_cd_health, "roadmap-board": example_roadmap,
+            "user-manual-board": example_user_manual, "motivation-board": example_motivation,
+            "design-sprint-board": example_design_sprint, "ai-delivery-board": example_ai_delivery}
 
 
 if __name__ == "__main__":
