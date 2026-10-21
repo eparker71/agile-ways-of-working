@@ -4183,7 +4183,7 @@ def spec_html(g):
     text = guide_spec(g)
     if not text:
         return ""
-    return ('<section class="spec"><h3>Recreate it in your whiteboard</h3>'
+    return ('<section class="spec" id="whiteboard"><h3>Recreate it in your whiteboard</h3>'
             f'<p>{escape(SPEC_NOTE)}</p>'
             '<button type="button" onclick="(function(b){var t=b.parentNode.querySelector(\'pre\').textContent;'
             'navigator.clipboard.writeText(t).then(function(){b.textContent=\'Copied ✓\';setTimeout(function(){b.textContent=\'Copy AI prompt\'},2000)})})(this)">'
