@@ -32,7 +32,7 @@ TERMS = [
     ("Takt time", "The pace work must be finished at to keep up with demand: available time divided by the number of items "
      "needed. Used to keep flow even.", None, ["lean", "cadences"]),
     ("A3 thinking", "Solving a problem on a single A3 sheet: background, current state, root cause, countermeasures and a plan "
-     "to check the results.", "From Toyota.", ["lean", "rootcause"]),
+     "to check the results.", "From Toyota.", ["a3", "lean", "rootcause"]),
     ("Poka-yoke", "Mistake-proofing: designing a step so the error can't happen, or is caught straight away.",
      "Japanese for “avoiding mistakes”.", ["lean", "testing", "pipeline"]),
     ("Jidoka (stop and fix)", "Stopping the work when something goes wrong, fixing the cause, and only then carrying on, so "

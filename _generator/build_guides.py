@@ -4208,6 +4208,59 @@ GUIDES += [
                  "href=\"facilitator-guide-experiment-canvas.html\">1% Experiment Canvas</a> for continuous improvement."),
         foot="“What would the customer happily pay for, and what wouldn't they?”",
     ),
+    dict(
+        slug="a3-problem-solving",
+        title="A3 Problem-Solving Guide",
+        subtitle="How to work through one stubborn problem on a single sheet, from the facts to a fix that sticks.",
+        tag="Facilitator Run-Sheet · Reflect & Improve · A3 Thinking · Plan · Do · Check · Act",
+        boards=[("Open board", "a3-problem-solving-board.html"), ("SVG", "a3-problem-solving-board.svg")],
+        lede="What's really happening, and have we gone to see it?",
+        intro=("An <b>A3</b> is a way of solving a problem on one sheet of A3 paper. It comes from Toyota, where managers use it to "
+               "coach people through a problem, and is described in John Shook's <i>Managing to Learn</i>. The left half is "
+               "<b>Plan</b>: the background, the current condition (with facts, not opinions), the goal, and the root cause. The "
+               "right half is <b>Do, Check and Act</b>: countermeasures that tackle the cause, a plan with owners and dates, a check "
+               "of whether it worked, and the follow-up that makes it stick. One sheet forces clear thinking, and makes the "
+               "reasoning easy for others to follow and challenge. Use it for problems that keep coming back; for a quick fishbone "
+               "and 5 Whys, the <a href=\"facilitator-guide-root-cause.html\">Root Cause Analysis</a> board is lighter."),
+        glance=[("Duration", "60–90 min to start,<br>then a few weeks"), ("Group", "An owner, plus<br>the people who do the work"),
+                ("Use when", "A problem keeps<br>coming back"), ("Output", "A tested fix,<br>made standard")],
+        before=["Print the board at A3 or 11×17, or share it on screen",
+                "Pick one problem and one owner; the owner keeps the A3 and updates it",
+                "Gather facts first: data, examples, and time spent watching the work where it happens",
+                "Invite the people who do the work; they know where the problem really is"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–10", "Background", "Why does this problem matter, and to whom? Keep it to three lines."),
+                ("10–30", "Current condition", "Draw or chart what's actually happening, from facts. Mark where it goes wrong."),
+                ("30–40", "Goal", "Agree a measurable target and a date. What would good look like?"),
+                ("40–60", "Root cause", "Ask why until you reach a cause you can fix. Check it explains the facts."),
+                ("60–75", "Countermeasures & plan", "List small changes that tackle the cause, then who does what, by when."),
+                ("Later", "Check & follow-up", "At the agreed date, compare the result with the goal; make it standard, or try again.")],
+        sections_title="The two halves",
+        sections_intro="Plan carefully on the left; act, check and learn on the right.",
+        sections=[("1–2 · Understand", SLATE, ["Why it matters", "Go and see the facts"]),
+                  ("3–4 · Target & cause", PURPLE, ["A measurable goal", "The cause you can fix"]),
+                  ("5–6 · Do", ORANGE, ["Small countermeasures", "Owners and dates"]),
+                  ("7 · Check", SKY, ["Did it hit the target?", "What did we learn?"]),
+                  ("8 · Act", FOREST, ["Make it the standard", "Or try again"])],
+        tips=[("Facts before fixes", "Most A3s go wrong by jumping to a solution. Spend real time on the current condition."),
+              ("Go and see", "Watch the work where it happens. Reports and opinions hide what's really going on."),
+              ("Countermeasures, not solutions", "Call them countermeasures: they're experiments, and might not work first time."),
+              ("One owner", "One person owns the A3 and keeps it current, but they don't solve it alone."),
+              ("Coach with questions", "A leader's job is to ask good questions about the A3, not to write the answer."),
+              ("Keep it to one page", "If it doesn't fit, the thinking isn't clear enough yet. Cut, don't shrink the font.")],
+        pitfalls=("filling in the boxes after the decision is made; skipping the current condition; a goal with no number; "
+                  "a root cause that blames a person; countermeasures nobody owns; never coming back to check."),
+        after=[("This week", "Start the first countermeasures, and update the plan as you go."),
+               ("At the check date", "Compare the result with the goal, honestly, and record what you learned."),
+               ("If it worked", "Make it the standard way of working, and share the A3 with teams who have the same problem."),
+               ("If it didn't", "Go back to the root cause: was it the real one? Try another countermeasure.")],
+        toolkit=("For a quicker look at causes, use <a href=\"facilitator-guide-root-cause.html\">Root Cause Analysis</a>. The <a "
+                 "href=\"facilitator-guide-lean-principles.html\">Lean Principles</a> poster explains the thinking behind A3s, and "
+                 "the <a href=\"facilitator-guide-experiment-canvas.html\">1% Experiment Canvas</a> suits smaller improvements. For "
+                 "a problem caused by an incident, start with the <a href=\"facilitator-guide-incident-review.html\">Blameless "
+                 "Incident Review</a>."),
+        foot="“Which cause, if we removed it, would stop the problem coming back?”",
+    ),
 ]
 
 

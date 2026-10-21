@@ -43,6 +43,7 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | RACI & Decision Log | `raci-decision-log-board` | `facilitator-guide-raci-decision-log.html` |
 | Value Stream Map | `value-stream-map-board` | `facilitator-guide-value-stream-map.html` |
 | Lean Principles poster | `lean-principles-poster` | `facilitator-guide-lean-principles.html` |
+| A3 Problem-Solving | `a3-problem-solving-board` | `facilitator-guide-a3-problem-solving.html` |
 | Architecture Decision Record | `adr-board` | `facilitator-guide-adr.html` |
 | Event Storming | `event-storming-board` | `facilitator-guide-event-storming.html` |
 | Blameless Incident Review | `incident-review-board` | `facilitator-guide-incident-review.html` |
@@ -122,7 +123,7 @@ The home page groups tools by what you're trying to do. No one framework is assu
 | Run events & iterations | Events & Cadences poster, Sprint Planning, Daily Sync, Backlog Refinement, Sprint Review |
 | Manage flow | Lean Principles, Kanban Board Design, Kanban Cadences, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Impediments Board, Value Stream Map |
 | Engineering practices | SDLC at a Glance, Delivery Pipeline Canvas, Test Strategy, Release Readiness & Strategy, Continuous Delivery Health Check, Pairing & Mobbing, Delivery Metrics & Tech Debt, Architecture Decision Record, Event Storming, Blameless Incident Review |
-| Reflect & improve | Retrospective Kit, Team Health Check, Psychological Safety Check, Anti-Pattern Spotter, Marginal Gains Workshop, 1% Experiment Canvas, Root Cause Analysis |
+| Reflect & improve | Retrospective Kit, Team Health Check, Psychological Safety Check, Anti-Pattern Spotter, Marginal Gains Workshop, 1% Experiment Canvas, Root Cause Analysis, A3 Problem-Solving |
 | Run a project | Right-Size Your Structure, Project Kickoff, Stakeholder Map, Pre-mortem, RAID Log, RACI & Decision Log, Release Forecast & Burn-up, Outcome Status Report, Project Close-out |
 | Coordinate teams | Objectives & Key Results, Cross-Team Planning, Dependency Map, Cross-Team Sync, Team Topology Design, Cross-Team Retro |
 | Lead the organisation | Value Metrics, Portfolio Kanban & Investment Mix, Delegation Board, Motivation & Recognition, AI in Delivery, Cynefin® Sense-Making (Cynefin® is a registered trademark of Cognitive Edge Pte Ltd), Leading for Psychological Safety, ADKAR Change Readiness (ADKAR® is a registered trademark of Prosci, Inc.) |

@@ -6197,6 +6197,77 @@ def build_lean_principles():
                 "and four lean habits.", "\n".join(b))
 
 
+# ---------------------------------------------------------------- A3 problem-solving
+
+def build_a3_problem_solving():
+    b = [header("A3 Problem-Solving",
+                "Work through one problem on one sheet: understand it, find the root cause, test countermeasures and make the fix stick.",
+                "Reflect & Improve · A3 Thinking (Toyota) · Plan · Do · Check · Act · Inspired by John Shook, Managing to Learn",
+                header_fields(["Problem", "Owner", "Date"]))]
+
+    # left half: PLAN
+    x, w = 24, 808
+    y, h = 148, 170
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 1, "Background", SLATE, "PLAN · WHY THIS MATTERS, AND TO WHOM"))
+    b.append(lines(x + 18, y + 92, x + w - 18, 3, 26))
+
+    y, h = 332, 300
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 2, "Current Condition", BLUE, "PLAN · FACTS, DATA OR A SKETCH, NOT OPINIONS"))
+    b.append(T(x + 18, y + 80, "What's happening now? Go and see the work, then draw or chart it.", 10.5, d, italic=True, op=".88"))
+    b.append(sticky_zone(x + 10, y + 92, w - 20, h - 142, d, "Sketch, chart or stickies", chips=(YELLOW, PINK_ST)))
+    b.append(field(x + 18, y + h - 22, "The measure today:", x + w - 18, d))
+
+    y, h = 646, 130
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 3, "Goal", EMERALD, "PLAN · WHAT GOOD LOOKS LIKE"))
+    b.append(field(x + 18, y + 84, "Target:", x + 520, d))
+    b.append(field(x + 540, y + 84, "By when:", x + w - 18, d))
+    b.append(field(x + 18, y + 114, "We'll measure it by:", x + w - 18, d))
+
+    y, h = 790, 270
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 4, "Root Cause", PURPLE, "PLAN · ASK WHY UNTIL YOU REACH A CAUSE YOU CAN FIX"))
+    for i in range(4):
+        b.append(field(x + 18, y + 86 + i * 34, f"Why {i + 1}?", x + w - 18, d))
+    b.append(R(x + 14, y + h - 62, w - 28, 48, PURPLE[1], 6, f' stroke="{d}" stroke-opacity=".4" stroke-width="1.5"'))
+    b.append(field(x + 28, y + h - 32, "Root cause:", x + w - 28, d, 12))
+
+    # right half: DO, CHECK, ACT
+    x, w = 846, 810
+    y, h = 148, 300
+    d = ORANGE[0]
+    b.append(panel(x, y, w, h, 5, "Countermeasures", ORANGE, "DO · SMALL CHANGES THAT TACKLE THE CAUSE"))
+    b.append(table(x + 18, y + 84, [("Countermeasure", 380), ("Which cause it tackles", 270), ("Effort S/M/L", w - 36 - 650)], 5, d, 40))
+
+    y, h = 462, 250
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 6, "Plan", AMBER, "DO · WHO DOES WHAT, BY WHEN"))
+    b.append(table(x + 18, y + 84, [("What", 400), ("Who", 140), ("When", 130), ("Done?", w - 36 - 670)], 4, d, 34))
+
+    y, h = 726, 140
+    d = SKY[0]
+    b.append(panel(x, y, w, h, 7, "Check", SKY, "CHECK · DID IT WORK?"))
+    b.append(field(x + 18, y + 86, "Result against the target:", x + w - 18, d))
+    b.append(field(x + 18, y + 118, "What we learned:", x + w - 18, d))
+
+    y, h = 880, 180
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 8, "Follow-up", FOREST, "ACT · MAKE IT STICK, OR TRY AGAIN"))
+    for i, m in enumerate(["Make it the standard way of working", "Try another countermeasure",
+                           "Share it with teams who have the same problem", "Close the A3"]):
+        b.append(checkbox(x + 18 + (i % 2) * 390, y + 86 + (i // 2) * 30, m, d, 11))
+    b.append(field(x + 18, y + h - 22, "Share with:", x + w - 18, d))
+
+    b.append(footer("What's really happening, and have we gone to see it?",
+                    "Which cause, if we removed it, would stop the problem coming back?",
+                    "Reflect & Improve · A3 Thinking · Plan · Do · Check · Act"))
+    write_board("a3-problem-solving-board", "A3 Problem-Solving",
+                "A3 landscape problem-solving report in the lean A3 format: background, current condition, goal and root cause "
+                "on the plan side; countermeasures, plan, check and follow-up on the do, check and act side.", "\n".join(b))
+
+
 # ---------------------------------------------------------------- worked examples
 # Filled-in copies of real boards for a fictional team (the "Basket team" at an online grocery service, the same
 # running example as the Backlog Item Anatomy poster). Each example reads the generated blank board and adds a layer
@@ -8648,5 +8719,6 @@ if __name__ == "__main__":
     build_event_storming()
     build_cynefin()
     build_lean_principles()
+    build_a3_problem_solving()
     for make in EXAMPLES.values():   # worked examples read the blank boards, so they run last
         make()

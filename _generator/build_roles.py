@@ -86,6 +86,7 @@ TOOLS = {
     "right-size": ("Right-Size Your Structure", "right-size-poster.html", "facilitator-guide-right-size.html", "right-size"),
     "sdlc": ("SDLC at a Glance", "sdlc-poster.html", "facilitator-guide-sdlc.html", "sdlc"),
     "lean": ("Lean Principles", "lean-principles-poster.html", "facilitator-guide-lean-principles.html", "lean-principles"),
+    "a3": ("A3 Problem-Solving", "a3-problem-solving-board.html", "facilitator-guide-a3-problem-solving.html", "a3-problem-solving"),
     "pipeline": ("Delivery Pipeline Canvas", "delivery-pipeline-board.html", "facilitator-guide-delivery-pipeline.html", "delivery-pipeline"),
     "testing": ("Test Strategy", "test-strategy-board.html", "facilitator-guide-test-strategy.html", "test-strategy"),
     "release": ("Release Readiness & Strategy", "release-readiness-board.html", "facilitator-guide-release-readiness.html", "release-readiness"),
@@ -104,7 +105,7 @@ TOOLS = {
 }
 
 # Extra search words for home page cards, so a search finds tools by the idea they come from (hidden on the page)
-TAGS = {k: "lean" for k in ("lean", "vsm", "kanban", "cadences", "ageing", "buffer", "blockers", "rootcause", "marginal",
+TAGS = {k: "lean" for k in ("lean", "a3", "vsm", "kanban", "cadences", "ageing", "buffer", "blockers", "rootcause", "marginal",
                             "experiment")}
 
 # id, name, what you're there to do, start with (3), also useful
@@ -113,11 +114,11 @@ ROLES = [
      "You help the team deliver well: smooth flow, useful events, and impediments removed.",
      ["sm-cheat", "retro", "impediments"],
      ["sprint-planning", "sprint-review", "team-charter", "ai", "health", "kanban", "ageing", "buffer", "blockers", "pairing",
-      "skills", "example", "splitting", "rootcause", "experiment", "marginal", "lean-coffee", "jira", "adkar", "coaching", "psych-safety", "delivery-metrics", "backlog", "facilitation", "estimation", "vsm", "lean", "incident", "launch", "daily", "refinement", "cadences", "events", "spotter", "leading-safety", "sdlc", "pipeline", "release", "cd-health", "right-size", "sync", "dependency", "forecast", "closeout", "onboarding", "roadmap", "user-manual", "conflict", "feedback", "motivation", "ai-delivery", "cynefin"]),
+      "skills", "example", "splitting", "rootcause", "a3", "experiment", "marginal", "lean-coffee", "jira", "adkar", "coaching", "psych-safety", "delivery-metrics", "backlog", "facilitation", "estimation", "vsm", "lean", "incident", "launch", "daily", "refinement", "cadences", "events", "spotter", "leading-safety", "sdlc", "pipeline", "release", "cd-health", "right-size", "sync", "dependency", "forecast", "closeout", "onboarding", "roadmap", "user-manual", "conflict", "feedback", "motivation", "ai-delivery", "cynefin"]),
     ("coach", "Agile Coach",
      "You help teams and leaders improve how they work, and coach the system beyond any one team.",
      ["health", "marginal", "topology"],
-     ["sm-cheat", "retro", "team-charter", "ai", "experiment", "rootcause", "kanban", "ageing", "blockers", "skills",
+     ["sm-cheat", "retro", "team-charter", "ai", "experiment", "rootcause", "a3", "kanban", "ageing", "blockers", "skills",
       "value", "okr", "ctp", "sync", "impediments", "lean-coffee", "adkar", "coaching", "psych-safety", "delegation", "cross-retro", "portfolio-kanban", "backlog", "facilitation", "vsm", "lean", "incident", "launch", "events", "cadences", "daily", "spotter", "leading-safety", "sdlc", "pipeline", "cd-health", "right-size", "onboarding", "user-manual", "conflict", "feedback", "motivation", "design-sprint", "ai-delivery", "event-storming", "cynefin"]),
     ("po", "Product Owner / Product Manager",
      "You decide what's worth building, for whom, and in what order, and you prove it worked.",
@@ -151,7 +152,7 @@ ROLES = [
     ("eng", "Engineering Manager / Tech Lead",
      "You build capable teams and healthy systems: skills, flow, quality and sensible team boundaries.",
      ["skills", "topology", "kanban"],
-     ["pairing", "ageing", "buffer", "blockers", "ai", "team-charter", "rootcause", "example", "splitting",
+     ["pairing", "ageing", "buffer", "blockers", "ai", "team-charter", "rootcause", "a3", "example", "splitting",
       "dependency", "health", "impediments", "delivery-metrics", "psych-safety", "coaching", "delegation", "backlog", "vsm", "lean", "incident", "adr", "estimation", "launch", "daily", "refinement", "cadences", "spotter", "leading-safety", "pipeline", "testing", "release", "cd-health", "sdlc", "right-size", "experiment", "onboarding", "user-manual", "conflict", "feedback", "motivation", "design-sprint", "ai-delivery", "event-storming", "cynefin"]),
     ("ux", "Designer / Business Analyst",
      "You understand users and the problem, and help the team build the right thing, clearly specified.",
@@ -161,7 +162,7 @@ ROLES = [
      "You do the work, and you help decide how the team works and improves.",
      ["team-charter", "retro", "pairing"],
      ["ai", "sprint-planning", "sprint-review", "lean-coffee", "skills", "kanban", "buffer", "impediments", "example",
-      "splitting", "health", "psych-safety", "backlog", "estimation", "incident", "facilitation", "adr", "launch", "daily", "refinement", "events", "spotter", "pipeline", "testing", "release", "cd-health", "ageing", "experiment", "jira", "rootcause", "onboarding", "user-manual", "feedback", "motivation", "design-sprint", "event-storming"]),
+      "splitting", "health", "psych-safety", "backlog", "estimation", "incident", "facilitation", "adr", "launch", "daily", "refinement", "events", "spotter", "pipeline", "testing", "release", "cd-health", "ageing", "experiment", "jira", "rootcause", "a3", "onboarding", "user-manual", "feedback", "motivation", "design-sprint", "event-storming"]),
 ]
 
 for _id, _n, _d, start, also in ROLES:

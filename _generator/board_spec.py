@@ -28,7 +28,8 @@ def _case(s, title=False):
     """Sentence-case (or title-case) an all-caps label, keeping acronyms and mixed-case words like SAFe as written."""
     def word(m):
         w = m.group(0)
-        key = len(w) == 1 and m.string[m.end():m.end() + 2] == f" {w}"  # RACI-style keys: "R RESPONSIBLE"
+        key = len(w) == 1 and (m.string[m.end():m.end() + 2] == f" {w}"  # RACI-style keys: "R RESPONSIBLE"
+                               or "/" in m.string[max(m.start() - 1, 0):m.end() + 1])  # sizes: "S/M/L"
         if not w.isupper() or w in ACRONYMS or key or re.fullmatch(r"P\d+", w):
             return w
         return MIXED.get(w, w.capitalize() if title else w.lower())
