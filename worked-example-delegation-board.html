@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Example: Delegation Board</title>
+<!-- meta -->
+<meta name="description" content="Worked example for a fictional team. A3 landscape delegation board: the seven levels of delegation, a decision-area grid with a review column, guardrails, and next steps.">
+<link rel="canonical" href="https://eparker71.github.io/agile-ways-of-working/worked-example-delegation-board.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agile Ways of Working Toolkit">
+<meta property="og:title" content="Example: Delegation Board · Agile Ways of Working Toolkit">
+<meta property="og:description" content="Worked example for a fictional team. A3 landscape delegation board: the seven levels of delegation, a decision-area grid with a review column, guardrails, and next steps.">
+<meta property="og:url" content="https://eparker71.github.io/agile-ways-of-working/worked-example-delegation-board.html">
+<meta property="og:image" content="https://eparker71.github.io/agile-ways-of-working/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /meta -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{display:flex;justify-content:center;align-items:flex-start;padding:24px;box-sizing:border-box;min-height:100vh;}
+svg{display:block;max-width:100%;height:auto;box-shadow:0 12px 40px rgba(0,0,0,.22);}
+a.guide{position:fixed;right:16px;bottom:16px;font:500 12px 'Geist',system-ui,sans-serif;color:#fff;background:#0C1A2E;border-left:4px solid #eb6c36;padding:9px 14px;border-radius:6px;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.25);}
+a.guide:hover{background:#C2410C;}
+a.guide.pdf{bottom:60px;}
+p.phone{display:none;}@media (max-width:700px){body{flex-direction:column;align-items:stretch;padding:12px 12px 72px;min-height:0;}p.phone{display:block;margin:14px 2px 0;font:14px/1.5 'Geist',system-ui,sans-serif;color:#0C1A2E;}p.phone b{display:block;font-weight:600;margin-bottom:2px;}p.phone a{color:#9A3412;}}@media print{p.phone{display:none !important;}}
+@media print{@page{size:A3 landscape;margin:0;}html,body{background:none;}body{padding:0;}svg{box-shadow:none;width:100%;max-height:296mm;}html,body{height:297mm;overflow:hidden;}a.guide{display:none;}}
+</style>
+</head>
+<body>
+<a class="guide" style="right:auto;left:16px" href="delegation-board.html">← Blank board</a>
+<a class="guide" href="facilitator-guide-delegation.html">Facilitator guide →</a>
+<a class="guide pdf" href="pdf/worked-example-delegation-board.pdf" download title="A3 landscape. On 11×17 (Tabloid) paper, print with Fit to page.">A3 PDF ↓</a>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 1190" width="1680" height="1190" role="img" aria-labelledby="mg-title mg-desc">
+  <title id="mg-title">Example: Delegation Board</title>
+  <desc id="mg-desc">Worked example for a fictional team. A3 landscape delegation board: the seven levels of delegation, a decision-area grid with a review column, guardrails, and next steps.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#EFF6FF"/>
+    </linearGradient>
+    <filter id="fc" x="-4%" y="-4%" width="110%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity=".10"/>
+    </filter>
+    <filter id="fsm" x="-6%" y="-6%" width="114%" height="116%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity=".08"/>
+    </filter>
+    <pattern id="dots" patternUnits="userSpaceOnUse" width="20" height="20">
+      <circle cx="10" cy="10" r="1.2" fill="#000" fill-opacity=".055"/>
+    </pattern>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E0F2FE"/>
+      <stop offset="100%" stop-color="#F0F9FF"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7DD3FC"/>
+      <stop offset="100%" stop-color="#BAE6FD"/>
+    </linearGradient>
+  </defs>
+<rect x="0" y="0" width="1680" height="1190" fill="url(#bg)"/><rect x="0" y="0" width="1680" height="4" fill="#eb6c36"/><rect x="0" y="4" width="1680" height="134" fill="#0C1A2E"/><text x="24" y="70" font-family="'Instrument Serif',Georgia,serif" font-size="42" font-weight="400" fill="white">Delegation Board</text><text x="24" y="100" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" fill="#94A3B8">Make decision rights explicit: for each area, agree how much the team decides, and move it up over time.</text><text x="24" y="120" font-family="'Geist Mono',Consolas,monospace" font-size="9" fill="#8291A6" letter-spacing=".06em">Lead the Organisation · Inspired by Management 3.0 (Jurgen Appelo) · Seven Levels of Delegation</text><text x="1356" y="66" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#8291A6" letter-spacing=".14em">TEAM</text><line x1="1452" y1="69" x2="1656" y2="69" stroke="#334155" stroke-width="1.2"/><text x="1356" y="96" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#8291A6" letter-spacing=".14em">LEADER</text><line x1="1452" y1="99" x2="1656" y2="99" stroke="#334155" stroke-width="1.2"/>
+<rect x="24" y="148" width="1632" height="150" rx="10" fill="#EDE9FE" stroke="#581C87" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M24,200 V158 A10,10 0 0 1 34,148 H1646 A10,10 0 0 1 1656,158 V200 Z" fill="#581C87"/><text x="45" y="180" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Seven Levels of Delegation</text><text x="1640" y="179" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".88" letter-spacing=".10em">FROM LEADER DECIDES TO TEAM DECIDES</text>
+<rect x="38" y="212" width="222.286" height="72" rx="6" fill="white" stroke="#581C87" stroke-opacity="0.15" stroke-width="1.5"/>
+<circle cx="60" cy="236" r="11" fill="#581C87" fill-opacity="0.35"/>
+<text x="60" y="240" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="white">1</text>
+<text x="80" y="241" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#581C87">Tell</text>
+<text x="52" y="268" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-style="italic" fill="#581C87">I decide and tell you</text>
+<rect x="268.286" y="212" width="222.286" height="72" rx="6" fill="white" stroke="#581C87" stroke-opacity="0.23" stroke-width="1.5"/>
+<circle cx="290.286" cy="236" r="11" fill="#581C87" fill-opacity="0.45"/>
+<text x="290.286" y="240" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="white">2</text>
+<text x="310.286" y="241" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#581C87">Sell</text>
+<text x="282.286" y="268" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-style="italic" fill="#581C87">I decide and explain why</text>
+<rect x="498.571" y="212" width="222.286" height="72" rx="6" fill="white" stroke="#581C87" stroke-opacity="0.31" stroke-width="1.5"/>
+<circle cx="520.571" cy="236" r="11" fill="#581C87" fill-opacity="0.55"/>
+<text x="520.571" y="240" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="white">3</text>
+<text x="540.571" y="241" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#581C87">Consult</text>
+<text x="512.571" y="268" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-style="italic" fill="#581C87">I ask you, then I decide</text>
+<rect x="728.857" y="212" width="222.286" height="72" rx="6" fill="white" stroke="#581C87" stroke-opacity="0.39" stroke-width="1.5"/>
+<circle cx="750.857" cy="236" r="11" fill="#581C87" fill-opacity="0.65"/>
+<text x="750.857" y="240" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="white">4</text>
+<text x="770.857" y="241" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#581C87">Agree</text>
+<text x="742.857" y="268" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-style="italic" fill="#581C87">We decide together</text>
+<rect x="959.143" y="212" width="222.286" height="72" rx="6" fill="white" stroke="#581C87" stroke-opacity="0.47" stroke-width="1.5"/>
+<circle cx="981.143" cy="236" r="11" fill="#581C87" fill-opacity="0.75"/>
+<text x="981.143" y="240" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="white">5</text>
+<text x="1001.14" y="241" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#581C87">Advise</text>
+<text x="973.143" y="268" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-style="italic" fill="#581C87">I advise, you decide</text>
+<rect x="1189.43" y="212" width="222.286" height="72" rx="6" fill="white" stroke="#581C87" stroke-opacity="0.55" stroke-width="1.5"/>
+<circle cx="1211.43" cy="236" r="11" fill="#581C87" fill-opacity="0.85"/>
+<text x="1211.43" y="240" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="white">6</text>
+<text x="1231.43" y="241" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#581C87">Inquire</text>
+<text x="1203.43" y="268" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-style="italic" fill="#581C87">You decide, then tell me</text>
+<rect x="1419.71" y="212" width="222.286" height="72" rx="6" fill="white" stroke="#581C87" stroke-opacity="0.63" stroke-width="1.5"/>
+<circle cx="1441.71" cy="236" r="11" fill="#581C87" fill-opacity="0.95"/>
+<text x="1441.71" y="240" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="white">7</text>
+<text x="1461.71" y="241" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#581C87">Delegate</text>
+<text x="1433.71" y="268" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-style="italic" fill="#581C87">You decide; no need to tell me</text>
+<rect x="24" y="312" width="1632" height="560" rx="10" fill="#DBEAFE" stroke="#1E3A8A" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M24,364 V322 A10,10 0 0 1 34,312 H1646 A10,10 0 0 1 1656,322 V364 Z" fill="#1E3A8A"/><circle cx="45" cy="338" r="12" fill="white" fill-opacity=".18"/><text x="45" y="343" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">1</text><text x="68" y="344" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Decision Areas</text><text x="1640" y="343" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".88" letter-spacing=".10em">MARK TODAY'S LEVEL · ARROW TO WHERE WE'RE HEADING</text>
+<text x="48" y="402" font-family="'Geist Mono',Consolas,monospace" font-size="9" font-weight="600" fill="#1E3A8A" letter-spacing=".12em">DECISION AREA</text>
+<rect x="385" y="382" width="149.143" height="30" rx="5" fill="#581C87" fill-opacity="0.35"/>
+<text x="459.571" y="402" text-anchor="middle" font-family="'Geist Mono',Consolas,monospace" font-size="9.5" font-weight="600" fill="white" letter-spacing=".08em">1 · TELL</text>
+<rect x="540.143" y="382" width="149.143" height="30" rx="5" fill="#581C87" fill-opacity="0.45"/>
+<text x="614.714" y="402" text-anchor="middle" font-family="'Geist Mono',Consolas,monospace" font-size="9.5" font-weight="600" fill="white" letter-spacing=".08em">2 · SELL</text>
+<rect x="695.286" y="382" width="149.143" height="30" rx="5" fill="#581C87" fill-opacity="0.55"/>
+<text x="769.857" y="402" text-anchor="middle" font-family="'Geist Mono',Consolas,monospace" font-size="9.5" font-weight="600" fill="white" letter-spacing=".08em">3 · CONSULT</text>
+<rect x="850.429" y="382" width="149.143" height="30" rx="5" fill="#581C87" fill-opacity="0.65"/>
+<text x="925" y="402" text-anchor="middle" font-family="'Geist Mono',Consolas,monospace" font-size="9.5" font-weight="600" fill="white" letter-spacing=".08em">4 · AGREE</text>
+<rect x="1005.57" y="382" width="149.143" height="30" rx="5" fill="#581C87" fill-opacity="0.75"/>
+<text x="1080.14" y="402" text-anchor="middle" font-family="'Geist Mono',Consolas,monospace" font-size="9.5" font-weight="600" fill="white" letter-spacing=".08em">5 · ADVISE</text>
+<rect x="1160.71" y="382" width="149.143" height="30" rx="5" fill="#581C87" fill-opacity="0.85"/>
+<text x="1235.29" y="402" text-anchor="middle" font-family="'Geist Mono',Consolas,monospace" font-size="9.5" font-weight="600" fill="white" letter-spacing=".08em">6 · INQUIRE</text>
+<rect x="1315.86" y="382" width="149.143" height="30" rx="5" fill="#581C87" fill-opacity="0.95"/>
+<text x="1390.43" y="402" text-anchor="middle" font-family="'Geist Mono',Consolas,monospace" font-size="9.5" font-weight="600" fill="white" letter-spacing=".08em">7 · DELEGATE</text>
+<text x="1478" y="402" font-family="'Geist Mono',Consolas,monospace" font-size="9" font-weight="600" fill="#1E3A8A" letter-spacing=".12em">REVIEW BY</text>
+<rect x="42" y="420" width="334" height="42.8889" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".15"/>
+
+<line x1="54" y1="452.889" x2="362" y2="452.889" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="385" y="420" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="540.143" y="420" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="695.286" y="420" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="850.429" y="420" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1005.57" y="420" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1160.71" y="420" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1315.86" y="420" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1471" y="420" width="167" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="42" y="468.889" width="334" height="42.8889" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".15"/>
+
+<line x1="54" y1="501.778" x2="362" y2="501.778" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="385" y="468.889" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="540.143" y="468.889" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="695.286" y="468.889" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="850.429" y="468.889" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1005.57" y="468.889" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1160.71" y="468.889" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1315.86" y="468.889" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1471" y="468.889" width="167" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="42" y="517.778" width="334" height="42.8889" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".15"/>
+
+<line x1="54" y1="550.667" x2="362" y2="550.667" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="385" y="517.778" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="540.143" y="517.778" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="695.286" y="517.778" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="850.429" y="517.778" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1005.57" y="517.778" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1160.71" y="517.778" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1315.86" y="517.778" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1471" y="517.778" width="167" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="42" y="566.667" width="334" height="42.8889" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".15"/>
+
+<line x1="54" y1="599.556" x2="362" y2="599.556" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="385" y="566.667" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="540.143" y="566.667" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="695.286" y="566.667" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="850.429" y="566.667" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1005.57" y="566.667" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1160.71" y="566.667" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1315.86" y="566.667" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1471" y="566.667" width="167" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="42" y="615.556" width="334" height="42.8889" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".15"/>
+
+<line x1="54" y1="648.444" x2="362" y2="648.444" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="385" y="615.556" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="540.143" y="615.556" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="695.286" y="615.556" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="850.429" y="615.556" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1005.57" y="615.556" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1160.71" y="615.556" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1315.86" y="615.556" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1471" y="615.556" width="167" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="42" y="664.444" width="334" height="42.8889" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".15"/>
+
+<line x1="54" y1="697.333" x2="362" y2="697.333" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="385" y="664.444" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="540.143" y="664.444" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="695.286" y="664.444" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="850.429" y="664.444" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1005.57" y="664.444" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1160.71" y="664.444" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1315.86" y="664.444" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1471" y="664.444" width="167" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="42" y="713.333" width="334" height="42.8889" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".15"/>
+
+<line x1="54" y1="746.222" x2="362" y2="746.222" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="385" y="713.333" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="540.143" y="713.333" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="695.286" y="713.333" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="850.429" y="713.333" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1005.57" y="713.333" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1160.71" y="713.333" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1315.86" y="713.333" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1471" y="713.333" width="167" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="42" y="762.222" width="334" height="42.8889" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".15"/>
+
+<line x1="54" y1="795.111" x2="362" y2="795.111" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="385" y="762.222" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="540.143" y="762.222" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="695.286" y="762.222" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="850.429" y="762.222" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1005.57" y="762.222" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1160.71" y="762.222" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1315.86" y="762.222" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1471" y="762.222" width="167" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="42" y="811.111" width="334" height="42.8889" rx="4" fill="white" stroke="#1E3A8A" stroke-opacity=".15"/>
+
+<line x1="54" y1="844" x2="362" y2="844" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="385" y="811.111" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="540.143" y="811.111" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="695.286" y="811.111" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="850.429" y="811.111" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1005.57" y="811.111" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1160.71" y="811.111" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1315.86" y="811.111" width="149.143" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="1471" y="811.111" width="167" height="42.8889" rx="4" fill="white" fill-opacity=".6" stroke="#1E3A8A" stroke-opacity=".12"/>
+<rect x="24" y="886" width="808" height="174" rx="10" fill="#FEE2E2" stroke="#991B1B" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M24,938 V896 A10,10 0 0 1 34,886 H822 A10,10 0 0 1 832,896 V938 Z" fill="#991B1B"/><circle cx="45" cy="912" r="12" fill="white" fill-opacity=".18"/><text x="45" y="917" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">2</text><text x="68" y="918" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Guardrails</text><text x="816" y="917" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".88" letter-spacing=".10em">LIMITS THAT ALWAYS APPLY</text>
+<text x="42" y="966" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-style="italic" fill="#991B1B" fill-opacity=".88">e.g. budget limits, legal and policy rules, security standards</text>
+<line x1="42" y1="994" x2="814" y2="994" stroke="#CBD5E1" stroke-width="1.5"/><line x1="42" y1="1020" x2="814" y2="1020" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="846" y="886" width="810" height="174" rx="10" fill="#DCFCE7" stroke="#14532D" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M846,938 V896 A10,10 0 0 1 856,886 H1646 A10,10 0 0 1 1656,896 V938 Z" fill="#14532D"/><circle cx="867" cy="912" r="12" fill="white" fill-opacity=".18"/><text x="867" y="917" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">3</text><text x="890" y="918" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Next Steps</text>
+<rect x="864" y="966" width="12" height="12" rx="2" fill="white" stroke="#14532D" stroke-opacity=".6" stroke-width="1.2"/><text x="884" y="976" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#14532D">Agreed with the team, not just announced</text>
+<rect x="1254" y="966" width="12" height="12" rx="2" fill="white" stroke="#14532D" stroke-opacity=".6" stroke-width="1.2"/><text x="1274" y="976" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#14532D">Posted where everyone can see it</text>
+<rect x="864" y="1000" width="12" height="12" rx="2" fill="white" stroke="#14532D" stroke-opacity=".6" stroke-width="1.2"/><text x="884" y="1010" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#14532D">One area moves up a level next</text>
+<rect x="1254" y="1000" width="12" height="12" rx="2" fill="white" stroke="#14532D" stroke-opacity=".6" stroke-width="1.2"/><text x="1274" y="1010" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#14532D">Review the board every few months</text>
+<line x1="24" y1="1070" x2="1656" y2="1070" stroke="#E2E8F0" stroke-width="1"/><text x="24" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“Which decisions could the team make without us?”</text><line x1="832" y1="1078" x2="832" y2="1128" stroke="#E2E8F0" stroke-width="1"/><text x="848" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“What would we need to trust to move this up one level?”</text><text x="1656" y="1138" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#5B6B82" letter-spacing=".08em">Lead the Organisation · Outcomes Over Output · Evidence, Not Opinion</text><text x="24" y="1138" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#5B6B82" letter-spacing=".06em">© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</text>
+<g class="worked-example"><g transform="rotate(-3 1150 66)"><rect x="1010" y="48" width="280" height="36" rx="5" fill="none" stroke="#eb6c36" stroke-width="2"/><text x="1150" y="71" text-anchor="middle" font-family="'Geist Mono',Consolas,monospace" font-size="10.5" font-weight="600" fill="#eb6c36" letter-spacing=".12em">WORKED EXAMPLE · FICTIONAL TEAM</text></g><text x="1462" y="64" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="20" font-weight="500" fill="#FDE68A">Basket team</text><text x="1462" y="94" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="20" font-weight="500" fill="#FDE68A">Head of Digital</text><text x="54" y="446.889" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="18" font-weight="500" fill="#1D4ED8">Hiring into the team</text><line x1="783.857" y1="441" x2="909" y2="441" stroke="#1D4ED8" stroke-width="2.4" stroke-linecap="round"/><path d="M901,435 L911,441 L901,447" fill="none" stroke="#1D4ED8" stroke-width="2.4" stroke-linecap="round"/><circle cx="925" cy="441" r="11" fill="none" stroke="#1D4ED8" stroke-width="2.2" stroke-dasharray="4,3"/><circle cx="769.857" cy="441" r="11" fill="#1D4ED8"/><text x="1480" y="448" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="18" font-weight="500" fill="#1D4ED8">Q3</text><text x="54" y="495.778" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="18" font-weight="500" fill="#1D4ED8">Tools and technology</text><line x1="1094.14" y1="489.889" x2="1219.29" y2="489.889" stroke="#1D4ED8" stroke-width="2.4" stroke-linecap="round"/><path d="M1211.29,483.889 L1221.29,489.889 L1211.29,495.889" fill="none" stroke="#1D4ED8" stroke-width="2.4" stroke-linecap="round"/><circle cx="1235.29" cy="489.889" r="11" fill="none" stroke="#1D4ED8" stroke-width="2.2" stroke-dasharray="4,3"/><circle cx="1080.14" cy="489.889" r="11" fill="#1D4ED8"/><text x="1480" y="496.889" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="18" font-weight="500" fill="#1D4ED8">Q3</text><text x="54" y="544.667" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="18" font-weight="500" fill="#1D4ED8">How we plan our work</text><line x1="1249.29" y1="538.778" x2="1374.43" y2="538.778" stroke="#1D4ED8" stroke-width="2.4" stroke-linecap="round"/><path d="M1366.43,532.778 L1376.43,538.778 L1366.43,544.778" fill="none" stroke="#1D4ED8" stroke-width="2.4" stroke-linecap="round"/><circle cx="1390.43" cy="538.778" r="11" fill="none" stroke="#1D4ED8" stroke-width="2.2" stroke-dasharray="4,3"/><circle cx="1235.29" cy="538.778" r="11" fill="#1D4ED8"/><text x="1480" y="545.778" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="18" font-weight="500" fill="#1D4ED8">June</text><text x="54" y="593.556" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="18" font-weight="500" fill="#1D4ED8">Working hours</text><circle cx="1235.29" cy="587.667" r="11" fill="#1D4ED8"/><text x="1480" y="594.667" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="18" font-weight="500" fill="#1D4ED8">—</text><text x="54" y="642.444" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="18" font-weight="500" fill="#1D4ED8">Spending up to £2k</text><line x1="783.857" y1="636.556" x2="1064.14" y2="636.556" stroke="#1D4ED8" stroke-width="2.4" stroke-linecap="round"/><path d="M1056.14,630.556 L1066.14,636.556 L1056.14,642.556" fill="none" stroke="#1D4ED8" stroke-width="2.4" stroke-linecap="round"/><circle cx="1080.14" cy="636.556" r="11" fill="none" stroke="#1D4ED8" stroke-width="2.2" stroke-dasharray="4,3"/><circle cx="769.857" cy="636.556" r="11" fill="#1D4ED8"/><text x="1480" y="643.556" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="18" font-weight="500" fill="#1D4ED8">July</text><text x="54" y="691.333" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="18" font-weight="500" fill="#1D4ED8">Architecture choices</text><line x1="1094.14" y1="685.444" x2="1219.29" y2="685.444" stroke="#1D4ED8" stroke-width="2.4" stroke-linecap="round"/><path d="M1211.29,679.444 L1221.29,685.444 L1211.29,691.444" fill="none" stroke="#1D4ED8" stroke-width="2.4" stroke-linecap="round"/><circle cx="1235.29" cy="685.444" r="11" fill="none" stroke="#1D4ED8" stroke-width="2.2" stroke-dasharray="4,3"/><circle cx="1080.14" cy="685.444" r="11" fill="#1D4ED8"/><text x="1480" y="692.444" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="18" font-weight="500" fill="#1D4ED8">Q3</text><text x="54" y="740.222" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="18" font-weight="500" fill="#1D4ED8">Who works on what</text><circle cx="1390.43" cy="734.333" r="11" fill="#1D4ED8"/><text x="1480" y="741.333" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="18" font-weight="500" fill="#1D4ED8">—</text><text x="54" y="789.111" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="18" font-weight="500" fill="#1D4ED8">Release timing</text><line x1="939" y1="783.222" x2="1219.29" y2="783.222" stroke="#1D4ED8" stroke-width="2.4" stroke-linecap="round"/><path d="M1211.29,777.222 L1221.29,783.222 L1211.29,789.222" fill="none" stroke="#1D4ED8" stroke-width="2.4" stroke-linecap="round"/><circle cx="1235.29" cy="783.222" r="11" fill="none" stroke="#1D4ED8" stroke-width="2.2" stroke-dasharray="4,3"/><circle cx="925" cy="783.222" r="11" fill="#1D4ED8"/><text x="1480" y="790.222" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="18" font-weight="500" fill="#1D4ED8">June</text><text x="46" y="989" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="17" font-weight="500" fill="#1D4ED8">Spending over £2k needs Finance sign-off · customer data stays in the UK and EU</text><text x="46" y="1015" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="17" font-weight="500" fill="#1D4ED8">Accessibility (WCAG AA) and security reviews always apply</text><path d="M866,975 l3.5,4.5 l7,-10" fill="none" stroke="#1D4ED8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M1256,975 l3.5,4.5 l7,-10" fill="none" stroke="#1D4ED8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M866,1009 l3.5,4.5 l7,-10" fill="none" stroke="#1D4ED8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><text x="864" y="1046" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="17" font-weight="500" fill="#1D4ED8">Next to move: spending (3 → 5), from July</text></g>
+</svg>
+<p class="phone"><b>This is an A3 board, made for printing or a big screen.</b>Pinch to zoom, turn your phone sideways, or <a href="worked-example-delegation-board.svg">open the SVG</a> to zoom in. The <a href="facilitator-guide-delegation.html">facilitator guide</a> is easy to read on a phone.</p>
+</body>
+</html>

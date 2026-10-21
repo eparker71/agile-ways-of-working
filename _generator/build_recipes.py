@@ -40,7 +40,15 @@ EXAMPLES = [("team-charter", "Team Charter", "A new team's purpose, values, agre
             ("kanban", "Kanban Board Design", "Seven columns with WIP limits and exit policies, classes of service and board policies."),
             ("status", "Outcome Status Report", "A one-line headline, outcomes against targets, a forecast range and the decisions needed."),
             ("value", "Value Metrics", "Goals, measures in the four key value areas, what they tell us, and two experiments."),
-            ("cynefin", "Cynefin® Sense-Making", "The team's open questions sorted into domains, and safe-to-fail experiments for one.")]
+            ("cynefin", "Cynefin® Sense-Making", "The team's open questions sorted into domains, and safe-to-fail experiments for one."),
+            ("sync", "Cross-Team Sync", "Five teams' updates with blockers in red, cross-team impediments and the actions agreed."),
+            ("portfolio-kanban", "Portfolio Kanban & Investment Mix", "Twelve initiatives with WIP limits, a lean business case, and a mix that's drifted."),
+            ("psych-safety", "Psychological Safety Check", "Seven anonymous votes per statement, what the team noticed, and three small experiments."),
+            ("raci", "RACI & Decision Log", "Eight pieces of pilot work across eight roles, checked, plus three logged decisions."),
+            ("delegation", "Delegation Board", "Eight decision areas, today's level and where each is heading, with guardrails."),
+            ("cross-retro", "Cross-Team Retro", "What went well and what didn't across teams, five whys on the top problem, and fixes."),
+            ("vsm", "Value Stream Map", "Story to live in six steps: 16 days of lead time, 3 of work, and where it waits."),
+            ("premortem", "Pre-mortem", "The subscriptions pilot has failed: why, the top risks, and how to prevent or spot them.")]
 
 
 # Starter kits: the minimum toolset for each project size (see the Right-Size Your Structure poster).

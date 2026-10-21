@@ -6157,7 +6157,7 @@ def write_example(base, title, layer, header=None):
     def clean(t):
         t = re.sub(r'<text[^>]*fill-opacity="\.22"[^>]*>[^<]*</text>', "", t)
         t = re.sub(r'<rect x="[^"]*" y="[^"]*" width="18" height="18" rx="2" fill="#[0-9A-Fa-f]{6}" fill-opacity="\.35"/>', "", t)
-        t = re.sub(r'<text[^>]*font-style="italic"[^>]*fill-opacity="\.[34]"[^>]*>[^<]*</text>', "", t)
+        t = re.sub(r'<text[^>]*font-style="italic"[^>]*fill-opacity="\.(?:3|4|45)"[^>]*>[^<]*</text>', "", t)
         t = re.sub(r'<rect [^>]*rx="3" fill="#[0-9A-Fa-f]{6}" fill-opacity="\.22"/>', "", t)
         return re.sub(r'<text[^>]*>sprint, month, quarter…</text>', "", t)
     svg, page = clean(svg), clean(page)
@@ -6935,6 +6935,272 @@ def example_cynefin():
     write_example("cynefin-board", "Cynefin® Sense-Making", "".join(L_), ["Substitutes", "12 May"])
 
 
+def example_cross_team_sync():
+    rows = [("Basket", ["Reorder live: repeat orders at 25%", "In-stock substitutes done"], ["Out-of-stock substitutes", "Subscriptions pilot prep"],
+             ["Stock API from Warehouse"], ["Stock API, due Wed 7 May"], "3"),
+            ("Checkout", ["Self-service deploys done", "Now releasing 3 times a week"], ["Wallet payments"],
+             ["Wallet API from Payments"], ["none"], "4"),
+            ("Payments", ["Fraud rules live", "Repeat billing spike started"], ["Repeat billing", "Wallet API"],
+             ["Two people on the support rota"], ["Wallet API for Checkout"], "3"),
+            ("Search & Browse", ["Usual-items search in testing"], ["Recipe search"], ["nothing"], ["none"], "5"),
+            ("Store Platform", ["Monitoring dashboards 60% done"], ["Cost review"], ["One person short"], ["none"], "4")]
+    L_ = []
+    for i, (team, *cells, conf) in enumerate(rows):
+        y = 242 + i * 58
+        L_.append(hand(48, y + 24, team, 17))
+        x = 42 + 150
+        for c, lines_ in enumerate(cells):
+            L_ += [hand(x + 6, y + 22 + k * 24, t, 16, "#DC2626" if t.startswith("Stock API") else PEN) for k, t in enumerate(lines_)]
+            x += (380, 280, 300, 300)[c]
+        L_.append(hand(1452 + 93, y + 32, conf, 22, anchor="middle"))
+    for x, y, t, rot in [(50, 740, "Payments sign-off needed for every Checkout release", -2),
+                         (205, 830, "Staging down twice this week", 2),
+                         (410, 740, "Stock API late: Basket asks for read access (Sam)", 1),
+                         (580, 830, "Test data for reorders (Alex)", -2),
+                         (770, 740, "Deploy queue: fixed by self-service deploys", 2),
+                         (930, 830, "Shared on-call rota agreed", -1)]:
+        L_.append(note(x, y, t, YELLOW, 160, 86, rot, 16))
+    for i, row in enumerate([("Escalate Stock API to Head of Warehouse", "Tom", "Thu"),
+                             ("Agree self-service release checks", "Payments lead", "16 May"),
+                             ("Add a health alert for staging", "Platform", "Mon"),
+                             ("Move the sync to Tue and Thu", "Tom", "now")]):
+        x = 1144
+        for c, v in enumerate(row):
+            L_.append(hand(x, 739 + i * 34, v, 15))
+            x += (290, 110)[c] if c < 2 else 0
+    write_example("cross-team-sync-board", "Cross-Team Sync", "".join(L_), ["Basket group", "6 May"])
+
+
+def example_portfolio_kanban():
+    cols = [(None, "a sponsor and a problem", ["Family accounts", "Voice ordering", "Recipe-to-basket"]),
+            ("4", "fits strategy; worth a case", ["Personalised offers", "Loyalty rewards"]),
+            ("2", "lean case approved", ["Staples subscriptions", "New payment provider"]),
+            ("3", "a team has capacity", ["Delivery Slots team"]),
+            ("3", "MVP outcome measured", ["Reorder made easy", "Smart substitutes", "Faster checkout"]),
+            (None, "benefits reviewed", ["Self-service deploys"])]
+    cw = (1632 - 28 - 50) / 6
+    L_ = []
+    for i, (wip, exit_, items) in enumerate(cols):
+        cx = 38 + i * (cw + 10)
+        if wip:
+            L_.append(hand(after(cx + 12, "WIP limit:", 10.5), 278, wip, 18))
+        L_.append(hand(after(cx + 12, "Exit when:", 10.5), 308, exit_, 15))
+        for j, t in enumerate(items):
+            L_.append(note(cx + (20, 90, 20)[j], (340, 420, 500)[j], t, YELLOW, 150, 64, (-2, 2, -1)[j], 15))
+    for y, lab, v in [(710, "Initiative:", "Staples subscriptions"),
+                      (746, "Problem or opportunity:", "families run out of staples between weekly shops")]:
+        L_.append(hand(after(42, lab), y, v, 17))
+    for y, lab, v in [(814, "We believe…", "a staples subscription for weekly shoppers"),
+                      (844, "will result in…", "repeat orders up 3 points, fewer second orders"),
+                      (874, "We'll know when…", "5,000 active subscriptions by the end of Q3")]:
+        L_.append(hand(after(54, lab), y, v, 17))
+    L_ += [hand(after(42, "Smallest version (MVP):"), 922, "a manual subscription for 50 customers, 4 weeks", 17),
+           hand(after(42, "Cost range:"), 958, "£40k–£70k to build fully", 17), tick(538, 966),
+           hand(after(42, "Go / no-go criteria:"), 996, "go if 70% keep it for 4 weeks in the manual test", 17),
+           tick(124, 1040)]
+    for i, (target, actual) in enumerate([("15", "10"), ("45", "55"), ("20", "20"), ("15", "10"), ("5", "5"), ("100", "100")]):
+        y = 752 + i * 40
+        L_ += [hand(1060, y, target, 17), hand(1135, y, actual, 17, "#DC2626" if target != actual else PEN)]
+    L_.append(hand(866, 1008, "Too little on new bets and tech debt", 16))
+    L_ += [hand(after(1275, "Review cadence:"), 712, "monthly", 17),
+           hand(after(1275, "Decision forum:"), 746, "the portfolio group", 17)]
+    L_ += [tick(1275, 812 + i * 30) for i in (0, 1, 4)]
+    L_.append(hand(after(1275, "Next review:"), 974, "Tuesday 3 June", 17))
+    write_example("portfolio-kanban-board", "Portfolio Kanban & Investment Mix", "".join(L_), ["Online grocery", "6 May"])
+
+
+def example_psych_safety():
+    # seven anonymous votes per statement: strongly disagree … strongly agree
+    votes = [[0, 1, 2, 3, 1], [0, 2, 2, 2, 1], [0, 0, 1, 4, 2], [0, 1, 3, 2, 1], [0, 0, 0, 3, 4], [0, 0, 1, 3, 3], [1, 2, 2, 2, 0]]
+    sc_w, rh = (1082 - 36 - 470) / 5, (520 - 110) / 7
+    L_ = []
+    for r, row in enumerate(votes):
+        ry = 244 + r * rh
+        for i, n in enumerate(row):
+            x0 = 512 + i * sc_w + sc_w / 2 - (n - 1) * 9
+            L_ += [f'<circle cx="{x0 + k * 18:g}" cy="{ry + 26:g}" r="7" fill="#475569"/>' for k in range(n)]
+    L_ += [tick(1138, 240 + i * 30) for i in range(5)]
+    for i, row in enumerate([("2. Problems", "3 of 7", "2 of 7", "first run"), ("7. Ideas used", "2 of 7", "3 of 7", "first run"),
+                             ("5. Asking for help", "7 of 7", "0 of 7", "first run")]):
+        x = 1144
+        for c, v in enumerate(row):
+            L_.append(hand(x, 479 + i * 40, v, 16))
+            x += (110, 120, 130)[c] if c < 3 else 0
+    L_ += [note(48, 812, "Quieter people's ideas get lost in meetings", YELLOW, 160, 92, -2, 16),
+           note(232, 826, "Problems get raised one-to-one, not in the room", YELLOW, 160, 92, 2, 16),
+           note(130, 936, "Helping each other is a real strength", YELLOW, 160, 92, -1, 16)]
+    L_ += [tick(590, 802), tick(590, 866), tick(590, 962),
+           hand(590, 1010, "Priya and Tom will practise the ticked ones first", 17)]
+    for i, row in enumerate([("Write silently before discussing ideas", "Tom", "next retro"),
+                             ("Rotate who facilitates refinement", "everyone", "in 6 weeks"),
+                             ("Priya shares one mistake at each review", "Priya", "end of June")]):
+        x = 1144
+        for c, v in enumerate(row):
+            L_.append(hand(x, 801 + i * 40, v, 16))
+            x += (260, 100)[c] if c < 2 else 0
+    write_example("psych-safety-board", "Psychological Safety Check", "".join(L_))
+
+
+def example_raci():
+    roles = ["Priya (PO)", "Tom (SM)", "Sam (dev)", "Alex (test)", "Mei (design)", "Head of Digital", "Payments lead", "Legal"]
+    rows = ["Pilot scope", "Repeat billing", "Subscription terms", "Go / no-go for the pilot", "Pilot test plan",
+            "Messages to customers", "Release to 50 customers", "Retro on the pilot"]
+    grid = [["A", "", "C", "", "R", "I", "C", ""], ["I", "", "R", "C", "", "", "A", ""], ["R", "", "", "", "", "I", "", "A"],
+            ["R", "I", "I", "I", "I", "A", "C", "I"], ["C", "", "R", "A", "", "", "", ""], ["A", "", "", "", "R", "I", "", "C"],
+            ["A", "I", "R", "C", "", "I", "C", ""], ["C", "A/R", "C", "C", "C", "I", "I", ""]]
+    rw, rh = (1632 - 36 - 380) / 8, (470 - 136) / 8
+    L_ = [hand(422 + i * rw + 10, 250, r, 15) for i, r in enumerate(roles)]
+    for r, (item, cells) in enumerate(zip(rows, grid)):
+        ry = 272 + r * rh
+        L_.append(hand(52, ry + rh - 19, item, 17))
+        L_ += [hand(422 + i * rw + rw / 2, ry + 28, v, 21, "#B91C1C" if "A" in v else PEN, anchor="middle")
+               for i, v in enumerate(cells) if v]
+    L_ += [tick(42 + i * 322, 716) for i in range(5)]
+    log = [("1", "2 May", "Pilot with 50 customers, by hand", "Full build; fake door only", "Learn before spending £40k or more",
+            "Priya, Head of Digital", "after 4 weeks"),
+           ("2", "7 May", "Basket gets read access to stock data", "Wait for the Stock API; copy the data",
+            "Unblocks substitutes now", "Head of Warehouse", "when the API ships"),
+           ("3", "9 May", "Self-service release checks for Checkout", "Keep sign-off; sign off big changes only",
+            "Sign-off was the bottleneck", "Payments lead", "after any incident")]
+    for i, row in enumerate(log):
+        x = 48
+        for c, v in enumerate(row):
+            L_.append(hand(x, 874 + i * 38, v, 16))
+            x += (40, 100, 380, 340, 360, 170)[c] if c < 6 else 0
+    write_example("raci-decision-log-board", "RACI & Decision Log", "".join(L_), ["Subscriptions pilot", "9 May"])
+
+
+def example_delegation():
+    # (area, today's level, where we're heading, review by); levels are 1–7
+    areas = [("Hiring into the team", 3, 4, "Q3"), ("Tools and technology", 5, 6, "Q3"), ("How we plan our work", 6, 7, "June"),
+             ("Working hours", 6, 6, "—"), ("Spending up to £2k", 3, 5, "July"), ("Architecture choices", 5, 6, "Q3"),
+             ("Who works on what", 7, 7, "—"), ("Release timing", 4, 6, "June")]
+    lv_w, rh = (1632 - 36 - 510) / 7, (560 - 120) / 9
+    cx = lambda lv: 382 + (lv - 1) * lv_w + lv_w / 2
+    L_ = []
+    for r, (area, now, goal, review) in enumerate(areas):
+        ry = 420 + r * rh
+        cy = ry + 21
+        L_.append(hand(54, ry + rh - 22, area, 18))
+        if goal != now:
+            x1, x2 = cx(now) + 14, cx(goal) - 16
+            L_ += [L(x1, cy, x2, cy, PEN, 2.4, ' stroke-linecap="round"'),
+                   f'<path d="M{x2 - 8:g},{cy - 6:g} L{x2 + 2:g},{cy:g} L{x2 - 8:g},{cy + 6:g}" fill="none" stroke="{PEN}" stroke-width="2.4" stroke-linecap="round"/>',
+                   f'<circle cx="{cx(goal):g}" cy="{cy:g}" r="11" fill="none" stroke="{PEN}" stroke-width="2.2" stroke-dasharray="4,3"/>']
+        L_ += [f'<circle cx="{cx(now):g}" cy="{cy:g}" r="11" fill="{PEN}"/>', hand(1480, ry + 28, review, 18)]
+    L_ += [hand(46, 989, "Spending over £2k needs Finance sign-off · customer data stays in the UK and EU", 17),
+           hand(46, 1015, "Accessibility (WCAG AA) and security reviews always apply", 17)]
+    L_ += [tick(864 + (i % 2) * 390, 980 + (i // 2) * 34) for i in range(3)]
+    L_.append(hand(864, 1046, "Next to move: spending (3 → 5), from July", 17))
+    write_example("delegation-board", "Delegation Board", "".join(L_), ["Basket team", "Head of Digital"])
+
+
+def example_cross_team_retro():
+    L_ = []
+    for i, row in enumerate([("Make the weekly shop effortless", "9", "8", "Reorder landed; substitutes slipped an iteration"),
+                             ("Make checkout quick and trustworthy", "8", "6", "Wallet payments waited on the Wallet API")]):
+        x = 48
+        for c, v in enumerate(row):
+            L_.append(hand(x, 257 + i * 26, v, 16))
+            x += (560, 160, 160)[c] if c < 3 else 0
+    cols = [(GREEN, ["Self-service deploys freed up Checkout", "Shared on-call rota", "Payments paired with Basket on billing",
+                     "Daily sync caught blockers early"], None),
+            (PINK_ST, ["Waiting on the Stock API", "The Payments sign-off queue", "Staging kept going down",
+                       "The campaign date changed late"], [5, 3, 2, 1]),
+            (BLUE_ST, ["Mocks and contracts so teams don't wait", "Read access instead of new APIs",
+                       "One owner for the test environment", "Map dependencies before big-room planning"], None)]
+    spots = [(30, 422, -2), (220, 438, 2), (40, 560, 1), (230, 574, -1)]
+    for i, (col, items, votes) in enumerate(cols):
+        x = 24 + i * 548
+        for k, ((dx, y, rot), t) in enumerate(zip(spots, items)):
+            L_.append(note(x + dx, y, t, col, 170, 88, rot, 16))
+            if votes:
+                L_.append(dots(x + dx + 20, y + 104, votes[k]))
+    L_.append(hand(after(42, "Top problem (most dots):"), 808, "waiting on the Stock API", 17))
+    for i, v in enumerate(["Warehouse had it as a low priority", "They didn't know our date",
+                           "Dependencies weren't raised at planning", "Nobody sees who needs what, and when"]):
+        L_.append(hand(after(42, f"Why {i + 1}?"), 842 + i * 34, v, 17))
+    L_.append(hand(after(42, "Root cause:"), 988, "dependencies are agreed late, team to team", 17))
+    for i, row in enumerate([("Dependency map at every big-room planning", "all five", "Tom"),
+                             ("Warehouse joins the cross-team sync", "Basket, Warehouse", "Sam"),
+                             ("Contract tests for the Stock API", "Basket, Warehouse", "Alex")]):
+        x = 530
+        for c, v in enumerate(row):
+            L_.append(hand(x, 847 + i * 40, v, 16))
+            x += (260, 150)[c] if c < 2 else 0
+    L_ += [tick(1138, 814 + i * 30) for i in (0, 1, 3)]
+    L_ += [hand(after(1138, "We'll measure success by:"), 958, "blocked days, 9 → 3 an iteration", 17),
+           hand(after(1138, "Next cross-team retro:"), 998, "end of Q3", 17)]
+    write_example("cross-team-retro-board", "Cross-Team Retro", "".join(L_))
+
+
+def example_value_stream_map():
+    qw = (1632 - 36 - 48) / 4
+    L_ = [hand(after(42 + i * (qw + 16), lab), 236, v, 17)
+          for i, (lab, v) in enumerate([("Starts when:", "a story is agreed"), ("Ends when:", "it's live for customers"),
+                                        ("Unit of work:", "one story"), ("Measured over:", "the last 20 stories")])]
+    steps = [("Refine", "Priya + team", "2 h", "70%", "6"), ("Build", "Sam, Jo", "2 d", "90%", "3"),
+             ("Review", "another dev", "1 h", "80%", "2"), ("Test", "Alex", "4 h", "85%", "2"),
+             ("Sign-off", "Payments lead", "30 min", "95%", "4"), ("Release", "Sam", "1 h", "90%", "1")]
+    waits = ["5 d", "1 d", "2 d", "3 d", "2 d"]
+    labels = ["Name:", "Who:", "Work time:", "% complete & accurate:", "People / WIP:"]
+    cw = (1632 - 28 - 5 * 64) / 6
+    for i, vals in enumerate(steps):
+        cx = 38 + i * (cw + 64)
+        L_ += [hand(after(cx + 12, lab, 10.5), 410 + j * 30, v, 16) for j, (lab, v) in enumerate(zip(labels, vals))]
+        L_.append(hand(cx + cw / 2, 682, vals[2], 17, anchor="middle"))
+        if i < 5:
+            tx = cx + cw + 32
+            col = "#DC2626" if waits[i] in ("5 d", "3 d") else PEN
+            L_ += [hand(tx, 506, waits[i], 17, col, anchor="middle"), hand(tx, 626, waits[i], 17, col, anchor="middle")]
+    tw = (1632 - 36 - 64) / 5
+    L_ += [hand(42 + i * (tw + 16), 850, v, 20)
+           for i, v in enumerate(["16 working days", "about 3 days", "19%", "5 days, waiting for planning", "Refine (70%)"])]
+    L_ += [note(50 + i * 200, 960, t, c, 170, 76, (-2, 1, 2, -1)[i], 14)
+           for i, (t, c) in enumerate([("Self-service release checks: no sign-off wait", GREEN),
+                                       ("Refine just in time: no 5-day wait", YELLOW),
+                                       ("Review the same day", GREEN), ("Platform owns one shared staging", YELLOW)])]
+    for i, row in enumerate([("Self-service release checks", "Tom", "16 May"), ("Same-day review rule", "Sam", "next retro")]):
+        x = 1144
+        for c, v in enumerate(row):
+            L_.append(hand(x, 1001 + i * 30, v, 16))
+            x += (260, 110)[c] if c < 2 else 0
+    write_example("value-stream-map-board", "Value Stream Map", "".join(L_), ["Story to live", "8 May"])
+
+
+def example_pre_mortem():
+    L_ = [hand(92, 245, "1 October", 24),
+          hand(after(42, "Project, plan or release:"), 290, "the staples subscriptions pilot", 17),
+          hand(after(854, "Failure looks like:"), 290, "customers cancel, Finance stops it, and the team is worn out", 17)]
+    themes = [("Customers", [("Customers forgot they'd subscribed, then complained", 4), ("Felt pricier than one-off orders", 1)]),
+              ("Payments & tech", [("Repeat billing failed on expired cards", 5), ("Wrong substitutes from stock data", 2)]),
+              ("Operations", [("Pickers couldn't spot subscription items", 1), ("Adding items by hand didn't scale", 3)]),
+              ("Us", [("We launched to everyone before the pilot ended", 2), ("Nobody owned it while Priya was away", 2)])]
+    for i, (theme, items) in enumerate(themes):
+        x = 50 + i * 262
+        L_.append(hand(x, 470, theme, 18))
+        for j, (t, n) in enumerate(items):
+            nx, ny = x + j * 12, 484 + j * 118
+            L_ += [note(nx, ny, t, PINK_ST, 200, 84, (-2, 2)[j], 15), dots(nx + 20, ny + 100, n)]
+    for i, row in enumerate([("1", "Repeat billing fails", "Med", "High", "5"), ("2", "Customers forget, then complain", "High", "Med", "4"),
+                             ("3", "Manual work doesn't scale", "High", "Med", "3"), ("4", "Launch before we've learned", "Med", "High", "2")]):
+        x = 1144
+        for c, v in enumerate(row):
+            L_.append(hand(x, 449 + i * 36, v, 16))
+            x += (34, 240, 70, 70)[c] if c < 4 else 0
+    for i, row in enumerate([("Repeat billing fails", "Spike it with Payments, including expired cards", "Over 1% of charges fail", "Tom"),
+                             ("Customers forget", "Reminder email 2 days before each delivery", "Complaints say “didn't know”", "Mei"),
+                             ("Manual work doesn't scale", "Cap at 50; automate before growing", "Over 2 hours a day adding items", "Priya"),
+                             ("Launch before learning", "Go / no-go on 6 June, with the data", "Pressure to set a launch date", "Priya")]):
+        x = 48
+        for c, v in enumerate(row):
+            L_.append(hand(x, 873 + i * 36, v, 16))
+            x += (250, 330, 280)[c] if c < 3 else 0
+    L_ += [tick(1138, 844 + i * 30) for i in range(3)]
+    L_.append(hand(after(1138, "Review these risks on:"), 1012, "6 June, at the go / no-go", 17))
+    write_example("pre-mortem-board", "Pre-mortem", "".join(L_))
+
+
 EXAMPLES = {"team-charter-board": example_team_charter, "sprint-planning-board": example_sprint_planning,
             "prioritisation-board": example_prioritisation, "retro-board-start-stop-continue": example_retro,
             "team-topology-board": example_team_topology, "skills-matrix-board": example_skills_matrix,
@@ -6945,7 +7211,11 @@ EXAMPLES = {"team-charter-board": example_team_charter, "sprint-planning-board":
             "stakeholder-map-board": example_stakeholder_map, "raid-log-board": example_raid_log,
             "dependency-map-board": example_dependency_map, "cross-team-planning-board": example_cross_team_planning,
             "kanban-board-design": example_kanban_design, "status-report-board": example_status_report,
-            "value-metrics-board": example_value_metrics, "cynefin-board": example_cynefin}
+            "value-metrics-board": example_value_metrics, "cynefin-board": example_cynefin,
+            "cross-team-sync-board": example_cross_team_sync, "portfolio-kanban-board": example_portfolio_kanban,
+            "psych-safety-board": example_psych_safety, "raci-decision-log-board": example_raci,
+            "delegation-board": example_delegation, "cross-team-retro-board": example_cross_team_retro,
+            "value-stream-map-board": example_value_stream_map, "pre-mortem-board": example_pre_mortem}
 
 
 if __name__ == "__main__":
