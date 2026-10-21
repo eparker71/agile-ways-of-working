@@ -25,7 +25,7 @@ CREDIT = f"© {YEAR} {AUTHOR} · {LICENCE} · {SITE}"
 # site in a copy, but keep SITE (in the credit line) pointing to the original.
 PUBLISH_AT = "eparker71.github.io/agile-ways-of-working"
 
-# How the board files are described to people who don't know what an SVG is (cards, guides, phone notes)
-SVG_LABEL = "Editable image"
+# The board-file link label, and the tooltip that explains it to people who don't know what an SVG is (cards, guides)
+SVG_LABEL = "SVG"
 SVG_TIP = ("An SVG file: a sharp image that stays crisp at any size. Open it in a browser, add it to Miro, Mural or "
            "FigJam, or edit the words in Figma or Inkscape.")
