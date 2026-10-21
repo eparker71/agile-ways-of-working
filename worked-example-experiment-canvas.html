@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Example: 1% Experiment Canvas</title>
+<!-- meta -->
+<meta name="description" content="Worked example for a fictional team. A3 landscape experiment canvas: friction source, hypothesis, the 1% change, baseline/target measures, owner and timebox, risks, and a result/decision section…">
+<link rel="canonical" href="https://eparker71.github.io/agile-ways-of-working/worked-example-experiment-canvas.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agile Ways of Working Toolkit">
+<meta property="og:title" content="Example: 1% Experiment Canvas · Agile Ways of Working Toolkit">
+<meta property="og:description" content="Worked example for a fictional team. A3 landscape experiment canvas: friction source, hypothesis, the 1% change, baseline/target measures, owner and timebox, risks, and a result/decision section…">
+<meta property="og:url" content="https://eparker71.github.io/agile-ways-of-working/worked-example-experiment-canvas.html">
+<meta property="og:image" content="https://eparker71.github.io/agile-ways-of-working/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /meta -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{display:flex;justify-content:center;align-items:flex-start;padding:24px;box-sizing:border-box;min-height:100vh;}
+svg{display:block;max-width:100%;height:auto;box-shadow:0 12px 40px rgba(0,0,0,.22);}
+a.guide{position:fixed;right:16px;bottom:16px;font:500 12px 'Geist',system-ui,sans-serif;color:#fff;background:#0C1A2E;border-left:4px solid #eb6c36;padding:9px 14px;border-radius:6px;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.25);}
+a.guide:hover{background:#C2410C;}
+a.guide.pdf{bottom:60px;}
+p.phone{display:none;}@media (max-width:700px){body{flex-direction:column;align-items:stretch;padding:12px 12px 72px;min-height:0;}p.phone{display:block;margin:14px 2px 0;font:14px/1.5 'Geist',system-ui,sans-serif;color:#0C1A2E;}p.phone b{display:block;font-weight:600;margin-bottom:2px;}p.phone a{color:#9A3412;}}@media print{p.phone{display:none !important;}}
+@media print{@page{size:A3 landscape;margin:0;}html,body{background:none;}body{padding:0;}svg{box-shadow:none;width:100%;max-height:296mm;}html,body{height:297mm;overflow:hidden;}a.guide{display:none;}}
+</style>
+</head>
+<body>
+<a class="guide" style="right:auto;left:16px" href="experiment-canvas.html">← Blank board</a>
+<a class="guide" href="facilitator-guide-experiment-canvas.html">Facilitator guide →</a>
+<a class="guide pdf" href="pdf/worked-example-experiment-canvas.pdf" download title="A3 landscape. On 11×17 (Tabloid) paper, print with Fit to page.">A3 PDF ↓</a>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 1190" width="1680" height="1190" role="img" aria-labelledby="mg-title mg-desc">
+  <title id="mg-title">Example: 1% Experiment Canvas</title>
+  <desc id="mg-desc">Worked example for a fictional team. A3 landscape experiment canvas: friction source, hypothesis, the 1% change, baseline/target measures, owner and timebox, risks, and a result/decision section (persevere, pivot, stop).</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#EFF6FF"/>
+    </linearGradient>
+    <filter id="fc" x="-4%" y="-4%" width="110%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity=".10"/>
+    </filter>
+    <filter id="fsm" x="-6%" y="-6%" width="114%" height="116%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity=".08"/>
+    </filter>
+    <pattern id="dots" patternUnits="userSpaceOnUse" width="20" height="20">
+      <circle cx="10" cy="10" r="1.2" fill="#000" fill-opacity=".055"/>
+    </pattern>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E0F2FE"/>
+      <stop offset="100%" stop-color="#F0F9FF"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7DD3FC"/>
+      <stop offset="100%" stop-color="#BAE6FD"/>
+    </linearGradient>
+  </defs>
+<rect x="0" y="0" width="1680" height="1190" fill="url(#bg)"/><rect x="0" y="0" width="1680" height="4" fill="#eb6c36"/><rect x="0" y="4" width="1680" height="134" fill="#0C1A2E"/><text x="24" y="70" font-family="'Instrument Serif',Georgia,serif" font-size="42" font-weight="400" fill="white">1% Experiment Canvas</text><text x="24" y="100" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" fill="#94A3B8">Turn one small improvement idea into a testable experiment with a clear owner, measure and review date.</text><text x="24" y="120" font-family="'Geist Mono',Consolas,monospace" font-size="9" fill="#8291A6" letter-spacing=".06em">Companion to the Marginal Gains Workshop · Hypothesis-Driven Improvement · Build, Measure, Learn</text><text x="1356" y="66" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#8291A6" letter-spacing=".14em">EXPERIMENT #</text><line x1="1452" y1="69" x2="1656" y2="69" stroke="#334155" stroke-width="1.2"/><text x="1356" y="96" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#8291A6" letter-spacing=".14em">TEAM</text><line x1="1452" y1="99" x2="1656" y2="99" stroke="#334155" stroke-width="1.2"/>
+<rect x="24" y="148" width="397" height="320" rx="10" fill="#FEE2E2" stroke="#991B1B" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M24,200 V158 A10,10 0 0 1 34,148 H411 A10,10 0 0 1 421,158 V200 Z" fill="#991B1B"/><circle cx="45" cy="174" r="12" fill="white" fill-opacity=".18"/><text x="45" y="179" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">1</text><text x="68" y="180" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Where's the Friction?</text><text x="405" y="179" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".88" letter-spacing=".10em">FROM THE BOARD</text>
+<text x="42" y="226" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#991B1B">Board area (tick one):</text>
+<rect x="46" y="242" width="12" height="12" rx="2" fill="white" stroke="#1E3A8A" stroke-width="1.4"/>
+<rect x="66" y="244" width="8" height="8" rx="2" fill="#1E3A8A"/>
+<text x="80" y="252" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E3A8A">Strategy</text>
+<rect x="46" y="264" width="12" height="12" rx="2" fill="white" stroke="#065F46" stroke-width="1.4"/>
+<rect x="66" y="266" width="8" height="8" rx="2" fill="#065F46"/>
+<text x="80" y="274" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#065F46">Outcomes</text>
+<rect x="46" y="286" width="12" height="12" rx="2" fill="white" stroke="#581C87" stroke-width="1.4"/>
+<rect x="66" y="288" width="8" height="8" rx="2" fill="#581C87"/>
+<text x="80" y="296" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#581C87">Product</text>
+<rect x="46" y="308" width="12" height="12" rx="2" fill="white" stroke="#9A3412" stroke-width="1.4"/>
+<rect x="66" y="310" width="8" height="8" rx="2" fill="#9A3412"/>
+<text x="80" y="318" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#9A3412">Teams</text>
+<rect x="232" y="242" width="12" height="12" rx="2" fill="white" stroke="#991B1B" stroke-width="1.4"/>
+<rect x="252" y="244" width="8" height="8" rx="2" fill="#991B1B"/>
+<text x="266" y="252" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#991B1B">Dependencies</text>
+<rect x="232" y="264" width="12" height="12" rx="2" fill="white" stroke="#92400E" stroke-width="1.4"/>
+<rect x="252" y="266" width="8" height="8" rx="2" fill="#92400E"/>
+<text x="266" y="274" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#92400E">Engineering</text>
+<rect x="232" y="286" width="12" height="12" rx="2" fill="white" stroke="#14532D" stroke-width="1.4"/>
+<rect x="252" y="288" width="8" height="8" rx="2" fill="#14532D"/>
+<text x="266" y="296" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#14532D">Delivery</text>
+<rect x="232" y="308" width="12" height="12" rx="2" fill="white" stroke="#0C4A6E" stroke-width="1.4"/>
+<rect x="252" y="310" width="8" height="8" rx="2" fill="#0C4A6E"/>
+<text x="266" y="318" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#0C4A6E">Learning</text>
+<text x="42" y="356" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#991B1B">The pain point we observed:</text>
+<line x1="42" y1="384" x2="403" y2="384" stroke="#CBD5E1" stroke-width="1.5"/><line x1="42" y1="410" x2="403" y2="410" stroke="#CBD5E1" stroke-width="1.5"/><line x1="42" y1="436" x2="403" y2="436" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="435" y="148" width="808" height="320" rx="10" fill="#EDE9FE" stroke="#581C87" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M435,200 V158 A10,10 0 0 1 445,148 H1233 A10,10 0 0 1 1243,158 V200 Z" fill="#581C87"/><circle cx="456" cy="174" r="12" fill="white" fill-opacity=".18"/><text x="456" y="179" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">2</text><text x="479" y="180" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Hypothesis</text><text x="1227" y="179" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".88" letter-spacing=".10em">IF · FOR · THEN · WE'LL KNOW</text>
+<text x="453" y="234" font-family="'Instrument Serif',Georgia,serif" font-size="20" font-style="italic" fill="#581C87">If we…</text>
+<text x="516.168" y="234" font-family="'Geist Mono',Consolas,monospace" font-size="9" fill="#581C87" fill-opacity=".88" letter-spacing=".04em">(the change we will make)</text>
+<line x1="453" y1="260" x2="1225" y2="260" stroke="#581C87" stroke-width="1" stroke-opacity=".25"/>
+<text x="453" y="290" font-family="'Instrument Serif',Georgia,serif" font-size="20" font-style="italic" fill="#581C87">for…</text>
+<text x="499.112" y="290" font-family="'Geist Mono',Consolas,monospace" font-size="9" fill="#581C87" fill-opacity=".88" letter-spacing=".04em">(who or which part of the system)</text>
+<line x1="453" y1="316" x2="1225" y2="316" stroke="#581C87" stroke-width="1" stroke-opacity=".25"/>
+<text x="453" y="346" font-family="'Instrument Serif',Georgia,serif" font-size="20" font-style="italic" fill="#581C87">then we expect…</text>
+<text x="592.92" y="346" font-family="'Geist Mono',Consolas,monospace" font-size="9" fill="#581C87" fill-opacity=".88" letter-spacing=".04em">(the outcome or improvement)</text>
+<line x1="453" y1="372" x2="1225" y2="372" stroke="#581C87" stroke-width="1" stroke-opacity=".25"/>
+<text x="453" y="402" font-family="'Instrument Serif',Georgia,serif" font-size="20" font-style="italic" fill="#581C87">We'll know we're right when we see…</text>
+<text x="763.48" y="402" font-family="'Geist Mono',Consolas,monospace" font-size="9" fill="#581C87" fill-opacity=".88" letter-spacing=".04em">(the signal or evidence)</text>
+<line x1="453" y1="428" x2="1225" y2="428" stroke="#581C87" stroke-width="1" stroke-opacity=".25"/>
+<text x="1225" y="454" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="#581C87" fill-opacity=".88" letter-spacing=".1em">TIP: keep it small enough to start tomorrow</text>
+<rect x="1257" y="148" width="397" height="320" rx="10" fill="#D1FAE5" stroke="#065F46" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M1257,200 V158 A10,10 0 0 1 1267,148 H1644 A10,10 0 0 1 1654,158 V200 Z" fill="#065F46"/><circle cx="1278" cy="174" r="12" fill="white" fill-opacity=".18"/><text x="1278" y="179" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">3</text><text x="1301" y="180" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">The 1% Change</text>
+<text x="1275" y="226" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#065F46">What exactly will we do differently?</text>
+<line x1="1275" y1="254" x2="1636" y2="254" stroke="#CBD5E1" stroke-width="1.5"/><line x1="1275" y1="280" x2="1636" y2="280" stroke="#CBD5E1" stroke-width="1.5"/><line x1="1275" y1="306" x2="1636" y2="306" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="1275" y="356" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#065F46">Smallest version we could try first:</text>
+<line x1="1275" y1="384" x2="1636" y2="384" stroke="#CBD5E1" stroke-width="1.5"/><line x1="1275" y1="410" x2="1636" y2="410" stroke="#CBD5E1" stroke-width="1.5"/><line x1="1275" y1="436" x2="1636" y2="436" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="24" y="482" width="808" height="320" rx="10" fill="#DBEAFE" stroke="#1E3A8A" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M24,534 V492 A10,10 0 0 1 34,482 H822 A10,10 0 0 1 832,492 V534 Z" fill="#1E3A8A"/><circle cx="45" cy="508" r="12" fill="white" fill-opacity=".18"/><text x="45" y="513" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">4</text><text x="68" y="514" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Measure</text><text x="816" y="513" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".88" letter-spacing=".10em">BASELINE → TARGET</text>
+<rect x="42" y="548" width="249.333" height="118" rx="6" fill="white" stroke="#1E3A8A" stroke-opacity=".2"/>
+<text x="56" y="570" font-family="'Geist Mono',Consolas,monospace" font-size="9" font-weight="600" fill="#1E3A8A" letter-spacing=".1em">BASELINE</text>
+<text x="56" y="586" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-style="italic" fill="#1E3A8A" fill-opacity=".88">where we are today</text>
+<rect x="303.333" y="548" width="249.333" height="118" rx="6" fill="white" stroke="#1E3A8A" stroke-opacity=".2"/>
+<text x="317.333" y="570" font-family="'Geist Mono',Consolas,monospace" font-size="9" font-weight="600" fill="#1E3A8A" letter-spacing=".1em">TARGET</text>
+<text x="317.333" y="586" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-style="italic" fill="#1E3A8A" fill-opacity=".88">what 1% better looks like</text>
+<rect x="564.667" y="548" width="249.333" height="118" rx="6" fill="white" stroke="#1E3A8A" stroke-opacity=".2"/>
+<text x="578.667" y="570" font-family="'Geist Mono',Consolas,monospace" font-size="9" font-weight="600" fill="#1E3A8A" letter-spacing=".1em">HOW &amp; WHERE MEASURED</text>
+<text x="578.667" y="586" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-style="italic" fill="#1E3A8A" fill-opacity=".88">source, frequency</text>
+<text x="42" y="708" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E3A8A">Leading indicator (early signal):</text><line x1="240.76" y1="712" x2="814" y2="712" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="42" y="748" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E3A8A">Guardrail (what must not get worse):</text><line x1="257.92" y1="752" x2="814" y2="752" stroke="#CBD5E1" stroke-width="1.5"/>
+<line x1="42" y1="782" x2="814" y2="782" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="846" y="482" width="397" height="320" rx="10" fill="#FFEDD5" stroke="#9A3412" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M846,534 V492 A10,10 0 0 1 856,482 H1233 A10,10 0 0 1 1243,492 V534 Z" fill="#9A3412"/><circle cx="867" cy="508" r="12" fill="white" fill-opacity=".18"/><text x="867" y="513" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">5</text><text x="890" y="514" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Plan &amp; Timebox</text>
+<text x="864" y="566" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#9A3412">Owner:</text><line x1="908.32" y1="570" x2="1225" y2="570" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="864" y="602" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#9A3412">Supporters:</text><line x1="936.92" y1="606" x2="1225" y2="606" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="864" y="638" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#9A3412">Start date:</text><line x1="936.92" y1="642" x2="1225" y2="642" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="864" y="674" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#9A3412">Mid-point check-in:</text><line x1="982.68" y1="678" x2="1225" y2="678" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="864" y="710" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#9A3412">Review date:</text><line x1="942.64" y1="714" x2="1225" y2="714" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="864" y="760" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#9A3412">Timebox:</text>
+<rect x="938" y="750" width="12" height="12" rx="2" fill="white" stroke="#9A3412" stroke-opacity=".6" stroke-width="1.2"/><text x="958" y="760" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#9A3412">1 iteration</text>
+<rect x="1034" y="750" width="12" height="12" rx="2" fill="white" stroke="#9A3412" stroke-opacity=".6" stroke-width="1.2"/><text x="1054" y="760" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#9A3412">2 iterations</text>
+<rect x="1130" y="750" width="12" height="12" rx="2" fill="white" stroke="#9A3412" stroke-opacity=".6" stroke-width="1.2"/><text x="1150" y="760" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#9A3412">1 quarter</text>
+<rect x="1257" y="482" width="397" height="320" rx="10" fill="#FEF3C7" stroke="#92400E" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M1257,534 V492 A10,10 0 0 1 1267,482 H1644 A10,10 0 0 1 1654,492 V534 Z" fill="#92400E"/><circle cx="1278" cy="508" r="12" fill="white" fill-opacity=".18"/><text x="1278" y="513" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">6</text><text x="1301" y="514" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Risks &amp; Assumptions</text>
+<circle cx="1279" cy="556" r="2.5" fill="#92400E" fill-opacity=".55"/><text x="1289" y="560" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#92400E">What must be true for this to work?</text><circle cx="1279" cy="574" r="2.5" fill="#92400E" fill-opacity=".55"/><text x="1289" y="578" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#92400E">What could go wrong, and how will we spot it?</text><circle cx="1279" cy="592" r="2.5" fill="#92400E" fill-opacity=".55"/><text x="1289" y="596" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#92400E">Who else needs to know or agree?</text>
+<line x1="1267" y1="610" x2="1644" y2="610" stroke="#92400E" stroke-width="1" stroke-opacity=".20" stroke-dasharray="5,4"/>
+<rect x="1267" y="616" width="377" height="174" rx="6" fill="url(#dots)"/>
+<rect x="24" y="816" width="1632" height="32" rx="6" fill="#1E293B"/><rect x="24" y="816" width="6" height="32" rx="3" fill="#eb6c36"/><text x="840" y="837" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white" letter-spacing=".12em">7 · RESULT &amp; DECISION: COMPLETE AT THE REVIEW</text>
+<rect x="24" y="856" width="534" height="204" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
+<rect x="24" y="856" width="5" height="204" rx="3" fill="#eb6c36"/>
+<text x="46" y="890" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#1E293B">What happened?</text>
+<text x="46" y="928" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#566578">Result vs. target:</text><line x1="158.96" y1="932" x2="536" y2="932" stroke="#CBD5E1" stroke-width="1.5"/>
+<line x1="46" y1="964" x2="536" y2="964" stroke="#CBD5E1" stroke-width="1.5"/><line x1="46" y1="994" x2="536" y2="994" stroke="#CBD5E1" stroke-width="1.5"/><line x1="46" y1="1024" x2="536" y2="1024" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="572" y="856" width="534" height="204" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
+<rect x="572" y="856" width="5" height="204" rx="3" fill="#065F46"/>
+<text x="594" y="890" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#1E293B">Decision (tick one)</text>
+<rect x="594" y="908" width="156.667" height="130" rx="6" fill="#DCFCE7" stroke="#14532D" stroke-opacity=".25"/>
+<rect x="608" y="924" width="18" height="18" rx="3" fill="white" stroke="#14532D" stroke-width="1.5"/>
+<text x="634" y="939" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#14532D">Persevere</text>
+<text x="608" y="968" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#14532D">It worked.</text>
+<text x="608" y="984" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#14532D">Make it standard.</text>
+<rect x="760.667" y="908" width="156.667" height="130" rx="6" fill="#FEF3C7" stroke="#92400E" stroke-opacity=".25"/>
+<rect x="774.667" y="924" width="18" height="18" rx="3" fill="white" stroke="#92400E" stroke-width="1.5"/>
+<text x="800.667" y="939" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#92400E">Pivot</text>
+<text x="774.667" y="968" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#92400E">Promising.</text>
+<text x="774.667" y="984" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#92400E">Adjust and re-run.</text>
+<rect x="927.333" y="908" width="156.667" height="130" rx="6" fill="#FEE2E2" stroke="#991B1B" stroke-opacity=".25"/>
+<rect x="941.333" y="924" width="18" height="18" rx="3" fill="white" stroke="#991B1B" stroke-width="1.5"/>
+<text x="967.333" y="939" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#991B1B">Stop</text>
+<text x="941.333" y="968" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#991B1B">No gain.</text>
+<text x="941.333" y="984" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#991B1B">Stop and share why.</text>
+<rect x="1120" y="856" width="534" height="204" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#fsm)"/>
+<rect x="1120" y="856" width="5" height="204" rx="3" fill="#1E3A8A"/>
+<text x="1142" y="890" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#1E293B">What did we learn?</text>
+<line x1="1142" y1="928" x2="1632" y2="928" stroke="#CBD5E1" stroke-width="1.5"/><line x1="1142" y1="958" x2="1632" y2="958" stroke="#CBD5E1" stroke-width="1.5"/><line x1="1142" y1="988" x2="1632" y2="988" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="1142" y="1028" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#566578">Share the learning with:</text><line x1="1289.28" y1="1032" x2="1632" y2="1032" stroke="#CBD5E1" stroke-width="1.5"/>
+<line x1="24" y1="1070" x2="1656" y2="1070" stroke="#E2E8F0" stroke-width="1"/><text x="24" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“What's the smallest change that could prove us right or wrong?”</text><line x1="832" y1="1078" x2="832" y2="1128" stroke="#E2E8F0" stroke-width="1"/><text x="848" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“If this works, who else would benefit from knowing?”</text><text x="1656" y="1138" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#5B6B82" letter-spacing=".08em">Systems-Thinking · Continuous Improvement · Team-Led Change</text><text x="24" y="1138" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#5B6B82" letter-spacing=".06em">© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</text>
+<g class="worked-example"><g transform="rotate(-3 1150 66)"><rect x="1010" y="48" width="280" height="36" rx="5" fill="none" stroke="#eb6c36" stroke-width="2"/><text x="1150" y="71" text-anchor="middle" font-family="'Geist Mono',Consolas,monospace" font-size="10.5" font-weight="600" fill="#eb6c36" letter-spacing=".12em">WORKED EXAMPLE · FICTIONAL TEAM</text></g><text x="1462" y="64" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="20" font-weight="500" fill="#FDE68A">3</text><text x="1462" y="94" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="20" font-weight="500" fill="#FDE68A">Basket team</text><path d="M234,291 l3.5,4.5 l7,-10" fill="none" stroke="#1D4ED8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><text x="44" y="379" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">Stories come back from testing with</text><text x="44" y="405" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">missed rules: 4 of the last 9 needed</text><text x="44" y="431" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">rework after review.</text><text x="455" y="255" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="17" font-weight="500" fill="#1D4ED8">map the top 3 items with Example Mapping before each planning</text><text x="455" y="311" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="17" font-weight="500" fill="#1D4ED8">the Basket team's refinement</text><text x="455" y="367" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="17" font-weight="500" fill="#1D4ED8">fewer stories bounce back from testing for missed rules</text><text x="455" y="423" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="17" font-weight="500" fill="#1D4ED8">rework drops from 4 in 9 to 1 in 9 over two iterations</text><text x="1277" y="249" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">25 minutes of Example Mapping</text><text x="1277" y="275" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">per item, the day before</text><text x="1277" y="301" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">planning</text><text x="1277" y="379" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">Map just the top item for</text><text x="1277" y="405" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">one iteration</text><text x="56" y="620" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="17" font-weight="500" fill="#1D4ED8">4 of 9 stories</text><text x="56" y="644" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="17" font-weight="500" fill="#1D4ED8">reworked</text><text x="317.333" y="620" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="17" font-weight="500" fill="#1D4ED8">1 of 9 or fewer</text><text x="578.667" y="620" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="17" font-weight="500" fill="#1D4ED8">the sprint board;</text><text x="578.667" y="644" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="17" font-weight="500" fill="#1D4ED8">Alex tags rework</text><text x="246.76" y="704" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">pink question cards answered before planning</text><text x="263.92" y="744" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">refinement stays under 1 hour a week</text><text x="914.32" y="562" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">Priya</text><text x="942.92" y="598" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">Alex, Tom</text><text x="942.92" y="634" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">Sprint 15, 17 March</text><text x="988.68" y="670" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">Sprint 15 retro</text><text x="948.64" y="706" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">end of Sprint 16</text><path d="M1036,755 l3.5,4.5 l7,-10" fill="none" stroke="#1D4ED8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><g transform="rotate(-2 1363 664)"><rect x="1278" y="628" width="170" height="72" rx="3" fill="#FDE047" filter="url(#fsm)"/><text x="1363" y="661" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="15" font-weight="500" fill="#1E293B">People will make time</text><text x="1363" y="677.5" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="15" font-weight="500" fill="#1E293B">the day before</text></g><g transform="rotate(2 1542 676)"><rect x="1462" y="640" width="160" height="72" rx="3" fill="#FDE047" filter="url(#fsm)"/><text x="1542" y="673" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="15" font-weight="500" fill="#1E293B">Priya may be in other</text><text x="1542" y="689.5" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="15" font-weight="500" fill="#1E293B">meetings</text></g><g transform="rotate(-1 1445 750)"><rect x="1360" y="718" width="170" height="64" rx="3" fill="#FDE047" filter="url(#fsm)"/><text x="1445" y="747" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="15" font-weight="500" fill="#1E293B">Tell Search: they share</text><text x="1445" y="763.5" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="15" font-weight="500" fill="#1E293B">our backlog</text></g><text x="164.96" y="924" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="17" font-weight="500" fill="#1D4ED8">1 of 10 reworked: target met</text><text x="48" y="960" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">Planning was quicker too: fewer debates</text><text x="48" y="990" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">about what “done” means.</text><path d="M610,936 l3.5,4.5 l7,-10" fill="none" stroke="#1D4ED8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><text x="1144" y="924" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">Most rework came from rules nobody</text><text x="1144" y="954" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">had said out loud. Mapping surfaces</text><text x="1144" y="984" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">them while they're cheap to change.</text><text x="1295.28" y="1024" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">Search &amp; Browse, Checkout</text></g>
+</svg>
+<p class="phone"><b>This is an A3 board, made for printing or a big screen.</b>Pinch to zoom, turn your phone sideways, or <a href="worked-example-experiment-canvas.svg">open the SVG</a> to zoom in. The <a href="facilitator-guide-experiment-canvas.html">facilitator guide</a> is easy to read on a phone.</p>
+</body>
+</html>

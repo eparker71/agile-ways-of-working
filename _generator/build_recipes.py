@@ -64,7 +64,15 @@ EXAMPLES = [("team-charter", "Team Charter", "A new team's purpose, values, agre
             ("blockers", "Blocker Clustering", "Nine blockers logged and clustered: sign-offs cost 12 of 24 days, so that's the fix."),
             ("impediments", "Impediments Board", "Impediments from new to resolved, an escalation ladder with time limits, and a resolved log."),
             ("pairing", "Pairing & Mobbing", "Styles and when to use them, a pair stair of who's paired with whom, and skills to spread."),
-            ("adkar", "ADKAR Change Readiness", "Five groups scored for a store roll-out, each one's barrier point, and actions to fix them.")]
+            ("adkar", "ADKAR Change Readiness", "Five groups scored for a store roll-out, each one's barrier point, and actions to fix them."),
+            ("delivery-metrics", "Delivery Metrics & Tech Debt", "Four key metrics then and now, a tech debt register sorted into the debt quadrant."),
+            ("coaching", "Coaching Conversation", "A GROW conversation in the coachee's words, from goal to three commitments."),
+            ("incident", "Blameless Incident Review", "A checkout outage: what people knew at each point, contributing factors, and what helped."),
+            ("persona", "Persona & Journey Map", "A busy parent's weekly shop in five stages, with the emotion line, pain points and opportunities."),
+            ("impact", "Impact Map", "One goal, three actors, six behaviour changes and the deliverables that could cause them."),
+            ("estimation", "Estimation", "Planning poker rounds, T-shirt sizes, an affinity line with boundaries, and reference items."),
+            ("adr", "Architecture Decision Record", "Reading stock data from a replica: context, drivers, three options and the trade-offs."),
+            ("experiment", "1% Experiment Canvas", "Example Mapping before planning, tested for two iterations: rework fell from 4 in 9 to 1 in 10.")]
 
 
 # Starter kits: the minimum toolset for each project size (see the Right-Size Your Structure poster).
