@@ -85,6 +85,7 @@ TOOLS = {
     "onboarding": ("Team Onboarding", "team-onboarding-board.html", "facilitator-guide-team-onboarding.html", "team-onboarding"),
     "right-size": ("Right-Size Your Structure", "right-size-poster.html", "facilitator-guide-right-size.html", "right-size"),
     "sdlc": ("SDLC at a Glance", "sdlc-poster.html", "facilitator-guide-sdlc.html", "sdlc"),
+    "lean": ("Lean Principles", "lean-principles-poster.html", "facilitator-guide-lean-principles.html", "lean-principles"),
     "pipeline": ("Delivery Pipeline Canvas", "delivery-pipeline-board.html", "facilitator-guide-delivery-pipeline.html", "delivery-pipeline"),
     "testing": ("Test Strategy", "test-strategy-board.html", "facilitator-guide-test-strategy.html", "test-strategy"),
     "release": ("Release Readiness & Strategy", "release-readiness-board.html", "facilitator-guide-release-readiness.html", "release-readiness"),
@@ -102,18 +103,22 @@ TOOLS = {
     "retro": ("Retrospective Kit", "retro-board-start-stop-continue.html", "facilitator-guide-retro-start-stop-continue.html", "retro-board-"),
 }
 
+# Extra search words for home page cards, so a search finds tools by the idea they come from (hidden on the page)
+TAGS = {k: "lean" for k in ("lean", "vsm", "kanban", "cadences", "ageing", "buffer", "blockers", "rootcause", "marginal",
+                            "experiment")}
+
 # id, name, what you're there to do, start with (3), also useful
 ROLES = [
     ("sm", "Scrum Master / Delivery Lead",
      "You help the team deliver well: smooth flow, useful events, and impediments removed.",
      ["sm-cheat", "retro", "impediments"],
      ["sprint-planning", "sprint-review", "team-charter", "ai", "health", "kanban", "ageing", "buffer", "blockers", "pairing",
-      "skills", "example", "splitting", "rootcause", "experiment", "marginal", "lean-coffee", "jira", "adkar", "coaching", "psych-safety", "delivery-metrics", "backlog", "facilitation", "estimation", "vsm", "incident", "launch", "daily", "refinement", "cadences", "events", "spotter", "leading-safety", "sdlc", "pipeline", "release", "cd-health", "right-size", "sync", "dependency", "forecast", "closeout", "onboarding", "roadmap", "user-manual", "conflict", "feedback", "motivation", "ai-delivery", "cynefin"]),
+      "skills", "example", "splitting", "rootcause", "experiment", "marginal", "lean-coffee", "jira", "adkar", "coaching", "psych-safety", "delivery-metrics", "backlog", "facilitation", "estimation", "vsm", "lean", "incident", "launch", "daily", "refinement", "cadences", "events", "spotter", "leading-safety", "sdlc", "pipeline", "release", "cd-health", "right-size", "sync", "dependency", "forecast", "closeout", "onboarding", "roadmap", "user-manual", "conflict", "feedback", "motivation", "ai-delivery", "cynefin"]),
     ("coach", "Agile Coach",
      "You help teams and leaders improve how they work, and coach the system beyond any one team.",
      ["health", "marginal", "topology"],
      ["sm-cheat", "retro", "team-charter", "ai", "experiment", "rootcause", "kanban", "ageing", "blockers", "skills",
-      "value", "okr", "ctp", "sync", "impediments", "lean-coffee", "adkar", "coaching", "psych-safety", "delegation", "cross-retro", "portfolio-kanban", "backlog", "facilitation", "vsm", "incident", "launch", "events", "cadences", "daily", "spotter", "leading-safety", "sdlc", "pipeline", "cd-health", "right-size", "onboarding", "user-manual", "conflict", "feedback", "motivation", "design-sprint", "ai-delivery", "event-storming", "cynefin"]),
+      "value", "okr", "ctp", "sync", "impediments", "lean-coffee", "adkar", "coaching", "psych-safety", "delegation", "cross-retro", "portfolio-kanban", "backlog", "facilitation", "vsm", "lean", "incident", "launch", "events", "cadences", "daily", "spotter", "leading-safety", "sdlc", "pipeline", "cd-health", "right-size", "onboarding", "user-manual", "conflict", "feedback", "motivation", "design-sprint", "ai-delivery", "event-storming", "cynefin"]),
     ("po", "Product Owner / Product Manager",
      "You decide what's worth building, for whom, and in what order, and you prove it worked.",
      ["vision", "ost", "prioritisation"],
@@ -127,27 +132,27 @@ ROLES = [
     ("program", "Program Manager",
      "You deliver a programme of related projects and teams: shared outcomes, budget, stakeholders, dependencies and risks in the open.",
      ["okr", "dependency", "status"],
-     ["ctp", "sync", "topology", "raid", "forecast", "premortem", "value", "stakeholder", "impediments", "marginal", "adkar", "cross-retro", "portfolio-kanban", "delivery-metrics", "vsm", "raci", "facilitation", "launch", "events", "spotter", "leading-safety", "sdlc", "release", "pipeline", "right-size", "kickoff", "closeout", "roadmap", "conflict", "motivation", "bet", "ai-delivery", "cynefin"]),
+     ["ctp", "sync", "topology", "raid", "forecast", "premortem", "value", "stakeholder", "impediments", "marginal", "adkar", "cross-retro", "portfolio-kanban", "delivery-metrics", "vsm", "lean", "raci", "facilitation", "launch", "events", "spotter", "leading-safety", "sdlc", "release", "pipeline", "right-size", "kickoff", "closeout", "roadmap", "conflict", "motivation", "bet", "ai-delivery", "cynefin"]),
     ("rte", "Release Train Engineer / Chief Scrum Master",
      "You facilitate a team of teams: big-room planning, the regular cross-team sync, system demos and inspect & adapt, "
      "and clearing impediments no single team can. Called a Release Train Engineer in SAFe and a Chief Scrum Master in Scrum@Scale.",
      ["ctp", "sync", "cross-retro"],
      ["dependency", "okr", "impediments", "blockers", "events", "cadences", "raid", "premortem", "forecast", "status", "value",
-      "delivery-metrics", "vsm", "topology", "pipeline", "release", "sdlc", "portfolio-kanban", "stakeholder", "facilitation",
+      "delivery-metrics", "vsm", "lean", "topology", "pipeline", "release", "sdlc", "portfolio-kanban", "stakeholder", "facilitation",
       "lean-coffee", "sm-cheat", "health", "psych-safety", "leading-safety", "coaching", "marginal", "adkar", "spotter", "jira", "right-size", "closeout", "roadmap", "conflict", "ai-delivery", "cynefin"]),
     ("portfolio", "Portfolio Manager / PMO",
      "You decide where the organisation invests, and check that the investment delivers value.",
      ["portfolio-kanban", "value", "prioritisation"],
-     ["okr", "status", "kickoff", "premortem", "ctp", "topology", "stakeholder", "forecast", "adkar", "delegation", "delivery-metrics", "vsm", "raci", "impact", "events", "leading-safety", "sdlc", "right-size", "closeout", "roadmap", "bet", "ai-delivery", "cynefin"]),
+     ["okr", "status", "kickoff", "premortem", "ctp", "topology", "stakeholder", "forecast", "adkar", "delegation", "delivery-metrics", "vsm", "lean", "raci", "impact", "events", "leading-safety", "sdlc", "right-size", "closeout", "roadmap", "bet", "ai-delivery", "cynefin"]),
     ("leader", "Executive / Sponsor",
      "You set direction, fund the work, remove the biggest obstacles, and shape how teams are organised.",
      ["value", "okr", "topology"],
-     ["vision", "status", "stakeholder", "premortem", "kickoff", "impediments", "ai", "health", "adkar", "portfolio-kanban", "delegation", "psych-safety", "coaching", "vsm", "raci", "impact", "events", "spotter", "leading-safety", "sdlc", "right-size", "closeout", "roadmap", "feedback", "motivation", "bet", "ai-delivery", "cynefin"]),
+     ["vision", "status", "stakeholder", "premortem", "kickoff", "impediments", "ai", "health", "adkar", "portfolio-kanban", "delegation", "psych-safety", "coaching", "vsm", "lean", "raci", "impact", "events", "spotter", "leading-safety", "sdlc", "right-size", "closeout", "roadmap", "feedback", "motivation", "bet", "ai-delivery", "cynefin"]),
     ("eng", "Engineering Manager / Tech Lead",
      "You build capable teams and healthy systems: skills, flow, quality and sensible team boundaries.",
      ["skills", "topology", "kanban"],
      ["pairing", "ageing", "buffer", "blockers", "ai", "team-charter", "rootcause", "example", "splitting",
-      "dependency", "health", "impediments", "delivery-metrics", "psych-safety", "coaching", "delegation", "backlog", "vsm", "incident", "adr", "estimation", "launch", "daily", "refinement", "cadences", "spotter", "leading-safety", "pipeline", "testing", "release", "cd-health", "sdlc", "right-size", "experiment", "onboarding", "user-manual", "conflict", "feedback", "motivation", "design-sprint", "ai-delivery", "event-storming", "cynefin"]),
+      "dependency", "health", "impediments", "delivery-metrics", "psych-safety", "coaching", "delegation", "backlog", "vsm", "lean", "incident", "adr", "estimation", "launch", "daily", "refinement", "cadences", "spotter", "leading-safety", "pipeline", "testing", "release", "cd-health", "sdlc", "right-size", "experiment", "onboarding", "user-manual", "conflict", "feedback", "motivation", "design-sprint", "ai-delivery", "event-storming", "cynefin"]),
     ("ux", "Designer / Business Analyst",
      "You understand users and the problem, and help the team build the right thing, clearly specified.",
      ["ost", "storymap", "example"],
@@ -354,6 +359,10 @@ def build_index_filter():
         if roles is not None:
             card_open = card_open[:-1] + f' data-roles="{" ".join(roles)}">'
         rest = re.sub(r'<a class="ex" href="worked-example-[^"]+">Example</a>', "", rest)
+        rest = re.sub(r'<span class="tags" hidden>[^<]*</span>', "", rest)
+        key = next((k for k, v in TOOLS.items() if href and v[1] == href.group(1)), None)
+        if key in TAGS:
+            rest = rest.replace('</div><div class="links">', f'<span class="tags" hidden>{TAGS[key]}</span></div><div class="links">', 1)
         rest = re.sub(r'<a href="([^"]+\.svg)"[^>]*>[^<]*</a>',
                       lambda v: f'<a href="{v.group(1)}" title="{escape(SVG_TIP)}">{SVG_LABEL}</a>', rest)
         if href and (OUT / f"worked-example-{href.group(1)}").exists():

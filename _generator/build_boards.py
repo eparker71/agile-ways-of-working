@@ -6090,6 +6090,113 @@ def build_cynefin():
                 "approach with safe-to-fail experiments and signals.", "\n".join(b))
 
 
+# ---------------------------------------------------------------- lean principles poster
+
+LEAN_PRINCIPLES = [
+    ("Value", BLUE, "Define value from the customer's point of view: what they would pay for, or miss if it were gone.",
+     "Who is this for, and what will change for them?", ["Product Vision Board", "Persona & Journey Map"]),
+    ("Value stream", PURPLE, "Map every step from request to customer, and question each step that adds no value.",
+     "Which steps would the customer pay for?", ["Value Stream Map"]),
+    ("Flow", SKY, "Make work move smoothly in small batches, without waiting, hand-offs or interruptions.",
+     "Where does work wait, and why?", ["Kanban Board Design", "Ageing WIP & SLE"]),
+    ("Pull", EMERALD, "Start new work only when there is capacity and a real need, not because a plan said so.",
+     "Are we starting more than we finish?", ["Kanban Cadences", "Buffering & Swarming"]),
+    ("Perfection", AMBER, "Keep improving in small steps. There is always more waste to remove, so the work never ends.",
+     "What one small thing could we improve this week?", ["Marginal Gains Workshop", "1% Experiment Canvas"]),
+]
+
+LEAN_WASTES = [  # (waste, in a factory, in knowledge work)
+    ("Transport", "Moving parts between places", "Hand-offs between people and teams"),
+    ("Inventory", "Stock waiting to be used", "Partly done work: started, not finished"),
+    ("Motion", "People walking and searching", "Switching between tasks and tools"),
+    ("Waiting", "Idle until the last step finishes", "Waiting for approvals, answers, environments"),
+    ("Overproduction", "Making more than is ordered", "Features nobody asked for or uses"),
+    ("Over-processing", "More work than the customer needs", "Gold-plating, extra reports, re-doing work"),
+    ("Defects", "Faulty parts and rework", "Bugs, misunderstood requirements, rework"),
+    ("Unused skills", "Ignoring workers' ideas", "Not using what people know, or can learn"),
+]
+
+
+def build_lean_principles():
+    b = [header("Lean Principles",
+                "The ideas behind flow, Kanban and continuous improvement: deliver value, remove waste, and keep getting a little better.",
+                "Manage Flow · Inspired by Lean Thinking (Womack & Jones) and the Toyota Production System (Taiichi Ohno)",
+                header_fields(["Team", "Date"]))]
+    y, h, gap = 148, 380, 12
+    cw = (1632 - 4 * gap) / 5
+    for i, (name, (dk, lt), what, q, tools) in enumerate(LEAN_PRINCIPLES):
+        cx = 24 + i * (cw + gap)
+        b.append(R(cx, y, cw, h, lt, 10, f' stroke="{dk}" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"'))
+        b.append(top_round(cx, y, cw, 52, 10, dk))
+        b.append(f'<circle cx="{cx + 21:g}" cy="{y + 26}" r="12" fill="white" fill-opacity=".18"/>')
+        b.append(T(cx + 21, y + 31, str(i + 1), 11, "white", weight=600, anchor="middle"))
+        b.append(T(cx + 42, y + 32, name, 16, "white", weight=600))
+        wl = _wrap(what, cw - 32, 11.5)
+        b.append(para(cx + 16, y + 84, wl, 11.5, INK, 17))
+        ty = y + 84 + len(wl) * 17 + 18
+        b.append(T(cx + 16, ty, "ASK", 8, dk, MONO, weight=600, ls=".12em"))
+        ql = _wrap(f"“{q}”", cw - 32, 14)
+        b.append(para(cx + 16, ty + 24, ql, 14, dk, 19, font=SERIF, italic=True))
+        ty = y + h - 92
+        b.append(L(cx + 16, ty - 18, cx + cw - 16, ty - 18, dk, 1, ' stroke-opacity=".25"'))
+        b.append(T(cx + 16, ty, "TOOLS IN THIS KIT", 8, dk, MONO, weight=600, ls=".12em"))
+        for j, t in enumerate(tools):
+            b.append(f'<circle cx="{cx + 20:g}" cy="{ty + 20 + j * 20}" r="2.5" fill="{dk}"/>')
+            b.append(T(cx + 30, ty + 24 + j * 20, t, 11, dk, weight=600))
+        if i < 4:
+            b.append(T(cx + cw + gap / 2, y + h / 2, "›", 14, INK, anchor="middle", op=".45"))
+
+    y, h = 542, 518
+    x, w = 24, 1082
+    d = RED[0]
+    b.append(panel(x, y, w, h, None, "The Eight Wastes", RED, "ANYTHING THAT DOESN'T ADD VALUE FOR THE CUSTOMER"))
+    cols = [("Waste", 200), ("In a factory", 400), ("In knowledge work", 446)]
+    cx = x + 18
+    for name, cwid in cols:
+        b.append(T(cx + 6, y + 82, name.upper(), 8.5, d, MONO, weight=600, ls=".1em"))
+        cx += cwid
+    rh = 46
+    for i, (waste, fac, know) in enumerate(LEAN_WASTES):
+        ry = y + 96 + i * rh
+        if i % 2 == 0:
+            b.append(R(x + 14, ry, w - 28, rh, RED[1], 4, ' fill-opacity=".55"'))
+        b.append(T(x + 24, ry + 29, waste, 13, d, weight=600))
+        b.append(T(x + 224, ry + 29, fac, 11.5, MUTED))
+        b.append(T(x + 624, ry + 29, know, 11.5, INK, weight=500))
+    b.append(T(x + 18, y + h - 22, "Taiichi Ohno named the first seven; unused skills was added later. Knowledge-work versions "
+               "adapted from Mary and Tom Poppendieck, Lean Software Development.",
+               10, d, italic=True, op=".88"))
+
+    x, w = 1120, 536
+    d = SLATE[0]
+    h1 = 220
+    b.append(panel(x, y, w, h1, None, "Two Pillars", SLATE, "BOTH, NOT EITHER"))
+    for i, (name, line) in enumerate([("Continuous improvement", ["Small, frequent changes by the people", "who do the work (kaizen)."]),
+                                      ("Respect for people", ["Trust people to solve problems, and", "fix the system, not the person."])]):
+        ty = y + 84 + i * 66
+        b.append(T(x + 18, ty, name, 13, d, weight=600))
+        b.append(para(x + 18, ty + 20, line, 11, INK, 16))
+    y2, h2 = y + h1 + 14, h - h1 - 14
+    d = FOREST[0]
+    b.append(panel(x, y2, w, h2, None, "Lean Habits", FOREST, "TRY ONE THIS WEEK"))
+    habits = [("Go and see", "Watch the work where it happens (gemba)."),
+              ("Stop and fix", "When something goes wrong, fix the cause."),
+              ("Make it visible", "Put the work and its problems on a board."),
+              ("Small batches", "Finish small pieces often, not big ones late.")]
+    for i, (name, line) in enumerate(habits):
+        ty = y2 + 84 + i * 44
+        b.append(T(x + 18, ty, name, 12.5, d, weight=600))
+        b.append(T(x + 18, ty + 18, line, 11, INK))
+
+    b.append(footer("Which of the eight wastes costs us most, and where do we see it?",
+                    "What would the customer happily pay for, and what wouldn't they?",
+                    "Manage Flow · Lean Principles · Stop Starting, Start Finishing"))
+    write_board("lean-principles-poster", "Lean Principles",
+                "A3 landscape reference poster: the five lean principles (value, value stream, flow, pull, perfection) with a "
+                "question and toolkit tools for each, the eight wastes in a factory and in knowledge work, the two pillars, "
+                "and four lean habits.", "\n".join(b))
+
+
 # ---------------------------------------------------------------- worked examples
 # Filled-in copies of real boards for a fictional team (the "Basket team" at an online grocery service, the same
 # running example as the Backlog Item Anatomy poster). Each example reads the generated blank board and adds a layer
@@ -8540,5 +8647,6 @@ if __name__ == "__main__":
     build_ai_delivery()
     build_event_storming()
     build_cynefin()
+    build_lean_principles()
     for make in EXAMPLES.values():   # worked examples read the blank boards, so they run last
         make()

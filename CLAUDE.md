@@ -72,7 +72,7 @@ It writes the role page, tags each index card by matching the card's `class="pri
 4. Entries in `TOOLS` and `ROLES` in `build_roles.py`, then re-run it.
 5. Rows in `README.md`'s tool table and lifecycle sections.
 
-If the tool introduces new terms, add them to `TERMS` in `build_glossary.py`. If it puts a good practice into practice, add its key to that practice in `PRACTICES` (`build_practices.py`, which also maps each practice to the anti-patterns it prevents by their short labels; renaming an anti-pattern's short label breaks the build). If it suits particular kinds of work, add it to `INDUSTRIES` in `build_industries.py` (start-with, also-useful or skip lists). Optionally, add it to a scenario or recipe in `_content/`, to `STARTER_KITS` in `build_recipes.py`, or to the cheat sheet's "Your Toolkit" panel (then re-check overflow).
+If the tool introduces new terms, add them to `TERMS` in `build_glossary.py`. If it puts a good practice into practice, add its key to that practice in `PRACTICES` (`build_practices.py`, which also maps each practice to the anti-patterns it prevents by their short labels; renaming an anti-pattern's short label breaks the build). If it comes from an idea people search for (such as lean), add it to `TAGS` in `build_roles.py`: hidden keywords on its home card that the search box matches. If it suits particular kinds of work, add it to `INDUSTRIES` in `build_industries.py` (start-with, also-useful or skip lists). Optionally, add it to a scenario or recipe in `_content/`, to `STARTER_KITS` in `build_recipes.py`, or to the cheat sheet's "Your Toolkit" panel (then re-check overflow).
 
 ## Verifying changes
 

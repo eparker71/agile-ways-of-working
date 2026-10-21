@@ -4152,6 +4152,65 @@ GUIDES += [
 ]
 
 
+GUIDES += [
+    dict(
+        slug="lean-principles",
+        title="Lean Principles Guide",
+        subtitle="How to use the Lean Principles poster to introduce lean thinking, spot waste in your own work, and pick one thing to improve.",
+        tag="Facilitator Run-Sheet · Manage Flow · Lean Principles · Remove Waste",
+        boards=[("Open poster", "lean-principles-poster.html"), ("SVG", "lean-principles-poster.svg")],
+        lede="Which of the eight wastes costs us most, and where do we see it?",
+        intro=("<b>Lean</b> grew out of the Toyota Production System, developed by Taiichi Ohno and others. The name was coined "
+               "by John Krafcik and popularised in <i>The Machine That Changed the World</i> (1990); James Womack and Daniel Jones "
+               "then set out its five principles in <i>Lean Thinking</i> (1996). Its core idea is simple: "
+               "deliver what the customer values, and steadily remove everything else. Much of this toolkit comes from lean: "
+               "Kanban, the Value Stream Map, WIP limits, root cause analysis and small, continuous improvement. The poster sets out "
+               "the <b>five principles</b> (value, value stream, flow, pull and perfection), the <b>eight wastes</b> in a factory "
+               "and in knowledge work, the <b>two pillars</b> of continuous improvement and respect for people, and four habits to "
+               "try. The knowledge-work wastes are adapted from Mary and Tom Poppendieck's <i>Lean Software Development</i>."),
+        glance=[("Duration", "45–60 min<br>as a workshop"), ("Group", "A team, or leaders<br>new to lean"),
+                ("Use when", "Introducing flow,<br>or work feels slow"), ("Output", "Our biggest wastes<br>&amp; one change to try")],
+        before=["Print the poster at A3 or 11×17, or share it on screen",
+                "Bring a recent piece of work that took longer than expected, with its rough timeline",
+                "Have stickies in two colours: one for wastes you see, one for ideas",
+                "If you can, look at the team's board first: what's waiting, blocked or half done?"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–10", "What is value?", "Read principle 1. Who is our customer, and what would they pay for, or miss?"),
+                ("10–20", "The five principles", "Walk across the poster. Where are we strong, and where weak?"),
+                ("20–35", "Waste spotting", "Read the knowledge-work column. Everyone writes the wastes they see in our work, one per sticky."),
+                ("35–45", "Biggest waste", "Cluster the stickies under the eight wastes and dot-vote the one that costs most."),
+                ("45–55", "One habit", "Pick a habit from the poster, or a tool it points to, to tackle that waste."),
+                ("55–60", "Next step", "Agree who does what by when, and when you'll look again.")],
+        sections_title="The five principles",
+        sections_intro="Each principle comes with a question, and points to tools in this kit.",
+        sections=[("Value", BLUE, ["Defined by the customer", "Who is it for, what will change?"]),
+                  ("Value stream", PURPLE, ["Every step, request to customer", "Question steps that add nothing"]),
+                  ("Flow", SKY, ["Small batches, no waiting", "Where does work wait?"]),
+                  ("Pull", EMERALD, ["Start when there's capacity", "Stop starting, start finishing"]),
+                  ("Perfection", AMBER, ["Small, endless improvement", "One thing this week"])],
+        tips=[("Value comes first", "Removing waste only helps if you know what the customer values. Start there."),
+              ("Waste isn't laziness", "Most waste is built into the system: hand-offs, approvals, queues. Fix the system, not the person."),
+              ("Waiting is the big one", "In knowledge work, items usually spend far longer waiting than being worked on."),
+              ("Look before you fix", "Go and see the work, or map it, before deciding what's wrong."),
+              ("Small steps", "One change at a time, measured, beats a big lean programme."),
+              ("Lean isn't cutting people", "Respect for people is a pillar: lean frees people's time for valuable work.")],
+        pitfalls=("treating lean as cost-cutting or headcount reduction; removing steps without asking what they protect; "
+                  "spotting waste in other teams but not your own; a one-off waste hunt with no follow-up; confusing being busy with flow."),
+        after=[("Straight away", "Start the chosen habit or tool, and make the waste visible on the team board."),
+               ("In two weeks", "Check at the retro: did the waste shrink? Keep, change or drop the change."),
+               ("Next month", "Map the whole flow with the Value Stream Map to find the biggest waits."),
+               ("Ongoing", "Use the Marginal Gains Workshop and 1% Experiment Canvas to keep improving in small steps.")],
+        toolkit=("The poster points to the toolkit's lean tools: the <a href=\"facilitator-guide-value-stream-map.html\">Value Stream "
+                 "Map</a> for the whole flow, <a href=\"facilitator-guide-kanban-board-design.html\">Kanban Board Design</a> and <a "
+                 "href=\"facilitator-guide-ageing-wip.html\">Ageing WIP</a> for flow and WIP limits, <a "
+                 "href=\"facilitator-guide-root-cause.html\">Root Cause Analysis</a> to stop and fix, and the <a "
+                 "href=\"facilitator-guide-marginal-gains.html\">Marginal Gains Workshop</a> and <a "
+                 "href=\"facilitator-guide-experiment-canvas.html\">1% Experiment Canvas</a> for continuous improvement."),
+        foot="“What would the customer happily pay for, and what wouldn't they?”",
+    ),
+]
+
+
 # ------------------------------------------------------------------ rendering
 
 def guide_css():

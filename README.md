@@ -6,7 +6,7 @@ Printable boards and facilitator guides for teams and facilitators.
 
 **Live site:** https://eparker71.github.io/agile-ways-of-working/
 
-To browse everything locally, open `index.html`. Terms are defined in `glossary.html`, and `good-practices.html` sets out 20 good practices the toolkit is built on, each with the tools that put it into practice, and `anti-patterns.html` is a searchable catalogue of 42 common anti-patterns with what to try; the two link to each other. `scenarios.html` is the **Scenario Playbook**: a running list of common situations (a deadline moves earlier, a key person leaves…) with first moves, longer-term fixes and tools. Add to it by editing `_content/scenarios.md`, or suggest one through a GitHub issue. `basket-team-story.html` tells the worked examples as one dated story, from a fictional team's launch to its close-out. `tools-by-industry.html` suggests where to start in twelve kinds of work (software, startups and founders, marketing, HR, IT operations, data, hardware, public sector, healthcare, finance, legal, non-profit and education), with the words people there use and what to skip. Not sure where to start? Open `start-here-by-role.html`, or use the **I'm a…** role filter at the top of the home page. It covers Scrum Masters, coaches, product owners, project, program and portfolio managers, executives, engineering managers, designers and team members.
+To browse everything locally, open `index.html`. Terms are defined in `glossary.html`, and `good-practices.html` sets out 21 good practices the toolkit is built on, each with the tools that put it into practice, and `anti-patterns.html` is a searchable catalogue of 42 common anti-patterns with what to try; the two link to each other. `scenarios.html` is the **Scenario Playbook**: a running list of common situations (a deadline moves earlier, a key person leaves…) with first moves, longer-term fixes and tools. Add to it by editing `_content/scenarios.md`, or suggest one through a GitHub issue. `basket-team-story.html` tells the worked examples as one dated story, from a fictional team's launch to its close-out. `tools-by-industry.html` suggests where to start in twelve kinds of work (software, startups and founders, marketing, HR, IT operations, data, hardware, public sector, healthcare, finance, legal, non-profit and education), with the words people there use and what to skip. Not sure where to start? Open `start-here-by-role.html`, or use the **I'm a…** role filter at the top of the home page. It covers Scrum Masters, coaches, product owners, project, program and portfolio managers, executives, engineering managers, designers and team members.
 
 Each board comes as:
 - **`.html`**: view in a browser or print. Boards print at A3 landscape; guides print at A4 portrait.
@@ -42,6 +42,7 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | Estimation | `estimation-board` | `facilitator-guide-estimation.html` |
 | RACI & Decision Log | `raci-decision-log-board` | `facilitator-guide-raci-decision-log.html` |
 | Value Stream Map | `value-stream-map-board` | `facilitator-guide-value-stream-map.html` |
+| Lean Principles poster | `lean-principles-poster` | `facilitator-guide-lean-principles.html` |
 | Architecture Decision Record | `adr-board` | `facilitator-guide-adr.html` |
 | Event Storming | `event-storming-board` | `facilitator-guide-event-storming.html` |
 | Blameless Incident Review | `incident-review-board` | `facilitator-guide-incident-review.html` |
@@ -119,7 +120,7 @@ The home page groups tools by what you're trying to do. No one framework is assu
 | Decide what to build | Product Vision Board, Persona & Journey Map, Opportunity Solution Tree, Impact Map, Prioritisation Board, Now · Next · Later Roadmap, Product Bet Canvas, Design Sprint |
 | Break down work | Epic Breakdown Canvas, User Story Map, Story Splitting, Example Mapping, Backlog Item Anatomy, Estimation |
 | Run events & iterations | Events & Cadences poster, Sprint Planning, Daily Sync, Backlog Refinement, Sprint Review |
-| Manage flow | Kanban Board Design, Kanban Cadences, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Impediments Board, Value Stream Map |
+| Manage flow | Lean Principles, Kanban Board Design, Kanban Cadences, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Impediments Board, Value Stream Map |
 | Engineering practices | SDLC at a Glance, Delivery Pipeline Canvas, Test Strategy, Release Readiness & Strategy, Continuous Delivery Health Check, Pairing & Mobbing, Delivery Metrics & Tech Debt, Architecture Decision Record, Event Storming, Blameless Incident Review |
 | Reflect & improve | Retrospective Kit, Team Health Check, Psychological Safety Check, Anti-Pattern Spotter, Marginal Gains Workshop, 1% Experiment Canvas, Root Cause Analysis |
 | Run a project | Right-Size Your Structure, Project Kickoff, Stakeholder Map, Pre-mortem, RAID Log, RACI & Decision Log, Release Forecast & Burn-up, Outcome Status Report, Project Close-out |

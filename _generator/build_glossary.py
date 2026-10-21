@@ -18,6 +18,25 @@ from brand import ACCENT, NAVY, CREDIT  # noqa: E402
 OUT = Path(__file__).resolve().parent.parent
 
 TERMS = [
+    ("Lean", "A way of working that delivers what the customer values and steadily removes everything else, through flow, "
+     "pull and continuous improvement.", "From the Toyota Production System. The five principles are from Womack and Jones, Lean Thinking (1996).",
+     ["lean", "vsm", "kanban"]),
+    ("Waste (muda)", "Anything that takes time or effort but adds no value for the customer. Lean names eight: transport, "
+     "inventory, motion, waiting, overproduction, over-processing, defects and unused skills.", None, ["lean", "vsm", "blockers"]),
+    ("Pull system", "Starting new work only when there is capacity and a real need for it, instead of pushing work in "
+     "because a plan says so.", None, ["lean", "cadences", "kanban"]),
+    ("Kaizen", "Continuous improvement in small steps, made by the people who do the work.", "Japanese for “change for the better”.",
+     ["lean", "marginal", "experiment"]),
+    ("Gemba", "Going to where the work happens to see it for yourself, instead of relying on reports.", "Japanese for “the real place”.",
+     ["lean", "vsm"]),
+    ("Takt time", "The pace work must be finished at to keep up with demand: available time divided by the number of items "
+     "needed. Used to keep flow even.", None, ["lean", "cadences"]),
+    ("A3 thinking", "Solving a problem on a single A3 sheet: background, current state, root cause, countermeasures and a plan "
+     "to check the results.", "From Toyota.", ["lean", "rootcause"]),
+    ("Poka-yoke", "Mistake-proofing: designing a step so the error can't happen, or is caught straight away.",
+     "Japanese for “avoiding mistakes”.", ["lean", "testing", "pipeline"]),
+    ("Jidoka (stop and fix)", "Stopping the work when something goes wrong, fixing the cause, and only then carrying on, so "
+     "problems aren't passed down the line.", None, ["lean", "rootcause", "pipeline"]),
     ("SVG", "The file format of the boards: an image that stays sharp at any size and holds real, editable text. "
      "Open it in a web browser, add it to Miro, Mural or FigJam as a background, or change the words and colours in Figma "
      "or Inkscape.", None, []),
