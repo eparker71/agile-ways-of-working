@@ -51,7 +51,7 @@ Never edit generated files directly; edit the script and re-run.
 
 **`build_guides.py`** holds guide content as dicts (in `GUIDES` and lists appended to it). Required keys: `slug, title, subtitle, tag, boards, lede, intro, glance, before, agenda_heads, agenda, sections_title, sections_intro, sections, tips, pitfalls, after, toolkit, foot`. `render()` turns each one into a fixed page layout, and `render_docx()` writes the matching Word file through `docx_writer.py`, a small zipfile-based WordprocessingML writer (headings, bullets, tables, bold/italic runs from simple HTML). Validate `.docx` output by parsing each XML part and with `textutil -convert txt`. `intro`, `before` and `toolkit` may contain HTML; most other fields are escaped. Shared "how it fits the toolkit" paragraphs are constants such as `LIFECYCLE_TOOLKIT`, `PROJECT_TOOLKIT`, `PROGRAM_TOOLKIT`, `FLOW_TOOLKIT` and `ENG_TOOLKIT`.
 
-**`board_spec.py`** builds each guide's "Recreate it in your whiteboard" AI prompt by parsing the board's SVG: rects with `filter="url(#fc)"` are sections (the white text in their header is the title and note), dashed rects inside a headerless panel are zones (e.g. Sailboat), and boards with no panels fall back to rows grouped by vertical gaps. It merges wrapped lines and list numbers, so short repeated digits (e.g. 1–5 score labels) get read as list numbers: draw them as one `<text>` with `<tspan>`s and an `x` attribute. If you add a new layout primitive, check its spec with `python3 _generator/board_spec.py <board>.svg`. The Marginal Gains guide's prompt block is pasted in by hand, so regenerate it if that board changes.
+**`board_spec.py`** builds each guide's "Recreate it in your whiteboard" AI prompt by parsing the board's SVG: rects with `filter="url(#fc)"` are sections (the white text in their header is the title and note), dashed rects inside a headerless panel are zones (e.g. Sailboat), and boards with no panels fall back to rows grouped by vertical gaps. It merges wrapped lines and list numbers, so short repeated digits (e.g. 1–5 score labels) get read as list numbers: draw them as one `<text>` with `<tspan>`s and an `x` attribute. Text is read in baseline order, so in a row of columns (label · description · quote) give each column's first line the same `y`, or the rows interleave in the prompt. If you add a new layout primitive, check its spec with `python3 _generator/board_spec.py <board>.svg`. The Marginal Gains guide's prompt block is pasted in by hand, so regenerate it if that board changes.
 
 **`build_roles.py`** holds two tables, which are the single source of truth for the role feature:
 - `TOOLS`: key → (title, board, guide, href-prefix for matching index cards).
@@ -64,7 +64,7 @@ It writes the role page, tags each index card by matching the card's `class="pri
 **Adding a tool** touches five places:
 1. A `build_*` function, plus its call in `__main__`.
 2. A guide dict.
-3. A card in the right `<h2>` section of `index.html`.
+3. A card in the right `<h2>` section of `index.html` (copy a neighbour; leave out `data-roles`, which `build_roles.py` fills in).
 4. Entries in `TOOLS` and `ROLES` in `build_roles.py`, then re-run it.
 5. Rows in `README.md`'s tool table and lifecycle sections.
 
@@ -74,7 +74,7 @@ If the tool introduces new terms, add them to `TERMS` in `build_glossary.py`. Op
 
 `check_site.py` covers links and anchors, metadata, SVG/Word validity, the sitemap, and cheat sheet overflow and page counts (the overflow check waits for `document.fonts.ready`, since the fallback font causes false overflows). Everything visual is checked by rendering with headless Chrome (`/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`):
 - **Screenshot a board:** `--headless=new --hide-scrollbars --window-size=1728,1238 --virtual-time-budget=4000 --screenshot=<png> file://<path>`. Look for text overlapping panel edges, legends or other text. `text_w()` is only a rough width estimate.
-- **Page count:** `--print-to-pdf`, then count `/Type /Page` objects. Boards should print to exactly 1 A3 landscape page; guides to 3–4 A4 pages; the main cheat sheet to exactly 2 A3 pages; the Jira sheet to 1.
+- **Page count:** `--print-to-pdf`, then count `/Type /Page` objects. Chrome puts them in compressed object streams, so a plain `grep` finds none: inflate each `stream…endstream` with `zlib` and count there too. Boards should print to exactly 1 A3 landscape page; guides to 3–4 A4 pages; the main cheat sheet to exactly 2 A3 pages; the Jira sheet to 1.
 - **Cheat sheet overflow:** `check_site.py` does this. The main cheat sheet is nearly full. Adding a line to one panel can overflow a different panel in the same grid row, often Team Development on side 2. Rebalancing the `.s2` grid columns has worked better than shrinking text.
 - **Phone width:** headless Chrome won't render narrower than 500px, so load pages in a 390px-wide `<iframe>` inside a wider harness page (pass `--allow-file-access-from-files` to measure inside it). The `.tbl` tables scrolling sideways inside their panel on phones is intentional.
 
