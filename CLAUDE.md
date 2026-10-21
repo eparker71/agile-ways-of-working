@@ -16,6 +16,8 @@ python3 _generator/check_site.py    # links + anchors, metadata, SVG/Word validi
 python3 _generator/build_pdfs.py    # A3 PDFs of every board into pdf/ (needs Chrome); only remakes changed boards
 ```
 
+`build_pdfs.py` also prints the documents in its `DOCUMENTS` list (the A4 case study `basket-team-story`) from their page's print stylesheet; their fingerprint covers the page and the images on it, so changing a worked example remakes it too.
+
 **After changing any board**, run `build_all.py`, then `build_pdfs.py`, then `build_all.py` again (pages link to a PDF once it exists). PDFs carry timestamps so they aren't rebuilt in CI; `pdf/manifest.json` stores a fingerprint of each board's SVG and `check_site.py` fails if a PDF is missing or stale. `print-pack.html` (built by `build_recipes.py`) lists every PDF, grouped by the home page sections.
 
 Individual generators (all run by `build_all.py`; `build_pdfs.py` is separate): `build_boards.py`, `build_guides.py`, `build_roles.py`, `build_glossary.py`, `build_antipatterns.py`, `build_practices.py`, `build_industries.py`, `build_scenarios.py`, `build_recipes.py`, `build_meta.py`. CI (`.github/workflows/checks.yml`) runs `build_all.py`, fails if `git diff` shows the committed output is stale, then runs `check_site.py`. So **always run `build_all.py` and commit its output**, and keep generators deterministic: no timestamps, sorted globs (Word files use a fixed zip timestamp and no compression for this reason). **Don't finish by running a single generator:** every generator rewrites its pages without the `<!-- meta -->` block, so running e.g. `build_glossary.py` after `build_meta.py` leaves stale output and fails CI. Re-run `build_all.py` last.

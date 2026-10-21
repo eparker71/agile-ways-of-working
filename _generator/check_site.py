@@ -114,6 +114,10 @@ def check_pdfs():
         fp = hashlib.sha256(svg.read_bytes()).hexdigest()[:16]
         if manifest.get(svg.stem) != fp or not (OUT / "pdf" / f"{svg.stem}.pdf").exists():
             fail(f"pdf/{svg.stem}.pdf is missing or out of date (run build_pdfs.py, then build_all.py)")
+    from build_pdfs import DOCUMENTS, doc_fingerprint  # imported here: build_pdfs imports this module
+    for stem in DOCUMENTS:
+        if manifest.get(stem) != doc_fingerprint(stem) or not (OUT / "pdf" / f"{stem}.pdf").exists():
+            fail(f"pdf/{stem}.pdf is missing or out of date (run build_pdfs.py, then build_all.py)")
 
 
 def find_chrome():

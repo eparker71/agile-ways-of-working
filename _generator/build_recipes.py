@@ -14,7 +14,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from build_roles import TOOLS, FONT_URL  # noqa: E402
 from build_scenarios import _smart  # noqa: E402
-from brand import ACCENT, NAVY, CREDIT  # noqa: E402
+from brand import ACCENT, NAVY, CREDIT, PUBLISH_AT  # noqa: E402
 from story import STORY  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent
@@ -345,7 +345,7 @@ def build_print_pack():
         if items:
             groups.append((re.sub(r"<[^>]+>", "", m.group(2)), items))
     extra = [p.stem for p in sorted((OUT / "pdf").glob("*.pdf")) if p.stem not in seen]
-    named = {TOOLS[k][1][:-5]: TOOLS[k][0] for k in TOOLS}
+    named = {TOOLS[k][1][:-5]: TOOLS[k][0] for k in TOOLS} | {"basket-team-story": "The Basket Team Story (A4 case study)"}
     if extra:
         groups.append(("Worked examples and other boards",
                        [(("Example: " + named.get(e[len("worked-example-"):], e)) if e.startswith("worked-example-")
@@ -435,9 +435,11 @@ def build_story():
         for _, date, key, line in sorted(items):
             board = TOOLS[key][1]
             rows.append(f'<li><span class="d">{escape(date)}</span><a class="st" href="worked-example-{board}">'
-                        f'<img src="worked-example-{board.replace(".html", ".svg")}" alt="" loading="lazy">'
+                        f'<img src="worked-example-{board.replace(".html", ".svg")}" alt="">'
                         f'<span><b>{escape(title_of[key])}</b>{escape(line)}</span></a></li>')
         chapters.append(f'<section id="{mid}"><h2>{month} <span>· {escape(name)}</span></h2><ol>{"".join(rows)}</ol></section>')
+    pdf_dl = ('<a class="dl" href="pdf/basket-team-story.pdf" download>Download the case study (A4 PDF) ↓</a>\n  '
+              if (OUT / "pdf" / "basket-team-story.pdf").exists() else "")
     page = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -476,7 +478,29 @@ a.st span{{font-size:13px;}}
 .end a{{color:#9A3412;}}
 footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-align:center;padding:0 16px 32px;}}
 @media (max-width:640px){{li{{grid-template-columns:1fr;gap:4px;}} .d{{padding-top:0;}} a.st{{grid-template-columns:96px 1fr;}} a.st img{{width:96px;}}}}
-@media print{{header{{padding:16px;}} nav.months{{display:none;}} li{{break-inside:avoid;}}}}
+a.dl{{display:inline-block;color:#fff;background:#C2410C;text-decoration:none;font-size:12.5px;font-weight:500;padding:6px 13px;border-radius:999px;margin:0 0 12px;}}
+a.dl:hover{{background:#9A3412;}}
+.ponly{{display:none;}}
+/* printed, this page is the A4 case study (pdf/basket-team-story.pdf, made by build_pdfs.py) */
+@page{{size:A4 portrait;margin:14mm 14mm 16mm;}}
+@media print{{
+html,body{{background:#fff;}}
+header{{background:none;color:var(--ink);border-top:none;padding:0 0 4mm;}}
+header .wrap,main .wrap{{max-width:none;padding:0;}}
+header p{{color:#334155;}}
+header a.back,nav.months,a.dl{{display:none;}}
+.ponly{{display:block;font-size:12px;color:var(--muted);}}
+h1{{font-size:46px;}}
+.cast{{margin-top:0;}}
+section+section{{break-before:page;}}
+h2{{margin-top:6mm;}}
+li{{grid-template-columns:60px 1fr;break-inside:avoid;margin-bottom:4mm;}}
+li::before{{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+a.st{{grid-template-columns:80mm 1fr;border-color:#CBD5E1;padding:2.5mm;}}
+a.st img{{width:80mm;}}
+a.st span{{font-size:12.5px;}}
+.end{{break-inside:avoid;}}
+}}
 </style>
 </head>
 <body>
@@ -484,7 +508,8 @@ footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-
   <a class="back" href="workshop-recipes.html#examples">← All worked examples</a>
   <h1>The Basket Team Story</h1>
   <p>Every worked example in the toolkit, in the order it happened: one fictional team at an online grocery service, from launching in February to closing out in July. Read it as a case study of the tools working together. Each step opens the filled-in board, with a link back to the blank one.</p>
-  <nav class="months" aria-label="Months">{"".join(nav)}</nav>
+  {pdf_dl}<nav class="months" aria-label="Months">{"".join(nav)}</nav>
+  <p class="ponly">Online, with every board full size: {PUBLISH_AT}/basket-team-story.html</p>
 </div></header>
 <main><div class="wrap">
 <div class="cast"><b>The cast.</b> The Basket team: Priya (product owner), Sam and Jo (developers), Alex (tester), Mei (designer), Tom (Scrum Master), and Ravi (developer, from March). Around them: the Head of Digital (sponsor), and the Checkout, Payments, Search &amp; Browse, Store Platform and Warehouse teams. <b>The goal:</b> make the weekly shop effortless, so repeat orders rise from 22% to 30%.</div>

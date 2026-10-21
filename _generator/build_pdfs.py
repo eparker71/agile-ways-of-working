@@ -28,8 +28,25 @@ def boards():
     return [p.stem for p in sorted(OUT.glob("*.svg")) if (OUT / f"{p.stem}.html").exists()]
 
 
+# Multi-page A4 documents printed from a page's print stylesheet (not boards, so not one page each)
+DOCUMENTS = ["basket-team-story"]
+
+
 def fingerprint(stem):
+    if stem in DOCUMENTS:
+        return doc_fingerprint(stem)
     return hashlib.sha256((OUT / f"{stem}.svg").read_bytes()).hexdigest()[:16]
+
+
+def doc_fingerprint(stem):
+    """A document's page (minus its metadata and its own download link) plus every image it shows."""
+    html = (OUT / f"{stem}.html").read_text(encoding="utf-8")
+    html = re.sub(r"<!-- meta -->.*?<!-- /meta -->\n", "", html, flags=re.S)
+    html = re.sub(r'<a class="dl"[^>]*>.*?</a>\n\s*', "", html)
+    h = hashlib.sha256(html.encode())
+    for src in sorted(set(re.findall(r'<img src="([^"]+\.svg)"', html))):
+        h.update((OUT / src).read_bytes())
+    return h.hexdigest()[:16]
 
 
 def load_manifest():
@@ -42,7 +59,7 @@ def build(force=False):
         sys.exit("build_pdfs.py needs Google Chrome or Chromium")
     PDF.mkdir(exist_ok=True)
     manifest, made = load_manifest(), 0
-    wanted = boards()
+    wanted = boards() + DOCUMENTS
     for stem in wanted:
         fp = fingerprint(stem)
         target = PDF / f"{stem}.pdf"
@@ -53,7 +70,8 @@ def build(force=False):
                        capture_output=True, timeout=180)
         data = target.read_bytes() if target.exists() else b""
         pages = len(re.findall(rb"/Type\s*/Page[^s]", data))
-        if pages != 1 or b"Geist" not in data:
+        one_page = stem not in DOCUMENTS  # documents run to many pages; boards must fit one A3 sheet
+        if (one_page and pages != 1) or b"Geist" not in data:
             sys.exit(f"{stem}: PDF has {pages} pages or is missing its fonts; not recording it")
         manifest[stem] = fp
         made += 1
