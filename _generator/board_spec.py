@@ -18,6 +18,24 @@ COLOURS = {"#1E3A8A": "blue", "#065F46": "emerald green", "#581C87": "purple", "
 SKIP = {"Add your sticky notes here", "Stickies", "Items", "sketch", "Sticky per item", "+", "−", "›", "W", "wait", "work",
         "Initiatives", "Pink stickies", "Cleared blocker stickies", "Items, smallest on the left"}
 
+# All-caps words that stay in capitals when a mono label is sentence-cased (anything else is lowercased).
+ACRONYMS = {"ADKAR", "ADR", "AI", "API", "CD3", "CI", "DORA", "HR", "KPI", "MVP", "NFR", "OKR", "PI", "PO", "RACI", "RAID",
+            "RTE", "SBI", "SDLC", "SLE", "SPIDR", "UAT", "UI", "UK", "WCAG", "WIP", "WSJF", "XL", "XS"}
+MIXED = {"COD": "CoD", "I": "I"}
+
+
+def _case(s, title=False):
+    """Sentence-case (or title-case) an all-caps label, keeping acronyms and mixed-case words like SAFe as written."""
+    def word(m):
+        w = m.group(0)
+        key = len(w) == 1 and m.string[m.end():m.end() + 2] == f" {w}"  # RACI-style keys: "R RESPONSIBLE"
+        if not w.isupper() or w in ACRONYMS or key or re.fullmatch(r"P\d+", w):
+            return w
+        return MIXED.get(w, w.capitalize() if title else w.lower())
+    s = re.sub(r"[A-Za-z][A-Za-z0-9&]*", word, s)
+    return s[:1].upper() + s[1:]
+
+
 ATTR = re.compile(r'(\w[\w-]*)="([^"]*)"')
 
 
@@ -99,7 +117,7 @@ def _merge(items):
     for t in items:
         t = dict(t)
         if t["mono"] and t["t"].isupper() and len(t["t"].split()) <= 4:
-            t["t"] = t["t"].capitalize() + ("" if t["t"].endswith((":", "?")) else ":")
+            t["t"] = _case(t["t"]) + ("" if t["t"].endswith((":", "?")) else ":")
         prev = out[-1] if out else None
         if prev and re.fullmatch(r"\d+\.?", prev["t"]) and abs(prev["y"] - t["y"]) < 3 and t["x"] > prev["x"]:
             prev["t"] = f"{prev['t'].rstrip('.')}. {t['t']}"
@@ -134,7 +152,7 @@ def spec(svg_path, board_url=""):
     title = next((t["t"] for t in texts if t["size"] >= 40), "")
     subtitle = next((t["t"] for t in texts if t["size"] == 13 and t["y"] < 140), "")
     head_right = [t for t in texts if t["x"] >= 1350 and t["y"] < 140]
-    fields = [t["t"].title() for t in head_right if t["mono"] and t["t"] not in ("LEGEND", "HOW TO READ IT", "LEVELS")]
+    fields = [_case(t["t"], title=True) for t in head_right if t["mono"] and t["t"] not in ("LEGEND", "HOW TO READ IT", "LEVELS")]
     legend = [t["t"] for t in head_right if not t["mono"]]
 
     panels = sorted(_panels(svg), key=lambda p: (round(p["y"] / 40), p["x"]))
@@ -156,7 +174,7 @@ def spec(svg_path, board_url=""):
         name = next((t["t"] for t in head if not t["mono"] and not t["t"].isdigit() and len(t["t"]) > 1
                      and not (p.get("zone") and t["size"] >= 16)), f"Section {n}")
         if name.isupper():
-            name = name.capitalize()
+            name = _case(name)
         if p.get("zone"):
             q = next((t["t"] for t in head if t["size"] >= 16), "")
             note = q
@@ -170,7 +188,7 @@ def spec(svg_path, board_url=""):
         colour = _colour(svg, p)
         lines.append(f"{n}. {name}: {_where(p)}" + (f"; header colour {colour}" if colour else "") + ".")
         if note:
-            lines.append(f"   Subtitle: {note.capitalize()}")
+            lines.append(f"   Subtitle: {_case(note)}")
         content = _content(body)
         if content:
             lines.append("   Content: " + " · ".join(content))
