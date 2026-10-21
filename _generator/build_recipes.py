@@ -22,7 +22,13 @@ BY_TITLE = {re.sub(r"\s+", " ", v[0]).lower(): k for k, v in TOOLS.items()}
 EXAMPLES = [("team-charter", "Team Charter", "A new team's purpose, values, agreements and Definitions of Ready and Done."),
             ("sprint-planning", "Sprint Planning", "A sprint goal, capacity, selected items, a dependency risk and a confidence vote."),
             ("prioritisation", "Prioritisation Board", "Value vs. effort, a cost-of-delay table, MoSCoW and a Now · Next · Later roadmap."),
-            ("retro", "Start · Stop · Continue", "Stickies with dot votes, and three actions with owners and a done-when.")]
+            ("retro", "Start · Stop · Continue", "Stickies with dot votes, and three actions with owners and a done-when."),
+            ("topology", "Team Topology Design", "Four teams mapped by type and interaction, a cognitive load check and a boundary to redraw."),
+            ("skills", "Skills Matrix", "Seven people across ten skills, two single points of failure circled, and a learning plan."),
+            ("health", "Team Health Check", "Seven people's dot votes and trends, with two focus areas picked."),
+            ("vision", "Product Vision Board", "A vision, the people it's for, their needs, measures of success and the riskiest assumptions."),
+            ("ost", "Opportunity Solution Tree", "One outcome, three opportunities, six solutions with tests and results, and an assumption map."),
+            ("okr", "Objectives & Key Results", "Three objectives with key results and confidence, the bets behind them, and what we're not doing.")]
 
 
 # Starter kits: the minimum toolset for each project size (see the Right-Size Your Structure poster).

@@ -6281,8 +6281,220 @@ def example_retro():
     write_example("retro-board-start-stop-continue", "Start · Stop · Continue", "".join(L_))
 
 
+def link(x1, y1, x2, y2, dash=""):
+    """A hand-drawn connector between two stickies (dash matches the board's interaction-mode key)."""
+    return L(x1, y1, x2, y2, PEN, 2.4, dash + ' stroke-linecap="round"')
+
+
+def example_team_topology():
+    L_ = []
+    types = [["Basket · Search & Browse", "Checkout"], ["Store Platform (cloud, CI/CD)"],
+             ["Test Automation coaches (to June)"], ["Payments"]]
+    cw = (1632 - 28 - 36) / 4
+    for i, names in enumerate(types):
+        for j, t in enumerate(names):
+            L_.append(hand(38 + 16 + i * (cw + 12), 354 + j * 26, t, 17))
+    # team map: one value stream across the top, supporting teams below
+    L_.append(hand(56, 548, "Customer shopping stream", 17))
+    teams = {"search": (56, 566, "Search & Browse"), "basket": (296, 566, "Basket"), "checkout": (536, 566, "Checkout"),
+             "pay": (836, 566, "Payments"), "plat": (296, 724, "Store Platform"), "coach": (676, 724, "Test Automation coaches")}
+    xs = ' stroke-dasharray="8,5"'
+    fac = ' stroke-dasharray="2,4"'
+    L_ += [link(686, 594, 836, 594),
+           link(686, 610, 836, 610, xs), link(371, 636, 371, 724, xs), link(611, 636, 451, 744, xs),
+           link(131, 636, 296, 744, xs), link(751, 724, 431, 636, fac)]
+    for k, (x, y, t) in teams.items():
+        col = YELLOW
+        L_.append(note(x, y, t, col, 150, 70, {"search": -2, "basket": 1, "checkout": -1, "pay": 2, "plat": -1, "coach": 1}[k]))
+    L_.append(note(886, 690, "Every Checkout release waits for Payments sign-off", PINK_ST, 180, 86, 3))
+    L_.append(hand(700, 588, "subscriptions", 15))
+    # cognitive load
+    rows = [("Basket", "basket, reorder, favourites", "M", "no"), ("Checkout", "checkout, promos, delivery slots", "H", "yes"),
+            ("Payments", "cards, wallets, refunds, fraud", "H", "watch"), ("Search & Br.", "search, catalogue, recs", "M", "no"),
+            ("Store Platform", "cloud, CI/CD, monitoring", "M", "no")]
+    for i, row in enumerate(rows):
+        x = 1144
+        for c, v in enumerate(row):
+            L_.append(hand(x, 574 + i * 40, v, 16))
+            x += (120, 200, 90)[c] if c < 3 else 0
+    L_.append(hand(1140, 852, "Checkout owns three domains: delivery slots should move.", 16))
+    agree = [("Checkout", "Payments", "Collaboration", "Build subscription payments", "30 June"),
+             ("Checkout", "Store Platform", "X-as-a-Service", "Self-service deploy pipeline", "September")]
+    for i, row in enumerate(agree):
+        x = 48
+        for c, v in enumerate(row):
+            L_.append(hand(x, 1002 + i * 34, v, 17))
+            x += (180, 180, 200, 330)[c] if c < 4 else 0
+    for i, t in enumerate(["New Delivery Slots team takes slots from Checkout", "Payments publishes a self-service refunds API",
+                           "Review Checkout–Payments collaboration on 30 June"]):
+        L_.append(hand(1140, 969 + i * 26, t, 16))
+    write_example("team-topology-board", "Team Topology Design", "".join(L_))
+
+
+def example_skills_matrix():
+    L_ = []
+    skills = ["Discovery", "UX design", "Front end", "Accessibility", "Back end, APIs", "Payments", "Test automation",
+              "Data", "Cloud, CI/CD", "Facilitation"]
+    sk_w = (1632 - 28 - 380) / 10
+    for i, s in enumerate(skills):
+        L_.append(hand(38 + 170 + i * sk_w + 10, 249, s, 15))
+    team = [("Priya", [3, 1, 0, 0, 0, 1, 0, 2, 0, 2], "SQL for our own reports"),
+            ("Sam", [1, 0, 2, 1, 3, 3, 2, 1, 2, 0], "Facilitation"),
+            ("Jo", [1, 2, 3, 3, 2, 0, 1, 0, 1, 1], "Payments"),
+            ("Alex", [1, 0, 1, 2, 1, 1, 3, 1, 2, 0], "Cloud, CI/CD"),
+            ("Mei", [2, 3, 1, 2, 0, 0, 0, 1, 0, 1], "Front end (CSS)"),
+            ("Tom", [1, 0, 0, 0, 0, 0, 1, 1, 0, 3], "Data and analytics"),
+            ("Ravi (new)", [0, 0, 2, 1, 2, 0, 1, 0, 1, 0], "Payments, test automation")]
+    rh = (640 - 64 - 62 - 14) / 8
+    for r, (name, scores, wants) in enumerate(team):
+        ry = 274 + r * rh
+        L_.append(hand(50, ry + rh - 25, name, 19))
+        for i, v in enumerate(scores):
+            L_.append(hand(208 + i * sk_w + sk_w / 2, ry + 38, str(v), 24, anchor="middle"))
+        L_.append(hand(1444, ry + 38, wants, 16))
+    for r, i in ((1, 5), (0, 7)):  # the only person at 2+ for a skill
+        cx, cy = 208 + i * sk_w + sk_w / 2, 274 + r * rh + 30
+        L_.append(f'<ellipse cx="{cx:g}" cy="{cy:g}" rx="24" ry="20" fill="none" stroke="#DC2626" stroke-width="2.2" '
+                  f'transform="rotate(-8 {cx:g} {cy:g})"/>')
+    L_ += [hand(42, 907, "Payments (only Sam) · Data (only Priya)", 17),
+           hand(42, 997, "Cloud, CI/CD · Data", 17)]
+    for i, row in enumerate([("Jo", "Payments", "Sam", "end of May"), ("Ravi", "Test automation", "Alex", "June"),
+                             ("Tom", "Data", "Priya", "June"), ("Alex", "Cloud, CI/CD", "Platform team", "Q3")]):
+        x = 596
+        for c, v in enumerate(row):
+            L_.append(hand(x, 920 + i * 34, v, 16))
+            x += (120, 150, 120)[c] if c < 3 else 0
+    L_ += [tick(1138, 920), tick(1138, 980), hand(after(1138, "Next review of the matrix:"), 1028, "start of Q3", 17)]
+    write_example("skills-matrix-board", "Skills Matrix", "".join(L_))
+
+
+def example_health_check():
+    # (green, amber, red) votes from 7 people, trend (0 up, 1 flat, 2 down), notes
+    rows = [((5, 2, 0), 0, ["Reorder card is a hit"]), ((1, 3, 3), 2, ["FOCUS: releases wait on", "Payments sign-off"]),
+            ((4, 3, 0), 1, []), ((2, 4, 1), 1, ["Basket API debt growing"]), ((3, 3, 1), 0, ["Pairing is helping"]),
+            ((6, 1, 0), 0, ["Repeat-order goal is clear"]), ((3, 3, 1), 1, ["Scope sometimes set for us"]),
+            ((1, 2, 4), 2, ["FOCUS: 3 items blocked", "on other teams"]), ((4, 3, 0), 0, ["WIP limit is working"]),
+            ((2, 4, 1), 1, ["Platform tickets are slow"]), ((5, 2, 0), 0, ["Ravi settling in well"])]
+    cols = [("#22C55E", 504), ("#F59E0B", 742), ("#EF4444", 980)]
+    L_ = []
+    for i, (votes, trend, notes) in enumerate(rows):
+        ry = 192 + i * 78
+        for (col, cx), n in zip(cols, votes):
+            L_ += [f'<circle cx="{cx + 26 + k * 24}" cy="{ry + 36}" r="8" fill="{col}" stroke="#fff" stroke-width="1.5"/>'
+                   for k in range(n)]
+        ax = 1218 + 176 / 2 + (trend - 1) * 46
+        L_.append(f'<circle cx="{ax:g}" cy="{ry + 36}" r="20" fill="none" stroke="{PEN}" stroke-width="2.2"/>')
+        for j, t in enumerate(notes):
+            L_.append(hand(1414, ry + 25 + j * 22, t, 16))
+    L_ += [hand(after(24, "Team:", 13), 1102, "Basket team", 19), hand(after(350, "Date:", 13), 1102, "end of Q1", 19),
+           hand(after(580, "Facilitator:", 13), 1102, "Tom", 19)]
+    write_example("team-health-check-board", "Team Health Check", "".join(L_))
+
+
+def example_product_vision():
+    L_ = [hand(220, 244, "busy households get their weekly shop done in two minutes,", 24),
+          hand(44, 285, "and spend the time they save on things that matter more.", 24)]
+    cols = [["Busy families who shop every week", "Older customers who buy the same things", "Not for: one-off bulk buyers"],
+            ["Rebuilding the weekly shop takes 40 minutes", "Forget items, pay for a second delivery", "Today: a paper list or last receipt"],
+            ["One-tap reorder of the last basket", "Saved favourites", "Smart substitutes when out of stock", "Subscriptions for staples"],
+            ["Repeat orders 22% → 30%", "Lower cost to serve per order", "Win back lapsed customers"]]
+    spots = [(30, 490, -2), (210, 505, 2), (30, 610, 1), (210, 625, -2)]
+    for i, items in enumerate(cols):
+        x = 24 + i * ((1632 - 42) / 4 + 14)
+        for (dx, y, rot), t in zip(spots, items):
+            L_.append(note(x + dx, y, t, YELLOW, 160, 92, rot))
+    for i, row in enumerate([("Customers reorder easily", "weekly repeat orders", "22%", "30%"),
+                             ("Shopping is faster", "median basket time", "38 min", "10 min"),
+                             ("Fewer forgotten items", "2nd order within 2 days", "9%", "5%")]):
+        x = 48
+        for c, v in enumerate(row):
+            L_.append(hand(x, 940 + i * 32, v, 17))
+            x += (300, 230, 118)[c] if c < 3 else 0
+    L_ += [note(880, 948, "Customers want much the same basket each week", YELLOW, 180, 92, -2),
+           note(1090, 952, "Stock data is good enough to suggest substitutes", PINK_ST, 180, 92, 2),
+           note(1300, 948, "Payments can support subscriptions", YELLOW, 170, 92, -1)]
+    write_example("product-vision-board", "Product Vision Board", "".join(L_), ["Basket", "Priya"])
+
+
+def example_opportunity_tree():
+    L_ = [hand(371, 267, "Weekly repeat orders rise from 22% to 30%", 18), hand(371, 291, "by the end of Q2", 18)]
+    opps = [(["Rebuilding the weekly shop", "takes too long"],
+             [(["Reorder last", "basket in one tap"], ["Customers want much", "the same basket"], ["Fake-door button", "on the home page"], "31% clicked ✓"),
+              (["Saved favourites", "list"], ["People will keep", "a list up to date"], ["Interview six", "customers"], "Only 2 of 6 would")]),
+            (["I forget items and have to", "place a second order"],
+             [(["Reminders for", "usual items"], ["Reminders don't", "annoy people"], ["Email 500", "customers"], "Running"),
+              (["“You usually buy”", "list at checkout"], ["Order history", "predicts well"], ["Back-test on the", "last 3 months"], "78% hit rate ✓")]),
+            (["Staples run out between", "weekly shops"],
+             [(["Subscriptions", "for staples"], ["Payments can do", "repeat billing"], ["Spike with the", "Payments team"], "Due 30 June"),
+              (["Auto-add staples", "to the basket"], ["Customers trust", "auto-add"], ["Prototype test", "with 5 users"], "Not started")])]
+    colw = (1082 - 40) / 3
+    for i, (opp, sols) in enumerate(opps):
+        ox = 24 + 20 + i * colw + colw / 2
+        bw = colw - 30
+        L_ += [hand(ox - bw / 2 + 14, 421 + j * 24, t, 18) for j, t in enumerate(opp)]
+        sw = (bw - 12) / 2
+        for j, (sol, risk, test, result) in enumerate(sols):
+            sx = ox - bw / 2 + j * (sw + 12) + 10
+            L_ += [hand(sx, 571 + k * 24, t, 16) for k, t in enumerate(sol)]
+            L_ += [hand(sx, 685 + k * 24, t, 15) for k, t in enumerate(risk)]
+            L_ += [hand(sx, 779 + k * 24, t, 15) for k, t in enumerate(test)]
+            L_.append(hand(sx, 873, result, 15))
+    L_ += [note(60, 976, "Shared family lists", BLUE_ST, 140, 64, -2, 15), note(220, 980, "Voice ordering", YELLOW, 130, 60, 2, 15),
+           note(370, 976, "Recipe-to-basket", YELLOW, 130, 60, -1, 15)]
+    L_ += [note(1420, 268, "Customers want the same basket", PINK_ST, 104, 70, -2, 14),
+           note(1524, 318, "Payments can do repeat billing", PINK_ST, 104, 70, 2, 14),
+           note(1200, 290, "Order history predicts well", PINK_ST, 110, 66, 1, 14),
+           note(1200, 470, "Reminders don't annoy", PINK_ST, 110, 60, -1, 14),
+           note(1440, 470, "Customers trust auto-add", PINK_ST, 110, 64, 2, 14)]
+    for i, row in enumerate([("Same basket wanted", "Fake-door button", "over 20% click", "31% ✓"),
+                             ("Repeat billing", "Payments spike", "test charge ok", "30 June"),
+                             ("History predicts", "Back-test", "over 70% hits", "78% ✓"),
+                             ("Reminders welcome", "Email 500 users", "under 2% opt out", "running")]):
+        x = 1144
+        for c, v in enumerate(row):
+            L_.append(hand(x, 777 + i * 40, v, 15))
+            x += (150, 140, 120)[c] if c < 3 else 0
+    write_example("opportunity-solution-tree-board", "Opportunity Solution Tree", "".join(L_))
+
+
+def example_okr():
+    L_ = [hand(44, 234, "Regular customers are our most valuable, and too many drift away: make the weekly shop effortless "
+                        "before the summer peak.", 20)]
+    objs = [(["make the weekly shop", "effortless for regular customers"],
+             [("Weekly repeat orders", "22%", "30%", "6"), ("Median basket time", "38 min", "10 min", "7"),
+              ("Reorder satisfaction", "3.6", "4.3", "5")],
+             "Basket, Search & Browse", ["Reorder last basket", "Smart substitutes", "Saved favourites"]),
+            (["make sure nobody forgets", "an item again"],
+             [("Second order within 2 days", "9%", "5%", "5"), ("Out-of-stock complaints", "120/wk", "60/wk", "6")],
+             "Basket, Checkout", ["“You usually buy” list", "Reminders for usual items"]),
+            (["make checkout quick", "and trustworthy"],
+             [("Checkout drop-off", "18%", "12%", "6"), ("Failed payments", "2.1%", "1%", "4")],
+             "Checkout, Payments, Platform", ["Wallet payments", "Self-service deploys", "Fewer payment retries"])]
+    spots = [(30, 694, -2), (200, 704, 2), (370, 694, -1)]
+    for i, (will, krs, teams, bets) in enumerate(objs):
+        x = 24 + i * 548
+        L_ += [hand(x + 116, 373, will[0], 21), hand(x + 22, 408, will[1], 21)]
+        for r, row in enumerate(krs):
+            cx = x + 24
+            for c, v in enumerate(row):
+                L_.append(hand(cx, 516 + r * 34, v + ("/10" if c == 3 else ""), 16))
+                cx += (230, 70, 70)[c] if c < 3 else 0
+        L_.append(hand(after(x + 18, "Teams contributing:"), 620, teams, 17))
+        for (dx, y, rot), t in zip(spots, bets):
+            L_.append(note(x + dx, y, t, YELLOW, 150, 84, rot))
+    for i, v in enumerate(["Mondays at the Basket stand-up, 10 minutes", "Week 6, all three teams together",
+                           "Last Friday of the quarter, 0 to 1.0"]):
+        L_.append(hand(after(42, ["Weekly confidence check:", "Mid-period review:", "End-of-period scoring:"][i]), 976 + i * 28, v, 17))
+    for i, v in enumerate(["Personalised offers (next quarter)", "Rebuilding checkout from scratch", "Family accounts"]):
+        L_.append(hand(866, 981 + i * 26, v, 18))
+    write_example("okr-board", "Objectives & Key Results", "".join(L_), ["Basket group", "Q2"])
+
+
 EXAMPLES = {"team-charter-board": example_team_charter, "sprint-planning-board": example_sprint_planning,
-            "prioritisation-board": example_prioritisation, "retro-board-start-stop-continue": example_retro}
+            "prioritisation-board": example_prioritisation, "retro-board-start-stop-continue": example_retro,
+            "team-topology-board": example_team_topology, "skills-matrix-board": example_skills_matrix,
+            "team-health-check-board": example_health_check, "product-vision-board": example_product_vision,
+            "opportunity-solution-tree-board": example_opportunity_tree, "okr-board": example_okr}
 
 
 if __name__ == "__main__":
