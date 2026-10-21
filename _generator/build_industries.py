@@ -34,6 +34,20 @@ INDUSTRIES = [
       ("Using velocity to compare or push teams", "Velocity as a target")],
      [], "Nearly everything fits. Use the project tools (RAID Log, Status Report) when you have a fixed-scope project, "
          "not for ongoing product work."),
+    ("startup", "Startups & founders",
+     "You are most of the company, money and runway are the constraint, and the biggest risk is building something "
+     "nobody will pay for. Every week should answer a question about customers, so use the tools that test ideas "
+     "cheaply, and keep the process light until there's a team to coordinate.",
+     ["bet", "ost", "experiment"],
+     ["persona", "design-sprint", "vision", "impact", "roadmap", "premortem", "kanban", "value", "retro", "user-manual"],
+     [("Stakeholder", "investors, early customers, advisers"), ("Minimum viable product (MVP)", "first paying version"),
+      ("Product goal", "traction milestone"), ("Outcome", "traction: paying, returning customers"),
+      ("Backlog", "list of bets"), ("Retrospective", "monthly look back with co-founders")],
+     [("Building for months before anyone has said they'd pay", None),
+      ("Saying yes to every customer's feature request", "Everything is top priority"),
+      ("Counting features shipped instead of paying, returning customers", None)],
+     ["ctp", "portfolio-kanban", "raid", "raci", "sync", "topology", "status", "closeout"],
+     "These are for coordinating many people or reporting up a hierarchy. Bring them back as the company grows past one team."),
     ("marketing", "Marketing & communications",
      "Work arrives as campaigns with fixed launch dates, many reviewers and approvers, and results you only see after "
      "launch. Small, frequent experiments beat one big launch you can't change.",
@@ -274,7 +288,7 @@ footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-
 </div></header>
 <main><div class="wrap">
 {chr(10).join(cards)}
-<div class="note"><h3>Not on the list?</h3><p>Pick the closest kind of work: a construction or lab team often works like hardware (physical builds, long lead times), a retail, hospitality or customer service team like IT operations (unpredictable demand, service levels), and an operations or procurement team like finance (calendar-driven cycles and controls). Then start with three tools, use them for a few weeks, and keep what helps. The <a href="scenarios.html">Scenario Playbook</a> covers specific situations, and the <a href="glossary.html">Glossary</a> explains any term.</p></div>
+<div class="note"><h3>Not on the list?</h3><p>Pick the closest kind of work: a solo consultant or small agency often works like a startup, a construction or lab team often works like hardware (physical builds, long lead times), a retail, hospitality or customer service team like IT operations (unpredictable demand, service levels), and an operations or procurement team like finance (calendar-driven cycles and controls). Then start with three tools, use them for a few weeks, and keep what helps. The <a href="scenarios.html">Scenario Playbook</a> covers specific situations, and the <a href="glossary.html">Glossary</a> explains any term.</p></div>
 </div></main>
 <footer>{escape(CREDIT)}</footer>
 </body>

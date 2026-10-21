@@ -259,6 +259,17 @@ Longer term:
 - Test assumptions before building, and measure value, not output.
 Tools: Persona & Journey Map, Opportunity Solution Tree, Value Metrics
 
+## We're a startup with months of runway and no proof anyone will pay
+You'll notice: lots of building, a growing feature list, and no paying customers yet.
+First moves:
+- Write the idea as a bet: who has the problem, what you believe, and what would prove you wrong.
+- Pick the riskiest assumption and test it this week, with a landing page, a call or a manual version, before writing code.
+- Agree a stop rule now, while you're calm: what result by what date would make you change course.
+Longer term:
+- Run one small experiment at a time, and judge progress by paying, returning customers, not features shipped.
+- Keep a light rhythm: a weekly look at the bets, and a monthly look back at what you learned.
+Tools: Product Bet Canvas, Opportunity Solution Tree, 1% Experiment Canvas, Design Sprint
+
 # Stakeholders & reporting
 
 ## Stakeholders don't come to the review
