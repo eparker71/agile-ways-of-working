@@ -8,7 +8,7 @@ Run:  python3 _generator/build_recipes.py   (after build_boards.py, which makes 
 """
 import re
 import sys
-from html import escape
+from html import escape, unescape
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -205,13 +205,29 @@ def build():
         for r in a["items"]) + "</div>" for a in areas)
     sections = "\n".join(f'<section><h2>{escape(a["name"])}</h2>' + "".join(card(r, slug) for r in a["items"]) + "</section>"
                          for a in areas)
-    ex = []
+    # group the worked examples by the home page section their board's card sits in, in home page order
+    index = (OUT / "index.html").read_text(encoding="utf-8")
+    order, section_of, rank = [], {}, {}
+    for m in re.finditer(r'<h2 id="([^"]+)">(.*?)</h2>(.*?)(?=<h2 id=|</main>|$)', index, re.S):
+        order.append((m.group(1), unescape(re.sub(r"<[^>]+>", "", m.group(2)))))
+        for c in re.finditer(r'class="primary" href="([^"]+)"', m.group(3)):
+            section_of.setdefault(c.group(1), m.group(1))
+            rank.setdefault(c.group(1), len(rank))
+    groups = {}
     for key, title, desc in EXAMPLES:
         board, guide = TOOLS[key][1], TOOLS[key][2]
         if not (OUT / f"worked-example-{board}").exists():
             sys.exit(f"missing worked-example-{board}: run build_boards.py first")
-        ex.append(f'<a class="ex" href="worked-example-{board}"><img src="worked-example-{board.replace(".html", ".svg")}" alt="" loading="lazy">'
-                  f'<b>{escape(title)}</b><span>{escape(desc)}</span></a>')
+        if board not in section_of:
+            sys.exit(f"{board} has no card on the home page, so its worked example can't be grouped")
+        groups.setdefault(section_of[board], []).append((rank[board],
+            f'<a class="ex" href="worked-example-{board}"><img src="worked-example-{board.replace(".html", ".svg")}" alt="" loading="lazy">'
+            f'<b>{escape(title)}</b><span>{escape(desc)}</span></a>'))
+    present = [(sid, name) for sid, name in order if sid in groups]
+    ex_nav = "".join(f'<a href="#ex-{sid}">{escape(name)} <span>{len(groups[sid])}</span></a>' for sid, name in present)
+    ex = "".join(f'<h3 class="exg" id="ex-{sid}">{escape(name)}</h3><div class="exs">{"".join(h for _, h in sorted(groups[sid]))}</div>'
+                 for sid, name in present)
+    n_ex = len(EXAMPLES)
     page = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -237,6 +253,11 @@ header a.back{{color:#94A3B8;font:500 11px 'Geist Mono',monospace;letter-spacing
 main{{padding:8px 0 48px;}}
 h2{{font:500 11px 'Geist Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:28px 0 10px;}}
 .exs{{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}}
+.exnav{{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 6px;}}
+.exnav a{{font-size:12.5px;color:var(--ink);text-decoration:none;background:#fff;border:1px solid var(--rule);border-radius:999px;padding:4px 11px;}}
+.exnav a:hover{{border-color:var(--accent);}}
+.exnav a span{{color:var(--muted);margin-left:2px;}}
+h3.exg{{font-size:15px;margin:22px 0 10px;scroll-margin-top:12px;}}
 .ex{{background:#fff;border:1px solid var(--rule);border-radius:8px;overflow:hidden;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;}}
 .ex:hover{{border-color:var(--accent);}}
 .ex img{{width:100%;aspect-ratio:1680/1190;object-fit:cover;border-bottom:1px solid var(--rule);background:#E2E8F0;}}
@@ -280,7 +301,7 @@ code{{font:12px 'Geist Mono',monospace;background:#F1F5F9;border-radius:4px;padd
 footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-align:center;padding:0 16px 32px;}}
 @media (max-width:820px){{.toc,.exs{{grid-template-columns:1fr 1fr;}} .kits{{grid-template-columns:1fr;}}}}
 @media (max-width:560px){{.toc,.exs,.cols{{grid-template-columns:1fr;}} td.t{{display:none;}} dl div{{grid-template-columns:1fr;}}}}
-@media print{{header{{padding:16px;}} .toc,.exs,#examples-h,.intro.ex-intro{{display:none;}} .rc{{break-inside:avoid;}}}}
+@media print{{header{{padding:16px;}} .toc,.exs,.exnav,h3.exg,#examples-h,.intro.ex-intro{{display:none;}} .rc{{break-inside:avoid;}}}}
 </style>
 </head>
 <body>
@@ -296,8 +317,9 @@ footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-
 <p class="intro">The minimum set of tools for each size of project, in the order to use them. A four-person project needs far less structure than a forty-person one; see <a href="right-size-poster.html">Right-Size Your Structure</a> for why, and for when to turn the dial up.</p>
 <div class="kits">{kits_html()}</div>
 <h2 id="examples">Worked examples</h2>
-<p class="intro ex-intro">What a finished board can look like, filled in by the “Basket team”, a fictional team at an online grocery service (the same example as the <a href="backlog-anatomy-poster.html">Backlog Item Anatomy</a> poster). Each one has a link back to the blank board.</p>
-<div class="exs">{"".join(ex)}</div>
+<p class="intro ex-intro">What a finished board can look like, filled in by the “Basket team”, a fictional team at an online grocery service (the same example as the <a href="backlog-anatomy-poster.html">Backlog Item Anatomy</a> poster). Each one has a link back to the blank board. {n_ex} examples, grouped like the home page.</p>
+<nav class="exnav" aria-label="Worked examples by section">{ex_nav}</nav>
+{ex}
 <div class="more"><h3>Add a recipe</h3><p>To add one to your own copy, edit <code>_content/recipes.md</code> and run <code>python3 _generator/build_recipes.py</code>; the format is explained at the top of the file.</p></div>
 </div></main>
 <footer>{escape(CREDIT)}</footer>
