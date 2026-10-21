@@ -48,7 +48,15 @@ EXAMPLES = [("team-charter", "Team Charter", "A new team's purpose, values, agre
             ("delegation", "Delegation Board", "Eight decision areas, today's level and where each is heading, with guardrails."),
             ("cross-retro", "Cross-Team Retro", "What went well and what didn't across teams, five whys on the top problem, and fixes."),
             ("vsm", "Value Stream Map", "Story to live in six steps: 16 days of lead time, 3 of work, and where it waits."),
-            ("premortem", "Pre-mortem", "The subscriptions pilot has failed: why, the top risks, and how to prevent or spot them.")]
+            ("premortem", "Pre-mortem", "The subscriptions pilot has failed: why, the top risks, and how to prevent or spot them."),
+            ("lean-coffee", "Lean Coffee", "Dot-voted topics, a timeboxed discussion with a wrap-up vote, takeaways and three actions."),
+            ("launch", "Team Launch (Sprint Zero)", "A two-week launch: 20 checklist items with owners, a thin first slice, and what's still missing."),
+            ("ai", "AI Working Agreement", "Where the team uses AI and where it doesn't, guardrails, review rules and the impact so far."),
+            ("kickoff", "Project Kickoff", "Why, scope in and out, trade-off sliders with only time fixed, risks and first milestones."),
+            ("forecast", "Release Forecast & Burn-up", "Five iterations plotted with growing scope, and a 13–20 June range from real throughput."),
+            ("epic", "Epic Breakdown Canvas", "The reorder epic as a hypothesis, an MVP, five features and the first stories."),
+            ("daily", "Daily Sync", "Walking the board right to left, a blocked item and who swarms on it, and a parking lot."),
+            ("refinement", "Backlog Refinement", "Five items taken through order, understand, split, examples, size and ready.")]
 
 
 # Starter kits: the minimum toolset for each project size (see the Right-Size Your Structure poster).
