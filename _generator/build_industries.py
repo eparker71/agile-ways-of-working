@@ -116,6 +116,51 @@ INDUSTRIES = [
      ["event-storming", "cd-health"],
      "Use them only where you build digital services in-house. Accessibility isn't optional here: put it in your "
      "Definition of Done."),
+    ("healthcare", "Healthcare",
+     "Work is safety-critical and regulated, clinical time is scarce, and teams run on shifts. Healthcare already has a "
+     "strong improvement tradition (small Plan-Do-Study-Act cycles), and the toolkit fits it well: map the patient "
+     "pathway, test small changes safely, and make it safe to speak up.",
+     ["vsm", "experiment", "incident"],
+     ["rootcause", "kanban", "daily", "blockers", "persona", "stakeholder", "psych-safety", "health", "marginal", "adkar",
+      "raci"],
+     [("Value stream", "patient pathway"), ("Experiment", "PDSA cycle (Plan-Do-Study-Act)"), ("Stand-up", "safety huddle"),
+      ("Persona", "patient or carer"), ("Blocker", "delay in the pathway"), ("Retrospective", "debrief")],
+     [("Junior staff don't raise safety concerns", "Quiet voices go unheard"),
+      ("Problems reach leaders only when they've become incidents", "Bad news travels slowly"),
+      ("Changing clinical practice without governance: run small, safe tests with clinical sign-off", None)],
+     ["pipeline", "cd-health", "adr", "event-storming", "estimation"],
+     "These are for software teams. If you build clinical software, you'll need them, plus your regulatory checks."),
+    ("finance", "Finance & accounting",
+     "Work follows the calendar: month-end close, audits, budgets and forecasts, with hard deadlines and peaks. "
+     "Accuracy and controls matter, so improve the flow of the cycle rather than rushing it. Finance is also where "
+     "annual budgeting can change into more frequent funding decisions.",
+     ["kanban", "vsm", "raci"],
+     ["cadences", "buffer", "blockers", "ageing", "rootcause", "stakeholder", "portfolio-kanban", "okr", "value",
+      "experiment", "retro"],
+     [("Iteration", "month-end cycle"), ("Backlog", "request queue"), ("Definition of Done", "reconciled and reviewed"),
+      ("Class of service", "statutory deadline, standard, ad hoc"), ("Stakeholder", "budget holders, auditors"),
+      ("Swarming", "close-week all hands")],
+     [("Funding fixed once a year, a year ahead", "Annual funding only"),
+      ("Nobody's sure who can approve what", "Unclear decision rights"),
+      ("A new control after every mistake until nothing moves: review controls at the retro", None)],
+     ["pipeline", "cd-health", "testing", "event-storming", "design-sprint", "storymap"],
+     "These are for building products. Portfolio Kanban is the place to start moving beyond annual budgets."),
+    ("legal", "Legal",
+     "Work comes as matters with deadlines, much of it waits on clients, counterparties or courts, and it's "
+     "confidential. Expert judgement is the bottleneck, so make the queue visible, triage it, and protect focus "
+     "time.",
+     ["kanban", "ageing", "prioritisation"],
+     ["blockers", "raci", "stakeholder", "buffer", "refinement", "skills", "rootcause", "okr", "coaching", "retro"],
+     [("Backlog", "matter list, intake queue"), ("Story", "matter, request"),
+      ("Definition of Ready", "intake complete: facts, deadline, owner"),
+      ("Class of service", "court deadline, standard, advisory"), ("Blocker", "waiting on the client or other side"),
+      ("Throughput", "matters closed")],
+     [("Every request is urgent, so lawyers switch all day", "Everything is top priority"),
+      ("Matters waiting on others sit unseen for weeks", "Blocked work goes unnoticed"),
+      ("Judging people only by billable hours", "Individuals measured by tickets"),
+      ("Client details on a shared board: use matter codes, not names", None)],
+     ["pipeline", "cd-health", "testing", "adr", "event-storming", "storymap", "design-sprint"],
+     "These are for building products and software."),
     ("nonprofit", "Non-profit & education",
      "Capacity is tight, people wear many hats, volunteers come and go, and funders want evidence of impact. Keep "
      "tools light, make priorities explicit, and measure difference made, not activity.",
@@ -229,7 +274,7 @@ footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-
 </div></header>
 <main><div class="wrap">
 {chr(10).join(cards)}
-<div class="note"><h3>Not on the list?</h3><p>Pick the closest kind of work: a legal or finance team often works like HR (case work, confidentiality, change), a construction or lab team like hardware (physical builds, long lead times). Then start with three tools, use them for a few weeks, and keep what helps. The <a href="scenarios.html">Scenario Playbook</a> covers specific situations, and the <a href="glossary.html">Glossary</a> explains any term.</p></div>
+<div class="note"><h3>Not on the list?</h3><p>Pick the closest kind of work: a construction or lab team often works like hardware (physical builds, long lead times), a retail, hospitality or customer service team like IT operations (unpredictable demand, service levels), and an operations or procurement team like finance (calendar-driven cycles and controls). Then start with three tools, use them for a few weeks, and keep what helps. The <a href="scenarios.html">Scenario Playbook</a> covers specific situations, and the <a href="glossary.html">Glossary</a> explains any term.</p></div>
 </div></main>
 <footer>{escape(CREDIT)}</footer>
 </body>
