@@ -6157,6 +6157,8 @@ def write_example(base, title, layer, header=None):
     def clean(t):
         t = re.sub(r'<text[^>]*fill-opacity="\.22"[^>]*>[^<]*</text>', "", t)
         t = re.sub(r'<rect x="[^"]*" y="[^"]*" width="18" height="18" rx="2" fill="#[0-9A-Fa-f]{6}" fill-opacity="\.35"/>', "", t)
+        t = re.sub(r'<text[^>]*font-style="italic"[^>]*fill-opacity="\.[34]"[^>]*>[^<]*</text>', "", t)
+        t = re.sub(r'<rect [^>]*rx="3" fill="#[0-9A-Fa-f]{6}" fill-opacity="\.22"/>', "", t)
         return re.sub(r'<text[^>]*>sprint, month, quarter…</text>', "", t)
     svg, page = clean(svg), clean(page)
     slug = f"worked-example-{base}"
@@ -6490,11 +6492,227 @@ def example_okr():
     write_example("okr-board", "Objectives & Key Results", "".join(L_), ["Basket group", "Q2"])
 
 
+def example_product_bet():
+    L_ = []
+    for y, lab, v in [(230, "Who has it:", "Families who buy the same staples every week"),
+                      (264, "The problem, in their words:", "“We always run out of milk and nappies"),
+                      (298, "", "between shops, then pay for a second delivery.”"),
+                      (332, "How they cope today:", "A list on the fridge, a top-up at the"),
+                      (366, "", "corner shop, or a phone reminder."),
+                      (400, "How often, how painful (1–5):", "Every week · 4")]:
+        L_.append(hand(after(42, lab) if lab else 46, y, v, 17))
+    for y, lab, v in [(230, "We believe that (who):", "families who buy the same staples each week"),
+                      (264, "will (do what):", "set up a staples subscription and keep it for 3+ months"),
+                      (298, "if we (offer what):", "deliver their chosen staples automatically with each weekly shop"),
+                      (332, "because (what we know):", "38% of baskets repeat 5+ staples; 7 of 10 people we interviewed asked for it")]:
+        L_.append(hand(after(592, lab, 12), y, v, 18))
+    L_ += [hand(after(592, "The smallest version we could try:"), 366, "a manual subscription: customers pick 5 staples and we add them by hand", 17),
+           hand(596, 400, "to their next order, for 50 customers for 4 weeks (no change to Payments).", 17)]
+    for y, lab, v in [(544, "Value to users:", "Never run out; one less thing to remember"),
+                      (584, "", "Fewer second deliveries"),
+                      (616, "Value to us:", "Predictable orders, easier stock planning"),
+                      (656, "", "More repeat orders (Q2 objective 1)"),
+                      (688, "Cost of doing nothing:", "A rival launched subscriptions in March"),
+                      (724, "Roughly what it'll take:", "Test: 2 people, 4 weeks")]:
+        L_.append(hand(after(42, lab) if lab else 46, y, v, 17))
+    for i, (v, c) in enumerate([("Families keep it for 3+ months", "2"), ("They can pick and change staples easily", "3"),
+                                ("Payments can do repeat billing", "2"), ("Margin holds with staples added", "3")]):
+        ry = 558 + i * 48
+        L_ += [hand(722, ry + 28, v, 17), hand(1040, ry + 28, c, 22)]
+    for i, row in enumerate([("Fake-door sign-up", "over 5% of visitors sign up", "2 May"),
+                             ("Manual test, 50 customers", "70% still subscribed at week 4", "6 June"),
+                             ("Payments spike", "a test repeat charge works", "30 June")]):
+        x = 1148
+        for c, v in enumerate(row):
+            L_.append(hand(x, 581 + i * 34, v, 16))
+            x += (190, 242)[c] if c < 2 else 0
+    for i, row in enumerate([("Customers with an active subscription", "0", "5,000", "end of Q3"),
+                             ("Second order within 2 days", "9%", "5%", "end of Q3"),
+                             ("Staples basket margin", "21%", "21% (hold)", "end of Q3")]):
+        x = 48
+        for c, v in enumerate(row):
+            L_.append(hand(x, 905 + i * 34, v, 17))
+            x += (330, 120, 120)[c] if c < 3 else 0
+    L_.append(hand(after(42, "We'll stop or change course if:"), 1026, "fewer than half keep it for 4 weeks", 17))
+    L_ += [tick(1256, 874), hand(after(864, "Why:"), 946, "Value and feasibility are still guesses (2 out of 5)", 17),
+           hand(after(864, "Decided by:"), 980, "Priya, with the Basket and Payments leads", 17),
+           hand(after(864, "Revisit on:"), 1014, "6 June, after the manual test", 17)]
+    write_example("product-bet-canvas", "Product Bet Canvas", "".join(L_), ["Staples subscription", "Priya", "14 April"])
+
+
+def example_story_map():
+    L_ = [hand(after(44, "Persona / user:", 12), 172, "Busy parent who shops weekly", 18),
+          hand(after(546, "Their goal:", 12), 172, "Repeat the weekly shop in under a minute", 18),
+          hand(after(1126, "Product / epic:", 12), 172, "Reorder made easy", 18)]
+    acts = ["Find my last order", "Check the basket", "Fix the gaps", "Choose delivery", "Pay and confirm"]
+    tasks = [["See last order", "Browse past orders"], ["Check items", "Change amounts"], ["Swap missing items", "Add forgotten items"],
+             ["Pick a slot", "Delivery notes"], ["Pay with saved card", "Get confirmation"]]
+    # (activity column, task 0/1, text) per release slice
+    slices = [(482, [(0, 0, "Last order card on home page"), (1, 0, "Show items and total"), (1, 1, "Change an amount"),
+                     (2, 0, "Remove unavailable items"), (3, 0, "Use their usual slot"), (4, 0, "Pay with saved card"),
+                     (4, 1, "Email confirmation")]),
+              (712, [(0, 1, "Reorder any past order"), (2, 0, "Suggest substitutes"), (2, 1, "“You usually buy” list"),
+                     (3, 0, "Choose another slot"), (3, 1, "Leave a note"), (4, 1, "In-app confirmation")]),
+              (912, [(0, 1, "Save favourite baskets"), (1, 1, "Share the basket with family"), (2, 1, "Reminders for usual items"),
+                     (4, 0, "Wallet payments")])]
+    for i, a in enumerate(acts):
+        x0 = 286 + i * 274
+        L_.append(note(x0 + 50, 234, a, BLUE_ST, 160, 62, [-2, 1, -1, 2, -1][i]))
+        for j, t in enumerate(tasks[i]):
+            L_.append(note(x0 + j * 134, 342, t, YELLOW, 124, 62, [1, -2][j], 15))
+    for y, items in slices:
+        for k, (c, j, t) in enumerate(items):
+            L_.append(note(286 + c * 274 + j * 134, y, t, GREEN, 124, 66, [-1, 2, -2, 1][k % 4], 14))
+    for (y, h), (o, tg) in zip([(468, 220), (698, 190), (898, 162)],
+                               [("reorder in 60 s", "Sprint 15"), ("fewer 2nd orders", "end of Q2"), ("bigger baskets", "Q3")]):
+        L_ += [hand(after(44, "Outcome:"), y + h - 56, o, 16), hand(after(44, "Target:"), y + h - 24, tg, 16)]
+    write_example("story-map-board", "User Story Map", "".join(L_))
+
+
+def example_example_mapping():
+    L_ = [note(40, 160, "Reorder last basket", YELLOW, 300, 80, 0, 22),
+          hand(after(362, "As a…", 12), 187, "returning customer", 19),
+          hand(after(782, "I want…", 12), 187, "to reorder my last basket in one tap", 19),
+          hand(after(1242, "so that…", 12), 187, "my weekly shop takes a minute", 19)]
+    rules = [("Reorder adds every item from the last order",
+              ["Last order had 12 items → basket gets all 12", "Milk already in basket → quantities add up"]),
+             ("Out-of-stock items are flagged, not added",
+              ["Bread out of stock → shown greyed out as “unavailable”", "Everything out of stock → message, nothing added"]),
+             ("Prices are today's, not the old ones",
+              ["Eggs were £2.00, now £2.20 → basket shows £2.20 and “price changed”"]),
+             ("Only orders from the last 90 days",
+              ["Last order 4 months ago → no card on the home page", "Last order yesterday → card shows it"])]
+    cw = (1278 - 36) / 4
+    for i, (rule, exs) in enumerate(rules):
+        x = 24 + i * (cw + 12)
+        L_.append(note(x + 14, 332, rule, BLUE_ST, cw - 28, 84, 0, 18))
+        for j, e in enumerate(exs):
+            L_.append(note(x + 22 + (j % 2) * 8, 474 + j * 116, e, GREEN, cw - 52, 96, [-1, 2][j], 16))
+    for j, q in enumerate(["Suggest substitutes, or leave them out? (Priya asks Store Ops)",
+                           "What if a product has been discontinued?", "Do promotion prices carry over?"]):
+        L_.append(note(1342 + (j % 2) * 10, 420 + j * 120, q, PINK_ST, 280, 96, [2, -1, 1][j], 17))
+    L_ += [tick(46, 1008), hand(after(594, "Story A:"), 970, "Reorder in-stock items (rules 1, 3 and 4)", 17),
+           hand(after(594, "Story B:"), 1006, "Handle out-of-stock items (rule 2)", 17),
+           hand(after(1142, "Owner:"), 970, "Priya (asks Store Ops)", 17),
+           hand(after(1142, "Answer by:"), 1006, "Thursday, before planning", 17)]
+    write_example("example-mapping-board", "Example Mapping", "".join(L_))
+
+
+def example_event_storming():
+    ev, cmd, act, pol, sysm, ext, rm, hot = ORANGE_ST, BLUE_ST, YELLOW, LILAC_ST, PALE_ST, PINK_ST, GREEN, ROSE_ST
+    phases = [("Reorder", [(14, 452, "Customer", act, 88), (110, 440, "Reorder last basket", cmd), (250, 440, "Last order card", rm),
+                           (20, 540, "Last order shown", ev), (140, 540, "Basket refilled", ev), (260, 540, "Missing items flagged", ev),
+                           (140, 640, "Basket service", sysm), (260, 650, "Discontinued items?", hot)]),
+              ("Checkout", [(14, 452, "Customer", act, 88), (110, 440, "Choose a slot", cmd), (250, 440, "Free slots", rm),
+                            (20, 540, "Slot reserved", ev), (140, 540, "Checkout started", ev), (260, 540, "Slot released", ev),
+                            (20, 640, "Delivery slots", sysm), (200, 640, "Whenever a slot is held 15 min, release it", pol, 170, 76)]),
+              ("Payment", [(14, 452, "Customer", act, 88), (110, 440, "Pay", cmd), (250, 440, "Payment provider", ext),
+                           (20, 540, "Payment authorised", ev), (140, 540, "Payment failed", ev), (260, 540, "Order placed", ev),
+                           (20, 650, "Who signs off payment changes?", hot, 130, 70),
+                           (200, 640, "Whenever payment fails, retry once, then ask for another card", pol, 160, 86)]),
+              ("Fulfilment", [(14, 440, "Whenever an order is placed, reserve stock", pol, 140, 76), (170, 452, "Picker", act, 80),
+                              (260, 440, "Pick the order", cmd), (20, 540, "Stock reserved", ev), (140, 540, "Substitute chosen", ev),
+                              (260, 540, "Order delivered", ev), (20, 640, "Warehouse system", ext), (140, 640, "Pick list", rm),
+                              (260, 650, "Substitutes: picker or customer decides?", hot, 120, 76)])]
+    L_ = []
+    pw = (1632 - 28) / 4
+    for i, (phase, notes_) in enumerate(phases):
+        px = 38 + i * pw
+        L_.append(hand(after(px + 8, "Phase:", 10.5), 412, phase, 18))
+        for k, n in enumerate(notes_):
+            dx, y, t, col = n[:4]
+            w, h = (n[4], n[5]) if len(n) > 5 else ((n[4], 48) if len(n) > 4 else (112, 64))
+            L_.append(note(px + dx, y, t, col, w, h, [-2, 1, 2, -1, 1][k % 5], 14))
+    for i, (q, o) in enumerate([("Discontinued items in a reorder?", "Priya"), ("Who signs off payment changes?", "Payments lead"),
+                                ("Substitutes: picker or customer decides?", "Store Ops")]):
+        L_ += [hand(48, 977 + i * 30, q, 16), hand(378, 977 + i * 30, o, 16)]
+    for i, row in enumerate([("Basket", "Basket refilled, items flagged", "Basket"),
+                             ("Checkout and slots", "Slot reserved, slot released", "Checkout"),
+                             ("Payments", "Authorised, failed", "Payments")]):
+        x = 598
+        for c, v in enumerate(row):
+            L_.append(hand(x, 977 + i * 30, v, 16))
+            x += (170, 210)[c] if c < 2 else 0
+    for i, (lab, v) in enumerate([("Zoom into (process or design):", "Failed payments (design)"),
+                                  ("Who to invite next:", "Payments lead, a picker from Store Ops"),
+                                  ("Next session:", "Tuesday 22 April, 2 hours")]):
+        L_.append(hand(after(1142, lab), 948 + i * 36, v, 17))
+    write_example("event-storming-board", "Event Storming", "".join(L_), ["Online grocery order", "15 April"])
+
+
+def example_stakeholder_map():
+    L_ = []
+    for x, y, t, rot in [(520, 292, "Head of Digital (sponsor)", -2), (700, 300, "Store Ops", 2), (560, 380, "Payments lead", 1),
+                         (740, 384, "Finance", -1), (110, 300, "Legal and privacy", 2), (290, 340, "Marketing director", -2),
+                         (520, 545, "Customer service", 1), (710, 560, "Customer panel", -2), (580, 630, "Warehouse team", 2),
+                         (120, 560, "Brand team", -1), (300, 610, "IT security", 1)]:
+        L_.append(note(x, y, t, YELLOW, 140, 62, rot, 16))
+    reg = [("Head of Digital", "Repeat orders up; worried about Q2", "Fortnightly 1:1", "Priya"),
+           ("Store Ops", "Substitutes must not slow picking", "Weekly call", "Priya"),
+           ("Payments lead", "Subscriptions without fraud risk", "Joint planning", "Tom"),
+           ("Finance", "Margin on staples", "Monthly review", "Priya"),
+           ("Legal and privacy", "Consent for reminders", "Before each launch", "Priya"),
+           ("Marketing", "A launch date for the campaign", "Monthly update", "Priya"),
+           ("Customer service", "Fewer “missing item” calls", "Demo at each review", "Alex"),
+           ("Customer panel", "A faster weekly shop", "Monthly video call", "Mei")]
+    for i, row in enumerate(reg):
+        x = 962
+        for c, v in enumerate(row):
+            L_.append(hand(x, 266 + i * 36, v, 15))
+            x += (150, 230, 190)[c] if c < 3 else 0
+    comms = [("Sponsor and leads", "Progress against OKRs, risks, asks", "Status report", "Fortnightly", "Priya"),
+             ("Whole Basket group", "What shipped, what's next", "Iteration review", "Every 2 weeks", "Tom"),
+             ("Customer service", "What's changing for customers", "Demo and FAQ", "Before each release", "Alex"),
+             ("Customer panel", "New features to try", "Video call", "Monthly", "Mei")]
+    for i, row in enumerate(comms):
+        x = 48
+        for c, v in enumerate(row):
+            L_.append(hand(x, 899 + i * 34, v, 16))
+            x += (210, 300, 190, 170)[c] if c < 4 else 0
+    L_ += [note(1144, 908, "Store Ops could block substitutes if picking slows", PINK_ST, 152, 100, -2, 15),
+           note(1310, 914, "Legal sign-off on reminders may take 6 weeks", PINK_ST, 152, 100, 2, 15),
+           note(1476, 908, "Missing from the map: delivery drivers?", PINK_ST, 152, 100, -1, 15)]
+    write_example("stakeholder-map-board", "Stakeholder Map", "".join(L_))
+
+
+def example_raid_log():
+    blocks = [(42, 148, (250, 92, 80, 216), [
+                  ("Repeat billing turns out to be hard", "High", "High", "Reduce: spike early", "Tom"),
+                  ("Legal sign-off on reminders is slow", "Med", "Med", "Avoid: draft in week 1", "Priya"),
+                  ("Substitutes slow down picking", "Med", "High", "Reduce: trial in 1 store", "Priya"),
+                  ("Ravi's onboarding takes longer", "Low", "Low", "Accept", "Tom")]),
+              (864, 148, (300, 250, 88), [
+                  ("Families want much the same basket", "Fake-door button (31% ✓)", "done", "Priya"),
+                  ("Payments can do repeat billing", "Spike with Payments", "30 June", "Tom"),
+                  ("Stock data is good enough for substitutes", "Back-test on 3 months", "16 May", "Sam")]),
+              (42, 611, (250, 150, 196, 80), [
+                  ("Releases wait on Payments sign-off", "2-day delays", "Agree self-service checks", "Tom", "9 May"),
+                  ("Test data for reorders isn't realistic", "Bugs found late", "Copy anonymised orders", "Alex", "2 May"),
+                  ("Platform tickets take a week", "Slows deploy fixes", "Raise at cross-team sync", "Tom", "Fri")]),
+              (864, 611, (240, 150, 100, 100), [
+                  ("Stock API for substitutes", "Warehouse → us", "Wed 7 May", "At risk", "Sam"),
+                  ("Repeat billing", "Payments → us", "30 June", "On track", "Tom"),
+                  ("Last-order data for search", "us → Search", "Sprint 15", "Done", "Jo"),
+                  ("Privacy sign-off for events", "Legal → us", "16 May", "Waiting", "Priya")])]
+    L_ = []
+    for x, y, widths, rows in blocks:
+        for i, row in enumerate(rows):
+            cx = x + 6
+            for c, v in enumerate(row):
+                col = "#DC2626" if v in ("High", "At risk") else PEN
+                L_.append(hand(cx, y + 117 + i * 34, v, 16, col))
+                cx += widths[c] if c < len(widths) else 0
+    write_example("raid-log-board", "RAID Log", "".join(L_), ["Reorder made easy", "28 April"])
+
+
 EXAMPLES = {"team-charter-board": example_team_charter, "sprint-planning-board": example_sprint_planning,
             "prioritisation-board": example_prioritisation, "retro-board-start-stop-continue": example_retro,
             "team-topology-board": example_team_topology, "skills-matrix-board": example_skills_matrix,
             "team-health-check-board": example_health_check, "product-vision-board": example_product_vision,
-            "opportunity-solution-tree-board": example_opportunity_tree, "okr-board": example_okr}
+            "opportunity-solution-tree-board": example_opportunity_tree, "okr-board": example_okr,
+            "product-bet-canvas": example_product_bet, "story-map-board": example_story_map,
+            "example-mapping-board": example_example_mapping, "event-storming-board": example_event_storming,
+            "stakeholder-map-board": example_stakeholder_map, "raid-log-board": example_raid_log}
 
 
 if __name__ == "__main__":

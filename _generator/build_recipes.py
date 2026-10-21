@@ -28,7 +28,13 @@ EXAMPLES = [("team-charter", "Team Charter", "A new team's purpose, values, agre
             ("health", "Team Health Check", "Seven people's dot votes and trends, with two focus areas picked."),
             ("vision", "Product Vision Board", "A vision, the people it's for, their needs, measures of success and the riskiest assumptions."),
             ("ost", "Opportunity Solution Tree", "One outcome, three opportunities, six solutions with tests and results, and an assumption map."),
-            ("okr", "Objectives & Key Results", "Three objectives with key results and confidence, the bets behind them, and what we're not doing.")]
+            ("okr", "Objectives & Key Results", "Three objectives with key results and confidence, the bets behind them, and what we're not doing."),
+            ("bet", "Product Bet Canvas", "A staples subscription bet: the problem, the bet, the four big risks, cheap tests and a decision."),
+            ("storymap", "User Story Map", "The reorder journey as activities and tasks, sliced into an MVP, a second release and later."),
+            ("example", "Example Mapping", "One story's four rules, concrete examples, open questions and a decision to split it."),
+            ("event-storming", "Event Storming", "An online order from reorder to delivery: events, commands, policies and hotspots."),
+            ("stakeholder", "Stakeholder Map", "Eleven stakeholders on the grid, a register, a communication plan and watch-outs."),
+            ("raid", "RAID Log", "The project's live risks, assumptions, issues and dependencies, each with an owner.")]
 
 
 # Starter kits: the minimum toolset for each project size (see the Right-Size Your Structure poster).
