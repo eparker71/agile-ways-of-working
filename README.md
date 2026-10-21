@@ -71,12 +71,15 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | ADKAR Change Readiness | `adkar-board` | `facilitator-guide-adkar.html` |
 | Portfolio Kanban & Investment Mix | `portfolio-kanban-board` | `facilitator-guide-portfolio-kanban.html` |
 | Delegation Board | `delegation-board` | `facilitator-guide-delegation.html` |
+| Motivation & Recognition | `motivation-board` | `facilitator-guide-motivation.html` |
 | Leading for Psychological Safety poster | `leading-psych-safety-poster` | `facilitator-guide-leading-psych-safety.html` |
 | Delivery Metrics & Tech Debt | `delivery-metrics-board` | `facilitator-guide-delivery-metrics.html` |
 | Project Close-out | `project-closeout-board` | `facilitator-guide-project-closeout.html` |
 | Team Onboarding | `team-onboarding-board` | `facilitator-guide-team-onboarding.html` |
 | Personal User Manual | `user-manual-board` | `facilitator-guide-user-manual.html` |
 | Now · Next · Later Roadmap | `roadmap-board` | `facilitator-guide-roadmap.html` |
+| Product Bet Canvas | `product-bet-canvas` | `facilitator-guide-product-bet-canvas.html` |
+| Design Sprint | `design-sprint-board` | `facilitator-guide-design-sprint.html` |
 | Right-Size Your Structure poster | `right-size-poster` | `facilitator-guide-right-size.html` |
 | SDLC at a Glance poster | `sdlc-poster` | `facilitator-guide-sdlc.html` |
 | Delivery Pipeline Canvas | `delivery-pipeline-board` | `facilitator-guide-delivery-pipeline.html` |
@@ -108,7 +111,7 @@ The home page groups tools by what you're trying to do. No one framework is assu
 | Section | Tools |
 |---|---|
 | Set up the team | Team Launch (Sprint Zero), Team Charter, Team Onboarding, Personal User Manual, AI Working Agreement, Skills Matrix |
-| Decide what to build | Product Vision Board, Persona & Journey Map, Opportunity Solution Tree, Impact Map, Prioritisation Board, Now · Next · Later Roadmap |
+| Decide what to build | Product Vision Board, Persona & Journey Map, Opportunity Solution Tree, Impact Map, Prioritisation Board, Now · Next · Later Roadmap, Product Bet Canvas, Design Sprint |
 | Break down work | Epic Breakdown Canvas, User Story Map, Story Splitting, Example Mapping, Backlog Item Anatomy, Estimation |
 | Run events & iterations | Events & Cadences poster, Sprint Planning, Daily Sync, Backlog Refinement, Sprint Review |
 | Manage flow | Kanban Board Design, Kanban Cadences, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Impediments Board, Value Stream Map |
@@ -116,7 +119,7 @@ The home page groups tools by what you're trying to do. No one framework is assu
 | Reflect & improve | Retrospective Kit, Team Health Check, Psychological Safety Check, Anti-Pattern Spotter, Marginal Gains Workshop, 1% Experiment Canvas, Root Cause Analysis |
 | Run a project | Right-Size Your Structure, Project Kickoff, Stakeholder Map, Pre-mortem, RAID Log, RACI & Decision Log, Release Forecast & Burn-up, Outcome Status Report, Project Close-out |
 | Coordinate teams | Objectives & Key Results, Cross-Team Planning, Dependency Map, Cross-Team Sync, Team Topology Design, Cross-Team Retro |
-| Lead the organisation | Value Metrics, Portfolio Kanban & Investment Mix, Delegation Board, Leading for Psychological Safety, ADKAR Change Readiness (ADKAR® is a registered trademark of Prosci, Inc.) |
+| Lead the organisation | Value Metrics, Portfolio Kanban & Investment Mix, Delegation Board, Motivation & Recognition, Leading for Psychological Safety, ADKAR Change Readiness (ADKAR® is a registered trademark of Prosci, Inc.) |
 | Facilitate & coach | Facilitation Techniques, Lean Coffee, Coaching Conversation, Levels of Conflict, Feedback Conversation |
 
 The home page also has a **Start here** strip (role guide, glossary, cheat sheets, Make It Yours), a sticky section menu, a search box and the **I'm a…** role filter.

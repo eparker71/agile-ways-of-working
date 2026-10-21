@@ -18,6 +18,15 @@ from brand import ACCENT, NAVY, CREDIT  # noqa: E402
 OUT = Path(__file__).resolve().parent.parent
 
 TERMS = [
+    ("Moving Motivators", "An exercise where each person ranks ten intrinsic motivators (such as curiosity, mastery and "
+     "freedom) by importance, then moves each up or down to show how a change would affect it.",
+     "From Management 3.0 (Jurgen Appelo).", ["motivation"]),
+    ("Kudo cards", "Short written thank-yous for something specific a colleague did, given peer to peer and often, without "
+     "any link to pay.", "From Management 3.0 (Jurgen Appelo).", ["motivation"]),
+    ("Design sprint", "A five-day process for answering a big product question: map, sketch, decide, prototype and test with "
+     "five customers, with a named Decider.", "From Jake Knapp at Google Ventures, described in Sprint (2016).", ["design-sprint"]),
+    ("Four big risks", "The product risks to check before building: value (will they want it?), usability (can they use it?), "
+     "feasibility (can we build it?) and viability (does it work for the business?).", "From Marty Cagan, Inspired.", ["bet"]),
     ("Now / Next / Later roadmap", "A roadmap that groups work by certainty instead of dates: Now is committed and in progress, "
      "Next is shaped and ready, and Later holds problems worth exploring. Each item links to a goal.",
      "Popularised by Janna Bastow (ProdPad).", ["roadmap"]),

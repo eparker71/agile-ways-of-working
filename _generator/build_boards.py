@@ -5652,6 +5652,232 @@ def build_feedback():
                 "shape for praise.", "\n".join(b))
 
 
+# ---------------------------------------------------------------- motivation & recognition
+
+MOTIVATORS = [("Curiosity", "Plenty to explore and learn"), ("Honour", "My work fits my values"),
+              ("Acceptance", "People approve of me and what I do"), ("Mastery", "Work that stretches my skills"),
+              ("Power", "I can influence what happens"), ("Freedom", "Independence in my own work"),
+              ("Relatedness", "Good relationships at work"), ("Order", "Enough structure and stability"),
+              ("Goal", "My work serves a purpose I care about"), ("Status", "My position is recognised")]
+
+
+def build_motivation():
+    b = [header("Motivation & Recognition",
+                "Find out what motivates each person, test how a change will affect it, and thank people specifically and often.",
+                "Lead the Organisation · Inspired by Management 3.0 (Jurgen Appelo) · Moving Motivators & Kudo Cards",
+                header_fields(["Name", "Date"]))]
+
+    x, y, w, h = 24, 148, 1632, 230
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 1, "The Ten Motivators", PURPLE, "WRITE EACH ON A CARD OR STICKY"))
+    cw = (w - 28 - 4 * 10) / 5
+    for i, (name, desc) in enumerate(MOTIVATORS):
+        cx = x + 14 + (i % 5) * (cw + 10)
+        cy = y + 64 + (i // 5) * 80
+        b.append(R(cx, cy, cw, 70, "white", 6, f' stroke="{d}" stroke-opacity=".2"'))
+        # one <text> per card so the whiteboard prompt keeps each name with its description
+        b.append(f'<text x="{cx + 16:g}" y="{cy + 28}" font-family="{SANS}" fill="{d}">'
+                 f'<tspan font-size="12.5" font-weight="600">{name}</tspan><tspan fill-opacity="0">: </tspan>'
+                 f'<tspan x="{cx + 16:g}" dy="22" font-size="10.5">{escape(desc)}</tspan></text>')
+
+    y, h = 392, 420
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 2, "Rank Them, Then Test a Change", BLUE, "LEFT TO RIGHT · THEN MOVE UP OR DOWN"))
+    b.append(field(x + 18, y + 84, "The change we're testing:", x + w - 18, d))
+    cw = (w - 28 - 9 * 10) / 10
+    for i in range(10):
+        cx = x + 14 + i * (cw + 10)
+        b.append(R(cx, y + 108, cw, 86, "url(#dots)", 6))
+        b.append(T(cx + cw / 2, y + 156, "↑", 16, d, anchor="middle", op=".35"))
+        b.append(slot(cx, y + 202, cw, 70, BLUE[1], d, f"Card {i + 1}"))
+        b.append(R(cx, y + 280, cw, 86, "url(#dots)", 6))
+        b.append(T(cx + cw / 2, y + 328, "↓", 16, d, anchor="middle", op=".35"))
+    b.append(T(x + 14, y + 130, "MORE MOTIVATED", 8.5, d, MONO, weight=600, ls=".1em"))
+    b.append(T(x + 14, y + 358, "LESS MOTIVATED", 8.5, d, MONO, weight=600, ls=".1em"))
+    b.append(L(x + 14, y + 388, x + w - 30, y + 388, d, 1.2, ' stroke-opacity=".5"'))
+    b.append(T(x + w - 14, y + 393, "›", 16, d, anchor="end", op=".6"))
+    b.append(T(x + 14, y + 408, "LEAST IMPORTANT TO ME", 8.5, d, MONO, weight=600, ls=".1em"))
+    b.append(T(x + w - 14, y + 408, "MOST IMPORTANT TO ME", 8.5, d, MONO, weight=600, ls=".1em", anchor="end"))
+
+    y, h = 826, 234
+    x, w = 24, 536
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 3, "What I Learned", EMERALD, "SHARE WHAT YOU CHOOSE"))
+    for i, f in enumerate(["What surprised me:", "What I need more of:", "What I'll ask for:", "What I can offer others:"]):
+        b.append(field(x + 18, y + 86 + i * 36, f, x + w - 18, d))
+
+    x, w = 574, 1082
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 4, "Kudo Cards", AMBER, "SPECIFIC · TIMELY · OFTEN"))
+    kw = (w - 28 - 20) / 3
+    for i in range(3):
+        kx = x + 14 + i * (kw + 10)
+        ky = y + 64
+        b.append(R(kx, ky, kw, 156, "white", 6, f' stroke="{d}" stroke-opacity=".25"'))
+        for j, s in enumerate(["Thank you", "Well done", "You helped me"]):
+            b.append(checkbox(kx + 14 + j * 108, ky + 26, s, d, 10.5))
+        b.append(field(kx + 14, ky + 60, "To:", kx + kw - 14, d))
+        b.append(field(kx + 14, ky + 92, "For:", kx + kw - 14, d))
+        b.append(L(kx + 14, ky + 120, kx + kw - 14, ky + 120, WRITE))
+        b.append(field(kx + 14, ky + 144, "From:", kx + kw - 14, d))
+
+    b.append(footer("Which motivator would this change put at risk, and for whom?",
+                    "Who deserves a thank-you this week, and for what exactly?",
+                    "Lead the Organisation · Intrinsic Motivation · Recognition"))
+    write_board("motivation-board", "Motivation & Recognition",
+                "A3 landscape board: the ten motivators, a row of ten cards to rank from least to most important and move "
+                "up or down to test a change, what each person learned, and kudo cards for specific thanks.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- design sprint
+
+SPRINT_DAYS = [("Map", "MONDAY", BLUE, ["Agree the long-term goal", "Map the customer journey",
+                                         "Ask the experts; note “How might we…?”", "Pick a target on the map"], "Our target:"),
+               ("Sketch", "TUESDAY", PURPLE, ["Lightning demos of existing ideas", "Sketch solutions alone, in four steps",
+                                               "Recruit five customers for Friday"], "Sketches made:"),
+               ("Decide", "WEDNESDAY", ORANGE, ["Silent gallery and heat-map dots", "Straw poll, then the Decider chooses",
+                                                "Storyboard the prototype"], "Winning idea:"),
+               ("Prototype", "THURSDAY", EMERALD, ["Build a realistic façade, not the product", "Split roles: makers, writer, stitcher",
+                                                    "Trial run; write the interview script"], "Prototype is a:"),
+               ("Test", "FRIDAY", FOREST, ["Five one-to-one customer interviews", "The team watches and takes notes",
+                                            "Look for patterns across interviews"], "Patterns we saw:")]
+
+
+def build_design_sprint():
+    b = [header("Design Sprint",
+                "Answer a big question in five days: map the problem, sketch ideas, decide, build a realistic prototype and test it with customers.",
+                "Decide What to Build · Design Sprint (Jake Knapp, GV) · Map · Sketch · Decide · Prototype · Test",
+                header_fields(["Sprint", "Dates", "Decider"]))]
+
+    y, h = 148, 210
+    x, w = 24, 808
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 1, "Challenge & Goal", SLATE, "MONDAY MORNING"))
+    for i, f in enumerate(["The challenge:", "Long-term goal (in two years…):", "Sprint questions (what could stop us?):", ""]):
+        if f:
+            b.append(field(x + 18, y + 86 + i * 34, f, x + w - 18, d))
+        else:
+            b.append(L(x + 18, y + 90 + i * 34, x + w - 18, y + 90 + i * 34, WRITE))
+
+    x, w = 846, 810
+    d = SKY[0]
+    b.append(panel(x, y, w, h, 2, "The Sprint Team", SKY, "SEVEN OR FEWER"))
+    for i, f in enumerate(["Decider:", "Facilitator:", "Customer expert:", "Tech expert:", "Design:", "Business / money:"]):
+        b.append(field(x + 18 + (i % 2) * 392, y + 86 + (i // 2) * 40, f, x + 18 + (i % 2) * 392 + 368, d))
+
+    y, h = 372, 480
+    cw = (1632 - 4 * 14) / 5
+    for i, (name, day, color, steps, out) in enumerate(SPRINT_DAYS):
+        x = 24 + i * (cw + 14)
+        dk = color[0]
+        b.append(panel(x, y, cw, h, i + 3, name, color, day))
+        b.append(bullets(x + 22, y + 84, steps, dk, 24))
+        b.append(T(x + 18, y + 190, "WHAT WE PRODUCED", 8.5, dk, MONO, weight=600, ls=".12em"))
+        b.append(sticky_zone(x + 14, y + 202, cw - 28, h - 270, dk, "Stickies, sketches, photos", (YELLOW,)))
+        b.append(field(x + 18, y + h - 30, out, x + cw - 18, dk))
+
+    y, h = 866, 194
+    x, w = 24, 1082
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 8, "Friday's Results", FOREST, "✓ WORKED · ✗ DIDN'T · ? UNCLEAR"))
+    rest = (w - 36 - 482) / 5
+    b.append(table(x + 18, y + 80, [("Sprint question or target", 482)] + [(f"Customer {i + 1}", rest) for i in range(5)], 3, d, 30))
+
+    x, w = 1120, 536
+    d = RED[0]
+    b.append(panel(x, y, w, h, 9, "What Next?", RED, "THE DECIDER CALLS IT"))
+    for i, s in enumerate(["Build it", "Iterate and test again", "Change direction", "Stop here"]):
+        b.append(checkbox(x + 18 + (i % 2) * 250, y + 86 + (i // 2) * 30, s, d, 11))
+    b.append(field(x + 18, y + 158, "First step and owner:", x + w - 18, d))
+
+    b.append(footer("What question, if answered on Friday, would make this week worth it?",
+                    "What did customers do, not just say?",
+                    "Decide What to Build · Design Sprint · Learn in Five Days"))
+    write_board("design-sprint-board", "Design Sprint",
+                "A3 landscape board for a five-day design sprint: challenge, long-term goal and sprint questions, the team, "
+                "Monday to Friday panels (map, sketch, decide, prototype, test) with steps and outputs, a results grid "
+                "for five customer interviews, and the decision on what happens next.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- product bet canvas
+
+def build_product_bet():
+    b = [header("Product Bet Canvas",
+                "Treat a new product or feature as a bet: who has the problem, what you believe, the riskiest assumptions, and how you'll find out cheaply.",
+                "Decide What to Build · Bets, Not Plans · Four Big Risks (Marty Cagan) · Test the Riskiest Assumption First",
+                header_fields(["Idea", "Owner", "Date"]))]
+
+    y, h = 148, 300
+    x, w = 24, 536
+    d = RED[0]
+    b.append(panel(x, y, w, h, 1, "The Problem", RED, "WHOSE, AND HOW BAD?"))
+    for i, f in enumerate(["Who has it:", "The problem, in their words:", "", "How they cope today:", "",
+                           "How often, how painful (1–5):"]):
+        if f:
+            b.append(field(x + 18, y + 86 + i * 34, f, x + w - 18, d))
+        else:
+            b.append(L(x + 18, y + 90 + i * 34, x + w - 18, y + 90 + i * 34, WRITE))
+
+    x, w = 574, 1082
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 2, "Our Bet", PURPLE, "ONE SENTENCE, FOUR PARTS"))
+    for i, f in enumerate(["We believe that (who):", "will (do what):", "if we (offer what):", "because (what we know):",
+                           "The smallest version we could try:", ""]):
+        if f:
+            b.append(field(x + 18, y + 86 + i * 34, f, x + w - 18, d, 12 if i < 4 else 11))
+        else:
+            b.append(L(x + 18, y + 90 + i * 34, x + w - 18, y + 90 + i * 34, WRITE))
+
+    y, h = 462, 310
+    x, w = 24, 536
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 3, "Why It's Worth It", EMERALD, "VALUE AND COST"))
+    for i, f in enumerate(["Value to users:", "", "Value to us:", "", "Cost of doing nothing:", "Roughly what it'll take:"]):
+        if f:
+            b.append(field(x + 18, y + 86 + i * 36, f, x + w - 18, d))
+        else:
+            b.append(L(x + 18, y + 90 + i * 36, x + w - 18, y + 90 + i * 36, WRITE))
+
+    x = 574
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 4, "Riskiest Assumptions", AMBER, "CONFIDENCE 1 (GUESS) – 5 (PROVEN)"))
+    b.append(table(x + 18, y + 86, [("Risk", 120), ("We're assuming…", w - 36 - 210), ("Conf.", 90)], 4, d, 48))
+    for i, (risk, q) in enumerate([("Value", "Will they want it?"), ("Usability", "Can they use it?"),
+                                   ("Feasibility", "Can we build it?"), ("Viability", "Does it work for us?")]):
+        ry = y + 96 + i * 48
+        b.append(T(x + 24, ry + 22, risk, 11, d, weight=600))
+        b.append(T(x + 24, ry + 38, q, 9.5, d, op=".88"))
+
+    x, w = 1124, 532
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 5, "How We'll Test It", BLUE, "CHEAPEST FIRST"))
+    b.append(table(x + 18, y + 86, [("Test", 190), ("Signal we need", w - 36 - 290), ("By when", 100)], 6, d, 34))
+
+    y, h = 786, 274
+    x, w = 24, 808
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 6, "Measures of Success", FOREST, "HOW WE'LL KNOW IT PAID OFF"))
+    b.append(table(x + 18, y + 86, [("Measure", 330), ("Now", 120), ("Target", 120), ("By when", w - 36 - 570)], 3, d, 34))
+    b.append(field(x + 18, y + h - 30, "We'll stop or change course if:", x + w - 18, d))
+
+    x, w = 846, 810
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 7, "Decision", SLATE, "GO, TEST, PARK OR NO"))
+    for i, s in enumerate(["Go: build the smallest version", "Test first: run the tests above",
+                           "Park it: revisit later", "No: not worth it, and here's why"]):
+        b.append(checkbox(x + 18 + (i % 2) * 392, y + 88 + (i // 2) * 32, s, d, 11))
+    for i, f in enumerate(["Why:", "Decided by:", "Revisit on:"]):
+        b.append(field(x + 18, y + 164 + i * 34, f, x + w - 18, d))
+
+    b.append(footer("What would have to be true for this to be a good bet?",
+                    "What's the cheapest way to find out we're wrong?",
+                    "Decide What to Build · Bets, Not Plans · Learn Before You Build"))
+    write_board("product-bet-canvas", "Product Bet Canvas",
+                "A3 landscape canvas for a product or feature bet: the problem and who has it, the bet as one sentence, "
+                "why it's worth it, the riskiest value, usability, feasibility and viability assumptions, how to test "
+                "them, measures of success, and a go, test, park or no decision.", "\n".join(b))
+
+
 # ---------------------------------------------------------------- worked examples
 # Filled-in copies of real boards for a fictional team (the "Basket team" at an online grocery service, the same
 # running example as the Backlog Item Anatomy poster). Each example reads the generated blank board and adds a layer
@@ -5920,5 +6146,8 @@ if __name__ == "__main__":
     build_user_manual()
     build_conflict_levels()
     build_feedback()
+    build_motivation()
+    build_design_sprint()
+    build_product_bet()
     for make in EXAMPLES.values():   # worked examples read the blank boards, so they run last
         make()

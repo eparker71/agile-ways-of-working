@@ -3828,6 +3828,164 @@ GUIDES += [
 ]
 
 
+# ------------------------------------------------------------------ motivation, design sprint, product bet
+
+GUIDES += [
+    dict(
+        slug="motivation",
+        title="Motivation & Recognition Guide",
+        subtitle="How to find out what motivates each person, test how a change will affect them, and recognise good work specifically.",
+        tag="Facilitator Run-Sheet · Lead the Organisation · Inspired by Management 3.0",
+        boards=[("Open board", "motivation-board.html"), ("SVG", "motivation-board.svg")],
+        lede="Which motivator would this change put at risk, and for whom?",
+        intro=("People are motivated by different things, and leaders often guess wrong. This board combines two practices from "
+               "Jurgen Appelo's Management 3.0. In <b>Moving Motivators</b>, each person ranks <b>ten intrinsic motivators</b> "
+               "(curiosity, honour, acceptance, mastery, power, freedom, relatedness, order, goal and status) from least to most "
+               "important, then moves each one <b>up or down</b> to show how a planned change would affect it. <b>Kudo cards</b> "
+               "make recognition a habit: a short, specific thank-you that anyone can give anyone."),
+        glance=[("Duration", "45–60 min"), ("Group", "One person with a manager<br>or coach, or a whole team"),
+                ("Use when", "1:1s, before a change,<br>or a new team"), ("Output", "What drives each person,<br>and a thank-you habit")],
+        before=["Print the board at A3 or 11×17, one per person, or load the SVG on a digital whiteboard",
+                "Write the ten motivators on cards or stickies, one set per person",
+                "If you're testing a change, describe it in one sentence beforehand",
+                "Do your own first, and be ready to share it"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–5", "1 · The Ten Motivators", "Read through them. Each person may interpret a motivator in their own way; that's fine."),
+                ("5–15", "2 · Rank", "Each person lays out their cards from least important (left) to most important (right). No discussion yet."),
+                ("15–25", "2 · Test a change", "Read the change aloud. Move each card up if it would motivate you more, down if less."),
+                ("25–40", "3 · What I Learned", "Share what you choose: surprises, what you need more of, what you'll ask for."),
+                ("40–50", "4 · Kudo Cards", "Each person writes at least one specific thank-you, then gives or posts them.")],
+        sections_title="Reading the results",
+        sections_intro="Patterns are more useful than single cards.",
+        sections=[("Top three", PURPLE, ["What to protect", "in any change"]),
+                  ("Bottom three", SLATE, ["Less important now", "May change over time"]),
+                  ("Moved down", RED, ["Risks in the change", "Talk about these first"]),
+                  ("Moved up", EMERALD, ["What the change offers", "Build on it"]),
+                  ("Kudos", AMBER, ["Specific behaviour", "Given soon, often"])],
+        tips=[("No right answers", "A ranking says what matters to someone now, not who they are; it changes over time."),
+              ("Share by choice", "Some people won't want to show their cards. Respect that; the private insight still helps."),
+              ("Focus on the moves", "The cards that move down when you describe a change are where to listen."),
+              ("Kudos for behaviour", "Thank people for something specific they did, not for being great."),
+              ("Peer to peer", "Recognition from teammates often means more than recognition from a manager."),
+              ("Not a reward scheme", "Never link kudos to pay or targets; that turns thanks into a transaction.")],
+        pitfalls=("using rankings to judge or label people; forcing people to share; testing a change that's already decided; "
+                  "kudo cards that are vague or only from managers; turning kudos into a competition."),
+        after=[("Straight away", "Photograph the rankings (with permission) and note what each person needs."),
+               ("In 1:1s", "Revisit the top motivators every few months."),
+               ("Before a change", "Run the change test with the people affected."),
+               ("Every week", "Keep a kudo wall or channel going.")],
+        toolkit=("It sits alongside the <a href=\"facilitator-guide-delegation.html\">Delegation Board</a> (also inspired by "
+                 "Management 3.0; freedom and power often show up in both), <a href=\"facilitator-guide-adkar.html\">ADKAR Change "
+                 "Readiness</a> for planning a change, the <a href=\"facilitator-guide-user-manual.html\">Personal User Manual</a>, "
+                 "and the <a href=\"facilitator-guide-coaching-conversation.html\">Coaching Conversation</a> for following up one to one."),
+        foot="“Who deserves a thank-you this week, and for what exactly?”",
+    ),
+    dict(
+        slug="design-sprint",
+        title="Design Sprint Guide",
+        subtitle="How to run a five-day design sprint: map the problem, sketch, decide, build a realistic prototype and test it with customers.",
+        tag="Facilitator Run-Sheet · Decide What to Build · Design Sprint (Jake Knapp, GV)",
+        boards=[("Open board", "design-sprint-board.html"), ("SVG", "design-sprint-board.svg")],
+        lede="What question, if answered on Friday, would make this week worth it?",
+        intro=("A design sprint answers a big product question in <b>five days</b> instead of months. Developed by Jake Knapp at "
+               "Google Ventures and described in <i>Sprint</i> (2016), it takes a small team through <b>Map</b> (Monday), "
+               "<b>Sketch</b> (Tuesday), <b>Decide</b> (Wednesday), <b>Prototype</b> (Thursday) and <b>Test</b> (Friday) with "
+               "five real customers. A named <b>Decider</b> makes the hard calls, so the week ends with evidence instead of "
+               "opinions. Many teams now run a compressed four-day version; the board works for both."),
+        glance=[("Duration", "Four or five full days"), ("Group", "Up to seven, including<br>a Decider and a facilitator"),
+                ("Use when", "A big, risky question<br>with no clear answer"), ("Output", "A tested prototype<br>and a decision")],
+        before=["Print the board at A3 or 11×17 and keep it on the wall all week, or use the SVG on a digital whiteboard",
+                "Agree the challenge and the Decider at least a week before",
+                "Clear everyone's diaries for the whole week; devices away during sessions",
+                "Start recruiting five target customers for Friday before the sprint begins",
+                "Book a room with lots of wall space, and line up experts to interview on Monday"],
+        agenda_heads=["Day", "Section", "Facilitator notes"],
+        agenda=[("Before", "1 · Challenge · 2 · Team", "Write the challenge, name the Decider and the roles, and book the customers."),
+                ("Monday", "3 · Map", "Set the long-term goal and sprint questions, map the journey, interview experts, pick a target."),
+                ("Tuesday", "4 · Sketch", "Lightning demos for inspiration, then everyone sketches a solution alone."),
+                ("Wednesday", "5 · Decide", "Silent gallery, heat-map dots, straw poll; the Decider chooses. Storyboard the prototype."),
+                ("Thursday", "6 · Prototype", "Build only the façade customers will see. Trial run and finish the interview script."),
+                ("Friday", "7 · Test · 8 · Results · 9 · Next", "Five interviews while the team watches. Mark the grid, find patterns, decide.")],
+        sections_title="What each day produces",
+        sections_intro="Each day's output feeds the next.",
+        sections=[("Map", BLUE, ["Goal and questions", "A target on the map"]),
+                  ("Sketch", PURPLE, ["Individual solutions", "Five customers booked"]),
+                  ("Decide", ORANGE, ["A winning idea", "A storyboard"]),
+                  ("Prototype", EMERALD, ["A realistic façade", "An interview script"]),
+                  ("Test", FOREST, ["Five interviews", "Patterns and a decision"])],
+        tips=[("Together alone", "People work silently and individually, then the group critiques; it beats brainstorming."),
+              ("Respect the Decider", "Input is welcome, but the Decider decides. That's what keeps the week moving."),
+              ("Façade, not product", "Build just enough to feel real for an interview. Slides or a clickable mock-up are often enough."),
+              ("Five is enough", "Patterns usually show up after five interviews; more adds little in a week."),
+              ("Watch behaviour", "What customers do with the prototype matters more than what they say about it."),
+              ("Timebox hard", "The schedule is tight on purpose. Use a visible timer for every activity.")],
+        pitfalls=("no real Decider; people dropping in and out; a challenge that's too small or already decided; recruiting "
+                  "customers too late; building a real product on Thursday; arguing about results instead of looking for patterns."),
+        after=[("Monday after", "Share the results, the patterns and the decision with stakeholders."),
+               ("If it worked", "Turn the prototype into a backlog with the Epic Breakdown Canvas and Story Map."),
+               ("If it didn't", "A failed test in a week is a win; decide whether to iterate or stop."),
+               ("Next time", "Run a short retro on the sprint format itself.")],
+        toolkit=("A design sprint fits in discovery. Use the <a href=\"facilitator-guide-opportunity-solution-tree.html\">Opportunity "
+                 "Solution Tree</a> or <a href=\"facilitator-guide-product-bet-canvas.html\">Product Bet Canvas</a> to choose the "
+                 "challenge, the <a href=\"facilitator-guide-persona-journey.html\">Persona &amp; Journey Map</a> for Monday's map, and "
+                 "the <a href=\"facilitator-guide-epic-breakdown-canvas.html\">Epic Breakdown Canvas</a> and <a "
+                 "href=\"facilitator-guide-story-map.html\">User Story Map</a> to turn a winning prototype into work."),
+        foot="“What did customers do, not just say?”",
+    ),
+    dict(
+        slug="product-bet-canvas",
+        title="Product Bet Canvas Guide",
+        subtitle="How to treat a new product or feature as a bet: state what you believe, find the riskiest assumptions and test them cheaply.",
+        tag="Facilitator Run-Sheet · Decide What to Build · Bets, Not Plans",
+        boards=[("Open board", "product-bet-canvas.html"), ("SVG", "product-bet-canvas.svg")],
+        lede="What would have to be true for this to be a good bet?",
+        intro=("Every new product or feature is a bet: you're spending time and money on a belief that hasn't been proven. This "
+               "canvas makes the bet explicit. Start with <b>the problem</b> and who has it, write <b>the bet</b> as one sentence, "
+               "check <b>why it's worth it</b>, then list the <b>riskiest assumptions</b> against Marty Cagan's four big product "
+               "risks (value, usability, feasibility and viability). Plan the <b>cheapest tests</b>, agree <b>measures of "
+               "success</b> and a point to stop, and finish with a clear <b>decision</b>: go, test first, park or no."),
+        glance=[("Duration", "60–90 min"), ("Group", "Product owner, designer,<br>tech lead, a stakeholder"),
+                ("Use when", "A new idea, feature<br>or product needs funding"), ("Output", "A clear bet, tests<br>and a decision")],
+        before=["Print the canvas at A3 or 11×17, or load the SVG as a digital background",
+                "Bring what you know about the problem: research, data, support tickets, quotes",
+                "Invite someone who'll challenge the idea, not just its champion",
+                "Agree who makes the decision at the end"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–15", "1 · The Problem", "Who has it, in their words, and how they cope today. No solutions yet."),
+                ("15–25", "2 · Our Bet", "Fill in the four-part sentence. If it's hard to write, the idea isn't clear yet."),
+                ("25–35", "3 · Why It's Worth It", "Value to users and to you, the cost of doing nothing, and a rough size."),
+                ("35–55", "4 · Riskiest Assumptions", "One assumption per risk. Score confidence honestly; anything below 3 needs a test."),
+                ("55–70", "5 · How We'll Test It", "The cheapest test for each weak assumption, the signal you need, and a date."),
+                ("70–85", "6 · Measures · 7 · Decision", "Agree how you'll know it worked and when you'd stop. Then decide.")],
+        sections_title="The four big risks",
+        sections_intro="Test the weakest one first.",
+        sections=[("Value", EMERALD, ["Will they want it?", "Will they pay or use it?"]),
+                  ("Usability", BLUE, ["Can they use it?", "Without help?"]),
+                  ("Feasibility", PURPLE, ["Can we build it?", "With our skills and time?"]),
+                  ("Viability", AMBER, ["Does it work for us?", "Legal, cost, brand, sales"]),
+                  ("Decision", SLATE, ["Go, test, park or no", "With a reason"])],
+        tips=[("Problem first", "If you can't describe the problem in the user's words, you're betting on a solution."),
+              ("Low confidence is useful", "A 1 or 2 isn't failure; it tells you exactly what to test next."),
+              ("Cheapest test wins", "Interviews, a fake door, a prototype or a concierge test usually beat building it."),
+              ("Set the stop line now", "Agree when you'd stop before you start; it's much harder once you've invested."),
+              ("Park is a real answer", "“Not now” with a revisit date keeps good ideas without clogging the backlog."),
+              ("Revisit after tests", "Update the confidence scores once results are in, and decide again.")],
+        pitfalls=("writing the solution as the problem; scoring every assumption 4 or 5; skipping viability; tests that "
+                  "can't fail; no measures or stop line; treating the canvas as a business case to win approval."),
+        after=[("Straight away", "Share the canvas with the decision and its reasons."),
+               ("As tests finish", "Update the confidence scores and revisit the decision."),
+               ("If it's a go", "Add it to the roadmap and break it down with the Epic Breakdown Canvas."),
+               ("At the measure dates", "Check the results against the targets and the stop line.")],
+        toolkit=("The canvas sits in discovery, between the <a href=\"facilitator-guide-product-vision.html\">Product Vision Board</a> "
+                 "and delivery. Use the <a href=\"facilitator-guide-opportunity-solution-tree.html\">Opportunity Solution Tree</a> to "
+                 "find bets worth making, the <a href=\"facilitator-guide-experiment-canvas.html\">1% Experiment Canvas</a> or a <a "
+                 "href=\"facilitator-guide-design-sprint.html\">Design Sprint</a> to test them, and the <a "
+                 "href=\"facilitator-guide-roadmap.html\">Now · Next · Later Roadmap</a> to place the ones you back."),
+        foot="“What's the cheapest way to find out we're wrong?”",
+    ),
+]
+
+
 # ------------------------------------------------------------------ rendering
 
 def guide_css():
