@@ -56,7 +56,15 @@ EXAMPLES = [("team-charter", "Team Charter", "A new team's purpose, values, agre
             ("forecast", "Release Forecast & Burn-up", "Five iterations plotted with growing scope, and a 13–20 June range from real throughput."),
             ("epic", "Epic Breakdown Canvas", "The reorder epic as a hypothesis, an MVP, five features and the first stories."),
             ("daily", "Daily Sync", "Walking the board right to left, a blocked item and who swarms on it, and a parking lot."),
-            ("refinement", "Backlog Refinement", "Five items taken through order, understand, split, examples, size and ready.")]
+            ("refinement", "Backlog Refinement", "Five items taken through order, understand, split, examples, size and ready."),
+            ("cadences", "Kanban Cadences", "A platform team's meeting rhythm, replenishment, and a service delivery review against SLEs."),
+            ("sprint-review", "Sprint Review", "A partly met goal, measures moving, stakeholder feedback and the backlog changes it led to."),
+            ("buffer", "Buffering & Swarming", "A 20% buffer sized from history, swarm triggers with numbers, and a log of three swarms."),
+            ("ageing", "Ageing WIP & SLE", "Open items plotted by age against the 50th, 70th and 85th percentiles, and what to act on."),
+            ("blockers", "Blocker Clustering", "Nine blockers logged and clustered: sign-offs cost 12 of 24 days, so that's the fix."),
+            ("impediments", "Impediments Board", "Impediments from new to resolved, an escalation ladder with time limits, and a resolved log."),
+            ("pairing", "Pairing & Mobbing", "Styles and when to use them, a pair stair of who's paired with whom, and skills to spread."),
+            ("adkar", "ADKAR Change Readiness", "Five groups scored for a store roll-out, each one's barrier point, and actions to fix them.")]
 
 
 # Starter kits: the minimum toolset for each project size (see the Right-Size Your Structure poster).

@@ -7462,6 +7462,302 @@ def example_backlog_refinement():
     write_example("backlog-refinement-board", "Backlog Refinement", "".join(L_), ["Basket team", "6 May"])
 
 
+def example_kanban_cadences():
+    # per cadence: (run it?, when, who, inputs → outputs)
+    cads = [(True, "09:15, at the board", "the whole team", "board → today's focus"),
+            (True, "Mondays, 10:00", "lead + requesting teams", "requests → items pulled"),
+            (True, "before each release", "team + on-call", "done work → release plan"),
+            (True, "every other Thursday", "team + Checkout, Basket", "metrics → one improvement"),
+            (True, "monthly", "all platform teams", "capacity → shared fixes"),
+            (False, "—", "—", "folded into operations review"),
+            (True, "quarterly", "leads + Head of Digital", "goals → investment mix"),
+            (True, "monthly: cloud cost review", "team + Finance", "the bill → savings to try")]
+    cw, ch = (1632 - 28 - 36) / 4, (430 - 90) / 2
+    L_ = []
+    for i, (run, *vals) in enumerate(cads):
+        r, c = divmod(i, 4)
+        cx, cy = 38 + c * (cw + 12), 212 + r * (ch + 12)
+        if run:
+            L_.append(tick(cx + 18, cy + 26))
+        L_ += [hand(after(cx + 18, lab, 10), cy + 96 + j * 26, v, 15) for j, (lab, v) in enumerate(zip(["When:", "Who:", "Inputs → outputs:"], vals))]
+    L_ += [hand(after(42, "Space available (WIP limit minus items in progress):"), 676, "5 − 3 = 2", 17),
+           hand(after(42, "How we choose:"), 710, "cost of delay first, then the oldest request", 17)]
+    for i, t in enumerate(["Log retention change", "New staging per team", "Cost alerts", "Upgrade the database"]):
+        L_.append(note(50 + (i % 2) * 180, 784 + (i // 2) * 120, t, YELLOW, 160, 70, (-2, 2, 1, -1)[i], 15))
+    for i, row in enumerate([("Monitoring dashboards", "two incidents went unseen last month"),
+                             ("Faster test environment", "blocking Basket's test data")]):
+        L_ += [hand(439, 827 + i * 40, row[0], 16), hand(609, 827 + i * 40, row[1], 15)]
+    sdr = [("5 days", "7 days", "split big requests"), ("8 a week", "7", "—"), ("0", "3", "swarm on the oldest first"),
+           ("under 10%", "15%", "track waits on vendors"), ("4 out of 5", "3.8", "ask Checkout what's missing"),
+           ("cost per order £0.04", "£0.05", "the cost review")]
+    for i, (exp, act, action) in enumerate(sdr):
+        y = 712 + i * 40
+        worse = act in ("7 days", "3", "15%", "£0.05")
+        L_ += [hand(1110, y, exp, 16), hand(1280, y, act, 16, "#DC2626" if worse else PEN), hand(1400, y, action, 16)]
+    L_.append(hand(after(864, "Top improvement to try:"), 1016, "swarm on anything past its SLE before pulling new work", 16))
+    write_example("kanban-cadences-board", "Kanban Cadences", "".join(L_), ["Store Platform", "15 May"])
+
+
+def example_sprint_review():
+    L_ = [hand(after(42, "Team & sprint:"), 226, "Basket team · Sprint 18 (28 April – 9 May)", 17),
+          hand(after(42, "Sprint Goal:"), 262, "reorder in-stock items in one tap, and flag what's unavailable", 17),
+          tick(274, 310), hand(after(42, "What we learned about the goal:"), 344, "flagging works; substitutes need the Stock API first", 16)]
+    for i, row in enumerate([("Weekly repeat orders", "22%", "25%", "30%"), ("Median basket time", "38 min", "21 min", "10 min"),
+                             ("Reorder clicks per visit", "—", "0.18", "0.25")]):
+        x = 870
+        for c, v in enumerate(row):
+            L_.append(hand(x, 265 + i * 32, v, 17))
+            x += (300, 140, 140)[c] if c < 3 else 0
+    spots = [(40, 526, -2), (290, 538, 2), (40, 650, 1), (290, 662, -1), (165, 720, 2)]
+    zones = [[("One-tap reorder (in-stock items)", YELLOW), ("Unavailable items flagged", YELLOW),
+              ("Reorder from order history", YELLOW), ("Email confirmation", YELLOW)],
+             [("Store Ops: flagging is clear", GREEN), ("Customer panel: “so much faster”", GREEN),
+              ("Finance: worried about substitute margins", PINK_ST), ("Marketing: feature it in the summer campaign", BLUE_ST)],
+             [("A rival launched subscriptions", YELLOW), ("Stock API slipping two weeks", YELLOW),
+              ("Campaign date fixed: 30 June", YELLOW)]]
+    for i, items in enumerate(zones):
+        x = 24 + i * 548
+        for (dx, y, rot), (t, col) in zip(spots, items):
+            L_.append(note(x + dx, y, t, col, 190, 88, rot, 16))
+    bw = (1082 - 20 - 20) / 3
+    for i, items in enumerate([["Rule for discontinued items", "Margin check for substitutes"],
+                               ["Substitutes move to Sprint 19", "Order history: a smaller first slice"], ["Dark mode"]]):
+        cx = 34 + i * (bw + 10)
+        L_ += [note(cx + 16 + j * 166, 920 + j * 14, t, YELLOW, 150, 74, (-2, 2)[j], 15) for j, t in enumerate(items)]
+    L_ += [hand(after(1138, lab), 890 + i * 38, v, 16)
+           for i, (lab, v) in enumerate([("Likely next Sprint Goal:", "substitutes for out-of-stock items"),
+                                         ("Release / forecast update:", "13–20 June, unchanged"),
+                                         ("Decisions needed from stakeholders:", "read access to stock data"),
+                                         ("Who follows up:", "Priya, by Wednesday")])]
+    write_example("sprint-review-board", "Sprint Review", "".join(L_))
+
+
+def example_buffering_swarming():
+    L_ = []
+    for i, row in enumerate([("Sprint 14", "7 items", "2", "22%", "payments bug"), ("Sprint 15", "8", "1", "11%", ""),
+                             ("Sprint 16", "7", "3", "30%", "Saturday incident"), ("Sprint 17", "8", "2", "20%", "Stock API workaround"),
+                             ("Sprint 18", "8", "2", "20%", "test data")]):
+        x = 48
+        for c, v in enumerate(row):
+            L_.append(hand(x, 265 + i * 34, v, 16))
+            x += (120, 170, 170, 120)[c] if c < 4 else 0
+    L_ += [hand(after(42, "Average % unplanned over the last 5:"), 422, "about 20%", 17),
+           hand(after(864, "Buffer this iteration (%):"), 232, "20%", 17), hand(after(864, "In days or items:"), 264, "about 2 items", 17)]
+    L_ += [tick(864, 348 + i * 26) for i in range(3)]
+    L_ += [hand(1277, 249 + i * 54, t, 16) for i, t in enumerate(["anything not in the plan when the sprint starts",
+                                                                   "whoever is on the support rota",
+                                                                   "Priya swaps out the lowest item",
+                                                                   "pull in a tech debt item"])]
+    for i, (bx, v) in enumerate([(276, "4"), (213, "9"), (339, "3"), (282, "2")]):
+        L_.append(hand(bx, 548 + i * 34, v, 19, anchor="middle"))
+    L_ += [tick(42, 556 + i * 34) for i in range(5)]
+    L_.append(hand(after(42, "Our own trigger:"), 726, "someone says “I'm stuck” at two syncs in a row", 17))
+    cw = (782 - 40) / 5
+    for i, lines_ in enumerate([["Tom calls it", "at the board"], ["2 or 3 people,", "not everyone"], ["5 minutes,", "at the board"],
+                                ["mob in the", "Basket room"], ["at the next", "daily sync"]]):
+        L_ += [hand(860 + 14 + i * (cw + 10), 697 + k * 24, t, 15) for k, t in enumerate(lines_)]
+    for i, row in enumerate([("6 May", "Substitute flag bug", "blocked 4+ hours", "Sam, Jo, Alex", "1 day", "pair on payments code"),
+                             ("29 Apr", "Reorder double-adds", "older than 9 days", "Jo, Ravi", "2 days", "split it earlier"),
+                             ("17 Apr", "Checkout outage", "severity 2 incident", "Sam, Platform", "4 hours", "we need better alerts")]):
+        x = 48
+        for c, v in enumerate(row):
+            L_.append(hand(x, 893 + i * 34, v, 16))
+            x += (90, 220, 170, 170, 120)[c] if c < 5 else 0
+    L_ += [hand(after(1138, "Buffer used last iteration (%):"), 860, "25%", 17), hand(after(1138, "Number of swarms:"), 894, "3", 17),
+           tick(1138, 978), hand(after(1138, "Next iteration's buffer (%):"), 1016, "20%, unchanged", 17)]
+    write_example("buffering-swarming-board", "Buffering & Swarming", "".join(L_), ["Basket team", "9 May"])
+
+
+def example_ageing_wip():
+    cx0, cy0, cx1, cy1 = 104, 224, 1082, 668
+    colw = (cx1 - cx0) / 5
+    py = lambda v: cy1 - v / 20 * (cy1 - cy0)
+    L_ = [hand(cx0 - 12, py(2 * j) + 6, str(2 * j), 15, anchor="end") for j in range(1, 10)]
+    L_ += [hand(cx0 + (i + 0.5) * colw, 688, n, 16, anchor="middle")
+           for i, n in enumerate(["Building", "Review", "Testing", "Waiting sign-off", "To release"])]
+    for v, col in ((4.5, EMERALD[0]), (6, AMBER[0]), (9, RED[0])):
+        L_.append(L(cx0, py(v), cx1, py(v), col, 2.5, ' stroke-dasharray="8,4"'))
+    # open items: (column, age in days, label for the old ones)
+    items = [(0, 1, ""), (0, 2, ""), (0, 5, ""), (1, 3, ""), (1, 7, "Order history: 7 days"), (2, 2, ""),
+             (2, 10, "Promo price rules: 10 days"), (3, 6, ""), (3, 8, "Billing spike: 8 days"), (4, 1, "")]
+    seen = {}
+    for c, age, lab in items:
+        k = seen.get(c, 0)
+        seen[c] = k + 1
+        x = cx0 + (c + 0.5) * colw + (k - 1) * 22
+        col = "#DC2626" if age > 9 else AMBER[0] if age > 6 else PEN
+        L_.append(f'<circle cx="{x:g}" cy="{py(age):g}" r="9" fill="{col}"/>')
+        if lab:
+            L_.append(hand(x + 16, py(age) + 6, lab, 15, col))
+    started = [("Last-order card", "3 Mar", "6 Mar", "3"), ("Reorder button", "5 Mar", "12 Mar", "5"),
+               ("Flag unavailable", "17 Mar", "21 Mar", "4"), ("Email confirmation", "18 Mar", "20 Mar", "2"),
+               ("Reorder events", "24 Mar", "1 Apr", "6"), ("Order history", "31 Mar", "10 Apr", "9"),
+               ("Copy test data", "7 Apr", "10 Apr", "3"), ("Price-change tag", "14 Apr", "18 Apr", "4"),
+               ("Favourites API", "22 Apr", "30 Apr", "7"), ("Out-of-stock rules", "14 Apr", "30 Apr", "12")]
+    for i, row in enumerate(started):
+        x = 1144
+        for c, v in enumerate(row):
+            L_.append(hand(x, 265 + i * 34, v, 15))
+            x += (200, 90, 90)[c] if c < 3 else 0
+    L_ += [hand(after(1138, lab), 644 + i * 30, v, 17)
+           for i, (lab, v) in enumerate([("50th percentile (days):", "4.5"), ("70th percentile (days):", "6"),
+                                         ("85th percentile (days):", "9")])]
+    L_ += [hand(326, 860, "9", 26, anchor="middle"),
+           hand(after(42, "Based on how many items, from when to when:"), 918, "the last 10, March to April", 17),
+           hand(after(42, "The clock starts when:"), 956, "someone pulls it into Building", 17),
+           hand(after(42, "The clock stops when:"), 994, "it's released to customers", 17)]
+    L_ += [note(870 + i * 230, 966, t, PINK_ST, 210, 72, (-2, 2, -1)[i], 15)
+           for i, t in enumerate(["Promo price rules, 10 days: swarm it today", "Billing spike, 8 days: what's needed to finish?",
+                                  "Order history, 7 days: ask at the sync"])]
+    write_example("ageing-wip-board", "Ageing WIP & Service Level Expectation", "".join(L_), ["Basket team", "9 May"])
+
+
+def example_blocker_clustering():
+    log = [("3 Apr", "Order history", "Waiting for Payments sign-off", "outside", "3"),
+           ("8 Apr", "Reorder events", "Privacy sign-off", "outside", "4"),
+           ("10 Apr", "Copy test data", "No staging access", "outside", "2"),
+           ("15 Apr", "Favourites API", "Unclear acceptance criteria", "inside", "1"),
+           ("17 Apr", "Checkout fix", "Waiting for Payments sign-off", "outside", "2"),
+           ("22 Apr", "Substitutes", "Stock API not ready", "outside", "6"),
+           ("24 Apr", "Price-change tag", "Staging down", "outside", "1"),
+           ("29 Apr", "Reorder button", "Waiting for code review", "inside", "2"),
+           ("2 May", "Promo price rules", "Waiting for Payments sign-off", "outside", "3")]
+    L_ = []
+    for i, row in enumerate(log):
+        x = 48
+        for c, v in enumerate(row):
+            L_.append(hand(x, 265 + i * 34, v, 16))
+            x += (90, 220, 340, 170)[c] if c < 4 else 0
+    for i, t in enumerate(["Privacy sign-off: 4 days", "No staging access: 2 days", "Staging down: 1 day",
+                           "Review wait: 2 days", "Unclear criteria: 1 day", "Sign-off: 3 days"]):
+        L_.append(note(1146 + (i % 3) * 164, 300 + (i // 3) * 120, t, PINK_ST, 146, 72, (-2, 1, 2, 1, -1, -2)[i], 15))
+    clusters = [("Sign-offs", ["Payments 3d", "Privacy 4d", "Payments 2d", "Payments 3d"], "4", "12"),
+                ("Other teams' APIs", ["Stock API 6d"], "1", "6"), ("Environments", ["Access 2d", "Staging 1d"], "2", "3"),
+                ("Review waits", ["Code review 2d"], "1", "2"), ("Unclear requirements", ["Criteria 1d"], "1", "1")]
+    cw = (1632 - 28 - 40) / 5
+    for i, (name, items, n, days) in enumerate(clusters):
+        cx = 38 + i * (cw + 10)
+        L_.append(hand(after(cx + 12, "Cluster:"), 670, name, 17))
+        L_ += [note(cx + 16 + (j % 2) * 140, 696 + (j // 2) * 64, t, PINK_ST, 126, 52, (-2, 2, 1, -1)[j], 14)
+               for j, t in enumerate(items)]
+        L_ += [hand(after(cx + 12, "Count:"), 848, n, 18), hand(after(cx + cw / 2 + 4, "Days:"), 848, days, 18,
+                                                               "#DC2626" if days == "12" else PEN)]
+    L_ += [hand(after(42, "Biggest cluster:"), 982, "sign-offs: 12 of 24 days", 17),
+           hand(after(42, "Root cause:"), 1018, "every change waits for one person to approve it", 16),
+           hand(after(574, "Experiment to fix it:"), 982, "self-service checks for low-risk changes", 16),
+           hand(after(574, "Owner & review date:"), 1018, "Tom, review on 6 June", 16)]
+    for i, row in enumerate([("March", "6", "15"), ("April", "9", "24")]):
+        L_ += [hand(1144, 1007 + i * 30, row[0], 16), hand(1304, 1007 + i * 30, row[1], 16), hand(1444, 1007 + i * 30, row[2], 16)]
+    write_example("blocker-clustering-board", "Blocker Clustering", "".join(L_))
+
+
+def example_impediments():
+    cols = [[("Thursday meeting overload · about 3 h a week each · Tom · 6 May", PINK_ST)],
+            [("Test data isn't realistic · bugs found late · Alex · 10 Apr", PINK_ST),
+             ("Reviews wait · 2 days an item · Sam · 29 Apr", PINK_ST)],
+            [("Payments sign-off on every release · 2–3 days each · Head of Digital · 3 Apr", PINK_ST),
+             ("Stock API late · substitutes stalled · Head of Warehouse · 22 Apr", PINK_ST)],
+            [("No staging access for new joiners", PINK_ST), ("Platform added team access", GREEN),
+             ("Deploy queue", PINK_ST), ("Self-service deploys", GREEN)]]
+    L_ = []
+    for i, items in enumerate(cols):
+        x = 38 + i * 404
+        for j, (t, col) in enumerate(items):
+            if i == 3:
+                nx, ny = x + 20 + (j % 2) * 180, 280 + (j // 2) * 150 + (j % 2) * 20
+                L_.append(note(nx, ny, t, col, 170, 96, (-2, 2, 1, -1)[j], 16))
+            else:
+                L_.append(note(x + 30 + j * 40, 280 + j * 170, t, col, 230, 120, (-2, 2)[j], 17))
+    rungs = [("the team, at the daily sync", "2"), ("Tom", "5"), ("Head of Digital", "10"), ("the portfolio group", "3 June")]
+    for k, (who, days) in enumerate(rungs):
+        ry, rx = 1042 - (k + 1) * 58 - k * 8, 42 + k * 48
+        rw = 772 - k * 48
+        L_ += [hand(after(rx + 250, "Who:", 10.5), ry + 30, who, 16), hand(rx + rw - 90, ry + 30, days, 17, anchor="middle")]
+    for i, row in enumerate([("No staging access", "2 days per new joiner", "Platform", "6", "ask Platform first"),
+                             ("Deploy queue", "a day per release", "Checkout, Platform", "21", "automate it"),
+                             ("Unclear criteria", "rework", "Example Mapping", "14", "map it first")]):
+        x = 870
+        for c, v in enumerate(row):
+            L_.append(hand(x, 839 + i * 36, v, 16))
+            x += (230, 190, 150, 90)[c] if c < 4 else 0
+    write_example("impediments-board", "Impediments Board", "".join(L_))
+
+
+def example_pairing_mobbing():
+    cw = (1632 - 28 - 36) / 4
+    L_ = []
+    for i, (use, swap) in enumerate([("risky payments code", "20 minutes"), ("new features, test first", "each test"),
+                                     ("teaching Ravi the codebase", "15 minutes"), ("swarms and tricky bugs", "10 minutes")]):
+        cx = 38 + i * (cw + 12)
+        L_ += [hand(after(cx + 16, "Use it for:"), 344, use, 17), hand(after(cx + 16, "Swap every:"), 378, swap, 17)]
+    names = ["Priya", "Sam", "Jo", "Alex", "Mei", "Tom", "Ravi"]
+    cell_w, cell_h = (700 - 28 - 130) / 8, (400 - 130) / 8
+    tallies = {(1, 0): 1, (2, 1): 4, (3, 0): 2, (3, 1): 2, (3, 2): 1, (4, 0): 3, (4, 2): 3, (5, 3): 1, (6, 1): 3, (6, 2): 2, (6, 3): 2}
+    for r, n in enumerate(names):
+        ry = 554 + r * cell_h
+        L_.append(hand(64, ry + cell_h / 2 + 3, n, 15))
+    for (r, c), k in tallies.items():
+        L_.append(hand(168 + c * cell_w + cell_w / 2, 554 + r * cell_h + cell_h / 2 + 7, "|" * k, 20, anchor="middle"))
+    L_ += [hand(after(756, lab), 546 + i * 36, v, 16)
+           for i, (lab, v) in enumerate([("We pair or mob by default on:", "payments; new joiners' work"),
+                                         ("We work solo on:", "small fixes, spikes"), ("Swap roles every (min):", "20"),
+                                         ("Take a break every (min):", "50"), ("Rotate partners every:", "iteration"),
+                                         ("Setup & tools:", "big screen, shared editor")])]
+    L_ += [tick(756, 784), tick(756, 814)]
+    for i, row in enumerate([("Payments", "Jo", "Sam", "pair"), ("Test automation", "Ravi", "Alex", "ping-pong"),
+                             ("Data", "Tom", "Priya", "pair"), ("Cloud, CI/CD", "Alex", "Platform", "mob")]):
+        x = 1236
+        for c, v in enumerate(row):
+            L_.append(hand(x, 579 + i * 36, v, 15))
+            x += (130, 95, 95)[c] if c < 3 else 0
+    for i, row in enumerate([("Substitute suggestions", "Sam + Jo", "driver / navigator"),
+                             ("Reorder test suite", "Ravi + Alex", "ping-pong")]):
+        x = 48
+        for c, v in enumerate(row):
+            L_.append(hand(x, 991 + i * 34, v, 17))
+            x += (330, 260)[c] if c < 2 else 0
+    tw = (810 - 36 - 32) / 3
+    for i, lines_ in enumerate([["Jo now reviews payments code", "fewer review waits"],
+                                ["pairing all day is tiring", "the mob felt slow at first"],
+                                ["a break every 50 minutes", "rotate pairs on Mondays"]]):
+        L_ += [hand(866 + i * (tw + 16), 981 + k * 24, t, 16) for k, t in enumerate(lines_)]
+    write_example("pairing-mobbing-board", "Pairing & Mobbing", "".join(L_), ["Basket team", "12 May"])
+
+
+def example_adkar():
+    hw = (1632 - 54) / 2
+    L_ = [hand(after(42, "What's changing:"), 228, "pickers choose substitutes for out-of-stock items", 17),
+          hand(after(42, "Why now:"), 262, "fewer second orders, and customers have asked for it", 17),
+          hand(after(60 + hw, "Who's affected:"), 228, "pickers in 12 stores, store managers, customer service", 17),
+          hand(after(60 + hw, "Key dates:"), 262, "pilot in one store from 2 June; all stores in July", 17)]
+    names = ["Awareness", "Desire", "Knowledge", "Ability", "Reinforcement"]
+    groups = [("Pickers, pilot store", [4, 3, 2, 1, 1]), ("Store managers", [5, 4, 3, 2, 2]),
+              ("Customer service", [3, 3, 2, 2, 1]), ("Basket team", [5, 5, 4, 3, 2]), ("Store Ops lead", [5, 2, 3, 3, 2])]
+    for r, (g, scores) in enumerate(groups):
+        ry = 424 + r * 37
+        L_.append(hand(52, ry + 20, g, 16))
+        for i, s in enumerate(scores):
+            cx = 292 + i * 222 + 111 - 60 + (s - 1) * 30
+            L_.append(f'<circle cx="{cx:g}" cy="{ry + 18:g}" r="11" fill="none" stroke="{PEN}" stroke-width="2"/>')
+        barrier = next(names[i] for i, s in enumerate(scores) if s <= 3)
+        L_.append(hand(1422, ry + 22, barrier, 17, "#DC2626"))
+    cw = (1632 - 48) / 5
+    for i, act in enumerate(["Priya explains the why at huddles", "pickers help design the screen", "a one-page guide with examples",
+                             "practice runs before the pilot", "share wins weekly with managers"]):
+        L_.append(hand(after(24 + i * (cw + 12) + 16, "Our action:"), 866, act, 15))
+    for i, row in enumerate([("Customer service", "Awareness", "a briefing on why, and what customers will see", "Priya", "23 May"),
+                             ("Pickers, pilot store", "Desire", "two pickers co-design the substitute screen", "Mei", "30 May")]):
+        x = 48
+        for c, v in enumerate(row):
+            L_.append(hand(x, 1006 + i * 26, v, 15))
+            x += (220, 160, 400, 140)[c] if c < 4 else 0
+    L_ += [hand(after(1138, lab), 986 + i * 26, v, 15)
+           for i, (lab, v) in enumerate([("We'll recognise success by:", "pickers suggest swaps without asking"),
+                                         ("We'll measure adoption by:", "% of missing items with a substitute"),
+                                         ("Re-assess on:", "4 weeks into the pilot")])]
+    write_example("adkar-board", "ADKAR Change Readiness", "".join(L_), ["Substitutes in stores", "Head of Store Ops"])
+
+
 EXAMPLES = {"team-charter-board": example_team_charter, "sprint-planning-board": example_sprint_planning,
             "prioritisation-board": example_prioritisation, "retro-board-start-stop-continue": example_retro,
             "team-topology-board": example_team_topology, "skills-matrix-board": example_skills_matrix,
@@ -7480,7 +7776,11 @@ EXAMPLES = {"team-charter-board": example_team_charter, "sprint-planning-board":
             "lean-coffee-board": example_lean_coffee, "team-launch-board": example_team_launch,
             "ai-working-agreement-board": example_ai_agreement, "project-kickoff-board": example_project_kickoff,
             "release-forecast-board": example_release_forecast, "epic-breakdown-canvas": example_epic_breakdown,
-            "daily-sync-board": example_daily_sync, "backlog-refinement-board": example_backlog_refinement}
+            "daily-sync-board": example_daily_sync, "backlog-refinement-board": example_backlog_refinement,
+            "kanban-cadences-board": example_kanban_cadences, "sprint-review-board": example_sprint_review,
+            "buffering-swarming-board": example_buffering_swarming, "ageing-wip-board": example_ageing_wip,
+            "blocker-clustering-board": example_blocker_clustering, "impediments-board": example_impediments,
+            "pairing-mobbing-board": example_pairing_mobbing, "adkar-board": example_adkar}
 
 
 if __name__ == "__main__":
