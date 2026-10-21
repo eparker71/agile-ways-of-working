@@ -6134,6 +6134,37 @@ def dots(x, y, n, col=ACCENT):
     return "".join(f'<circle cx="{x + i * 14:g}" cy="{y}" r="5.5" fill="{col}"/>' for i in range(n))
 
 
+STORY_NAV_CSS = ("body{flex-direction:column;align-items:center;}"
+                 "nav.story{display:flex;align-items:center;gap:8px;width:100%;max-width:1680px;margin:0 0 12px;"
+                 "font:500 12.5px 'Geist',system-ui,sans-serif;}"
+                 "nav.story a{color:#fff;background:#0C1A2E;text-decoration:none;padding:7px 12px;border-radius:999px;}"
+                 "nav.story a:hover{background:#C2410C;}nav.story i{font-style:normal;color:#CBD5E1;}"
+                 "nav.story .mid{margin:0 auto;background:#fff;color:#0C1A2E;}nav.story .mid:hover{color:#fff;}"
+                 "nav.story .next{text-align:right;}"
+                 "nav.story .n{display:none;}"
+                 "@media (max-width:700px){nav.story .w{display:none;}nav.story .n{display:inline;}}"
+                 "@media print{nav.story{display:none;}}")
+
+
+def story_nav(base):
+    """Previous / next links through the Basket team's story (story.py), shown above a worked example."""
+    from build_roles import TOOLS
+    from story import story_order
+    steps = [(TOOLS[k][1][:-5], TOOLS[k][0], date, month) for k, date, month in story_order()]
+    pos = next((i for i, s_ in enumerate(steps) if s_[0] == base), None)
+    if pos is None:
+        return ""
+    link = lambda i, cls, text: f'<a class="{cls}" href="worked-example-{steps[i][0]}.html">{text}</a>'
+    # .w is the wide label (date and title); .n the short one shown on phones
+    prev = (link(pos - 1, "prev", f'← <span class="w"><i>{escape(steps[pos - 1][2])} ·</i> {escape(steps[pos - 1][1])}</span>'
+                                  f'<span class="n">Previous</span>') if pos else "")
+    nxt = (link(pos + 1, "next", f'<span class="w">{escape(steps[pos + 1][1])} <i>· {escape(steps[pos + 1][2])}</i></span>'
+                                 f'<span class="n">Next</span> →') if pos + 1 < len(steps) else "")
+    mid = (f'<a class="mid" href="basket-team-story.html#{steps[pos][3].lower()}">'
+           f'<span class="w">The Basket team story · </span>{pos + 1} of {len(steps)}</a>')
+    return f'<nav class="story" aria-label="The Basket team story">{prev}{mid}{nxt}</nav>\n'
+
+
 def write_example(base, title, layer, header=None, strip=()):
     stamp = (f'<g transform="rotate(-3 1150 66)"><rect x="1010" y="48" width="280" height="36" rx="5" fill="none" '
              f'stroke="{ACCENT}" stroke-width="2"/>' + T(1150, 71, "WORKED EXAMPLE · FICTIONAL TEAM", 10.5, ACCENT, MONO,
@@ -6153,6 +6184,7 @@ def write_example(base, title, layer, header=None, strip=()):
     page = re.sub(r'<title id="mg-title">(.*?)</title>', lambda m: f'<title id="mg-title">Example: {m.group(1)}</title>', page, count=1)
     page = re.sub(r'<desc id="mg-desc">', '<desc id="mg-desc">Worked example for a fictional team. ', page, count=1)
     page = page.replace('<a class="guide"', f'<a class="guide" style="right:auto;left:16px" href="{base}.html">← Blank board</a>\n<a class="guide"', 1)
+    page = page.replace("<svg ", story_nav(base) + "<svg ", 1).replace("</style>", STORY_NAV_CSS + "\n</style>", 1)
     # hide the blank board's placeholders: sticky-zone hints, sample chips and the write-in hint
     def clean(t):
         t = re.sub(r'<text[^>]*fill-opacity="\.22"[^>]*>[^<]*</text>', "", t)
