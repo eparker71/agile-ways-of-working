@@ -3986,6 +3986,172 @@ GUIDES += [
 ]
 
 
+# ------------------------------------------------------------------ ai in delivery, event storming, cynefin
+
+GUIDES += [
+    dict(
+        slug="ai-delivery",
+        title="AI in Delivery Guide",
+        subtitle="How to decide where AI and AI agents fit in your delivery, how much autonomy each gets, the guardrails, and who is accountable.",
+        tag="Facilitator Run-Sheet · Lead the Organisation · AI Governance",
+        boards=[("Open board", "ai-delivery-board.html"), ("SVG", "ai-delivery-board.svg")],
+        lede="Who's accountable when an agent gets it wrong?",
+        intro=("Most organisations now use AI somewhere in delivery, but far fewer have agreed how. The 2025 State of Agile report "
+               "found AI use rising to 84% of respondents while only 49% had guardrails in place. This board is for leaders, "
+               "engineering managers and coaches setting that direction across teams. Map <b>where AI fits</b> at each stage of "
+               "delivery and at which <b>autonomy level</b> (it assists, it acts and a person approves, or it acts alone within "
+               "limits), agree the <b>guardrails</b> and <b>risks</b>, name <b>who's accountable</b>, and check whether it's "
+               "<b>actually helping</b> with outcome measures rather than usage counts. Teams then agree their own day-to-day "
+               "rules with the AI Working Agreement."),
+        glance=[("Duration", "90 min,<br>then reviewed quarterly"), ("Group", "Leaders, engineering,<br>security, a few teams"),
+                ("Use when", "Adopting AI tools<br>or agents at scale"), ("Output", "Agreed autonomy,<br>guardrails &amp; owners")],
+        before=["Print the board at A3 or 11×17, or load the SVG as a digital background",
+                "Collect how teams use AI today: tools, stages, any incidents or near misses",
+                "Invite security, legal or data protection, and people who do the work, not only managers",
+                "Bring current delivery measures (lead time, change failure rate) as a baseline",
+                "Read your organisation's existing policies so the board builds on them"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–10", "2 · Autonomy Levels", "Agree what the three levels mean in your context, with an example of each."),
+                ("10–35", "1 · Where AI Fits", "Go stage by stage: where is AI used now, at what level, and what's the human check?"),
+                ("35–50", "3 · Guardrails", "Tick what's already true; the rest becomes actions. Add guardrails specific to you."),
+                ("50–60", "4 · Risks to Watch", "List the top risks, score likelihood and impact, and agree a response."),
+                ("60–70", "5 · Who's Accountable", "Name people, not committees. Make sure teams know where to ask."),
+                ("70–90", "6 · Measures · 7 · Experiments", "Set baselines and targets. Pick the next small experiment and a review date.")],
+        sections_title="Three autonomy levels",
+        sections_intro="Move up one level at a time, with evidence.",
+        sections=[("Assists", BLUE, ["AI suggests", "A person decides and does"]),
+                  ("Acts, we approve", PURPLE, ["AI does the work", "A person reviews first"]),
+                  ("Acts alone", RED, ["Within set limits", "Audited, can be stopped"]),
+                  ("Guardrails", AMBER, ["Data, review, access", "Visible and reversible"]),
+                  ("Accountability", SLATE, ["Named people", "Never the tool"])],
+        tips=[("Start at Assists", "Earn each step up in autonomy with evidence from a smaller, reversible use."),
+              ("Same bar for AI work", "AI-written code and documents go through the same review, tests and scans as anyone's."),
+              ("Least access", "An agent should have only the permissions its task needs, and a way to be switched off."),
+              ("Outcomes, not usage", "Lots of AI use isn't the goal. Watch lead time, quality, rework and how the team feels."),
+              ("Make it visible", "Label AI-assisted changes so you can learn where it helps and where it hurts."),
+              ("Review often", "Tools and risks change monthly. Revisit the board at least every quarter.")],
+        pitfalls=("banning AI so people use it out of sight; adopting it everywhere at once; measuring licences or prompts instead of "
+                  "outcomes; agents with broad access; no named owner; a policy written once and never reviewed."),
+        after=[("Within a week", "Publish the agreed levels, guardrails and owners where every team can see them."),
+               ("Each team", "Agree day-to-day rules with the AI Working Agreement."),
+               ("Monthly", "Check the measures and the experiments; move one stage up or down if the evidence says so."),
+               ("Quarterly", "Review the whole board with the same group.")],
+        toolkit=("Teams turn this into daily practice with the <a href=\"facilitator-guide-ai-working-agreement.html\">AI Working "
+                 "Agreement</a>. Track outcomes with <a href=\"facilitator-guide-delivery-metrics.html\">Delivery Metrics &amp; Tech "
+                 "Debt</a> and the <a href=\"facilitator-guide-cd-health-check.html\">Continuous Delivery Health Check</a>, review AI "
+                 "incidents with the <a href=\"facilitator-guide-incident-review.html\">Blameless Incident Review</a>, and record "
+                 "decisions in the <a href=\"facilitator-guide-raci-decision-log.html\">RACI &amp; Decision Log</a>."),
+        foot="“Where would we notice first if AI made our work worse?”",
+    ),
+    dict(
+        slug="event-storming",
+        title="Event Storming Guide",
+        subtitle="How to map a business domain as a timeline of events with everyone who knows it, and find gaps, hotspots and boundaries.",
+        tag="Facilitator Run-Sheet · Engineering Practices · Event Storming (Alberto Brandolini)",
+        boards=[("Open board", "event-storming-board.html"), ("SVG", "event-storming-board.svg")],
+        lede="What happens in this domain, in the order it really happens?",
+        intro=("Event Storming, created by Alberto Brandolini, gets business experts and engineers to build a shared picture of how "
+               "a domain really works. Everyone writes <b>domain events</b> (things that happened, in the past tense) on orange "
+               "stickies and places them on a <b>timeline</b>. The group then sorts them, marks <b>pivotal events</b> where the "
+               "story changes phase, adds <b>commands</b>, <b>actors</b>, <b>policies</b>, <b>systems</b> and <b>read models</b>, and "
+               "flags <b>hotspots</b>: questions, risks and disagreements. It works at three levels: <b>big picture</b> (the whole "
+               "business flow), <b>process</b> (one process in detail) and <b>design</b> (enough to shape software and its boundaries)."),
+        glance=[("Duration", "2–4 hours<br>for a big picture"), ("Group", "6–15 people: business<br>experts and engineers"),
+                ("Use when", "A new domain, a rebuild,<br>or team boundaries"), ("Output", "A shared timeline,<br>hotspots &amp; boundaries")],
+        before=["Print the board at A3 or 11×17 as a guide, then use a long wall of paper for the real timeline; or use the SVG digitally",
+                "Buy stickies in the eight colours from the key (orange most of all) and thick markers",
+                "Invite people who know the domain from different angles: business, support, engineering, operations",
+                "Remove chairs and tables from the wall; people need to move",
+                "Pick the scope: big picture, or one process in detail"],
+        agenda_heads=["Time", "Step", "Facilitator notes"],
+        agenda=[("0–10", "Set up", "Explain the key and the one rule: events in the past tense, orange stickies, no discussion yet."),
+                ("10–40", "Chaotic exploration", "Everyone writes events and sticks them roughly where they belong in time."),
+                ("40–70", "Enforce the timeline", "Sort events into order, remove duplicates, and mark pivotal events between phases."),
+                ("70–100", "Add the rest", "Commands, actors, policies, systems, external systems and read models around the events."),
+                ("100–120", "3 · Hotspots", "Flag every question or disagreement with a hotspot sticky; give each an owner."),
+                ("120–140", "4 · Boundaries · 5 · Next", "Look for natural clusters; agree where to zoom in and who to invite next.")],
+        sections_title="The sticky colours",
+        sections_intro="The key is the grammar of the workshop.",
+        sections=[("Domain events", ORANGE, ["Past tense", "The backbone"]),
+                  ("Commands & actors", BLUE, ["Who asks for what", "Causes an event"]),
+                  ("Policies", PURPLE, ["Whenever X, then Y", "Often automation"]),
+                  ("Systems & read models", EMERALD, ["What records it", "What people need to see"]),
+                  ("Hotspots", RED, ["Questions, risks", "Disagreements"])],
+        tips=[("Events first", "Hold back commands and systems until the event timeline makes sense; it keeps the energy up."),
+              ("Past tense only", "“Order Placed”, not “Place Order”. It keeps the focus on what really happens."),
+              ("Disagreement is gold", "Mark it with a hotspot and move on. Those spots are where the real learning is."),
+              ("Unlimited modelling space", "A long wall beats a crowded table. Give the timeline more room than you think."),
+              ("Facilitate lightly", "Let the group self-organise; step in to keep events orange and the timeline flowing."),
+              ("Boundaries emerge", "Clusters of events and language often show where team or service boundaries belong.")],
+        pitfalls=("too small a space; only engineers in the room; jumping to software design too early; arguing instead of marking "
+                  "hotspots; one person writing for everyone; photos taken but nothing followed up."),
+        after=[("Straight away", "Photograph the whole wall in sections and share it."),
+               ("Within a week", "Work through the hotspots with their owners."),
+               ("Zoom in", "Run a process or design-level session where the boundaries or hotspots matter most."),
+               ("Feed design", "Use the boundaries in Team Topology Design and record big decisions in an ADR.")],
+        toolkit=("Event Storming connects to <a href=\"facilitator-guide-team-topology.html\">Team Topology Design</a> (boundaries "
+                 "suggest team and service splits), the <a href=\"facilitator-guide-value-stream-map.html\">Value Stream Map</a>, the "
+                 "<a href=\"facilitator-guide-story-map.html\">User Story Map</a> for turning a process into work, <a "
+                 "href=\"facilitator-guide-example-mapping.html\">Example Mapping</a> for the rules inside a policy, and the <a "
+                 "href=\"facilitator-guide-adr.html\">Architecture Decision Record</a>."),
+        foot="“Where do people disagree about what happens next?”",
+    ),
+    dict(
+        slug="cynefin",
+        title="Cynefin® Sense-Making Guide",
+        subtitle="How to sort situations by how predictable they are, and choose an approach that fits each one.",
+        tag="Facilitator Run-Sheet · Lead the Organisation · Inspired by the Cynefin® Framework",
+        boards=[("Open board", "cynefin-board.html"), ("SVG", "cynefin-board.svg")],
+        lede="Are we treating a complex problem as if it were only complicated?",
+        intro=("Many failures come from using the wrong kind of approach: detailed plans for problems nobody can predict, or "
+               "experiments where a known answer exists. The <b>Cynefin® framework</b>, created by Dave Snowden, helps a group "
+               "decide what kind of situation they're in. In <b>clear</b> situations the answer is known; follow the practice. In "
+               "<b>complicated</b> ones, experts can analyse their way to a good answer. In <b>complex</b> ones, cause and effect "
+               "only make sense afterwards, so run <b>safe-to-fail experiments</b>. In <b>chaotic</b> ones, act first to "
+               "stabilise. In the centre, <b>confusion</b>, you don't yet know which applies. This board is a simple, practical "
+               "introduction; the full framework goes much further. Cynefin® is a registered trademark of Cognitive Edge Pte Ltd."),
+        glance=[("Duration", "45–75 min"), ("Group", "A team or leadership<br>group, 4–12 people"),
+                ("Use when", "Choosing how to approach<br>a problem or portfolio"), ("Output", "Situations placed,<br>and an approach")],
+        before=["Print the board at A3 or 11×17, or load the SVG as a digital background",
+                "Ask everyone to bring current situations, problems or pieces of work, one per sticky",
+                "Prepare one example for each domain from your own context",
+                "Agree beforehand that the aim is a fitting approach, not a perfect classification"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–10", "Introduce", "Walk through the four domains and the centre with your own examples."),
+                ("10–25", "1–4 · Place situations", "People place stickies silently, then discuss the ones that moved or split the group."),
+                ("25–35", "5 · Confused?", "Take stickies nobody can place and break them into parts. Place each part."),
+                ("35–55", "6 · Our Approach", "Pick the most important situation. Agree the domain, the approach and safe-to-fail experiments."),
+                ("55–65", "Signals", "Agree what would show it's working, when to stop, and how to amplify or dampen."),
+                ("65–75", "Close", "Note any situations that might be moving between domains, and set a revisit date.")],
+        sections_title="Approach by domain",
+        sections_intro="Match the approach to the situation.",
+        sections=[("Clear", EMERALD, ["Sense, categorise, respond", "Follow the practice"]),
+                  ("Complicated", BLUE, ["Sense, analyse, respond", "Ask the experts"]),
+                  ("Complex", PURPLE, ["Probe, sense, respond", "Safe-to-fail experiments"]),
+                  ("Chaotic", RED, ["Act, sense, respond", "Stabilise first"]),
+                  ("Confused", SLATE, ["Not sure which", "Break it into parts"])],
+        tips=[("Discuss the disagreements", "When people place the same sticky in different domains, the conversation is the value."),
+              ("Most product work is complex", "New products, markets and team changes rarely behave predictably. Experiment."),
+              ("Several experiments at once", "In complex situations, run a few small, safe-to-fail probes in parallel."),
+              ("Beware the cliff", "Clear situations can tip into chaos when people stop paying attention."),
+              ("Situations move", "As you learn, complex problems can become complicated. Revisit the board."),
+              ("It's not a 2×2", "The domains aren't a grid to score; use them to choose how to act.")],
+        pitfalls=("treating everything as complicated and writing a detailed plan; forcing every sticky into a domain; turning it "
+                  "into a classification argument; experiments that aren't safe to fail; never revisiting."),
+        after=[("Straight away", "Start the safe-to-fail experiments and share the board."),
+               ("At the revisit date", "Check the signals, amplify what's working, dampen what isn't."),
+               ("Next planning", "Use the domains to decide how much to plan up front for each piece of work."),
+               ("Go deeper", "The Cynefin Company's own materials cover the full framework.")],
+        toolkit=("Use it with the <a href=\"facilitator-guide-experiment-canvas.html\">1% Experiment Canvas</a> and <a "
+                 "href=\"facilitator-guide-product-bet-canvas.html\">Product Bet Canvas</a> for complex work, the <a "
+                 "href=\"facilitator-guide-right-size.html\">Right-Size Your Structure</a> poster when deciding how much process a "
+                 "project needs, the <a href=\"facilitator-guide-incident-review.html\">Blameless Incident Review</a> after a chaotic "
+                 "event, and <a href=\"facilitator-guide-adkar.html\">ADKAR Change Readiness</a> for planned change."),
+        foot="“What's the smallest safe-to-fail experiment we could run?”",
+    ),
+]
+
+
 # ------------------------------------------------------------------ rendering
 
 def guide_css():

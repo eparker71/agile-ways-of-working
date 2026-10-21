@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cynefin® Sense-Making Guide</title>
+<!-- meta -->
+<meta name="description" content="How to sort situations by how predictable they are, and choose an approach that fits each one.">
+<link rel="canonical" href="https://eparker71.github.io/agile-ways-of-working/facilitator-guide-cynefin.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agile Ways of Working Toolkit">
+<meta property="og:title" content="Cynefin® Sense-Making Guide · Agile Ways of Working Toolkit">
+<meta property="og:description" content="How to sort situations by how predictable they are, and choose an approach that fits each one.">
+<meta property="og:url" content="https://eparker71.github.io/agile-ways-of-working/facilitator-guide-cynefin.html">
+<meta property="og:image" content="https://eparker71.github.io/agile-ways-of-working/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /meta -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#5B6B82; --rule:#E2E8F0; --paper:#FFFFFF;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:13px;line-height:1.55;padding:24px 16px;}
+.page{max-width:820px;margin:0 auto 24px;background:var(--paper);box-shadow:0 12px 40px rgba(0,0,0,.22);}
+.masthead{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:28px 40px 26px;position:relative;}
+.badge{position:absolute;top:14px;right:24px;font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;}
+.masthead h1{font:400 40px/1.05 var(--serif);margin:14px 0 8px;}
+.masthead p{margin:0;color:#94A3B8;font-size:13.5px;}
+.masthead .tag{margin-top:8px;font:9px var(--mono);color:#94A3B8;letter-spacing:.06em;}
+.content{padding:28px 40px 36px;}
+h2{font:400 26px/1.15 var(--serif);margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;}
+h2 .n{font:600 11px var(--sans);color:#fff;background:var(--navy);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;flex:none;transform:translateY(-3px);}
+h3{font:600 13px var(--sans);margin:16px 0 6px;}
+p{margin:6px 0 10px;}
+.lede{font:italic 400 19px/1.35 var(--serif);color:var(--ink);border-left:4px solid var(--accent);padding:2px 0 2px 16px;margin:4px 0 20px;}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px;}
+.glance div{background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;}
+.glance b{display:block;font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+.glance span{font-weight:600;font-size:13px;}
+ul.check{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:28px;}
+ul.check li{padding-left:22px;position:relative;margin-bottom:5px;break-inside:avoid;}
+ul.check li::before{content:"";position:absolute;left:0;top:3px;width:11px;height:11px;border:1.4px solid var(--ink);border-radius:2px;opacity:.55;}
+table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:12.5px;}
+th{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--ink);text-align:left;padding:8px 10px;}
+th:first-child{border-left:5px solid var(--accent);}
+td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+td.t{font:500 11px var(--mono);white-space:nowrap;color:var(--muted);}
+td.a{font-weight:600;width:24%;}
+tr:nth-child(even) td{background:#F8FAFC;}
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;}
+.area{border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,.06);break-inside:avoid;}
+.area h4{margin:0;padding:7px 12px;color:#fff;font:600 12.5px var(--sans);}
+.area ul{margin:0;padding:8px 12px 10px 28px;font-size:12px;}
+.area li{margin-bottom:3px;}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.tip{border-top:2px solid var(--rule);padding-top:8px;}
+.tip b{display:block;margin-bottom:2px;}
+.flow{display:flex;align-items:stretch;gap:0;margin:14px 0 6px;flex-wrap:wrap;}
+.step{flex:1 1 0;min-width:120px;background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;position:relative;}
+.arrow{flex:none;align-self:center;color:#C2410C;font:600 16px var(--sans);padding:0 6px;}
+.step b{display:block;font-size:12.5px;}
+.step small{color:var(--muted);font-size:11px;line-height:1.4;display:block;margin-top:2px;}
+.step .k{font:500 8.5px var(--mono);letter-spacing:.12em;color:#C2410C;text-transform:uppercase;}
+.callout{background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:12px 16px;margin:14px 0;}
+.callout b{color:#9A3412;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display:flex;justify-content:space-between;gap:16px;font:8px var(--mono);letter-spacing:.08em;color:#5B6B82;}
+@media (max-width:640px){
+  .masthead,.content{padding-left:20px;padding-right:20px;}
+  .glance{grid-template-columns:1fr 1fr;}
+  ul.check{columns:1;}
+  .areas,.tips,.two{grid-template-columns:1fr;}
+  .arrow{display:none;}
+  .flow{gap:8px;}
+  table{font-size:11.5px;}
+  td.t{white-space:normal;}
+}
+@media print{
+  @page{size:A4 portrait;margin:12mm 12mm 14mm;}
+  html,body{background:none;}
+  body{padding:0;font-size:11.5px;}
+  .page{box-shadow:none;max-width:none;margin:0;}
+  .masthead,th,.area h4,h2 .n{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  tr,.area,.tip,.step,.callout{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .pb{break-before:page;}
+}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
+.content a{color:#9A3412;}
+@media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:#C2410C;}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
+.content a{color:#9A3412;}
+.example{border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:10px 0;}
+.example div{display:grid;grid-template-columns:30% 1fr;border-bottom:1px solid var(--rule);}
+.example div:last-child{border-bottom:none;}
+.example b{background:#F8FAFC;padding:7px 12px;font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.example span{padding:7px 12px;font-size:12.5px;}
+@media (max-width:640px){.example div{grid-template-columns:1fr;}}
+@media print{.boards{display:none;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>Cynefin® Sense-Making Guide</h1>
+    <p>How to sort situations by how predictable they are, and choose an approach that fits each one.</p>
+    <div class="tag">Facilitator Run-Sheet · Lead the Organisation · Inspired by the Cynefin® Framework</div>
+    <div class="boards"><a class="primary" href="cynefin-board.html">Open board →</a><a href="cynefin-board.svg">SVG →</a><a href="pdf/cynefin-board.pdf" download>A3 PDF ↓</a><a href="facilitator-guide-cynefin.docx" download>Word (editable) ↓</a></div>
+  </header>
+  <div class="content">
+    <p class="lede">“Are we treating a complex problem as if it were only complicated?”</p>
+    <p>Many failures come from using the wrong kind of approach: detailed plans for problems nobody can predict, or experiments where a known answer exists. The <b>Cynefin® framework</b>, created by Dave Snowden, helps a group decide what kind of situation they're in. In <b>clear</b> situations the answer is known; follow the practice. In <b>complicated</b> ones, experts can analyse their way to a good answer. In <b>complex</b> ones, cause and effect only make sense afterwards, so run <b>safe-to-fail experiments</b>. In <b>chaotic</b> ones, act first to stabilise. In the centre, <b>confusion</b>, you don't yet know which applies. This board is a simple, practical introduction; the full framework goes much further. Cynefin® is a registered trademark of Cognitive Edge Pte Ltd.</p>
+    <div class="glance"><div><b>Duration</b><span>45–75 min</span></div><div><b>Group</b><span>A team or leadership<br>group, 4–12 people</span></div><div><b>Use when</b><span>Choosing how to approach<br>a problem or portfolio</span></div><div><b>Output</b><span>Situations placed,<br>and an approach</span></div></div>
+    <h2><span class="n">1</span>Before the session</h2>
+    <ul class="check"><li>Print the board at A3 or 11×17, or load the SVG as a digital background</li><li>Ask everyone to bring current situations, problems or pieces of work, one per sticky</li><li>Prepare one example for each domain from your own context</li><li>Agree beforehand that the aim is a fitting approach, not a perfect classification</li></ul>
+    <h2><span class="n">2</span>Agenda &amp; run-sheet</h2>
+    <table><thead><tr><th>Time</th><th>Section</th><th>Facilitator notes</th></tr></thead><tbody><tr><td class="t">0–10</td><td class="a">Introduce</td><td>Walk through the four domains and the centre with your own examples.</td></tr><tr><td class="t">10–25</td><td class="a">1–4 · Place situations</td><td>People place stickies silently, then discuss the ones that moved or split the group.</td></tr><tr><td class="t">25–35</td><td class="a">5 · Confused?</td><td>Take stickies nobody can place and break them into parts. Place each part.</td></tr><tr><td class="t">35–55</td><td class="a">6 · Our Approach</td><td>Pick the most important situation. Agree the domain, the approach and safe-to-fail experiments.</td></tr><tr><td class="t">55–65</td><td class="a">Signals</td><td>Agree what would show it's working, when to stop, and how to amplify or dampen.</td></tr><tr><td class="t">65–75</td><td class="a">Close</td><td>Note any situations that might be moving between domains, and set a revisit date.</td></tr></tbody></table>
+    <h2 class="pb"><span class="n">3</span>Approach by domain</h2>
+    <p>Match the approach to the situation.</p>
+    <div class="areas"><div class="area" style="background:#D1FAE5;color:#065F46"><h4 style="background:#065F46">Clear</h4><ul><li>Sense, categorise, respond</li><li>Follow the practice</li></ul></div><div class="area" style="background:#DBEAFE;color:#1E3A8A"><h4 style="background:#1E3A8A">Complicated</h4><ul><li>Sense, analyse, respond</li><li>Ask the experts</li></ul></div><div class="area" style="background:#EDE9FE;color:#581C87"><h4 style="background:#581C87">Complex</h4><ul><li>Probe, sense, respond</li><li>Safe-to-fail experiments</li></ul></div><div class="area" style="background:#FEE2E2;color:#991B1B"><h4 style="background:#991B1B">Chaotic</h4><ul><li>Act, sense, respond</li><li>Stabilise first</li></ul></div><div class="area" style="background:#F1F5F9;color:#334155"><h4 style="background:#334155">Confused</h4><ul><li>Not sure which</li><li>Break it into parts</li></ul></div></div>
+    <h2><span class="n">4</span>Facilitation tips</h2>
+    <div class="tips"><div class="tip"><b>Discuss the disagreements</b>When people place the same sticky in different domains, the conversation is the value.</div><div class="tip"><b>Most product work is complex</b>New products, markets and team changes rarely behave predictably. Experiment.</div><div class="tip"><b>Several experiments at once</b>In complex situations, run a few small, safe-to-fail probes in parallel.</div><div class="tip"><b>Beware the cliff</b>Clear situations can tip into chaos when people stop paying attention.</div><div class="tip"><b>Situations move</b>As you learn, complex problems can become complicated. Revisit the board.</div><div class="tip"><b>It&#x27;s not a 2×2</b>The domains aren&#x27;t a grid to score; use them to choose how to act.</div></div>
+    <div class="callout"><b>Common pitfalls:</b> treating everything as complicated and writing a detailed plan; forcing every sticky into a domain; turning it into a classification argument; experiments that aren&#x27;t safe to fail; never revisiting.</div>
+    <h2><span class="n">5</span>After the session</h2>
+    <div class="two"><div><h3>Straight away</h3><p>Start the safe-to-fail experiments and share the board.</p></div><div><h3>At the revisit date</h3><p>Check the signals, amplify what&#x27;s working, dampen what isn&#x27;t.</p></div><div><h3>Next planning</h3><p>Use the domains to decide how much to plan up front for each piece of work.</p></div><div><h3>Go deeper</h3><p>The Cynefin Company&#x27;s own materials cover the full framework.</p></div></div>
+    <h2><span class="n">6</span>How it fits the toolkit</h2>
+    <p>Use it with the <a href="facilitator-guide-experiment-canvas.html">1% Experiment Canvas</a> and <a href="facilitator-guide-product-bet-canvas.html">Product Bet Canvas</a> for complex work, the <a href="facilitator-guide-right-size.html">Right-Size Your Structure</a> poster when deciding how much process a project needs, the <a href="facilitator-guide-incident-review.html">Blameless Incident Review</a> after a chaotic event, and <a href="facilitator-guide-adkar.html">ADKAR Change Readiness</a> for planned change.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Cynefin® Sense-Making”, a workshop board.
+
+Purpose: Sort situations by how predictable they are, then choose an approach that fits: analyse, experiment, act or follow the rule.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+
+Header fields to fill in: Topic, Date
+
+Sections:
+1. Complex: top left, about 35% wide and 50% tall.
+   Subtitle: Probe · sense · respond
+   Content: Cause and effect only make sense afterwards. · Run safe-to-fail experiments; amplify what works. · Practice: emergent · Things we can only learn by trying
+2. Complicated: top centre, about 35% wide and 50% tall.
+   Subtitle: Sense · analyse · respond
+   Content: Cause and effect can be found with analysis or · expertise. Ask the experts and weigh options. · Practice: good practice (more than one right answer) · Things experts can work out
+3. Confused? Split It Up: top right, about 35% wide and 35% tall; header colour slate grey.
+   Subtitle: The centre
+   Content: When you can&#x27;t tell which domain you&#x27;re in, you&#x27;re · in confusion. People fall back on the approach they · like best. Break the situation into parts and place · each part in a domain. · Part 1: · Part 2: · Part 3: · Part 4:
+4. Our Approach: bottom right, about 35% wide and 60% tall; header colour dark green.
+   Subtitle: For the situation we chose
+   Content: Situation: · Main domain: · So we will: · Safe-to-fail experiments: · Signs it&#x27;s working: · Signs to stop: · Amplify or dampen by: · Revisit on:
+5. Chaotic: bottom left, about 35% wide and 50% tall.
+   Subtitle: Act · sense · respond
+   Content: No visible cause and effect. Act first to · stabilise, then move the situation to complex. · Practice: novel · Crises needing action now
+6. Clear: bottom centre, about 35% wide and 50% tall.
+   Subtitle: Sense · categorise · respond
+   Content: Cause and effect are obvious to everyone. · Follow the agreed practice, but watch for complacency. · Practice: best practice · beware the cliff into chaos · Things with a known right answer
+
+Footer questions: “Are we treating a complex problem as if it were only complicated?” “What&#x27;s the smallest safe-to-fail experiment we could run?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/cynefin-board.html</pre></details></section>
+    <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
+    <footer><span>“What&#x27;s the smallest safe-to-fail experiment we could run?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
+  </div>
+</div>
+</body>
+</html>

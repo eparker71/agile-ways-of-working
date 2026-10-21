@@ -5878,6 +5878,218 @@ def build_product_bet():
                 "them, measures of success, and a go, test, park or no decision.", "\n".join(b))
 
 
+# ---------------------------------------------------------------- ai in delivery
+
+def build_ai_delivery():
+    b = [header("AI in Delivery",
+                "Decide where AI and AI agents fit in how you deliver, the guardrails for each, who's accountable, and whether it's helping.",
+                "Lead the Organisation · AI Governance · Assist · Approve · Act · People Stay Accountable",
+                header_fields(["Scope", "Owner", "Review date"]))]
+
+    y, h = 148, 330
+    x, w = 24, 1082
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 1, "Where AI Fits", BLUE, "TICK ONE AUTONOMY LEVEL PER STAGE"))
+    cols = [("Stage", 190), ("Where we use it", 360), ("Assists", 100), ("Acts, we approve", 130), ("Acts alone", 100)]
+    cols.append(("Human check", w - 36 - sum(c for _, c in cols)))
+    b.append(table(x + 18, y + 86, cols, 6, d, 34))
+    for i, s in enumerate(["Discover & research", "Plan & refine", "Build", "Test", "Release & deploy", "Operate & support"]):
+        b.append(T(x + 24, y + 118 + i * 34, s, 11, d, weight=600))
+        for cx in (x + 18 + 550 + 44, x + 18 + 650 + 59, x + 18 + 780 + 44):
+            b.append(R(cx, y + 108 + i * 34, 12, 12, "white", 2, f' stroke="{d}" stroke-opacity=".6" stroke-width="1.2"'))
+
+    x, w = 1120, 536
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 2, "Autonomy Levels", PURPLE, "MOVE UP ONLY WITH EVIDENCE"))
+    for i, (name, line1, line2) in enumerate([("1 · Assists", "AI suggests; a person decides and does the work.", "Lowest risk. Start here."),
+                                              ("2 · Acts, we approve", "AI does the work; a person reviews it", "before it counts."),
+                                              ("3 · Acts alone", "AI acts within set limits; people check", "afterwards and can stop it.")]):
+        cy = y + 66 + i * 84
+        b.append(R(x + 14, cy, w - 28, 74, "white", 6, f' stroke="{d}" stroke-opacity=".2"'))
+        b.append(T(x + 30, cy + 26, name, 12, d, weight=600))
+        b.append(para(x + 30, cy + 46, [line1, line2], 10.5, d, 16))
+
+    y, h = 492, 300
+    x, w = 24, 536
+    d = RED[0]
+    b.append(panel(x, y, w, h, 3, "Guardrails", RED, "AGREED BEFORE WE SCALE"))
+    for i, s in enumerate(["No confidential or personal data in unapproved tools", "AI output is reviewed like any other change",
+                           "Agents get the least access they need", "Generated code passes the same tests and scans",
+                           "AI use is visible in commits and tickets", "Licences and ownership of outputs checked",
+                           "A person can stop or roll back any agent"]):
+        b.append(checkbox(x + 18, y + 86 + i * 30, s, d, 11))
+
+    x = 574
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 4, "Risks to Watch", AMBER, "LIKELIHOOD × IMPACT, 1–3"))
+    b.append(table(x + 18, y + 86, [("Risk", 210), ("L × I", 70), ("What we'll do", w - 36 - 280)], 5, d, 36))
+
+    x, w = 1124, 532
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 5, "Who's Accountable", SLATE, "PEOPLE, NOT TOOLS"))
+    for i, f in enumerate(["Owns the AI policy:", "Approves new tools:", "Approves agent access:", "Reviews AI incidents:",
+                           "Trains and supports people:", "Questions go to:"]):
+        b.append(field(x + 18, y + 86 + i * 34, f, x + w - 18, d))
+
+    y, h = 806, 254
+    x, w = 24, 808
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 6, "Is It Helping?", EMERALD, "OUTCOMES, NOT USAGE"))
+    b.append(table(x + 18, y + 86, [("Measure", 310), ("Before", 140), ("Now", 140), ("Target", w - 36 - 590)], 4, d, 34))
+    for i, s in enumerate(["Lead time for changes", "Change failure rate", "Rework and escaped defects", "Team experience (survey)"]):
+        b.append(T(x + 24, y + 118 + i * 34, s, 11, d))
+
+    x, w = 846, 810
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 7, "Experiments & Review", FOREST, "SMALL, VISIBLE, REVERSIBLE"))
+    b.append(table(x + 18, y + 86, [("Next experiment", 420), ("Owner", 160), ("Review on", w - 36 - 580)], 3, d, 34))
+    b.append(field(x + 18, y + h - 30, "We review this whole board every:", x + w - 18, d))
+
+    b.append(footer("Where would we notice first if AI made our work worse?",
+                    "Who's accountable when an agent gets it wrong?",
+                    "Lead the Organisation · AI Governance · People Stay Accountable"))
+    write_board("ai-delivery-board", "AI in Delivery",
+                "A3 landscape board for governing AI across delivery: where AI is used at each stage and at what autonomy "
+                "level, the three autonomy levels, guardrails, risks, who is accountable, outcome measures, and experiments "
+                "with a review rhythm.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- event storming
+
+ORANGE_ST, LILAC_ST, PALE_ST, ROSE_ST = "#FDBA74", "#C4B5FD", "#FEF08A", "#FB7185"
+STORM_KEY = [("Domain event", ORANGE_ST, "Something that happened,", "in the past tense"),
+             ("Command", BLUE_ST, "A request or decision", "that causes an event"),
+             ("Actor", YELLOW, "The person or role", "who issues a command"),
+             ("Policy", LILAC_ST, "“Whenever this happens,", "we do that”"),
+             ("System", PALE_ST, "What accepts a command", "and records the event"),
+             ("External system", PINK_ST, "Something outside", "we depend on"),
+             ("Read model", GREEN, "Information someone", "needs to decide"),
+             ("Hotspot", ROSE_ST, "A question, risk, gap", "or disagreement")]
+
+
+def build_event_storming():
+    b = [header("Event Storming",
+                "Map a business domain as a timeline of events with everyone who knows it, to find shared understanding, gaps and boundaries.",
+                "Engineering Practices · Event Storming (Alberto Brandolini) · Big Picture · Process · Design",
+                header_fields(["Domain", "Date"]))]
+
+    x, y, w, h = 24, 148, 1632, 170
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 1, "Sticky Key", SLATE, "ONE COLOUR PER KIND OF STICKY"))
+    kw = (w - 28) / 8
+    for i, (name, color, l1, l2) in enumerate(STORM_KEY):
+        kx = x + 14 + i * kw
+        b.append(sticky(kx + 4, y + 70, 30, color))
+        # one <text> per key entry so the whiteboard prompt keeps each name with its meaning
+        b.append(f'<text x="{kx + 44:g}" y="{y + 90}" font-family="{SANS}" fill="{d}">'
+                 f'<tspan font-size="11.5" font-weight="600">{escape(name)}</tspan><tspan fill-opacity="0">: </tspan>'
+                 f'<tspan x="{kx + 4:g}" dy="36" font-size="10">{escape(l1)} </tspan>'
+                 f'<tspan x="{kx + 4:g}" dy="15" font-size="10">{escape(l2)}</tspan></text>')
+
+    y, h = 332, 520
+    d = ORANGE[0]
+    b.append(panel(x, y, w, h, 2, "The Timeline", ORANGE, "EVENTS FIRST · THEN ORDER · THEN THE REST"))
+    pw = (w - 28) / 4
+    for i in range(4):
+        px = x + 14 + i * pw
+        b.append(field(px + 8, y + 84, "Phase:", px + pw - 20, d, 10.5))
+        if i:
+            b.append(L(px, y + 70, px, y + h - 52, d, 1, ' stroke-opacity=".25" stroke-dasharray="6,5"'))
+    b.append(R(x + 14, y + 100, w - 28, h - 160, "url(#dots)", 6))
+    b.append(L(x + 14, y + h - 34, x + w - 34, y + h - 34, d, 1.2, ' stroke-opacity=".5"'))
+    b.append(T(x + w - 14, y + h - 29, "›", 16, d, anchor="end", op=".6"))
+    b.append(T(x + 14, y + h - 16, "TIME", 8.5, d, MONO, weight=600, ls=".12em"))
+    b.append(T(x + w / 2, y + h - 16, "Orange events left to right in time, other colours around them · Dashed lines mark "
+               "pivotal events, where the story changes phase", 9.5, d,
+               italic=True, anchor="middle", op=".88"))
+
+    y, h = 866, 194
+    x, w = 24, 536
+    d = RED[0]
+    b.append(panel(x, y, w, h, 3, "Hotspots", RED, "TO RESOLVE, NOT IGNORE"))
+    b.append(table(x + 18, y + 80, [("Question or problem", 330), ("Owner", w - 36 - 330)], 3, d, 30))
+
+    x = 574
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 4, "Boundaries We Found", PURPLE, "CANDIDATE CONTEXTS"))
+    b.append(table(x + 18, y + 80, [("Area", 170), ("Key events", 210), ("Team", w - 36 - 380)], 3, d, 30))
+
+    x, w = 1124, 532
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 5, "Next Steps", FOREST, "ZOOM IN WHERE IT MATTERS"))
+    for i, f in enumerate(["Zoom into (process or design):", "Who to invite next:", "Next session:"]):
+        b.append(field(x + 18, y + 86 + i * 36, f, x + w - 18, d))
+
+    b.append(footer("What happens in this domain, in the order it really happens?",
+                    "Where do people disagree about what happens next?",
+                    "Engineering Practices · Event Storming · Shared Understanding"))
+    write_board("event-storming-board", "Event Storming",
+                "A3 landscape Event Storming board: a key to the eight sticky colours, a large timeline split into phases "
+                "by pivotal events, hotspots with owners, candidate boundaries, and next steps.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- cynefin sense-making
+
+CYNEFIN = [("Complex", PURPLE, "PROBE · SENSE · RESPOND", ["Cause and effect only make sense afterwards.",
+                                                         "Run safe-to-fail experiments; amplify what works."],
+            "Practice: emergent", "Things we can only learn by trying"),
+           ("Complicated", BLUE, "SENSE · ANALYSE · RESPOND", ["Cause and effect can be found with analysis or",
+                                                             "expertise. Ask the experts and weigh options."],
+            "Practice: good practice (more than one right answer)", "Things experts can work out"),
+           ("Chaotic", RED, "ACT · SENSE · RESPOND", ["No visible cause and effect. Act first to",
+                                                     "stabilise, then move the situation to complex."],
+            "Practice: novel", "Crises needing action now"),
+           ("Clear", EMERALD, "SENSE · CATEGORISE · RESPOND", ["Cause and effect are obvious to everyone.",
+                                                              "Follow the agreed practice, but watch for complacency."],
+            "Practice: best practice · beware the cliff into chaos", "Things with a known right answer")]
+
+
+def build_cynefin():
+    b = [header("Cynefin® Sense-Making",
+                "Sort situations by how predictable they are, then choose an approach that fits: analyse, experiment, act or follow the rule.",
+                "Lead the Organisation · Inspired by the Cynefin® Framework (Dave Snowden) · Sense-Making · Choose Your Approach",
+                header_fields(["Topic", "Date"]))]
+
+    qw, qh = (1082 - 14) / 2, (1060 - 148 - 14) / 2
+    for i, (name, color, approach, desc, practice, hint) in enumerate(CYNEFIN):
+        x = 24 + (i % 2) * (qw + 14)
+        y = 148 + (i // 2) * (qh + 14)
+        d = color[0]
+        b.append(panel(x, y, qw, qh, i + 1, name, color, approach))
+        b.append(para(x + 18, y + 82, desc, 11, d, 18))
+        b.append(T(x + 18, y + 128, practice, 10, d, MONO, ls=".04em"))
+        b.append(sticky_zone(x + 14, y + 144, qw - 28, qh - 158, d, hint, (YELLOW,)))
+
+    x, w = 1120, 536
+    y, h = 148, 330
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 5, "Confused? Split It Up", SLATE, "THE CENTRE"))
+    b.append(para(x + 18, y + 84, ["When you can't tell which domain you're in, you're",
+                                   "in confusion. People fall back on the approach they",
+                                   "like best. Break the situation into parts and place",
+                                   "each part in a domain."], 11, d, 18))
+    for i in range(4):
+        b.append(field(x + 18, y + 186 + i * 34, f"Part {i + 1}:", x + w - 18, d))
+
+    y, h = 492, 568
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 6, "Our Approach", FOREST, "FOR THE SITUATION WE CHOSE"))
+    for i, f in enumerate(["Situation:", "", "Main domain:", "So we will:", "", "Safe-to-fail experiments:", "", "",
+                           "Signs it's working:", "Signs to stop:", "Amplify or dampen by:", "", "Revisit on:"]):
+        if f:
+            b.append(field(x + 18, y + 86 + i * 36, f, x + w - 18, d))
+        else:
+            b.append(L(x + 18, y + 90 + i * 36, x + w - 18, y + 90 + i * 36, WRITE))
+
+    b.append(footer("Are we treating a complex problem as if it were only complicated?",
+                    "What's the smallest safe-to-fail experiment we could run?",
+                    "Cynefin® is a registered trademark of Cognitive Edge Pte Ltd · Lead the Organisation"))
+    write_board("cynefin-board", "Cynefin® Sense-Making",
+                "A3 landscape sense-making board inspired by the Cynefin framework: complex, complicated, chaotic and clear "
+                "domains with the approach for each and space to place situations, a confused centre, and the chosen "
+                "approach with safe-to-fail experiments and signals.", "\n".join(b))
+
+
 # ---------------------------------------------------------------- worked examples
 # Filled-in copies of real boards for a fictional team (the "Basket team" at an online grocery service, the same
 # running example as the Backlog Item Anatomy poster). Each example reads the generated blank board and adds a layer
@@ -6149,5 +6361,8 @@ if __name__ == "__main__":
     build_motivation()
     build_design_sprint()
     build_product_bet()
+    build_ai_delivery()
+    build_event_storming()
+    build_cynefin()
     for make in EXAMPLES.values():   # worked examples read the blank boards, so they run last
         make()

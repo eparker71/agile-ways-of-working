@@ -41,6 +41,7 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | RACI & Decision Log | `raci-decision-log-board` | `facilitator-guide-raci-decision-log.html` |
 | Value Stream Map | `value-stream-map-board` | `facilitator-guide-value-stream-map.html` |
 | Architecture Decision Record | `adr-board` | `facilitator-guide-adr.html` |
+| Event Storming | `event-storming-board` | `facilitator-guide-event-storming.html` |
 | Blameless Incident Review | `incident-review-board` | `facilitator-guide-incident-review.html` |
 | Facilitation Techniques poster | `facilitation-techniques-poster` | `facilitator-guide-facilitation-techniques.html` |
 | Team Launch (Sprint Zero) | `team-launch-board` | `facilitator-guide-team-launch.html` |
@@ -72,6 +73,8 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | Portfolio Kanban & Investment Mix | `portfolio-kanban-board` | `facilitator-guide-portfolio-kanban.html` |
 | Delegation Board | `delegation-board` | `facilitator-guide-delegation.html` |
 | Motivation & Recognition | `motivation-board` | `facilitator-guide-motivation.html` |
+| AI in Delivery | `ai-delivery-board` | `facilitator-guide-ai-delivery.html` |
+| Cynefin® Sense-Making | `cynefin-board` | `facilitator-guide-cynefin.html` |
 | Leading for Psychological Safety poster | `leading-psych-safety-poster` | `facilitator-guide-leading-psych-safety.html` |
 | Delivery Metrics & Tech Debt | `delivery-metrics-board` | `facilitator-guide-delivery-metrics.html` |
 | Project Close-out | `project-closeout-board` | `facilitator-guide-project-closeout.html` |
@@ -115,11 +118,11 @@ The home page groups tools by what you're trying to do. No one framework is assu
 | Break down work | Epic Breakdown Canvas, User Story Map, Story Splitting, Example Mapping, Backlog Item Anatomy, Estimation |
 | Run events & iterations | Events & Cadences poster, Sprint Planning, Daily Sync, Backlog Refinement, Sprint Review |
 | Manage flow | Kanban Board Design, Kanban Cadences, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Impediments Board, Value Stream Map |
-| Engineering practices | SDLC at a Glance, Delivery Pipeline Canvas, Test Strategy, Release Readiness & Strategy, Continuous Delivery Health Check, Pairing & Mobbing, Delivery Metrics & Tech Debt, Architecture Decision Record, Blameless Incident Review |
+| Engineering practices | SDLC at a Glance, Delivery Pipeline Canvas, Test Strategy, Release Readiness & Strategy, Continuous Delivery Health Check, Pairing & Mobbing, Delivery Metrics & Tech Debt, Architecture Decision Record, Event Storming, Blameless Incident Review |
 | Reflect & improve | Retrospective Kit, Team Health Check, Psychological Safety Check, Anti-Pattern Spotter, Marginal Gains Workshop, 1% Experiment Canvas, Root Cause Analysis |
 | Run a project | Right-Size Your Structure, Project Kickoff, Stakeholder Map, Pre-mortem, RAID Log, RACI & Decision Log, Release Forecast & Burn-up, Outcome Status Report, Project Close-out |
 | Coordinate teams | Objectives & Key Results, Cross-Team Planning, Dependency Map, Cross-Team Sync, Team Topology Design, Cross-Team Retro |
-| Lead the organisation | Value Metrics, Portfolio Kanban & Investment Mix, Delegation Board, Motivation & Recognition, Leading for Psychological Safety, ADKAR Change Readiness (ADKAR® is a registered trademark of Prosci, Inc.) |
+| Lead the organisation | Value Metrics, Portfolio Kanban & Investment Mix, Delegation Board, Motivation & Recognition, AI in Delivery, Cynefin® Sense-Making (Cynefin® is a registered trademark of Cognitive Edge Pte Ltd), Leading for Psychological Safety, ADKAR Change Readiness (ADKAR® is a registered trademark of Prosci, Inc.) |
 | Facilitate & coach | Facilitation Techniques, Lean Coffee, Coaching Conversation, Levels of Conflict, Feedback Conversation |
 
 The home page also has a **Start here** strip (role guide, glossary, cheat sheets, Make It Yours), a sticky section menu, a search box and the **I'm a…** role filter.

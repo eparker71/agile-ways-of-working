@@ -18,6 +18,18 @@ from brand import ACCENT, NAVY, CREDIT  # noqa: E402
 OUT = Path(__file__).resolve().parent.parent
 
 TERMS = [
+    ("AI autonomy levels", "How much an AI tool or agent may do on its own: it assists while a person decides, it acts and a "
+     "person approves the result, or it acts alone within set limits and people check afterwards.", None, ["ai-delivery", "ai"]),
+    ("Event Storming", "A workshop where business experts and engineers map a domain as a timeline of domain events on orange "
+     "stickies, then add commands, actors, policies, systems and hotspots.", "From Alberto Brandolini.", ["event-storming"]),
+    ("Domain event", "Something meaningful that happened in the business, written in the past tense, such as “Order Placed”.",
+     "Used in Event Storming and domain-driven design.", ["event-storming"]),
+    ("Cynefin®", "A sense-making framework that sorts situations into clear, complicated, complex and chaotic domains (with "
+     "confusion in the centre), each calling for a different way to act.",
+     "From Dave Snowden. Cynefin® is a registered trademark of Cognitive Edge Pte Ltd.", ["cynefin"]),
+    ("Safe-to-fail experiment", "A small, reversible probe in a complex situation, designed so that failure is cheap and teaches "
+     "something; run several in parallel and amplify the ones that work.", "From the Cynefin® framework (Dave Snowden).",
+     ["cynefin", "experiment"]),
     ("Moving Motivators", "An exercise where each person ranks ten intrinsic motivators (such as curiosity, mastery and "
      "freedom) by importance, then moves each up or down to show how a change would affect it.",
      "From Management 3.0 (Jurgen Appelo).", ["motivation"]),

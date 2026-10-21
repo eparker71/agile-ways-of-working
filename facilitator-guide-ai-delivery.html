@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI in Delivery Guide</title>
+<!-- meta -->
+<meta name="description" content="How to decide where AI and AI agents fit in your delivery, how much autonomy each gets, the guardrails, and who is accountable.">
+<link rel="canonical" href="https://eparker71.github.io/agile-ways-of-working/facilitator-guide-ai-delivery.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agile Ways of Working Toolkit">
+<meta property="og:title" content="AI in Delivery Guide · Agile Ways of Working Toolkit">
+<meta property="og:description" content="How to decide where AI and AI agents fit in your delivery, how much autonomy each gets, the guardrails, and who is accountable.">
+<meta property="og:url" content="https://eparker71.github.io/agile-ways-of-working/facilitator-guide-ai-delivery.html">
+<meta property="og:image" content="https://eparker71.github.io/agile-ways-of-working/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /meta -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#5B6B82; --rule:#E2E8F0; --paper:#FFFFFF;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:13px;line-height:1.55;padding:24px 16px;}
+.page{max-width:820px;margin:0 auto 24px;background:var(--paper);box-shadow:0 12px 40px rgba(0,0,0,.22);}
+.masthead{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:28px 40px 26px;position:relative;}
+.badge{position:absolute;top:14px;right:24px;font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;}
+.masthead h1{font:400 40px/1.05 var(--serif);margin:14px 0 8px;}
+.masthead p{margin:0;color:#94A3B8;font-size:13.5px;}
+.masthead .tag{margin-top:8px;font:9px var(--mono);color:#94A3B8;letter-spacing:.06em;}
+.content{padding:28px 40px 36px;}
+h2{font:400 26px/1.15 var(--serif);margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;}
+h2 .n{font:600 11px var(--sans);color:#fff;background:var(--navy);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;flex:none;transform:translateY(-3px);}
+h3{font:600 13px var(--sans);margin:16px 0 6px;}
+p{margin:6px 0 10px;}
+.lede{font:italic 400 19px/1.35 var(--serif);color:var(--ink);border-left:4px solid var(--accent);padding:2px 0 2px 16px;margin:4px 0 20px;}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px;}
+.glance div{background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;}
+.glance b{display:block;font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+.glance span{font-weight:600;font-size:13px;}
+ul.check{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:28px;}
+ul.check li{padding-left:22px;position:relative;margin-bottom:5px;break-inside:avoid;}
+ul.check li::before{content:"";position:absolute;left:0;top:3px;width:11px;height:11px;border:1.4px solid var(--ink);border-radius:2px;opacity:.55;}
+table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:12.5px;}
+th{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--ink);text-align:left;padding:8px 10px;}
+th:first-child{border-left:5px solid var(--accent);}
+td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+td.t{font:500 11px var(--mono);white-space:nowrap;color:var(--muted);}
+td.a{font-weight:600;width:24%;}
+tr:nth-child(even) td{background:#F8FAFC;}
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;}
+.area{border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,.06);break-inside:avoid;}
+.area h4{margin:0;padding:7px 12px;color:#fff;font:600 12.5px var(--sans);}
+.area ul{margin:0;padding:8px 12px 10px 28px;font-size:12px;}
+.area li{margin-bottom:3px;}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.tip{border-top:2px solid var(--rule);padding-top:8px;}
+.tip b{display:block;margin-bottom:2px;}
+.flow{display:flex;align-items:stretch;gap:0;margin:14px 0 6px;flex-wrap:wrap;}
+.step{flex:1 1 0;min-width:120px;background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;position:relative;}
+.arrow{flex:none;align-self:center;color:#C2410C;font:600 16px var(--sans);padding:0 6px;}
+.step b{display:block;font-size:12.5px;}
+.step small{color:var(--muted);font-size:11px;line-height:1.4;display:block;margin-top:2px;}
+.step .k{font:500 8.5px var(--mono);letter-spacing:.12em;color:#C2410C;text-transform:uppercase;}
+.callout{background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:12px 16px;margin:14px 0;}
+.callout b{color:#9A3412;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display:flex;justify-content:space-between;gap:16px;font:8px var(--mono);letter-spacing:.08em;color:#5B6B82;}
+@media (max-width:640px){
+  .masthead,.content{padding-left:20px;padding-right:20px;}
+  .glance{grid-template-columns:1fr 1fr;}
+  ul.check{columns:1;}
+  .areas,.tips,.two{grid-template-columns:1fr;}
+  .arrow{display:none;}
+  .flow{gap:8px;}
+  table{font-size:11.5px;}
+  td.t{white-space:normal;}
+}
+@media print{
+  @page{size:A4 portrait;margin:12mm 12mm 14mm;}
+  html,body{background:none;}
+  body{padding:0;font-size:11.5px;}
+  .page{box-shadow:none;max-width:none;margin:0;}
+  .masthead,th,.area h4,h2 .n{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  tr,.area,.tip,.step,.callout{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .pb{break-before:page;}
+}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
+.content a{color:#9A3412;}
+@media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:#C2410C;}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
+.content a{color:#9A3412;}
+.example{border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:10px 0;}
+.example div{display:grid;grid-template-columns:30% 1fr;border-bottom:1px solid var(--rule);}
+.example div:last-child{border-bottom:none;}
+.example b{background:#F8FAFC;padding:7px 12px;font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.example span{padding:7px 12px;font-size:12.5px;}
+@media (max-width:640px){.example div{grid-template-columns:1fr;}}
+@media print{.boards{display:none;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>AI in Delivery Guide</h1>
+    <p>How to decide where AI and AI agents fit in your delivery, how much autonomy each gets, the guardrails, and who is accountable.</p>
+    <div class="tag">Facilitator Run-Sheet · Lead the Organisation · AI Governance</div>
+    <div class="boards"><a class="primary" href="ai-delivery-board.html">Open board →</a><a href="ai-delivery-board.svg">SVG →</a><a href="pdf/ai-delivery-board.pdf" download>A3 PDF ↓</a><a href="facilitator-guide-ai-delivery.docx" download>Word (editable) ↓</a></div>
+  </header>
+  <div class="content">
+    <p class="lede">“Who&#x27;s accountable when an agent gets it wrong?”</p>
+    <p>Most organisations now use AI somewhere in delivery, but far fewer have agreed how. The 2025 State of Agile report found AI use rising to 84% of respondents while only 49% had guardrails in place. This board is for leaders, engineering managers and coaches setting that direction across teams. Map <b>where AI fits</b> at each stage of delivery and at which <b>autonomy level</b> (it assists, it acts and a person approves, or it acts alone within limits), agree the <b>guardrails</b> and <b>risks</b>, name <b>who's accountable</b>, and check whether it's <b>actually helping</b> with outcome measures rather than usage counts. Teams then agree their own day-to-day rules with the AI Working Agreement.</p>
+    <div class="glance"><div><b>Duration</b><span>90 min,<br>then reviewed quarterly</span></div><div><b>Group</b><span>Leaders, engineering,<br>security, a few teams</span></div><div><b>Use when</b><span>Adopting AI tools<br>or agents at scale</span></div><div><b>Output</b><span>Agreed autonomy,<br>guardrails &amp; owners</span></div></div>
+    <h2><span class="n">1</span>Before the session</h2>
+    <ul class="check"><li>Print the board at A3 or 11×17, or load the SVG as a digital background</li><li>Collect how teams use AI today: tools, stages, any incidents or near misses</li><li>Invite security, legal or data protection, and people who do the work, not only managers</li><li>Bring current delivery measures (lead time, change failure rate) as a baseline</li><li>Read your organisation's existing policies so the board builds on them</li></ul>
+    <h2><span class="n">2</span>Agenda &amp; run-sheet</h2>
+    <table><thead><tr><th>Time</th><th>Section</th><th>Facilitator notes</th></tr></thead><tbody><tr><td class="t">0–10</td><td class="a">2 · Autonomy Levels</td><td>Agree what the three levels mean in your context, with an example of each.</td></tr><tr><td class="t">10–35</td><td class="a">1 · Where AI Fits</td><td>Go stage by stage: where is AI used now, at what level, and what's the human check?</td></tr><tr><td class="t">35–50</td><td class="a">3 · Guardrails</td><td>Tick what's already true; the rest becomes actions. Add guardrails specific to you.</td></tr><tr><td class="t">50–60</td><td class="a">4 · Risks to Watch</td><td>List the top risks, score likelihood and impact, and agree a response.</td></tr><tr><td class="t">60–70</td><td class="a">5 · Who's Accountable</td><td>Name people, not committees. Make sure teams know where to ask.</td></tr><tr><td class="t">70–90</td><td class="a">6 · Measures · 7 · Experiments</td><td>Set baselines and targets. Pick the next small experiment and a review date.</td></tr></tbody></table>
+    <h2 class="pb"><span class="n">3</span>Three autonomy levels</h2>
+    <p>Move up one level at a time, with evidence.</p>
+    <div class="areas"><div class="area" style="background:#DBEAFE;color:#1E3A8A"><h4 style="background:#1E3A8A">Assists</h4><ul><li>AI suggests</li><li>A person decides and does</li></ul></div><div class="area" style="background:#EDE9FE;color:#581C87"><h4 style="background:#581C87">Acts, we approve</h4><ul><li>AI does the work</li><li>A person reviews first</li></ul></div><div class="area" style="background:#FEE2E2;color:#991B1B"><h4 style="background:#991B1B">Acts alone</h4><ul><li>Within set limits</li><li>Audited, can be stopped</li></ul></div><div class="area" style="background:#FEF3C7;color:#92400E"><h4 style="background:#92400E">Guardrails</h4><ul><li>Data, review, access</li><li>Visible and reversible</li></ul></div><div class="area" style="background:#F1F5F9;color:#334155"><h4 style="background:#334155">Accountability</h4><ul><li>Named people</li><li>Never the tool</li></ul></div></div>
+    <h2><span class="n">4</span>Facilitation tips</h2>
+    <div class="tips"><div class="tip"><b>Start at Assists</b>Earn each step up in autonomy with evidence from a smaller, reversible use.</div><div class="tip"><b>Same bar for AI work</b>AI-written code and documents go through the same review, tests and scans as anyone&#x27;s.</div><div class="tip"><b>Least access</b>An agent should have only the permissions its task needs, and a way to be switched off.</div><div class="tip"><b>Outcomes, not usage</b>Lots of AI use isn&#x27;t the goal. Watch lead time, quality, rework and how the team feels.</div><div class="tip"><b>Make it visible</b>Label AI-assisted changes so you can learn where it helps and where it hurts.</div><div class="tip"><b>Review often</b>Tools and risks change monthly. Revisit the board at least every quarter.</div></div>
+    <div class="callout"><b>Common pitfalls:</b> banning AI so people use it out of sight; adopting it everywhere at once; measuring licences or prompts instead of outcomes; agents with broad access; no named owner; a policy written once and never reviewed.</div>
+    <h2><span class="n">5</span>After the session</h2>
+    <div class="two"><div><h3>Within a week</h3><p>Publish the agreed levels, guardrails and owners where every team can see them.</p></div><div><h3>Each team</h3><p>Agree day-to-day rules with the AI Working Agreement.</p></div><div><h3>Monthly</h3><p>Check the measures and the experiments; move one stage up or down if the evidence says so.</p></div><div><h3>Quarterly</h3><p>Review the whole board with the same group.</p></div></div>
+    <h2><span class="n">6</span>How it fits the toolkit</h2>
+    <p>Teams turn this into daily practice with the <a href="facilitator-guide-ai-working-agreement.html">AI Working Agreement</a>. Track outcomes with <a href="facilitator-guide-delivery-metrics.html">Delivery Metrics &amp; Tech Debt</a> and the <a href="facilitator-guide-cd-health-check.html">Continuous Delivery Health Check</a>, review AI incidents with the <a href="facilitator-guide-incident-review.html">Blameless Incident Review</a>, and record decisions in the <a href="facilitator-guide-raci-decision-log.html">RACI &amp; Decision Log</a>.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “AI in Delivery”, a workshop board.
+
+Purpose: Decide where AI and AI agents fit in how you deliver, the guardrails for each, who&#x27;s accountable, and whether it&#x27;s helping.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+
+Header fields to fill in: Scope, Owner, Review Date
+
+Sections:
+1. Where AI Fits: top left, about 65% wide and 35% tall; header colour blue.
+   Subtitle: Tick one autonomy level per stage
+   Content: Stage: · Where we use it: · Assists: · Acts, we approve: · Acts alone: · Human check: · Discover &amp; research · Plan &amp; refine · Build · Test · Release &amp; deploy · Operate &amp; support
+2. Autonomy Levels: top right, about 35% wide and 35% tall; header colour purple.
+   Subtitle: Move up only with evidence
+   Content: 1 · Assists · AI suggests; a person decides and does the work. · Lowest risk. Start here. · 2 · Acts, we approve · AI does the work; a person reviews it before it counts. · 3 · Acts alone · AI acts within set limits; people check afterwards and can stop it.
+3. Guardrails: middle left, about 35% wide and 35% tall; header colour red.
+   Subtitle: Agreed before we scale
+   Content: No confidential or personal data in unapproved tools · AI output is reviewed like any other change · Agents get the least access they need · Generated code passes the same tests and scans · AI use is visible in commits and tickets · Licences and ownership of outputs checked · A person can stop or roll back any agent
+4. Risks to Watch: middle centre, about 35% wide and 35% tall; header colour amber.
+   Subtitle: Likelihood × impact, 1–3
+   Content: Risk: · L × i: · What we&#x27;ll do:
+5. Who&#x27;s Accountable: middle right, about 35% wide and 35% tall; header colour slate grey.
+   Subtitle: People, not tools
+   Content: Owns the AI policy: · Approves new tools: · Approves agent access: · Reviews AI incidents: · Trains and supports people: · Questions go to:
+6. Is It Helping?: bottom left, about 50% wide and 30% tall; header colour emerald green.
+   Subtitle: Outcomes, not usage
+   Content: Measure: · Before: · Now: · Target: · Lead time for changes · Change failure rate · Rework and escaped defects · Team experience (survey)
+7. Experiments &amp; Review: bottom right, about 50% wide and 30% tall; header colour dark green.
+   Subtitle: Small, visible, reversible
+   Content: Next experiment: · Owner: · Review on: · We review this whole board every:
+
+Footer questions: “Where would we notice first if AI made our work worse?” “Who&#x27;s accountable when an agent gets it wrong?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/ai-delivery-board.html</pre></details></section>
+    <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
+    <footer><span>“Where would we notice first if AI made our work worse?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
+  </div>
+</div>
+</body>
+</html>
