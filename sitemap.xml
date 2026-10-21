@@ -179,6 +179,7 @@
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-backlog-refinement-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-blocker-clustering-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-buffering-swarming-board.html</loc></url>
+  <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-cd-health-check-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-coaching-conversation-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-cross-team-planning-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-cross-team-retro-board.html</loc></url>
@@ -187,6 +188,7 @@
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-daily-sync-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-delegation-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-delivery-metrics-board.html</loc></url>
+  <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-delivery-pipeline-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-dependency-map-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-epic-breakdown-canvas.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-estimation-board.html</loc></url>
@@ -208,12 +210,16 @@
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-prioritisation-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-product-bet-canvas.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-product-vision-board.html</loc></url>
+  <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-project-closeout-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-project-kickoff-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-psych-safety-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-raci-decision-log-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-raid-log-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-release-forecast-board.html</loc></url>
+  <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-release-readiness-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-retro-board-start-stop-continue.html</loc></url>
+  <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-roadmap-board.html</loc></url>
+  <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-root-cause-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-skills-matrix-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-sprint-planning-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-sprint-review-board.html</loc></url>
@@ -223,7 +229,9 @@
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-team-charter-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-team-health-check-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-team-launch-board.html</loc></url>
+  <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-team-onboarding-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-team-topology-board.html</loc></url>
+  <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-test-strategy-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-value-metrics-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/worked-example-value-stream-map-board.html</loc></url>
   <url><loc>https://eparker71.github.io/agile-ways-of-working/workshop-recipes.html</loc></url>

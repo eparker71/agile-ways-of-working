@@ -72,7 +72,15 @@ EXAMPLES = [("team-charter", "Team Charter", "A new team's purpose, values, agre
             ("impact", "Impact Map", "One goal, three actors, six behaviour changes and the deliverables that could cause them."),
             ("estimation", "Estimation", "Planning poker rounds, T-shirt sizes, an affinity line with boundaries, and reference items."),
             ("adr", "Architecture Decision Record", "Reading stock data from a replica: context, drivers, three options and the trade-offs."),
-            ("experiment", "1% Experiment Canvas", "Example Mapping before planning, tested for two iterations: rework fell from 4 in 9 to 1 in 10.")]
+            ("experiment", "1% Experiment Canvas", "Example Mapping before planning, tested for two iterations: rework fell from 4 in 9 to 1 in 10."),
+            ("rootcause", "Root Cause Analysis", "Wrong promo prices, traced through a fishbone and five whys to copied price rules with no owner."),
+            ("closeout", "Project Close-out", "Results against the goal, benefits still to come, handover, lessons and loose ends."),
+            ("onboarding", "Team Onboarding", "Ravi's first weeks: set-up, a buddy, people to meet and 30/60/90-day check-ins."),
+            ("pipeline", "Delivery Pipeline Canvas", "Seven stages with times, waits and failures, the bottlenecks, and the next fix."),
+            ("testing", "Test Strategy", "What each level of the pyramid tests, the quality gates, and where to test hardest."),
+            ("release", "Release Readiness & Strategy", "Substitutes behind a flag in one store: go/no-go, rollback plan and who to tell."),
+            ("cd-health", "Continuous Delivery Health Check", "Twelve practices scored (39 of 60), the biggest gaps, and two experiments."),
+            ("roadmap", "Now · Next · Later Roadmap", "Three goals with work in Now, Next and Later, what we're not doing, and assumptions to test.")]
 
 
 # Starter kits: the minimum toolset for each project size (see the Right-Size Your Structure poster).
