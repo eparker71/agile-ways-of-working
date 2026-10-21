@@ -2,6 +2,8 @@
 
 Printable boards and facilitator guides for teams and facilitators.
 
+**Purpose:** help teams get better at delivering things that matter, by making useful conversations easy to run without an expert in the room. The toolkit favours judgement over compliance: good practices to reason from, anti-patterns to watch for, and small experiments to learn from. Before adding something, ask whether it helps a team have a better conversation, and whether we could tell that it did.
+
 **Live site:** https://eparker71.github.io/agile-ways-of-working/
 
 To browse everything locally, open `index.html`. Terms are defined in `glossary.html`, and `good-practices.html` sets out 20 good practices the toolkit is built on, each with the tools that put it into practice, and `anti-patterns.html` is a searchable catalogue of 42 common anti-patterns with what to try; the two link to each other. `scenarios.html` is the **Scenario Playbook**: a running list of common situations (a deadline moves earlier, a key person leaves…) with first moves, longer-term fixes and tools. Add to it by editing `_content/scenarios.md`, or suggest one through a GitHub issue. `tools-by-industry.html` suggests where to start in eleven kinds of work (software, marketing, HR, IT operations, data, hardware, public sector, healthcare, finance, legal, non-profit and education), with the words people there use and what to skip. Not sure where to start? Open `start-here-by-role.html`, or use the **I'm a…** role filter at the top of the home page. It covers Scrum Masters, coaches, product owners, project, program and portfolio managers, executives, engineering managers, designers and team members.
