@@ -345,7 +345,7 @@ def build_index_filter():
     s = re.sub(r'<p class="rolenote"></p>\n', "", s)
     s = s.replace("<main><div class=\"wrap\">\n", "<main><div class=\"wrap\">\n<p class=\"rolenote\"></p>\n", 1)
 
-    # data-roles on each card
+    # data-roles on each card, and an "Example" link when the card's board has a worked example
     def tag(m):
         card_open, rest = m.group(1), m.group(2)
         href = re.search(r'class="primary" href="([^"]+)"', rest)
@@ -353,6 +353,11 @@ def build_index_filter():
         card_open = re.sub(r' data-roles="[^"]*"', "", card_open)
         if roles is not None:
             card_open = card_open[:-1] + f' data-roles="{" ".join(roles)}">'
+        rest = re.sub(r'<a class="ex" href="worked-example-[^"]+">Example</a>', "", rest)
+        if href and (OUT / f"worked-example-{href.group(1)}").exists():
+            rest = re.sub(r'(<div class="links">.*?)(</div></div>\n)$',
+                          lambda l: f'{l.group(1)}<a class="ex" href="worked-example-{href.group(1)}">Example</a>{l.group(2)}',
+                          rest, flags=re.S)
         return card_open + rest
     s = re.sub(r'(<div class="card"[^>]*>)(.*?</div></div>\n)', tag, s, flags=re.S)
 

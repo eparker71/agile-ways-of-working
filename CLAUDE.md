@@ -34,7 +34,7 @@ Never edit generated files directly; edit the script and re-run.
 - **Hand-edited content:** `_content/scenarios.md` and `_content/recipes.md` (formats explained at the top of each). Tool titles in them must match `TOOLS` exactly or the build stops. `.github/ISSUE_TEMPLATE/scenario.yml` is the public suggestion form.
 - **Hand-written:** `marginal-gains-workshop-board.{svg,html}`, `facilitator-guide-marginal-gains.html`, `scrum-master-agile-coach-cheat-sheet.html`, `jira-cheat-sheet.html`, `make-it-yours.html`, `about.html`, `index.html`, `LICENSE.md`.
 - **Brand:** colours, fonts and the credit line (© author · CC BY 4.0 · site) live in `_generator/brand.py` and are imported by the generators. The hand-written pages carry the same values by hand, so update them too when rebranding. `SITE` (in the credit line) points to the original site; `PUBLISH_AT` is where this copy is published and drives canonical URLs, previews and the sitemap.
-- `index.html` is hand-written **except** the regions `build_roles.py` maintains: the `<!-- roles:… -->` / `/* roles:css */` blocks and each card's `data-roles` attribute.
+- `index.html` is hand-written **except** the regions `build_roles.py` maintains: the `<!-- roles:… -->` / `/* roles:css */` blocks, each card's `data-roles` attribute, and each card's `Example` link (added when `worked-example-<board>` exists).
 - `build_guides.py` copies its CSS from `facilitator-guide-marginal-gains.html` at run time, so editing that file's `<style>` restyles every guide.
 - `jira-cheat-sheet.html` was assembled from the main cheat sheet's CSS; the two share styles by copy, not by reference.
 
@@ -66,7 +66,7 @@ It writes the role page, tags each index card by matching the card's `class="pri
 **Adding a tool** touches five places:
 1. A `build_*` function, plus its call in `__main__`.
 2. A guide dict.
-3. A card in the right `<h2>` section of `index.html` (copy a neighbour; leave out `data-roles`, which `build_roles.py` fills in).
+3. A card in the right `<h2>` section of `index.html` (copy a neighbour; leave out `data-roles` and the `Example` link, which `build_roles.py` fills in).
 4. Entries in `TOOLS` and `ROLES` in `build_roles.py`, then re-run it.
 5. Rows in `README.md`'s tool table and lifecycle sections.
 
