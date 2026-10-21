@@ -3621,6 +3621,213 @@ GUIDES += [
 ]
 
 
+# ------------------------------------------------------------------ roadmap, user manual, conflict, feedback
+
+GUIDES += [
+    dict(
+        slug="roadmap",
+        title="Now · Next · Later Roadmap Guide",
+        subtitle="How to build a roadmap that ties work to goals and shows certainty honestly, without promising dates you can't keep.",
+        tag="Facilitator Run-Sheet · Decide What to Build · Now / Next / Later",
+        boards=[("Open board", "roadmap-board.html"), ("SVG", "roadmap-board.svg")],
+        lede="Which goal does this serve, and how will we know it worked?",
+        intro=("A date-driven roadmap promises things nobody can know yet. The <b>Now / Next / Later</b> roadmap, popularised by "
+               "Janna Bastow of ProdPad, swaps dates for <b>horizons of certainty</b>: <b>Now</b> is committed and in progress, "
+               "<b>Next</b> is shaped and ready to start, and <b>Later</b> holds problems worth exploring, not promises. Every item "
+               "sits in a lane for one of up to three <b>goals</b>, so the roadmap explains why as well as what. The board adds what "
+               "you're <b>not doing</b>, the <b>assumptions</b> to test before an item moves left, and how often you'll review it."),
+        glance=[("Duration", "60–90 min,<br>then reviewed regularly"), ("Group", "Product owner, team,<br>key stakeholders"),
+                ("Use when", "Planning a quarter,<br>or replacing a Gantt"), ("Output", "A goal-led roadmap<br>you can share")],
+        before=["Print the board at A3 or 11×17, or load the SVG as a digital background",
+                "Bring the product vision and current goals or OKRs; agree no more than three goals",
+                "List candidate items on stickies beforehand: work in progress, ideas, requests",
+                "Invite someone who can say no: the product owner or sponsor"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–15", "1 · Goals", "Agree up to three goals and a measure for each. If an item fits no goal, question it."),
+                ("15–30", "2 · Now", "Place work already in progress. If Now is overflowing, that's the first conversation."),
+                ("30–45", "3 · Next", "Add items that are shaped and ready. Keep it to what the team could start soon."),
+                ("45–55", "4 · Later", "Add problems and opportunities, not solutions. Write them as questions where you can."),
+                ("55–70", "5 · Not Doing · 6 · Assumptions", "Say no out loud, with reasons. List what must be true before items move left."),
+                ("70–80", "7 · Review & Share", "Agree how often to review it, when an item moves to Now, and who sees it.")],
+        sections_title="Using each horizon well",
+        sections_intro="Certainty falls from left to right.",
+        sections=[("Goals", EMERALD, ["Up to three", "Each with a measure"]),
+                  ("Now", BLUE, ["Committed, in progress", "Small enough to finish"]),
+                  ("Next", PURPLE, ["Shaped, not started", "Could change"]),
+                  ("Later", SKY, ["Problems, not features", "No dates"]),
+                  ("Not Doing", RED, ["Said out loud", "With a reason"])],
+        tips=[("Problems on the right", "Later items written as problems keep options open: “Shoppers abandon at delivery slots”, not “Build slot picker”."),
+              ("Dates only in Now", "If someone needs a date, forecast the Now items with the Release Forecast, not the whole roadmap."),
+              ("Not Doing builds trust", "Stakeholders accept a no far more easily when they can see it and the reason."),
+              ("Move items both ways", "An item can move back from Next to Later when you learn it's harder or less valuable."),
+              ("Show it, don't send it", "Walk stakeholders through it; the conversation matters more than the picture."),
+              ("Keep it fresh", "A roadmap reviewed every month or quarter is a plan; one never reviewed is a wish list.")],
+        pitfalls=("a Gantt chart with the dates rubbed off; Later used as a promise; too many goals; items with no goal; Now "
+                  "overflowing; never reviewing it; treating it as a commitment to every stakeholder."),
+        after=[("Straight away", "Photograph the board or move it to your digital tool, and share it with a short walk-through."),
+               ("Each iteration", "Plan from the Now column; refine items in Next."),
+               ("Monthly or quarterly", "Review: move items, retire goals that are met, check the assumptions."),
+               ("When asked for dates", "Use the Release Forecast for Now items, and explain the horizons.")],
+        toolkit=("The roadmap sits between strategy and delivery. Start from the <a href=\"facilitator-guide-product-vision.html\">"
+                 "Product Vision Board</a> and <a href=\"facilitator-guide-okr.html\">Objectives &amp; Key Results</a> for the goals, "
+                 "use the <a href=\"facilitator-guide-opportunity-solution-tree.html\">Opportunity Solution Tree</a> to explore Later, "
+                 "the <a href=\"facilitator-guide-prioritisation.html\">Prioritisation Board</a> to choose what moves left (its small "
+                 "Now / Next / Later panel is a quick version of this board), and the "
+                 "<a href=\"facilitator-guide-release-forecast.html\">Release Forecast</a> when someone needs a date."),
+        foot="“What would have to be true for this to move from Later to Next?”",
+    ),
+    dict(
+        slug="user-manual",
+        title="Personal User Manual Guide",
+        subtitle="How to help team members share how they work best, so the team spends less time guessing about each other.",
+        tag="Facilitator Run-Sheet · Set Up the Team · Working With Me",
+        boards=[("Open board", "user-manual-board.html"), ("SVG", "user-manual-board.svg")],
+        lede="What's one thing about working with you that would save your teammates time?",
+        intro=("Every team spends time learning, often by trial and error, how each person likes to work. A <b>personal user "
+               "manual</b> shortcuts that: each person writes a short guide to working with them, covering when they do their "
+               "<b>best work</b>, how to <b>reach</b> them, how they like <b>feedback</b>, what <b>drains and energises</b> them, what "
+               "people <b>misread</b>, and what to <b>ask them about</b>. The practice was popularised by Atlassian's Team Playbook. "
+               "Each board holds four people, so print one per four team members."),
+        glance=[("Duration", "45 min"), ("Group", "The whole team,<br>4 people per board"),
+                ("Use when", "A team forms, someone<br>joins, or after friction"), ("Output", "A shared guide<br>to each other")],
+        before=["Print one board per four people at A3 or 11×17, or load the SVG on a digital whiteboard",
+                "Make it optional: invite, don't require. People share what they're comfortable sharing",
+                "Fill in your own first, as an example of honest, practical answers",
+                "Plan for remote members: a digital copy, or a photo of theirs added afterwards"],
+        agenda_heads=["Time", "Step", "Facilitator notes"],
+        agenda=[("0–5", "Set it up", "Explain why: less guessing, fewer misunderstandings. Share yours as an example."),
+                ("5–20", "Write", "Each person fills in their block in silence. Practical beats profound."),
+                ("20–35", "Read", "Silent reading of everyone's. People note one thing that surprised them."),
+                ("35–45", "One change each", "Each person names one thing they'll do differently, for one teammate.")],
+        sections_title="Getting useful answers",
+        sections_intro="Practical, specific and current.",
+        sections=[("Best work", PURPLE, ["Times, places, conditions", "Focus time needs"]),
+                  ("Reaching me", BLUE, ["Channel and response time", "What's urgent to me"]),
+                  ("Feedback", EMERALD, ["Written or spoken", "Straight away or later"]),
+                  ("Drains & energises", ORANGE, ["Meetings, interruptions", "What lights me up"]),
+                  ("Misread & ask me", SLATE, ["Quirks explained", "Skills to share"])],
+        tips=[("Lead by example", "If the facilitator or leader shares honestly first, others follow."),
+              ("Practical, not personality", "“I reply to messages twice a day” helps more than a personality type."),
+              ("Keep it optional", "Some people share less at first. That's fine; trust grows over time."),
+              ("Make it visible", "Keep the boards on the team wall or wiki so new joiners can read them."),
+              ("Revisit it", "Update manuals every six months or when the team changes."),
+              ("Pair it with the charter", "Patterns across manuals often become team working agreements.")],
+        pitfalls=("making it compulsory; turning it into a personality test; writing what sounds good rather than what's "
+                  "true; never reading each other's; filing it away and never updating it."),
+        after=[("Straight away", "Photograph the boards and store them where the team works."),
+               ("Next charter review", "Turn common patterns into working agreements."),
+               ("When someone joins", "Add their manual to their onboarding plan."),
+               ("Every six months", "Update your own, and reread your teammates'.")],
+        toolkit=("User manuals sit alongside the <a href=\"facilitator-guide-team-charter.html\">Team Charter</a> (agreements for the "
+                 "whole team), <a href=\"facilitator-guide-team-onboarding.html\">Team Onboarding</a> (give new joiners the manuals "
+                 "to read) and the <a href=\"facilitator-guide-feedback-conversation.html\">Feedback Conversation</a> board, which "
+                 "works better when you know how someone likes to hear feedback."),
+        foot="“What will you do differently now you've read each other's?”",
+    ),
+    dict(
+        slug="conflict-levels",
+        title="Levels of Conflict Guide",
+        subtitle="How to tell how far a team conflict has gone, and choose a response that fits, from letting the team solve it to getting help.",
+        tag="Facilitator Run-Sheet · Facilitate & Coach · Five Levels of Conflict (Speed B. Leas)",
+        boards=[("Open board", "conflict-levels-board.html"), ("SVG", "conflict-levels-board.svg")],
+        lede="What words are people using, and what level do they point to?",
+        intro=("Disagreement is healthy; teams need it to make good decisions. Trouble starts when conflict escalates. Speed B. "
+               "Leas described <b>five levels of conflict</b>, from a <b>problem to solve</b> through <b>disagreement</b>, "
+               "<b>contest</b> and <b>crusade</b> to <b>world war</b>, and Lyssa Adkins brought the model to agile teams in "
+               "<i>Coaching Agile Teams</i>. The language people use is the best clue to the level. This board helps a coach or "
+               "Scrum Master <b>diagnose</b> the level, pick the <b>move</b> that fits it, and agree a next step. It's mainly a "
+               "tool for the coach to use privately, not one to fill in with the people in conflict."),
+        glance=[("Duration", "20–40 min"), ("Group", "A coach or Scrum Master,<br>alone or with a peer"),
+                ("Use when", "Tension is rising,<br>or sides are forming"), ("Output", "A level, a move<br>and a next step")],
+        before=["Print the board at A3 or 11×17, or use it on screen; keep it private if it names people",
+                "Collect what you've seen and heard: actual words and behaviour, not impressions",
+                "Talk to each person involved on their own before you decide anything",
+                "Know your organisation's route to HR for anything beyond the team"],
+        agenda_heads=["Time", "Section", "Notes"],
+        agenda=[("0–10", "3 · What's It About?", "Write the facts, who's involved and how long it's been going. Note what each side needs."),
+                ("10–20", "1 · What Level?", "Compare what you see and hear with each level. The highest level you see is the one that counts."),
+                ("20–25", "4 · Before You Step In", "Work through the questions. If anyone is at risk, stop and escalate."),
+                ("25–30", "2 · The Coach's Move", "Choose the move for the level. Lower levels: step back. Higher levels: step in or get help."),
+                ("30–40", "5 · Our Next Step", "Agree the move, who's involved, when, when to check again, and what would trigger escalation.")],
+        sections_title="Moves by level",
+        sections_intro="The higher the level, the more the coach steps in.",
+        sections=[("1 · Problem to solve", EMERALD, ["Collaborate", "Let the team solve it"]),
+                  ("2 · Disagreement", AMBER, ["Support", "Each side is heard"]),
+                  ("3 · Contest", ORANGE, ["Facilitate", "Facts and interests"]),
+                  ("4 · Crusade", RED, ["Mediate", "Neutral third party"]),
+                  ("5 · World war", RED, ["Protect people", "Escalate now"])],
+        tips=[("Listen to the words", "“We” and specifics suggest level 1; “always”, “never” and labels suggest level 3 or higher."),
+              ("Some conflict is good", "A team with no disagreement at all may be avoiding hard conversations."),
+              ("Interests, not positions", "Ask what each side needs and why; positions clash, needs often don't."),
+              ("Lean on agreements", "A team charter with norms for disagreement gives the team a way to resolve it themselves."),
+              ("Check your own bias", "If you have a side, find a neutral facilitator."),
+              ("Know where it stops", "Harassment, discrimination and safety issues aren't team conflicts. Escalate them.")],
+        pitfalls=("stepping in too early at level 1–2 and taking the problem away from the team; ignoring it until level 4; "
+                  "mediating when you're not neutral; treating harassment as a conflict to coach; sharing the board with the people involved."),
+        after=[("Within a day or two", "Take the agreed first step, and talk to each person involved."),
+               ("At the check-in date", "Reassess the level. Has it gone down, stayed, or risen?"),
+               ("Next charter review", "Add or improve norms for healthy disagreement."),
+               ("If it rises to 4–5", "Escalate as planned; don't wait.")],
+        toolkit=("Use it with the <a href=\"facilitator-guide-coaching-conversation.html\">Coaching Conversation</a> for one-to-ones "
+                 "with each person, the <a href=\"facilitator-guide-feedback-conversation.html\">Feedback Conversation</a> board when "
+                 "one person needs to raise something with another, the <a href=\"facilitator-guide-team-charter.html\">Team "
+                 "Charter</a> for norms, and the <a href=\"facilitator-guide-psych-safety.html\">Psychological Safety Check</a> to "
+                 "see whether people feel safe to disagree."),
+        foot="“Is this conflict about the work, or about each other?”",
+    ),
+    dict(
+        slug="feedback-conversation",
+        title="Feedback Conversation Guide",
+        subtitle="How to prepare and hold one feedback conversation: describe what happened and its effect, listen, and agree what's next.",
+        tag="Facilitator Run-Sheet · Facilitate & Coach · Situation–Behaviour–Impact",
+        boards=[("Open board", "feedback-conversation-board.html"), ("SVG", "feedback-conversation-board.svg")],
+        lede="Did I describe what happened, or judge who they are?",
+        intro=("Feedback goes wrong when it's vague, late or sounds like a judgement of the person. The <b>Situation–Behaviour–"
+               "Impact</b> (SBI) model from the Center for Creative Leadership keeps it specific: describe the <b>situation</b>, "
+               "the observable <b>behaviour</b> and its <b>impact</b>. This board adds a <b>request</b>, a self-check before you "
+               "start, space to <b>hear the other side</b>, agreed <b>next steps</b>, and a reminder that the same shape works for "
+               "praise. Anyone can use it: team members, leads, coaches and managers."),
+        glance=[("Duration", "15 min to prepare,<br>20–30 min to talk"), ("Group", "Two people"),
+                ("Use when", "Something needs saying,<br>or deserves praise"), ("Output", "A clear conversation<br>and agreed steps")],
+        before=["Print the board at A3 or 11×17, or use it on screen; it's your preparation, not a script to read out",
+                "Write it soon after the event, while the details are fresh",
+                "Book a private, unhurried time that suits the other person",
+                "Check how they like to receive feedback, from their user manual if they have one"],
+        agenda_heads=["When", "Section", "Notes"],
+        agenda=[("Before", "1 · Check Yourself First", "Tick the checks honestly. If your intent is to win, wait."),
+                ("Before", "2 · Prepare It", "Write the situation, behaviour, impact and request. Strip out labels and guesses."),
+                ("0–5 min", "Open", "Say why you asked to talk, briefly. Then give the S, B and I."),
+                ("5–20 min", "3 · Hear It Back", "Ask for their view and listen. You may have missed something."),
+                ("20–25 min", "4 · Agree Next Steps", "Agree what each of you will do, and when you'll check in."),
+                ("Any time", "5 · Praise", "Use the same shape for positive feedback, and do it more often.")],
+        sections_title="Situation, behaviour, impact, request",
+        sections_intro="Specific, observable, and about the effect.",
+        sections=[("Situation", BLUE, ["When and where", "Recent and specific"]),
+                  ("Behaviour", PURPLE, ["What was seen or heard", "No labels"]),
+                  ("Impact", ORANGE, ["Effect on you, team, work", "Your experience"]),
+                  ("Request", EMERALD, ["What you'd like next", "Then ask theirs"]),
+                  ("Hear it back", FOREST, ["Their view", "Feedback for you"])],
+        tips=[("Behaviour, not character", "“You interrupted twice” can be changed; “you're rude” can only be argued with."),
+              ("Own the impact", "Say how it affected you or the work, rather than claiming to know their intent."),
+              ("Ask, then listen", "Their side often changes the picture. Be ready to change your request."),
+              ("Soon and private", "Feedback days later, or in front of others, is harder to hear."),
+              ("Praise specifically", "“Great job” fades; “your summary got the decision made in five minutes” sticks."),
+              ("Ask for feedback too", "Leaders who ask for feedback get more honest feedback.")],
+        pitfalls=("the feedback sandwich hiding the message; labels instead of behaviour; guessing intent; saving it up for a "
+                  "review; doing it by message; not listening; no follow-up."),
+        after=[("Straight away", "Write down what you agreed and share it if that helps."),
+               ("At the check-in", "Notice and say what's changed, specifically."),
+               ("For yourself", "Reflect on how it went and what you'd do differently."),
+               ("Over time", "Aim for more praise than correction.")],
+        toolkit=("Use it with the <a href=\"facilitator-guide-user-manual.html\">Personal User Manual</a> (how someone likes "
+                 "feedback), the <a href=\"facilitator-guide-team-charter.html\">Team Charter</a> (agree how the team gives "
+                 "feedback), the <a href=\"facilitator-guide-coaching-conversation.html\">Coaching Conversation</a>, and the "
+                 "<a href=\"facilitator-guide-conflict-levels.html\">Levels of Conflict</a> board if a disagreement is escalating."),
+        foot="“What would I want to know if it were me?”",
+    ),
+]
+
+
 # ------------------------------------------------------------------ rendering
 
 def guide_css():

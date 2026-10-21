@@ -18,6 +18,16 @@ from brand import ACCENT, NAVY, CREDIT  # noqa: E402
 OUT = Path(__file__).resolve().parent.parent
 
 TERMS = [
+    ("Now / Next / Later roadmap", "A roadmap that groups work by certainty instead of dates: Now is committed and in progress, "
+     "Next is shaped and ready, and Later holds problems worth exploring. Each item links to a goal.",
+     "Popularised by Janna Bastow (ProdPad).", ["roadmap"]),
+    ("Personal user manual", "A short guide each person writes to working with them: when they work best, how to reach them, "
+     "how they like feedback and what people misread about them.", "Popularised by Atlassian's Team Playbook.", ["user-manual"]),
+    ("Levels of conflict", "Five stages a conflict can escalate through: problem to solve, disagreement, contest, crusade and "
+     "world war. The language people use is the best clue to the level, and each level calls for a different response.",
+     "From Speed B. Leas; brought to agile teams by Lyssa Adkins in Coaching Agile Teams.", ["conflict"]),
+    ("SBI (Situation–Behaviour–Impact)", "A way to give specific feedback: describe the situation, the observable behaviour, "
+     "and its impact, then listen. Works for praise as well as correction.", "From the Center for Creative Leadership.", ["feedback"]),
     ("Benefits realisation", "Checking, after a project ends, that the value it was meant to create really arrives, with a named "
      "owner and dates to measure each benefit.", "Common in project and programme management.", ["closeout", "value"]),
     ("Onboarding", "Helping a new team member get set up, understand how the team works and contribute, usually with a plan, a "

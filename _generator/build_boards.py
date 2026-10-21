@@ -5371,6 +5371,287 @@ def build_team_onboarding():
                 "a buddy, and 30, 60 and 90-day check-ins.", "\n".join(b))
 
 
+# ---------------------------------------------------------------- now / next / later roadmap
+
+def build_roadmap():
+    b = [header("Now · Next · Later Roadmap",
+                "Show what you're working on, what's coming and what you're exploring, tied to goals, without promising dates you can't keep.",
+                "Decide What to Build · Now / Next / Later (Janna Bastow, ProdPad) · Outcomes, Not Dates",
+                header_fields(["Product", "Owner", "Updated"]))]
+
+    y, h = 148, 540
+    ct, cb = y + 64, y + h - 14
+    lane = (cb - ct) / 3
+    gx, gw = 24, 272
+    d = EMERALD[0]
+    b.append(panel(gx, y, gw, h, 1, "Goals", EMERALD, "WHY"))
+    for i, g in enumerate("ABC"):
+        ly = ct + i * lane
+        b.append(T(gx + 18, ly + 22, f"GOAL {g}", 9, d, MONO, weight=600, ls=".12em"))
+        b.append(lines(gx + 18, ly + 50, gx + gw - 18, 2, 26))
+        b.append(field(gx + 18, ly + 118, "Measure:", gx + gw - 18, d, 10.5))
+        if i:
+            b.append(dashed(gx + 14, gx + gw - 14, ly, d))
+
+    cw = (1632 - gw - 3 * 14) / 3
+    cols = [(2, "Now", BLUE, "COMMITTED · HIGH CERTAINTY", "Being built for this goal", (YELLOW,)),
+            (3, "Next", PURPLE, "SHAPED · MEDIUM CERTAINTY", "Shaped and ready to start", (YELLOW,)),
+            (4, "Later", SKY, "EXPLORING · LOW CERTAINTY", "Problems worth exploring", (BLUE_ST,))]
+    for i, (num, name, color, note, hint, chips) in enumerate(cols):
+        x = gx + gw + 14 + i * (cw + 14)
+        dk = color[0]
+        b.append(panel(x, y, cw, h, num, name, color, note))
+        for j in range(3):
+            ly = ct + j * lane
+            b.append(sticky_zone(x + 14, ly + 8, cw - 28, lane - 16, dk, hint, chips))
+            if j:
+                b.append(dashed(x + 14, x + cw - 14, ly, dk))
+
+    b.append(strip(702, "CERTAINTY FALLS FROM LEFT TO RIGHT  ·  LATER HOLDS PROBLEMS, NOT PROMISES"))
+
+    y, h = 748, 312
+    x, w = 24, 536
+    d = RED[0]
+    b.append(panel(x, y, w, h, 5, "Not Doing", RED, "AND WHY · SAYING NO OUT LOUD"))
+    b.append(table(x + 18, y + 86, [("Item", 230), ("Why not (for now)", w - 36 - 230)], 6, d, 32))
+
+    x = 574
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 6, "Assumptions to Test", AMBER, "BEFORE IT MOVES LEFT"))
+    b.append(table(x + 18, y + 86, [("We believe…", 260), ("We'll test it by", w - 36 - 260)], 6, d, 32))
+
+    x = 1124
+    w = 532
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 7, "Review & Share", SLATE, "A LIVING PLAN"))
+    for i, f in enumerate(["We review this every:", "Next review:", "An item moves to Now when:", "", "Shared with:"]):
+        if f:
+            b.append(field(x + 18, y + 86 + i * 34, f, x + w - 18, d))
+        else:
+            b.append(L(x + 18, y + 90 + i * 34, x + w - 18, y + 90 + i * 34, WRITE))
+    for i, s in enumerate(["Every item links to a goal", "No dates beyond Now"]):
+        b.append(checkbox(x + 18 + i * 250, y + h - 30, s, d, 11))
+
+    b.append(footer("Which goal does this serve, and how will we know it worked?",
+                    "What would have to be true for this to move from Later to Next?",
+                    "Decide What to Build · Roadmaps · Outcomes Over Output"))
+    write_board("roadmap-board", "Now · Next · Later Roadmap",
+                "A3 landscape roadmap board: three goals with measures, Now, Next and Later columns as horizons of "
+                "certainty, what we're not doing and why, assumptions to test, and how the roadmap is reviewed and shared.",
+                "\n".join(b))
+
+
+# ---------------------------------------------------------------- personal user manual
+
+MANUAL_PROMPTS = ["I do my best work when…", "The best way to reach me is…", "Give me feedback by…",
+                  "What drains me, and what energises me", "Things people misread about me", "Ask me about… (I can help with)"]
+
+
+def build_user_manual():
+    b = [header("Personal User Manual",
+                "A short guide to working with each person: how they like to work, communicate and get feedback. Four people per board.",
+                "Set Up the Team · Working With Me · Popularised by Atlassian's Team Playbook",
+                header_fields(["Team", "Date"]))]
+
+    colors = [PURPLE, BLUE, EMERALD, ORANGE]
+    hh = (1060 - 148 - 14) / 2
+    for k, color in enumerate(colors):
+        x, w = (24, 808) if k % 2 == 0 else (846, 810)
+        y = 148 + (k // 2) * (hh + 14)
+        d = color[0]
+        b.append(panel(x, y, w, hh, k + 1, "Working With Me", color, "ONE PERSON PER BLOCK"))
+        b.append(field(x + 18, y + 84, "Name:", x + 290, d))
+        b.append(field(x + 306, y + 84, "Role:", x + 520, d))
+        b.append(field(x + 536, y + 84, "Hours / time zone:", x + w - 18, d))
+        cw = (w - 36 - 24) / 2
+        for i, p in enumerate(MANUAL_PROMPTS):
+            px = x + 18 + (i % 2) * (cw + 24)
+            py = y + 126 + (i // 2) * 106
+            b.append(label(px, py, p, d))
+            b.append(lines(px, py + 28, px + cw, 3, 24))
+
+    b.append(footer("What's one thing about working with you that would save your teammates time?",
+                    "What will you do differently now you've read each other's?",
+                    "Set Up the Team · Know Each Other · Work Better Together"))
+    write_board("user-manual-board", "Personal User Manual",
+                "A3 landscape board with four personal user manual blocks: name, role and hours, then how each person "
+                "does their best work, likes to be reached and given feedback, what drains and energises them, what "
+                "people misread, and what to ask them about.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- levels of conflict
+
+CONFLICT_LEVELS = [
+    ("Problem to Solve", EMERALD,
+     ["Different views, shared goal. Information is", "shared openly; people focus on the problem."],
+     ["“Let's work out what's", "going on here.”"],
+     "Collaborate", ["Facilitate, then let the team solve it.", "Help them reach a decision together."]),
+    ("Disagreement", AMBER,
+     ["Self-protection creeps in. People keep their", "distance and talk in general terms."],
+     ["“I hear you, but…”", "“Some people think…”"],
+     "Support", ["Coach them to resolve it themselves;", "make sure each side is heard."]),
+    ("Contest", ORANGE,
+     ["Winning matters more than solving. Sides", "form, facts get distorted, it gets personal."],
+     ["“You always…”", "“They never…”"],
+     "Facilitate", ["Get back to facts and interests;", "run a structured conversation."]),
+    ("Crusade", RED,
+     ["Protecting one's own group. Positions harden", "into principles; the other side is the problem."],
+     ["“They're just like that.”", "“It's the principle.”"],
+     "Mediate", ["Bring in a neutral third party;", "talk with each group separately first."]),
+    ("World War", ("#7F1D1D", "#FEE2E2"),
+     ["Destroy the other side. Little talk, open", "hostility; real harm is possible."],
+     ["Little is said;", "people avoid each other."],
+     "Protect people", ["Separate the parties and escalate now:", "HR or leadership, not the team."]),
+]
+
+
+def build_conflict_levels():
+    b = [header("Levels of Conflict",
+                "Notice how far a conflict has gone, then choose a response that fits, from letting the team solve it to stepping in.",
+                "Facilitate & Coach · Five Levels of Conflict (Speed B. Leas) · via Lyssa Adkins, Coaching Agile Teams",
+                legend([("dot", EMERALD[0], "Level 1: healthy"), ("dot", "#B91C1C", "Level 5: get help")]))]
+
+    y, h = 148, 560
+    x, w = 24, 1082
+    b.append(panel(x, y, w, h, 1, "What Level Are We At?", SLATE, "LISTEN TO THE LANGUAGE"))
+    x2, w2 = 1120, 536
+    b.append(panel(x2, y, w2, h, 2, "The Coach's Move", BLUE, "LEVELS 4–5: GET HELP"))
+    x0 = x + 14
+    for cx, s in [(x0 + 16, "LEVEL"), (x0 + 262, "WHAT YOU SEE"), (x0 + 636, "WHAT YOU HEAR"), (x0 + 950, "SEEN?")]:
+        b.append(T(cx, y + 80, s, 8.5, SLATE[0], MONO, weight=600, ls=".1em"))
+    b.append(T(x2 + 18, y + 80, "WHAT TO DO", 8.5, BLUE[0], MONO, weight=600, ls=".1em"))
+    rh, gap = 84, 7
+    for i, (name, color, see, hear, move, how) in enumerate(CONFLICT_LEVELS):
+        dk = color[0]
+        ry = y + 92 + i * (rh + gap)
+        b.append(R(x0, ry, w - 28, rh, "white", 6, f' stroke="{dk}" stroke-opacity=".25"'))
+        b.append(R(x0, ry, 5, rh, dk, 3))
+        b.append(f'<circle cx="{x0 + 30}" cy="{ry + 28}" r="12" fill="{dk}"/>')
+        b.append(T(x0 + 30, ry + 33, str(i + 1), 11, "white", weight=600, anchor="middle"))
+        b.append(T(x0 + 50, ry + 33, name, 13, dk, weight=600))
+        b.append(para(x0 + 262, ry + 33, see, 10.5, dk, 18))
+        b.append(para(x0 + 636, ry + 33, hear, 13, dk, 20, font=SERIF, italic=True))
+        b.append(checkbox(x0 + 950, ry + 33, "Seen", dk, 11))
+        b.append(L(x0 + 950, ry + 62, x0 + w - 44, ry + 62, WRITE))
+        b.append(R(x2 + 14, ry, w2 - 28, rh, "white", 6, f' stroke="{dk}" stroke-opacity=".25"'))
+        b.append(R(x2 + 14, ry, 5, rh, dk, 3))
+        b.append(T(x2 + 34, ry + 30, f"{i + 1} · {move}", 12, dk, weight=600))
+        b.append(para(x2 + 34, ry + 52, how, 10.5, dk, 16))
+
+    y, h = 722, 338
+    x, w = 24, 536
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 3, "What's It About?", PURPLE, "FACTS, NOT BLAME"))
+    for i, f in enumerate(["The issue (what happened):", "", "Who's involved:", "Going on since:",
+                           "What each side needs:", "", ""]):
+        if f:
+            b.append(field(x + 18, y + 86 + i * 34, f, x + w - 18, d))
+        else:
+            b.append(L(x + 18, y + 90 + i * 34, x + w - 18, y + 90 + i * 34, WRITE))
+
+    x = 574
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 4, "Before You Step In", AMBER, "ASK YOURSELF"))
+    for i, s in enumerate(["Is this mine to act on, or the team's to solve?", "Am I neutral? If not, who is?",
+                           "Have I heard each side on their own?", "Can the team use its own working agreements?",
+                           "Would naming the level help the team see it?", "Is anyone at risk of harm?"]):
+        b.append(checkbox(x + 18, y + 88 + i * 32, s, d, 11))
+    b.append(T(x + 18, y + h - 40, "Harassment, discrimination or safety concerns:", 11, RED[0], weight=600))
+    b.append(T(x + 18, y + h - 22, "don't mediate. Go to HR or your leadership straight away.", 11, RED[0]))
+
+    x, w = 1124, 532
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 5, "Our Next Step", FOREST, "AND WHEN TO CHECK AGAIN"))
+    for i, f in enumerate(["Level now:", "Move we'll try:", "", "With whom:", "By when:", "Check again on:", "Escalate if:"]):
+        if f:
+            b.append(field(x + 18, y + 86 + i * 34, f, x + w - 18, d))
+        else:
+            b.append(L(x + 18, y + 90 + i * 34, x + w - 18, y + 90 + i * 34, WRITE))
+
+    b.append(footer("What words are people using, and what level do they point to?",
+                    "Is this conflict about the work, or about each other?",
+                    "Facilitate & Coach · Conflict · Healthy Disagreement, Early Help"))
+    write_board("conflict-levels-board", "Levels of Conflict",
+                "A3 landscape coach's board for diagnosing team conflict with Speed Leas's five levels: what you see and "
+                "hear at each level, the coach's move for each, what the conflict is about, questions to ask before "
+                "stepping in, and an agreed next step.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- feedback conversation
+
+SBI = [("Situation", "When and where. Recent,", "specific and factual.", ["“In Tuesday's review…”"]),
+       ("Behaviour", "What you saw or heard.", "No labels, no guesses.", ["“…you cut Priya off", "twice…”"]),
+       ("Impact", "The effect on you, the", "team or the work.", ["“…and we didn't hear", "her view on the risk.”"]),
+       ("Request", "What you'd like next,", "then ask for their view.", ["“Could you let people", "finish? How did it seem", "to you?”"])]
+
+
+def build_feedback():
+    b = [header("Feedback Conversation",
+                "Prepare and hold one feedback conversation: describe what happened and its effect, listen, and agree what happens next.",
+                "Facilitate & Coach · Situation–Behaviour–Impact (Center for Creative Leadership) · Feedback Both Ways",
+                header_fields(["With", "Date"]))]
+
+    x, y, w, h = 24, 148, 1632, 150
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 1, "Check Yourself First", SLATE, "BEFORE YOU BOOK IT"))
+    for i, s in enumerate(["My intent is to help, not to win", "It's recent and specific", "I'll say it in private",
+                           "I'm ready to listen, too", "It's a good time for them"]):
+        b.append(checkbox(x + 18 + i * 322, y + 86, s, d, 11))
+    b.append(field(x + 18, y + 122, "What I want for them from this conversation:", x + w - 18, d))
+
+    y, h = 312, 440
+    x, w = 24, 1082
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 2, "Prepare It", BLUE, "SITUATION · BEHAVIOUR · IMPACT · REQUEST"))
+    cw = (w - 28 - 30) / 4
+    for i, (name, h1, h2, ex) in enumerate(SBI):
+        cx = x + 14 + i * (cw + 10)
+        b.append(R(cx, y + 64, cw, h - 78, "white", 6, f' stroke="{d}" stroke-opacity=".2"'))
+        b.append(f'<circle cx="{cx + 22:g}" cy="{y + 88}" r="11" fill="{d}"/>')
+        b.append(T(cx + 22, y + 92, "SBIR"[i], 10.5, "white", weight=600, anchor="middle"))
+        b.append(T(cx + 40, y + 93, name, 12, d, weight=600))
+        b.append(para(cx + 14, y + 122, [h1, h2], 10.5, d, 15))
+        b.append(para(cx + 14, y + 168, ex, 12.5, d, 18, font=SERIF, italic=True))
+        b.append(T(cx + 14, y + 236, "What I'll say:", 9.5, d, op=".88"))
+        b.append(lines(cx + 14, y + 264, cx + cw - 14, 6, 26))
+
+    x, w = 1120, 536
+    d = EMERALD[0]
+    b.append(panel(x, y, w, h, 3, "Hear It Back", EMERALD, "IT'S A CONVERSATION"))
+    b.append(T(x + 18, y + 80, "QUESTIONS TO ASK", 8.5, d, MONO, weight=600, ls=".12em"))
+    for j, q in enumerate(["“How did it look from your side?”", "“What did I miss?”", "“What would help?”"]):
+        b.append(T(x + 18, y + 106 + j * 24, q, 14, d, SERIF, italic=True))
+    for i, f in enumerate(["Their view:", "", "", "What I learned:", "", "", "Feedback for me:", ""]):
+        if f:
+            b.append(field(x + 18, y + 200 + i * 28, f, x + w - 18, d))
+        else:
+            b.append(L(x + 18, y + 204 + i * 28, x + w - 18, y + 204 + i * 28, WRITE))
+
+    y, h = 766, 294
+    x, w = 24, 808
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 4, "Agree Next Steps", FOREST, "BOTH OF US"))
+    b.append(table(x + 18, y + 86, [("Who", 150), ("Will do", 440), ("By when", w - 36 - 590)], 4, d, 34))
+    b.append(field(x + 18, y + h - 30, "We'll check in on:", x + w - 18, d))
+
+    x, w = 846, 810
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 5, "Praise Works the Same Way", AMBER, "SAY WHAT WENT WELL, SPECIFICALLY"))
+    for i, f in enumerate(["Situation:", "Behaviour:", "Impact:"]):
+        b.append(field(x + 18, y + 86 + i * 36, f, x + w - 18, d))
+    b.append(T(x + 18, y + 210, "RECEIVING FEEDBACK", 8.5, d, MONO, weight=600, ls=".12em"))
+    b.append(T(x + 18, y + 236, "Listen to the end · Ask to understand, not to defend · Say thank you", 11, d))
+    b.append(T(x + 18, y + 258, "Then decide what you'll do with it, in your own time.", 11, d))
+
+    b.append(footer("Did I describe what happened, or judge who they are?",
+                    "What would I want to know if it were me?",
+                    "Facilitate & Coach · Feedback · Kind, Clear, Specific"))
+    write_board("feedback-conversation-board", "Feedback Conversation",
+                "A3 landscape board for preparing and holding a feedback conversation: a self-check, situation, behaviour, "
+                "impact and request with examples, questions to hear the other side, agreed next steps, and using the same "
+                "shape for praise.", "\n".join(b))
+
+
 # ---------------------------------------------------------------- worked examples
 # Filled-in copies of real boards for a fictional team (the "Basket team" at an online grocery service, the same
 # running example as the Backlog Item Anatomy poster). Each example reads the generated blank board and adds a layer
@@ -5635,5 +5916,9 @@ if __name__ == "__main__":
     build_right_size()
     build_project_closeout()
     build_team_onboarding()
+    build_roadmap()
+    build_user_manual()
+    build_conflict_levels()
+    build_feedback()
     for make in EXAMPLES.values():   # worked examples read the blank boards, so they run last
         make()

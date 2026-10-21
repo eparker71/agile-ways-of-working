@@ -75,6 +75,8 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | Delivery Metrics & Tech Debt | `delivery-metrics-board` | `facilitator-guide-delivery-metrics.html` |
 | Project Close-out | `project-closeout-board` | `facilitator-guide-project-closeout.html` |
 | Team Onboarding | `team-onboarding-board` | `facilitator-guide-team-onboarding.html` |
+| Personal User Manual | `user-manual-board` | `facilitator-guide-user-manual.html` |
+| Now · Next · Later Roadmap | `roadmap-board` | `facilitator-guide-roadmap.html` |
 | Right-Size Your Structure poster | `right-size-poster` | `facilitator-guide-right-size.html` |
 | SDLC at a Glance poster | `sdlc-poster` | `facilitator-guide-sdlc.html` |
 | Delivery Pipeline Canvas | `delivery-pipeline-board` | `facilitator-guide-delivery-pipeline.html` |
@@ -82,6 +84,8 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | Release Readiness & Strategy | `release-readiness-board` | `facilitator-guide-release-readiness.html` |
 | Continuous Delivery Health Check | `cd-health-check-board` | `facilitator-guide-cd-health-check.html` |
 | Coaching Conversation (GROW) | `coaching-conversation-board` | `facilitator-guide-coaching-conversation.html` |
+| Levels of Conflict | `conflict-levels-board` | `facilitator-guide-conflict-levels.html` |
+| Feedback Conversation (SBI) | `feedback-conversation-board` | `facilitator-guide-feedback-conversation.html` |
 | Psychological Safety Check | `psych-safety-board` | `facilitator-guide-psych-safety.html` |
 | Anti-Pattern Spotter | `anti-pattern-spotter-board` | `facilitator-guide-anti-pattern-spotter.html` |
 | Cross-Team Retro | `cross-team-retro-board` | `facilitator-guide-cross-team-retro.html` |
@@ -103,8 +107,8 @@ The home page groups tools by what you're trying to do. No one framework is assu
 
 | Section | Tools |
 |---|---|
-| Set up the team | Team Launch (Sprint Zero), Team Charter, Team Onboarding, AI Working Agreement, Skills Matrix |
-| Decide what to build | Product Vision Board, Persona & Journey Map, Opportunity Solution Tree, Impact Map, Prioritisation Board |
+| Set up the team | Team Launch (Sprint Zero), Team Charter, Team Onboarding, Personal User Manual, AI Working Agreement, Skills Matrix |
+| Decide what to build | Product Vision Board, Persona & Journey Map, Opportunity Solution Tree, Impact Map, Prioritisation Board, Now · Next · Later Roadmap |
 | Break down work | Epic Breakdown Canvas, User Story Map, Story Splitting, Example Mapping, Backlog Item Anatomy, Estimation |
 | Run events & iterations | Events & Cadences poster, Sprint Planning, Daily Sync, Backlog Refinement, Sprint Review |
 | Manage flow | Kanban Board Design, Kanban Cadences, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Impediments Board, Value Stream Map |
@@ -113,11 +117,11 @@ The home page groups tools by what you're trying to do. No one framework is assu
 | Run a project | Right-Size Your Structure, Project Kickoff, Stakeholder Map, Pre-mortem, RAID Log, RACI & Decision Log, Release Forecast & Burn-up, Outcome Status Report, Project Close-out |
 | Coordinate teams | Objectives & Key Results, Cross-Team Planning, Dependency Map, Cross-Team Sync, Team Topology Design, Cross-Team Retro |
 | Lead the organisation | Value Metrics, Portfolio Kanban & Investment Mix, Delegation Board, Leading for Psychological Safety, ADKAR Change Readiness (ADKAR® is a registered trademark of Prosci, Inc.) |
-| Facilitate & coach | Facilitation Techniques, Lean Coffee, Coaching Conversation |
+| Facilitate & coach | Facilitation Techniques, Lean Coffee, Coaching Conversation, Levels of Conflict, Feedback Conversation |
 
 The home page also has a **Start here** strip (role guide, glossary, cheat sheets, Make It Yours), a sticky section menu, a search box and the **I'm a…** role filter.
 
-**Diagnose** (Team Health Check) → **Explore** (Marginal Gains Workshop) → **Experiment** (1% Experiment Canvas) → **Reflect** (Retrospective Kit), then back round again. Lean Coffee and the Facilitation Techniques poster can be used at any point. The Psychological Safety Check sits alongside the Health Check, and the Coaching Conversation canvas supports one-to-one coaching.
+**Diagnose** (Team Health Check) → **Explore** (Marginal Gains Workshop) → **Experiment** (1% Experiment Canvas) → **Reflect** (Retrospective Kit), then back round again. Lean Coffee and the Facilitation Techniques poster can be used at any point. The Psychological Safety Check sits alongside the Health Check, and the Coaching Conversation canvas supports one-to-one coaching. Levels of Conflict helps a coach judge when to step in, and the Feedback Conversation board prepares one difficult (or appreciative) conversation.
 
 **Breaking down work** goes from big to small: Epic Breakdown Canvas (idea → MVP → features) → User Story Map (journey → release slices) → Story Splitting (stories small enough for a sprint) → Example Mapping (is each story understood and ready?). The Backlog Item Anatomy poster shows what a good epic, feature and story look like.
 

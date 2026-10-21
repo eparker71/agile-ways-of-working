@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Now · Next · Later Roadmap Guide</title>
+<!-- meta -->
+<meta name="description" content="How to build a roadmap that ties work to goals and shows certainty honestly, without promising dates you can&#x27;t keep.">
+<link rel="canonical" href="https://eparker71.github.io/agile-ways-of-working/facilitator-guide-roadmap.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agile Ways of Working Toolkit">
+<meta property="og:title" content="Now · Next · Later Roadmap Guide · Agile Ways of Working Toolkit">
+<meta property="og:description" content="How to build a roadmap that ties work to goals and shows certainty honestly, without promising dates you can&#x27;t keep.">
+<meta property="og:url" content="https://eparker71.github.io/agile-ways-of-working/facilitator-guide-roadmap.html">
+<meta property="og:image" content="https://eparker71.github.io/agile-ways-of-working/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /meta -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#5B6B82; --rule:#E2E8F0; --paper:#FFFFFF;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:13px;line-height:1.55;padding:24px 16px;}
+.page{max-width:820px;margin:0 auto 24px;background:var(--paper);box-shadow:0 12px 40px rgba(0,0,0,.22);}
+.masthead{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:28px 40px 26px;position:relative;}
+.badge{position:absolute;top:14px;right:24px;font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;}
+.masthead h1{font:400 40px/1.05 var(--serif);margin:14px 0 8px;}
+.masthead p{margin:0;color:#94A3B8;font-size:13.5px;}
+.masthead .tag{margin-top:8px;font:9px var(--mono);color:#94A3B8;letter-spacing:.06em;}
+.content{padding:28px 40px 36px;}
+h2{font:400 26px/1.15 var(--serif);margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;}
+h2 .n{font:600 11px var(--sans);color:#fff;background:var(--navy);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;flex:none;transform:translateY(-3px);}
+h3{font:600 13px var(--sans);margin:16px 0 6px;}
+p{margin:6px 0 10px;}
+.lede{font:italic 400 19px/1.35 var(--serif);color:var(--ink);border-left:4px solid var(--accent);padding:2px 0 2px 16px;margin:4px 0 20px;}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px;}
+.glance div{background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;}
+.glance b{display:block;font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+.glance span{font-weight:600;font-size:13px;}
+ul.check{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:28px;}
+ul.check li{padding-left:22px;position:relative;margin-bottom:5px;break-inside:avoid;}
+ul.check li::before{content:"";position:absolute;left:0;top:3px;width:11px;height:11px;border:1.4px solid var(--ink);border-radius:2px;opacity:.55;}
+table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:12.5px;}
+th{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--ink);text-align:left;padding:8px 10px;}
+th:first-child{border-left:5px solid var(--accent);}
+td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+td.t{font:500 11px var(--mono);white-space:nowrap;color:var(--muted);}
+td.a{font-weight:600;width:24%;}
+tr:nth-child(even) td{background:#F8FAFC;}
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;}
+.area{border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,.06);break-inside:avoid;}
+.area h4{margin:0;padding:7px 12px;color:#fff;font:600 12.5px var(--sans);}
+.area ul{margin:0;padding:8px 12px 10px 28px;font-size:12px;}
+.area li{margin-bottom:3px;}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.tip{border-top:2px solid var(--rule);padding-top:8px;}
+.tip b{display:block;margin-bottom:2px;}
+.flow{display:flex;align-items:stretch;gap:0;margin:14px 0 6px;flex-wrap:wrap;}
+.step{flex:1 1 0;min-width:120px;background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;position:relative;}
+.arrow{flex:none;align-self:center;color:#C2410C;font:600 16px var(--sans);padding:0 6px;}
+.step b{display:block;font-size:12.5px;}
+.step small{color:var(--muted);font-size:11px;line-height:1.4;display:block;margin-top:2px;}
+.step .k{font:500 8.5px var(--mono);letter-spacing:.12em;color:#C2410C;text-transform:uppercase;}
+.callout{background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:12px 16px;margin:14px 0;}
+.callout b{color:#9A3412;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display:flex;justify-content:space-between;gap:16px;font:8px var(--mono);letter-spacing:.08em;color:#5B6B82;}
+@media (max-width:640px){
+  .masthead,.content{padding-left:20px;padding-right:20px;}
+  .glance{grid-template-columns:1fr 1fr;}
+  ul.check{columns:1;}
+  .areas,.tips,.two{grid-template-columns:1fr;}
+  .arrow{display:none;}
+  .flow{gap:8px;}
+  table{font-size:11.5px;}
+  td.t{white-space:normal;}
+}
+@media print{
+  @page{size:A4 portrait;margin:12mm 12mm 14mm;}
+  html,body{background:none;}
+  body{padding:0;font-size:11.5px;}
+  .page{box-shadow:none;max-width:none;margin:0;}
+  .masthead,th,.area h4,h2 .n{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  tr,.area,.tip,.step,.callout{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .pb{break-before:page;}
+}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
+.content a{color:#9A3412;}
+@media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:#C2410C;}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
+.content a{color:#9A3412;}
+.example{border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:10px 0;}
+.example div{display:grid;grid-template-columns:30% 1fr;border-bottom:1px solid var(--rule);}
+.example div:last-child{border-bottom:none;}
+.example b{background:#F8FAFC;padding:7px 12px;font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.example span{padding:7px 12px;font-size:12.5px;}
+@media (max-width:640px){.example div{grid-template-columns:1fr;}}
+@media print{.boards{display:none;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>Now · Next · Later Roadmap Guide</h1>
+    <p>How to build a roadmap that ties work to goals and shows certainty honestly, without promising dates you can&#x27;t keep.</p>
+    <div class="tag">Facilitator Run-Sheet · Decide What to Build · Now / Next / Later</div>
+    <div class="boards"><a class="primary" href="roadmap-board.html">Open board →</a><a href="roadmap-board.svg">SVG →</a><a href="pdf/roadmap-board.pdf" download>A3 PDF ↓</a><a href="facilitator-guide-roadmap.docx" download>Word (editable) ↓</a></div>
+  </header>
+  <div class="content">
+    <p class="lede">“Which goal does this serve, and how will we know it worked?”</p>
+    <p>A date-driven roadmap promises things nobody can know yet. The <b>Now / Next / Later</b> roadmap, popularised by Janna Bastow of ProdPad, swaps dates for <b>horizons of certainty</b>: <b>Now</b> is committed and in progress, <b>Next</b> is shaped and ready to start, and <b>Later</b> holds problems worth exploring, not promises. Every item sits in a lane for one of up to three <b>goals</b>, so the roadmap explains why as well as what. The board adds what you're <b>not doing</b>, the <b>assumptions</b> to test before an item moves left, and how often you'll review it.</p>
+    <div class="glance"><div><b>Duration</b><span>60–90 min,<br>then reviewed regularly</span></div><div><b>Group</b><span>Product owner, team,<br>key stakeholders</span></div><div><b>Use when</b><span>Planning a quarter,<br>or replacing a Gantt</span></div><div><b>Output</b><span>A goal-led roadmap<br>you can share</span></div></div>
+    <h2><span class="n">1</span>Before the session</h2>
+    <ul class="check"><li>Print the board at A3 or 11×17, or load the SVG as a digital background</li><li>Bring the product vision and current goals or OKRs; agree no more than three goals</li><li>List candidate items on stickies beforehand: work in progress, ideas, requests</li><li>Invite someone who can say no: the product owner or sponsor</li></ul>
+    <h2><span class="n">2</span>Agenda &amp; run-sheet</h2>
+    <table><thead><tr><th>Time</th><th>Section</th><th>Facilitator notes</th></tr></thead><tbody><tr><td class="t">0–15</td><td class="a">1 · Goals</td><td>Agree up to three goals and a measure for each. If an item fits no goal, question it.</td></tr><tr><td class="t">15–30</td><td class="a">2 · Now</td><td>Place work already in progress. If Now is overflowing, that's the first conversation.</td></tr><tr><td class="t">30–45</td><td class="a">3 · Next</td><td>Add items that are shaped and ready. Keep it to what the team could start soon.</td></tr><tr><td class="t">45–55</td><td class="a">4 · Later</td><td>Add problems and opportunities, not solutions. Write them as questions where you can.</td></tr><tr><td class="t">55–70</td><td class="a">5 · Not Doing · 6 · Assumptions</td><td>Say no out loud, with reasons. List what must be true before items move left.</td></tr><tr><td class="t">70–80</td><td class="a">7 · Review & Share</td><td>Agree how often to review it, when an item moves to Now, and who sees it.</td></tr></tbody></table>
+    <h2 class="pb"><span class="n">3</span>Using each horizon well</h2>
+    <p>Certainty falls from left to right.</p>
+    <div class="areas"><div class="area" style="background:#D1FAE5;color:#065F46"><h4 style="background:#065F46">Goals</h4><ul><li>Up to three</li><li>Each with a measure</li></ul></div><div class="area" style="background:#DBEAFE;color:#1E3A8A"><h4 style="background:#1E3A8A">Now</h4><ul><li>Committed, in progress</li><li>Small enough to finish</li></ul></div><div class="area" style="background:#EDE9FE;color:#581C87"><h4 style="background:#581C87">Next</h4><ul><li>Shaped, not started</li><li>Could change</li></ul></div><div class="area" style="background:#E0F2FE;color:#0C4A6E"><h4 style="background:#0C4A6E">Later</h4><ul><li>Problems, not features</li><li>No dates</li></ul></div><div class="area" style="background:#FEE2E2;color:#991B1B"><h4 style="background:#991B1B">Not Doing</h4><ul><li>Said out loud</li><li>With a reason</li></ul></div></div>
+    <h2><span class="n">4</span>Facilitation tips</h2>
+    <div class="tips"><div class="tip"><b>Problems on the right</b>Later items written as problems keep options open: “Shoppers abandon at delivery slots”, not “Build slot picker”.</div><div class="tip"><b>Dates only in Now</b>If someone needs a date, forecast the Now items with the Release Forecast, not the whole roadmap.</div><div class="tip"><b>Not Doing builds trust</b>Stakeholders accept a no far more easily when they can see it and the reason.</div><div class="tip"><b>Move items both ways</b>An item can move back from Next to Later when you learn it&#x27;s harder or less valuable.</div><div class="tip"><b>Show it, don&#x27;t send it</b>Walk stakeholders through it; the conversation matters more than the picture.</div><div class="tip"><b>Keep it fresh</b>A roadmap reviewed every month or quarter is a plan; one never reviewed is a wish list.</div></div>
+    <div class="callout"><b>Common pitfalls:</b> a Gantt chart with the dates rubbed off; Later used as a promise; too many goals; items with no goal; Now overflowing; never reviewing it; treating it as a commitment to every stakeholder.</div>
+    <h2><span class="n">5</span>After the session</h2>
+    <div class="two"><div><h3>Straight away</h3><p>Photograph the board or move it to your digital tool, and share it with a short walk-through.</p></div><div><h3>Each iteration</h3><p>Plan from the Now column; refine items in Next.</p></div><div><h3>Monthly or quarterly</h3><p>Review: move items, retire goals that are met, check the assumptions.</p></div><div><h3>When asked for dates</h3><p>Use the Release Forecast for Now items, and explain the horizons.</p></div></div>
+    <h2><span class="n">6</span>How it fits the toolkit</h2>
+    <p>The roadmap sits between strategy and delivery. Start from the <a href="facilitator-guide-product-vision.html">Product Vision Board</a> and <a href="facilitator-guide-okr.html">Objectives &amp; Key Results</a> for the goals, use the <a href="facilitator-guide-opportunity-solution-tree.html">Opportunity Solution Tree</a> to explore Later, the <a href="facilitator-guide-prioritisation.html">Prioritisation Board</a> to choose what moves left (its small Now / Next / Later panel is a quick version of this board), and the <a href="facilitator-guide-release-forecast.html">Release Forecast</a> when someone needs a date.</p>
+    <section class="spec"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Now · Next · Later Roadmap”, a workshop board.
+
+Purpose: Show what you&#x27;re working on, what&#x27;s coming and what you&#x27;re exploring, tied to goals, without promising dates you can&#x27;t keep.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+
+Header fields to fill in: Product, Owner, Updated
+
+Sections:
+1. Goals: top left, about 15% wide and 60% tall; header colour emerald green.
+   Subtitle: Why
+   Content: Goal a: · Measure: (×3) · Goal b: · Goal c:
+2. Now: top left, about 25% wide and 60% tall.
+   Subtitle: Committed · high certainty
+   Content: Being built for this goal (×3)
+3. Next: top centre, about 25% wide and 60% tall.
+   Subtitle: Shaped · medium certainty
+   Content: Shaped and ready to start (×3)
+4. Later: top right, about 25% wide and 60% tall.
+   Subtitle: Exploring · low certainty
+   Content: Problems worth exploring (×3)
+5. Not Doing: bottom left, about 35% wide and 35% tall; header colour red.
+   Subtitle: And why · saying no out loud
+   Content: Item: · Why not (for now):
+6. Assumptions to Test: bottom centre, about 35% wide and 35% tall; header colour amber.
+   Subtitle: Before it moves left
+   Content: We believe…: · We&#x27;ll test it by:
+7. Review &amp; Share: bottom right, about 35% wide and 35% tall; header colour slate grey.
+   Subtitle: A living plan
+   Content: We review this every: · Next review: · An item moves to Now when: · Shared with: · Every item links to a goal · No dates beyond Now
+
+Also on the board: CERTAINTY FALLS FROM LEFT TO RIGHT · LATER HOLDS PROBLEMS, NOT PROMISES
+
+Footer questions: “Which goal does this serve, and how will we know it worked?” “What would have to be true for this to move from Later to Next?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/roadmap-board.html</pre></details></section>
+    <p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>
+    <footer><span>“What would have to be true for this to move from Later to Next?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
+  </div>
+</div>
+</body>
+</html>
