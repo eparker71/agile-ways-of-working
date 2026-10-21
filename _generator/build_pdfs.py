@@ -29,7 +29,7 @@ def boards():
 
 
 # Multi-page A4 documents printed from a page's print stylesheet (not boards, so not one page each)
-DOCUMENTS = ["basket-team-story"]
+DOCUMENTS = ["basket-team-story", "basket-team-highlights"]
 
 
 def fingerprint(stem):

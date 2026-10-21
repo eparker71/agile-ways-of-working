@@ -16,7 +16,7 @@ python3 _generator/check_site.py    # links + anchors, metadata, SVG/Word validi
 python3 _generator/build_pdfs.py    # A3 PDFs of every board into pdf/ (needs Chrome); only remakes changed boards
 ```
 
-`build_pdfs.py` also prints the documents in its `DOCUMENTS` list (the A4 case study `basket-team-story`) from their page's print stylesheet; their fingerprint covers the page and the images on it, so changing a worked example remakes it too.
+`build_pdfs.py` also prints the documents in its `DOCUMENTS` list (the A4 case study `basket-team-story` and its 12-step `basket-team-highlights` edition, both from `build_story()`; the highlights and their lessons are `HIGHLIGHTS` in story.py) from their page's print stylesheet; their fingerprint covers the page and the images on it, so changing a worked example remakes it too.
 
 **After changing any board**, run `build_all.py`, then `build_pdfs.py`, then `build_all.py` again (pages link to a PDF once it exists). PDFs carry timestamps so they aren't rebuilt in CI; `pdf/manifest.json` stores a fingerprint of each board's SVG and `check_site.py` fails if a PDF is missing or stale. `print-pack.html` (built by `build_recipes.py`) lists every PDF, grouped by the home page sections.
 
@@ -32,7 +32,7 @@ Each script regenerates everything it owns (there's no per-file target). They're
 
 Never edit generated files directly; edit the script and re-run.
 
-- **Generated:** every board and poster except Marginal Gains, `worked-example-*`, every `facilitator-guide-*.{html,docx}` except Marginal Gains, `start-here-by-role.html`, `glossary.html`, `anti-patterns.html`, `good-practices.html`, `tools-by-industry.html`, `scenarios.html`, `workshop-recipes.html`, `basket-team-story.html`, `sitemap.xml`, `robots.txt`, `404.html`.
+- **Generated:** every board and poster except Marginal Gains, `worked-example-*`, every `facilitator-guide-*.{html,docx}` except Marginal Gains, `start-here-by-role.html`, `glossary.html`, `anti-patterns.html`, `good-practices.html`, `tools-by-industry.html`, `scenarios.html`, `workshop-recipes.html`, `basket-team-story.html`, `basket-team-highlights.html`, `sitemap.xml`, `robots.txt`, `404.html`.
 - **Hand-edited content:** `_content/scenarios.md` and `_content/recipes.md` (formats explained at the top of each). Tool titles in them must match `TOOLS` exactly or the build stops. `.github/ISSUE_TEMPLATE/scenario.yml` is the public suggestion form.
 - **Hand-written:** `marginal-gains-workshop-board.{svg,html}`, `facilitator-guide-marginal-gains.html`, `scrum-master-agile-coach-cheat-sheet.html`, `jira-cheat-sheet.html`, `make-it-yours.html`, `about.html`, `index.html`, `LICENSE.md`.
 - **Brand:** colours, fonts and the credit line (© author · CC BY 4.0 · site) live in `_generator/brand.py` and are imported by the generators. The hand-written pages carry the same values by hand, so update them too when rebranding. `SITE` (in the credit line) points to the original site; `PUBLISH_AT` is where this copy is published and drives canonical URLs, previews and the sitemap.

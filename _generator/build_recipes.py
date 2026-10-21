@@ -15,7 +15,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from build_roles import TOOLS, FONT_URL  # noqa: E402
 from build_scenarios import _smart  # noqa: E402
 from brand import ACCENT, NAVY, CREDIT, PUBLISH_AT  # noqa: E402
-from story import STORY  # noqa: E402
+from story import STORY, HIGHLIGHTS  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent
 SRC = OUT / "_content" / "recipes.md"
@@ -345,7 +345,7 @@ def build_print_pack():
         if items:
             groups.append((re.sub(r"<[^>]+>", "", m.group(2)), items))
     extra = [p.stem for p in sorted((OUT / "pdf").glob("*.pdf")) if p.stem not in seen]
-    named = {TOOLS[k][1][:-5]: TOOLS[k][0] for k in TOOLS} | {"basket-team-story": "The Basket Team Story (A4 case study)"}
+    named = {TOOLS[k][1][:-5]: TOOLS[k][0] for k in TOOLS} | {"basket-team-story": "The Basket Team Story (A4 case study)", "basket-team-highlights": "The Basket Team Story: Highlights (A4)"}
     if extra:
         groups.append(("Worked examples and other boards",
                        [(("Example: " + named.get(e[len("worked-example-"):], e)) if e.startswith("worked-example-")
@@ -420,32 +420,59 @@ footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-
     print(f"wrote print-pack.html ({total} PDFs)")
 
 
-def build_story():
-    """basket-team-story.html: every worked example as one dated story, from launch to close-out."""
+STORY_EDITIONS = {
+    "basket-team-story": dict(
+        title="The Basket Team Story", pdf_label="Download the case study (A4 PDF) ↓",
+        intro="Every worked example in the toolkit, in the order it happened: one fictional team at an online grocery service, "
+              "from launching in February to closing out in July. Read it as a case study of the tools working together. "
+              "Each step opens the filled-in board, with a link back to the blank one.",
+        other='Short on time? Read the <a href="basket-team-highlights.html">highlights</a>: twelve moments and what they teach.'),
+    "basket-team-highlights": dict(
+        title="The Basket Team Story: Highlights", pdf_label="Download the highlights (A4 PDF) ↓",
+        intro="Twelve moments from the Basket team's five months, each with the lesson it teaches. One fictional team at an "
+              "online grocery service, from kickoff to close-out. Each step opens the filled-in board.",
+        other='This is the short version. <a href="basket-team-story.html">The full story</a> has all 66 worked examples, in order.'),
+}
+
+
+def build_story(slug="basket-team-story"):
+    """The Basket team's story as a page, in two editions: every worked example (basket-team-story.html), or the twelve
+    HIGHLIGHTS with their lessons (basket-team-highlights.html). Each prints as an A4 PDF via build_pdfs.py."""
+    ed, highlights = STORY_EDITIONS[slug], slug == "basket-team-highlights"
     keys = [k for _, _, items in STORY for _, _, k, _ in items]
     missing = {k for k, _, _ in EXAMPLES} - set(keys)
     assert not missing, f"worked examples missing from STORY: {sorted(missing)}"
     assert len(keys) == len(set(keys)), "a worked example appears twice in STORY"
+    lesson = dict(HIGHLIGHTS)
+    assert set(lesson) <= set(keys), f"HIGHLIGHTS names steps not in STORY: {sorted(set(lesson) - set(keys))}"
     title_of = {k: t for k, t, _ in EXAMPLES}
-    nav, chapters = [], []
+    nav, chapters, shown = [], [], 0
     for month, name, items in STORY:
         mid = month.lower()
-        nav.append(f'<a href="#{mid}">{month}</a>')
         rows = []
         for _, date, key, line in sorted(items):
+            if highlights and key not in lesson:
+                continue
             board = TOOLS[key][1]
+            les = f'<em>Lesson: {escape(lesson[key])}</em>' if highlights else ""
             rows.append(f'<li><span class="d">{escape(date)}</span><a class="st" href="worked-example-{board}">'
                         f'<img src="worked-example-{board.replace(".html", ".svg")}" alt="">'
-                        f'<span><b>{escape(title_of[key])}</b>{escape(line)}</span></a></li>')
-        chapters.append(f'<section id="{mid}"><h2>{month} <span>· {escape(name)}</span></h2><ol>{"".join(rows)}</ol></section>')
-    pdf_dl = ('<a class="dl" href="pdf/basket-team-story.pdf" download>Download the case study (A4 PDF) ↓</a>\n  '
-              if (OUT / "pdf" / "basket-team-story.pdf").exists() else "")
+                        f'<span><b>{escape(title_of[key])}</b>{escape(line)}{les}</span></a></li>')
+        if rows:
+            shown += len(rows)
+            nav.append(f'<a href="#{mid}">{month}</a>')
+            chapters.append(f'<section id="{mid}"><h2>{month} <span>· {escape(name)}</span></h2><ol>{"".join(rows)}</ol></section>')
+    pdf_dl = (f'<a class="dl" href="pdf/{slug}.pdf" download>{ed["pdf_label"]}</a>\n  '
+              if (OUT / "pdf" / f"{slug}.pdf").exists() else "")
+    hl_css = ("a.st{grid-template-columns:1fr;}a.st img{width:100%;}a.st em{display:block;margin-top:6px;color:#9A3412;}"
+              "@media print{a.st{grid-template-columns:1fr;}a.st img{width:118mm;margin:0 auto;}section+section{break-before:auto;}}"
+              if highlights else "")
     page = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Basket Team Story</title>
+<title>{ed["title"]}</title>
 <link rel="stylesheet" href="{FONT_URL}">
 <style>
 :root{{--accent:{ACCENT};--navy:{NAVY};--ink:#1E293B;--muted:#5B6B82;--rule:#E2E8F0;}}
@@ -501,15 +528,16 @@ a.st img{{width:80mm;}}
 a.st span{{font-size:12.5px;}}
 .end{{break-inside:avoid;}}
 }}
+{hl_css}
 </style>
 </head>
 <body>
 <header><div class="wrap">
   <a class="back" href="workshop-recipes.html#examples">← All worked examples</a>
-  <h1>The Basket Team Story</h1>
-  <p>Every worked example in the toolkit, in the order it happened: one fictional team at an online grocery service, from launching in February to closing out in July. Read it as a case study of the tools working together. Each step opens the filled-in board, with a link back to the blank one.</p>
+  <h1>{ed["title"]}</h1>
+  <p>{ed["intro"]} {ed["other"]}</p>
   {pdf_dl}<nav class="months" aria-label="Months">{"".join(nav)}</nav>
-  <p class="ponly">Online, with every board full size: {PUBLISH_AT}/basket-team-story.html</p>
+  <p class="ponly">Online, with every board full size: {PUBLISH_AT}/{slug}.html</p>
 </div></header>
 <main><div class="wrap">
 <div class="cast"><b>The cast.</b> The Basket team: Priya (product owner), Sam and Jo (developers), Alex (tester), Mei (designer), Tom (Scrum Master), and Ravi (developer, from March). Around them: the Head of Digital (sponsor), and the Checkout, Payments, Search &amp; Browse, Store Platform and Warehouse teams. <b>The goal:</b> make the weekly shop effortless, so repeat orders rise from 22% to 30%.</div>
@@ -520,11 +548,12 @@ a.st span{{font-size:12.5px;}}
 </body>
 </html>
 """
-    (OUT / "basket-team-story.html").write_text(page, encoding="utf-8")
-    print(f"wrote basket-team-story.html ({len(keys)} steps)")
+    (OUT / f"{slug}.html").write_text(page, encoding="utf-8")
+    print(f"wrote {slug}.html ({shown} steps)")
 
 
 if __name__ == "__main__":
     build()
     build_print_pack()
     build_story()
+    build_story("basket-team-highlights")

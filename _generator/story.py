@@ -90,3 +90,20 @@ STORY = [
 def story_order():
     """(tool key, date shown, month) for every step, in story order."""
     return [(k, date, month) for month, _, items in STORY for _, date, k, _ in sorted(items)]
+
+
+# The highlights edition (basket-team-highlights.html): twelve moments that carry the story, each with its lesson.
+HIGHLIGHTS = [
+    ("kickoff", "Agree what can flex before you start. Here only the date was fixed, so scope could give."),
+    ("ost", "Test the riskiest assumption cheaply, before building anything."),
+    ("team-charter", "Working agreements written on day one save arguments in month three."),
+    ("retro", "A retro is only as good as its actions: each one has an owner and a “done when”."),
+    ("experiment", "Small, measured experiments turn retro ideas into evidence."),
+    ("incident", "Ask why it made sense at the time. Fix the system, not the person."),
+    ("bet", "Treat big ideas as bets with a stop rule, not as plans."),
+    ("blockers", "Count blocked days, not blockers: one cause, sign-offs, cost half of them."),
+    ("adr", "Write down why you chose, so the next person doesn't have to argue it again."),
+    ("status", "Report outcomes and a forecast range, and ask for the decisions you need."),
+    ("release", "Separate deploying from releasing, and test the rollback before you need it."),
+    ("closeout", "Most of the value arrives after the project ends, so name who will check it."),
+]
