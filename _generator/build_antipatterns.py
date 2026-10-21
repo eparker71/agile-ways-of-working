@@ -140,7 +140,7 @@ ANTIPATTERNS = [
      "Report confidence and trends, and thank people who bring bad news early.", ["status", "psych-safety"]),
     ("leadership", "Roadmaps are lists of features with dates", "Feature-and-date roadmaps",
      "Teams build what was promised, not what turns out to be valuable.",
-     "Make roadmaps about outcomes: Now, Next and Later.", ["prioritisation", "okr"]),
+     "Make roadmaps about outcomes: Now, Next and Later.", ["roadmap", "prioritisation", "okr"]),
     # metrics
     ("metrics", "Velocity is used as a target", "Velocity as a target",
      "Points inflate and the numbers stop meaning anything.",
@@ -168,20 +168,28 @@ for _a, _s, short, _w, _t, keys in ANTIPATTERNS:
         assert k in TOOLS, f"{_s}: unknown tool {k}"
 
 
+def ap_id(short):
+    """Anchor id for an anti-pattern card, from its short label (good-practices.html links to it)."""
+    return "ap-" + re.sub(r"[^a-z0-9]+", "-", short.lower()).strip("-")
+
+
 def build():
+    from build_practices import practice_for  # imported here: build_practices imports this module
     chips = '<button type="button" data-area="all" aria-pressed="true">All</button>' + "".join(
         f'<button type="button" data-area="{aid}">{escape(name)}</button>' for aid, name in AREAS)
     sections = []
     for aid, name in AREAS:
         items = [a for a in ANTIPATTERNS if a[0] == aid]
         cards = []
-        for _a, symptom, _short, why, try_, keys in items:
+        for _a, symptom, short, why, try_, keys in items:
             links = " · ".join(f'<a href="{TOOLS[k][1]}">{escape(TOOLS[k][0])}</a>' for k in keys)
             text = (symptom + " " + why + " " + try_).lower()
-            cards.append(f'<div class="ap" data-text="{escape(text)}"><h3>{escape(symptom)}</h3>'
+            good = " · ".join(f'<a href="good-practices.html#{pid}">{escape(t)}</a>' for pid, t in practice_for(short))
+            cards.append(f'<div class="ap" id="{ap_id(short)}" data-text="{escape(text)}"><h3>{escape(symptom)}</h3>'
                          f'<p class="why"><b>Why it hurts:</b> {escape(why)}</p>'
                          f'<p class="try"><b>Try this:</b> {escape(try_)}</p>'
-                         f'<p class="see">Tools: {links}</p></div>')
+                         f'<p class="see">Tools: {links}</p>'
+                         + (f'<p class="see good">Good practice: {good}</p>' if good else "") + '</div>')
         sections.append(f'<section class="area" data-area="{aid}"><h2>{escape(name)} <span>{len(items)}</span></h2>'
                         f'<div class="grid">{"".join(cards)}</div></section>')
     pitfalls = " · ".join(f'<a href="{g}">{escape(t)}</a>' for t, b, g, _ in sorted(TOOLS.values()) if g)
@@ -221,6 +229,10 @@ h2 span{{color:#5B6B82;margin-left:6px;}}
 .ap .see{{font-size:12px;color:var(--muted);margin-top:8px;}}
 .ap .see a{{color:var(--ink);}}
 .ap .see a:hover{{color:var(--accent);}}
+.ap .good{{margin-top:2px;}}
+.ap .good a{{color:#065F46;}}
+.ap{{scroll-margin-top:16px;}}
+.ap:target{{box-shadow:0 0 0 3px #C2410C;}}
 .more{{background:#fff;border:1px solid var(--rule);border-radius:8px;padding:16px 18px;margin-top:28px;font-size:13px;}}
 .more h3{{margin:0 0 6px;font-size:15px;}}
 .more a{{color:#9A3412;}}
@@ -233,7 +245,7 @@ footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-
 <header><div class="wrap">
   <a class="back" href="index.html">← All tools</a>
   <h1>Anti-Pattern Catalogue</h1>
-  <p>{len(ANTIPATTERNS)} common anti-patterns, each with why it hurts, what to try, and the tool that helps. Start from a symptom you recognise. To find them with your team, use the <a href="anti-pattern-spotter-board.html">Anti-Pattern Spotter board</a>. For one-off situations, such as a deadline moving or a key person leaving, see the <a href="scenarios.html">Scenario Playbook</a>.</p>
+  <p>{len(ANTIPATTERNS)} common anti-patterns, each with why it hurts, what to try, and the tool that helps. Start from a symptom you recognise. To find them with your team, use the <a href="anti-pattern-spotter-board.html">Anti-Pattern Spotter board</a>. For one-off situations, such as a deadline moving or a key person leaving, see the <a href="scenarios.html">Scenario Playbook</a>. For the principles behind the fixes, see <a href="good-practices.html">Good Practices</a>.</p>
   <input type="search" placeholder="Search symptoms, e.g. “retro” or “blocked”…" aria-label="Search anti-patterns">
   <div class="bar">{chips}</div>
 </div></header>
