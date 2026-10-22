@@ -1940,7 +1940,8 @@ WAVE1_GUIDES = [
                ("Each retro", "Ask: is the agreement working? Any near misses or great wins?"),
                ("Monthly", "Check the impact measures and update the agreement."),
                ("When tools change", "Revisit the guardrails and review rules before using new tools.")],
-        toolkit=LIFECYCLE_TOOLKIT,
+        toolkit=("For ready-made prompts to share as a team, start with the <a href=\"prompt-library.html\">Prompt Library</a>: "
+                 "prompts for everyday agile work, each with a watch-out. " + LIFECYCLE_TOOLKIT),
         foot="“Would we be comfortable explaining how this was made?”",
     ),
 
@@ -4036,7 +4037,8 @@ GUIDES += [
                ("Each team", "Agree day-to-day rules with the AI Working Agreement."),
                ("Monthly", "Check the measures and the experiments; move one stage up or down if the evidence says so."),
                ("Quarterly", "Review the whole board with the same group.")],
-        toolkit=("Teams turn this into daily practice with the <a href=\"facilitator-guide-ai-working-agreement.html\">AI Working "
+        toolkit=("The <a href=\"prompt-library.html\">Prompt Library</a> has ready-made prompts for everyday agile work. "
+                 "Teams turn this into daily practice with the <a href=\"facilitator-guide-ai-working-agreement.html\">AI Working "
                  "Agreement</a>. Track outcomes with <a href=\"facilitator-guide-delivery-metrics.html\">Delivery Metrics &amp; Tech "
                  "Debt</a> and the <a href=\"facilitator-guide-cd-health-check.html\">Continuous Delivery Health Check</a>, review AI "
                  "incidents with the <a href=\"facilitator-guide-incident-review.html\">Blameless Incident Review</a>, and record "
