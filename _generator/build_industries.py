@@ -106,7 +106,7 @@ INDUSTRIES = [
      "Changes cost more once something is built, parts have long lead times, and testing needs physical builds. You "
      "can still work iteratively: short build-test-learn cycles on prototypes, and flow on the factory floor.",
      ["vsm", "kanban", "premortem"],
-     ["rootcause", "a3", "waste", "marginal", "experiment", "dependency", "ctp", "raid", "forecast", "testing", "adr", "incident",
+     ["approach", "rootcause", "a3", "waste", "marginal", "experiment", "dependency", "ctp", "raid", "forecast", "testing", "adr", "incident",
       "design-sprint"],
      [("Iteration", "build-test cycle"), ("Increment", "prototype, build"), ("Spike", "proof of concept"),
       ("Definition of Done", "passes test and inspection"), ("Minimum viable product (MVP)", "engineering prototype")],
@@ -120,7 +120,7 @@ INDUSTRIES = [
      "Services must work for everyone, decisions are scrutinised, and funding and governance often assume you know "
      "everything up front. Show learning early, through research, pilots and open plans, to build trust.",
      ["persona", "stakeholder", "roadmap"],
-     ["kickoff", "impact", "bet", "premortem", "raid", "status", "value", "adkar", "raci", "design-sprint", "closeout"],
+     ["approach", "kickoff", "impact", "bet", "premortem", "raid", "status", "value", "adkar", "raci", "design-sprint", "closeout"],
      [("Persona", "service user"), ("Stakeholder", "ministers, policy teams, the public"),
       ("Minimum viable product (MVP)", "pilot, private beta"), ("Increment", "go-live of a service change"),
       ("Product goal", "policy intent")],
@@ -149,7 +149,7 @@ INDUSTRIES = [
      "Accuracy and controls matter, so improve the flow of the cycle rather than rushing it. Finance is also where "
      "annual budgeting can change into more frequent funding decisions.",
      ["kanban", "vsm", "raci"],
-     ["cadences", "buffer", "blockers", "ageing", "rootcause", "stakeholder", "portfolio-kanban", "okr", "value",
+     ["approach", "cadences", "buffer", "blockers", "ageing", "rootcause", "stakeholder", "portfolio-kanban", "okr", "value",
       "experiment", "retro"],
      [("Iteration", "month-end cycle"), ("Backlog", "request queue"), ("Definition of Done", "reconciled and reviewed"),
       ("Class of service", "statutory deadline, standard, ad hoc"), ("Stakeholder", "budget holders, auditors"),

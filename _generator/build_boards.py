@@ -6197,6 +6197,98 @@ def build_lean_principles():
                 "and four lean habits.", "\n".join(b))
 
 
+# ---------------------------------------------------------------- delivery approach
+
+APPROACH_FACTORS = [  # (group, factor, the agile-friendly end (1), the predictive-friendly end (5))
+    ("CULTURE", "Support for iterative working", "Sponsors and team want it", "Little support for it"),
+    ("CULTURE", "Trust in the team", "Team decides how to work", "Decisions made above the team"),
+    ("CULTURE", "Speed of decisions", "Fast, close to the work", "Slow, many approvals"),
+    ("TEAM", "Team size and stability", "Small and stable", "Large or often changing"),
+    ("TEAM", "Experience", "Used to iterative delivery", "New to it"),
+    ("TEAM", "Access to the customer", "Available every week", "Rarely available"),
+    ("PROJECT", "Certainty of requirements", "Will change as we learn", "Stable and known up front"),
+    ("PROJECT", "Cost of changing later", "Cheap to change", "Costly once built"),
+    ("PROJECT", "Delivering in pieces", "Useful in small pieces", "Only useful when complete"),
+    ("PROJECT", "Regulation and sign-off", "Light", "Heavy, formal sign-offs"),
+]
+
+
+def build_delivery_approach():
+    b = [header("Delivery Approach",
+                "Predictive, agile or hybrid? Score the project's culture, team and work, then choose an approach for each part.",
+                "Run a Project · Inspired by the suitability filter in the Agile Practice Guide (PMI® and Agile Alliance®) · Tailoring",
+                header_fields(["Project", "Date"]))]
+
+    x, y, w, h = 24, 148, 1082, 600
+    d = BLUE[0]
+    b.append(panel(x, y, w, h, 1, "Suitability Check", BLUE, "CIRCLE ONE SCORE PER ROW · DISCUSS WHERE YOU DISAGREE"))
+    fx, lx, sx, rx = x + 18, x + 330, x + 600, x + 790
+    for cx, s, anchor in [(lx, "LEANS AGILE (1)", None), (sx + 56, "SCORE", "middle"), (rx, "LEANS PREDICTIVE (5)", None)]:
+        b.append(T(cx, y + 80, s, 8.5, d, MONO, weight=600, ls=".1em", anchor=anchor))
+    ry, last = y + 96, None
+    for group, factor, left, right in APPROACH_FACTORS:
+        if group != last:
+            col = {"CULTURE": PURPLE, "TEAM": SKY, "PROJECT": EMERALD}[group][0]
+            b.append(T(fx, ry + 14, group, 8.5, col, MONO, weight=600, ls=".12em"))
+            b.append(L(fx + 70, ry + 10, x + w - 18, ry + 10, col, 1, ' stroke-opacity=".25"'))
+            ry, last = ry + 22, group
+        b.append(R(fx - 4, ry, w - 28, 34, "white", 6, f' stroke="{d}" stroke-opacity=".12"'))
+        b.append(T(fx + 6, ry + 22, factor, 12, INK, weight=600))
+        b.append(T(lx, ry + 22, left, 10.5, MUTED))
+        b.append(T(rx, ry + 22, right, 10.5, MUTED))
+        # one <text> for the 1–5 labels, so the whiteboard prompt reads them as a scale, not a numbered list
+        b.append(f'<text x="{sx:g}" y="{ry + 21}" text-anchor="middle" font-family="{MONO}" font-size="10" fill="{d}" fill-opacity=".88">'
+                 + " ".join(f'<tspan x="{sx + k * 28:g}">{k + 1}</tspan>' for k in range(5)) + "</text>")
+        for k in range(5):
+            b.append(f'<circle cx="{sx + k * 28:g}" cy="{ry + 17}" r="10" fill="none" stroke="{d}" stroke-opacity=".45"/>')
+        ry += 39
+    b.append(field(fx, y + h - 22, "Total (10–50):", x + 300, d, 12))
+    b.append(T(x + 330, y + h - 22, "Look at the pattern, not just the total: one high score can need its own approach.",
+               10.5, d, italic=True, op=".88"))
+
+    x, w = 1120, 536
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 2, "Reading the Score", SLATE, "A RULE OF THUMB, NOT A VERDICT"))
+    bands = [("Agile", EMERALD, "Mostly 1s and 2s · total about 10–20",
+              ["Deliver in short iterations, with the", "customer close by. Plan a little, often."]),
+             ("Hybrid", AMBER, "A mix · total about 21–35",
+              ["Iterate where learning matters, and plan", "up front where change is costly. Agree", "how the parts meet."]),
+             ("Predictive", RED, "Mostly 4s and 5s · total about 36–50",
+              ["Plan and design up front, with formal", "change control. Still look for chances", "to get feedback early."])]
+    by = y + 70
+    for name, (dk, lt), sub, body in bands:
+        bh = 52 + len(body) * 16 + 14
+        b.append(R(x + 14, by, w - 28, bh, lt, 8, f' stroke="{dk}" stroke-opacity=".3"'))
+        b.append(R(x + 14, by, 5, bh, dk, 3))
+        b.append(T(x + 32, by + 26, name, 15, dk, weight=600))
+        b.append(T(x + w - 30, by + 26, sub, 9.5, dk, MONO, anchor="end", op=".88"))
+        b.append(para(x + 32, by + 50, body, 11, INK, 16))
+        by += bh + 12
+    b.append(T(x + 18, by + 18, "Most organisations end up hybrid. That's fine: the", 11, d, italic=True))
+    b.append(T(x + 18, by + 34, "aim is the right approach for each part of the work.", 11, d, italic=True))
+
+    y, h = 762, 298
+    x, w = 24, 808
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, 3, "Work Streams", PURPLE, "THE APPROACH CAN DIFFER BY PART"))
+    b.append(table(x + 18, y + 84, [("Part of the work", 220), ("Approach", 130), ("Why", 300), ("Owner", w - 36 - 650)], 5, d, 36))
+
+    x, w = 846, 810
+    d = FOREST[0]
+    b.append(panel(x, y, w, h, 4, "How the Parts Connect", FOREST, "WHERE AGILE AND PREDICTIVE WORK MEET"))
+    for i, f in enumerate(["Shared milestones:", "Gates, and the evidence that answers them:", "Reporting rhythm:",
+                           "Hand-offs and dependencies between parts:", "Revisit the approach on:"]):
+        b.append(field(x + 18, y + 86 + i * 40, f, x + w - 18, d))
+
+    b.append(footer("Which parts of this work will we only understand by doing them?",
+                    "Where is change cheap, and where is it expensive?",
+                    "PMI® is a registered trademark of Project Management Institute, Inc. · Run a Project"))
+    write_board("delivery-approach-board", "Delivery Approach",
+                "A3 landscape board for choosing a delivery approach: a ten-factor suitability check across culture, team and "
+                "project, how to read the score (agile, hybrid or predictive), the approach for each work stream, and how the "
+                "parts connect through milestones, gates and reporting.", "\n".join(b))
+
+
 # ---------------------------------------------------------------- waste walk
 
 def build_waste_walk():
@@ -8777,6 +8869,7 @@ if __name__ == "__main__":
     build_cynefin()
     build_lean_principles()
     build_waste_walk()
+    build_delivery_approach()
     build_a3_problem_solving()
     for make in EXAMPLES.values():   # worked examples read the blank boards, so they run last
         make()

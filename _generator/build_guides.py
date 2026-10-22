@@ -4314,6 +4314,61 @@ GUIDES += [
                  "track blocked time with <a href=\"facilitator-guide-blocker-clustering.html\">Blocker Clustering</a>."),
         foot="“Which waste, if we removed it, would give us the most time back?”",
     ),
+    dict(
+        slug="delivery-approach",
+        title="Delivery Approach Guide",
+        subtitle="How to choose a predictive, agile or hybrid approach for each part of a project, and connect the parts.",
+        tag="Facilitator Run-Sheet · Run a Project · Predictive · Agile · Hybrid · Tailoring",
+        boards=[("Open board", "delivery-approach-board.html"), ("SVG", "delivery-approach-board.svg")],
+        lede="Which parts of this work will we only understand by doing them?",
+        intro=("Not every project, or every part of one, suits the same approach. A <b>predictive</b> approach plans and designs "
+               "up front and controls change; it suits work that is well understood and costly to change. An <b>agile</b> "
+               "approach delivers in short iterations and learns as it goes; it suits work where requirements will change and "
+               "value can arrive in small pieces. Most real projects are <b>hybrid</b>: a regulated payments change and a new "
+               "customer app can sit side by side. Choosing deliberately is what PMI calls <b>tailoring</b>. The board's "
+               "suitability check is written in our own words but inspired by the suitability filter in the <i>Agile Practice "
+               "Guide</i>, published by PMI and the Agile Alliance, and it scores the culture, the team and the project. Then you "
+               "choose an approach for each work stream and agree how the parts connect. PMI® is a registered trademark of "
+               "Project Management Institute, Inc."),
+        glance=[("Duration", "45–60 min"), ("Group", "Sponsor, project lead,<br>team leads"),
+                ("Use when", "Starting a project,<br>or it's struggling"), ("Output", "An approach per part<br>&amp; how they connect")],
+        before=["Print the board at A3 or 11×17, or share it on screen",
+                "Bring the project brief, and a rough list of its main parts or work streams",
+                "Invite people who see the work differently: sponsor, delivery, a team member, governance",
+                "Ask each person to score the ten factors privately first, to avoid anchoring"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–5", "Why choose", "Explain the three approaches, and that hybrid is normal, not a compromise."),
+                ("5–25", "Suitability check", "Reveal private scores row by row. Discuss the rows where people differ most."),
+                ("25–35", "Read the score", "Total it, but look at the pattern: which rows pull in which direction?"),
+                ("35–50", "Work streams", "Split the project into parts. Choose an approach for each, and say why."),
+                ("50–60", "Connect the parts", "Agree shared milestones, gates and their evidence, the reporting rhythm, and a date to revisit.")],
+        sections_title="The three approaches",
+        sections_intro="An approach per part of the work, not one label for everything.",
+        sections=[("Agile", EMERALD, ["Short iterations", "Learn and adapt"]),
+                  ("Hybrid", AMBER, ["Mix by work stream", "Agree how they meet"]),
+                  ("Predictive", RED, ["Plan up front", "Control change"]),
+                  ("Connections", FOREST, ["Milestones and gates", "One reporting rhythm"]),
+                  ("Revisit", SLATE, ["As you learn", "Change the approach if needed"])],
+        tips=[("It's not a loyalty test", "Choosing predictive for a part of the work isn't failing at agile; it's choosing well."),
+              ("Score privately first", "People anchor on the first number said aloud. Reveal together."),
+              ("Disagreement is data", "Where scores differ most, people see the project differently. Talk about why."),
+              ("Look for cheap change", "Wherever change is cheap, iterate. Wherever it's expensive, design first."),
+              ("Gates need evidence", "In a hybrid project, answer each governance gate with working results where you can."),
+              ("Revisit it", "The right approach can change as uncertainty falls. Put a date in the diary.")],
+        pitfalls=("picking an approach to match the organisation's fashion; one approach for every part of a varied project; "
+                  "hybrid that means waterfall with stand-ups; never agreeing how agile and predictive parts connect; never revisiting."),
+        after=[("Straight away", "Record the approach for each part in the Project Kickoff and RAID Log."),
+               ("This week", "Set up the shared milestones and reporting rhythm."),
+               ("At each milestone", "Check: is each part's approach still right?"),
+               ("At close-out", "Note what worked about the approach, for the next project.")],
+        toolkit=("Use it with the <a href=\"facilitator-guide-project-kickoff.html\">Project Kickoff</a>, the <a "
+                 "href=\"facilitator-guide-right-size.html\">Right-Size Your Structure</a> poster for how much process to add, "
+                 "the <a href=\"facilitator-guide-cynefin.html\">Cynefin® Sense-Making</a> board for how predictable each part "
+                 "is, and the <a href=\"facilitator-guide-sdlc.html\">SDLC at a Glance</a> poster for keeping governance without "
+                 "the delay. Project managers new to agile tools will find <a href=\"for-project-managers.html\">For Project "
+                 "Managers</a> useful."),
+        foot="“Where is change cheap, and where is it expensive?”",
+    ),
 ]
 
 

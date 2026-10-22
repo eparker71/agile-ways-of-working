@@ -18,6 +18,26 @@ from brand import ACCENT, NAVY, CREDIT  # noqa: E402
 OUT = Path(__file__).resolve().parent.parent
 
 TERMS = [
+    ("Predictive approach", "Planning and designing most of the work up front, then delivering to the plan with formal change "
+     "control. Suits work that is well understood and costly to change.", "Often called waterfall.", ["approach"]),
+    ("Hybrid approach", "Using agile and predictive approaches together, often for different parts of the same project, with "
+     "agreed milestones, gates and reporting where they meet.", None, ["approach", "right-size"]),
+    ("Tailoring", "Choosing and adapting the approach, events and artefacts to fit the project, instead of applying one method "
+     "everywhere.", "A term from PMI's standards.", ["approach", "right-size"]),
+    ("Work breakdown structure (WBS)", "A hierarchy that breaks the whole scope into smaller, manageable pieces of work. In agile "
+     "delivery, epics, features and stories play this part, broken down by value to users.", None, ["epic", "storymap"]),
+    ("Critical path", "The longest chain of dependent tasks in a schedule. Any delay on it delays the end date.", None,
+     ["dependency", "ctp"]),
+    ("Baseline", "The agreed version of the scope, schedule or cost that progress is measured against. Changing it goes through "
+     "change control.", None, ["forecast", "status"]),
+    ("Earned value", "A way of measuring progress by comparing the value of work completed with what was planned and what it "
+     "cost. A burn-up chart shows a similar picture for agile work.", None, ["forecast", "status"]),
+    ("Change control", "The agreed way of proposing, deciding and recording changes to the baseline.", None,
+     ["raci", "prioritisation"]),
+    ("Rolling-wave planning", "Planning the near future in detail and later work in outline, then adding detail as it gets "
+     "closer.", None, ["roadmap", "ctp"]),
+    ("Progressive elaboration", "Adding detail to plans and requirements as more becomes known, instead of fixing it all at the "
+     "start.", None, ["refinement", "storymap"]),
     ("Lean", "A way of working that delivers what the customer values and steadily removes everything else, through flow, "
      "pull and continuous improvement.", "From the Toyota Production System. The five principles are from Womack and Jones, Lean Thinking (1996).",
      ["lean", "vsm", "kanban"]),

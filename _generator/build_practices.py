@@ -99,7 +99,7 @@ PRACTICES = [
      ["Complex work gets experiments; complicated work gets analysis", "Forecasts are ranges, not single dates",
       "Structure is sized to the project, not copied from the last one"],
      "Draws on the Cynefin® framework (Dave Snowden).",
-     ["cynefin", "right-size", "forecast"],
+     ["approach", "cynefin", "right-size", "forecast"],
      ["Agile as a mandate", "Single-date promises"]),
     ("involve", "work", "Involve the people who do the work",
      "The people closest to the work help decide how it's done and how change happens.",
