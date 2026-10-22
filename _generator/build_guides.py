@@ -13,7 +13,7 @@ from pathlib import Path
 OUT = Path(__file__).resolve().parent.parent
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from brand import ACCENT, NAVY, CREDIT, SITE, AUTHOR, FONT_URL as _FONT_URL, SVG_LABEL, SVG_TIP  # noqa: E402  (edit brand.py to rebrand)
+from brand import ACCENT, NAVY, CREDIT, SITE, AUTHOR, FONT_URL as _FONT_URL, SVG_LABEL, SVG_TIP, FEEDBACK_URL  # noqa: E402  (edit brand.py to rebrand)
 from docx_writer import Doc  # noqa: E402
 from board_spec import spec as board_spec  # noqa: E402
 FONT_URL = _FONT_URL.replace("&", "&amp;")
@@ -4356,6 +4356,17 @@ def spec_html(g):
             f'<details><summary>Show the prompt</summary><pre>{escape(text)}</pre></details></section>')
 
 
+FB_JS = "(function(){var f=document.currentScript.parentNode,s=f.dataset.slug;window.addEventListener('load',function(){if(!(window.goatcounter&&window.goatcounter.count))return;f.querySelector('.q').hidden=false;f.querySelectorAll('button').forEach(function(b){b.onclick=function(){window.goatcounter.count({path:'feedback/'+s+'/'+b.dataset.v,title:'Guide feedback',event:true});f.querySelector('.q').hidden=true;f.querySelector('.thanks').hidden=false;}})})})();"
+
+
+def feedback_html(slug):
+    """\"Was this useful?\" buttons (shown only when GoatCounter is running) and a link to tell us how it went."""
+    return (f'<section class="fb" data-slug="{slug}"><span class="q" hidden>Was this guide useful? '
+            '<button type="button" data-v="useful">Yes, useful</button><button type="button" data-v="not-useful">Not really</button></span>'
+            '<span class="thanks" hidden>Thanks for letting us know.</span> '
+            f'<a href="{FEEDBACK_URL}">Used this guide? Tell us how it went →</a><script>{FB_JS}</script></section>')
+
+
 def render(g, css):
     n = 0
 
@@ -4412,6 +4423,7 @@ def render(g, css):
         h2("How it fits the toolkit"),
         f'<p>{g["toolkit"]}</p>',
         spec_html(g),
+        feedback_html(g["slug"]),
         f'<p style="color:var(--muted);font-size:12px">← <a href="index.html">All tools</a> · <a href="glossary.html">Glossary of terms</a></p>',
         f'<footer><span>{escape(g["foot"])}</span><span>{escape(CREDIT)}</span></footer>',
     ]

@@ -1,0 +1,35 @@
+name: Tell us how you used it
+description: Share how a board, guide or other tool worked for your team. It helps us improve the toolkit.
+title: "Used it: "
+labels: ["used-it"]
+body:
+  - type: input
+    id: tool
+    attributes:
+      label: Which tool did you use?
+      description: e.g. Start · Stop · Continue retro, Find a Tool, the Prompt Library
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Your team and situation
+      description: Roughly what kind of team, and what you were trying to do. No names or confidential details, please.
+  - type: textarea
+    id: happened
+    attributes:
+      label: What happened?
+      description: How did it go, and did anything change afterwards?
+    validations:
+      required: true
+  - type: textarea
+    id: improve
+    attributes:
+      label: What would make it better?
+  - type: dropdown
+    id: quote
+    attributes:
+      label: Can we quote you (without your name) on the site?
+      options:
+        - "Yes"
+        - "No"

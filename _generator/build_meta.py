@@ -18,7 +18,7 @@ from html import escape, unescape
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from brand import PUBLISH_AT  # noqa: E402
+from brand import PUBLISH_AT, GOATCOUNTER  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent
 BASE = f"https://{PUBLISH_AT}/"
@@ -63,6 +63,8 @@ def meta_block(name, title, desc):
         f'<meta property="og:image" content="{BASE}og-image.png">',
         '<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">',
         '<meta name="twitter:card" content="summary_large_image">',
+        *([f'<script data-goatcounter="https://{GOATCOUNTER}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>']
+          if GOATCOUNTER else []),
         "<!-- /meta -->",
     ])
 
