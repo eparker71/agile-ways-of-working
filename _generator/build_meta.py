@@ -34,6 +34,10 @@ def text_of(fragment):
 
 
 def describe(s):
+    tag = re.search(r'<p class="tagline">(.*?)</p>.*?<p>(.*?)</p>', s, re.S)  # home page: tagline, then the intro's first sentence
+    if tag:
+        d = f"{text_of(tag.group(1))} {text_of(tag.group(2)).split('. ')[0].rstrip('.')}."
+        return d if len(d) <= 200 else d[:197].rsplit(" ", 1)[0] + "…"
     for pat in (r'<desc id="mg-desc">(.*?)</desc>',                      # boards: the SVG description
                 r'<header class="masthead">.*?<p>(.*?)</p>',             # guides: the subtitle
                 r"<header>.*?<p>(.*?)</p>",                               # index, role page, glossary, catalogues

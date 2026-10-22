@@ -1,6 +1,6 @@
 # Agile Ways of Working Toolkit
 
-Printable boards and facilitator guides for teams and facilitators.
+Lean, agile and hybrid tools for teams, facilitators and leaders: printable boards, facilitator guides and playbooks.
 
 **Purpose:** help teams get better at delivering things that matter, by making useful conversations easy to run without an expert in the room. The toolkit favours judgement over compliance: good practices to reason from, anti-patterns to watch for, and small experiments to learn from. Before adding something, ask whether it helps a team have a better conversation, and whether we could tell that it did.
 
