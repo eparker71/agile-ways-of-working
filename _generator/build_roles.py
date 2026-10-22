@@ -16,6 +16,7 @@ from pathlib import Path
 OUT = Path(__file__).resolve().parent.parent
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import paths  # noqa: E402  (where each file lives; see paths.py)
 from brand import ACCENT, NAVY, CREDIT, FONT_URL as _FONT_URL, SVG_LABEL, SVG_TIP  # noqa: E402  (edit brand.py to rebrand)
 FONT_URL = _FONT_URL.replace("&", "&amp;")
 
@@ -270,7 +271,7 @@ footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-
 </body>
 </html>
 """
-    (OUT / "start-here-by-role.html").write_text(page, encoding="utf-8")
+    paths.write_page("start-here-by-role.html", page)
     print("wrote start-here-by-role.html")
 
 
@@ -339,8 +340,7 @@ FILTER_JS = """<!-- roles:js -->
 
 
 def build_index_filter():
-    p = OUT / "index.html"
-    s = p.read_text(encoding="utf-8")
+    s = paths.read_index()  # links without folders; write_page puts them back
 
     # CSS
     s = re.sub(r"/\* roles:css \*/.*?/\* /roles:css \*/\n", "", s, flags=re.S)
@@ -381,7 +381,7 @@ def build_index_filter():
             rest = rest.replace('</div><div class="links">', f'<span class="tags" hidden>{TAGS[key]}</span></div><div class="links">', 1)
         rest = re.sub(r'<a href="([^"]+\.svg)"[^>]*>[^<]*</a>',
                       lambda v: f'<a href="{v.group(1)}" title="{escape(SVG_TIP)}">{SVG_LABEL}</a>', rest)
-        if href and (OUT / f"worked-example-{href.group(1)}").exists():
+        if href and paths.path(f"worked-example-{href.group(1)}").exists():
             rest = re.sub(r'(<div class="links">.*?)(</div></div>\n)$',
                           lambda l: f'{l.group(1)}<a class="ex" href="worked-example-{href.group(1)}">Example</a>{l.group(2)}',
                           rest, flags=re.S)
@@ -392,7 +392,7 @@ def build_index_filter():
     s = re.sub(r"<!-- roles:js -->.*?<!-- /roles:js -->\n", "", s, flags=re.S)
     s = s.replace("</body>", FILTER_JS + "</body>", 1)
 
-    p.write_text(s, encoding="utf-8")
+    paths.write_page("index.html", s)
     untagged = re.findall(r'<div class="card">', s)
     print(f"tagged index.html cards ({len(untagged)} untagged)")
 

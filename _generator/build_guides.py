@@ -13,6 +13,7 @@ from pathlib import Path
 OUT = Path(__file__).resolve().parent.parent
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import paths  # noqa: E402  (where each file lives; see paths.py)
 from brand import ACCENT, NAVY, CREDIT, SITE, AUTHOR, FONT_URL as _FONT_URL, SVG_LABEL, SVG_TIP, FEEDBACK_URL  # noqa: E402  (edit brand.py to rebrand)
 from docx_writer import Doc  # noqa: E402
 from board_spec import spec as board_spec  # noqa: E402
@@ -4480,7 +4481,7 @@ GUIDES += [
 # ------------------------------------------------------------------ rendering
 
 def guide_css():
-    src = (OUT / "facilitator-guide-marginal-gains.html").read_text(encoding="utf-8")
+    src = paths.path("facilitator-guide-marginal-gains.html").read_text(encoding="utf-8")
     css = re.search(r"<style>(.*?)</style>", src, re.S).group(1)
     css = css.replace("#eb6c36", ACCENT).replace("#0C1A2E", NAVY)
     return css.rstrip() + "\n" + EXTRA_CSS.strip() + "\n"
@@ -4493,10 +4494,10 @@ def li(items):
 def guide_spec(g):
     """The AI whiteboard prompt for the guide's board, read from the board's SVG (or "" if there isn't one)."""
     board = g["boards"][0][1]
-    svg = OUT / board.replace(".html", ".svg")
+    svg = paths.path(board.replace(".html", ".svg"))
     if not svg.exists():
         return ""
-    return board_spec(svg, f"https://{SITE}/{board}")
+    return board_spec(svg, f"https://{SITE}/{paths.site_path(board)}")
 
 
 SPEC_NOTE = ("Paste this into your whiteboard's AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, "
@@ -4543,7 +4544,7 @@ def render(g, css):
     boards += "".join(f'<a href="pdf/{href[:-5]}.pdf" download>A3 PDF ↓</a>' for _, href in g["boards"][:1]
                       if (OUT / "pdf" / f"{href[:-5]}.pdf").exists())
     boards += "".join(f'<a href="worked-example-{href}">Worked example →</a>' for _, href in g["boards"][:1]
-                      if (OUT / f"worked-example-{href}").exists())
+                      if paths.path(f"worked-example-{href}").exists())
     boards += f'<a href="facilitator-guide-{g["slug"]}.docx" download>Word (editable) ↓</a>'
     glance = "".join(f"<div><b>{k}</b><span>{v}</span></div>" for k, v in g["glance"])
     heads = "".join(f"<th>{h}</th>" for h in g["agenda_heads"])
@@ -4653,15 +4654,15 @@ def render_docx(g):
         for line in text.split("\n"):
             if line.strip():
                 d.para(escape(line))
-    d.para(f"Boards: https://{SITE}/{g['boards'][0][1]}  ·  Online guide: https://{SITE}/facilitator-guide-{g['slug']}.html", "Small")
+    online = paths.site_path("facilitator-guide-" + g["slug"] + ".html")
+    d.para(f"Boards: https://{SITE}/{paths.site_path(g['boards'][0][1])}  ·  Online guide: https://{SITE}/{online}", "Small")
     d.para(CREDIT + " · Adapt it freely; please keep the credit and say what you changed.", "Small")
-    d.save(OUT / f"facilitator-guide-{g['slug']}.docx")
+    d.save(paths.path(f"facilitator-guide-{g['slug']}.docx"))
 
 
 if __name__ == "__main__":
     css = guide_css()
     for g in GUIDES:
-        path = OUT / f"facilitator-guide-{g['slug']}.html"
-        path.write_text(render(g, css), encoding="utf-8")
+        p = paths.write_page(f"facilitator-guide-{g['slug']}.html", render(g, css))
         render_docx(g)
-        print("wrote", path.name, "+ .docx")
+        print("wrote", p.name, "+ .docx")

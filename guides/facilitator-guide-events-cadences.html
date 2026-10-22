@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Events &amp; Cadences Guide</title>
+<!-- meta -->
+<meta name="description" content="How to use the poster to design a simple, purposeful set of events, whatever framework you use.">
+<link rel="canonical" href="https://eparker71.github.io/agile-ways-of-working/guides/facilitator-guide-events-cadences.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agile Ways of Working Toolkit">
+<meta property="og:title" content="Events &amp; Cadences Guide · Agile Ways of Working Toolkit">
+<meta property="og:description" content="How to use the poster to design a simple, purposeful set of events, whatever framework you use.">
+<meta property="og:url" content="https://eparker71.github.io/agile-ways-of-working/guides/facilitator-guide-events-cadences.html">
+<meta property="og:image" content="https://eparker71.github.io/agile-ways-of-working/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script data-goatcounter="https://eparker71.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- /meta -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#5B6B82; --rule:#E2E8F0; --paper:#FFFFFF;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:13px;line-height:1.55;padding:24px 16px;}
+.page{max-width:820px;margin:0 auto 24px;background:var(--paper);box-shadow:0 12px 40px rgba(0,0,0,.22);}
+.masthead{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:28px 40px 26px;position:relative;}
+.badge{position:absolute;top:14px;right:24px;font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;}
+.masthead h1{font:400 40px/1.05 var(--serif);margin:14px 0 8px;}
+.masthead p{margin:0;color:#94A3B8;font-size:13.5px;}
+.masthead .tag{margin-top:8px;font:9px var(--mono);color:#94A3B8;letter-spacing:.06em;}
+.content{padding:28px 40px 36px;}
+h2{font:400 26px/1.15 var(--serif);margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;}
+h2 .n{font:600 11px var(--sans);color:#fff;background:var(--navy);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;flex:none;transform:translateY(-3px);}
+h3{font:600 13px var(--sans);margin:16px 0 6px;}
+p{margin:6px 0 10px;}
+.lede{font:italic 400 19px/1.35 var(--serif);color:var(--ink);border-left:4px solid var(--accent);padding:2px 0 2px 16px;margin:4px 0 20px;}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px;}
+.glance div{background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;}
+.glance b{display:block;font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+.glance span{font-weight:600;font-size:13px;}
+ul.check{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:28px;}
+ul.check li{padding-left:22px;position:relative;margin-bottom:5px;break-inside:avoid;}
+ul.check li::before{content:"";position:absolute;left:0;top:3px;width:11px;height:11px;border:1.4px solid var(--ink);border-radius:2px;opacity:.55;}
+table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:12.5px;}
+th{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--ink);text-align:left;padding:8px 10px;}
+th:first-child{border-left:5px solid var(--accent);}
+td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+td.t{font:500 11px var(--mono);white-space:nowrap;color:var(--muted);}
+td.a{font-weight:600;width:24%;}
+tr:nth-child(even) td{background:#F8FAFC;}
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;}
+.area{border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,.06);break-inside:avoid;}
+.area h4{margin:0;padding:7px 12px;color:#fff;font:600 12.5px var(--sans);}
+.area ul{margin:0;padding:8px 12px 10px 28px;font-size:12px;}
+.area li{margin-bottom:3px;}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.tip{border-top:2px solid var(--rule);padding-top:8px;}
+.tip b{display:block;margin-bottom:2px;}
+.flow{display:flex;align-items:stretch;gap:0;margin:14px 0 6px;flex-wrap:wrap;}
+.step{flex:1 1 0;min-width:120px;background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;position:relative;}
+.arrow{flex:none;align-self:center;color:#C2410C;font:600 16px var(--sans);padding:0 6px;}
+.step b{display:block;font-size:12.5px;}
+.step small{color:var(--muted);font-size:11px;line-height:1.4;display:block;margin-top:2px;}
+.step .k{font:500 8.5px var(--mono);letter-spacing:.12em;color:#C2410C;text-transform:uppercase;}
+.callout{background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:12px 16px;margin:14px 0;}
+.callout b{color:#9A3412;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display:flex;justify-content:space-between;gap:16px;font:8px var(--mono);letter-spacing:.08em;color:#5B6B82;}
+@media (max-width:640px){
+  .masthead,.content{padding-left:20px;padding-right:20px;}
+  .glance{grid-template-columns:1fr 1fr;}
+  ul.check{columns:1;}
+  .areas,.tips,.two{grid-template-columns:1fr;}
+  .arrow{display:none;}
+  .flow{gap:8px;}
+  table{font-size:11.5px;}
+  td.t{white-space:normal;}
+}
+@media print{
+  @page{size:A4 portrait;margin:12mm 12mm 14mm;}
+  html,body{background:none;}
+  body{padding:0;font-size:11.5px;}
+  .page{box-shadow:none;max-width:none;margin:0;}
+  .masthead,th,.area h4,h2 .n{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  tr,.area,.tip,.step,.callout{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .pb{break-before:page;}
+}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
+.content a{color:#9A3412;}
+@media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:#C2410C;}
+.fb{margin:14px 0 6px;font-size:13px;color:var(--muted);}
+.fb a{color:#9A3412;}
+.fb button{font:500 11px var(--mono);color:var(--ink);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:5px 10px;margin:0 4px;cursor:pointer;}
+.fb button:hover{border-color:var(--accent);}
+@media print{.fb{display:none;}}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
+.content a{color:#9A3412;}
+.example{border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:10px 0;}
+.example div{display:grid;grid-template-columns:30% 1fr;border-bottom:1px solid var(--rule);}
+.example div:last-child{border-bottom:none;}
+.example b{background:#F8FAFC;padding:7px 12px;font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.example span{padding:7px 12px;font-size:12.5px;}
+@media (max-width:640px){.example div{grid-template-columns:1fr;}}
+@media print{.boards{display:none;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>Events &amp; Cadences Guide</h1>
+    <p>How to use the poster to design a simple, purposeful set of events, whatever framework you use.</p>
+    <div class="tag">Facilitator Run-Sheet · Run Events · Scrum · Kanban · SAFe · LeSS · Scrum@Scale</div>
+    <div class="boards"><a class="primary" href="../boards/events-cadences-poster.html">Open poster →</a><a href="../boards/events-cadences-poster.svg" title="An SVG file: a sharp image that stays crisp at any size. Open it in a browser, add it to Miro, Mural or FigJam, or edit the words in Figma or Inkscape.">SVG →</a><a href="../pdf/events-cadences-poster.pdf" download>A3 PDF ↓</a><a href="facilitator-guide-events-cadences.docx" download>Word (editable) ↓</a></div>
+  </header>
+  <div class="content">
+    <p class="lede">“Does every event we hold have a clear purpose and output?”</p>
+    <p>Frameworks name their events differently, but the needs underneath are the same: plan, sync, refine, review, reflect, and do the same across teams and for the organisation. The poster lists <b>twelve common events</b> with what each framework calls them, their <b>purpose</b>, typical <b>cadence and timebox</b>, who comes, the <b>output</b>, and the tool in this kit that helps. Use it to design a lean set of events for a team or a group of teams, or to translate between frameworks. Timeboxes are typical; Scrum's are maximums for each week of a sprint.</p>
+    <div class="glance"><div><b>Duration</b><span>45–60 min</span></div><div><b>Group</b><span>Team, PO, coach,<br>or group leads</span></div><div><b>Use when</b><span>Setting up, or when<br>meetings feel too many</span></div><div><b>Output</b><span>An agreed set of events<br>&amp; calendar</span></div></div>
+    <h2><span class="n">1</span>Before the session</h2>
+    <ul class="check"><li>Print the poster at A3 or 11×17, or share it on screen</li><li>List the meetings the team or group holds today, with their length and frequency</li><li>Bring the team's working agreements or charter</li><li>Invite the people who'd attend the events</li></ul>
+    <h2><span class="n">2</span>Agenda &amp; run-sheet</h2>
+    <table><thead><tr><th>Minutes</th><th>Step</th><th>Facilitator notes</th></tr></thead><tbody><tr><td class="t">0–10</td><td class="a">Today</td><td>Map current meetings to the rows on the poster. Which rows are missing? Which meetings don't fit any row?</td></tr><tr><td class="t">10–25</td><td class="a">Purpose</td><td>For each event you keep, agree its purpose and output in one line.</td></tr><tr><td class="t">25–40</td><td class="a">Cadence</td><td>Set the frequency and timebox. Merge or drop events with no clear output.</td></tr><tr><td class="t">40–50</td><td class="a">Tools</td><td>Pick the toolkit board for each event and who facilitates.</td></tr><tr><td class="t">50–60</td><td class="a">Close</td><td>Book the calendar, and agree when to review the set of events.</td></tr></tbody></table>
+    <h2 class="pb"><span class="n">3</span>Reading the poster</h2>
+    <p>How the three groups fit together.</p>
+    <div class="areas"><div class="area" style="background:#DBEAFE;color:#1E3A8A"><h4 style="background:#1E3A8A">Team events</h4><ul><li>Plan, sync, refine, review, reflect</li><li>Weekly to daily rhythm</li></ul></div><div class="area" style="background:#EDE9FE;color:#581C87"><h4 style="background:#581C87">Multi-team events</h4><ul><li>The same needs across teams</li><li>Period or quarterly rhythm</li></ul></div><div class="area" style="background:#DCFCE7;color:#14532D"><h4 style="background:#14532D">Organisation events</h4><ul><li>Funding and outcomes</li><li>Monthly or quarterly</li></ul></div><div class="area" style="background:#F1F5F9;color:#334155"><h4 style="background:#334155">Also called</h4><ul><li>Translate between frameworks</li><li>Pick names your people use</li></ul></div></div>
+    <h2><span class="n">4</span>Facilitation tips</h2>
+    <div class="tips"><div class="tip"><b>Purpose first</b>An event without a clear purpose and output is a candidate to drop.</div><div class="tip"><b>Fewer, better</b>A lean set of well-run events beats a full calendar.</div><div class="tip"><b>Same needs, different names</b>Use the “also called” column to stop arguments about terminology.</div><div class="tip"><b>Timebox everything</b>Shorter, regular events are easier to keep focused than long, rare ones.</div><div class="tip"><b>Scale the timebox</b>Scrum&#x27;s timeboxes scale with sprint length; a two-week sprint needs half the time of a four-week one.</div><div class="tip"><b>Review the set</b>Every quarter, ask which events still earn their time.</div></div>
+    <div class="callout"><b>Common pitfalls:</b> adding every event from every framework; events with no output; long meetings with the wrong people; arguing about names instead of purpose; never reviewing the calendar.</div>
+    <h2><span class="n">5</span>After the session</h2>
+    <div class="two"><div><h3>Straight away</h3><p>Put the agreed events in the calendar with their purpose in the invite.</p></div><div><h3>First month</h3><p>Use the toolkit board for each event.</p></div><div><h3>At retros</h3><p>Ask whether each event is helping.</p></div><div><h3>Every quarter</h3><p>Review the whole set with the poster.</p></div></div>
+    <h2><span class="n">6</span>How it fits the toolkit</h2>
+    <p>The event tools follow a team's rhythm: <a href="facilitator-guide-sprint-planning.html">Sprint Planning</a> or replenishment, the <a href="facilitator-guide-daily-sync.html">Daily Sync</a>, <a href="facilitator-guide-backlog-refinement.html">Backlog Refinement</a>, <a href="facilitator-guide-sprint-review.html">Sprint Review</a> and a retrospective from the Retro Kit. Teams working in continuous flow use the <a href="facilitator-guide-kanban-cadences.html">Kanban Cadences</a>. The <a href="facilitator-guide-events-cadences.html">Events &amp; Cadences</a> poster shows them all, including multi-team and leadership events.</p>
+    <section class="spec" id="whiteboard"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Events &amp; Cadences”, a workshop board.
+
+Purpose: Every recurring event in one place: what it&#x27;s for, how often, who comes, what it produces, and the tool to use.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+
+Header fields to fill in: Team, Date
+
+Sections:
+Rows, top to bottom (each is a full-width band; the first label in bold is the row heading):
+1. Event: · Also called: · Purpose: · Cadence &amp; timebox: · Who: · Output: · Tool in this kit:
+2. Sprint Planning: Team: · Sprint Planning (Scrum) · Replenishment · Agree a goal and pull in the work that fits capacity · Each iteration · ≤ 2 h per week of · Team, PO · A goal and a plan · Planning · (Kanban) · iteration
+3. Daily Sync: Daily Scrum · Stand-up · Kanban meeting · Inspect progress toward the goal and plan the next day · Daily · 15 min · The team · Today&#x27;s plan, blockers raised · Daily sync
+4. Backlog Refinement: Refinement · Backlog refinement · Grooming (older term) · Get the next items understood, split and ready · Weekly or ongoing · ~10% of capacity · Team, PO, experts · Ready items
+5. Sprint Review: Review · Sprint Review · Delivery planning (Kanban) · Inspect what was built with stakeholders, adapt the · Each iteration · ≤ 1 h per week of · Team, PO, stakeholders · Feedback, a changed backlog · backlog · iteration
+6. Retrospective Kit: Retrospective · Sprint Retrospective · Kaizen · Inspect how we work and agree improvements · Each iteration · ≤ 45 min per week · The team · One to three improvements
+7. Kanban Cadences: Service Delivery Review (Kanban) · Check flow and service levels against expectations · Every 2–4 weeks · 30–60 min · Team, customer or PO · Flow improvements · Service review
+8. Cross-Team Planning: Multi-team: · PI Planning (SAFe) · Multi-team planning · Align several teams on shared objectives and a plan · Each quarter or period · 1–2 days · All teams, leaders · Objectives, team plans, risks · Big-room planning · (LeSS)
+9. Cross-Team Sync: Scrum of Scrums · ART Sync (SAFe) · Track shared progress, dependencies and blockers · 1–2 × a week · 15–30 min · One rep per team · Owned blockers, decisions · Cross-team sync
+10. Sprint Review: Joint review · System Demo (SAFe) · Sprint Review (LeSS) · See the integrated product working across teams · Each iteration or period · 1 h · Teams, stakeholders · Feedback on the whole product
+11. Cross-Team Retro: Cross-team retro · Inspect &amp; Adapt (SAFe) · Overall Retrospective · Fix problems that sit between teams · End of each period · 1.5–2 h · Reps from every team, · One system improvement · (LeSS) · leaders
+12. Portfolio Kanban: Organisation: · Portfolio review · Lean portfolio review · MetaScrum · Decide what to fund, start, stop and finish · Monthly or quarterly · 1–2 h · Leaders, product heads · An updated portfolio · (Scrum@Scale)
+13. OKRs · Value Metrics: Outcome review · OKR check-in · Strategy Review (Kanban) · Check progress toward outcomes and adjust direction · Monthly or quarterly · 1 h · Leaders, POs · Adjusted objectives
+
+Footer questions: “Does every event we hold have a clear purpose and output?” “Which event could we shorten, merge or drop?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/boards/events-cadences-poster.html</pre></details></section>
+    <section class="fb" data-slug="events-cadences"><span class="q" hidden>Was this guide useful? <button type="button" data-v="useful">Yes, useful</button><button type="button" data-v="not-useful">Not really</button></span><span class="thanks" hidden>Thanks for letting us know.</span> <a href="https://github.com/eparker71/agile-ways-of-working/issues/new?template=used-it.yml">Used this guide? Tell us how it went →</a><script>(function(){var f=document.currentScript.parentNode,s=f.dataset.slug;window.addEventListener('load',function(){if(!(window.goatcounter&&window.goatcounter.count))return;f.querySelector('.q').hidden=false;f.querySelectorAll('button').forEach(function(b){b.onclick=function(){window.goatcounter.count({path:'feedback/'+s+'/'+b.dataset.v,title:'Guide feedback',event:true});f.querySelector('.q').hidden=true;f.querySelector('.thanks').hidden=false;}})})})();</script></section>
+    <p style="color:var(--muted);font-size:12px">← <a href="../index.html">All tools</a> · <a href="../glossary.html">Glossary of terms</a></p>
+    <footer><span>“Which event could we shorten, merge or drop?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
+  </div>
+</div>
+</body>
+</html>

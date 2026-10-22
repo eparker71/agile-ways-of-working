@@ -14,6 +14,7 @@ from html import escape, unescape
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import paths  # noqa: E402  (where each file lives; see paths.py)
 from build_roles import TOOLS, ROLES, FONT_URL  # noqa: E402
 from build_recipes import STARTER_KITS  # noqa: E402
 from build_scenarios import parse  # noqa: E402
@@ -42,7 +43,7 @@ SIZES = [(f"s{i}", name, sub) for i, (name, sub, *_r) in enumerate(STARTER_KITS)
 
 slug = lambda s: re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")  # same as build_scenarios.py's anchors
 SCENARIOS = {s["title"]: s for area in parse() for s in area["items"]}
-INDEX = (OUT / "index.html").read_text(encoding="utf-8")
+INDEX = paths.read_index()
 BLURB = {m.group(2): unescape(re.sub(r"<[^>]+>", "", m.group(1)))
          for m in re.finditer(r'<div class="body"><h3>.*?</h3><p>(.*?)</p>.*?class="primary" href="([^"]+)"', INDEX)}
 for _id, _label, title, fallback in NEEDS:
@@ -95,8 +96,10 @@ def build():
     for k in used:
         title, board, guide, _p = TOOLS[k]
         ex = f"worked-example-{board}"
-        tools[k] = {"t": title, "b": board, "g": guide or "", "d": BLURB.get(board, ""),
-                    "x": ex if (OUT / ex).exists() else ""}
+        # links from find-a-tool.html (at the site root), since the page builds them in JavaScript
+        link = lambda name: paths.href("find-a-tool.html", name)
+        tools[k] = {"t": title, "b": link(board), "g": link(guide) if guide else "", "d": BLURB.get(board, ""),
+                    "x": link(ex) if paths.path(ex).exists() else ""}
     needs = {n[0]: {"label": n[1], "sc": slug(n[2]) if n[2] else "", "st": n[2] or ""} for n in NEEDS}
     sizes = {sid: {"label": name, "sub": sub} for sid, name, sub in SIZES}
     data = json.dumps({"roles": roles, "sizes": sizes, "needs": needs, "tools": tools, "results": results},
@@ -233,7 +236,7 @@ var D={data};
 </body>
 </html>
 """
-    (OUT / "find-a-tool.html").write_text(page, encoding="utf-8")
+    paths.write_page("find-a-tool.html", page)
     print(f"wrote find-a-tool.html ({len(results)} combinations, {len(tools)} tools)")
 
 

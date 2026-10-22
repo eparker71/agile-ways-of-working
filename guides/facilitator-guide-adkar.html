@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ADKAR Change Readiness Guide</title>
+<!-- meta -->
+<meta name="description" content="How to find where people are in a change, spot the barrier point, and act on the right thing first.">
+<link rel="canonical" href="https://eparker71.github.io/agile-ways-of-working/guides/facilitator-guide-adkar.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agile Ways of Working Toolkit">
+<meta property="og:title" content="ADKAR Change Readiness Guide · Agile Ways of Working Toolkit">
+<meta property="og:description" content="How to find where people are in a change, spot the barrier point, and act on the right thing first.">
+<meta property="og:url" content="https://eparker71.github.io/agile-ways-of-working/guides/facilitator-guide-adkar.html">
+<meta property="og:image" content="https://eparker71.github.io/agile-ways-of-working/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script data-goatcounter="https://eparker71.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- /meta -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#5B6B82; --rule:#E2E8F0; --paper:#FFFFFF;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:13px;line-height:1.55;padding:24px 16px;}
+.page{max-width:820px;margin:0 auto 24px;background:var(--paper);box-shadow:0 12px 40px rgba(0,0,0,.22);}
+.masthead{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:28px 40px 26px;position:relative;}
+.badge{position:absolute;top:14px;right:24px;font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;}
+.masthead h1{font:400 40px/1.05 var(--serif);margin:14px 0 8px;}
+.masthead p{margin:0;color:#94A3B8;font-size:13.5px;}
+.masthead .tag{margin-top:8px;font:9px var(--mono);color:#94A3B8;letter-spacing:.06em;}
+.content{padding:28px 40px 36px;}
+h2{font:400 26px/1.15 var(--serif);margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;}
+h2 .n{font:600 11px var(--sans);color:#fff;background:var(--navy);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;flex:none;transform:translateY(-3px);}
+h3{font:600 13px var(--sans);margin:16px 0 6px;}
+p{margin:6px 0 10px;}
+.lede{font:italic 400 19px/1.35 var(--serif);color:var(--ink);border-left:4px solid var(--accent);padding:2px 0 2px 16px;margin:4px 0 20px;}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px;}
+.glance div{background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;}
+.glance b{display:block;font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+.glance span{font-weight:600;font-size:13px;}
+ul.check{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:28px;}
+ul.check li{padding-left:22px;position:relative;margin-bottom:5px;break-inside:avoid;}
+ul.check li::before{content:"";position:absolute;left:0;top:3px;width:11px;height:11px;border:1.4px solid var(--ink);border-radius:2px;opacity:.55;}
+table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:12.5px;}
+th{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--ink);text-align:left;padding:8px 10px;}
+th:first-child{border-left:5px solid var(--accent);}
+td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+td.t{font:500 11px var(--mono);white-space:nowrap;color:var(--muted);}
+td.a{font-weight:600;width:24%;}
+tr:nth-child(even) td{background:#F8FAFC;}
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;}
+.area{border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,.06);break-inside:avoid;}
+.area h4{margin:0;padding:7px 12px;color:#fff;font:600 12.5px var(--sans);}
+.area ul{margin:0;padding:8px 12px 10px 28px;font-size:12px;}
+.area li{margin-bottom:3px;}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.tip{border-top:2px solid var(--rule);padding-top:8px;}
+.tip b{display:block;margin-bottom:2px;}
+.flow{display:flex;align-items:stretch;gap:0;margin:14px 0 6px;flex-wrap:wrap;}
+.step{flex:1 1 0;min-width:120px;background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;position:relative;}
+.arrow{flex:none;align-self:center;color:#C2410C;font:600 16px var(--sans);padding:0 6px;}
+.step b{display:block;font-size:12.5px;}
+.step small{color:var(--muted);font-size:11px;line-height:1.4;display:block;margin-top:2px;}
+.step .k{font:500 8.5px var(--mono);letter-spacing:.12em;color:#C2410C;text-transform:uppercase;}
+.callout{background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:12px 16px;margin:14px 0;}
+.callout b{color:#9A3412;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display:flex;justify-content:space-between;gap:16px;font:8px var(--mono);letter-spacing:.08em;color:#5B6B82;}
+@media (max-width:640px){
+  .masthead,.content{padding-left:20px;padding-right:20px;}
+  .glance{grid-template-columns:1fr 1fr;}
+  ul.check{columns:1;}
+  .areas,.tips,.two{grid-template-columns:1fr;}
+  .arrow{display:none;}
+  .flow{gap:8px;}
+  table{font-size:11.5px;}
+  td.t{white-space:normal;}
+}
+@media print{
+  @page{size:A4 portrait;margin:12mm 12mm 14mm;}
+  html,body{background:none;}
+  body{padding:0;font-size:11.5px;}
+  .page{box-shadow:none;max-width:none;margin:0;}
+  .masthead,th,.area h4,h2 .n{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  tr,.area,.tip,.step,.callout{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .pb{break-before:page;}
+}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
+.content a{color:#9A3412;}
+@media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:#C2410C;}
+.fb{margin:14px 0 6px;font-size:13px;color:var(--muted);}
+.fb a{color:#9A3412;}
+.fb button{font:500 11px var(--mono);color:var(--ink);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:5px 10px;margin:0 4px;cursor:pointer;}
+.fb button:hover{border-color:var(--accent);}
+@media print{.fb{display:none;}}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
+.content a{color:#9A3412;}
+.example{border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:10px 0;}
+.example div{display:grid;grid-template-columns:30% 1fr;border-bottom:1px solid var(--rule);}
+.example div:last-child{border-bottom:none;}
+.example b{background:#F8FAFC;padding:7px 12px;font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.example span{padding:7px 12px;font-size:12.5px;}
+@media (max-width:640px){.example div{grid-template-columns:1fr;}}
+@media print{.boards{display:none;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>ADKAR Change Readiness Guide</h1>
+    <p>How to find where people are in a change, spot the barrier point, and act on the right thing first.</p>
+    <div class="tag">Facilitator Run-Sheet · Lead the Organisation · Inspired by Prosci&#x27;s ADKAR® Model</div>
+    <div class="boards"><a class="primary" href="../boards/adkar-board.html">Open board →</a><a href="../boards/adkar-board.svg" title="An SVG file: a sharp image that stays crisp at any size. Open it in a browser, add it to Miro, Mural or FigJam, or edit the words in Figma or Inkscape.">SVG →</a><a href="../pdf/adkar-board.pdf" download>A3 PDF ↓</a><a href="../examples/worked-example-adkar-board.html">Worked example →</a><a href="facilitator-guide-adkar.docx" download>Word (editable) ↓</a></div>
+  </header>
+  <div class="content">
+    <p class="lede">“What&#x27;s the first thing stopping them, and what would help most?”</p>
+    <p>Organisations change only when people do, one person at a time. The ADKAR® model, created by Jeff Hiatt and developed by Prosci, describes five things each person needs, in order: <b>Awareness</b> of why the change is needed, <b>Desire</b> to support it, <b>Knowledge</b> of how to change, <b>Ability</b> to do it in practice, and <b>Reinforcement</b> to make it stick. Scoring each element shows the <b>barrier point</b>: the first one that's missing. Effort spent on later elements is wasted until it's fixed; training doesn't help people who don't yet see why. Use it for any change, from a new way of working to a new tool or an agile transformation. ADKAR® is a registered trademark of Prosci, Inc.</p>
+    <div class="glance"><div><b>Duration</b><span>60–90 min, then<br>re-assess monthly</span></div><div><b>Group</b><span>Change lead, sponsor,<br>managers, coaches</span></div><div><b>Use when</b><span>A change is planned,<br>or has stalled</span></div><div><b>Output</b><span>Barrier points<br>&amp; targeted actions</span></div></div>
+    <h2><span class="n">1</span>Before the session</h2>
+    <ul class="check"><li>Print the board at A3 or 11×17, or load the SVG as a digital background</li><li>Agree the change you're assessing, and its sponsor</li><li>List the groups or people affected; the Stakeholder Map is a good source</li><li>Gather evidence: survey results, questions people ask, adoption data, manager feedback</li><li>Decide whether to score groups together or ask people to score themselves (often more honest)</li></ul>
+    <h2><span class="n">2</span>Agenda &amp; run-sheet</h2>
+    <table><thead><tr><th>Time</th><th>Section</th><th>Facilitator notes</th></tr></thead><tbody><tr><td class="t">0–10</td><td class="a">1 · Change on a Page</td><td>Write what's changing, why now, who's affected and the key dates.</td></tr><tr><td class="t">10–20</td><td class="a">The model</td><td>Walk through the five elements and the idea of the barrier point. Use the element panels for examples.</td></tr><tr><td class="t">20–45</td><td class="a">2 · Readiness Grid</td><td>For each person or group, score each element 1–5 from evidence. Circle the barrier point: the first score of 3 or lower.</td></tr><tr><td class="t">45–65</td><td class="a">Element panels</td><td>For each barrier point, look at what helps for that element and write your own action.</td></tr><tr><td class="t">65–80</td><td class="a">3 · Action Plan</td><td>One action per barrier point, with an owner and a date. Focus effort on the earliest barriers.</td></tr><tr><td class="t">80–90</td><td class="a">4 · Reinforce · Close</td><td>Agree how you'll recognise success, measure adoption, and when to re-assess.</td></tr></tbody></table>
+    <h2 class="pb"><span class="n">3</span>The five elements</h2>
+    <p>Each must be in place before the next can work.</p>
+    <div class="areas"><div class="area" style="background:#DBEAFE;color:#1E3A8A"><h4 style="background:#1E3A8A">Awareness</h4><ul><li>Do people know why?</li><li>Sponsor and managers explain it</li><li>Share the cost of not changing</li></ul></div><div class="area" style="background:#EDE9FE;color:#581C87"><h4 style="background:#581C87">Desire</h4><ul><li>Do people want to take part?</li><li>Involve them in shaping it</li><li>Address what&#x27;s in it for them</li></ul></div><div class="area" style="background:#E0F2FE;color:#0C4A6E"><h4 style="background:#0C4A6E">Knowledge</h4><ul><li>Do people know how?</li><li>Training, guides, examples</li></ul></div><div class="area" style="background:#D1FAE5;color:#065F46"><h4 style="background:#065F46">Ability</h4><ul><li>Can they do it for real?</li><li>Coaching, practice, time</li><li>Remove blockers</li></ul></div><div class="area" style="background:#FFEDD5;color:#9A3412"><h4 style="background:#9A3412">Reinforcement</h4><ul><li>Will it last?</li><li>Recognition, measures</li><li>Stop rewarding the old way</li></ul></div><div class="area" style="background:#FEE2E2;color:#991B1B"><h4 style="background:#991B1B">Barrier point</h4><ul><li>The first score of 3 or lower</li><li>Fix it before later elements</li></ul></div></div>
+    <h2><span class="n">4</span>Facilitation tips</h2>
+    <div class="tips"><div class="tip"><b>Order matters</b>Training (Knowledge) won&#x27;t help if people don&#x27;t see why (Awareness) or don&#x27;t want to (Desire).</div><div class="tip"><b>Score from evidence</b>Use what people say and do, not what leaders hope. Self-scores are often more honest.</div><div class="tip"><b>Groups differ</b>Different groups often have different barrier points. Plan separate actions.</div><div class="tip"><b>Desire is personal</b>It can&#x27;t be ordered. Listen to concerns and involve people in shaping the change.</div><div class="tip"><b>Ability needs time</b>Knowing isn&#x27;t doing. Plan practice, coaching and pairing, and expect a dip at first.</div><div class="tip"><b>Don&#x27;t skip reinforcement</b>Without it, people drift back. Measure adoption and recognise it.</div></div>
+    <div class="callout"><b>Common pitfalls:</b> starting with training; scoring from leaders&#x27; assumptions; one plan for everyone; treating resistance as a character flaw; declaring success at go-live; never re-assessing.</div>
+    <h2><span class="n">5</span>After the session</h2>
+    <div class="two"><div><h3>Straight away</h3><p>Share the barrier points and actions with the sponsor and managers.</p></div><div><h3>Each week</h3><p>Owners act on their barrier points; managers check in with their teams.</p></div><div><h3>Monthly</h3><p>Re-score the grid. Barrier points should move right as the change takes hold.</p></div><div><h3>After go-live</h3><p>Keep reinforcing and measuring adoption until the new way is normal.</p></div></div>
+    <h2><span class="n">6</span>How it fits the toolkit</h2>
+    <p>ADKAR is about the people side of change. Use the <a href="facilitator-guide-stakeholder-map.html">Stakeholder Map</a> to find who's affected, the <a href="facilitator-guide-skills-matrix.html">Skills Matrix</a> and <a href="facilitator-guide-pairing-mobbing.html">Pairing &amp; Mobbing</a> to build Ability, the <a href="facilitator-guide-team-health-check.html">Team Health Check</a> to see how teams are coping, and <a href="facilitator-guide-value-metrics.html">Value Metrics</a> to show the change is paying off.</p>
+    <section class="spec" id="whiteboard"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “ADKAR Change Readiness”, a workshop board.
+
+Purpose: Find where people are in a change, spot the barrier point, and act on it before moving on.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+
+Header fields to fill in: Change, Sponsor
+
+Sections:
+1. Change on a Page: top full width, about 100% wide and 15% tall; header colour slate grey.
+   Subtitle: What, why, who, when
+   Content: What&#x27;s changing: · Who&#x27;s affected: · Why now: · Key dates:
+2. Readiness Grid: middle full width, about 100% wide and 35% tall; header colour slate grey.
+   Subtitle: Score 1–5 · the first low score is the barrier point
+   Content: Person or group: · A · awareness: · D · desire: · K · knowledge: · A · ability: · R · reinforcement: · Barrier point: · 1. 2 (×15) · 3. 4 (×15) · 5. 1 (×10) · 2. 3 (×10) · 4. 5 (×10) · 5 (×5) · Circle each score. Scores run 1 (not at all) to 5 (fully). The barrier point is the first element scored 3 or lower, working left to right. Fix it before working on later elements.
+3. Awareness: bottom left, about 20% wide and 25% tall.
+   Content: Missing if…: · People ask “why are we doing this?” Rumours fill the silence · What helps: · Sponsor explains the why, early and often · Share the cost of not changing · Our action:
+4. Desire: bottom left, about 20% wide and 25% tall; header colour purple.
+   Content: Missing if…: · People understand, but resist or stall “What&#x27;s in it for me?” is unanswered · What helps: · Involve people in shaping the change · Managers discuss concerns one-to-one · Our action:
+5. Knowledge: bottom centre, about 20% wide and 25% tall; header colour sky blue.
+   Content: Missing if…: · Willing, but unsure what to do Lots of “how do I…?” questions · What helps: · Training, guides and worked examples · Show the new way on real work · Our action:
+6. Ability: bottom right, about 20% wide and 25% tall.
+   Content: Missing if…: · Know how, but can&#x27;t do it yet Old habits return under pressure · What helps: · Coaching, pairing and practice time · Remove blockers: tools, time, access · Our action:
+7. Reinforcement: bottom right, about 20% wide and 25% tall; header colour orange.
+   Content: Missing if…: · Early wins, then people slide back The old way is still rewarded · What helps: · Recognise and celebrate adoption · Measure use; fix what pulls people back · Our action:
+8. Action Plan: bottom left, about 65% wide and 15% tall; header colour red.
+   Subtitle: One action per barrier point
+   Content: Who (person or group): · Barrier point: · Action: · Owner: · By when:
+9. Reinforce &amp; Re-assess: bottom right, about 35% wide and 15% tall; header colour dark green.
+   Content: We&#x27;ll recognise success by: · We&#x27;ll measure adoption by: · Re-assess on:
+
+Footer questions: “Where is each group in this change, really?” “What&#x27;s the first thing stopping them, and what would help most?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/boards/adkar-board.html</pre></details></section>
+    <section class="fb" data-slug="adkar"><span class="q" hidden>Was this guide useful? <button type="button" data-v="useful">Yes, useful</button><button type="button" data-v="not-useful">Not really</button></span><span class="thanks" hidden>Thanks for letting us know.</span> <a href="https://github.com/eparker71/agile-ways-of-working/issues/new?template=used-it.yml">Used this guide? Tell us how it went →</a><script>(function(){var f=document.currentScript.parentNode,s=f.dataset.slug;window.addEventListener('load',function(){if(!(window.goatcounter&&window.goatcounter.count))return;f.querySelector('.q').hidden=false;f.querySelectorAll('button').forEach(function(b){b.onclick=function(){window.goatcounter.count({path:'feedback/'+s+'/'+b.dataset.v,title:'Guide feedback',event:true});f.querySelector('.q').hidden=true;f.querySelector('.thanks').hidden=false;}})})})();</script></section>
+    <p style="color:var(--muted);font-size:12px">← <a href="../index.html">All tools</a> · <a href="../glossary.html">Glossary of terms</a></p>
+    <footer><span>“Where is each group in this change, really?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
+  </div>
+</div>
+</body>
+</html>

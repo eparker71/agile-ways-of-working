@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1% Experiment Canvas Guide</title>
+<!-- meta -->
+<meta name="description" content="How to turn a small improvement idea into an experiment that gets run, measured and reviewed.">
+<link rel="canonical" href="https://eparker71.github.io/agile-ways-of-working/guides/facilitator-guide-experiment-canvas.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agile Ways of Working Toolkit">
+<meta property="og:title" content="1% Experiment Canvas Guide · Agile Ways of Working Toolkit">
+<meta property="og:description" content="How to turn a small improvement idea into an experiment that gets run, measured and reviewed.">
+<meta property="og:url" content="https://eparker71.github.io/agile-ways-of-working/guides/facilitator-guide-experiment-canvas.html">
+<meta property="og:image" content="https://eparker71.github.io/agile-ways-of-working/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script data-goatcounter="https://eparker71.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- /meta -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#5B6B82; --rule:#E2E8F0; --paper:#FFFFFF;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:13px;line-height:1.55;padding:24px 16px;}
+.page{max-width:820px;margin:0 auto 24px;background:var(--paper);box-shadow:0 12px 40px rgba(0,0,0,.22);}
+.masthead{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:28px 40px 26px;position:relative;}
+.badge{position:absolute;top:14px;right:24px;font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;}
+.masthead h1{font:400 40px/1.05 var(--serif);margin:14px 0 8px;}
+.masthead p{margin:0;color:#94A3B8;font-size:13.5px;}
+.masthead .tag{margin-top:8px;font:9px var(--mono);color:#94A3B8;letter-spacing:.06em;}
+.content{padding:28px 40px 36px;}
+h2{font:400 26px/1.15 var(--serif);margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;}
+h2 .n{font:600 11px var(--sans);color:#fff;background:var(--navy);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;flex:none;transform:translateY(-3px);}
+h3{font:600 13px var(--sans);margin:16px 0 6px;}
+p{margin:6px 0 10px;}
+.lede{font:italic 400 19px/1.35 var(--serif);color:var(--ink);border-left:4px solid var(--accent);padding:2px 0 2px 16px;margin:4px 0 20px;}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px;}
+.glance div{background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;}
+.glance b{display:block;font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+.glance span{font-weight:600;font-size:13px;}
+ul.check{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:28px;}
+ul.check li{padding-left:22px;position:relative;margin-bottom:5px;break-inside:avoid;}
+ul.check li::before{content:"";position:absolute;left:0;top:3px;width:11px;height:11px;border:1.4px solid var(--ink);border-radius:2px;opacity:.55;}
+table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:12.5px;}
+th{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--ink);text-align:left;padding:8px 10px;}
+th:first-child{border-left:5px solid var(--accent);}
+td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+td.t{font:500 11px var(--mono);white-space:nowrap;color:var(--muted);}
+td.a{font-weight:600;width:24%;}
+tr:nth-child(even) td{background:#F8FAFC;}
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;}
+.area{border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,.06);break-inside:avoid;}
+.area h4{margin:0;padding:7px 12px;color:#fff;font:600 12.5px var(--sans);}
+.area ul{margin:0;padding:8px 12px 10px 28px;font-size:12px;}
+.area li{margin-bottom:3px;}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.tip{border-top:2px solid var(--rule);padding-top:8px;}
+.tip b{display:block;margin-bottom:2px;}
+.flow{display:flex;align-items:stretch;gap:0;margin:14px 0 6px;flex-wrap:wrap;}
+.step{flex:1 1 0;min-width:120px;background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;position:relative;}
+.arrow{flex:none;align-self:center;color:#C2410C;font:600 16px var(--sans);padding:0 6px;}
+.step b{display:block;font-size:12.5px;}
+.step small{color:var(--muted);font-size:11px;line-height:1.4;display:block;margin-top:2px;}
+.step .k{font:500 8.5px var(--mono);letter-spacing:.12em;color:#C2410C;text-transform:uppercase;}
+.callout{background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:12px 16px;margin:14px 0;}
+.callout b{color:#9A3412;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display:flex;justify-content:space-between;gap:16px;font:8px var(--mono);letter-spacing:.08em;color:#5B6B82;}
+@media (max-width:640px){
+  .masthead,.content{padding-left:20px;padding-right:20px;}
+  .glance{grid-template-columns:1fr 1fr;}
+  ul.check{columns:1;}
+  .areas,.tips,.two{grid-template-columns:1fr;}
+  .arrow{display:none;}
+  .flow{gap:8px;}
+  table{font-size:11.5px;}
+  td.t{white-space:normal;}
+}
+@media print{
+  @page{size:A4 portrait;margin:12mm 12mm 14mm;}
+  html,body{background:none;}
+  body{padding:0;font-size:11.5px;}
+  .page{box-shadow:none;max-width:none;margin:0;}
+  .masthead,th,.area h4,h2 .n{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  tr,.area,.tip,.step,.callout{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .pb{break-before:page;}
+}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
+.content a{color:#9A3412;}
+@media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:#C2410C;}
+.fb{margin:14px 0 6px;font-size:13px;color:var(--muted);}
+.fb a{color:#9A3412;}
+.fb button{font:500 11px var(--mono);color:var(--ink);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:5px 10px;margin:0 4px;cursor:pointer;}
+.fb button:hover{border-color:var(--accent);}
+@media print{.fb{display:none;}}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
+.content a{color:#9A3412;}
+.example{border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:10px 0;}
+.example div{display:grid;grid-template-columns:30% 1fr;border-bottom:1px solid var(--rule);}
+.example div:last-child{border-bottom:none;}
+.example b{background:#F8FAFC;padding:7px 12px;font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.example span{padding:7px 12px;font-size:12.5px;}
+@media (max-width:640px){.example div{grid-template-columns:1fr;}}
+@media print{.boards{display:none;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>1% Experiment Canvas Guide</h1>
+    <p>How to turn a small improvement idea into an experiment that gets run, measured and reviewed.</p>
+    <div class="tag">Facilitator Run-Sheet · Hypothesis-Driven Improvement · Build, Measure, Learn</div>
+    <div class="boards"><a class="primary" href="../boards/experiment-canvas.html">Open canvas →</a><a href="../boards/experiment-canvas.svg" title="An SVG file: a sharp image that stays crisp at any size. Open it in a browser, add it to Miro, Mural or FigJam, or edit the words in Figma or Inkscape.">SVG →</a><a href="../pdf/experiment-canvas.pdf" download>A3 PDF ↓</a><a href="../examples/worked-example-experiment-canvas.html">Worked example →</a><a href="facilitator-guide-experiment-canvas.docx" download>Word (editable) ↓</a></div>
+  </header>
+  <div class="content">
+    <p class="lede">“What&#x27;s the smallest change that could prove us right or wrong?”</p>
+    <p>Improvement ideas often die because they are vague: no owner, no measure, no end date. The canvas makes each idea testable. Fill it in when you choose an experiment (sections 1–6) and complete it at the review (section 7). Use one canvas per experiment.</p>
+    <div class="glance"><div><b>Duration</b><span>20–30 min to fill in<br>15 min to review</span></div><div><b>Group</b><span>2–4 people<br>per canvas</span></div><div><b>Used after</b><span>Marginal Gains, retro<br>or health check</span></div><div><b>Output</b><span>A testable experiment<br>with an owner</span></div></div>
+    <h2><span class="n">1</span>Before the session</h2>
+    <ul class="check"><li>Print one A3 canvas per experiment, or duplicate the SVG frame digitally</li><li>Know which friction or idea you are testing, ideally from the Marginal Gains board or a retro</li><li>Find the data source for your baseline before the session if you can</li><li>Make sure the likely owner is in the room</li><li>Book the review date before you leave the session</li></ul>
+    <h2><span class="n">2</span>Agenda &amp; run-sheet</h2>
+    <table><thead><tr><th>Time</th><th>Section</th><th>Facilitator notes</th></tr></thead><tbody><tr><td class="t">0–3</td><td class="a">1 · Friction</td><td>Tick the board area and describe the pain point in the team's own words. Be specific: “PRs wait over a day for review”, not “slow reviews”.</td></tr><tr><td class="t">3–10</td><td class="a">2 · Hypothesis</td><td>Complete the If / for / then / we'll know sentence. If you can't name the signal, the idea isn't testable yet.</td></tr><tr><td class="t">10–14</td><td class="a">3 · The 1% Change</td><td>Describe exactly what will be different, then shrink it. What could we try tomorrow, with no approval needed?</td></tr><tr><td class="t">14–20</td><td class="a">4 · Measure</td><td>Record the baseline (today), the target, and how it will be measured. Add an early-signal indicator and a guardrail metric.</td></tr><tr><td class="t">20–24</td><td class="a">5 · Plan & Timebox</td><td>Name one owner, any supporters, a start date, a mid-point check and a review date. Tick the timebox.</td></tr><tr><td class="t">24–28</td><td class="a">6 · Risks</td><td>What must be true? What could go wrong? Who needs to know? Use stickies for each risk.</td></tr><tr><td class="t">Review</td><td class="a">7 · Result & Decision</td><td>At the review date: result vs. target, then persevere, pivot or stop, and what we learned and who should hear it.</td></tr></tbody></table>
+    <h2 class="pb"><span class="n">3</span>Making each section strong</h2>
+    <p>A quick quality check for each section of the canvas.</p>
+    <div class="areas"><div class="area" style="background:#FEE2E2;color:#991B1B"><h4 style="background:#991B1B">1 · Where&#x27;s the Friction?</h4><ul><li>Is it an observed problem, not a guess?</li><li>Could someone outside the team understand it?</li></ul></div><div class="area" style="background:#EDE9FE;color:#581C87"><h4 style="background:#581C87">2 · Hypothesis</h4><ul><li>Does it name the change, who it affects, the outcome and the signal?</li><li>Could it be proven wrong?</li></ul></div><div class="area" style="background:#D1FAE5;color:#065F46"><h4 style="background:#065F46">3 · The 1% Change</h4><ul><li>Could we start within a week?</li><li>Is it within the team&#x27;s control?</li></ul></div><div class="area" style="background:#DBEAFE;color:#1E3A8A"><h4 style="background:#1E3A8A">4 · Measure</h4><ul><li>Is there a number for the baseline?</li><li>Is the target realistic for the timebox?</li><li>Does the guardrail protect quality?</li></ul></div><div class="area" style="background:#FFEDD5;color:#9A3412"><h4 style="background:#9A3412">5 · Plan &amp; Timebox</h4><ul><li>Is there exactly one owner?</li><li>Is the review date in calendars?</li></ul></div><div class="area" style="background:#FEF3C7;color:#92400E"><h4 style="background:#92400E">6 · Risks &amp; Assumptions</h4><ul><li>What&#x27;s the riskiest assumption?</li><li>How will we spot early that it&#x27;s failing?</li></ul></div><div class="area" style="background:#DCFCE7;color:#14532D"><h4 style="background:#14532D">7 · Result &amp; Decision</h4><ul><li>Persevere = make it standard practice</li><li>Pivot = adjust and run again</li><li>Stop = no gain, so share why</li></ul></div></div>
+    <h2><span class="n">4</span>Worked example</h2>
+    <div class="example"><div><b>Friction</b><span>Engineering: pull requests wait more than a day for review.</span></div><div><b>If we…</b><span>hold a 15-minute review slot straight after stand-up</span></div><div><b>for…</b><span>the team&#x27;s own pull requests</span></div><div><b>then we expect…</b><span>faster flow from code-complete to merge</span></div><div><b>We&#x27;ll know when…</b><span>median PR wait time drops</span></div><div><b>Baseline → Target</b><span>26 hours → 18 hours, measured from repository analytics weekly</span></div><div><b>Guardrail</b><span>Escaped defects do not increase</span></div><div><b>Owner · Timebox</b><span>Tech lead · 2 sprints · review at the sprint 2 retro</span></div></div>
+    <h2><span class="n">5</span>Facilitation tips</h2>
+    <div class="tips"><div class="tip"><b>Small beats perfect</b>A small experiment run this week teaches more than a perfect one that never starts.</div><div class="tip"><b>One owner</b>The owner makes sure it happens and gets reviewed. Supporters do the work with them.</div><div class="tip"><b>Measure before you change</b>Capture the baseline before starting, or you can&#x27;t show improvement.</div><div class="tip"><b>Guardrails matter</b>Speeding something up by cutting quality isn&#x27;t a gain. Always pick a metric that must not get worse.</div><div class="tip"><b>Stopping is success</b>A clean “stop” with a clear learning is a good result. Share it so others don&#x27;t repeat it.</div><div class="tip"><b>Make it visible</b>Put the canvas on the team wall or wiki next to the board, and review it at stand-up.</div></div>
+    <div class="callout"><b>Common pitfalls:</b> measures like “better quality” with no number; targets with no baseline; experiments that need another team&#x27;s work; no review date; quietly dropping experiments instead of deciding to stop; running too many at once.</div>
+    <h2><span class="n">6</span>After the session</h2>
+    <div class="two"><div><h3>Straight away</h3><p>Add the experiment to the team backlog. Book the mid-point check and the review.</p></div><div><h3>Mid-point</h3><p>Check the early-signal indicator. If it&#x27;s not started, find out why and remove the blocker.</p></div><div><h3>At the review</h3><p>Complete section 7 together. Decide persevere, pivot or stop, and record what you learned.</p></div><div><h3>Share</h3><p>Post completed canvases where other teams can see them, such as at the system demo or I&amp;A.</p></div></div>
+    <h2><span class="n">7</span>How it fits the toolkit</h2>
+    <p>The canvas is the <b>experiment</b> step. Ideas come from the <a href="facilitator-guide-marginal-gains.html">Marginal Gains Workshop</a>, a <a href="facilitator-guide-team-health-check.html">health check</a> or a retro. Results are reviewed in the next retrospective.</p>
+    <section class="spec" id="whiteboard"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “1% Experiment Canvas”, a workshop board.
+
+Purpose: Turn one small improvement idea into a testable experiment with a clear owner, measure and review date.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+
+Header fields to fill in: Experiment #, Team
+
+Sections:
+1. Where&#x27;s the Friction?: top left, about 25% wide and 35% tall; header colour red.
+   Subtitle: From the board
+   Content: Board area (tick one): · Strategy · Dependencies · Outcomes · Engineering · Product · Delivery · Teams · Learning · The pain point we observed:
+2. Hypothesis: top centre, about 50% wide and 35% tall; header colour purple.
+   Subtitle: If · for · then · we&#x27;ll know
+   Content: If we… · (the change we will make) · for… · (who or which part of the system) · then we expect… · (the outcome or improvement) · We&#x27;ll know we&#x27;re right when we see… · (the signal or evidence) · TIP: keep it small enough to start tomorrow
+3. The 1% Change: top right, about 25% wide and 35% tall; header colour emerald green.
+   Content: What exactly will we do differently? · Smallest version we could try first:
+4. Measure: middle left, about 50% wide and 35% tall; header colour blue.
+   Subtitle: Baseline → target
+   Content: Baseline: · Target: · How &amp; where measured: · where we are today · what 1% better looks like · source, frequency · Leading indicator (early signal): · Guardrail (what must not get worse):
+5. Plan &amp; Timebox: middle centre, about 25% wide and 35% tall; header colour orange.
+   Content: Owner: · Supporters: · Start date: · Mid-point check-in: · Review date: · Timebox: · 1 iteration · 2 iterations · 1 quarter
+6. Risks &amp; Assumptions: middle right, about 25% wide and 35% tall; header colour amber.
+   Content: What must be true for this to work? · What could go wrong, and how will we spot it? · Who else needs to know or agree?
+
+Also on the board: 7 · RESULT &amp; DECISION: COMPLETE AT THE REVIEW · What happened? · Decision (tick one) · What did we learn? · Result vs. target: · Persevere · Pivot · Stop · It worked. · Promising. · No gain. · Make it standard. · Adjust and re-run. · Stop and share why. · Share the learning with:
+
+Footer questions: “What&#x27;s the smallest change that could prove us right or wrong?” “If this works, who else would benefit from knowing?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/boards/experiment-canvas.html</pre></details></section>
+    <section class="fb" data-slug="experiment-canvas"><span class="q" hidden>Was this guide useful? <button type="button" data-v="useful">Yes, useful</button><button type="button" data-v="not-useful">Not really</button></span><span class="thanks" hidden>Thanks for letting us know.</span> <a href="https://github.com/eparker71/agile-ways-of-working/issues/new?template=used-it.yml">Used this guide? Tell us how it went →</a><script>(function(){var f=document.currentScript.parentNode,s=f.dataset.slug;window.addEventListener('load',function(){if(!(window.goatcounter&&window.goatcounter.count))return;f.querySelector('.q').hidden=false;f.querySelectorAll('button').forEach(function(b){b.onclick=function(){window.goatcounter.count({path:'feedback/'+s+'/'+b.dataset.v,title:'Guide feedback',event:true});f.querySelector('.q').hidden=true;f.querySelector('.thanks').hidden=false;}})})})();</script></section>
+    <p style="color:var(--muted);font-size:12px">← <a href="../index.html">All tools</a> · <a href="../glossary.html">Glossary of terms</a></p>
+    <footer><span>“If this works, who else would benefit from knowing?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
+  </div>
+</div>
+</body>
+</html>

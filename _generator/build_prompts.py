@@ -14,6 +14,7 @@ from html import escape, unescape
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import paths  # noqa: E402  (where each file lives; see paths.py)
 from build_roles import TOOLS, FONT_URL  # noqa: E402
 from build_guides import GUIDES, guide_spec  # noqa: E402
 from board_spec import spec as board_spec  # noqa: E402
@@ -293,7 +294,7 @@ PROMPTS = [
      ["facilitation", "lean-coffee"]),
 ]
 
-INDEX = (OUT / "index.html").read_text(encoding="utf-8")
+INDEX = paths.read_index()
 SECTIONS = [(sid, unescape(re.sub(r"<[^>]+>", "", name))) for sid, name in re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', INDEX)]
 _ids = [p[0] for p in PROMPTS]
 assert len(_ids) == len(set(_ids)), "duplicate prompt id"
@@ -326,9 +327,9 @@ def whiteboard_rows():
         text = guide_spec(g)
         if text:
             rows.append((re.sub(r" Guide$", "", g["title"]), f"facilitator-guide-{g['slug']}.html#whiteboard", text))
-    mg = OUT / "marginal-gains-workshop-board.svg"  # hand-written board and guide, not in GUIDES
+    mg = paths.path("marginal-gains-workshop-board.svg")  # hand-written board and guide, not in GUIDES
     rows.append(("Marginal Gains Workshop", "facilitator-guide-marginal-gains.html",
-                 board_spec(mg, f"https://{SITE}/marginal-gains-workshop-board.html")))
+                 board_spec(mg, f"https://{SITE}/{paths.site_path('marginal-gains-workshop-board.html')}")))
     return sorted(rows, key=lambda r: r[0].lower())
 
 
@@ -439,7 +440,7 @@ footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-
 </body>
 </html>
 """
-    (OUT / "prompt-library.html").write_text(page, encoding="utf-8")
+    paths.write_page("prompt-library.html", page)
     print(f"wrote prompt-library.html ({len(PROMPTS)} prompts, {len(wb)} whiteboard prompts)")
 
 

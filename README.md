@@ -22,6 +22,8 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 
 ## Tools and their guides
 
+Board files are in `boards/` (an `.html` page and an `.svg`), guides in `guides/` (`.html` and Word `.docx`), worked examples in `examples/`, and A3 PDFs in `pdf/`. The home page and the reference pages sit at the top level.
+
 | Tool | Board files | Guide |
 |---|---|---|
 | Marginal Gains Workshop | `marginal-gains-workshop-board` | `facilitator-guide-marginal-gains.html` |
@@ -157,7 +159,8 @@ The individual generators are `build_boards.py`, `build_guides.py`, `build_roles
 **Automated checks:** on every push and pull request, GitHub Actions (`.github/workflows/checks.yml`) rebuilds the site, fails if the committed files don't match what the generators produce, and runs `check_site.py`.
 
 - `brand.py` holds the brand: accent and header colours, fonts, the credit line, the published address (`PUBLISH_AT`), the GoatCounter code and the feedback form link. Every generator reads it, so rebranding is one edit (plus the hand-written pages, which carry the same values by hand).
-- `build_boards.py` holds the shared visual components (header, panels, sticky zones, action cards, footer). Boards don't assume a cadence: where a period matters, they leave a blank to write in (sprint, month, quarter). The old `-sprint` / `-quarter` page names redirect to the single boards (`REDIRECTS`).
+- `paths.py` decides which folder each file belongs in from its name (`boards/`, `guides/`, `examples/` or the top level), and fixes each page's links for its folder, so the generators can link by plain file name.
+- `build_boards.py` holds the shared visual components (header, panels, sticky zones, action cards, footer). Boards don't assume a cadence: where a period matters, they leave a blank to write in (sprint, month, quarter).
 - `build_recipes.py` makes `workshop-recipes.html` from `_content/recipes.md`: ready-made agendas that combine tools (each step is `length | tool title | what happens`), plus the worked examples.
 - Worked examples (`worked-example-*.html/svg`) are made by `build_boards.py` (`EXAMPLES`): each reads a generated blank board and adds a layer of handwriting and sticky notes for the fictional "Basket team". Their guides link to them automatically.
 - `build_meta.py` runs last. It adds a description, link-preview (Open Graph) tags, a canonical URL and the favicon to every page, and writes `sitemap.xml`, `robots.txt` and `404.html`. The preview image `og-image.png` is made from `_generator/og-card.html`.

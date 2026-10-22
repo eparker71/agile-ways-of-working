@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Delivery Metrics &amp; Tech Debt Guide</title>
+<!-- meta -->
+<meta name="description" content="How to track delivery speed and stability with four key metrics, and keep technical debt visible and managed.">
+<link rel="canonical" href="https://eparker71.github.io/agile-ways-of-working/guides/facilitator-guide-delivery-metrics.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agile Ways of Working Toolkit">
+<meta property="og:title" content="Delivery Metrics &amp; Tech Debt Guide · Agile Ways of Working Toolkit">
+<meta property="og:description" content="How to track delivery speed and stability with four key metrics, and keep technical debt visible and managed.">
+<meta property="og:url" content="https://eparker71.github.io/agile-ways-of-working/guides/facilitator-guide-delivery-metrics.html">
+<meta property="og:image" content="https://eparker71.github.io/agile-ways-of-working/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script data-goatcounter="https://eparker71.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- /meta -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#5B6B82; --rule:#E2E8F0; --paper:#FFFFFF;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:13px;line-height:1.55;padding:24px 16px;}
+.page{max-width:820px;margin:0 auto 24px;background:var(--paper);box-shadow:0 12px 40px rgba(0,0,0,.22);}
+.masthead{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:28px 40px 26px;position:relative;}
+.badge{position:absolute;top:14px;right:24px;font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;}
+.masthead h1{font:400 40px/1.05 var(--serif);margin:14px 0 8px;}
+.masthead p{margin:0;color:#94A3B8;font-size:13.5px;}
+.masthead .tag{margin-top:8px;font:9px var(--mono);color:#94A3B8;letter-spacing:.06em;}
+.content{padding:28px 40px 36px;}
+h2{font:400 26px/1.15 var(--serif);margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;}
+h2 .n{font:600 11px var(--sans);color:#fff;background:var(--navy);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;flex:none;transform:translateY(-3px);}
+h3{font:600 13px var(--sans);margin:16px 0 6px;}
+p{margin:6px 0 10px;}
+.lede{font:italic 400 19px/1.35 var(--serif);color:var(--ink);border-left:4px solid var(--accent);padding:2px 0 2px 16px;margin:4px 0 20px;}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px;}
+.glance div{background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;}
+.glance b{display:block;font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+.glance span{font-weight:600;font-size:13px;}
+ul.check{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:28px;}
+ul.check li{padding-left:22px;position:relative;margin-bottom:5px;break-inside:avoid;}
+ul.check li::before{content:"";position:absolute;left:0;top:3px;width:11px;height:11px;border:1.4px solid var(--ink);border-radius:2px;opacity:.55;}
+table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:12.5px;}
+th{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--ink);text-align:left;padding:8px 10px;}
+th:first-child{border-left:5px solid var(--accent);}
+td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+td.t{font:500 11px var(--mono);white-space:nowrap;color:var(--muted);}
+td.a{font-weight:600;width:24%;}
+tr:nth-child(even) td{background:#F8FAFC;}
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;}
+.area{border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,.06);break-inside:avoid;}
+.area h4{margin:0;padding:7px 12px;color:#fff;font:600 12.5px var(--sans);}
+.area ul{margin:0;padding:8px 12px 10px 28px;font-size:12px;}
+.area li{margin-bottom:3px;}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.tip{border-top:2px solid var(--rule);padding-top:8px;}
+.tip b{display:block;margin-bottom:2px;}
+.flow{display:flex;align-items:stretch;gap:0;margin:14px 0 6px;flex-wrap:wrap;}
+.step{flex:1 1 0;min-width:120px;background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;position:relative;}
+.arrow{flex:none;align-self:center;color:#C2410C;font:600 16px var(--sans);padding:0 6px;}
+.step b{display:block;font-size:12.5px;}
+.step small{color:var(--muted);font-size:11px;line-height:1.4;display:block;margin-top:2px;}
+.step .k{font:500 8.5px var(--mono);letter-spacing:.12em;color:#C2410C;text-transform:uppercase;}
+.callout{background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:12px 16px;margin:14px 0;}
+.callout b{color:#9A3412;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display:flex;justify-content:space-between;gap:16px;font:8px var(--mono);letter-spacing:.08em;color:#5B6B82;}
+@media (max-width:640px){
+  .masthead,.content{padding-left:20px;padding-right:20px;}
+  .glance{grid-template-columns:1fr 1fr;}
+  ul.check{columns:1;}
+  .areas,.tips,.two{grid-template-columns:1fr;}
+  .arrow{display:none;}
+  .flow{gap:8px;}
+  table{font-size:11.5px;}
+  td.t{white-space:normal;}
+}
+@media print{
+  @page{size:A4 portrait;margin:12mm 12mm 14mm;}
+  html,body{background:none;}
+  body{padding:0;font-size:11.5px;}
+  .page{box-shadow:none;max-width:none;margin:0;}
+  .masthead,th,.area h4,h2 .n{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  tr,.area,.tip,.step,.callout{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .pb{break-before:page;}
+}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
+.content a{color:#9A3412;}
+@media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:#C2410C;}
+.fb{margin:14px 0 6px;font-size:13px;color:var(--muted);}
+.fb a{color:#9A3412;}
+.fb button{font:500 11px var(--mono);color:var(--ink);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:5px 10px;margin:0 4px;cursor:pointer;}
+.fb button:hover{border-color:var(--accent);}
+@media print{.fb{display:none;}}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
+.content a{color:#9A3412;}
+.example{border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:10px 0;}
+.example div{display:grid;grid-template-columns:30% 1fr;border-bottom:1px solid var(--rule);}
+.example div:last-child{border-bottom:none;}
+.example b{background:#F8FAFC;padding:7px 12px;font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.example span{padding:7px 12px;font-size:12.5px;}
+@media (max-width:640px){.example div{grid-template-columns:1fr;}}
+@media print{.boards{display:none;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>Delivery Metrics &amp; Tech Debt Guide</h1>
+    <p>How to track delivery speed and stability with four key metrics, and keep technical debt visible and managed.</p>
+    <div class="tag">Facilitator Run-Sheet · Manage Flow · Inspired by DORA · Technical Debt Quadrant</div>
+    <div class="boards"><a class="primary" href="../boards/delivery-metrics-board.html">Open board →</a><a href="../boards/delivery-metrics-board.svg" title="An SVG file: a sharp image that stays crisp at any size. Open it in a browser, add it to Miro, Mural or FigJam, or edit the words in Figma or Inkscape.">SVG →</a><a href="../pdf/delivery-metrics-board.pdf" download>A3 PDF ↓</a><a href="../examples/worked-example-delivery-metrics-board.html">Worked example →</a><a href="facilitator-guide-delivery-metrics.docx" download>Word (editable) ↓</a></div>
+  </header>
+  <div class="content">
+    <p class="lede">“Are we getting faster without getting less stable?”</p>
+    <p>The four key metrics from the DORA research programme (DevOps Research and Assessment) balance <b>speed</b> (deployment frequency and lead time for changes) with <b>stability</b> (change failure rate and recovery time). Improving one pair at the expense of the other shows up straight away. The <b>tech debt register</b> makes debt visible with its <b>interest</b>, the ongoing cost of leaving it, and Martin Fowler's <b>technical debt quadrant</b> helps the team talk about why the debt exists without blame.</p>
+    <div class="glance"><div><b>Duration</b><span>60–90 min to set up<br>30 min monthly</span></div><div><b>Group</b><span>Eng manager,<br>tech lead, team</span></div><div><b>Use when</b><span>Releases feel slow<br>or risky</span></div><div><b>Output</b><span>Baselines, a debt<br>register &amp; a plan</span></div></div>
+    <h2><span class="n">1</span>Before the session</h2>
+    <ul class="check"><li>Print the board at A3 or 11×17, or load the SVG as a digital background</li><li>Pull data for the four metrics from your pipeline, release and incident tools, if you can</li><li>Agree definitions: what counts as a deployment, a failure and a recovery</li><li>Ask the team to list known technical debt in advance</li><li>Bring the Blocker Clustering and Ageing WIP boards if you use them</li></ul>
+    <h2><span class="n">2</span>Agenda &amp; run-sheet</h2>
+    <table><thead><tr><th>Time</th><th>Section</th><th>Facilitator notes</th></tr></thead><tbody><tr><td class="t">0–25</td><td class="a">1 · Four Key Metrics</td><td>Agree definitions, then fill in 3 months ago, now and target for each. Note where the data comes from.</td></tr><tr><td class="t">25–30</td><td class="a">Read the pattern</td><td>Speed up but stability down? Or the reverse? Discuss what the pattern says.</td></tr><tr><td class="t">30–60</td><td class="a">2 · Tech Debt Register</td><td>List the main debt items with where they are, the interest they cost, effort and an owner.</td></tr><tr><td class="t">60–70</td><td class="a">3 · Debt Quadrant</td><td>Place each item in a quadrant. Talk about the reckless ones without blame: what made it happen?</td></tr><tr><td class="t">70–80</td><td class="a">4 · Time to Pay It Down</td><td>Agree a share of each iteration for debt and enablers, and what you'll pay down first.</td></tr><tr><td class="t">80–90</td><td class="a">5 · Review</td><td>Agree how often to review the metrics and the register.</td></tr></tbody></table>
+    <h2 class="pb"><span class="n">3</span>Reading the metrics</h2>
+    <p>Look at the four together; they&#x27;re designed to balance each other.</p>
+    <div class="areas"><div class="area" style="background:#D1FAE5;color:#065F46"><h4 style="background:#065F46">Deployment Frequency</h4><ul><li>More often, smaller releases</li><li>Lower risk per release</li></ul></div><div class="area" style="background:#E0F2FE;color:#0C4A6E"><h4 style="background:#0C4A6E">Lead Time for Changes</h4><ul><li>Commit to production</li><li>Look for waiting time</li></ul></div><div class="area" style="background:#FFEDD5;color:#9A3412"><h4 style="background:#9A3412">Change Failure Rate</h4><ul><li>% of releases needing a fix</li><li>Rises if speed outruns quality</li></ul></div><div class="area" style="background:#FEE2E2;color:#991B1B"><h4 style="background:#991B1B">Recovery Time</h4><ul><li>How fast you restore service</li><li>Practice and automation help</li></ul></div><div class="area" style="background:#EDE9FE;color:#581C87"><h4 style="background:#581C87">Tech Debt Register</h4><ul><li>Interest, not just size</li><li>Owned and prioritised</li></ul></div></div>
+    <h2><span class="n">4</span>Facilitation tips</h2>
+    <div class="tips"><div class="tip"><b>Trends, not league tables</b>Compare a team with its own past, never with other teams.</div><div class="tip"><b>Balance speed and stability</b>If one pair improves while the other worsens, slow down and find out why.</div><div class="tip"><b>Debt has interest</b>Prioritise the debt that slows every change, not the debt that&#x27;s merely ugly.</div><div class="tip"><b>Make time explicit</b>A fixed share of each iteration for debt beats waiting for a quiet period that never comes.</div><div class="tip"><b>No blame in the quadrant</b>Reckless debt usually comes from pressure or missing skills. Fix the cause.</div><div class="tip"><b>Automate the data</b>Collect the metrics from your tools so measuring doesn&#x27;t become a chore.</div></div>
+    <div class="callout"><b>Common pitfalls:</b> using the metrics to rank teams or people; gaming deployment counts; ignoring stability; a debt list with no interest or owner; no time set aside to pay debt down; arguing about definitions forever.</div>
+    <h2><span class="n">5</span>After the session</h2>
+    <div class="two"><div><h3>Straight away</h3><p>Add the top debt items to the backlog with their interest noted.</p></div><div><h3>Each iteration</h3><p>Spend the agreed share on debt and enablers.</p></div><div><h3>Monthly</h3><p>Update the four metrics and review the trend with the team.</p></div><div><h3>Quarterly</h3><p>Share the trend and debt progress in the Value Metrics review (ability to innovate).</p></div></div>
+    <h2><span class="n">6</span>How it fits the toolkit</h2>
+    <p>The flow pack works as a set. <a href="facilitator-guide-kanban-board-design.html">Kanban Board Design</a> makes the workflow visible and limits WIP. <a href="facilitator-guide-ageing-wip.html">Ageing WIP &amp; SLE</a> shows which items are at risk and sets the swarm triggers used in <a href="facilitator-guide-buffering-swarming.html">Buffering &amp; Swarming</a>. <a href="facilitator-guide-blocker-clustering.html">Blocker Clustering</a> finds why work gets stuck, and the <a href="facilitator-guide-skills-matrix.html">Skills Matrix</a> shows who can swarm. Bring the results to retrospectives and the Team Health Check.</p>
+    <section class="spec" id="whiteboard"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Delivery Metrics &amp; Tech Debt”, a workshop board.
+
+Purpose: Track how quickly and safely you deliver, keep technical debt visible, and plan time to pay it down.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+
+Header fields to fill in: Team / System, Date
+
+Sections:
+1. Four Key Delivery Metrics: top full width, about 100% wide and 35% tall; header colour blue.
+   Subtitle: Two for speed · two for stability · track the trend
+   Content: Deployment Frequency · Speed: (×2) · Lead Time for Changes · Change Failure Rate · Stability: (×2) · Recovery Time · How often we release · Time from code committed · % of releases that cause a · Time to restore service · to production. · to running in production. · failure needing a fix. · after a failed release. · 3 months ago: (×4) · Now: (×4) · Target: (×4) · Measured from: (×4) · Better (×4) · Same (×4) · Worse (×4)
+2. Tech Debt Register: middle left, about 65% wide and 45% tall; header colour purple.
+   Subtitle: The interest is what it costs to leave it
+   Content: Debt: · Where: · INTEREST: COST OF LEAVING IT · Effort S/M/L: · Type: · Owner:
+3. Debt Quadrant: middle right, about 35% wide and 45% tall; header colour amber.
+   Subtitle: Why the debt exists
+   Content: Reckless · Deliberate · Prudent · Deliberate · “No time for design.” · “Ship now, fix later, knowingly.” · Reckless · Inadvertent · Prudent · Inadvertent · “What&#x27;s good design?” · “Now we know how we should have built it.” · Reckless: · Prudent:
+4. Time to Pay It Down: bottom left, about 50% wide and 15% tall; header colour dark green.
+   Content: % of each iteration for debt &amp; enablers: · This iteration we&#x27;ll pay down:
+5. Review: bottom right, about 50% wide and 15% tall; header colour slate grey.
+   Subtitle: Learn, don&#x27;t compare teams
+   Content: Metrics reviewed every: · What the trends tell us:
+
+Footer questions: “Are we getting faster without getting less stable?” “Which debt is costing us most every week we leave it?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/boards/delivery-metrics-board.html</pre></details></section>
+    <section class="fb" data-slug="delivery-metrics"><span class="q" hidden>Was this guide useful? <button type="button" data-v="useful">Yes, useful</button><button type="button" data-v="not-useful">Not really</button></span><span class="thanks" hidden>Thanks for letting us know.</span> <a href="https://github.com/eparker71/agile-ways-of-working/issues/new?template=used-it.yml">Used this guide? Tell us how it went →</a><script>(function(){var f=document.currentScript.parentNode,s=f.dataset.slug;window.addEventListener('load',function(){if(!(window.goatcounter&&window.goatcounter.count))return;f.querySelector('.q').hidden=false;f.querySelectorAll('button').forEach(function(b){b.onclick=function(){window.goatcounter.count({path:'feedback/'+s+'/'+b.dataset.v,title:'Guide feedback',event:true});f.querySelector('.q').hidden=true;f.querySelector('.thanks').hidden=false;}})})})();</script></section>
+    <p style="color:var(--muted);font-size:12px">← <a href="../index.html">All tools</a> · <a href="../glossary.html">Glossary of terms</a></p>
+    <footer><span>“Which debt is costing us most every week we leave it?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
+  </div>
+</div>
+</body>
+</html>

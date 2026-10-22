@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cross-Team Retro Guide</title>
+<!-- meta -->
+<meta name="description" content="How to run a retrospective across several teams that finds and fixes problems no single team can solve.">
+<link rel="canonical" href="https://eparker71.github.io/agile-ways-of-working/guides/facilitator-guide-cross-team-retro.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agile Ways of Working Toolkit">
+<meta property="og:title" content="Cross-Team Retro Guide · Agile Ways of Working Toolkit">
+<meta property="og:description" content="How to run a retrospective across several teams that finds and fixes problems no single team can solve.">
+<meta property="og:url" content="https://eparker71.github.io/agile-ways-of-working/guides/facilitator-guide-cross-team-retro.html">
+<meta property="og:image" content="https://eparker71.github.io/agile-ways-of-working/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script data-goatcounter="https://eparker71.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- /meta -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#5B6B82; --rule:#E2E8F0; --paper:#FFFFFF;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:13px;line-height:1.55;padding:24px 16px;}
+.page{max-width:820px;margin:0 auto 24px;background:var(--paper);box-shadow:0 12px 40px rgba(0,0,0,.22);}
+.masthead{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:28px 40px 26px;position:relative;}
+.badge{position:absolute;top:14px;right:24px;font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;}
+.masthead h1{font:400 40px/1.05 var(--serif);margin:14px 0 8px;}
+.masthead p{margin:0;color:#94A3B8;font-size:13.5px;}
+.masthead .tag{margin-top:8px;font:9px var(--mono);color:#94A3B8;letter-spacing:.06em;}
+.content{padding:28px 40px 36px;}
+h2{font:400 26px/1.15 var(--serif);margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;}
+h2 .n{font:600 11px var(--sans);color:#fff;background:var(--navy);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;flex:none;transform:translateY(-3px);}
+h3{font:600 13px var(--sans);margin:16px 0 6px;}
+p{margin:6px 0 10px;}
+.lede{font:italic 400 19px/1.35 var(--serif);color:var(--ink);border-left:4px solid var(--accent);padding:2px 0 2px 16px;margin:4px 0 20px;}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px;}
+.glance div{background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;}
+.glance b{display:block;font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+.glance span{font-weight:600;font-size:13px;}
+ul.check{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:28px;}
+ul.check li{padding-left:22px;position:relative;margin-bottom:5px;break-inside:avoid;}
+ul.check li::before{content:"";position:absolute;left:0;top:3px;width:11px;height:11px;border:1.4px solid var(--ink);border-radius:2px;opacity:.55;}
+table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:12.5px;}
+th{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--ink);text-align:left;padding:8px 10px;}
+th:first-child{border-left:5px solid var(--accent);}
+td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+td.t{font:500 11px var(--mono);white-space:nowrap;color:var(--muted);}
+td.a{font-weight:600;width:24%;}
+tr:nth-child(even) td{background:#F8FAFC;}
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;}
+.area{border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,.06);break-inside:avoid;}
+.area h4{margin:0;padding:7px 12px;color:#fff;font:600 12.5px var(--sans);}
+.area ul{margin:0;padding:8px 12px 10px 28px;font-size:12px;}
+.area li{margin-bottom:3px;}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.tip{border-top:2px solid var(--rule);padding-top:8px;}
+.tip b{display:block;margin-bottom:2px;}
+.flow{display:flex;align-items:stretch;gap:0;margin:14px 0 6px;flex-wrap:wrap;}
+.step{flex:1 1 0;min-width:120px;background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;position:relative;}
+.arrow{flex:none;align-self:center;color:#C2410C;font:600 16px var(--sans);padding:0 6px;}
+.step b{display:block;font-size:12.5px;}
+.step small{color:var(--muted);font-size:11px;line-height:1.4;display:block;margin-top:2px;}
+.step .k{font:500 8.5px var(--mono);letter-spacing:.12em;color:#C2410C;text-transform:uppercase;}
+.callout{background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:12px 16px;margin:14px 0;}
+.callout b{color:#9A3412;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display:flex;justify-content:space-between;gap:16px;font:8px var(--mono);letter-spacing:.08em;color:#5B6B82;}
+@media (max-width:640px){
+  .masthead,.content{padding-left:20px;padding-right:20px;}
+  .glance{grid-template-columns:1fr 1fr;}
+  ul.check{columns:1;}
+  .areas,.tips,.two{grid-template-columns:1fr;}
+  .arrow{display:none;}
+  .flow{gap:8px;}
+  table{font-size:11.5px;}
+  td.t{white-space:normal;}
+}
+@media print{
+  @page{size:A4 portrait;margin:12mm 12mm 14mm;}
+  html,body{background:none;}
+  body{padding:0;font-size:11.5px;}
+  .page{box-shadow:none;max-width:none;margin:0;}
+  .masthead,th,.area h4,h2 .n{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  tr,.area,.tip,.step,.callout{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .pb{break-before:page;}
+}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
+.content a{color:#9A3412;}
+@media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:#C2410C;}
+.fb{margin:14px 0 6px;font-size:13px;color:var(--muted);}
+.fb a{color:#9A3412;}
+.fb button{font:500 11px var(--mono);color:var(--ink);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:5px 10px;margin:0 4px;cursor:pointer;}
+.fb button:hover{border-color:var(--accent);}
+@media print{.fb{display:none;}}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
+.content a{color:#9A3412;}
+.example{border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:10px 0;}
+.example div{display:grid;grid-template-columns:30% 1fr;border-bottom:1px solid var(--rule);}
+.example div:last-child{border-bottom:none;}
+.example b{background:#F8FAFC;padding:7px 12px;font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.example span{padding:7px 12px;font-size:12.5px;}
+@media (max-width:640px){.example div{grid-template-columns:1fr;}}
+@media print{.boards{display:none;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>Cross-Team Retro Guide</h1>
+    <p>How to run a retrospective across several teams that finds and fixes problems no single team can solve.</p>
+    <div class="tag">Facilitator Run-Sheet · Coordinate Teams · Joint Retrospective · Inspect &amp; Adapt</div>
+    <div class="boards"><a class="primary" href="../boards/cross-team-retro-board.html">Open board →</a><a href="../boards/cross-team-retro-board.svg" title="An SVG file: a sharp image that stays crisp at any size. Open it in a browser, add it to Miro, Mural or FigJam, or edit the words in Figma or Inkscape.">SVG →</a><a href="../pdf/cross-team-retro-board.pdf" download>A3 PDF ↓</a><a href="../examples/worked-example-cross-team-retro-board.html">Worked example →</a><a href="facilitator-guide-cross-team-retro.docx" download>Word (editable) ↓</a></div>
+  </header>
+  <div class="content">
+    <p class="lede">“What got in the way between teams, not within them?”</p>
+    <p>Team retros improve how each team works, but many problems live between teams: hand-offs, dependencies, shared environments and unclear decisions. A cross-team retro, held at the end of a planning period, brings representatives from every team together to review the <b>shared objectives</b>, collect what went well and what didn't <b>across teams</b>, and solve the biggest system problem in mixed-team groups. SAFe calls this the Inspect &amp; Adapt event's problem-solving workshop.</p>
+    <div class="glance"><div><b>Duration</b><span>90–120 min</span></div><div><b>Group</b><span>Reps from every team,<br>POs, leaders</span></div><div><b>Use when</b><span>End of each planning<br>period</span></div><div><b>Output</b><span>One system fix<br>&amp; owners</span></div></div>
+    <h2><span class="n">1</span>Before the session</h2>
+    <ul class="check"><li>Print the board at A1 or A3 (or 11×17), or use a digital board with breakout areas</li><li>Bring the shared objectives and their results from the Cross-Team Planning board</li><li>Ask each team to bring the top cross-team themes from their own retros</li><li>Bring the Dependency Map and the Impediments boards</li><li>Green, pink and blue stickies, dot stickers and markers</li></ul>
+    <h2><span class="n">2</span>Agenda &amp; run-sheet</h2>
+    <table><thead><tr><th>Time</th><th>Section</th><th>Facilitator notes</th></tr></thead><tbody><tr><td class="t">0–15</td><td class="a">1 · What We Set Out to Do</td><td>Review the shared objectives: planned value, achieved, and what was learned.</td></tr><tr><td class="t">15–40</td><td class="a">2–4 · Gather</td><td>Silent writing on green, pink and blue stickies. Focus on between-team topics. Cluster duplicates.</td></tr><tr><td class="t">40–45</td><td class="a">Dot vote</td><td>Three dots each on the cross-team problems. Pick the top one or two.</td></tr><tr><td class="t">45–80</td><td class="a">5 · Solve the Top Problem</td><td>In mixed-team groups, run 5 Whys to a root cause and propose improvements.</td></tr><tr><td class="t">80–95</td><td class="a">Agree improvements</td><td>Groups share proposals. Agree which to do, the teams involved and an owner.</td></tr><tr><td class="t">95–105</td><td class="a">6 · Follow Through</td><td>Add improvements to the next cross-team plan and agree how to measure success.</td></tr></tbody></table>
+    <h2 class="pb"><span class="n">3</span>Making each part strong</h2>
+    <p>Quality checks for the board.</p>
+    <div class="areas"><div class="area" style="background:#F1F5F9;color:#334155"><h4 style="background:#334155">1 · What We Set Out to Do</h4><ul><li>Data, not opinions</li><li>Learning, not blame</li></ul></div><div class="area" style="background:#D1FAE5;color:#065F46"><h4 style="background:#065F46">2 · Went Well Across Teams</h4><ul><li>Specific examples</li><li>Worth repeating</li></ul></div><div class="area" style="background:#FEE2E2;color:#991B1B"><h4 style="background:#991B1B">3 · Cross-Team Problems</h4><ul><li>Between teams, not within</li><li>Dot-voted</li></ul></div><div class="area" style="background:#DBEAFE;color:#1E3A8A"><h4 style="background:#1E3A8A">4 · Ideas</h4><ul><li>Anyone can contribute</li><li>Small and testable</li></ul></div><div class="area" style="background:#EDE9FE;color:#581C87"><h4 style="background:#581C87">5 · Solve the Top Problem</h4><ul><li>Mixed-team groups</li><li>A root cause, not a symptom</li></ul></div><div class="area" style="background:#DCFCE7;color:#14532D"><h4 style="background:#14532D">6 · Follow Through</h4><ul><li>Improvements in the next plan</li><li>Each has an owner</li></ul></div></div>
+    <h2><span class="n">4</span>Facilitation tips</h2>
+    <div class="tips"><div class="tip"><b>Focus between teams</b>Steer team-internal issues back to team retros. This session is for the system.</div><div class="tip"><b>Mix the groups</b>Problem-solving groups with people from several teams see the whole picture.</div><div class="tip"><b>One problem, solved</b>Fixing one system problem well beats a long list of half-fixes.</div><div class="tip"><b>Leaders as participants</b>Leaders can remove system constraints that teams can&#x27;t. Invite them to help solve.</div><div class="tip"><b>Plan it in</b>Put improvements into the next planning period&#x27;s capacity, or they won&#x27;t happen.</div><div class="tip"><b>Close the loop</b>Start the next cross-team retro by reviewing the last one&#x27;s improvements.</div></div>
+    <div class="callout"><b>Common pitfalls:</b> teams airing internal issues; blaming other teams; too many improvements; no owners; improvements not planned into the next period; skipping it when a period goes well.</div>
+    <h2><span class="n">5</span>After the session</h2>
+    <div class="two"><div><h3>Straight away</h3><p>Share the improvements and owners with all teams.</p></div><div><h3>Next planning</h3><p>Plan the improvements into the Cross-Team Planning board&#x27;s capacity.</p></div><div><h3>During the period</h3><p>Track progress at the Cross-Team Sync.</p></div><div><h3>Next retro</h3><p>Review the improvements first: did they help?</p></div></div>
+    <h2><span class="n">6</span>How it fits the toolkit</h2>
+    <p>The program tools coordinate several teams: agree <a href="facilitator-guide-okr.html">Objectives &amp; Key Results</a>, plan together with the <a href="facilitator-guide-cross-team-planning.html">Cross-Team Planning</a> board, make links visible on the <a href="facilitator-guide-dependency-map.html">Dependency Map</a>, and keep in step with a regular <a href="facilitator-guide-cross-team-sync.html">Cross-Team Sync</a>. Each team still plans, reviews and improves with the team-level tools.</p>
+    <section class="spec" id="whiteboard"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Cross-Team Retro”, a workshop board.
+
+Purpose: Reflect across teams at the end of a period: what worked, what didn&#x27;t, and one system problem to fix together.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+Key: Green = Went well · Pink = Problem · Blue = Idea · Dot = Vote
+
+Sections:
+1. What We Set Out to Do: top full width, about 100% wide and 15% tall; header colour slate grey.
+   Subtitle: Bring the shared objectives and the data
+   Content: Shared objective: · Planned value: · Achieved: · What we learned:
+2. Went Well Across Teams: middle left, about 35% wide and 45% tall; header colour emerald green.
+   Subtitle: Keep doing
+   Content: Where did teams help each other?
+3. Cross-Team Problems: middle centre, about 35% wide and 45% tall; header colour red.
+   Subtitle: Dot-vote the biggest
+   Content: Where did work wait between teams?
+4. Ideas: middle right, about 35% wide and 45% tall; header colour blue.
+   Subtitle: For any team to try
+   Content: What would make next period smoother?
+5. Solve the Top Problem: bottom left, about 65% wide and 35% tall; header colour purple.
+   Subtitle: In mixed-team groups
+   Content: Top problem (most dots): · Improvement: · Teams involved: · Owner: · Why 1? · Why 2? · Why 3? · Why 4? · Root cause:
+6. Follow Through: bottom right, about 35% wide and 35% tall; header colour dark green.
+   Subtitle: Into the next planning
+   Content: Improvements added to the next cross-team plan · Each improvement has an owner · Teams&#x27; own retros have the same themes? · Progress checked at the cross-team sync · We&#x27;ll measure success by: · Next cross-team retro:
+
+Footer questions: “What got in the way between teams, not within them?” “What one change would help every team next period?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/boards/cross-team-retro-board.html</pre></details></section>
+    <section class="fb" data-slug="cross-team-retro"><span class="q" hidden>Was this guide useful? <button type="button" data-v="useful">Yes, useful</button><button type="button" data-v="not-useful">Not really</button></span><span class="thanks" hidden>Thanks for letting us know.</span> <a href="https://github.com/eparker71/agile-ways-of-working/issues/new?template=used-it.yml">Used this guide? Tell us how it went →</a><script>(function(){var f=document.currentScript.parentNode,s=f.dataset.slug;window.addEventListener('load',function(){if(!(window.goatcounter&&window.goatcounter.count))return;f.querySelector('.q').hidden=false;f.querySelectorAll('button').forEach(function(b){b.onclick=function(){window.goatcounter.count({path:'feedback/'+s+'/'+b.dataset.v,title:'Guide feedback',event:true});f.querySelector('.q').hidden=true;f.querySelector('.thanks').hidden=false;}})})})();</script></section>
+    <p style="color:var(--muted);font-size:12px">← <a href="../index.html">All tools</a> · <a href="../glossary.html">Glossary of terms</a></p>
+    <footer><span>“What one change would help every team next period?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Example: Persona & Journey Map</title>
+<!-- meta -->
+<meta name="description" content="Worked example for a fictional team. A3 landscape persona and customer journey map: a persona, the scenario and job to be done, and a five-stage journey with doing, thinking, feeling, pain points…">
+<link rel="canonical" href="https://eparker71.github.io/agile-ways-of-working/examples/worked-example-persona-journey-board.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agile Ways of Working Toolkit">
+<meta property="og:title" content="Example: Persona &amp; Journey Map · Agile Ways of Working Toolkit">
+<meta property="og:description" content="Worked example for a fictional team. A3 landscape persona and customer journey map: a persona, the scenario and job to be done, and a five-stage journey with doing, thinking, feeling, pain points…">
+<meta property="og:url" content="https://eparker71.github.io/agile-ways-of-working/examples/worked-example-persona-journey-board.html">
+<meta property="og:image" content="https://eparker71.github.io/agile-ways-of-working/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script data-goatcounter="https://eparker71.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- /meta -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{display:flex;justify-content:center;align-items:flex-start;padding:24px;box-sizing:border-box;min-height:100vh;}
+svg{display:block;max-width:100%;height:auto;box-shadow:0 12px 40px rgba(0,0,0,.22);}
+a.guide{position:fixed;right:16px;bottom:16px;font:500 12px 'Geist',system-ui,sans-serif;color:#fff;background:#0C1A2E;border-left:4px solid #eb6c36;padding:9px 14px;border-radius:6px;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.25);}
+a.guide:hover{background:#C2410C;}
+a.guide.pdf{bottom:60px;}
+p.phone{display:none;}@media (max-width:700px){body{flex-direction:column;align-items:stretch;padding:12px 12px 72px;min-height:0;}p.phone{display:block;margin:14px 2px 0;font:14px/1.5 'Geist',system-ui,sans-serif;color:#0C1A2E;}p.phone b{display:block;font-weight:600;margin-bottom:2px;}p.phone a{color:#9A3412;}}@media print{p.phone{display:none !important;}}
+@media print{@page{size:A3 landscape;margin:0;}html,body{background:none;}body{padding:0;}svg{box-shadow:none;width:100%;max-height:296mm;}html,body{height:297mm;overflow:hidden;}a.guide{display:none;}}
+body{flex-direction:column;align-items:center;}nav.story{display:flex;align-items:center;gap:8px;width:100%;max-width:1680px;margin:0 0 12px;font:500 12.5px 'Geist',system-ui,sans-serif;}nav.story a{color:#fff;background:#0C1A2E;text-decoration:none;padding:7px 12px;border-radius:999px;}nav.story a:hover{background:#C2410C;}nav.story i{font-style:normal;color:#CBD5E1;}nav.story .mid{margin:0 auto;background:#fff;color:#0C1A2E;}nav.story .mid:hover{color:#fff;}nav.story .next{text-align:right;}nav.story .n{display:none;}@media (max-width:700px){nav.story .w{display:none;}nav.story .n{display:inline;}}@media print{nav.story{display:none;}}
+</style>
+</head>
+<body>
+<a class="guide" style="right:auto;left:16px" href="../boards/persona-journey-board.html">← Blank board</a>
+<a class="guide" href="../guides/facilitator-guide-persona-journey.html">Facilitator guide →</a>
+<a class="guide pdf" href="../pdf/persona-journey-board.pdf" download title="A3 landscape. On 11×17 (Tabloid) paper, print with Fit to page.">A3 PDF ↓</a>
+<nav class="story" aria-label="The Basket team story"><a class="prev" href="worked-example-product-vision-board.html">← <span class="w"><i>6 Feb ·</i> Product Vision Board</span><span class="n">Previous</span></a><a class="mid" href="../basket-team-story.html#february"><span class="w">The Basket team story · </span>4 of 66</a><a class="next" href="worked-example-opportunity-solution-tree-board.html"><span class="w">Opportunity Solution Tree <i>· 12 Feb</i></span><span class="n">Next</span> →</a></nav>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 1190" width="1680" height="1190" role="img" aria-labelledby="mg-title mg-desc">
+  <title id="mg-title">Example: Persona &amp; Journey Map</title>
+  <desc id="mg-desc">Worked example for a fictional team. A3 landscape persona and customer journey map: a persona, the scenario and job to be done, and a five-stage journey with doing, thinking, feeling, pain points and opportunities.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#EFF6FF"/>
+    </linearGradient>
+    <filter id="fc" x="-4%" y="-4%" width="110%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity=".10"/>
+    </filter>
+    <filter id="fsm" x="-6%" y="-6%" width="114%" height="116%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity=".08"/>
+    </filter>
+    <pattern id="dots" patternUnits="userSpaceOnUse" width="20" height="20">
+      <circle cx="10" cy="10" r="1.2" fill="#000" fill-opacity=".055"/>
+    </pattern>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E0F2FE"/>
+      <stop offset="100%" stop-color="#F0F9FF"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7DD3FC"/>
+      <stop offset="100%" stop-color="#BAE6FD"/>
+    </linearGradient>
+  </defs>
+<rect x="0" y="0" width="1680" height="1190" fill="url(#bg)"/><rect x="0" y="0" width="1680" height="4" fill="#eb6c36"/><rect x="0" y="4" width="1680" height="134" fill="#0C1A2E"/><text x="24" y="70" font-family="'Instrument Serif',Georgia,serif" font-size="42" font-weight="400" fill="white">Persona &amp; Journey Map</text><text x="24" y="100" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" fill="#94A3B8">Describe a real type of user, then map their journey: what they do, think and feel, and where to help.</text><text x="24" y="120" font-family="'Geist Mono',Consolas,monospace" font-size="9" fill="#8291A6" letter-spacing=".06em">Envision &amp; Plan · Personas · Customer Journey Mapping · Jobs to Be Done</text><text x="1356" y="48" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#8291A6" letter-spacing=".14em">LEGEND</text><rect x="1356" y="59" width="22" height="22" rx="3" fill="#FDE047" filter="url(#fsm)"/><polygon points="1371,59 1378,66 1378,59" fill="#000" fill-opacity=".15"/><text x="1384" y="74" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#CBD5E1">Yellow = Step</text><rect x="1506" y="59" width="22" height="22" rx="3" fill="#93C5FD" filter="url(#fsm)"/><polygon points="1521,59 1528,66 1528,59" fill="#000" fill-opacity=".15"/><text x="1534" y="74" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#CBD5E1">Blue = Thought</text><rect x="1356" y="89" width="22" height="22" rx="3" fill="#F9A8D4" filter="url(#fsm)"/><polygon points="1371,89 1378,96 1378,89" fill="#000" fill-opacity=".15"/><text x="1384" y="104" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#CBD5E1">Pink = Pain point</text><rect x="1506" y="89" width="22" height="22" rx="3" fill="#4ADE80" filter="url(#fsm)"/><polygon points="1521,89 1528,96 1528,89" fill="#000" fill-opacity=".15"/><text x="1534" y="104" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#CBD5E1">Green = Opportunity</text>
+<rect x="24" y="148" width="534" height="330" rx="10" fill="#EDE9FE" stroke="#581C87" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M24,200 V158 A10,10 0 0 1 34,148 H548 A10,10 0 0 1 558,158 V200 Z" fill="#581C87"/><circle cx="45" cy="174" r="12" fill="white" fill-opacity=".18"/><text x="45" y="179" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">1</text><text x="68" y="180" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Persona</text><text x="542" y="179" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".88" letter-spacing=".10em">BASED ON EVIDENCE, NOT GUESSES</text>
+<rect x="42" y="218" width="120" height="120" rx="8" fill="#EDE9FE" stroke="#581C87" stroke-opacity=".3" stroke-dasharray="5,4"/>
+
+<text x="180" y="242" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#581C87">Name:</text><line x1="218.6" y1="246" x2="540" y2="246" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="180" y="276" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#581C87">Role / context:</text><line x1="275.8" y1="280" x2="540" y2="280" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="180" y="310" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#581C87">Tech comfort:</text><line x1="264.36" y1="314" x2="540" y2="314" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="42" y="366" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#581C87">Goals:</text><line x1="86.32" y1="370" x2="540" y2="370" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="42" y="396" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#581C87">Frustrations:</text><line x1="126.36" y1="400" x2="540" y2="400" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="42" y="426" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#581C87">In their words:</text><line x1="137.8" y1="430" x2="540" y2="430" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="42" y="456" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#581C87">Evidence from:</text><line x1="132.08" y1="460" x2="540" y2="460" stroke="#CBD5E1" stroke-width="1.5"/>
+<rect x="572" y="148" width="1084" height="330" rx="10" fill="#DBEAFE" stroke="#1E3A8A" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M572,200 V158 A10,10 0 0 1 582,148 H1646 A10,10 0 0 1 1656,158 V200 Z" fill="#1E3A8A"/><circle cx="593" cy="174" r="12" fill="white" fill-opacity=".18"/><text x="593" y="179" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">2</text><text x="616" y="180" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">The Journey We're Mapping</text>
+<text x="590" y="238" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E3A8A">Scenario or goal:</text><line x1="697.24" y1="242" x2="1638" y2="242" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="590" y="276" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E3A8A">Starts when:</text><line x1="668.64" y1="280" x2="1104" y2="280" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="1124" y="276" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E3A8A">Ends when:</text><line x1="1191.2" y1="280" x2="1638" y2="280" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="590" y="324" font-family="'Geist Mono',Consolas,monospace" font-size="9" font-weight="600" fill="#1E3A8A" letter-spacing=".12em">JOB TO BE DONE</text>
+<text x="590" y="358" font-family="'Instrument Serif',Georgia,serif" font-size="17" font-style="italic" fill="#1E3A8A">When…</text>
+<line x1="702" y1="361" x2="1638" y2="361" stroke="#1E3A8A" stroke-width="1" stroke-opacity=".25"/>
+<text x="590" y="394" font-family="'Instrument Serif',Georgia,serif" font-size="17" font-style="italic" fill="#1E3A8A">I want to…</text>
+<line x1="702" y1="397" x2="1638" y2="397" stroke="#1E3A8A" stroke-width="1" stroke-opacity=".25"/>
+<text x="590" y="430" font-family="'Instrument Serif',Georgia,serif" font-size="17" font-style="italic" fill="#1E3A8A">so I can…</text>
+<line x1="702" y1="433" x2="1638" y2="433" stroke="#1E3A8A" stroke-width="1" stroke-opacity=".25"/>
+<rect x="24" y="492" width="1632" height="568" rx="10" fill="#F1F5F9" stroke="#334155" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M24,544 V502 A10,10 0 0 1 34,492 H1646 A10,10 0 0 1 1656,502 V544 Z" fill="#334155"/><circle cx="45" cy="518" r="12" fill="white" fill-opacity=".18"/><text x="45" y="523" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">3</text><text x="68" y="524" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Journey Map</text><text x="1640" y="523" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".88" letter-spacing=".10em">STAGES LEFT TO RIGHT · ONE ROW AT A TIME</text>
+<rect x="211" y="556" width="280.8" height="34" rx="5" fill="#334155"/>
+<text x="222" y="578" font-family="'Geist Mono',Consolas,monospace" font-size="9" font-weight="600" fill="white" letter-spacing=".12em">STAGE 1</text>
+<line x1="304" y1="581" x2="478.8" y2="581" stroke="#94A3B8" stroke-width="1"/>
+<rect x="497.8" y="556" width="280.8" height="34" rx="5" fill="#334155"/>
+<text x="508.8" y="578" font-family="'Geist Mono',Consolas,monospace" font-size="9" font-weight="600" fill="white" letter-spacing=".12em">STAGE 2</text>
+<line x1="590.8" y1="581" x2="765.6" y2="581" stroke="#94A3B8" stroke-width="1"/>
+<rect x="784.6" y="556" width="280.8" height="34" rx="5" fill="#334155"/>
+<text x="795.6" y="578" font-family="'Geist Mono',Consolas,monospace" font-size="9" font-weight="600" fill="white" letter-spacing=".12em">STAGE 3</text>
+<line x1="877.6" y1="581" x2="1052.4" y2="581" stroke="#94A3B8" stroke-width="1"/>
+<rect x="1071.4" y="556" width="280.8" height="34" rx="5" fill="#334155"/>
+<text x="1082.4" y="578" font-family="'Geist Mono',Consolas,monospace" font-size="9" font-weight="600" fill="white" letter-spacing=".12em">STAGE 4</text>
+<line x1="1164.4" y1="581" x2="1339.2" y2="581" stroke="#94A3B8" stroke-width="1"/>
+<rect x="1358.2" y="556" width="280.8" height="34" rx="5" fill="#334155"/>
+<text x="1369.2" y="578" font-family="'Geist Mono',Consolas,monospace" font-size="9" font-weight="600" fill="white" letter-spacing=".12em">STAGE 5</text>
+<line x1="1451.2" y1="581" x2="1626" y2="581" stroke="#94A3B8" stroke-width="1"/>
+<rect x="38" y="598" width="162" height="86" rx="5" fill="#FEF3C7"/>
+<text x="50" y="622" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" font-weight="600" fill="#92400E">Doing</text>
+<text x="50" y="640" font-family="'Geist',Inter,system-ui,sans-serif" font-size="9.5" fill="#92400E" fill-opacity=".88">Steps they take</text>
+<rect x="211" y="598" width="280.8" height="86" rx="5" fill="#FEF3C7" fill-opacity=".5" stroke="#92400E" stroke-opacity=".15"/>
+<rect x="211" y="598" width="280.8" height="86" rx="5" fill="url(#dots)"/>
+<rect x="497.8" y="598" width="280.8" height="86" rx="5" fill="#FEF3C7" fill-opacity=".5" stroke="#92400E" stroke-opacity=".15"/>
+<rect x="497.8" y="598" width="280.8" height="86" rx="5" fill="url(#dots)"/>
+<rect x="784.6" y="598" width="280.8" height="86" rx="5" fill="#FEF3C7" fill-opacity=".5" stroke="#92400E" stroke-opacity=".15"/>
+<rect x="784.6" y="598" width="280.8" height="86" rx="5" fill="url(#dots)"/>
+<rect x="1071.4" y="598" width="280.8" height="86" rx="5" fill="#FEF3C7" fill-opacity=".5" stroke="#92400E" stroke-opacity=".15"/>
+<rect x="1071.4" y="598" width="280.8" height="86" rx="5" fill="url(#dots)"/>
+<rect x="1358.2" y="598" width="280.8" height="86" rx="5" fill="#FEF3C7" fill-opacity=".5" stroke="#92400E" stroke-opacity=".15"/>
+<rect x="1358.2" y="598" width="280.8" height="86" rx="5" fill="url(#dots)"/>
+<rect x="38" y="690" width="162" height="72" rx="5" fill="#DBEAFE"/>
+<text x="50" y="714" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" font-weight="600" fill="#1E3A8A">Thinking</text>
+<text x="50" y="732" font-family="'Geist',Inter,system-ui,sans-serif" font-size="9.5" fill="#1E3A8A" fill-opacity=".88">Questions, doubts</text>
+<rect x="211" y="690" width="280.8" height="72" rx="5" fill="#DBEAFE" fill-opacity=".5" stroke="#1E3A8A" stroke-opacity=".15"/>
+<rect x="211" y="690" width="280.8" height="72" rx="5" fill="url(#dots)"/>
+<rect x="497.8" y="690" width="280.8" height="72" rx="5" fill="#DBEAFE" fill-opacity=".5" stroke="#1E3A8A" stroke-opacity=".15"/>
+<rect x="497.8" y="690" width="280.8" height="72" rx="5" fill="url(#dots)"/>
+<rect x="784.6" y="690" width="280.8" height="72" rx="5" fill="#DBEAFE" fill-opacity=".5" stroke="#1E3A8A" stroke-opacity=".15"/>
+<rect x="784.6" y="690" width="280.8" height="72" rx="5" fill="url(#dots)"/>
+<rect x="1071.4" y="690" width="280.8" height="72" rx="5" fill="#DBEAFE" fill-opacity=".5" stroke="#1E3A8A" stroke-opacity=".15"/>
+<rect x="1071.4" y="690" width="280.8" height="72" rx="5" fill="url(#dots)"/>
+<rect x="1358.2" y="690" width="280.8" height="72" rx="5" fill="#DBEAFE" fill-opacity=".5" stroke="#1E3A8A" stroke-opacity=".15"/>
+<rect x="1358.2" y="690" width="280.8" height="72" rx="5" fill="url(#dots)"/>
+<rect x="38" y="768" width="162" height="82" rx="5" fill="#EDE9FE"/>
+<text x="50" y="792" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" font-weight="600" fill="#581C87">Feeling</text>
+<text x="50" y="810" font-family="'Geist',Inter,system-ui,sans-serif" font-size="9.5" fill="#581C87" fill-opacity=".88">Highs and lows</text>
+<rect x="208" y="768" width="1434" height="82" rx="5" fill="white" fill-opacity=".6" stroke="#581C87" stroke-opacity=".15"/>
+<line x1="238" y1="809" x2="1632" y2="809" stroke="#581C87" stroke-width="1" stroke-opacity=".3" stroke-dasharray="4,4"/>
+<text x="218" y="786" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#581C87">+</text>
+<text x="218" y="842" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#581C87">−</text>
+
+<rect x="38" y="856" width="162" height="82" rx="5" fill="#FEE2E2"/>
+<text x="50" y="880" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" font-weight="600" fill="#991B1B">Pain points</text>
+<text x="50" y="898" font-family="'Geist',Inter,system-ui,sans-serif" font-size="9.5" fill="#991B1B" fill-opacity=".88">What goes wrong</text>
+<rect x="211" y="856" width="280.8" height="82" rx="5" fill="#FEE2E2" fill-opacity=".5" stroke="#991B1B" stroke-opacity=".15"/>
+<rect x="211" y="856" width="280.8" height="82" rx="5" fill="url(#dots)"/>
+<rect x="497.8" y="856" width="280.8" height="82" rx="5" fill="#FEE2E2" fill-opacity=".5" stroke="#991B1B" stroke-opacity=".15"/>
+<rect x="497.8" y="856" width="280.8" height="82" rx="5" fill="url(#dots)"/>
+<rect x="784.6" y="856" width="280.8" height="82" rx="5" fill="#FEE2E2" fill-opacity=".5" stroke="#991B1B" stroke-opacity=".15"/>
+<rect x="784.6" y="856" width="280.8" height="82" rx="5" fill="url(#dots)"/>
+<rect x="1071.4" y="856" width="280.8" height="82" rx="5" fill="#FEE2E2" fill-opacity=".5" stroke="#991B1B" stroke-opacity=".15"/>
+<rect x="1071.4" y="856" width="280.8" height="82" rx="5" fill="url(#dots)"/>
+<rect x="1358.2" y="856" width="280.8" height="82" rx="5" fill="#FEE2E2" fill-opacity=".5" stroke="#991B1B" stroke-opacity=".15"/>
+<rect x="1358.2" y="856" width="280.8" height="82" rx="5" fill="url(#dots)"/>
+<rect x="38" y="944" width="162" height="82" rx="5" fill="#DCFCE7"/>
+<text x="50" y="968" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" font-weight="600" fill="#14532D">Opportunities</text>
+<text x="50" y="986" font-family="'Geist',Inter,system-ui,sans-serif" font-size="9.5" fill="#14532D" fill-opacity=".88">How we could help</text>
+<rect x="211" y="944" width="280.8" height="82" rx="5" fill="#DCFCE7" fill-opacity=".5" stroke="#14532D" stroke-opacity=".15"/>
+<rect x="211" y="944" width="280.8" height="82" rx="5" fill="url(#dots)"/>
+<rect x="497.8" y="944" width="280.8" height="82" rx="5" fill="#DCFCE7" fill-opacity=".5" stroke="#14532D" stroke-opacity=".15"/>
+<rect x="497.8" y="944" width="280.8" height="82" rx="5" fill="url(#dots)"/>
+<rect x="784.6" y="944" width="280.8" height="82" rx="5" fill="#DCFCE7" fill-opacity=".5" stroke="#14532D" stroke-opacity=".15"/>
+<rect x="784.6" y="944" width="280.8" height="82" rx="5" fill="url(#dots)"/>
+<rect x="1071.4" y="944" width="280.8" height="82" rx="5" fill="#DCFCE7" fill-opacity=".5" stroke="#14532D" stroke-opacity=".15"/>
+<rect x="1071.4" y="944" width="280.8" height="82" rx="5" fill="url(#dots)"/>
+<rect x="1358.2" y="944" width="280.8" height="82" rx="5" fill="#DCFCE7" fill-opacity=".5" stroke="#14532D" stroke-opacity=".15"/>
+<rect x="1358.2" y="944" width="280.8" height="82" rx="5" fill="url(#dots)"/>
+<line x1="24" y1="1070" x2="1656" y2="1070" stroke="#E2E8F0" stroke-width="1"/><text x="24" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“What is this person really trying to get done?”</text><line x1="832" y1="1078" x2="832" y2="1128" stroke="#E2E8F0" stroke-width="1"/><text x="848" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“Where in the journey do we lose them, and why?”</text><text x="1656" y="1138" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#5B6B82" letter-spacing=".08em">Envision · Understand Users · Outcomes Over Output</text><text x="24" y="1138" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#5B6B82" letter-spacing=".06em">© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</text>
+<g class="worked-example"><g transform="rotate(-3 1150 66)"><rect x="1010" y="48" width="280" height="36" rx="5" fill="none" stroke="#eb6c36" stroke-width="2"/><text x="1150" y="71" text-anchor="middle" font-family="'Geist Mono',Consolas,monospace" font-size="10.5" font-weight="600" fill="#eb6c36" letter-spacing=".12em">WORKED EXAMPLE · FICTIONAL TEAM</text></g><circle cx="102" cy="268" r="26" fill="none" stroke="#1D4ED8" stroke-width="2"/><path d="M62,322 q40,-40 80,0" fill="none" stroke="#1D4ED8" stroke-width="2"/><text x="224.6" y="238" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="17" font-weight="500" fill="#1D4ED8">Sarah, 38</text><text x="281.8" y="272" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">two kids, works full-time</text><text x="270.36" y="306" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#1D4ED8">high on her phone</text><text x="92.32" y="362" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="15" font-weight="500" fill="#1D4ED8">the weekly shop done fast, nothing forgotten</text><text x="132.36" y="392" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="15" font-weight="500" fill="#1D4ED8">rebuilding the same basket every week</text><text x="143.8" y="422" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="15" font-weight="500" fill="#1D4ED8">“I shop on my phone at 10 p.m.”</text><text x="138.08" y="452" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="15" font-weight="500" fill="#1D4ED8">12 interviews, order data</text><text x="703.24" y="230" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="17" font-weight="500" fill="#1D4ED8">doing the weekly shop on a Sunday evening</text><text x="674.64" y="268" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="17" font-weight="500" fill="#1D4ED8">she opens the app</text><text x="1197.2" y="268" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="17" font-weight="500" fill="#1D4ED8">the order is delivered</text><text x="710" y="349" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="18" font-weight="500" fill="#1D4ED8">it's Sunday night and the cupboards are nearly empty</text><text x="710" y="385" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="18" font-weight="500" fill="#1D4ED8">order our usual shop in a few minutes</text><text x="710" y="421" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="18" font-weight="500" fill="#1D4ED8">get on with my evening</text><text x="304" y="573" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#FDE68A">Open the app</text><text x="590.8" y="573" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#FDE68A">Build the basket</text><text x="877.6" y="573" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#FDE68A">Fix the gaps</text><text x="1164.4" y="573" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#FDE68A">Pay and choose a slot</text><text x="1451.2" y="573" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="16" font-weight="500" fill="#FDE68A">Delivery</text><g transform="rotate(-1 348.4 635)"><rect x="222" y="602" width="252.8" height="66" rx="3" fill="#FDE047" filter="url(#fsm)"/><text x="348.4" y="639.9" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="14" font-weight="500" fill="#1E293B">Opens it on her phone</text></g><g transform="rotate(1 635.2 635)"><rect x="508.8" y="602" width="252.8" height="66" rx="3" fill="#FDE047" filter="url(#fsm)"/><text x="635.2" y="639.9" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="14" font-weight="500" fill="#1E293B">Adds items one by one</text></g><g transform="rotate(-1 922 635)"><rect x="795.6" y="602" width="252.8" height="66" rx="3" fill="#FDE047" filter="url(#fsm)"/><text x="922" y="639.9" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="14" font-weight="500" fill="#1E293B">Swaps out-of-stock items</text></g><g transform="rotate(1 1208.8 635)"><rect x="1082.4" y="602" width="252.8" height="66" rx="3" fill="#FDE047" filter="url(#fsm)"/><text x="1208.8" y="639.9" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="14" font-weight="500" fill="#1E293B">Picks Tuesday's slot</text></g><g transform="rotate(-1 1495.6 635)"><rect x="1369.2" y="602" width="252.8" height="66" rx="3" fill="#FDE047" filter="url(#fsm)"/><text x="1495.6" y="639.9" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="14" font-weight="500" fill="#1E293B">Checks the bags</text></g><g transform="rotate(-1 348.4 720)"><rect x="222" y="694" width="252.8" height="52" rx="3" fill="#93C5FD" filter="url(#fsm)"/><text x="348.4" y="724.9" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="14" font-weight="500" fill="#1E293B">“What did I buy last time?”</text></g><g transform="rotate(1 635.2 720)"><rect x="508.8" y="694" width="252.8" height="52" rx="3" fill="#93C5FD" filter="url(#fsm)"/><text x="635.2" y="724.9" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="14" font-weight="500" fill="#1E293B">“Have I missed anything?”</text></g><g transform="rotate(-1 922 720)"><rect x="795.6" y="694" width="252.8" height="52" rx="3" fill="#93C5FD" filter="url(#fsm)"/><text x="922" y="724.9" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="14" font-weight="500" fill="#1E293B">“Is this swap OK?”</text></g><g transform="rotate(1 1208.8 720)"><rect x="1082.4" y="694" width="252.8" height="52" rx="3" fill="#93C5FD" filter="url(#fsm)"/><text x="1208.8" y="724.9" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="14" font-weight="500" fill="#1E293B">“Is Tuesday free?”</text></g><g transform="rotate(-1 1495.6 720)"><rect x="1369.2" y="694" width="252.8" height="52" rx="3" fill="#93C5FD" filter="url(#fsm)"/><text x="1495.6" y="724.9" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="14" font-weight="500" fill="#1E293B">“Did they bring it all?”</text></g><g transform="rotate(-1 348.4 891)"><rect x="222" y="860" width="252.8" height="62" rx="3" fill="#F9A8D4" filter="url(#fsm)"/><text x="348.4" y="895.9" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="14" font-weight="500" fill="#1E293B">Can't see the last order</text></g><g transform="rotate(1 635.2 891)"><rect x="508.8" y="860" width="252.8" height="62" rx="3" fill="#F9A8D4" filter="url(#fsm)"/><text x="635.2" y="895.9" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="14" font-weight="500" fill="#1E293B">40 minutes of scrolling</text></g><g transform="rotate(-1 922 891)"><rect x="795.6" y="860" width="252.8" height="62" rx="3" fill="#F9A8D4" filter="url(#fsm)"/><text x="922" y="895.9" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="14" font-weight="500" fill="#1E293B">Swaps are a surprise</text></g><g transform="rotate(1 1208.8 891)"><rect x="1082.4" y="860" width="252.8" height="62" rx="3" fill="#F9A8D4" filter="url(#fsm)"/><text x="1208.8" y="895.9" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="14" font-weight="500" fill="#1E293B">Slots fill up early</text></g><g transform="rotate(-1 1495.6 891)"><rect x="1369.2" y="860" width="252.8" height="62" rx="3" fill="#F9A8D4" filter="url(#fsm)"/><text x="1495.6" y="895.9" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="14" font-weight="500" fill="#1E293B">Missing milk: 2nd order</text></g><g transform="rotate(-1 348.4 979)"><rect x="222" y="948" width="252.8" height="62" rx="3" fill="#4ADE80" filter="url(#fsm)"/><text x="348.4" y="983.9" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="14" font-weight="500" fill="#1E293B">Last-order card</text></g><g transform="rotate(1 635.2 979)"><rect x="508.8" y="948" width="252.8" height="62" rx="3" fill="#4ADE80" filter="url(#fsm)"/><text x="635.2" y="983.9" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="14" font-weight="500" fill="#1E293B">One-tap reorder</text></g><g transform="rotate(-1 922 979)"><rect x="795.6" y="948" width="252.8" height="62" rx="3" fill="#4ADE80" filter="url(#fsm)"/><text x="922" y="983.9" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="14" font-weight="500" fill="#1E293B">Choose swaps in advance</text></g><g transform="rotate(1 1208.8 979)"><rect x="1082.4" y="948" width="252.8" height="62" rx="3" fill="#4ADE80" filter="url(#fsm)"/><text x="1208.8" y="983.9" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="14" font-weight="500" fill="#1E293B">Save a usual slot</text></g><g transform="rotate(-1 1495.6 979)"><rect x="1369.2" y="948" width="252.8" height="62" rx="3" fill="#4ADE80" filter="url(#fsm)"/><text x="1495.6" y="983.9" text-anchor="middle" font-family="'Caveat','Segoe Print','Bradley Hand',cursive" font-size="14" font-weight="500" fill="#1E293B">“You usually buy” list</text></g><path d="M351.4,796 L638.2,832 L925,838 L1211.8,818 L1498.6,792" fill="none" stroke="#1D4ED8" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="351.4" cy="796" r="5" fill="#1D4ED8"/><circle cx="638.2" cy="832" r="5" fill="#1D4ED8"/><circle cx="925" cy="838" r="5" fill="#1D4ED8"/><circle cx="1211.8" cy="818" r="5" fill="#1D4ED8"/><circle cx="1498.6" cy="792" r="5" fill="#1D4ED8"/></g>
+</svg>
+<p class="phone"><b>This is an A3 board, made for printing or a big screen.</b>Pinch to zoom, turn your phone sideways, or <a href="worked-example-persona-journey-board.svg">open the SVG</a> to zoom in. The <a href="../guides/facilitator-guide-persona-journey.html">facilitator guide</a> is easy to read on a phone.</p>
+</body>
+</html>

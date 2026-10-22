@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stakeholder Map Guide</title>
+<!-- meta -->
+<meta name="description" content="How to identify the people who affect or are affected by the work, and plan how to involve each of them.">
+<link rel="canonical" href="https://eparker71.github.io/agile-ways-of-working/guides/facilitator-guide-stakeholder-map.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agile Ways of Working Toolkit">
+<meta property="og:title" content="Stakeholder Map Guide · Agile Ways of Working Toolkit">
+<meta property="og:description" content="How to identify the people who affect or are affected by the work, and plan how to involve each of them.">
+<meta property="og:url" content="https://eparker71.github.io/agile-ways-of-working/guides/facilitator-guide-stakeholder-map.html">
+<meta property="og:image" content="https://eparker71.github.io/agile-ways-of-working/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script data-goatcounter="https://eparker71.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- /meta -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#5B6B82; --rule:#E2E8F0; --paper:#FFFFFF;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:13px;line-height:1.55;padding:24px 16px;}
+.page{max-width:820px;margin:0 auto 24px;background:var(--paper);box-shadow:0 12px 40px rgba(0,0,0,.22);}
+.masthead{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:28px 40px 26px;position:relative;}
+.badge{position:absolute;top:14px;right:24px;font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;}
+.masthead h1{font:400 40px/1.05 var(--serif);margin:14px 0 8px;}
+.masthead p{margin:0;color:#94A3B8;font-size:13.5px;}
+.masthead .tag{margin-top:8px;font:9px var(--mono);color:#94A3B8;letter-spacing:.06em;}
+.content{padding:28px 40px 36px;}
+h2{font:400 26px/1.15 var(--serif);margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;}
+h2 .n{font:600 11px var(--sans);color:#fff;background:var(--navy);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;flex:none;transform:translateY(-3px);}
+h3{font:600 13px var(--sans);margin:16px 0 6px;}
+p{margin:6px 0 10px;}
+.lede{font:italic 400 19px/1.35 var(--serif);color:var(--ink);border-left:4px solid var(--accent);padding:2px 0 2px 16px;margin:4px 0 20px;}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px;}
+.glance div{background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;}
+.glance b{display:block;font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+.glance span{font-weight:600;font-size:13px;}
+ul.check{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:28px;}
+ul.check li{padding-left:22px;position:relative;margin-bottom:5px;break-inside:avoid;}
+ul.check li::before{content:"";position:absolute;left:0;top:3px;width:11px;height:11px;border:1.4px solid var(--ink);border-radius:2px;opacity:.55;}
+table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:12.5px;}
+th{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--ink);text-align:left;padding:8px 10px;}
+th:first-child{border-left:5px solid var(--accent);}
+td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+td.t{font:500 11px var(--mono);white-space:nowrap;color:var(--muted);}
+td.a{font-weight:600;width:24%;}
+tr:nth-child(even) td{background:#F8FAFC;}
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;}
+.area{border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,.06);break-inside:avoid;}
+.area h4{margin:0;padding:7px 12px;color:#fff;font:600 12.5px var(--sans);}
+.area ul{margin:0;padding:8px 12px 10px 28px;font-size:12px;}
+.area li{margin-bottom:3px;}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.tip{border-top:2px solid var(--rule);padding-top:8px;}
+.tip b{display:block;margin-bottom:2px;}
+.flow{display:flex;align-items:stretch;gap:0;margin:14px 0 6px;flex-wrap:wrap;}
+.step{flex:1 1 0;min-width:120px;background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;position:relative;}
+.arrow{flex:none;align-self:center;color:#C2410C;font:600 16px var(--sans);padding:0 6px;}
+.step b{display:block;font-size:12.5px;}
+.step small{color:var(--muted);font-size:11px;line-height:1.4;display:block;margin-top:2px;}
+.step .k{font:500 8.5px var(--mono);letter-spacing:.12em;color:#C2410C;text-transform:uppercase;}
+.callout{background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:12px 16px;margin:14px 0;}
+.callout b{color:#9A3412;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display:flex;justify-content:space-between;gap:16px;font:8px var(--mono);letter-spacing:.08em;color:#5B6B82;}
+@media (max-width:640px){
+  .masthead,.content{padding-left:20px;padding-right:20px;}
+  .glance{grid-template-columns:1fr 1fr;}
+  ul.check{columns:1;}
+  .areas,.tips,.two{grid-template-columns:1fr;}
+  .arrow{display:none;}
+  .flow{gap:8px;}
+  table{font-size:11.5px;}
+  td.t{white-space:normal;}
+}
+@media print{
+  @page{size:A4 portrait;margin:12mm 12mm 14mm;}
+  html,body{background:none;}
+  body{padding:0;font-size:11.5px;}
+  .page{box-shadow:none;max-width:none;margin:0;}
+  .masthead,th,.area h4,h2 .n{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  tr,.area,.tip,.step,.callout{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .pb{break-before:page;}
+}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
+.content a{color:#9A3412;}
+@media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:#C2410C;}
+.fb{margin:14px 0 6px;font-size:13px;color:var(--muted);}
+.fb a{color:#9A3412;}
+.fb button{font:500 11px var(--mono);color:var(--ink);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:5px 10px;margin:0 4px;cursor:pointer;}
+.fb button:hover{border-color:var(--accent);}
+@media print{.fb{display:none;}}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
+.content a{color:#9A3412;}
+.example{border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:10px 0;}
+.example div{display:grid;grid-template-columns:30% 1fr;border-bottom:1px solid var(--rule);}
+.example div:last-child{border-bottom:none;}
+.example b{background:#F8FAFC;padding:7px 12px;font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.example span{padding:7px 12px;font-size:12.5px;}
+@media (max-width:640px){.example div{grid-template-columns:1fr;}}
+@media print{.boards{display:none;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>Stakeholder Map Guide</h1>
+    <p>How to identify the people who affect or are affected by the work, and plan how to involve each of them.</p>
+    <div class="tag">Facilitator Run-Sheet · Run a Project · Influence vs. Interest · Communication Plan</div>
+    <div class="boards"><a class="primary" href="../boards/stakeholder-map-board.html">Open board →</a><a href="../boards/stakeholder-map-board.svg" title="An SVG file: a sharp image that stays crisp at any size. Open it in a browser, add it to Miro, Mural or FigJam, or edit the words in Figma or Inkscape.">SVG →</a><a href="../pdf/stakeholder-map-board.pdf" download>A3 PDF ↓</a><a href="../examples/worked-example-stakeholder-map-board.html">Worked example →</a><a href="facilitator-guide-stakeholder-map.docx" download>Word (editable) ↓</a></div>
+  </header>
+  <div class="content">
+    <p class="lede">“Who could stop this, and what do they need from us?”</p>
+    <p>Agile work depends on fast feedback and clear decisions, and both depend on the right people being involved. The map places each stakeholder by <b>influence</b> and <b>interest</b>, which suggests how closely to involve them. The <b>register</b> records what each one wants and worries about, and the <b>communication plan</b> turns that into a regular rhythm. Watch-outs capture who might block the work and who is missing.</p>
+    <div class="glance"><div><b>Duration</b><span>60–90 min</span></div><div><b>Group</b><span>PO, delivery lead,<br>sponsor, team reps</span></div><div><b>Use when</b><span>At kickoff, then<br>every month or so</span></div><div><b>Output</b><span>A map, a register<br>&amp; a comms plan</span></div></div>
+    <h2><span class="n">1</span>Before the session</h2>
+    <ul class="check"><li>Print the board at A3 or 11×17 (Tabloid), or larger, or load the SVG as a digital background</li><li>List known stakeholders in advance: sponsors, users, customers, other teams, suppliers, regulators</li><li>Bring an org chart if the organisation is large or new to the team</li><li>Yellow and pink stickies and markers</li><li>Agree that the map may be sensitive, and decide who it will be shared with</li></ul>
+    <h2><span class="n">2</span>Agenda &amp; run-sheet</h2>
+    <table><thead><tr><th>Time</th><th>Section</th><th>Facilitator notes</th></tr></thead><tbody><tr><td class="t">0–15</td><td class="a">Brainstorm</td><td>Write one stakeholder per yellow sticky: people and groups. Ask “who is affected?” as well as “who decides?”</td></tr><tr><td class="t">15–35</td><td class="a">1 · Place them</td><td>Place each sticky on the grid by influence and interest. Compare them to each other and discuss disagreements.</td></tr><tr><td class="t">35–55</td><td class="a">2 · Register</td><td>For the Manage Closely and Keep Satisfied groups first, write what they want, what worries them, and how you'll engage.</td></tr><tr><td class="t">55–75</td><td class="a">3 · Communication Plan</td><td>Group stakeholders into audiences. Agree what each needs, the format, the frequency and the owner.</td></tr><tr><td class="t">75–85</td><td class="a">4 · Watch-outs</td><td>Who could block this? Who is missing? Add pink stickies and agree actions.</td></tr><tr><td class="t">85–90</td><td class="a">Close</td><td>Agree who keeps the map up to date and when it's next reviewed.</td></tr></tbody></table>
+    <h2 class="pb"><span class="n">3</span>What each quadrant means</h2>
+    <p>Where a stakeholder sits suggests how to involve them, but always ask what they want too.</p>
+    <div class="areas"><div class="area" style="background:#FEE2E2;color:#991B1B"><h4 style="background:#991B1B">Manage Closely</h4><ul><li>Involve in key decisions</li><li>Meet regularly</li><li>Surprises here are costly</li></ul></div><div class="area" style="background:#FEF3C7;color:#92400E"><h4 style="background:#92400E">Keep Satisfied</h4><ul><li>Consult on what matters to them</li><li>Short, focused updates</li></ul></div><div class="area" style="background:#D1FAE5;color:#065F46"><h4 style="background:#065F46">Keep Informed</h4><ul><li>Regular updates</li><li>Invite to reviews</li><li>Great source of feedback</li></ul></div><div class="area" style="background:#F1F5F9;color:#334155"><h4 style="background:#334155">Monitor</h4><ul><li>Light-touch updates</li><li>Watch for changes in interest</li></ul></div><div class="area" style="background:#EDE9FE;color:#581C87"><h4 style="background:#581C87">Register &amp; Comms Plan</h4><ul><li>Every Manage Closely stakeholder has an owner</li><li>Formats match how people like to hear</li></ul></div></div>
+    <h2><span class="n">4</span>Facilitation tips</h2>
+    <div class="tips"><div class="tip"><b>Think beyond the org chart</b>Users, support staff, other teams and suppliers are stakeholders too.</div><div class="tip"><b>Influence isn&#x27;t just rank</b>Some people have little authority but a lot of influence. Place them honestly.</div><div class="tip"><b>Ask, don&#x27;t assume</b>Check what stakeholders want by talking to them, not by guessing in the room.</div><div class="tip"><b>Reviews are engagement</b>Invite Keep Informed and Manage Closely stakeholders to Sprint Reviews.</div><div class="tip"><b>Move people</b>Interest and influence change. Re-map monthly or when something big shifts.</div><div class="tip"><b>Handle with care</b>Notes about individuals can be sensitive. Agree where the board is kept.</div></div>
+    <div class="callout"><b>Common pitfalls:</b> only listing senior people; mapping once and never again; a comms plan that&#x27;s just “monthly status report”; writing unkind notes about individuals; nobody owning the relationship with key stakeholders.</div>
+    <h2><span class="n">5</span>After the session</h2>
+    <div class="two"><div><h3>Straight away</h3><p>Store the board where the agreed audience can see it, and nowhere else.</p></div><div><h3>This week</h3><p>Owners contact their key stakeholders to check the register is right.</p></div><div><h3>Every iteration</h3><p>Use the communication plan; invite the right people to the Sprint Review.</p></div><div><h3>Monthly</h3><p>Review the map and move stakeholders as their interest or influence changes.</p></div></div>
+    <h2><span class="n">6</span>How it fits the toolkit</h2>
+    <p>The project tools work together: run a <a href="facilitator-guide-project-kickoff.html">Project Kickoff</a> first, then build the <a href="facilitator-guide-stakeholder-map.html">Stakeholder Map</a>, keep the <a href="facilitator-guide-raid-log.html">RAID Log</a> up to date, and refresh the <a href="facilitator-guide-release-forecast.html">Release Forecast</a> after every iteration. Inside the project, teams use the lifecycle tools (Team Charter, Prioritisation, Sprint Planning and Review) and the break-down tools.</p>
+    <section class="spec" id="whiteboard"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Stakeholder Map”, a workshop board.
+
+Purpose: See who affects or is affected by the work, how much they care, and how you&#x27;ll keep each of them involved.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+Key: Yellow Sticky = Stakeholder · Pink Sticky = Concern / Blocker
+
+Sections:
+1. Influence vs. Interest: top left, about 55% wide and 70% tall; header colour blue.
+   Subtitle: One sticky per person or group
+   Content: Keep Satisfied · Manage Closely · High influence · low interest · consult on what matters to them · High influence · high interest · involve in key decisions · Monitor · Keep Informed · Low influence · low interest · light-touch updates · Low influence · high interest · regular updates, invite feedback · Low interest: · Interest →: · High interest:
+2. Stakeholder Register: top right, about 45% wide and 70% tall; header colour purple.
+   Subtitle: What they want and how we engage
+   Content: Stakeholder: · Wants / worries: · How &amp; how often: · Owner:
+3. Communication Plan: bottom left, about 65% wide and 30% tall; header colour sky blue.
+   Subtitle: Right message · right people · right rhythm
+   Content: Audience: · What they need: · Format: · Frequency: · Owner:
+4. Watch-outs: bottom right, about 35% wide and 30% tall; header colour red.
+   Content: Who could block this, and why? · Who is missing from the map?
+
+Footer questions: “Who will be affected by this, and have we asked them?” “Who could stop this, and what do they need from us?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/boards/stakeholder-map-board.html</pre></details></section>
+    <section class="fb" data-slug="stakeholder-map"><span class="q" hidden>Was this guide useful? <button type="button" data-v="useful">Yes, useful</button><button type="button" data-v="not-useful">Not really</button></span><span class="thanks" hidden>Thanks for letting us know.</span> <a href="https://github.com/eparker71/agile-ways-of-working/issues/new?template=used-it.yml">Used this guide? Tell us how it went →</a><script>(function(){var f=document.currentScript.parentNode,s=f.dataset.slug;window.addEventListener('load',function(){if(!(window.goatcounter&&window.goatcounter.count))return;f.querySelector('.q').hidden=false;f.querySelectorAll('button').forEach(function(b){b.onclick=function(){window.goatcounter.count({path:'feedback/'+s+'/'+b.dataset.v,title:'Guide feedback',event:true});f.querySelector('.q').hidden=true;f.querySelector('.thanks').hidden=false;}})})})();</script></section>
+    <p style="color:var(--muted);font-size:12px">← <a href="../index.html">All tools</a> · <a href="../glossary.html">Glossary of terms</a></p>
+    <footer><span>“Who will be affected by this, and have we asked them?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
+  </div>
+</div>
+</body>
+</html>

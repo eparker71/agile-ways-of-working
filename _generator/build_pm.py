@@ -12,6 +12,7 @@ from html import escape
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import paths  # noqa: E402  (where each file lives; see paths.py)
 from build_roles import TOOLS, FONT_URL  # noqa: E402
 from brand import ACCENT, NAVY, CREDIT  # noqa: E402
 
@@ -151,7 +152,7 @@ footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-
 </body>
 </html>
 """
-    (OUT / "for-project-managers.html").write_text(page, encoding="utf-8")
+    paths.write_page("for-project-managers.html", page)
     print(f"wrote for-project-managers.html ({len(ARTEFACTS)} artefacts)")
 
 

@@ -19,6 +19,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from brand import PUBLISH_AT, GOATCOUNTER  # noqa: E402
+import paths  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent
 BASE = f"https://{PUBLISH_AT}/"
@@ -51,6 +52,7 @@ def describe(s):
 
 
 def meta_block(name, title, desc):
+    """name is the page's path from the site root, e.g. boards/retro-kit-board.html."""
     url = BASE if name == "index.html" else BASE + name
     full = title if title == SITE_NAME else f"{title} · {SITE_NAME}"
     e = lambda v: escape(v, quote=True)
@@ -58,7 +60,7 @@ def meta_block(name, title, desc):
         "<!-- meta -->",
         f'<meta name="description" content="{e(desc)}">',
         f'<link rel="canonical" href="{url}">',
-        '<link rel="icon" href="favicon.svg" type="image/svg+xml">',
+        f'<link rel="icon" href="{"../" if "/" in name else ""}favicon.svg" type="image/svg+xml">',
         '<meta property="og:type" content="website">',
         f'<meta property="og:site_name" content="{SITE_NAME}">',
         f'<meta property="og:title" content="{e(full)}">',
@@ -75,7 +77,7 @@ def meta_block(name, title, desc):
 
 def build():
     pages = []
-    for p in sorted(OUT.glob("*.html")):
+    for p in paths.pages():
         if p.name == "404.html":
             continue
         s = p.read_text(encoding="utf-8")
@@ -83,10 +85,11 @@ def build():
             continue
         s = re.sub(r"<!-- meta -->.*?<!-- /meta -->\n", "", s, flags=re.S)
         title = text_of(re.search(r"<title>(.*?)</title>", s, re.S).group(1))
-        block = meta_block(p.name, title, describe(s))
+        name = p.relative_to(OUT).as_posix()
+        block = meta_block(name, title, describe(s))
         s = re.sub(r"(<title>.*?</title>\n)", lambda m: m.group(1) + block + "\n", s, count=1, flags=re.S)
         p.write_text(s, encoding="utf-8")
-        pages.append(p.name)
+        pages.append(name)
 
     urls = "\n".join(f"  <url><loc>{BASE if n == 'index.html' else BASE + n}</loc></url>" for n in pages)
     (OUT / "sitemap.xml").write_text(

@@ -17,6 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from check_site import find_chrome  # noqa: E402
+import paths  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent
 PDF = OUT / "pdf"
@@ -24,8 +25,8 @@ MANIFEST = PDF / "manifest.json"
 
 
 def boards():
-    """Every board or poster: an SVG with a matching HTML page."""
-    return [p.stem for p in sorted(OUT.glob("*.svg")) if (OUT / f"{p.stem}.html").exists()]
+    """Every board, poster and worked example: an SVG with a matching HTML page."""
+    return [p.stem for d in ("boards", "examples") for p in sorted((OUT / d).glob("*.svg")) if p.with_suffix(".html").exists()]
 
 
 # Multi-page A4 documents printed from a page's print stylesheet (not boards, so not one page each)
@@ -35,17 +36,17 @@ DOCUMENTS = ["basket-team-story", "basket-team-highlights"]
 def fingerprint(stem):
     if stem in DOCUMENTS:
         return doc_fingerprint(stem)
-    return hashlib.sha256((OUT / f"{stem}.svg").read_bytes()).hexdigest()[:16]
+    return hashlib.sha256(paths.path(f"{stem}.svg").read_bytes()).hexdigest()[:16]
 
 
 def doc_fingerprint(stem):
     """A document's page (minus its metadata and its own download link) plus every image it shows."""
-    html = (OUT / f"{stem}.html").read_text(encoding="utf-8")
+    html = paths.path(f"{stem}.html").read_text(encoding="utf-8")
     html = re.sub(r"<!-- meta -->.*?<!-- /meta -->\n", "", html, flags=re.S)
     html = re.sub(r'<a class="dl"[^>]*>.*?</a>\n\s*', "", html)
     h = hashlib.sha256(html.encode())
     for src in sorted(set(re.findall(r'<img src="([^"]+\.svg)"', html))):
-        h.update((OUT / src).read_bytes())
+        h.update((paths.path(f"{stem}.html").parent / src).read_bytes())
     return h.hexdigest()[:16]
 
 
@@ -66,7 +67,7 @@ def build(force=False):
         if not force and manifest.get(stem) == fp and target.exists():
             continue
         subprocess.run([chrome, "--headless=new", "--disable-gpu", "--no-sandbox", "--no-pdf-header-footer",
-                        "--virtual-time-budget=20000", f"--print-to-pdf={target}", f"file://{OUT / (stem + '.html')}"],
+                        "--virtual-time-budget=20000", f"--print-to-pdf={target}", f"file://{paths.path(stem + '.html')}"],
                        capture_output=True, timeout=180)
         data = target.read_bytes() if target.exists() else b""
         pages = len(re.findall(rb"/Type\s*/Page[^s]", data))

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project Close-out Guide</title>
+<!-- meta -->
+<meta name="description" content="How to finish a project well: check what was achieved, hand over cleanly, learn, tie up loose ends and say thank you.">
+<link rel="canonical" href="https://eparker71.github.io/agile-ways-of-working/guides/facilitator-guide-project-closeout.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agile Ways of Working Toolkit">
+<meta property="og:title" content="Project Close-out Guide · Agile Ways of Working Toolkit">
+<meta property="og:description" content="How to finish a project well: check what was achieved, hand over cleanly, learn, tie up loose ends and say thank you.">
+<meta property="og:url" content="https://eparker71.github.io/agile-ways-of-working/guides/facilitator-guide-project-closeout.html">
+<meta property="og:image" content="https://eparker71.github.io/agile-ways-of-working/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script data-goatcounter="https://eparker71.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- /meta -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#5B6B82; --rule:#E2E8F0; --paper:#FFFFFF;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:13px;line-height:1.55;padding:24px 16px;}
+.page{max-width:820px;margin:0 auto 24px;background:var(--paper);box-shadow:0 12px 40px rgba(0,0,0,.22);}
+.masthead{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:28px 40px 26px;position:relative;}
+.badge{position:absolute;top:14px;right:24px;font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;}
+.masthead h1{font:400 40px/1.05 var(--serif);margin:14px 0 8px;}
+.masthead p{margin:0;color:#94A3B8;font-size:13.5px;}
+.masthead .tag{margin-top:8px;font:9px var(--mono);color:#94A3B8;letter-spacing:.06em;}
+.content{padding:28px 40px 36px;}
+h2{font:400 26px/1.15 var(--serif);margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;}
+h2 .n{font:600 11px var(--sans);color:#fff;background:var(--navy);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;flex:none;transform:translateY(-3px);}
+h3{font:600 13px var(--sans);margin:16px 0 6px;}
+p{margin:6px 0 10px;}
+.lede{font:italic 400 19px/1.35 var(--serif);color:var(--ink);border-left:4px solid var(--accent);padding:2px 0 2px 16px;margin:4px 0 20px;}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px;}
+.glance div{background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;}
+.glance b{display:block;font:500 8.5px var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+.glance span{font-weight:600;font-size:13px;}
+ul.check{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:28px;}
+ul.check li{padding-left:22px;position:relative;margin-bottom:5px;break-inside:avoid;}
+ul.check li::before{content:"";position:absolute;left:0;top:3px;width:11px;height:11px;border:1.4px solid var(--ink);border-radius:2px;opacity:.55;}
+table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:12.5px;}
+th{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--ink);text-align:left;padding:8px 10px;}
+th:first-child{border-left:5px solid var(--accent);}
+td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+td.t{font:500 11px var(--mono);white-space:nowrap;color:var(--muted);}
+td.a{font-weight:600;width:24%;}
+tr:nth-child(even) td{background:#F8FAFC;}
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;}
+.area{border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,.06);break-inside:avoid;}
+.area h4{margin:0;padding:7px 12px;color:#fff;font:600 12.5px var(--sans);}
+.area ul{margin:0;padding:8px 12px 10px 28px;font-size:12px;}
+.area li{margin-bottom:3px;}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.tip{border-top:2px solid var(--rule);padding-top:8px;}
+.tip b{display:block;margin-bottom:2px;}
+.flow{display:flex;align-items:stretch;gap:0;margin:14px 0 6px;flex-wrap:wrap;}
+.step{flex:1 1 0;min-width:120px;background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;position:relative;}
+.arrow{flex:none;align-self:center;color:#C2410C;font:600 16px var(--sans);padding:0 6px;}
+.step b{display:block;font-size:12.5px;}
+.step small{color:var(--muted);font-size:11px;line-height:1.4;display:block;margin-top:2px;}
+.step .k{font:500 8.5px var(--mono);letter-spacing:.12em;color:#C2410C;text-transform:uppercase;}
+.callout{background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:12px 16px;margin:14px 0;}
+.callout b{color:#9A3412;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+footer{border-top:1px solid var(--rule);margin-top:28px;padding-top:12px;display:flex;justify-content:space-between;gap:16px;font:8px var(--mono);letter-spacing:.08em;color:#5B6B82;}
+@media (max-width:640px){
+  .masthead,.content{padding-left:20px;padding-right:20px;}
+  .glance{grid-template-columns:1fr 1fr;}
+  ul.check{columns:1;}
+  .areas,.tips,.two{grid-template-columns:1fr;}
+  .arrow{display:none;}
+  .flow{gap:8px;}
+  table{font-size:11.5px;}
+  td.t{white-space:normal;}
+}
+@media print{
+  @page{size:A4 portrait;margin:12mm 12mm 14mm;}
+  html,body{background:none;}
+  body{padding:0;font-size:11.5px;}
+  .page{box-shadow:none;max-width:none;margin:0;}
+  .masthead,th,.area h4,h2 .n{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  tr,.area,.tip,.step,.callout{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .pb{break-before:page;}
+}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
+.content a{color:#9A3412;}
+@media print{.boards{display:none;}}
+.spec{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:18px 0 6px;background:#FFFBF7;}
+.spec h3{margin:0 0 4px;font-size:15px;}
+.spec p{margin:0 0 10px;font-size:13px;color:var(--muted);}
+.spec button{font:500 11px var(--mono);letter-spacing:.04em;color:#fff;background:var(--ink);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;}
+.spec button:hover{background:#C2410C;}
+.fb{margin:14px 0 6px;font-size:13px;color:var(--muted);}
+.fb a{color:#9A3412;}
+.fb button{font:500 11px var(--mono);color:var(--ink);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:5px 10px;margin:0 4px;cursor:pointer;}
+.fb button:hover{border-color:var(--accent);}
+@media print{.fb{display:none;}}
+.spec summary{display:inline-block;margin-left:10px;font:500 11px var(--mono);color:#9A3412;cursor:pointer;}
+.spec pre{white-space:pre-wrap;font:12px/1.5 var(--mono);background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px;margin:10px 0 0;max-height:360px;overflow:auto;}
+@media print{.spec{display:none;}}
+.boards{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;}
+.boards a{font:500 10.5px var(--mono);letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:6px;padding:5px 10px;}
+.boards a.primary{background:#C2410C;border-color:#C2410C;}
+.content a{color:#9A3412;}
+.example{border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:10px 0;}
+.example div{display:grid;grid-template-columns:30% 1fr;border-bottom:1px solid var(--rule);}
+.example div:last-child{border-bottom:none;}
+.example b{background:#F8FAFC;padding:7px 12px;font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.example span{padding:7px 12px;font-size:12.5px;}
+@media (max-width:640px){.example div{grid-template-columns:1fr;}}
+@media print{.boards{display:none;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>Project Close-out Guide</h1>
+    <p>How to finish a project well: check what was achieved, hand over cleanly, learn, tie up loose ends and say thank you.</p>
+    <div class="tag">Facilitator Run-Sheet · Run a Project · Close</div>
+    <div class="boards"><a class="primary" href="../boards/project-closeout-board.html">Open board →</a><a href="../boards/project-closeout-board.svg" title="An SVG file: a sharp image that stays crisp at any size. Open it in a browser, add it to Miro, Mural or FigJam, or edit the words in Figma or Inkscape.">SVG →</a><a href="../pdf/project-closeout-board.pdf" download>A3 PDF ↓</a><a href="../examples/worked-example-project-closeout-board.html">Worked example →</a><a href="facilitator-guide-project-closeout.docx" download>Word (editable) ↓</a></div>
+  </header>
+  <div class="content">
+    <p class="lede">“What would we tell the next team that runs a project like this?”</p>
+    <p>Projects often just stop: people move on, loose ends stay loose, and the lessons are forgotten. A close-out session makes the ending deliberate. It compares <b>what was delivered</b> with the original goal, lists the <b>benefits still to come</b> (most value usually arrives after the project ends) and who will check them, confirms a clean <b>handover</b> to whoever runs the result, captures <b>what we learned</b> for the next project, gives every <b>loose end</b> an owner, and makes time to <b>thank</b> people. In agile delivery much of this happens continuously, but a project or programme with a defined end still needs a proper finish.</p>
+    <div class="glance"><div><b>Duration</b><span>60–90 min</span></div><div><b>Group</b><span>Team, sponsor,<br>support &amp; key stakeholders</span></div><div><b>Use when</b><span>A project or major<br>phase is ending</span></div><div><b>Output</b><span>Handover, owners,<br>lessons &amp; thanks</span></div></div>
+    <h2><span class="n">1</span>Before the session</h2>
+    <ul class="check"><li>Print the board at A3 or 11×17, or load the SVG as a digital background</li><li>Bring the original goal and success measures, from the Project Kickoff board if you used it</li><li>Gather the actual results for each measure</li><li>Invite whoever will own the result after the project: support, operations or the business</li><li>Ask people to think about what they'd keep and change, beforehand</li></ul>
+    <h2><span class="n">2</span>Agenda &amp; run-sheet</h2>
+    <table><thead><tr><th>Time</th><th>Section</th><th>Facilitator notes</th></tr></thead><tbody><tr><td class="t">0–5</td><td class="a">Set the tone</td><td>This is about learning and finishing well, not judging. Thank people up front.</td></tr><tr><td class="t">5–20</td><td class="a">1 · Did We Achieve It?</td><td>Goal, what was delivered, and each measure's target and actual. What does the gap tell us?</td></tr><tr><td class="t">20–30</td><td class="a">2 · Benefits Still to Come</td><td>List benefits not yet realised, when to expect them, how to measure them and who owns them.</td></tr><tr><td class="t">30–45</td><td class="a">3 · Handover</td><td>Walk the checklist with the new owners. Anything not done becomes a loose end.</td></tr><tr><td class="t">45–65</td><td class="a">4 · What We Learned</td><td>Silent writing, then cluster: keep doing, do differently, surprises. Pick the top three.</td></tr><tr><td class="t">65–75</td><td class="a">5 · Loose Ends</td><td>Every open item gets an owner and a date.</td></tr><tr><td class="t">75–85</td><td class="a">6 · Thanks & Celebrate</td><td>Name the people and teams to thank, decide how to celebrate, and who to share lessons with.</td></tr></tbody></table>
+    <h2 class="pb"><span class="n">3</span>What a good close-out covers</h2>
+    <p>Finish the work, then finish the project.</p>
+    <div class="areas"><div class="area" style="background:#EDE9FE;color:#581C87"><h4 style="background:#581C87">Achievement</h4><ul><li>Goal vs. delivered</li><li>Target vs. actual</li></ul></div><div class="area" style="background:#D1FAE5;color:#065F46"><h4 style="background:#065F46">Benefits</h4><ul><li>Most arrive later</li><li>An owner checks them</li></ul></div><div class="area" style="background:#DBEAFE;color:#1E3A8A"><h4 style="background:#1E3A8A">Handover</h4><ul><li>Support ready</li><li>Nothing without an owner</li></ul></div><div class="area" style="background:#FEF3C7;color:#92400E"><h4 style="background:#92400E">Lessons</h4><ul><li>Keep, change, surprises</li><li>Shared, not archived</li></ul></div><div class="area" style="background:#DCFCE7;color:#14532D"><h4 style="background:#14532D">Thanks</h4><ul><li>Name people</li><li>Celebrate the finish</li></ul></div></div>
+    <h2><span class="n">4</span>Facilitation tips</h2>
+    <div class="tips"><div class="tip"><b>Learn, don&#x27;t blame</b>Ask what the system made easy or hard, not who got it wrong.</div><div class="tip"><b>Bring the next owners</b>Handover works best with the people who&#x27;ll run the result in the room.</div><div class="tip"><b>Benefits need an owner</b>If no one is named to check the benefits, no one will.</div><div class="tip"><b>Make lessons travel</b>Share the top three lessons with teams starting similar work, not just in a document.</div><div class="tip"><b>Celebrate properly</b>Marking the end well helps people move on, and makes the next project easier to staff.</div><div class="tip"><b>Close the small things</b>Accounts, licences, budgets and contracts left open cost money and create risk.</div></div>
+    <div class="callout"><b>Common pitfalls:</b> skipping close-out because people have moved on; a lessons-learned document no one reads; no owner for benefits; handing over to people who weren&#x27;t involved; blaming individuals; forgetting to say thank you.</div>
+    <h2><span class="n">5</span>After the session</h2>
+    <div class="two"><div><h3>Within a week</h3><p>Send the summary, loose ends and owners to everyone involved.</p></div><div><h3>Within a month</h3><p>Share the top lessons with teams starting similar work.</p></div><div><h3>At each benefit date</h3><p>The owner checks the measure and reports it to the sponsor.</p></div><div><h3>Next project</h3><p>Bring these lessons to its kickoff and pre-mortem.</p></div></div>
+    <h2><span class="n">6</span>How it fits the toolkit</h2>
+    <p>The project tools work together: run a <a href="facilitator-guide-project-kickoff.html">Project Kickoff</a> first, then build the <a href="facilitator-guide-stakeholder-map.html">Stakeholder Map</a>, keep the <a href="facilitator-guide-raid-log.html">RAID Log</a> up to date, and refresh the <a href="facilitator-guide-release-forecast.html">Release Forecast</a> after every iteration. Inside the project, teams use the lifecycle tools (Team Charter, Prioritisation, Sprint Planning and Review) and the break-down tools.</p>
+    <section class="spec" id="whiteboard"><h3>Recreate it in your whiteboard</h3><p>Paste this into your whiteboard&#x27;s AI assistant (for example Miro AI or Atlassian Rovo) or a general assistant, to get an editable, native version of the board. Results vary by tool, so expect to tidy it up. For an exact copy, import the SVG as a locked background instead.</p><button type="button" onclick="(function(b){var t=b.parentNode.querySelector('pre').textContent;navigator.clipboard.writeText(t).then(function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy AI prompt'},2000)})})(this)">Copy AI prompt</button><details><summary>Show the prompt</summary><pre>Create an editable whiteboard for “Project Close-out”, a workshop board.
+
+Purpose: Finish well: check what was achieved, hand over cleanly, capture what you learned, tie up loose ends and say thank you.
+
+Layout: a wide landscape board (about 16:11). Make one frame per section below, placed as described. In each frame, add the section name as a heading, then its content as short text labels or empty fields to fill in. Leave space in each frame for sticky notes. Use the header colour given. Keep the wording as written and don&#x27;t add extra content.
+
+Header fields to fill in: Project, Date
+
+Sections:
+1. Did We Achieve It?: top left, about 50% wide and 35% tall; header colour purple.
+   Subtitle: Against the original goal
+   Content: Original goal: · What we delivered: · Measure: · Target: · Actual: · What it tells us:
+2. Benefits Still to Come: top right, about 50% wide and 35% tall; header colour emerald green.
+   Subtitle: Most value arrives after the project ends
+   Content: Benefit: · Expected by: · Measured how: · Owner:
+3. Handover: middle left, about 35% wide and 35% tall; header colour blue.
+   Subtitle: Who owns it now?
+   Content: Support team trained and ready · Documentation and runbooks handed over · Open defects and backlog given an owner · Monitoring and alerts owned · Access, licences and accounts sorted · Contracts and suppliers closed · Budget closed and reported · Handed to:
+4. What We Learned: middle right, about 65% wide and 35% tall; header colour amber.
+   Subtitle: For the next project, not for the archive
+   Content: Keep doing: · Do differently: · Surprises: · What worked that we&#x27;d repeat? · What would we change? · What did we not see coming?
+5. Loose Ends: bottom left, about 50% wide and 30% tall; header colour red.
+   Subtitle: Nothing left without an owner
+   Content: Item: · Owner: · By when:
+6. Thanks &amp; Celebrate: bottom right, about 50% wide and 30% tall; header colour dark green.
+   Content: People and teams to thank: · How we&#x27;ll celebrate: · Share the story and lessons with:
+
+Footer questions: “What would we tell the next team that runs a project like this?” “Who will check the benefits arrived, and when?”
+
+Original board for reference: https://eparker71.github.io/agile-ways-of-working/boards/project-closeout-board.html</pre></details></section>
+    <section class="fb" data-slug="project-closeout"><span class="q" hidden>Was this guide useful? <button type="button" data-v="useful">Yes, useful</button><button type="button" data-v="not-useful">Not really</button></span><span class="thanks" hidden>Thanks for letting us know.</span> <a href="https://github.com/eparker71/agile-ways-of-working/issues/new?template=used-it.yml">Used this guide? Tell us how it went →</a><script>(function(){var f=document.currentScript.parentNode,s=f.dataset.slug;window.addEventListener('load',function(){if(!(window.goatcounter&&window.goatcounter.count))return;f.querySelector('.q').hidden=false;f.querySelectorAll('button').forEach(function(b){b.onclick=function(){window.goatcounter.count({path:'feedback/'+s+'/'+b.dataset.v,title:'Guide feedback',event:true});f.querySelector('.q').hidden=true;f.querySelector('.thanks').hidden=false;}})})})();</script></section>
+    <p style="color:var(--muted);font-size:12px">← <a href="../index.html">All tools</a> · <a href="../glossary.html">Glossary of terms</a></p>
+    <footer><span>“Who will check the benefits arrived, and when?”</span><span>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</span></footer>
+  </div>
+</div>
+</body>
+</html>

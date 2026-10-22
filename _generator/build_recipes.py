@@ -12,6 +12,7 @@ from html import escape, unescape
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import paths  # noqa: E402  (where each file lives; see paths.py)
 from build_roles import TOOLS, FONT_URL  # noqa: E402
 from build_scenarios import _smart  # noqa: E402
 from brand import ACCENT, NAVY, CREDIT, PUBLISH_AT  # noqa: E402
@@ -207,7 +208,7 @@ def build():
     sections = "\n".join(f'<section><h2>{escape(a["name"])}</h2>' + "".join(card(r, slug) for r in a["items"]) + "</section>"
                          for a in areas)
     # group the worked examples by the home page section their board's card sits in, in home page order
-    index = (OUT / "index.html").read_text(encoding="utf-8")
+    index = paths.read_index()
     order, section_of, rank = [], {}, {}
     for m in re.finditer(r'<h2 id="([^"]+)">(.*?)</h2>(.*?)(?=<h2 id=|</main>|$)', index, re.S):
         order.append((m.group(1), unescape(re.sub(r"<[^>]+>", "", m.group(2)))))
@@ -217,7 +218,7 @@ def build():
     groups = {}
     for key, title, desc in EXAMPLES:
         board, guide = TOOLS[key][1], TOOLS[key][2]
-        if not (OUT / f"worked-example-{board}").exists():
+        if not paths.path(f"worked-example-{board}").exists():
             sys.exit(f"missing worked-example-{board}: run build_boards.py first")
         if board not in section_of:
             sys.exit(f"{board} has no card on the home page, so its worked example can't be grouped")
@@ -327,13 +328,13 @@ footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-
 </body>
 </html>
 """
-    (OUT / "workshop-recipes.html").write_text(page, encoding="utf-8")
+    paths.write_page("workshop-recipes.html", page)
     print(f"wrote workshop-recipes.html ({total} recipes in {len(areas)} areas)")
 
 
 def build_print_pack():
     """print-pack.html: every board's A3 PDF, grouped like the home page. Lists only PDFs that exist in pdf/."""
-    index = (OUT / "index.html").read_text(encoding="utf-8")
+    index = paths.read_index()
     groups, seen = [], set()
     for m in re.finditer(r'<h2 id="([^"]+)">(.*?)</h2>(.*?)(?=<h2 id=|</main>|$)', index, re.S):
         items = []
@@ -416,7 +417,7 @@ footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-
 </body>
 </html>
 """
-    (OUT / "print-pack.html").write_text(page, encoding="utf-8")
+    paths.write_page("print-pack.html", page)
     print(f"wrote print-pack.html ({total} PDFs)")
 
 
@@ -548,7 +549,7 @@ a.st span{{font-size:12.5px;}}
 </body>
 </html>
 """
-    (OUT / f"{slug}.html").write_text(page, encoding="utf-8")
+    paths.write_page(f"{slug}.html", page)
     print(f"wrote {slug}.html ({shown} steps)")
 
 

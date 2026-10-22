@@ -225,4 +225,7 @@ def spec(svg_path, board_url=""):
 
 if __name__ == "__main__":
     import sys
-    print(spec(sys.argv[1]))
+    import os
+    from paths import path  # a bare name like retro-kit-board.svg is looked up in its folder
+    arg = sys.argv[1]
+    print(spec(arg if os.path.exists(arg) else str(path(os.path.basename(arg)))))

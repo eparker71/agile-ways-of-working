@@ -17,6 +17,7 @@ W, H = 1680, 1190
 
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import paths  # noqa: E402  (where each file lives; see paths.py)
 from brand import ACCENT, NAVY, SANS, SERIF, MONO, FONT_URL, CREDIT  # noqa: E402  (edit brand.py to rebrand)
 INK = "#1E293B"
 MUTED = "#566578"
@@ -316,26 +317,9 @@ svg{{display:block;max-width:100%;height:auto;box-shadow:0 12px 40px rgba(0,0,0,
 </body>
 </html>
 """
-    (OUT / f"{slug}.svg").write_text(svg_file, encoding="utf-8")
-    (OUT / f"{slug}.html").write_text(page, encoding="utf-8")
+    paths.write_page(f"{slug}.svg", svg_file)
+    paths.write_page(f"{slug}.html", page)
     print("wrote", slug)
-
-
-REDIRECTS = {f"{old}-{h}": old for old in ["retro-board-start-stop-continue", "retro-board-4ls", "retro-board-mad-sad-glad",
-                                          "retro-board-sailboat", "marginal-gains-workshop-board"] for h in ("sprint", "quarter")}
-
-
-def write_redirects():
-    """Old -sprint / -quarter pages now point to the single board, so existing links keep working."""
-    for old, new in REDIRECTS.items():
-        (OUT / f"{old}.html").write_text(
-            f'<!DOCTYPE html>\n<html lang="en"><head><meta charset="UTF-8"><title>Moved</title>'
-            f'<meta http-equiv="refresh" content="0; url={new}.html"><link rel="canonical" href="{new}.html"></head>'
-            f'<body><p>This board has moved to <a href="{new}.html">{new}.html</a>.</p></body></html>\n', encoding="utf-8")
-        old_svg = OUT / f"{old}.svg"
-        if old_svg.exists():
-            old_svg.unlink()
-    print("wrote", len(REDIRECTS), "redirects")
 
 
 RETRO_LEGEND = [("sticky", YELLOW, "Yellow Sticky = What Happened"),
@@ -6712,11 +6696,11 @@ def write_example(base, title, layer, header=None, strip=()):
     head = "".join(hand(1462, 64 + i * 30, v, 20, "#FDE68A") for i, v in enumerate(header or []))
     group = f'<g class="worked-example">{stamp}{head}{layer}</g>\n'
     imp = f"<style>@import url('{HAND_URL.replace('&', '&amp;')}');</style>"
-    svg = (OUT / f"{base}.svg").read_text(encoding="utf-8")
+    svg = paths.path(f"{base}.svg").read_text(encoding="utf-8")
     svg = svg.replace("<defs>", "<defs>" + imp, 1).replace("</svg>", group + "</svg>")
     svg = re.sub(r'<title id="mg-title">(.*?)</title>', lambda m: f'<title id="mg-title">Example: {m.group(1)}</title>', svg, count=1)
     svg = re.sub(r'<desc id="mg-desc">', '<desc id="mg-desc">Worked example for a fictional team. ', svg, count=1)
-    page = (OUT / f"{base}.html").read_text(encoding="utf-8")
+    page = paths.path(f"{base}.html").read_text(encoding="utf-8")
     page = re.sub(r"<!-- meta -->.*?<!-- /meta -->\n", "", page, flags=re.S)
     page = page.replace("</svg>", group + "</svg>", 1)
     page = page.replace('<link rel="stylesheet"', f'<link rel="stylesheet" href="{HAND_URL.replace("&", "&amp;")}">\n<link rel="stylesheet"', 1)
@@ -6739,8 +6723,8 @@ def write_example(base, title, layer, header=None, strip=()):
     slug = f"worked-example-{base}"
     page = page.replace(f'<a href="{base}.svg">open the SVG</a>', f'<a href="{slug}.svg">open the SVG</a>')
     page = page.replace(pdf_link(base), pdf_link(slug))
-    (OUT / f"{slug}.svg").write_text(svg, encoding="utf-8")
-    (OUT / f"{slug}.html").write_text(page, encoding="utf-8")
+    paths.write_page(f"{slug}.svg", svg)
+    paths.write_page(f"{slug}.html", page)
     print("wrote", slug)
 
 
@@ -9004,7 +8988,6 @@ EXAMPLES = {"team-charter-board": example_team_charter, "sprint-planning-board":
 if __name__ == "__main__":
     build_retros()
     build_sailboat()
-    write_redirects()
     build_health_check()
     build_experiment_canvas()
     build_lean_coffee()

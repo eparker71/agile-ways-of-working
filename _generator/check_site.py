@@ -14,7 +14,6 @@ Checks:
 
 Run:  python3 _generator/check_site.py
 """
-import glob
 import os
 import re
 import shutil
@@ -26,6 +25,9 @@ import zipfile
 from pathlib import Path
 
 OUT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import paths  # noqa: E402
+from brand import PUBLISH_AT  # noqa: E402
 errors, warnings = [], []
 
 
@@ -34,29 +36,56 @@ def fail(msg):
 
 
 def pages():
-    return sorted(p for p in OUT.glob("*.html"))
+    return paths.pages()
+
+
+def rel(p):
+    return p.relative_to(OUT).as_posix()
+
+
+def files(pattern):
+    """Site files matching pattern, at the root and in each folder."""
+    return [p for d in ("", *paths.FOLDERS) for p in sorted((OUT / d).glob(pattern))]
 
 
 def check_links():
     ids = {}
     for p in pages():
         s = p.read_text(encoding="utf-8")
-        ids[p.name] = set(re.findall(r'\bid="([^"]+)"', s))
+        ids[p.resolve()] = set(re.findall(r'\bid="([^"]+)"', s))
     for p in pages():
         s = p.read_text(encoding="utf-8")
-        for href in re.findall(r'href="([^"]+)"', s):
-            if href.startswith(("http:", "https:", "mailto:", "javascript:")) or href in ("#",) or "'+" in href:
+        for href in re.findall(r'\b(?:href|src)="([^"]+)"', s):
+            if href.startswith(("http:", "https:", "mailto:", "javascript:", "data:", "//")) or href in ("#",) or "'+" in href:
                 continue
             target, _, anchor = href.partition("#")
-            target = target or p.name
-            if not (OUT / target).exists():
-                fail(f"{p.name}: broken link to {href}")
-            elif anchor and target.endswith(".html") and anchor not in ids.get(target, set()) \
-                    and not anchor.startswith(("role=", "letter-")) and target != "index.html":
-                fail(f"{p.name}: link to missing anchor {href}")
+            dest = (p.parent / target).resolve() if target else p.resolve()
+            if not dest.exists():
+                fail(f"{rel(p)}: broken link to {href}")
+            elif not dest.is_relative_to(OUT):
+                fail(f"{rel(p)}: link points outside the site: {href}")
+            elif anchor and dest.suffix == ".html" and anchor not in ids.get(dest, set()) \
+                    and not anchor.startswith(("role=", "letter-")) and dest != OUT / "index.html":
+                fail(f"{rel(p)}: link to missing anchor {href}")
+        # a bare file name that belongs in another folder means a page was written without paths.write_page
+        for href in re.findall(r'\b(?:href|src)="([a-z0-9][^"/#?]*\.(?:html|svg|docx))', s):
+            want = paths.folder(href)
+            here = paths.folder(p.name)
+            if want != here and p.parent == OUT / here:
+                fail(f"{rel(p)}: {href} belongs in {want or 'the root'}/ (write the page with paths.write_page)")
         m = re.search(r'http-equiv="refresh" content="0; url=([^"]+)"', s)
-        if m and not (OUT / m.group(1)).exists():
-            fail(f"{p.name}: redirects to missing {m.group(1)}")
+        if m and not (p.parent / m.group(1)).exists():
+            fail(f"{rel(p)}: redirects to missing {m.group(1)}")
+
+
+def check_placement():
+    """Every file is in the folder paths.folder() says it belongs in."""
+    for p in files("*.html") + files("*.svg") + files("*.docx"):
+        if p.name in ("404.html", "favicon.svg"):
+            continue
+        want = paths.folder(p.name)
+        if p.parent != (OUT / want if want else OUT):
+            fail(f"{rel(p)} should be in {want or 'the root'}/")
 
 
 def check_metadata():
@@ -65,28 +94,28 @@ def check_metadata():
         if 'http-equiv="refresh"' in s or p.name == "404.html":
             continue
         if not re.search(r"<title>[^<]+</title>", s):
-            fail(f"{p.name}: no <title>")
+            fail(f"{rel(p)}: no <title>")
         if 'name="description"' not in s:
-            fail(f"{p.name}: no meta description (run build_meta.py)")
+            fail(f"{rel(p)}: no meta description (run build_meta.py)")
         if 'property="og:image"' not in s:
-            fail(f"{p.name}: no link-preview metadata (run build_meta.py)")
+            fail(f"{rel(p)}: no link-preview metadata (run build_meta.py)")
         if '<html lang="en"' not in s:
-            fail(f"{p.name}: <html> has no lang attribute")
+            fail(f"{rel(p)}: <html> has no lang attribute")
 
 
 def check_xml():
-    for f in sorted(glob.glob(str(OUT / "*.svg"))):
+    for f in files("*.svg"):
         try:
-            xml.dom.minidom.parse(f)
+            xml.dom.minidom.parse(str(f))
         except Exception as e:  # noqa: BLE001
-            fail(f"{os.path.basename(f)}: invalid SVG ({e})")
-    for f in sorted(glob.glob(str(OUT / "*.docx"))):
+            fail(f"{rel(f)}: invalid SVG ({e})")
+    for f in files("*.docx"):
         try:
             with zipfile.ZipFile(f) as z:
                 for n in z.namelist():
                     xml.dom.minidom.parseString(z.read(n))
         except Exception as e:  # noqa: BLE001
-            fail(f"{os.path.basename(f)}: invalid Word file ({e})")
+            fail(f"{rel(f)}: invalid Word file ({e})")
 
 
 def check_sitemap():
@@ -94,8 +123,10 @@ def check_sitemap():
     if not sm.exists():
         fail("sitemap.xml is missing (run build_meta.py)")
         return
-    for loc in re.findall(r"<loc>https://[^/<]+(?:/[^/<]+)?/([^/<]*)</loc>", sm.read_text()):
-        if loc and not (OUT / loc).exists():
+    base = f"https://{PUBLISH_AT}/"
+    for loc in re.findall(r"<loc>([^<]*)</loc>", sm.read_text()):
+        name = loc[len(base):] if loc.startswith(base) else None
+        if name is None or (name and not (OUT / name).exists()):
             fail(f"sitemap.xml lists missing page {loc}")
 
 
@@ -108,8 +139,8 @@ def check_pdfs():
         fail("pdf/manifest.json is missing (run build_pdfs.py)")
         return
     manifest = json.loads(man.read_text())
-    for svg in sorted(OUT.glob("*.svg")):
-        if not (OUT / f"{svg.stem}.html").exists():
+    for svg in files("*.svg"):
+        if not svg.with_suffix(".html").exists():
             continue
         fp = hashlib.sha256(svg.read_bytes()).hexdigest()[:16]
         if manifest.get(svg.stem) != fp or not (OUT / "pdf" / f"{svg.stem}.pdf").exists():
@@ -174,8 +205,8 @@ def check_cheat_sheets():
             os.remove(tmp)
 
 
-CONTRAST_PAGES = ["index.html", "sprint-planning-board.html", "facilitator-guide-sprint-planning.html",
-                  "facilitator-guide-marginal-gains.html", "scrum-master-agile-coach-cheat-sheet.html", "jira-cheat-sheet.html", "azure-devops-cheat-sheet.html",
+CONTRAST_PAGES = ["index.html", "boards/sprint-planning-board.html", "guides/facilitator-guide-sprint-planning.html",
+                  "guides/facilitator-guide-marginal-gains.html", "examples/worked-example-adr-board.html", "scrum-master-agile-coach-cheat-sheet.html", "jira-cheat-sheet.html", "azure-devops-cheat-sheet.html",
                   "glossary.html", "start-here-by-role.html", "scenarios.html", "anti-patterns.html", "workshop-recipes.html",
                   "print-pack.html", "about.html", "make-it-yours.html", "404.html"]
 
@@ -223,6 +254,7 @@ def check_contrast():
 
 if __name__ == "__main__":
     check_links()
+    check_placement()
     check_metadata()
     check_xml()
     check_sitemap()
