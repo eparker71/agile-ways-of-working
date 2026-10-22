@@ -67,6 +67,17 @@ Longer term:
 - Report the forecast and its trend every iteration in the same format.
 Tools: Release Forecast & Burn-up, Outcome Status Report
 
+## A fixed-price contract meets changing requirements
+You'll notice: the contract lists features and a price, and every new idea becomes a change-request argument.
+First moves:
+- Agree with the customer which matters most: the date, the budget, or the exact feature list. Usually only one can be fixed.
+- Order the contract's features by value, and deliver the most valuable ones first, so the money buys the most important work.
+- Offer swaps instead of change requests: a new feature can replace one of similar size that hasn't been started.
+Longer term:
+- Write future contracts around outcomes and a capacity of work per period, with the right to stop early.
+- Choose the approach per part of the work: fixed scope where it's truly known, iterative where it isn't.
+Tools: Delivery Approach, Prioritisation Board, Project Kickoff, Release Forecast & Burn-up, RACI & Decision Log
+
 ## Lots of work is started but little is finished
 You'll notice: everything is "nearly done", and the board's middle columns are full.
 First moves:
@@ -290,6 +301,17 @@ Longer term:
 - Use the same report every time, so changes stand out.
 Tools: Outcome Status Report, RAID Log
 
+## The PMO wants a baseline schedule, but the team works in iterations
+You'll notice: a request for a Gantt chart with dates for every feature, and a team that plans two weeks at a time.
+First moves:
+- Ask what the schedule is for: funding, dependencies, a launch date or reporting. Then give that, not a task list.
+- Offer milestones with forecast ranges from real throughput, plus a Now, Next and Later view of the scope.
+- Agree a reporting rhythm that uses the team's reviews and a one-page status report.
+Longer term:
+- Agree with the PMO which gates and evidence a hybrid project uses, and write it down once for every project.
+- Plan in rolling waves: detail for the next few iterations, outline beyond that, re-forecast every iteration.
+Tools: Delivery Approach, Release Forecast & Burn-up, Now · Next · Later Roadmap, Outcome Status Report, SDLC at a Glance
+
 ## A senior stakeholder keeps overriding priorities
 You'll notice: the backlog order changes after every conversation with them.
 First moves:
@@ -309,6 +331,17 @@ First moves:
 Longer term:
 - Remove recurring dependencies by changing team boundaries or skills.
 Tools: Dependency Map, Cross-Team Sync, Team Topology Design
+
+## Agile teams depend on a supplier who works to a fixed plan
+You'll notice: the teams change direction every few weeks, but the supplier's plan and contract don't, and hand-offs keep slipping.
+First moves:
+- Map the dependencies on the supplier, with dates, and agree the few that really drive the plan.
+- Agree a stable interface or contract between the parts early, so each side can change behind it.
+- Invite the supplier to cross-team planning and the review, even if they plan differently.
+Longer term:
+- Choose an approach for each part on purpose, and agree milestones where they meet.
+- Reduce the dependency over time: bring the knowledge in-house, or use stubs and contract tests.
+Tools: Delivery Approach, Dependency Map, Cross-Team Planning, RAID Log, Stakeholder Map
 
 ## Several teams need to plan together for the first time
 You'll notice: separate plans that don't fit, and surprises late in the quarter.
