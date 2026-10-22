@@ -23,6 +23,7 @@ FONT_URL = _FONT_URL.replace("&", "&amp;")
 TOOLS = {
     "sm-cheat": ("Scrum Master & Agile Coach Cheat Sheet", "scrum-master-agile-coach-cheat-sheet.html", None, "scrum-master-agile-coach"),
     "jira": ("Jira Cheat Sheet", "jira-cheat-sheet.html", None, "jira-cheat-sheet"),
+    "ado": ("Azure DevOps Cheat Sheet", "azure-devops-cheat-sheet.html", None, "azure-devops-cheat-sheet"),
     "lean-coffee": ("Lean Coffee", "lean-coffee-board.html", "facilitator-guide-lean-coffee.html", "lean-coffee"),
     "launch": ("Team Launch (Sprint Zero)", "team-launch-board.html", "facilitator-guide-team-launch.html", "team-launch"),
     "spotter": ("Anti-Pattern Spotter", "anti-pattern-spotter-board.html", "facilitator-guide-anti-pattern-spotter.html", "anti-pattern-spotter"),
@@ -87,6 +88,8 @@ TOOLS = {
     "sdlc": ("SDLC at a Glance", "sdlc-poster.html", "facilitator-guide-sdlc.html", "sdlc"),
     "lean": ("Lean Principles", "lean-principles-poster.html", "facilitator-guide-lean-principles.html", "lean-principles"),
     "approach": ("Delivery Approach", "delivery-approach-board.html", "facilitator-guide-delivery-approach.html", "delivery-approach"),
+    "devops": ("DevOps Principles", "devops-principles-poster.html", "facilitator-guide-devops-principles.html", "devops-principles"),
+    "slo": ("SLOs & Error Budgets", "slo-error-budget-board.html", "facilitator-guide-slo-error-budget.html", "slo-error-budget"),
     "waste": ("Waste Walk", "waste-walk-board.html", "facilitator-guide-waste-walk.html", "waste-walk"),
     "a3": ("A3 Problem-Solving", "a3-problem-solving-board.html", "facilitator-guide-a3-problem-solving.html", "a3-problem-solving"),
     "pipeline": ("Delivery Pipeline Canvas", "delivery-pipeline-board.html", "facilitator-guide-delivery-pipeline.html", "delivery-pipeline"),
@@ -107,7 +110,9 @@ TOOLS = {
 }
 
 # Extra search words for home page cards, so a search finds tools by the idea they come from (hidden on the page)
-TAGS = {"approach": "pmi pmbok hybrid predictive waterfall tailoring"}
+TAGS = {"approach": "pmi pmbok hybrid predictive waterfall tailoring",
+        "devops": "sre calms three ways dora devsecops",
+        "slo": "sre sla sli slo reliability uptime availability nines"}
 TAGS |= {k: "lean" for k in ("lean", "waste", "a3", "vsm", "kanban", "cadences", "ageing", "buffer", "blockers", "rootcause", "marginal",
                             "experiment")}
 
@@ -116,18 +121,18 @@ ROLES = [
     ("sm", "Scrum Master / Delivery Lead",
      "You help the team deliver well: smooth flow, useful events, and impediments removed.",
      ["sm-cheat", "retro", "impediments"],
-     ["sprint-planning", "sprint-review", "team-charter", "ai", "health", "kanban", "ageing", "buffer", "blockers", "pairing",
-      "skills", "example", "splitting", "rootcause", "a3", "experiment", "marginal", "lean-coffee", "jira", "adkar", "coaching", "psych-safety", "delivery-metrics", "backlog", "facilitation", "estimation", "vsm", "lean", "waste", "incident", "launch", "daily", "refinement", "cadences", "events", "spotter", "leading-safety", "sdlc", "pipeline", "release", "cd-health", "right-size", "sync", "dependency", "forecast", "closeout", "onboarding", "roadmap", "user-manual", "conflict", "feedback", "motivation", "ai-delivery", "cynefin"]),
+     ["devops", "sprint-planning", "sprint-review", "team-charter", "ai", "health", "kanban", "ageing", "buffer", "blockers", "pairing",
+      "skills", "example", "splitting", "rootcause", "a3", "experiment", "marginal", "lean-coffee", "jira", "ado", "adkar", "coaching", "psych-safety", "delivery-metrics", "backlog", "facilitation", "estimation", "vsm", "lean", "waste", "incident", "launch", "daily", "refinement", "cadences", "events", "spotter", "leading-safety", "sdlc", "pipeline", "release", "cd-health", "right-size", "sync", "dependency", "forecast", "closeout", "onboarding", "roadmap", "user-manual", "conflict", "feedback", "motivation", "ai-delivery", "cynefin"]),
     ("coach", "Agile Coach",
      "You help teams and leaders improve how they work, and coach the system beyond any one team.",
      ["health", "marginal", "topology"],
-     ["approach", "sm-cheat", "retro", "team-charter", "ai", "experiment", "rootcause", "a3", "kanban", "ageing", "blockers", "skills",
+     ["devops", "approach", "sm-cheat", "retro", "team-charter", "ai", "experiment", "rootcause", "a3", "kanban", "ageing", "blockers", "skills",
       "value", "okr", "ctp", "sync", "impediments", "lean-coffee", "adkar", "coaching", "psych-safety", "delegation", "cross-retro", "portfolio-kanban", "backlog", "facilitation", "vsm", "lean", "waste", "incident", "launch", "events", "cadences", "daily", "spotter", "leading-safety", "sdlc", "pipeline", "cd-health", "right-size", "onboarding", "user-manual", "conflict", "feedback", "motivation", "design-sprint", "ai-delivery", "event-storming", "cynefin"]),
     ("po", "Product Owner",
      "You own the team's backlog: what comes next, clear enough to build, and accepted when it's done.",
      ["prioritisation", "refinement", "example"],
      ["vision", "ost", "roadmap", "epic", "storymap", "splitting", "estimation", "sprint-planning", "sprint-review", "backlog",
-      "forecast", "stakeholder", "jira", "persona", "experiment", "launch", "events", "release", "testing", "retro", "onboarding",
+      "forecast", "stakeholder", "jira", "ado", "persona", "experiment", "launch", "events", "release", "testing", "retro", "onboarding",
       "facilitation", "feedback", "event-storming"]),
     ("product", "Product Manager",
      "You decide which problems are worth solving, for whom, and how you'll know it worked.",
@@ -139,7 +144,7 @@ ROLES = [
      "You get a defined piece of work delivered: scope, stakeholders, risks, forecasts and decisions.",
      ["kickoff", "raid", "status"],
      ["approach", "stakeholder", "premortem", "forecast", "prioritisation", "team-charter", "sprint-review", "dependency",
-      "impediments", "lean-coffee", "jira", "adkar", "psych-safety", "raci", "facilitation", "launch", "events", "daily", "spotter", "leading-safety", "sdlc", "release", "right-size", "estimation", "closeout", "roadmap", "conflict", "feedback", "ai-delivery", "cynefin"]),
+      "impediments", "lean-coffee", "jira", "ado", "adkar", "psych-safety", "raci", "facilitation", "launch", "events", "daily", "spotter", "leading-safety", "sdlc", "release", "right-size", "estimation", "closeout", "roadmap", "conflict", "feedback", "ai-delivery", "cynefin"]),
     ("program", "Program Manager",
      "You deliver a programme of related projects and teams: shared outcomes, budget, stakeholders, dependencies and risks in the open.",
      ["okr", "dependency", "status"],
@@ -148,9 +153,9 @@ ROLES = [
      "You facilitate a team of teams: big-room planning, the regular cross-team sync, system demos and inspect & adapt, "
      "and clearing impediments no single team can. Called a Release Train Engineer in SAFe and a Chief Scrum Master in Scrum@Scale.",
      ["ctp", "sync", "cross-retro"],
-     ["approach", "dependency", "okr", "impediments", "blockers", "events", "cadences", "raid", "premortem", "forecast", "status", "value",
+     ["devops", "approach", "dependency", "okr", "impediments", "blockers", "events", "cadences", "raid", "premortem", "forecast", "status", "value",
       "delivery-metrics", "vsm", "lean", "waste", "topology", "pipeline", "release", "sdlc", "portfolio-kanban", "stakeholder", "facilitation",
-      "lean-coffee", "sm-cheat", "health", "psych-safety", "leading-safety", "coaching", "marginal", "adkar", "spotter", "jira", "right-size", "closeout", "roadmap", "conflict", "ai-delivery", "cynefin"]),
+      "lean-coffee", "sm-cheat", "health", "psych-safety", "leading-safety", "coaching", "marginal", "adkar", "spotter", "jira", "ado", "right-size", "closeout", "roadmap", "conflict", "ai-delivery", "cynefin"]),
     ("portfolio", "Portfolio Manager / PMO",
      "You decide where the organisation invests, and check that the investment delivers value.",
      ["portfolio-kanban", "value", "prioritisation"],
@@ -162,7 +167,7 @@ ROLES = [
     ("eng", "Engineering Manager / Tech Lead",
      "You build capable teams and healthy systems: skills, flow, quality and sensible team boundaries.",
      ["skills", "topology", "kanban"],
-     ["pairing", "ageing", "buffer", "blockers", "ai", "team-charter", "rootcause", "a3", "example", "splitting",
+     ["devops", "slo", "pairing", "ageing", "buffer", "blockers", "ai", "team-charter", "rootcause", "a3", "example", "splitting",
       "dependency", "health", "impediments", "delivery-metrics", "psych-safety", "coaching", "delegation", "backlog", "vsm", "lean", "waste", "incident", "adr", "estimation", "launch", "daily", "refinement", "cadences", "spotter", "leading-safety", "pipeline", "testing", "release", "cd-health", "sdlc", "right-size", "experiment", "onboarding", "user-manual", "conflict", "feedback", "motivation", "design-sprint", "ai-delivery", "event-storming", "cynefin"]),
     ("ux", "Designer / Business Analyst",
      "You understand users and the problem, and help the team build the right thing, clearly specified.",
@@ -171,8 +176,8 @@ ROLES = [
     ("team", "Team Member",
      "You do the work, and you help decide how the team works and improves.",
      ["team-charter", "retro", "pairing"],
-     ["ai", "sprint-planning", "sprint-review", "lean-coffee", "skills", "kanban", "buffer", "impediments", "example",
-      "splitting", "health", "psych-safety", "backlog", "estimation", "incident", "facilitation", "adr", "launch", "daily", "refinement", "events", "spotter", "pipeline", "testing", "release", "cd-health", "ageing", "experiment", "jira", "rootcause", "a3", "onboarding", "user-manual", "feedback", "motivation", "design-sprint", "event-storming"]),
+     ["devops", "slo", "ai", "sprint-planning", "sprint-review", "lean-coffee", "skills", "kanban", "buffer", "impediments", "example",
+      "splitting", "health", "psych-safety", "backlog", "estimation", "incident", "facilitation", "adr", "launch", "daily", "refinement", "events", "spotter", "pipeline", "testing", "release", "cd-health", "ageing", "experiment", "jira", "ado", "rootcause", "a3", "onboarding", "user-manual", "feedback", "motivation", "design-sprint", "event-storming"]),
 ]
 
 for _id, _n, _d, start, also in ROLES:

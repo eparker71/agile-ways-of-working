@@ -145,7 +145,7 @@ def check_cheat_sheets():
         warnings.append("Chrome not found: skipped the cheat sheet overflow and page-count checks")
         return
     base = [chrome, "--headless=new", "--disable-gpu", "--no-sandbox", "--virtual-time-budget=20000"]
-    for name, pages_expected in (("scrum-master-agile-coach-cheat-sheet.html", 2), ("jira-cheat-sheet.html", 1)):
+    for name, pages_expected in (("scrum-master-agile-coach-cheat-sheet.html", 2), ("jira-cheat-sheet.html", 1), ("azure-devops-cheat-sheet.html", 1)):
         src = (OUT / name).read_text(encoding="utf-8")
         with tempfile.NamedTemporaryFile("w", suffix=".html", dir=OUT, delete=False, encoding="utf-8") as t:
             t.write(src.replace("</body>", OVERFLOW_JS, 1))
@@ -175,7 +175,7 @@ def check_cheat_sheets():
 
 
 CONTRAST_PAGES = ["index.html", "sprint-planning-board.html", "facilitator-guide-sprint-planning.html",
-                  "facilitator-guide-marginal-gains.html", "scrum-master-agile-coach-cheat-sheet.html", "jira-cheat-sheet.html",
+                  "facilitator-guide-marginal-gains.html", "scrum-master-agile-coach-cheat-sheet.html", "jira-cheat-sheet.html", "azure-devops-cheat-sheet.html",
                   "glossary.html", "start-here-by-role.html", "scenarios.html", "anti-patterns.html", "workshop-recipes.html",
                   "print-pack.html", "about.html", "make-it-yours.html", "404.html"]
 

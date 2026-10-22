@@ -6289,6 +6289,219 @@ def build_delivery_approach():
                 "parts connect through milestones, gates and reporting.", "\n".join(b))
 
 
+# ---------------------------------------------------------------- devops principles
+
+DEVOPS_WAYS = [
+    ("Flow", "IDEA → CUSTOMER", BLUE,
+     "Speed up the whole path from idea to customer: small batches, visible work, fewer hand-offs, and never passing a "
+     "known problem downstream.",
+     "How long does a small change take to reach a customer?",
+     ["Make the work visible, end to end", "Limit work in progress", "Shrink batches and hand-offs"],
+     ["Value Stream Map", "Delivery Pipeline Canvas", "Kanban Board Design"]),
+    ("Feedback", "CUSTOMER → TEAM", EMERALD,
+     "Find problems fast and close to where they start: automated tests, monitoring, and teams who see how their work "
+     "behaves in production.",
+     "How soon would we know if a release hurt customers?",
+     ["Test automatically, on every change", "Watch what users actually experience", "Fix the cause, then add a check"],
+     ["Test Strategy", "SLOs & Error Budgets", "Continuous Delivery Health Check"]),
+    ("Continual learning", "EXPERIMENT · IMPROVE", PURPLE,
+     "Treat failures as information, run small experiments, and set time aside to improve daily work and share what "
+     "you learn.",
+     "What did our last incident teach us, and what changed?",
+     ["Blameless reviews after incidents", "Time for improvement, every iteration", "Share lessons across teams"],
+     ["Blameless Incident Review", "1% Experiment Canvas", "Retrospective Kit"]),
+]
+
+CALMS = [  # (name, what it means, what you'll see)
+    ("Culture", "Shared ownership of building and running the work, with trust and no blame.",
+     "Developers and operations solve incidents together."),
+    ("Automation", "Automate the repetitive and risky steps: build, test, deploy and infrastructure.",
+     "Any change can reach production through one pipeline."),
+    ("Lean", "Small batches, limited work in progress, and less waste on the way to production.",
+     "Changes are small, and merged at least daily."),
+    ("Measurement", "Measure flow, quality and outcomes, and use them to learn, not to judge.",
+     "The team knows how long changes take and how often they fail."),
+    ("Sharing", "Share tools, knowledge and lessons across teams and roles.",
+     "Incident reviews and runbooks are open to everyone."),
+]
+
+
+def build_devops_principles():
+    b = [header("DevOps Principles",
+                "Build, release and run software as one team: fast flow to customers, fast feedback from them, and a habit of learning.",
+                "Engineering Practices · Inspired by The DevOps Handbook (Kim, Humble, Debois, Willis) and Accelerate (Forsgren, Humble, Kim)",
+                header_fields(["Team", "Date"]))]
+    y, h, gap = 148, 400, 12
+    cw = (1632 - 2 * gap) / 3
+    for i, (name, sub, (dk, lt), what, q, practices, tools) in enumerate(DEVOPS_WAYS):
+        cx = 24 + i * (cw + gap)
+        b.append(R(cx, y, cw, h, lt, 10, f' stroke="{dk}" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"'))
+        b.append(top_round(cx, y, cw, 52, 10, dk))
+        b.append(f'<circle cx="{cx + 21:g}" cy="{y + 26}" r="12" fill="white" fill-opacity=".18"/>')
+        b.append(T(cx + 21, y + 31, str(i + 1), 11, "white", weight=600, anchor="middle"))
+        b.append(T(cx + 42, y + 32, name, 16, "white", weight=600))
+        b.append(T(cx + cw - 16, y + 31, sub, 8.5, "white", MONO, weight=500, anchor="end", ls=".1em", op=".92"))
+        wl = _wrap(what, cw - 32, 11.5)
+        b.append(para(cx + 16, y + 84, wl, 11.5, INK, 17))
+        ty = y + 84 + len(wl) * 17 + 18
+        b.append(T(cx + 16, ty, "ASK", 8, dk, MONO, weight=600, ls=".12em"))
+        ql = _wrap(f"“{q}”", cw - 32, 14)
+        b.append(para(cx + 16, ty + 24, ql, 14, dk, 19, font=SERIF, italic=True))
+        py = ty + 24 + len(ql) * 19 + 20
+        b.append(T(cx + 16, py, "IN PRACTICE", 8, dk, MONO, weight=600, ls=".12em"))
+        b.append(bullets(cx + 20, py + 18, practices, INK, 19))
+        ty = y + h - 92
+        b.append(L(cx + 16, ty - 18, cx + cw - 16, ty - 18, dk, 1, ' stroke-opacity=".25"'))
+        b.append(T(cx + 16, ty, "TOOLS IN THIS KIT", 8, dk, MONO, weight=600, ls=".12em"))
+        for j, t in enumerate(tools):
+            b.append(f'<circle cx="{cx + 20:g}" cy="{ty + 20 + j * 20}" r="2.5" fill="{dk}"/>')
+            b.append(T(cx + 30, ty + 24 + j * 20, t, 11, dk, weight=600))
+        if i < 2:
+            b.append(T(cx + cw + gap / 2, y + h / 2, "›", 14, INK, anchor="middle", op=".45"))
+
+    y, h = 562, 498
+    x, w = 24, 1082
+    d = SKY[0]
+    b.append(panel(x, y, w, h, None, "CALMS: A Quick Health Check", SKY, "FIVE PARTS OF DEVOPS · WHICH IS WEAKEST HERE?"))
+    cols = [("Part", 190), ("What it means", 450), ("You'll see", 406)]
+    cx = x + 18
+    for name, cwid in cols:
+        b.append(T(cx + 6, y + 82, name.upper(), 8.5, d, MONO, weight=600, ls=".1em"))
+        cx += cwid
+    rh = 64
+    for i, (part, means, see) in enumerate(CALMS):
+        ry = y + 96 + i * rh
+        if i % 2 == 0:
+            b.append(R(x + 14, ry, w - 28, rh, SKY[1], 4, ' fill-opacity=".55"'))
+        b.append(T(x + 24, ry + 38, part[0], 24, d, SERIF))
+        b.append(T(x + 50, ry + 37, part, 13, d, weight=600))
+        b.append(para(x + 214, ry + 28, _wrap(means, 420, 11.5), 11.5, INK, 17))
+        b.append(para(x + 664, ry + 28, _wrap(see, 380, 11.5), 11.5, d, 17, weight=500))
+    b.append(T(x + 18, y + h - 22, "CALMS was set out by Jez Humble, building on CAMS from John Willis and Damon Edwards. "
+               "Score each part 1–5 as a team, then improve the lowest.", 10, d, italic=True, op=".88"))
+
+    x, w = 1120, 536
+    d = SLATE[0]
+    h1 = 220
+    b.append(panel(x, y, w, h1, None, "Four Key Metrics", SLATE, "FROM THE DORA RESEARCH"))
+    metrics = [("Deployment frequency", "How often changes reach production"),
+               ("Lead time for changes", "From commit to running in production"),
+               ("Change failure rate", "Share of changes that cause a problem"),
+               ("Time to restore", "How fast service recovers after a failure")]
+    for i, (name, line) in enumerate(metrics):
+        ty = y + 86 + i * 30
+        b.append(f'<text x="{x + 18}" y="{ty}" font-family="{SANS}" font-size="12" fill="{d}">'
+                 f'<tspan font-weight="600">{name}</tspan><tspan fill-opacity="0">: </tspan>'
+                 f'<tspan x="{x + 200}" fill="{INK}" font-size="11">{line}</tspan></text>')
+    b.append(T(x + 18, y + h1 - 20, "Speed and stability go together. Track them on Delivery Metrics.", 10.5, d, italic=True, op=".88"))
+    y2, h2 = y + h1 + 14, h - h1 - 14
+    d = FOREST[0]
+    b.append(panel(x, y2, w, h2, None, "DevOps Habits", FOREST, "TRY ONE THIS ITERATION"))
+    habits = [("You build it, you run it", "The team that builds a service helps support it."),
+              ("Small, frequent changes", "Smaller releases are easier to test and undo."),
+              ("Automate the toil", "Turn a repeated manual step into a script."),
+              ("Blameless by default", "Ask what made the mistake easy, not who made it.")]
+    for i, (name, line) in enumerate(habits):
+        ty = y2 + 84 + i * 44
+        b.append(T(x + 18, ty, name, 12.5, d, weight=600))
+        b.append(T(x + 18, ty + 18, line, 11, INK))
+
+    b.append(footer("Where does a change wait longest on its way to customers?",
+                    "What would make releasing boring?", ENG_TAG))
+    write_board("devops-principles-poster", "DevOps Principles",
+                "A3 landscape reference poster: the three ways of DevOps (flow, feedback, continual learning) with a question, "
+                "practices and toolkit tools for each, a CALMS health check, the four key delivery metrics, and four DevOps "
+                "habits.", "\n".join(b))
+
+
+# ---------------------------------------------------------------- SLOs and error budgets
+
+def build_slo_error_budget():
+    b = [header("SLOs & Error Budgets",
+                "Agree how reliable a service needs to be, measure it as users feel it, and use the error budget to balance new work with reliability.",
+                "Engineering Practices · Inspired by Site Reliability Engineering (Beyer, Jones, Petoff, Murphy, Google) · Reliability Is a Feature",
+                header_fields(["Service", "Date"]))]
+
+    y, h = 148, 320
+    specs = [(24, 534, 1, "Users & Journeys", BLUE, "WHO DEPENDS ON THIS, AND FOR WHAT?",
+              [("Journey", 190), ("Who", 130), ("What good feels like", 178)],
+              "e.g. Check out a basket · shoppers · page loads fast, payment works"),
+             (572, 534, 2, "Service Level Indicators", PURPLE, "MEASURE WHAT USERS FEEL",
+              [("Indicator", 150), ("Good events / valid events", 220), ("Source", 128)],
+              "e.g. Latency: requests under 300 ms / all requests"),
+             (1120, 536, 3, "Objectives (SLOs)", EMERALD, "TARGET · WINDOW · WHY",
+              [("SLO", 170), ("Target", 90), ("Window", 90), ("Why this level", 150)],
+              "e.g. 99.5% of checkouts succeed, over 30 days")]
+    for x, w, num, title, col, note, cols, hint in specs:
+        b.append(panel(x, y, w, h, num, title, col, note))
+        b.append(table(x + 18, y + 84, cols, 5, col[0], 36))
+        b.append(T(x + 18, y + h - 20, hint, 10, col[0], italic=True, op=".88"))
+
+    y, h = 482, 330
+    x, w = 24, 808
+    d = AMBER[0]
+    b.append(panel(x, y, w, h, 4, "Error Budget", AMBER, "100% MINUS THE SLO = ROOM TO TAKE RISKS"))
+    for i, f in enumerate(["SLO target:", "Budget (100% − target):", "Allowed bad events or minutes:", "Used so far:",
+                           "Remaining:"]):
+        b.append(field(x + 18, y + 86 + i * 36, f, x + 440, d))
+    bx, by, bw = x + 18, y + 274, 422
+    b.append(T(bx, by - 10, "SHADE THE BUDGET USED THIS WINDOW", 8.5, d, MONO, weight=600, ls=".1em"))
+    b.append(R(bx, by, bw, 22, "white", 4, f' stroke="{d}" stroke-opacity=".45"'))
+    for k in range(1, 4):
+        b.append(L(bx + bw * k / 4, by, bx + bw * k / 4, by + 22, d, 1, ' stroke-opacity=".25"'))
+    b.append(f'<text y="{by + 38}" font-family="{MONO}" font-size="9" fill="{d}" fill-opacity=".88">'
+             + " ".join(f'<tspan x="{bx + bw * k / 4 - (0 if k == 0 else 10 if k < 4 else 22):g}">{k * 25}%</tspan>' for k in range(5))
+             + "</text>")
+    rx = x + 476
+    b.append(L(rx - 18, y + 70, rx - 18, y + h - 18, d, 1, ' stroke-opacity=".2"'))
+    # one <text> for the heading and rows, so the whiteboard prompt reads the table as one item, not between the fields
+    rows = "".join(f'<tspan x="{rx}" y="{y + 112 + i * 26}" font-weight="600">{target}</tspan><tspan fill-opacity="0">: </tspan>'
+                   f'<tspan x="{rx + 90}" fill="{INK}">{allowed}</tspan><tspan fill-opacity="0">{" ·" if i < 4 else ""} </tspan>'
+                   for i, (target, allowed) in enumerate([("99%", "7 h 12 min"), ("99.5%", "3 h 36 min"), ("99.9%", "43 min"),
+                                                          ("99.95%", "22 min"), ("99.99%", "4 min")]))
+    b.append(f'<text x="{rx}" y="{y + 84}" font-family="{SANS}" font-size="12" fill="{d}">'
+             f'<tspan font-family="{MONO}" font-size="8.5" font-weight="600" letter-spacing=".1em">DOWNTIME ALLOWED IN 30 DAYS</tspan>'
+             f'<tspan fill-opacity="0">: </tspan>{rows}</text>')
+    b.append(para(rx, y + 262, ["Each extra nine costs far more effort.", "Choose the lowest target that keeps",
+                                "users happy, not the highest you can."], 10.5, d, 15, italic=True))
+
+    x, w = 846, 810
+    d = RED[0]
+    b.append(panel(x, y, w, h, 5, "Error Budget Policy", RED, "AGREED BEFORE IT'S NEEDED"))
+    bands = [("Healthy", EMERALD, "More than half left", "Ship as normal. Spare budget can pay for experiments and planned risk."),
+             ("Running low", AMBER, "Less than a quarter left", "Slow risky changes, and put reliability work at the top."),
+             ("Spent", RED, "None left", "Pause risky releases except fixes, until the budget recovers.")]
+    by = y + 68
+    for name, (dk, lt), sub, rule in bands:
+        b.append(R(x + 14, by, w - 28, 76, lt, 8, f' stroke="{dk}" stroke-opacity=".3"'))
+        b.append(R(x + 14, by, 5, 76, dk, 3))
+        b.append(T(x + 32, by + 25, name, 14, dk, weight=600))
+        b.append(T(x + 32, by + 42, sub, 9, dk, MONO, op=".88"))
+        b.append(T(x + 220, by + 25, rule, 11, INK))
+        b.append(field(x + 220, by + 56, "Our rule:", x + w - 32, dk))
+        by += 84
+
+    y, h = 826, 234
+    x, w = 24, 808
+    d = SKY[0]
+    b.append(panel(x, y, w, h, 6, "Budget Review", SKY, "PRODUCT AND ENGINEERING, TOGETHER"))
+    for i, f in enumerate(["How often we review:", "Who decides:", "Where the dashboard lives:",
+                           "Alert us when the budget burns faster than:"]):
+        b.append(field(x + 18, y + 88 + i * 38, f, x + w - 18, d))
+
+    x, w = 846, 810
+    d = SLATE[0]
+    b.append(panel(x, y, w, h, 7, "Reliability Backlog", SLATE, "WORK THAT PROTECTS THE BUDGET"))
+    b.append(table(x + 18, y + 84, [("Action", 420), ("Owner", 190), ("By when", w - 36 - 610)], 3, d, 36))
+
+    b.append(footer("Which users would notice first if this service got worse?",
+                    "What would we stop doing if the budget ran out tomorrow?", ENG_TAG))
+    write_board("slo-error-budget-board", "SLOs & Error Budgets",
+                "A3 landscape board for agreeing service reliability: user journeys, service level indicators, objectives "
+                "(SLOs) with targets and windows, an error budget with a downtime reference, an error budget policy, a budget "
+                "review, and a reliability backlog.", "\n".join(b))
+
+
 # ---------------------------------------------------------------- waste walk
 
 def build_waste_walk():
@@ -8871,5 +9084,7 @@ if __name__ == "__main__":
     build_waste_walk()
     build_delivery_approach()
     build_a3_problem_solving()
+    build_devops_principles()
+    build_slo_error_budget()
     for make in EXAMPLES.values():   # worked examples read the blank boards, so they run last
         make()

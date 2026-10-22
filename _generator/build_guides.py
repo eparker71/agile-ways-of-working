@@ -4369,6 +4369,111 @@ GUIDES += [
                  "Managers</a> useful."),
         foot="“Where is change cheap, and where is it expensive?”",
     ),
+    dict(
+        slug="devops-principles",
+        title="DevOps Principles Guide",
+        subtitle="How to use the DevOps Principles poster to explain DevOps in plain words, check where your team stands, and pick one thing to improve.",
+        tag="Facilitator Run-Sheet · Engineering Practices · DevOps · Flow, Feedback, Learning",
+        boards=[("Open poster", "devops-principles-poster.html"), ("SVG", "devops-principles-poster.svg")],
+        lede="Where does a change wait longest on its way to customers?",
+        intro=("<b>DevOps</b> started around 2009 as a movement to close the gap between the people who build software and the "
+               "people who run it; Patrick Debois named the first DevOpsDays conference. It isn't a job title or a tool: it's a set "
+               "of ideas about building, releasing and running software as one team. The poster sets out the <b>three ways</b> "
+               "described by Gene Kim and colleagues in <i>The Phoenix Project</i> and <i>The DevOps Handbook</i> (Kim, Humble, "
+               "Debois and Willis): <b>flow</b> from idea to customer, <b>feedback</b> from customer to team, and <b>continual "
+               "learning</b>. It adds <b>CALMS</b> (culture, automation, lean, measurement, sharing), which Jez Humble set out "
+               "building on John Willis and Damon Edwards' CAMS, as a quick health check, and the <b>four key metrics</b> from the "
+               "DORA research reported in <i>Accelerate</i> (Forsgren, Humble and Kim). All are described here in our own words."),
+        glance=[("Duration", "45–60 min<br>as a workshop"), ("Group", "A team, or<br>dev and ops together"),
+                ("Use when", "Releases are slow<br>or scary"), ("Output", "Our weakest part<br>&amp; one change to try")],
+        before=["Print the poster at A3 or 11×17, or share it on screen",
+                "Invite the people who build, test, release and support the service, not just developers",
+                "Bring rough numbers if you have them: how often you release, and how long a small change takes",
+                "Have stickies and a marker for the CALMS scores"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–10", "Why DevOps?", "Ask: what's the last release that went wrong, and what did it cost? Keep it blameless."),
+                ("10–25", "The three ways", "Walk across the poster. For each way, answer its question with real examples."),
+                ("25–40", "CALMS check", "Everyone scores each part 1–5 privately, then reveal. Talk about the biggest gaps first."),
+                ("40–50", "Pick the weakest", "Agree the lowest-scoring part, and pick a habit or tool from the poster to tackle it."),
+                ("50–60", "Next step", "Agree who does what by when, and which metric would show it helped.")],
+        sections_title="The three ways",
+        sections_intro="Each way comes with a question, a few practices, and tools in this kit.",
+        sections=[("Flow", BLUE, ["Idea to customer, fast", "Small batches, fewer hand-offs"]),
+                  ("Feedback", EMERALD, ["Customer to team, fast", "Find problems close to the source"]),
+                  ("Continual learning", PURPLE, ["Failures are information", "Time to improve daily work"])],
+        tips=[("Culture first", "Tools help, but the shared ownership is what makes DevOps work. Start with how people work together."),
+              ("Everyone in the room", "If operations, testing or security aren't there, you'll only see half the flow."),
+              ("Use real examples", "Talk about last week's release, not DevOps in general."),
+              ("Speed and stability together", "Teams that release more often usually fail less, not more. Small changes are safer."),
+              ("Measure to learn", "The four key metrics are for the team to improve, never to compare teams."),
+              ("Automate one thing", "Pick the most painful manual step and automate just that.")],
+        pitfalls=("renaming the operations team the DevOps team; buying a tool and calling it a transformation; measuring individuals "
+                  "with the four key metrics; leaving security and testing until the end; automating a broken process before fixing it."),
+        after=[("Straight away", "Start the chosen habit, and put the change on the team board."),
+               ("In two weeks", "Check at the retro: did it help? Keep, change or drop it."),
+               ("Next month", "Map the path to production with the Delivery Pipeline Canvas, and start tracking the four key metrics."),
+               ("Ongoing", "Re-score CALMS each quarter, alongside the Continuous Delivery Health Check.")],
+        toolkit=("The poster ties together the engineering tools. " + ENG_TOOLKIT + " For reliability, the "
+                 "<a href=\"facilitator-guide-slo-error-budget.html\">SLOs &amp; Error Budgets</a> board agrees how reliable a "
+                 "service needs to be, and the <a href=\"facilitator-guide-incident-review.html\">Blameless Incident Review</a> "
+                 "learns from failures."),
+        foot="“What would make releasing boring?”",
+    ),
+    dict(
+        slug="slo-error-budget",
+        title="SLOs & Error Budgets Guide",
+        subtitle="How to agree how reliable a service needs to be, measure it as users feel it, and use the error budget to balance new work with reliability.",
+        tag="Facilitator Run-Sheet · Engineering Practices · Reliability · Site Reliability Engineering",
+        boards=[("Open board", "slo-error-budget-board.html"), ("SVG", "slo-error-budget-board.svg")],
+        lede="Which users would notice first if this service got worse?",
+        intro=("A <b>service level objective (SLO)</b> is a target for how reliable a service should be, measured the way users "
+               "feel it: for example, 99.5% of checkouts succeed over 30 days. The gap between the target and 100% is the "
+               "<b>error budget</b>: the amount of unreliability you can accept. While there's budget left, the team ships "
+               "freely; when it runs out, reliability work comes first. It turns the old argument between \"ship faster\" and "
+               "\"keep it stable\" into a shared number that product and engineering agree on in advance. The ideas come from "
+               "Google's site reliability engineering, described in <i>Site Reliability Engineering</i> (Beyer, Jones, Petoff and "
+               "Murphy) and <i>The Site Reliability Workbook</i>, and are set out here in our own words. The board works left to "
+               "right: users and their journeys, the <b>indicators</b> (SLIs) that measure them, the <b>objectives</b>, the "
+               "<b>budget</b>, the <b>policy</b> for when it runs low, and the <b>review</b> and <b>backlog</b> that keep it real."),
+        glance=[("Duration", "90 min to set up,<br>30 min each month"), ("Group", "Product, engineering<br>&amp; support together"),
+                ("Use when", "Reliability vs features<br>keeps causing arguments"), ("Output", "Agreed SLOs, a budget<br>&amp; a policy")],
+        before=["Print the board at A3 or 11×17, or share it on screen",
+                "Pick one service that matters to users; don't start with everything",
+                "Bring what you already measure: request success, response times, recent incidents and complaints",
+                "Invite the product owner or manager: the policy only works if product agrees to it"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–15", "Users & journeys", "List the few journeys users care about most, and what good feels like to them."),
+                ("15–35", "Indicators", "For each journey, choose one or two SLIs: good events divided by valid events."),
+                ("35–50", "Objectives", "Set a target and a window. Start just below what you achieve today, not at 100%."),
+                ("50–60", "Error budget", "Work out the budget, using the downtime table, and how much has been used recently."),
+                ("60–80", "Policy", "Agree what happens when the budget is healthy, running low and spent. Product must agree."),
+                ("80–90", "Review & backlog", "Set the review rhythm and an alert, and list reliability work to start now.")],
+        sections_title="Key ideas",
+        sections_intro="Four terms that do most of the work.",
+        sections=[("Indicator (SLI)", PURPLE, ["What you measure", "Good events / valid events"]),
+                  ("Objective (SLO)", EMERALD, ["The target, over a window", "e.g. 99.5% over 30 days"]),
+                  ("Error budget", AMBER, ["100% minus the SLO", "Room to take risks"]),
+                  ("Policy", RED, ["What changes when it runs low", "Agreed before it's needed"])],
+        tips=[("Users, not servers", "Measure what users experience, such as failed checkouts, not CPU or memory."),
+              ("100% is the wrong target", "Users can't tell 99.99% from 100%, and chasing it stops all change."),
+              ("Few and simple", "Two or three SLOs per service is plenty. More gets ignored."),
+              ("Start where you are", "Set the first target near today's performance, then tighten it if users need more."),
+              ("Spend the budget", "Unused budget means you could release faster or experiment more."),
+              ("Not a contract", "An SLO is an internal target. A service level agreement (SLA) with customers should be looser.")],
+        pitfalls=("setting every SLO at 99.99%; measuring infrastructure instead of user experience; a policy product never agreed to; "
+                  "blaming people when the budget is spent; too many SLOs for anyone to watch; never reviewing the targets."),
+        after=[("Straight away", "Build the dashboard and the burn-rate alert, and share the policy with stakeholders."),
+               ("Each month", "Review the budget together. Is the target still right for users?"),
+               ("When it's spent", "Follow the policy, run a Blameless Incident Review, and add the fixes to the reliability backlog."),
+               ("Each quarter", "Revisit the journeys and targets as the product changes.")],
+        toolkit=("SLOs sit with the engineering tools. The <a href=\"facilitator-guide-devops-principles.html\">DevOps Principles</a> "
+                 "poster explains the feedback they provide, <a href=\"facilitator-guide-delivery-metrics.html\">Delivery Metrics "
+                 "&amp; Tech Debt</a> tracks change failure rate and time to restore, the <a "
+                 "href=\"facilitator-guide-incident-review.html\">Blameless Incident Review</a> learns from failures that burn the "
+                 "budget, and <a href=\"facilitator-guide-release-readiness.html\">Release Readiness &amp; Strategy</a> uses the "
+                 "budget to decide how careful a release should be."),
+        foot="“What would we stop doing if the budget ran out tomorrow?”",
+    ),
 ]
 
 

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 1190" width="1680" height="1190" role="img" aria-labelledby="mg-title mg-desc">
+  <title id="mg-title">DevOps Principles</title>
+  <desc id="mg-desc">A3 landscape reference poster: the three ways of DevOps (flow, feedback, continual learning) with a question, practices and toolkit tools for each, a CALMS health check, the four key delivery metrics, and four DevOps habits.</desc>
+  <defs><style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap');</style>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#EFF6FF"/>
+    </linearGradient>
+    <filter id="fc" x="-4%" y="-4%" width="110%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity=".10"/>
+    </filter>
+    <filter id="fsm" x="-6%" y="-6%" width="114%" height="116%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity=".08"/>
+    </filter>
+    <pattern id="dots" patternUnits="userSpaceOnUse" width="20" height="20">
+      <circle cx="10" cy="10" r="1.2" fill="#000" fill-opacity=".055"/>
+    </pattern>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E0F2FE"/>
+      <stop offset="100%" stop-color="#F0F9FF"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7DD3FC"/>
+      <stop offset="100%" stop-color="#BAE6FD"/>
+    </linearGradient>
+  </defs>
+<rect x="0" y="0" width="1680" height="1190" fill="url(#bg)"/><rect x="0" y="0" width="1680" height="4" fill="#eb6c36"/><rect x="0" y="4" width="1680" height="134" fill="#0C1A2E"/><text x="24" y="70" font-family="'Instrument Serif',Georgia,serif" font-size="42" font-weight="400" fill="white">DevOps Principles</text><text x="24" y="100" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" fill="#94A3B8">Build, release and run software as one team: fast flow to customers, fast feedback from them, and a habit of learning.</text><text x="24" y="120" font-family="'Geist Mono',Consolas,monospace" font-size="9" fill="#8291A6" letter-spacing=".06em">Engineering Practices · Inspired by The DevOps Handbook (Kim, Humble, Debois, Willis) and Accelerate (Forsgren, Humble, Kim)</text><text x="1356" y="66" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#8291A6" letter-spacing=".14em">TEAM</text><line x1="1452" y1="69" x2="1656" y2="69" stroke="#334155" stroke-width="1.2"/><text x="1356" y="96" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#8291A6" letter-spacing=".14em">DATE</text><line x1="1452" y1="99" x2="1656" y2="99" stroke="#334155" stroke-width="1.2"/>
+<rect x="24" y="148" width="536" height="400" rx="10" fill="#DBEAFE" stroke="#1E3A8A" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/>
+<path d="M24.0,200 V158 A10,10 0 0 1 34.0,148 H550.0 A10,10 0 0 1 560.0,158 V200 Z" fill="#1E3A8A"/>
+<circle cx="45" cy="174" r="12" fill="white" fill-opacity=".18"/>
+<text x="45" y="179" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">1</text>
+<text x="66" y="180" font-family="'Geist',Inter,system-ui,sans-serif" font-size="16" font-weight="600" fill="white">Flow</text>
+<text x="544" y="179" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="500" fill="white" fill-opacity=".92" letter-spacing=".1em">IDEA → CUSTOMER</text>
+<text x="40" y="232" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11.5" fill="#1E293B">Speed up the whole path from idea to customer: small batches, visible work, fewer</text><text x="40" y="249" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11.5" fill="#1E293B">hand-offs, and never passing a known problem downstream.</text>
+<text x="40" y="284" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#1E3A8A" letter-spacing=".12em">ASK</text>
+<text x="40" y="308" font-family="'Instrument Serif',Georgia,serif" font-size="14" font-style="italic" fill="#1E3A8A">“How long does a small change take to reach a customer?”</text>
+<text x="40" y="347" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#1E3A8A" letter-spacing=".12em">IN PRACTICE</text>
+<circle cx="44.0" cy="365" r="2.5" fill="#1E293B" fill-opacity=".55"/><text x="54" y="369" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">Make the work visible, end to end</text><circle cx="44.0" cy="384" r="2.5" fill="#1E293B" fill-opacity=".55"/><text x="54" y="388" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">Limit work in progress</text><circle cx="44.0" cy="403" r="2.5" fill="#1E293B" fill-opacity=".55"/><text x="54" y="407" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">Shrink batches and hand-offs</text>
+<line x1="40" y1="438" x2="544" y2="438" stroke="#1E3A8A" stroke-width="1" stroke-opacity=".25"/>
+<text x="40" y="456" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#1E3A8A" letter-spacing=".12em">TOOLS IN THIS KIT</text>
+<circle cx="44" cy="476" r="2.5" fill="#1E3A8A"/>
+<text x="54" y="480" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#1E3A8A">Value Stream Map</text>
+<circle cx="44" cy="496" r="2.5" fill="#1E3A8A"/>
+<text x="54" y="500" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#1E3A8A">Delivery Pipeline Canvas</text>
+<circle cx="44" cy="516" r="2.5" fill="#1E3A8A"/>
+<text x="54" y="520" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#1E3A8A">Kanban Board Design</text>
+<text x="566" y="348" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" fill="#1E293B" fill-opacity=".45">›</text>
+<rect x="572" y="148" width="536" height="400" rx="10" fill="#D1FAE5" stroke="#065F46" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/>
+<path d="M572.0,200 V158 A10,10 0 0 1 582.0,148 H1098.0 A10,10 0 0 1 1108.0,158 V200 Z" fill="#065F46"/>
+<circle cx="593" cy="174" r="12" fill="white" fill-opacity=".18"/>
+<text x="593" y="179" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">2</text>
+<text x="614" y="180" font-family="'Geist',Inter,system-ui,sans-serif" font-size="16" font-weight="600" fill="white">Feedback</text>
+<text x="1092" y="179" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="500" fill="white" fill-opacity=".92" letter-spacing=".1em">CUSTOMER → TEAM</text>
+<text x="588" y="232" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11.5" fill="#1E293B">Find problems fast and close to where they start: automated tests, monitoring, and</text><text x="588" y="249" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11.5" fill="#1E293B">teams who see how their work behaves in production.</text>
+<text x="588" y="284" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#065F46" letter-spacing=".12em">ASK</text>
+<text x="588" y="308" font-family="'Instrument Serif',Georgia,serif" font-size="14" font-style="italic" fill="#065F46">“How soon would we know if a release hurt customers?”</text>
+<text x="588" y="347" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#065F46" letter-spacing=".12em">IN PRACTICE</text>
+<circle cx="592.0" cy="365" r="2.5" fill="#1E293B" fill-opacity=".55"/><text x="602" y="369" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">Test automatically, on every change</text><circle cx="592.0" cy="384" r="2.5" fill="#1E293B" fill-opacity=".55"/><text x="602" y="388" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">Watch what users actually experience</text><circle cx="592.0" cy="403" r="2.5" fill="#1E293B" fill-opacity=".55"/><text x="602" y="407" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">Fix the cause, then add a check</text>
+<line x1="588" y1="438" x2="1092" y2="438" stroke="#065F46" stroke-width="1" stroke-opacity=".25"/>
+<text x="588" y="456" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#065F46" letter-spacing=".12em">TOOLS IN THIS KIT</text>
+<circle cx="592" cy="476" r="2.5" fill="#065F46"/>
+<text x="602" y="480" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#065F46">Test Strategy</text>
+<circle cx="592" cy="496" r="2.5" fill="#065F46"/>
+<text x="602" y="500" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#065F46">SLOs &amp; Error Budgets</text>
+<circle cx="592" cy="516" r="2.5" fill="#065F46"/>
+<text x="602" y="520" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#065F46">Continuous Delivery Health Check</text>
+<text x="1114" y="348" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" fill="#1E293B" fill-opacity=".45">›</text>
+<rect x="1120" y="148" width="536" height="400" rx="10" fill="#EDE9FE" stroke="#581C87" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/>
+<path d="M1120.0,200 V158 A10,10 0 0 1 1130.0,148 H1646.0 A10,10 0 0 1 1656.0,158 V200 Z" fill="#581C87"/>
+<circle cx="1141" cy="174" r="12" fill="white" fill-opacity=".18"/>
+<text x="1141" y="179" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="white">3</text>
+<text x="1162" y="180" font-family="'Geist',Inter,system-ui,sans-serif" font-size="16" font-weight="600" fill="white">Continual learning</text>
+<text x="1640" y="179" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="500" fill="white" fill-opacity=".92" letter-spacing=".1em">EXPERIMENT · IMPROVE</text>
+<text x="1136" y="232" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11.5" fill="#1E293B">Treat failures as information, run small experiments, and set time aside to improve</text><text x="1136" y="249" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11.5" fill="#1E293B">daily work and share what you learn.</text>
+<text x="1136" y="284" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#581C87" letter-spacing=".12em">ASK</text>
+<text x="1136" y="308" font-family="'Instrument Serif',Georgia,serif" font-size="14" font-style="italic" fill="#581C87">“What did our last incident teach us, and what changed?”</text>
+<text x="1136" y="347" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#581C87" letter-spacing=".12em">IN PRACTICE</text>
+<circle cx="1140.0" cy="365" r="2.5" fill="#1E293B" fill-opacity=".55"/><text x="1150" y="369" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">Blameless reviews after incidents</text><circle cx="1140.0" cy="384" r="2.5" fill="#1E293B" fill-opacity=".55"/><text x="1150" y="388" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">Time for improvement, every iteration</text><circle cx="1140.0" cy="403" r="2.5" fill="#1E293B" fill-opacity=".55"/><text x="1150" y="407" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E293B">Share lessons across teams</text>
+<line x1="1136" y1="438" x2="1640" y2="438" stroke="#581C87" stroke-width="1" stroke-opacity=".25"/>
+<text x="1136" y="456" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#581C87" letter-spacing=".12em">TOOLS IN THIS KIT</text>
+<circle cx="1140" cy="476" r="2.5" fill="#581C87"/>
+<text x="1150" y="480" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#581C87">Blameless Incident Review</text>
+<circle cx="1140" cy="496" r="2.5" fill="#581C87"/>
+<text x="1150" y="500" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#581C87">1% Experiment Canvas</text>
+<circle cx="1140" cy="516" r="2.5" fill="#581C87"/>
+<text x="1150" y="520" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#581C87">Retrospective Kit</text>
+<rect x="24" y="562" width="1082" height="498" rx="10" fill="#E0F2FE" stroke="#0C4A6E" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M24,614 V572 A10,10 0 0 1 34,562 H1096 A10,10 0 0 1 1106,572 V614 Z" fill="#0C4A6E"/><text x="45" y="594" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">CALMS: A Quick Health Check</text><text x="1090" y="593" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".88" letter-spacing=".10em">FIVE PARTS OF DEVOPS · WHICH IS WEAKEST HERE?</text>
+<text x="48" y="644" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="600" fill="#0C4A6E" letter-spacing=".1em">PART</text>
+<text x="238" y="644" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="600" fill="#0C4A6E" letter-spacing=".1em">WHAT IT MEANS</text>
+<text x="688" y="644" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" font-weight="600" fill="#0C4A6E" letter-spacing=".1em">YOU'LL SEE</text>
+<rect x="38" y="658" width="1054" height="64" rx="4" fill="#E0F2FE" fill-opacity=".55"/>
+<text x="48" y="696" font-family="'Instrument Serif',Georgia,serif" font-size="24" fill="#0C4A6E">C</text>
+<text x="74" y="695" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#0C4A6E">Culture</text>
+<text x="238" y="686" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11.5" fill="#1E293B">Shared ownership of building and running the work, with trust and no</text><text x="238" y="703" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11.5" fill="#1E293B">blame.</text>
+<text x="688" y="686" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11.5" font-weight="500" fill="#0C4A6E">Developers and operations solve incidents together.</text>
+<text x="48" y="760" font-family="'Instrument Serif',Georgia,serif" font-size="24" fill="#0C4A6E">A</text>
+<text x="74" y="759" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#0C4A6E">Automation</text>
+<text x="238" y="750" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11.5" fill="#1E293B">Automate the repetitive and risky steps: build, test, deploy and</text><text x="238" y="767" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11.5" fill="#1E293B">infrastructure.</text>
+<text x="688" y="750" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11.5" font-weight="500" fill="#0C4A6E">Any change can reach production through one pipeline.</text>
+<rect x="38" y="786" width="1054" height="64" rx="4" fill="#E0F2FE" fill-opacity=".55"/>
+<text x="48" y="824" font-family="'Instrument Serif',Georgia,serif" font-size="24" fill="#0C4A6E">L</text>
+<text x="74" y="823" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#0C4A6E">Lean</text>
+<text x="238" y="814" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11.5" fill="#1E293B">Small batches, limited work in progress, and less waste on the way to</text><text x="238" y="831" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11.5" fill="#1E293B">production.</text>
+<text x="688" y="814" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11.5" font-weight="500" fill="#0C4A6E">Changes are small, and merged at least daily.</text>
+<text x="48" y="888" font-family="'Instrument Serif',Georgia,serif" font-size="24" fill="#0C4A6E">M</text>
+<text x="74" y="887" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#0C4A6E">Measurement</text>
+<text x="238" y="878" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11.5" fill="#1E293B">Measure flow, quality and outcomes, and use them to learn, not to</text><text x="238" y="895" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11.5" fill="#1E293B">judge.</text>
+<text x="688" y="878" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11.5" font-weight="500" fill="#0C4A6E">The team knows how long changes take and how often they fail.</text>
+<rect x="38" y="914" width="1054" height="64" rx="4" fill="#E0F2FE" fill-opacity=".55"/>
+<text x="48" y="952" font-family="'Instrument Serif',Georgia,serif" font-size="24" fill="#0C4A6E">S</text>
+<text x="74" y="951" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#0C4A6E">Sharing</text>
+<text x="238" y="942" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11.5" fill="#1E293B">Share tools, knowledge and lessons across teams and roles.</text>
+<text x="688" y="942" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11.5" font-weight="500" fill="#0C4A6E">Incident reviews and runbooks are open to everyone.</text>
+<text x="42" y="1038" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-style="italic" fill="#0C4A6E" fill-opacity=".88">CALMS was set out by Jez Humble, building on CAMS from John Willis and Damon Edwards. Score each part 1–5 as a team, then improve the lowest.</text>
+<rect x="1120" y="562" width="536" height="220" rx="10" fill="#F1F5F9" stroke="#334155" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M1120,614 V572 A10,10 0 0 1 1130,562 H1646 A10,10 0 0 1 1656,572 V614 Z" fill="#334155"/><text x="1141" y="594" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Four Key Metrics</text><text x="1640" y="593" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".88" letter-spacing=".10em">FROM THE DORA RESEARCH</text>
+<text x="1138" y="648" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" fill="#334155"><tspan font-weight="600">Deployment frequency</tspan><tspan fill-opacity="0">: </tspan><tspan x="1320" fill="#1E293B" font-size="11">How often changes reach production</tspan></text>
+<text x="1138" y="678" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" fill="#334155"><tspan font-weight="600">Lead time for changes</tspan><tspan fill-opacity="0">: </tspan><tspan x="1320" fill="#1E293B" font-size="11">From commit to running in production</tspan></text>
+<text x="1138" y="708" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" fill="#334155"><tspan font-weight="600">Change failure rate</tspan><tspan fill-opacity="0">: </tspan><tspan x="1320" fill="#1E293B" font-size="11">Share of changes that cause a problem</tspan></text>
+<text x="1138" y="738" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" fill="#334155"><tspan font-weight="600">Time to restore</tspan><tspan fill-opacity="0">: </tspan><tspan x="1320" fill="#1E293B" font-size="11">How fast service recovers after a failure</tspan></text>
+<text x="1138" y="762" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" font-style="italic" fill="#334155" fill-opacity=".88">Speed and stability go together. Track them on Delivery Metrics.</text>
+<rect x="1120" y="796" width="536" height="264" rx="10" fill="#DCFCE7" stroke="#14532D" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M1120,848 V806 A10,10 0 0 1 1130,796 H1646 A10,10 0 0 1 1656,806 V848 Z" fill="#14532D"/><text x="1141" y="828" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">DevOps Habits</text><text x="1640" y="827" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".88" letter-spacing=".10em">TRY ONE THIS ITERATION</text>
+<text x="1138" y="880" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#14532D">You build it, you run it</text>
+<text x="1138" y="898" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">The team that builds a service helps support it.</text>
+<text x="1138" y="924" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#14532D">Small, frequent changes</text>
+<text x="1138" y="942" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">Smaller releases are easier to test and undo.</text>
+<text x="1138" y="968" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#14532D">Automate the toil</text>
+<text x="1138" y="986" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">Turn a repeated manual step into a script.</text>
+<text x="1138" y="1012" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#14532D">Blameless by default</text>
+<text x="1138" y="1030" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">Ask what made the mistake easy, not who made it.</text>
+<line x1="24" y1="1070" x2="1656" y2="1070" stroke="#E2E8F0" stroke-width="1"/><text x="24" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“Where does a change wait longest on its way to customers?”</text><line x1="832" y1="1078" x2="832" y2="1128" stroke="#E2E8F0" stroke-width="1"/><text x="848" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“What would make releasing boring?”</text><text x="1656" y="1138" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#5B6B82" letter-spacing=".08em">Engineering Practices · Continuous Delivery · Build Quality In</text><text x="24" y="1138" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#5B6B82" letter-spacing=".06em">© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</text>
+</svg>

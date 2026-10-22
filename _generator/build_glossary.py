@@ -18,6 +18,22 @@ from brand import ACCENT, NAVY, CREDIT  # noqa: E402
 OUT = Path(__file__).resolve().parent.parent
 
 TERMS = [
+    ("Site reliability engineering (SRE)", "Running services with software engineering: automating operations work, setting "
+     "reliability targets, and balancing reliability with new features using error budgets.", "Developed at Google.", ["slo", "incident"]),
+    ("Service level indicator (SLI)", "A measure of how a service behaves as users feel it, usually good events divided by valid "
+     "events, such as successful requests or fast page loads.", None, ["slo"]),
+    ("Service level objective (SLO)", "A target for an SLI over a time window, such as 99.5% of checkouts succeeding over 30 "
+     "days. An internal goal, set just high enough to keep users happy.", None, ["slo"]),
+    ("Service level agreement (SLA)", "A promise to customers about a service's reliability, usually with penalties if it's "
+     "missed. It should be looser than the SLO, so the team notices problems before customers are owed anything.", None, ["slo"]),
+    ("Error budget", "The amount of unreliability a service can have while still meeting its SLO: 100% minus the target. While "
+     "budget remains the team ships freely; when it runs out, reliability work comes first.", None, ["slo", "release"]),
+    ("Toil", "Manual, repetitive operations work that could be automated and doesn't make the service better for good.", None,
+     ["devops", "slo"]),
+    ("CALMS", "Five parts of DevOps used as a health check: culture, automation, lean, measurement and sharing.",
+     "Set out by Jez Humble, building on CAMS from John Willis and Damon Edwards.", ["devops", "cd-health"]),
+    ("The three ways", "The principles behind DevOps: fast flow from idea to customer, fast feedback from customer to team, "
+     "and a culture of continual learning and experimentation.", "From The Phoenix Project and The DevOps Handbook.", ["devops", "vsm"]),
     ("Predictive approach", "Planning and designing most of the work up front, then delivering to the plan with formal change "
      "control. Suits work that is well understood and costly to change.", "Often called waterfall.", ["approach"]),
     ("Hybrid approach", "Using agile and predictive approaches together, often for different parts of the same project, with "
@@ -113,9 +129,9 @@ TERMS = [
     ("Delivery pipeline", "The automated path a change takes from commit to production: build, test, checks, deploy and release. "
      "Also called a CI/CD pipeline or deployment pipeline.", None, ["pipeline"]),
     ("DevOps", "A way of working where development and operations share responsibility for building, releasing and running "
-     "software, supported by automation and fast feedback.", None, ["pipeline", "cd-health", "incident"]),
+     "software, supported by automation and fast feedback.", None, ["devops", "pipeline", "cd-health", "incident"]),
     ("DORA metrics", "Four measures of delivery performance from the DORA research programme: deployment frequency, lead time for "
-     "changes, change failure rate, and time to restore service.", "DORA: DevOps Research and Assessment.", ["delivery-metrics", "cd-health"]),
+     "changes, change failure rate, and time to restore service.", "DORA: DevOps Research and Assessment.", ["delivery-metrics", "devops", "cd-health"]),
     ("Trunk-based development", "Working in small changes merged to one main branch (the trunk) at least daily, instead of long-lived "
      "branches that are hard to merge.", None, ["cd-health", "pipeline"]),
     ("Feature flag", "A switch in the code that turns a feature on or off without deploying again, so code can be deployed "
@@ -191,7 +207,7 @@ TERMS = [
     ("Experiment", "A small, time-boxed test of a hypothesis, with a measure agreed in advance, so the result tells you whether "
      "to persevere, pivot or stop.", None, ["experiment", "ost"]),
     ("Feature", "A capability users can see and use that delivers part of an epic's value.",
-     "In SAFe, a feature fits within one planning increment; elsewhere the term is used more loosely.", ["epic", "backlog"]),
+     "In SAFe, a feature fits within one planning increment. Azure DevOps includes a Feature level by default, between epic and story; elsewhere the term is used more loosely.", ["epic", "backlog"]),
     ("Flow efficiency", "The share of an item's elapsed time spent actively working on it, rather than waiting. Often "
      "surprisingly low.", None, ["kanban"]),
     ("Impediment", "Anything limiting how well the team works that it can't easily fix alone, such as slow approvals or missing "

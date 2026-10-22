@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Azure DevOps Cheat Sheet</title>
+<!-- meta -->
+<meta name="description" content="How the toolkit&#x27;s practices show up in Azure Boards, Repos and Pipelines. Menu names and state names vary by process and version, so check your own project.">
+<link rel="canonical" href="https://eparker71.github.io/agile-ways-of-working/azure-devops-cheat-sheet.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agile Ways of Working Toolkit">
+<meta property="og:title" content="Azure DevOps Cheat Sheet · Agile Ways of Working Toolkit">
+<meta property="og:description" content="How the toolkit&#x27;s practices show up in Azure Boards, Repos and Pipelines. Menu names and state names vary by process and version, so check your own project.">
+<meta property="og:url" content="https://eparker71.github.io/agile-ways-of-working/azure-devops-cheat-sheet.html">
+<meta property="og:image" content="https://eparker71.github.io/agile-ways-of-working/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script data-goatcounter="https://eparker71.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- /meta -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{
+  --accent:#eb6c36; --navy:#0C1A2E; --ink:#1E293B; --muted:#5B6B82; --rule:#E2E8F0;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Geist',Inter,system-ui,sans-serif; --mono:'Geist Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{font-family:var(--sans);color:var(--ink);font-size:12.5px;line-height:1.45;padding:24px 16px;}
+a{color:inherit;}
+
+/* one sheet = A3 landscape at 96 dpi */
+.sheet{width:1587px;height:1123px;margin:0 auto 24px;background:linear-gradient(#F8FAFC,#EFF6FF);
+  box-shadow:0 12px 40px rgba(0,0,0,.22);display:flex;flex-direction:column;overflow:hidden;}
+.head{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:16px 22px 14px;position:relative;flex:none;}
+.head h1{font:400 34px/1 var(--serif);margin:0 0 6px;}
+.head p{margin:0;color:#94A3B8;font-size:12.5px;}
+.head .side{position:absolute;right:22px;top:14px;text-align:right;}
+.badge{font:500 8.5px var(--mono);letter-spacing:.10em;color:var(--accent);background:rgba(235,108,54,.18);padding:5px 12px;border-radius:11px;display:inline-block;}
+.head .side div{font:500 9px var(--mono);letter-spacing:.14em;color:#94A3B8;margin-top:12px;}
+.body>*{min-width:0;}
+.body{flex:1;min-height:0;display:grid;gap:12px;padding:12px 20px;}
+.foot{flex:none;display:flex;justify-content:space-between;gap:16px;padding:0 20px 10px;font:8px var(--mono);letter-spacing:.08em;color:#5B6B82;}
+.foot .fq{font:italic 13px var(--serif);color:var(--ink);letter-spacing:0;}
+
+
+.panel{background:var(--l);border:1.5px solid color-mix(in srgb,var(--d) 18%,transparent);border-radius:10px;overflow:hidden;
+  display:flex;flex-direction:column;min-height:0;box-shadow:0 2px 8px rgba(0,0,0,.07);}
+.panel>h2{margin:0;background:var(--d);color:#fff;font:600 14px var(--sans);padding:9px 14px;display:flex;align-items:center;gap:9px;flex:none;}
+.panel>h2 .n{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.18);font-size:10.5px;display:inline-flex;align-items:center;justify-content:center;}
+.panel>h2 small{margin-left:auto;font:500 8.5px var(--mono);letter-spacing:.1em;opacity:.92;text-transform:uppercase;}
+.pb{padding:10px 14px 12px;color:var(--d);flex:1;min-height:0;}
+.pb p{margin:0 0 6px;}
+.q{font:italic 18px/1.2 var(--serif);margin:0 0 8px;color:var(--d);}
+.lbl{font:600 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;opacity:1;display:block;margin:0 0 3px;}
+
+/* white sub-cards inside panels */
+.cards{display:grid;gap:7px;}
+.card{background:rgba(255,255,255,.78);border-radius:6px;padding:9px 12px;border:1px solid color-mix(in srgb,var(--d) 12%,transparent);}
+.card b{display:block;font-size:13px;margin-bottom:1px;}
+.card i{display:block;font-style:normal;opacity:.95;}
+.card .ask{font:italic 14.5px/1.25 var(--serif);opacity:1;margin-top:2px;}
+
+table{width:100%;border-collapse:collapse;}
+th{font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;text-align:left;padding:6px 9px;border-bottom:1.5px solid color-mix(in srgb,var(--d) 30%,transparent);}
+td{padding:8px 9px;vertical-align:top;border-bottom:1px solid color-mix(in srgb,var(--d) 12%,transparent);}
+tr:last-child td{border-bottom:none;}
+td:first-child{font-weight:600;white-space:nowrap;}
+td.tb{font:500 11px var(--mono);white-space:nowrap;}
+.bad{color:#991B1B;}
+
+ul{margin:0;padding-left:15px;}
+li{margin-bottom:2px;}
+.qgroups{display:grid;gap:8px;align-content:space-between;}
+.qgroups ul{list-style:none;padding:0;}
+.qgroups li{font:italic 15px/1.3 var(--serif);padding-left:11px;position:relative;margin-bottom:1px;}
+.qgroups li::before{content:"";position:absolute;left:0;top:.6em;width:4px;height:4px;border-radius:50%;background:currentColor;opacity:.5;}
+
+.chips{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;}
+.chip{background:#fff;border-radius:8px;padding:8px 10px;border:1px solid var(--rule);border-top:3px solid var(--accent);color:var(--ink);}
+.chip b{display:block;font-size:13px;margin-bottom:2px;}
+.chip span{color:var(--muted);}
+
+.stages{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.stage{background:rgba(255,255,255,.78);border-radius:6px;padding:8px 12px;position:relative;}
+.stage b{font-size:14px;}
+.stage .lbl{margin-top:5px;}
+.arrowrow{display:flex;justify-content:space-between;font:500 8.5px var(--mono);letter-spacing:.1em;opacity:.9;margin:6px 2px 0;text-transform:uppercase;}
+
+.poker{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:3px 0 8px;}
+.poker div{background:#fff;border-radius:5px;text-align:center;padding:5px 2px;border:1px solid color-mix(in srgb,var(--d) 15%,transparent);}
+.poker b{display:block;font:600 14px var(--sans);}
+.poker span{font-size:10px;}
+.pyr{display:flex;flex-direction:column;align-items:center;gap:3px;margin-top:3px;}
+.pyr div{background:var(--d);color:#fff;text-align:center;padding:4px 6px;border-radius:3px;font-size:11px;}
+.pyr div:nth-child(1){width:44%;opacity:.85}.pyr div:nth-child(2){width:58%;opacity:.89}.pyr div:nth-child(3){width:72%;opacity:.93}
+.pyr div:nth-child(4){width:86%;opacity:.97}.pyr div:nth-child(5){width:100%;}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.cols3{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:12px;}
+.tk li{margin-bottom:5px;}
+.tk a{font-weight:600;text-decoration:none;border-bottom:1px solid color-mix(in srgb,currentColor 35%,transparent);}
+
+.j1{grid-template-columns:1fr 1fr 1.4fr 1fr;grid-template-rows:auto 1fr auto;
+  grid-template-areas:"hier hier board sprint" "jql jql reports reports" "anti anti pipe pipe";}
+.hier{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;}
+.hier .card{border-top:3px solid var(--d);}
+.hier .card:nth-child(1){opacity:.78}.hier .card:nth-child(4){opacity:.85}
+.pb a{font-weight:600;text-decoration:none;border-bottom:1px solid color-mix(in srgb,currentColor 35%,transparent);}
+.tight li{margin-bottom:5px;}
+code{font:500 10.5px/1.45 var(--mono);background:rgba(255,255,255,.85);border:1px solid color-mix(in srgb,var(--d) 14%,transparent);border-radius:4px;padding:1px 5px;color:var(--ink);}
+.jqls{display:grid;grid-template-columns:1fr 1fr;gap:7px 10px;}
+.jq{background:rgba(255,255,255,.6);border-radius:6px;padding:6px 9px;}
+.jq code{display:block;white-space:normal;overflow-wrap:anywhere;margin-top:2px;}
+.jq .note{display:block;margin-top:2px;}
+.note{font-size:11px;opacity:.95;}
+.card .fix{display:block;margin-top:4px;font-weight:600;}
+.card .fix::before{content:"→ ";}
+.keys{display:grid;grid-template-columns:1fr 1fr;gap:6px 10px;}
+.keys div{display:flex;align-items:center;gap:8px;color:var(--ink);}
+kbd{font:600 11px var(--mono);background:#fff;border:1px solid #CBD5E1;border-bottom-width:2px;border-radius:4px;min-width:22px;text-align:center;padding:2px 6px;color:var(--ink);}
+.keys div kbd:last-of-type{margin-right:4px;}
+.foot a{color:inherit;}
+@media (max-width:1640px){.hier{grid-template-columns:1fr 1fr;}}
+@media (max-width:720px){.hier{grid-template-columns:1fr;}.jqls{grid-template-columns:1fr;}}
+
+@media (max-width:1640px){
+  .sheet{width:auto;height:auto;max-width:1100px;}
+  .body,.j1{grid-template-columns:1fr 1fr;grid-template-rows:none;
+    grid-template-areas:none;}
+  .body>*{grid-area:auto !important;}
+  .wide{grid-column:1 / -1 !important;}
+  .chips{grid-template-columns:repeat(4,1fr);}
+}
+@media (max-width:720px){
+  body{padding:16px 0;}
+  .sheet{max-width:100%;}
+  .head h1{font-size:28px;}
+  .panel>h2 small{display:none;}
+  .tbl table{min-width:620px;}
+  .cards[style]{grid-template-columns:1fr !important;}
+  .body,.j1{grid-template-columns:1fr;padding:12px 16px;}
+  .head .side{position:static;text-align:left;margin-top:10px;}
+  .chips,.stages,.cols2,.cols3{grid-template-columns:1fr 1fr;}
+  .poker{grid-template-columns:repeat(4,1fr);}
+  .tbl{overflow-x:auto;}
+  .stages,.chips{grid-template-columns:1fr 1fr;}
+}
+@media print{
+  @page{size:A3 landscape;margin:0;}
+  html,body{background:none;}
+  body{padding:0;}
+  .sheet{width:420mm;height:297mm;margin:0;box-shadow:none;break-after:page;}
+  .sheet:last-child{break-after:auto;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+
+<section class="sheet">
+  <header class="head">
+    <h1>Azure DevOps Cheat Sheet for Agile Teams</h1>
+    <p>How the toolkit's practices show up in Azure Boards, Repos and Pipelines. Menu names and state names vary by process and version, so check your own project.</p>
+    <div class="side"><div>ONE SIDE · AZURE DEVOPS SERVICES</div></div>
+  </header>
+
+  <div class="body j1">
+    <section class="panel" style="grid-area:hier;--d:#581C87;--l:#EDE9FE">
+      <h2><span class="n">1</span>Work Hierarchy → The Toolkit<small>Set by the process you chose</small></h2>
+      <div class="pb">
+        <div class="hier">
+          <div class="card"><span class="lbl">Portfolio backlog</span><b>Epic</b><i>A big bet across teams and quarters. Shape it with the <a href="epic-breakdown-canvas.html">Epic Breakdown Canvas</a>: hypothesis, MVP, success measure.</i></div>
+          <div class="card"><span class="lbl">Portfolio backlog</span><b>Feature</b><i>A capability users can see, delivered over a few sprints. Built in to the Agile, Scrum and CMMI processes, so you don't need SAFe to have it.</i></div>
+          <div class="card"><span class="lbl">Requirement backlog</span><b>User Story · PBI</b><i>Called <b style="display:inline">User Story</b> (Agile), <b style="display:inline">Product Backlog Item</b> (Scrum), <b style="display:inline">Requirement</b> (CMMI) or <b style="display:inline">Issue</b> (Basic). A vertical slice that fits a sprint: see <a href="story-splitting-poster.html">Story Splitting</a>.</i></div>
+          <div class="card"><span class="lbl">Sprint backlog</span><b>Task</b><i>The team's how-to steps for one story. Remaining-work hours are optional; many teams skip them.</i></div>
+        </div>
+        <p style="margin-top:8px;opacity:.85">Teams own work through <b>area paths</b>; sprints are <b>iteration paths</b>. Add or rename backlog levels in an inherited process (Organization settings → Process). Write your mapping down once.</p>
+      </div>
+    </section>
+
+    <section class="panel" style="grid-area:board;--d:#1E3A8A;--l:#DBEAFE">
+      <h2><span class="n">2</span>Board Setup<small>Make the real flow visible</small></h2>
+      <div class="pb">
+        <ul class="tight">
+          <li><b>Columns = real states.</b> Board settings (gear) → Columns. Add one for each real wait or hand-off, mapped to a state.</li>
+          <li><b>WIP limits.</b> Each column has a WIP limit; the count turns red when it's exceeded.</li>
+          <li><b>Split columns.</b> Turn on <i>Doing / Done</i> in a column so queues waiting for the next step show.</li>
+          <li><b>Definition of Done.</b> Each column has a <i>Definition of done</i> box, shown on the board. Use it for exit policies.</li>
+          <li><b>Swimlanes.</b> Add an <i>Expedite</i> lane for urgent work. Avoid lanes by person.</li>
+          <li><b>Card styles.</b> Rules that colour cards, e.g. changed more than 5 days ago, so ageing work stands out.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel" style="grid-area:sprint;--d:#065F46;--l:#D1FAE5">
+      <h2><span class="n">3</span>Sprint Operations<small>Plan · run · close</small></h2>
+      <div class="pb">
+        <ul class="tight">
+          <li><b>Set up.</b> Project settings → Team configuration → Iterations: pick the team's sprints. Set areas there too.</li>
+          <li><b>Plan.</b> Drag items to the sprint from the backlog, and use the <i>Capacity</i> tab for days off. There's no sprint goal field: put the goal in a Markdown widget on the team dashboard.</li>
+          <li><b>Run.</b> Walk the board right to left. Tag blocked items <code>Blocked</code> and raise them at the Daily Scrum.</li>
+          <li><b>Close.</b> Unfinished items stay in the old sprint until moved. Decide each one on purpose: next sprint, or back to the backlog.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel" style="grid-area:jql;--d:#0C4A6E;--l:#E0F2FE">
+      <h2><span class="n">4</span>Queries You'll Reuse<small>WIQL clauses · Agile process state names</small></h2>
+      <div class="pb">
+        <div class="jqls">
+          <div class="jq"><span class="lbl">This sprint, not done</span><code>[System.IterationPath] = @CurrentIteration AND [System.State] NOT IN ('Closed', 'Removed')</code></div>
+          <div class="jq"><span class="lbl">Stale in progress</span><code>[System.State] = 'Active' AND [System.ChangedDate] &lt;= @Today - 5</code></div>
+          <div class="jq"><span class="lbl">Blocked</span><code>[System.Tags] CONTAINS 'Blocked'</code> <span class="note">A tag the team agrees to use.</span></div>
+          <div class="jq"><span class="lbl">My team's work</span><code>[System.AreaPath] IN @TeamAreas</code></div>
+          <div class="jq"><span class="lbl">Stories with no feature</span><span class="note">Query type <i>Work items and direct links</i> → return items that don't have a matching Parent link.</span></div>
+          <div class="jq"><span class="lbl">Backlog graveyard</span><code>[System.State] = 'New' AND [System.CreatedDate] &lt;= @Today - 180</code></div>
+          <div class="jq"><span class="lbl">Finished in the last 2 weeks</span><code>[Microsoft.VSTS.Common.ClosedDate] &gt;= @Today - 14</code></div>
+          <div class="jq"><span class="lbl">Started in the last 2 weeks</span><code>[Microsoft.VSTS.Common.ActivatedDate] &gt;= @Today - 14</code></div>
+        </div>
+        <p class="note" style="margin-top:7px">Scrum process: in progress is <code>Committed</code> and finished is <code>Done</code>. Build queries in the editor, then save them as shared queries.</p>
+      </div>
+    </section>
+
+    <section class="panel" style="grid-area:reports;--d:#9A3412;--l:#FFEDD5">
+      <h2><span class="n">5</span>Analytics &amp; What They Tell You<small>Use them for questions, not judgement</small></h2>
+      <div class="pb">
+        <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+          <div class="card"><b>Sprint Burndown</b><i>Progress inside a sprint, by count of items or remaining work.</i><span class="ask">“What would let work finish earlier in the sprint?”</span></div>
+          <div class="card"><b>Velocity</b><i>A forecasting aid for this team only. Never compare teams or set it as a target.</i><span class="ask">“What range can we plan with?”</span></div>
+          <div class="card"><b>Cumulative Flow</b><i>A widening band is a bottleneck; rising bands with a flat Done band mean too much WIP.</i><span class="ask">“Where is work piling up?”</span></div>
+          <div class="card"><b>Cycle Time &amp; Lead Time</b><i>Dashboard widgets showing each item's time, with outliers.</i><span class="ask">“What happened to the outliers?”</span></div>
+          <div class="card"><b>Delivery Plans</b><i>Several teams' work on one timeline, with dependency lines.</i><span class="ask">“Which dependency could we remove?”</span></div>
+          <div class="card"><b>Dashboards</b><i>One page per team: the goal, flow, blockers and quality.</i><span class="ask">“What would we look at every day?”</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" style="grid-area:anti;--d:#991B1B;--l:#FEE2E2">
+      <h2><span class="n">6</span>Azure DevOps Anti-Patterns<small>Spot it · Try this</small></h2>
+      <div class="pb">
+        <div class="cards" style="grid-template-columns:repeat(2,1fr)">
+          <div class="card"><b>Hours over outcomes</b><i>Remaining-work hours on every task, reviewed as performance.</i><span class="fix">Track items finished, not hours burned.</span></div>
+          <div class="card"><b>Process sprawl</b><i>An inherited process with dozens of custom fields and states.</i><span class="fix">One state per real wait. Prune fields every quarter.</span></div>
+          <div class="card"><b>Feature dumping ground</b><i>Features that never close, collecting stories for months.</i><span class="fix">Give each feature an outcome and a finish line.</span></div>
+          <div class="card"><b>Area path maze</b><i>Teams can't tell what's theirs.</i><span class="fix">One area per team; shared areas only on purpose.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" style="grid-area:pipe;--d:#334155;--l:#F1F5F9">
+      <h2><span class="n">7</span>Repos &amp; Pipelines<small>DevOps in the same tool</small></h2>
+      <div class="pb">
+        <ul class="tight">
+          <li><b>Branch policies.</b> On <code>main</code>: required reviewers, build validation and linked work items. Keep pull requests small and short-lived.</li>
+          <li><b>Link the work.</b> Mention <code>#123</code> in a commit or PR to link work item 123, so stories show their code.</li>
+          <li><b>Environments.</b> Put approvals and checks on production in Pipelines, and match approval to risk.</li>
+          <li><b>Wiki.</b> Keep the working agreement, Definition of Done and decisions (<a href="adr-board.html">ADRs</a>) in the project wiki, and link them from the team dashboard.</li>
+          <li><b>Measure it.</b> Deployment frequency and failures come from pipeline runs: see <a href="delivery-metrics-board.html">Delivery Metrics</a>, <a href="delivery-pipeline-board.html">Pipeline Canvas</a> and <a href="cd-health-check-board.html">CD Health Check</a>.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+  <footer class="foot"><span class="fq">“The tool serves the team, not the other way round.”</span><span>Companion to the <a href="jira-cheat-sheet.html">Jira Cheat Sheet</a> · <a href="index.html">All tools</a> · <a href="glossary.html">Glossary</a> · Azure DevOps is a trademark of Microsoft · © 2026 Eric Parker · CC BY 4.0</span></footer>
+</section>
+
+</body>
+</html>

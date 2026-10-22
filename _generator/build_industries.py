@@ -25,7 +25,7 @@ INDUSTRIES = [
      "Most of the toolkit was written with you in mind. Work is uncertain, you can release often, and feedback is fast "
      "if you build for it. The risk is busyness: shipping lots of output without checking that it changed anything.",
      ["ost", "example", "pipeline"],
-     ["storymap", "refinement", "testing", "release", "cd-health", "adr", "event-storming", "delivery-metrics",
+     ["slo", "devops", "storymap", "refinement", "testing", "release", "cd-health", "adr", "event-storming", "delivery-metrics",
       "incident", "ai-delivery"],
      [("Increment", "release, version"), ("Spike", "time-boxed investigation"), ("Definition of Done", "release checklist"),
       ("Technical debt", "the cost of shortcuts, to non-technical people")],
@@ -79,7 +79,7 @@ INDUSTRIES = [
      "Work arrives unpredictably, much of it urgent, with service levels to meet. Planning fixed iterations rarely "
      "survives the first day, so manage flow: limit work in progress, make queues visible and learn from incidents.",
      ["kanban", "ageing", "blockers"],
-     ["buffer", "cadences", "incident", "rootcause", "vsm", "delivery-metrics", "impediments", "raci", "marginal"],
+     ["slo", "devops", "buffer", "cadences", "incident", "rootcause", "vsm", "delivery-metrics", "impediments", "raci", "marginal"],
      [("Backlog", "ticket queue"), ("Class of service", "priority (P1 to P4)"),
       ("Service level expectation (SLE)", "service level target"), ("Increment", "change"),
       ("Swarming", "major-incident response")],

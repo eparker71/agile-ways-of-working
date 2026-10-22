@@ -20,7 +20,7 @@ SKIP = {"Add your sticky notes here", "Stickies", "Items", "sketch", "Sticky per
 
 # All-caps words that stay in capitals when a mono label is sentence-cased (anything else is lowercased).
 ACRONYMS = {"ADKAR", "ADR", "AI", "API", "CD3", "CI", "DORA", "HR", "KPI", "MVP", "NFR", "OKR", "PI", "PO", "RACI", "RAID",
-            "RTE", "SBI", "SDLC", "SLE", "SPIDR", "UAT", "UI", "UK", "WCAG", "WIP", "WSJF", "XL", "XS"}
+            "RTE", "SBI", "SDLC", "SLA", "SLE", "SLI", "SLO", "SPIDR", "SRE", "CALMS", "UAT", "UI", "UK", "WCAG", "WIP", "WSJF", "XL", "XS"}
 MIXED = {"COD": "CoD", "I": "I"}
 
 

@@ -34,11 +34,11 @@ Never edit generated files directly; edit the script and re-run.
 
 - **Generated:** every board and poster except Marginal Gains, `worked-example-*`, every `facilitator-guide-*.{html,docx}` except Marginal Gains, `start-here-by-role.html`, `glossary.html`, `anti-patterns.html`, `good-practices.html`, `tools-by-industry.html`, `prompt-library.html`, `find-a-tool.html`, `for-project-managers.html`, `scenarios.html`, `workshop-recipes.html`, `basket-team-story.html`, `basket-team-highlights.html`, `sitemap.xml`, `robots.txt`, `404.html`.
 - **Hand-edited content:** `_content/scenarios.md` and `_content/recipes.md` (formats explained at the top of each). Tool titles in them must match `TOOLS` exactly or the build stops. `.github/ISSUE_TEMPLATE/scenario.yml` is the public suggestion form.
-- **Hand-written:** `marginal-gains-workshop-board.{svg,html}`, `facilitator-guide-marginal-gains.html`, `scrum-master-agile-coach-cheat-sheet.html`, `jira-cheat-sheet.html`, `make-it-yours.html`, `about.html`, `index.html`, `LICENSE.md`.
+- **Hand-written:** `marginal-gains-workshop-board.{svg,html}`, `facilitator-guide-marginal-gains.html`, `scrum-master-agile-coach-cheat-sheet.html`, `jira-cheat-sheet.html`, `azure-devops-cheat-sheet.html`, `make-it-yours.html`, `about.html`, `index.html`, `LICENSE.md`.
 - **Brand:** colours, fonts and the credit line (© author · CC BY 4.0 · site) live in `_generator/brand.py` and are imported by the generators. The hand-written pages carry the same values by hand, so update them too when rebranding. `SITE` (in the credit line) points to the original site; `PUBLISH_AT` is where this copy is published and drives canonical URLs, previews and the sitemap.
 - `index.html` is hand-written **except** the regions `build_roles.py` maintains: the `<!-- roles:… -->` / `/* roles:css */` blocks, each card's `data-roles` attribute, each card's `Example` link (added when `worked-example-<board>` exists), and the label of each card's `.svg` link (`SVG_LABEL`, with an `SVG_TIP` tooltip explaining what an SVG is, both in brand.py). Guides use the same label and tooltip for their `.svg` link.
 - `build_guides.py` copies its CSS from `facilitator-guide-marginal-gains.html` at run time, so editing that file's `<style>` restyles every guide.
-- `jira-cheat-sheet.html` was assembled from the main cheat sheet's CSS; the two share styles by copy, not by reference.
+- `jira-cheat-sheet.html` was assembled from the main cheat sheet's CSS, and `azure-devops-cheat-sheet.html` from the Jira sheet; they share styles by copy, not by reference. Both must print to exactly 1 A3 page.
 
 ## Architecture
 

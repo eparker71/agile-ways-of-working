@@ -95,6 +95,8 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | Test Strategy | `test-strategy-board` | `facilitator-guide-test-strategy.html` |
 | Release Readiness & Strategy | `release-readiness-board` | `facilitator-guide-release-readiness.html` |
 | Continuous Delivery Health Check | `cd-health-check-board` | `facilitator-guide-cd-health-check.html` |
+| DevOps Principles poster | `devops-principles-poster` | `facilitator-guide-devops-principles.html` |
+| SLOs & Error Budgets | `slo-error-budget-board` | `facilitator-guide-slo-error-budget.html` |
 | Coaching Conversation (GROW) | `coaching-conversation-board` | `facilitator-guide-coaching-conversation.html` |
 | Levels of Conflict | `conflict-levels-board` | `facilitator-guide-conflict-levels.html` |
 | Feedback Conversation (SBI) | `feedback-conversation-board` | `facilitator-guide-feedback-conversation.html` |
@@ -110,6 +112,7 @@ Every board page has a **Facilitator guide →** link (hidden when printing), an
 | Pairing & Mobbing | `pairing-mobbing-board` | `facilitator-guide-pairing-mobbing.html` |
 | Scrum Master & Agile Coach Cheat Sheet | `scrum-master-agile-coach-cheat-sheet.html` (two-sided A3, print double-sided) | Self-documenting reference; links to every board |
 | Jira Cheat Sheet | `jira-cheat-sheet.html` (one-sided A3, Jira Cloud) | Self-documenting reference; companion to the cheat sheet above |
+| Azure DevOps Cheat Sheet | `azure-devops-cheat-sheet.html` (one-sided A3, Azure DevOps Services) | Self-documenting reference; companion to the Jira sheet |
 
 Each guide covers: when to use the tool, an at-a-glance summary, a prep checklist, a timed run-sheet (with sprint and quarter timings for retros), prompts for each section of the board, facilitation tips, common pitfalls, follow-up, and how the tool fits the rest of the toolkit.
 
@@ -124,7 +127,7 @@ The home page groups tools by what you're trying to do. No one framework is assu
 | Break down work | Epic Breakdown Canvas, User Story Map, Story Splitting, Example Mapping, Backlog Item Anatomy, Estimation |
 | Run events & iterations | Events & Cadences poster, Sprint Planning, Daily Sync, Backlog Refinement, Sprint Review |
 | Manage flow | Lean Principles, Waste Walk, Kanban Board Design, Kanban Cadences, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Impediments Board, Value Stream Map |
-| Engineering practices | SDLC at a Glance, Delivery Pipeline Canvas, Test Strategy, Release Readiness & Strategy, Continuous Delivery Health Check, Pairing & Mobbing, Delivery Metrics & Tech Debt, Architecture Decision Record, Event Storming, Blameless Incident Review |
+| Engineering practices | SDLC at a Glance, Delivery Pipeline Canvas, Test Strategy, Release Readiness & Strategy, Continuous Delivery Health Check, DevOps Principles, SLOs & Error Budgets, Pairing & Mobbing, Delivery Metrics & Tech Debt, Architecture Decision Record, Event Storming, Blameless Incident Review |
 | Reflect & improve | Retrospective Kit, Team Health Check, Psychological Safety Check, Anti-Pattern Spotter, Marginal Gains Workshop, 1% Experiment Canvas, Root Cause Analysis, A3 Problem-Solving |
 | Run a project | Right-Size Your Structure, Project Kickoff, Delivery Approach, Stakeholder Map, Pre-mortem, RAID Log, RACI & Decision Log, Release Forecast & Burn-up, Outcome Status Report, Project Close-out |
 | Coordinate teams | Objectives & Key Results, Cross-Team Planning, Dependency Map, Cross-Team Sync, Team Topology Design, Cross-Team Retro |
@@ -162,6 +165,6 @@ The individual generators are `build_boards.py`, `build_guides.py`, `build_roles
 - `build_guides.py` holds each guide's content in the `GUIDES` list. It copies its styling from `facilitator-guide-marginal-gains.html`, and writes a Word copy of each guide with `docx_writer.py` (standard library only).
 - `build_roles.py` holds the `ROLES` table: which tools suit each role. It writes `start-here-by-role.html`, tags each `index.html` card with `data-roles`, and builds the home page's sticky section menu (from the `<h2 id>` headings; short labels in `SHORT`), search box and role filter. Re-run it after adding a card or section.
 - `build_glossary.py` holds the `TERMS` list (definition, framework note, related tools). Links use the `TOOLS` table from `build_roles.py`.
-- These files are hand-written and are not overwritten by the scripts: the Marginal Gains boards, `facilitator-guide-marginal-gains.html`, `scrum-master-agile-coach-cheat-sheet.html`, `jira-cheat-sheet.html`, `make-it-yours.html` and `index.html` (apart from the role tags and filter, which `build_roles.py` maintains).
+- These files are hand-written and are not overwritten by the scripts: the Marginal Gains boards, `facilitator-guide-marginal-gains.html`, `scrum-master-agile-coach-cheat-sheet.html`, `jira-cheat-sheet.html`, `azure-devops-cheat-sheet.html`, `make-it-yours.html` and `index.html` (apart from the role tags and filter, which `build_roles.py` maintains).
 
 When you add a new board, also add a guide entry to `GUIDES`, a card to `index.html`, and the tool to `TOOLS` and the relevant roles in `build_roles.py`.
