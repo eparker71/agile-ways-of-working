@@ -91,6 +91,10 @@ def build():
     (OUT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {BASE}sitemap.xml\n", encoding="utf-8")
 
     # 404 page: absolute links, because GitHub Pages serves it from any missing path
+    # counted as "404/<the missing path>", so broken links people hit show up in GoatCounter
+    GC_404 = ('<script>window.goatcounter={path:function(p){return "404" + p}};</script>\n'
+              f'<script data-goatcounter="https://{GOATCOUNTER}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>\n'
+              if GOATCOUNTER else "")
     (OUT / "404.html").write_text(f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,7 +102,7 @@ def build():
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Page not found · {SITE_NAME}</title>
 <link rel="icon" href="{BASE}favicon.svg" type="image/svg+xml">
-<style>
+{GC_404}<style>
 html,body{{margin:0;background:#0C1A2E;color:#fff;font-family:Geist,Inter,system-ui,sans-serif;}}
 body{{min-height:100vh;display:flex;align-items:center;justify-content:center;border-top:6px solid #eb6c36;box-sizing:border-box;padding:24px;}}
 main{{max-width:560px;}}

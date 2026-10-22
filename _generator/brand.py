@@ -33,6 +33,6 @@ SVG_TIP = ("An SVG file: a sharp image that stays crisp at any size. Open it in 
 # Visit counts and "Was this useful?" clicks, via GoatCounter (privacy-friendly: no cookies, no personal data).
 # Put your GoatCounter site code here, e.g. "agile-ways-of-working" for agile-ways-of-working.goatcounter.com.
 # Leave it empty in a copy of this repo, so your copy doesn't count visits for the original site.
-GOATCOUNTER = ""
+GOATCOUNTER = "eparker71"
 # Where people tell us how they used a tool (a GitHub issue form)
 FEEDBACK_URL = "https://github.com/eparker71/agile-ways-of-working/issues/new?template=used-it.yml"
