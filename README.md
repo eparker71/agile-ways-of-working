@@ -16,7 +16,7 @@ Each generated facilitator guide also comes as an editable **Word (`.docx`)** fi
 
 ## Licence and reuse
 
-The content (boards, guides, pages, Word files) is © 2026 Eric Parker, licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The generator code in `_generator/` is MIT-licensed. See [LICENSE.md](LICENSE.md). You can copy and adapt everything, including commercially. Keep the credit and say what you changed. `make-it-yours.html` explains four ways to adapt the toolkit, from printing to forking and rebranding. The repo is a GitHub template, so **Use this template** gives you a clean copy.
+The content (boards, guides, pages, Word files) is © 2026 Eric Parker, licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The generator code in `_generator/` is MIT-licensed. See [LICENSE.md](LICENSE.md). You can copy and adapt everything, including commercially. Keep the credit and say what you changed. `make-it-yours.html` explains four ways to adapt the toolkit, from printing to forking and rebranding. The repo is a GitHub template, so **Use this template** gives you a clean copy. If you publish your own copy, edit `_generator/brand.py` first: set `PUBLISH_AT` to your address, clear `GOATCOUNTER` (otherwise your visits are counted on this site's GoatCounter) and point `FEEDBACK_URL` at your own repo's issues.
 
 Every board page has a **Facilitator guide →** link (hidden when printing), and every guide links back to its boards.
 
@@ -134,7 +134,7 @@ The home page groups tools by what you're trying to do. No one framework is assu
 | Lead the organisation | Value Metrics, Portfolio Kanban & Investment Mix, Delegation Board, Motivation & Recognition, AI in Delivery, Cynefin® Sense-Making (Cynefin® is a registered trademark of Cognitive Edge Pte Ltd), Leading for Psychological Safety, ADKAR Change Readiness (ADKAR® is a registered trademark of Prosci, Inc.) |
 | Facilitate & coach | Facilitation Techniques, Lean Coffee, Coaching Conversation, Levels of Conflict, Feedback Conversation |
 
-The home page also has a **Start here** strip (role guide, glossary, cheat sheets, Make It Yours), a sticky section menu, a search box and the **I'm a…** role filter.
+The home page also has a **Find a tool in 3 questions** button, a strip of reference pages in two rows (**Get started**: find a tool, tools by role and by industry, right-sizing, the team story, recipes; **Reference**: glossary, good practices, anti-patterns, scenarios, prompts, cheat sheets, About and more), a sticky section menu, a search box and the **I'm a…** role filter.
 
 **Diagnose** (Team Health Check) → **Explore** (Marginal Gains Workshop) → **Experiment** (1% Experiment Canvas) → **Reflect** (Retrospective Kit), then back round again. Lean Coffee and the Facilitation Techniques poster can be used at any point. The Psychological Safety Check sits alongside the Health Check, and the Coaching Conversation canvas supports one-to-one coaching. Levels of Conflict helps a coach judge when to step in, and the Feedback Conversation board prepares one difficult (or appreciative) conversation.
 
@@ -156,7 +156,7 @@ The individual generators are `build_boards.py`, `build_guides.py`, `build_roles
 
 **Automated checks:** on every push and pull request, GitHub Actions (`.github/workflows/checks.yml`) rebuilds the site, fails if the committed files don't match what the generators produce, and runs `check_site.py`.
 
-- `brand.py` holds the brand: accent and header colours, fonts and the credit line. All four generators read it, so rebranding is one edit.
+- `brand.py` holds the brand: accent and header colours, fonts, the credit line, the published address (`PUBLISH_AT`), the GoatCounter code and the feedback form link. Every generator reads it, so rebranding is one edit (plus the hand-written pages, which carry the same values by hand).
 - `build_boards.py` holds the shared visual components (header, panels, sticky zones, action cards, footer). Boards don't assume a cadence: where a period matters, they leave a blank to write in (sprint, month, quarter). The old `-sprint` / `-quarter` page names redirect to the single boards (`REDIRECTS`).
 - `build_recipes.py` makes `workshop-recipes.html` from `_content/recipes.md`: ready-made agendas that combine tools (each step is `length | tool title | what happens`), plus the worked examples.
 - Worked examples (`worked-example-*.html/svg`) are made by `build_boards.py` (`EXAMPLES`): each reads a generated blank board and adds a layer of handwriting and sticky notes for the fictional "Basket team". Their guides link to them automatically.
