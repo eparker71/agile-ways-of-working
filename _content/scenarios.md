@@ -215,6 +215,17 @@ Longer term:
 - Make learning from mistakes a normal part of retrospectives, and check psychological safety regularly.
 Tools: Blameless Incident Review, Leading for Psychological Safety, Psychological Safety Check
 
+## Developers don't keep Jira up to date
+You'll notice: tickets moved in a rush just before the stand-up or a report, stale statuses, and managers chasing people for updates. The same happens with any tracker, such as Azure DevOps or Trello.
+First moves:
+- Ask the team, without blame, what makes updating it a chore and who they think it's for.
+- Run the Daily Sync from the board, walking it right to left, so updating happens in the meeting that uses it.
+- Cut it down: remove fields and statuses nobody reads, and match the columns to how work really flows.
+Longer term:
+- Make the board useful to the team first (blockers, ageing work, WIP limits), and build reports from it, not the other way round.
+- Agree in the team charter what "up to date" means and why, and stop using the data to judge individuals.
+Tools: Jira Cheat Sheet, Azure DevOps Cheat Sheet, Kanban Board Design, Daily Sync, Team Charter
+
 # Product & backlog
 
 ## Stakeholders keep adding work mid-iteration
