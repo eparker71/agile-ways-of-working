@@ -171,6 +171,15 @@ TERMS = [
      ["persona", "vision"]),
     ("RACI", "A matrix showing who is Responsible, Accountable, Consulted and Informed for each piece of work. Exactly one person "
      "is accountable.", None, ["raci"]),
+    ("Rough order of magnitude (ROM)", "A very early estimate, made with little information, that only aims to get the scale right: "
+     "weeks or months, thousands or millions. Give it as a wide range and replace it with a forecast from real data as soon as you can.",
+     "Informally called a WAG (wild-ass guess) or SWAG.", ["estimation", "bet", "forecast"]),
+    ("WAG", "A wild-ass guess: slang for a rough order of magnitude estimate. See Rough order of magnitude (ROM).", None, ["estimation"]),
+    ("SWAG", "A slightly more \"scientific\" wild-ass guess, based on some experience or data. See Rough order of magnitude (ROM).",
+     None, ["estimation"]),
+    ("BHAG", "A big hairy audacious goal: a bold, long-term goal (often 10 to 30 years) that is clear and inspiring enough for people to "
+     "rally around. Product visions, OKRs and roadmaps can all point towards it.", "Coined by Jim Collins and Jerry Porras in Built to Last (1994).",
+     ["vision", "okr", "roadmap"]),
     ("T-shirt sizing", "Rough relative sizing using XS, S, M, L and XL, useful for many items or for roadmaps.", None, ["estimation"]),
     ("Value stream mapping", "Mapping every step from request to customer, with work and wait times, to find delays and improve "
      "flow.", "A lean technique, popularised by Mike Rother and John Shook.", ["vsm"]),

@@ -1209,7 +1209,7 @@ PP_GUIDES = [
                   ("4 · Check-in Rhythm", AMBER, ["Confidence tracked weekly", "Scoring agreed up front"]),
                   ("5 · Not Doing", RED, ["Real things people expected", "Shared widely"])],
         tips=[("Outcomes, not output", "“Launch the new app” is a task. “Cut onboarding time from 10 to 3 minutes” is a key result."),
-              ("Ambitious but honest", "Aim high. Scoring 0.7 on an ambitious key result is often a good result."),
+              ("Ambitious but honest", "Aim high. Scoring 0.7 on an ambitious key result is often a good result. A long-term BHAG (big hairy audacious goal) can anchor the year's objectives."),
               ("Few beats many", "Three objectives with focus beat ten that spread effort thin."),
               ("Teams pick the bets", "Leaders set the outcomes; teams decide how to move them."),
               ("Don't tie to pay", "OKRs linked to bonuses become sandbagged. Keep them for direction and learning."),
@@ -2713,7 +2713,7 @@ WAVE3_GUIDES = [
               ("Relative beats absolute", "People compare sizes far better than they guess hours."),
               ("Don't average", "If votes differ widely, talk and re-vote. Averaging hides the disagreement."),
               ("Split the big ones", "Anything at 13 or above is usually too big. Split it before estimating again."),
-              ("Estimates aren't promises", "Use them to forecast, never to judge people or compare teams."),
+              ("Estimates aren't promises", "Use them to forecast, never to judge people or compare teams. An early guess with little to go on (a WAG) should say so, as a wide range."),
               ("Try counting", "Many teams find counting small items forecasts as accurately as points, with less effort.")],
         pitfalls=("estimating in hours; managers estimating for the team; averaging votes; treating points as a performance "
                   "measure; comparing velocity across teams; spending longer estimating than the work would take."),
