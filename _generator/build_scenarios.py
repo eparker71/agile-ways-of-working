@@ -19,7 +19,7 @@ from brand import ACCENT, NAVY, CREDIT  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent
 SRC = OUT / "_content" / "scenarios.md"
-REPO = "https://github.com/eparker71/agile-ways-of-working"
+REPO = "https://github.com/eparker71/better-delivery-toolkit"
 BY_TITLE = {re.sub(r"\s+", " ", v[0]).lower(): k for k, v in TOOLS.items()}
 
 

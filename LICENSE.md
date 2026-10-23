@@ -19,7 +19,7 @@ You must give **attribution**:
 
 You can do this in any reasonable way, but not in a way that suggests the author endorses you or your use. For example:
 
-> Based on the Agile Ways of Working Toolkit by Eric Parker (eparker71.github.io/agile-ways-of-working), licensed under CC BY 4.0. Changes: adapted for our teams.
+> Based on the Better Delivery Toolkit by Eric Parker (eparker71.github.io/better-delivery-toolkit), licensed under CC BY 4.0. Changes: adapted for our teams.
 
 **Third-party names and models.** Many tools credit the people and organisations whose ideas they're based on, for example Prosci (ADKAR®), Management 3.0, DORA, Teresa Torres, Team Topologies and Scrum.org. The content here is original writing inspired by their work. This licence covers that writing. It doesn't grant any rights to third-party trademarks, such as ADKAR®, a registered trademark of Prosci, Inc., or to their own published materials.
 

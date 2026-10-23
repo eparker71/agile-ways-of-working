@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://eparker71.github.io/agile-ways-of-working/sitemap.xml
+Sitemap: https://eparker71.github.io/better-delivery-toolkit/sitemap.xml

@@ -19,11 +19,11 @@ MONO = "'Geist Mono',Consolas,monospace"
 AUTHOR = "Eric Parker"
 YEAR = "2026"
 LICENCE = "CC BY 4.0"
-SITE = "eparker71.github.io/agile-ways-of-working"
+SITE = "eparker71.github.io/better-delivery-toolkit"
 CREDIT = f"© {YEAR} {AUTHOR} · {LICENCE} · {SITE}"
 # Where this copy is published. Used for canonical URLs, link previews and the sitemap; change it to your own
 # site in a copy, but keep SITE (in the credit line) pointing to the original.
-PUBLISH_AT = "eparker71.github.io/agile-ways-of-working"
+PUBLISH_AT = "eparker71.github.io/better-delivery-toolkit"
 
 # The board-file link label, and the tooltip that explains it to people who don't know what an SVG is (cards, guides)
 SVG_LABEL = "SVG"
@@ -31,8 +31,8 @@ SVG_TIP = ("An SVG file: a sharp image that stays crisp at any size. Open it in 
            "FigJam, or edit the words in Figma or Inkscape.")
 
 # Visit counts and "Was this useful?" clicks, via GoatCounter (privacy-friendly: no cookies, no personal data).
-# Put your GoatCounter site code here, e.g. "agile-ways-of-working" for agile-ways-of-working.goatcounter.com.
+# Put your GoatCounter site code here, e.g. "better-delivery-toolkit" for better-delivery-toolkit.goatcounter.com.
 # Leave it empty in a copy of this repo, so your copy doesn't count visits for the original site.
 GOATCOUNTER = "eparker71"
 # Where people tell us how they used a tool (a GitHub issue form)
-FEEDBACK_URL = "https://github.com/eparker71/agile-ways-of-working/issues/new?template=used-it.yml"
+FEEDBACK_URL = "https://github.com/eparker71/better-delivery-toolkit/issues/new?template=used-it.yml"

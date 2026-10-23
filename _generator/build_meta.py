@@ -23,7 +23,7 @@ import paths  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent
 BASE = f"https://{PUBLISH_AT}/"
-SITE_NAME = "Agile Ways of Working Toolkit"
+SITE_NAME = "Better Delivery Toolkit"
 
 
 def is_redirect(s):
