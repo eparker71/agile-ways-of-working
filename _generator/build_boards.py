@@ -6486,6 +6486,100 @@ def build_slo_error_budget():
                 "review, and a reliability backlog.", "\n".join(b))
 
 
+# ---------------------------------------------------------------- product operating model
+
+POM_SHIFTS = [  # (from, to, colour, what it means, tools in this kit)
+    ("Projects", "products", BLUE,
+     "Fund and staff long-lived products, not temporary projects whose teams break up at the end.",
+     ["Portfolio Kanban & Investment Mix", "Team Topology Design"]),
+    ("Output", "outcomes", EMERALD,
+     "Judge success by changes in customer and business results, not by features shipped on time.",
+     ["Objectives & Key Results", "Value Metrics"]),
+    ("Feature teams", "empowered teams", PURPLE,
+     "Give teams problems to solve, not features to build, and trust them to decide how.",
+     ["Delegation Board", "Team Charter"]),
+    ("Requirements", "discovery", AMBER,
+     "Test whether an idea is valuable, usable, feasible and viable before building it, quickly and cheaply.",
+     ["Opportunity Solution Tree", "Product Bet Canvas"]),
+    ("Dated roadmaps", "strategy and bets", SKY,
+     "Focus on the few problems that matter most, and say what you'll learn as well as what you'll ship.",
+     ["Product Vision Board", "Now · Next · Later Roadmap"]),
+    ("Order-taking", "partnership", FOREST,
+     "Product teams work with the rest of the business as partners, not as a service that takes orders.",
+     ["Stakeholder Map", "Impact Map"]),
+]
+
+
+def build_product_operating_model():
+    b = [header("Product Operating Model",
+                "Organise around long-lived products and the outcomes they create, not temporary projects and the features they ship.",
+                "Lead the Organisation · Inspired by Transformed (Marty Cagan, SVPG) and Project to Product (Mik Kersten)",
+                header_fields(["Organisation", "Date"]))]
+    gap = 12
+    cw, ch = (1632 - 2 * gap) / 3, 250
+    for i, (frm, to, (dk, lt), what, tools) in enumerate(POM_SHIFTS):
+        cx, cy = 24 + (i % 3) * (cw + gap), 148 + (i // 3) * (ch + 14)
+        b.append(R(cx, cy, cw, ch, lt, 10, f' stroke="{dk}" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"'))
+        b.append(top_round(cx, cy, cw, 52, 10, dk))
+        b.append(f'<circle cx="{cx + 21:g}" cy="{cy + 26}" r="12" fill="white" fill-opacity=".18"/>')
+        b.append(T(cx + 21, cy + 31, str(i + 1), 11, "white", weight=600, anchor="middle"))
+        b.append(T(cx + 42, cy + 32, f"{frm} → {to}", 16, "white", weight=600))
+        wl = _wrap(what, cw - 32, 11.5)
+        b.append(para(cx + 16, cy + 82, wl, 11.5, INK, 17))
+        ty = cy + 82 + len(wl) * 17 + 14
+        b.append(T(cx + 16, ty, "TOOLS IN THIS KIT", 8, dk, MONO, weight=600, ls=".12em"))
+        for j, t in enumerate(tools):
+            b.append(f'<circle cx="{cx + 20:g}" cy="{ty + 16 + j * 19}" r="2.5" fill="{dk}"/>')
+            b.append(T(cx + 30, ty + 20 + j * 19, t, 11, dk, weight=600))
+        sy = cy + ch - 26
+        b.append(L(cx + 16, sy - 30, cx + cw - 16, sy - 30, dk, 1, ' stroke-opacity=".25"'))
+        b.append(T(cx + 16, sy + 4, "WHERE ARE WE?", 8, dk, MONO, weight=600, ls=".12em"))
+        sx = cx + 150
+        for k in range(5):
+            b.append(f'<circle cx="{sx + k * 30:g}" cy="{sy}" r="10" fill="white" stroke="{dk}" stroke-opacity=".45"/>')
+        # one <text> for the 1–5 labels, so the whiteboard prompt reads them as a scale, not a numbered list
+        b.append(f'<text x="{sx:g}" y="{sy + 4}" text-anchor="middle" font-family="{MONO}" font-size="10" fill="{dk}" fill-opacity=".88">'
+                 + " ".join(f'<tspan x="{sx + k * 30:g}">{k + 1}</tspan>' for k in range(5)) + "</text>")
+        b.append(T(sx + 4 * 30 + 22, sy + 4, f"1 = {frm.lower()}, 5 = {to}", 9.5, dk, italic=True, op=".88"))
+
+    y, h = 676, 384
+    x, w = 24, 808
+    d = PURPLE[0]
+    b.append(panel(x, y, w, h, None, "When Building Gets Cheaper", PURPLE, "WHAT AI CHANGES"))
+    ai = [("Discovery matters more", "When code is cheap, building the wrong thing becomes the expensive mistake."),
+          ("Test more ideas, faster", "Prototypes take hours, so run more experiments, each with a clear stop rule."),
+          ("Teams can own more", "Smaller teams can look after more, so watch for overload and slipping quality."),
+          ("Judgement stays human", "Name who is accountable for what AI decides and produces, at every stage.")]
+    for i, (name, line) in enumerate(ai):
+        ty = y + 88 + i * 60
+        b.append(T(x + 18, ty, name, 13, d, weight=600))
+        b.append(T(x + 18, ty + 20, line, 11.5, INK))
+    b.append(T(x + 18, y + h - 22, "Tools in this kit: AI in Delivery · AI Working Agreement · 1% Experiment Canvas",
+               10.5, d, italic=True, op=".88"))
+
+    x, w = 846, 810
+    d = RED[0]
+    b.append(panel(x, y, w, h, None, "Signs It's Only a Rename", RED, "TICK WHAT YOU SEE"))
+    signs = ["Project managers retitled product managers, doing the same job",
+             "Teams still handed lists of features with dates",
+             "Funding still approved project by project",
+             "Success still measured by on time and on budget",
+             "No time for discovery: every idea goes straight to build",
+             "Teams reshuffled every few months"]
+    for i, s in enumerate(signs):
+        b.append(checkbox(x + 18, y + 92 + i * 38, s, INK, 12))
+    b.append(T(x + 18, y + h - 22, "Each tick points back to a shift above. Start with the one that hurts most.",
+               10.5, d, italic=True, op=".88"))
+
+    b.append(footer("Which shift would make the biggest difference here, and what's stopping it?",
+                    "What would we stop doing if teams owned outcomes?", LEAD_TAG))
+    write_board("product-operating-model-poster", "Product Operating Model",
+                "A3 landscape reference poster for moving to a product operating model: six shifts (projects to products, "
+                "output to outcomes, feature teams to empowered teams, requirements to discovery, dated roadmaps to strategy "
+                "and bets, order-taking to partnership), each with tools and a 1–5 self-assessment, what changes when AI makes "
+                "building cheaper, and signs the change is only a rename.", "\n".join(b))
+
+
 # ---------------------------------------------------------------- waste walk
 
 def build_waste_walk():
@@ -9069,5 +9163,6 @@ if __name__ == "__main__":
     build_a3_problem_solving()
     build_devops_principles()
     build_slo_error_budget()
+    build_product_operating_model()
     for make in EXAMPLES.values():   # worked examples read the blank boards, so they run last
         make()

@@ -80,6 +80,7 @@ Board files are in `boards/` (an `.html` page and an `.svg`), guides in `guides/
 | ADKAR Change Readiness | `adkar-board` | `facilitator-guide-adkar.html` |
 | Portfolio Kanban & Investment Mix | `portfolio-kanban-board` | `facilitator-guide-portfolio-kanban.html` |
 | Delegation Board | `delegation-board` | `facilitator-guide-delegation.html` |
+| Product Operating Model poster | `product-operating-model-poster` | `facilitator-guide-product-operating-model.html` |
 | Motivation & Recognition | `motivation-board` | `facilitator-guide-motivation.html` |
 | AI in Delivery | `ai-delivery-board` | `facilitator-guide-ai-delivery.html` |
 | Cynefin® Sense-Making | `cynefin-board` | `facilitator-guide-cynefin.html` |
@@ -133,7 +134,7 @@ The home page groups tools by what you're trying to do. No one framework is assu
 | Reflect & improve | Retrospective Kit, Team Health Check, Psychological Safety Check, Anti-Pattern Spotter, Marginal Gains Workshop, 1% Experiment Canvas, Root Cause Analysis, A3 Problem-Solving |
 | Run a project | Right-Size Your Structure, Project Kickoff, Delivery Approach, Stakeholder Map, Pre-mortem, RAID Log, RACI & Decision Log, Release Forecast & Burn-up, Outcome Status Report, Project Close-out |
 | Coordinate teams | Objectives & Key Results, Cross-Team Planning, Dependency Map, Cross-Team Sync, Team Topology Design, Cross-Team Retro |
-| Lead the organisation | Value Metrics, Portfolio Kanban & Investment Mix, Delegation Board, Motivation & Recognition, AI in Delivery, Cynefin® Sense-Making (Cynefin® is a registered trademark of Cognitive Edge Pte Ltd), Leading for Psychological Safety, ADKAR Change Readiness (ADKAR® is a registered trademark of Prosci, Inc.) |
+| Lead the organisation | Value Metrics, Portfolio Kanban & Investment Mix, Delegation Board, Product Operating Model, Motivation & Recognition, AI in Delivery, Cynefin® Sense-Making (Cynefin® is a registered trademark of Cognitive Edge Pte Ltd), Leading for Psychological Safety, ADKAR Change Readiness (ADKAR® is a registered trademark of Prosci, Inc.) |
 | Facilitate & coach | Facilitation Techniques, Lean Coffee, Coaching Conversation, Levels of Conflict, Feedback Conversation |
 
 The home page also has a **Find a tool in 3 questions** button, a strip of reference pages in two rows (**Get started**: find a tool, tools by role and by industry, right-sizing, the team story, recipes; **Reference**: glossary, good practices, anti-patterns, scenarios, prompts, cheat sheets, About and more), a sticky section menu, a search box and the **I'm a…** role filter.

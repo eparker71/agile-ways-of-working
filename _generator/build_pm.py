@@ -146,7 +146,7 @@ footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-
 </div></header>
 <main><div class="wrap">
 {chr(10).join(rows)}
-<div class="note"><p>Written in our own words. PMI®, PMP®, PMI-ACP® and PMBOK® are registered trademarks of Project Management Institute, Inc. This toolkit isn't affiliated with or endorsed by PMI. See also the <a href="start-here-by-role.html#pm">Project Manager tools</a>, the <a href="right-size-poster.html">Right-Size Your Structure</a> poster, and the <a href="glossary.html">Glossary</a> for terms like baseline, earned value and rolling-wave planning.</p></div>
+<div class="note"><p>Written in our own words. PMI®, PMP®, PMI-ACP® and PMBOK® are registered trademarks of Project Management Institute, Inc. This toolkit isn't affiliated with or endorsed by PMI. Moving from projects to products? See the <a href="product-operating-model-poster.html">Product Operating Model</a> poster. See also the <a href="start-here-by-role.html#pm">Project Manager tools</a>, the <a href="right-size-poster.html">Right-Size Your Structure</a> poster, and the <a href="glossary.html">Glossary</a> for terms like baseline, earned value and rolling-wave planning.</p></div>
 </div></main>
 <footer>{escape(CREDIT)}</footer>
 </body>

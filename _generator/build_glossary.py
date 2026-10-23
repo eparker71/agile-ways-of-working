@@ -19,6 +19,12 @@ from brand import ACCENT, NAVY, CREDIT  # noqa: E402
 OUT = Path(__file__).resolve().parent.parent
 
 TERMS = [
+    ("Product operating model", "A way of running an organisation around long-lived products and the outcomes they create, "
+     "instead of temporary projects: stable, empowered teams, funding for products rather than projects, discovery before "
+     "building, and success judged by results.", "Set out by Marty Cagan and SVPG in Transformed; sometimes shortened to POM.",
+     ["pom", "portfolio-kanban", "topology"]),
+    ("Empowered product team", "A stable, cross-functional team given a problem to solve and the trust to decide how, and "
+     "judged by the outcome. A feature team, by contrast, is handed features to build.", None, ["pom", "delegation", "ost"]),
     ("Site reliability engineering (SRE)", "Running services with software engineering: automating operations work, setting "
      "reliability targets, and balancing reliability with new features using error budgets.", "Developed at Google.", ["slo", "incident"]),
     ("Service level indicator (SLI)", "A measure of how a service behaves as users feel it, usually good events divided by valid "

@@ -392,6 +392,17 @@ Longer term:
 - Treat it as change for people, not just a new process.
 Tools: Value Metrics, ADKAR Change Readiness, Team Topology Design, Events & Cadences
 
+## We've been told to move to a product operating model
+You'll notice: a reorganisation announced from the top, project managers being retitled product managers, and nobody sure what will actually change.
+First moves:
+- Ask what problem the change should solve, such as slow decisions or building things nobody uses, and write it down.
+- Score the six shifts on the Product Operating Model poster together, and tick the signs that it's only a rename.
+- Pick the one shift that would help most and is within your control, and start small.
+Longer term:
+- Bring finance in early: if money still arrives project by project, teams will still behave like projects.
+- Give product managers time and coaching for discovery, and give teams problems and outcomes, not feature lists.
+Tools: Product Operating Model, Portfolio Kanban & Investment Mix, Team Topology Design, Objectives & Key Results, Delegation Board
+
 ## A change is meeting resistance
 You'll notice: people agree in meetings, then carry on as before.
 First moves:

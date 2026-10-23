@@ -28,7 +28,7 @@ PRACTICES = [
      ["Goals and epics state a measurable outcome", "Reviews ask “did it work?”, not just “is it done?”",
       "Roadmaps are organised by goals, not features and dates"],
      "Popularised by Joshua Seiden, Outcomes Over Output (2019).",
-     ["value", "okr", "roadmap", "bet", "status"],
+     ["pom", "value", "okr", "roadmap", "bet", "status"],
      ["Epics have no outcome", "OKRs are task lists", "Feature-and-date roadmaps"]),
     ("waste", "work", "Remove waste, starting with waiting",
      "Keep asking which steps add value for the customer, and remove or shrink the rest.",

@@ -4475,6 +4475,65 @@ GUIDES += [
                  "budget to decide how careful a release should be."),
         foot="“What would we stop doing if the budget ran out tomorrow?”",
     ),
+    dict(
+        slug="product-operating-model",
+        title="Product Operating Model Guide",
+        subtitle="How to use the Product Operating Model poster to see where your organisation is today, and choose the shift to start with.",
+        tag="Facilitator Run-Sheet · Lead the Organisation · Projects to Products · Outcomes Over Output",
+        boards=[("Open poster", "product-operating-model-poster.html"), ("SVG", "product-operating-model-poster.svg")],
+        lede="Which shift would make the biggest difference here, and what's stopping it?",
+        intro=("A <b>product operating model</b> is a way of running an organisation around long-lived products and the "
+               "outcomes they create, instead of temporary projects and the features they deliver. Stable, cross-functional "
+               "teams are given problems to solve, discover what's worth building before they build it, and are judged by the "
+               "results. The ideas are set out by Marty Cagan and Silicon Valley Product Group in <i>Transformed</i> (2024), "
+               "and the move from project to product funding by Mik Kersten in <i>Project to Product</i> (2018); they're "
+               "described here in our own words. The poster sets out <b>six shifts</b>, each with tools from this kit and a "
+               "1–5 scale for where you are now, a panel on <b>what changes when AI makes building cheaper</b> (the idea behind "
+               "talk of a “POM 2.0”), and the <b>signs that the change is only a rename</b>."),
+        glance=[("Duration", "60–90 min<br>as a workshop"), ("Group", "Leaders, product<br>&amp; delivery leads"),
+                ("Use when", "Asked to move to<br>a product model"), ("Output", "Where we are, and<br>the shift to start with")],
+        before=["Print the poster at A3 or 11×17, or share it on screen",
+                "Invite people from product, technology, finance and the business; funding and decisions sit outside product teams",
+                "Bring evidence: how work is funded, how teams are formed, and how success is reported today",
+                "Give everyone dot stickers for the 1–5 scales, and a marker for the rename checklist"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–10", "Why change?", "Ask: what's the problem we want this to solve? Write it down. A model isn't a goal."),
+                ("10–30", "Six shifts", "Read each shift. Everyone places a dot on its 1–5 scale privately, then compare."),
+                ("30–45", "Rename check", "Tick the warning signs you see. Each one points back to a shift."),
+                ("45–55", "AI panel", "Discuss what changes when building is cheap: is discovery keeping up?"),
+                ("55–75", "Pick one shift", "Choose the shift that would help most and is within your control. Pick one tool from it."),
+                ("75–90", "Next step", "Agree a small change, an owner, a measure, and when you'll look again.")],
+        sections_title="The six shifts",
+        sections_intro="Each shift has a 1–5 scale on the poster: 1 is where many organisations start, 5 is the aim.",
+        sections=[("Projects → products", BLUE, ["Long-lived teams and funding", "Not projects that disband"]),
+                  ("Output → outcomes", EMERALD, ["Judged by results", "Not by features shipped"]),
+                  ("Feature → empowered teams", PURPLE, ["Problems to solve", "Trusted with the how"]),
+                  ("Requirements → discovery", AMBER, ["Test before building", "Value, usability, feasibility, viability"]),
+                  ("Dated roadmaps → strategy", SKY, ["A few problems that matter", "Bets, and what you'll learn"]),
+                  ("Order-taking → partnership", FOREST, ["Work with the business", "Not for it"])],
+        tips=[("Start from a problem", "“Move to a product model” isn't a goal. Name the problem it should fix, such as slow decisions or wasted builds."),
+              ("Funding drives behaviour", "If money still arrives project by project, teams will still behave like projects. Bring finance in early."),
+              ("Product managers need support", "Retitling project managers changes nothing. The product manager role needs time for discovery and coaching."),
+              ("One shift at a time", "Pick the shift that hurts most and is within reach. Trying all six at once usually stalls."),
+              ("Keep what works", "Some work is still best run as a project, such as a fixed regulatory change. Use the Delivery Approach board to choose."),
+              ("Cheap code, costly mistakes", "With AI, building the wrong thing is easier than ever. Make discovery faster too, not just delivery.")],
+        pitfalls=("renaming roles and calling it done; keeping project funding and annual feature roadmaps; empowering teams without "
+                  "giving them the data or decisions they need; a big-bang reorganisation; treating the model as a framework to "
+                  "install rather than shifts to work towards."),
+        after=[("Straight away", "Share the scores and the chosen shift, and start the first small change."),
+               ("In a month", "Check the measure you chose. Did the shift move? Keep, change or stop."),
+               ("Each quarter", "Re-score the six shifts together, and re-run the rename check."),
+               ("Ongoing", "Use the toolkit's tools for each shift, and the Reports by Role page to see how things are going.")],
+        toolkit=("The poster connects tools from across the kit. The <a href=\"facilitator-guide-portfolio-kanban.html\">Portfolio "
+                 "Kanban &amp; Investment Mix</a> and <a href=\"facilitator-guide-team-topology.html\">Team Topology Design</a> "
+                 "support the move to products, <a href=\"facilitator-guide-okr.html\">Objectives &amp; Key Results</a> and <a "
+                 "href=\"facilitator-guide-value-metrics.html\">Value Metrics</a> the move to outcomes, and the <a "
+                 "href=\"facilitator-guide-opportunity-solution-tree.html\">Opportunity Solution Tree</a> and <a "
+                 "href=\"facilitator-guide-product-bet-canvas.html\">Product Bet Canvas</a> the move to discovery. Project managers "
+                 "can start with <a href=\"for-project-managers.html\">For Project Managers</a> and the <a "
+                 "href=\"facilitator-guide-delivery-approach.html\">Delivery Approach</a> board."),
+        foot="“What would we stop doing if teams owned outcomes?”",
+    ),
 ]
 
 
