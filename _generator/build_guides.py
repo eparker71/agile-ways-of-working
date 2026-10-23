@@ -4534,6 +4534,64 @@ GUIDES += [
                  "href=\"facilitator-guide-delivery-approach.html\">Delivery Approach</a> board."),
         foot="“What would we stop doing if teams owned outcomes?”",
     ),
+    dict(
+        slug="metrics-at-a-glance",
+        title="Delivery Metrics at a Glance Guide",
+        subtitle="How to use the poster to agree what each delivery metric means, pick the few that answer your questions, and avoid the usual traps.",
+        tag="Facilitator Run-Sheet · Manage Flow · Velocity, Throughput, Cycle Time, Lead Time",
+        boards=[("Open poster", "metrics-at-a-glance-poster.html"), ("SVG", "metrics-at-a-glance-poster.svg")],
+        lede="Which metric would tell us most about our biggest problem right now?",
+        intro=("Teams and leaders often use the same words for different things. Lead time to one person is cycle time to "
+               "another, and velocity gets compared across teams it was never meant to compare. The poster sets out ten common "
+               "<b>delivery metrics</b>: for each, what it measures, the question it answers, how it gets misused, and the tool "
+               "in this kit that uses it. It adds <b>Little's Law</b>, which links work in progress, throughput and cycle time "
+               "and explains why limiting work in progress speeds things up; a guide to <b>which metric answers which "
+               "question</b>; and five rules for <b>using metrics well</b>. The flow metrics draw on Daniel Vacanti's "
+               "<i>Actionable Agile Metrics for Predictability</i>, the four delivery metrics on the DORA research reported in "
+               "<i>Accelerate</i> (Forsgren, Humble and Kim), and Little's Law on John Little's 1961 proof."),
+        glance=[("Duration", "45–60 min<br>as a workshop"), ("Group", "A team, or leads<br>who read reports"),
+                ("Use when", "Metrics cause<br>confusion or arguments"), ("Output", "Agreed definitions<br>&amp; the few we'll use")],
+        before=["Print the poster at A3 or 11×17, or share it on screen",
+                "Bring the metrics you report today, and where each comes from (Jira, Azure DevOps or a spreadsheet)",
+                "Check where your tool starts and stops the clock for cycle time and lead time",
+                "Have stickies in two colours: questions you need answered, and metrics you use now"],
+        agenda_heads=["Time", "Section", "Facilitator notes"],
+        agenda=[("0–10", "Our questions", "What do we, and the people we report to, actually need to know? One question per sticky."),
+                ("10–25", "Ten metrics", "Walk the cards. Agree a definition for each one you use, including where the clock starts."),
+                ("25–35", "Which metric?", "Match each question sticky to a metric, using the middle panel."),
+                ("35–45", "Little's Law", "Work it through with your own numbers. What would halving work in progress do?"),
+                ("45–55", "Misuse check", "Which of our measures has become a target? Read the five rules."),
+                ("55–60", "Our few", "Agree three to five metrics to keep, and what you'll stop reporting.")],
+        sections_title="The metrics, by kind",
+        sections_intro="The poster colours each card by the kind of question it answers.",
+        sections=[("Planning", BLUE, ["Velocity, throughput", "Burn-up and burndown"]),
+                  ("Time", EMERALD, ["Cycle time, lead time", "Work item age"]),
+                  ("Flow", PURPLE, ["Work in progress", "Flow efficiency, cumulative flow"]),
+                  ("Delivery and stability", AMBER, ["The DORA four", "Faster and safer together"]),
+                  ("Little's Law", SKY, ["Cycle time = WIP / throughput", "Less WIP, faster flow"])],
+        tips=[("Agree where the clock starts", "Most lead time and cycle time arguments are really about start and end points. Write yours down."),
+              ("Percentiles beat averages", "“85% of items finish within 9 days” is more useful, and more honest, than an average."),
+              ("Count before you estimate", "Many teams forecast as well by counting items as with story points, with less effort."),
+              ("Watch the age", "Work item age shows trouble while you can still act; cycle time only shows it afterwards."),
+              ("Few, and for the team", "Three to five metrics the team uses beat twenty in a report nobody reads."),
+              ("Never per person", "Metrics are for the system of work. Measuring people changes their behaviour, not the system.")],
+        pitfalls=("comparing velocity between teams; setting a metric as a target; reporting averages without the spread; "
+                  "speed measures with no quality measure beside them; tracking metrics nobody acts on; changing definitions "
+                  "between reports."),
+        after=[("Straight away", "Write down your agreed definitions, and where each metric comes from."),
+               ("Each iteration", "Look at your few metrics as a team, as trends, and ask what they're telling you."),
+               ("Each quarter", "Drop a metric nobody used, and check none has become a target."),
+               ("Ongoing", "Use the Ageing WIP, Release Forecast and Delivery Metrics boards to act on what you see.")],
+        toolkit=("The poster points to the tools that put each metric to work: <a href=\"facilitator-guide-ageing-wip.html\">Ageing "
+                 "WIP &amp; SLE</a> for work item age and cycle time, <a href=\"facilitator-guide-release-forecast.html\">Release "
+                 "Forecast &amp; Burn-up</a> for throughput and forecasts, the <a href=\"facilitator-guide-value-stream-map.html\">"
+                 "Value Stream Map</a> for lead time and flow efficiency, <a href=\"facilitator-guide-kanban-cadences.html\">Kanban "
+                 "Cadences</a> for cumulative flow and service reviews, and <a href=\"facilitator-guide-delivery-metrics.html\">"
+                 "Delivery Metrics &amp; Tech Debt</a> for the DORA four. The <a href=\"jira-cheat-sheet.html\">Jira</a> and <a "
+                 "href=\"azure-devops-cheat-sheet.html\">Azure DevOps</a> cheat sheets show where to find each chart, and <a "
+                 "href=\"reports-by-role.html\">Reports by Role</a> shows them in use."),
+        foot="“Which of our measures has quietly become a target?”",
+    ),
 ]
 
 

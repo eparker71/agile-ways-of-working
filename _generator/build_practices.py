@@ -140,7 +140,7 @@ PRACTICES = [
      ["Team measures, never individual ones", "Speed is always balanced with quality and outcomes",
       "Velocity stays inside the team that produced it"],
      "Goodhart's law (Charles Goodhart).",
-     ["delivery-metrics", "estimation", "forecast", "value"],
+     ["metrics", "delivery-metrics", "estimation", "forecast", "value"],
      ["Velocity as a target", "Teams compared on velocity", "Individuals measured by tickets"]),
     ("heroes", "work", "Share knowledge, avoid heroes",
      "Spread skills so the team can keep going when anyone is away.",

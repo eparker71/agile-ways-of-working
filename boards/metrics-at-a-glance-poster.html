@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Delivery Metrics at a Glance</title>
+<!-- meta -->
+<meta name="description" content="A3 landscape reference poster of delivery metrics: velocity, throughput, cycle time, lead time, work item age, work in progress, flow efficiency, cumulative flow, burn-up and burndown, and the…">
+<link rel="canonical" href="https://eparker71.github.io/agile-ways-of-working/boards/metrics-at-a-glance-poster.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agile Ways of Working Toolkit">
+<meta property="og:title" content="Delivery Metrics at a Glance · Agile Ways of Working Toolkit">
+<meta property="og:description" content="A3 landscape reference poster of delivery metrics: velocity, throughput, cycle time, lead time, work item age, work in progress, flow efficiency, cumulative flow, burn-up and burndown, and the…">
+<meta property="og:url" content="https://eparker71.github.io/agile-ways-of-working/boards/metrics-at-a-glance-poster.html">
+<meta property="og:image" content="https://eparker71.github.io/agile-ways-of-working/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script data-goatcounter="https://eparker71.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- /meta -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+html,body{margin:0;padding:0;background:#B0BEC5;}
+body{display:flex;justify-content:center;align-items:flex-start;padding:24px;box-sizing:border-box;min-height:100vh;}
+svg{display:block;max-width:100%;height:auto;box-shadow:0 12px 40px rgba(0,0,0,.22);}
+a.guide{position:fixed;right:16px;bottom:16px;font:500 12px 'Geist',system-ui,sans-serif;color:#fff;background:#0C1A2E;border-left:4px solid #eb6c36;padding:9px 14px;border-radius:6px;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.25);}
+a.guide:hover{background:#C2410C;}
+a.guide.pdf{bottom:60px;}
+p.phone{display:none;}@media (max-width:700px){body{flex-direction:column;align-items:stretch;padding:12px 12px 72px;min-height:0;}p.phone{display:block;margin:14px 2px 0;font:14px/1.5 'Geist',system-ui,sans-serif;color:#0C1A2E;}p.phone b{display:block;font-weight:600;margin-bottom:2px;}p.phone a{color:#9A3412;}}@media print{p.phone{display:none !important;}}
+@media print{@page{size:A3 landscape;margin:0;}html,body{background:none;}body{padding:0;}svg{box-shadow:none;width:100%;max-height:296mm;}html,body{height:297mm;overflow:hidden;}a.guide{display:none;}}
+</style>
+</head>
+<body>
+<a class="guide" href="../guides/facilitator-guide-metrics-at-a-glance.html">Facilitator guide →</a>
+<a class="guide pdf" href="../pdf/metrics-at-a-glance-poster.pdf" download title="A3 landscape. On 11×17 (Tabloid) paper, print with Fit to page.">A3 PDF ↓</a>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 1190" width="1680" height="1190" role="img" aria-labelledby="mg-title mg-desc">
+  <title id="mg-title">Delivery Metrics at a Glance</title>
+  <desc id="mg-desc">A3 landscape reference poster of delivery metrics: velocity, throughput, cycle time, lead time, work item age, work in progress, flow efficiency, cumulative flow, burn-up and burndown, and the DORA four, each with what it measures, the question it answers and how it&#x27;s misused; Little&#x27;s Law; which metric answers which question; and rules for using metrics well.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#EFF6FF"/>
+    </linearGradient>
+    <filter id="fc" x="-4%" y="-4%" width="110%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity=".10"/>
+    </filter>
+    <filter id="fsm" x="-6%" y="-6%" width="114%" height="116%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity=".08"/>
+    </filter>
+    <pattern id="dots" patternUnits="userSpaceOnUse" width="20" height="20">
+      <circle cx="10" cy="10" r="1.2" fill="#000" fill-opacity=".055"/>
+    </pattern>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E0F2FE"/>
+      <stop offset="100%" stop-color="#F0F9FF"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7DD3FC"/>
+      <stop offset="100%" stop-color="#BAE6FD"/>
+    </linearGradient>
+  </defs>
+<rect x="0" y="0" width="1680" height="1190" fill="url(#bg)"/><rect x="0" y="0" width="1680" height="4" fill="#eb6c36"/><rect x="0" y="4" width="1680" height="134" fill="#0C1A2E"/><text x="24" y="70" font-family="'Instrument Serif',Georgia,serif" font-size="42" font-weight="400" fill="white">Delivery Metrics at a Glance</text><text x="24" y="100" font-family="'Geist',Inter,system-ui,sans-serif" font-size="13" fill="#94A3B8">What each delivery metric measures, the question it answers, and how it gets misused.</text><text x="24" y="120" font-family="'Geist Mono',Consolas,monospace" font-size="9" fill="#8291A6" letter-spacing=".06em">Manage Flow · Draws on Kanban flow metrics (Daniel Vacanti), the DORA research and Little's Law</text><text x="1356" y="66" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#8291A6" letter-spacing=".14em">TEAM</text><line x1="1452" y1="69" x2="1656" y2="69" stroke="#334155" stroke-width="1.2"/><text x="1356" y="96" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#8291A6" letter-spacing=".14em">DATE</text><line x1="1452" y1="99" x2="1656" y2="99" stroke="#334155" stroke-width="1.2"/>
+<rect x="24" y="148" width="316.8" height="268" rx="10" fill="#DBEAFE" stroke="#1E3A8A" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/>
+<path d="M24.0,192 V158 A10,10 0 0 1 34.0,148 H330.8 A10,10 0 0 1 340.8,158 V192 Z" fill="#1E3A8A"/>
+<text x="40" y="176" font-family="'Geist',Inter,system-ui,sans-serif" font-size="15" font-weight="600" fill="white">Velocity</text>
+<text x="38" y="216" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#1E3A8A" letter-spacing=".12em">MEASURES</text>
+<text x="38" y="234" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">Story points a team finishes in an iteration.</text>
+<text x="38" y="260" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#1E3A8A" letter-spacing=".12em">ASKS</text>
+<text x="38" y="280" font-family="'Instrument Serif',Georgia,serif" font-size="13.5" font-style="italic" fill="#1E3A8A">“How much can we plan into the next</text><text x="38" y="298" font-family="'Instrument Serif',Georgia,serif" font-size="13.5" font-style="italic" fill="#1E3A8A">iteration?”</text>
+<text x="38" y="324" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#991B1B" letter-spacing=".12em">MISUSED WHEN</text>
+<text x="38" y="342" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">Set as a target, or compared across teams.</text>
+<line x1="38" y1="376" x2="326.8" y2="376" stroke="#1E3A8A" stroke-width="1" stroke-opacity=".25"/>
+<text x="38" y="398" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E3A8A"><tspan font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" letter-spacing=".12em">IN THIS KIT</tspan><tspan fill-opacity="0">: </tspan><tspan x="108" font-weight="600">Estimation</tspan></text>
+<rect x="352.8" y="148" width="316.8" height="268" rx="10" fill="#DBEAFE" stroke="#1E3A8A" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/>
+<path d="M352.8,192 V158 A10,10 0 0 1 362.8,148 H659.6 A10,10 0 0 1 669.6,158 V192 Z" fill="#1E3A8A"/>
+<text x="368.8" y="176" font-family="'Geist',Inter,system-ui,sans-serif" font-size="15" font-weight="600" fill="white">Throughput</text>
+<text x="366.8" y="216" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#1E3A8A" letter-spacing=".12em">MEASURES</text>
+<text x="366.8" y="234" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">Items finished per week or iteration, counted.</text>
+<text x="366.8" y="260" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#1E3A8A" letter-spacing=".12em">ASKS</text>
+<text x="366.8" y="280" font-family="'Instrument Serif',Georgia,serif" font-size="13.5" font-style="italic" fill="#1E3A8A">“How many items can we expect next</text><text x="366.8" y="298" font-family="'Instrument Serif',Georgia,serif" font-size="13.5" font-style="italic" fill="#1E3A8A">month?”</text>
+<text x="366.8" y="324" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#991B1B" letter-spacing=".12em">MISUSED WHEN</text>
+<text x="366.8" y="342" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">Counting items of very different sizes.</text>
+<line x1="366.8" y1="376" x2="655.6" y2="376" stroke="#1E3A8A" stroke-width="1" stroke-opacity=".25"/>
+<text x="366.8" y="398" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E3A8A"><tspan font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" letter-spacing=".12em">IN THIS KIT</tspan><tspan fill-opacity="0">: </tspan><tspan x="436.8" font-weight="600">Release Forecast &amp; Burn-up</tspan></text>
+<rect x="681.6" y="148" width="316.8" height="268" rx="10" fill="#D1FAE5" stroke="#065F46" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/>
+<path d="M681.6,192 V158 A10,10 0 0 1 691.6,148 H988.4000000000001 A10,10 0 0 1 998.4000000000001,158 V192 Z" fill="#065F46"/>
+<text x="697.6" y="176" font-family="'Geist',Inter,system-ui,sans-serif" font-size="15" font-weight="600" fill="white">Cycle time</text>
+<text x="695.6" y="216" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#065F46" letter-spacing=".12em">MEASURES</text>
+<text x="695.6" y="234" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">Time from starting an item to finishing it.</text>
+<text x="695.6" y="260" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#065F46" letter-spacing=".12em">ASKS</text>
+<text x="695.6" y="280" font-family="'Instrument Serif',Georgia,serif" font-size="13.5" font-style="italic" fill="#065F46">“Once we start, how long does it take?”</text>
+<text x="695.6" y="306" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#991B1B" letter-spacing=".12em">MISUSED WHEN</text>
+<text x="695.6" y="324" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">Averages hide the slow ones: use percentiles.</text>
+<line x1="695.6" y1="376" x2="984.4" y2="376" stroke="#065F46" stroke-width="1" stroke-opacity=".25"/>
+<text x="695.6" y="398" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#065F46"><tspan font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" letter-spacing=".12em">IN THIS KIT</tspan><tspan fill-opacity="0">: </tspan><tspan x="765.6" font-weight="600">Ageing WIP &amp; SLE</tspan></text>
+<rect x="1010.4" y="148" width="316.8" height="268" rx="10" fill="#D1FAE5" stroke="#065F46" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/>
+<path d="M1010.4000000000001,192 V158 A10,10 0 0 1 1020.4000000000001,148 H1317.2 A10,10 0 0 1 1327.2,158 V192 Z" fill="#065F46"/>
+<text x="1026.4" y="176" font-family="'Geist',Inter,system-ui,sans-serif" font-size="15" font-weight="600" fill="white">Lead time</text>
+<text x="1024.4" y="216" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#065F46" letter-spacing=".12em">MEASURES</text>
+<text x="1024.4" y="234" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">Time from request to delivery to the customer.</text>
+<text x="1024.4" y="260" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#065F46" letter-spacing=".12em">ASKS</text>
+<text x="1024.4" y="280" font-family="'Instrument Serif',Georgia,serif" font-size="13.5" font-style="italic" fill="#065F46">“How long does the customer wait?”</text>
+<text x="1024.4" y="306" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#991B1B" letter-spacing=".12em">MISUSED WHEN</text>
+<text x="1024.4" y="324" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">Not saying where the clock starts.</text>
+<line x1="1024.4" y1="376" x2="1313.2" y2="376" stroke="#065F46" stroke-width="1" stroke-opacity=".25"/>
+<text x="1024.4" y="398" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#065F46"><tspan font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" letter-spacing=".12em">IN THIS KIT</tspan><tspan fill-opacity="0">: </tspan><tspan x="1094.4" font-weight="600">Value Stream Map</tspan></text>
+<rect x="1339.2" y="148" width="316.8" height="268" rx="10" fill="#D1FAE5" stroke="#065F46" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/>
+<path d="M1339.2,192 V158 A10,10 0 0 1 1349.2,148 H1646.0 A10,10 0 0 1 1656.0,158 V192 Z" fill="#065F46"/>
+<text x="1355.2" y="176" font-family="'Geist',Inter,system-ui,sans-serif" font-size="15" font-weight="600" fill="white">Work item age</text>
+<text x="1353.2" y="216" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#065F46" letter-spacing=".12em">MEASURES</text>
+<text x="1353.2" y="234" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">How long an unfinished item has been in progress.</text>
+<text x="1353.2" y="260" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#065F46" letter-spacing=".12em">ASKS</text>
+<text x="1353.2" y="280" font-family="'Instrument Serif',Georgia,serif" font-size="13.5" font-style="italic" fill="#065F46">“Which items are stuck right now?”</text>
+<text x="1353.2" y="306" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#991B1B" letter-spacing=".12em">MISUSED WHEN</text>
+<text x="1353.2" y="324" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">Only looking once items finish.</text>
+<line x1="1353.2" y1="376" x2="1642" y2="376" stroke="#065F46" stroke-width="1" stroke-opacity=".25"/>
+<text x="1353.2" y="398" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#065F46"><tspan font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" letter-spacing=".12em">IN THIS KIT</tspan><tspan fill-opacity="0">: </tspan><tspan x="1423.2" font-weight="600">Ageing WIP &amp; SLE</tspan></text>
+<rect x="24" y="430" width="316.8" height="268" rx="10" fill="#EDE9FE" stroke="#581C87" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/>
+<path d="M24.0,474 V440 A10,10 0 0 1 34.0,430 H330.8 A10,10 0 0 1 340.8,440 V474 Z" fill="#581C87"/>
+<text x="40" y="458" font-family="'Geist',Inter,system-ui,sans-serif" font-size="15" font-weight="600" fill="white">Work in progress</text>
+<text x="38" y="498" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#581C87" letter-spacing=".12em">MEASURES</text>
+<text x="38" y="516" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">Items started but not yet finished.</text>
+<text x="38" y="542" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#581C87" letter-spacing=".12em">ASKS</text>
+<text x="38" y="562" font-family="'Instrument Serif',Georgia,serif" font-size="13.5" font-style="italic" fill="#581C87">“Are we starting more than we finish?”</text>
+<text x="38" y="588" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#991B1B" letter-spacing=".12em">MISUSED WHEN</text>
+<text x="38" y="606" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">Raising the limit whenever it's hit.</text>
+<line x1="38" y1="658" x2="326.8" y2="658" stroke="#581C87" stroke-width="1" stroke-opacity=".25"/>
+<text x="38" y="680" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#581C87"><tspan font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" letter-spacing=".12em">IN THIS KIT</tspan><tspan fill-opacity="0">: </tspan><tspan x="108" font-weight="600">Kanban Board Design</tspan></text>
+<rect x="352.8" y="430" width="316.8" height="268" rx="10" fill="#EDE9FE" stroke="#581C87" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/>
+<path d="M352.8,474 V440 A10,10 0 0 1 362.8,430 H659.6 A10,10 0 0 1 669.6,440 V474 Z" fill="#581C87"/>
+<text x="368.8" y="458" font-family="'Geist',Inter,system-ui,sans-serif" font-size="15" font-weight="600" fill="white">Flow efficiency</text>
+<text x="366.8" y="498" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#581C87" letter-spacing=".12em">MEASURES</text>
+<text x="366.8" y="516" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">Share of lead time spent working, not waiting.</text>
+<text x="366.8" y="542" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#581C87" letter-spacing=".12em">ASKS</text>
+<text x="366.8" y="562" font-family="'Instrument Serif',Georgia,serif" font-size="13.5" font-style="italic" fill="#581C87">“How much of the time is waiting?”</text>
+<text x="366.8" y="588" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#991B1B" letter-spacing=".12em">MISUSED WHEN</text>
+<text x="366.8" y="606" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">Making people busier, not cutting waits.</text>
+<line x1="366.8" y1="658" x2="655.6" y2="658" stroke="#581C87" stroke-width="1" stroke-opacity=".25"/>
+<text x="366.8" y="680" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#581C87"><tspan font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" letter-spacing=".12em">IN THIS KIT</tspan><tspan fill-opacity="0">: </tspan><tspan x="436.8" font-weight="600">Value Stream Map</tspan></text>
+<rect x="681.6" y="430" width="316.8" height="268" rx="10" fill="#EDE9FE" stroke="#581C87" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/>
+<path d="M681.6,474 V440 A10,10 0 0 1 691.6,430 H988.4000000000001 A10,10 0 0 1 998.4000000000001,440 V474 Z" fill="#581C87"/>
+<text x="697.6" y="458" font-family="'Geist',Inter,system-ui,sans-serif" font-size="15" font-weight="600" fill="white">Cumulative flow</text>
+<text x="695.6" y="498" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#581C87" letter-spacing=".12em">MEASURES</text>
+<text x="695.6" y="516" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">Items in each state over time, as bands.</text>
+<text x="695.6" y="542" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#581C87" letter-spacing=".12em">ASKS</text>
+<text x="695.6" y="562" font-family="'Instrument Serif',Georgia,serif" font-size="13.5" font-style="italic" fill="#581C87">“Where is work piling up?”</text>
+<text x="695.6" y="588" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#991B1B" letter-spacing=".12em">MISUSED WHEN</text>
+<text x="695.6" y="606" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">A widening band is a queue: act on it.</text>
+<line x1="695.6" y1="658" x2="984.4" y2="658" stroke="#581C87" stroke-width="1" stroke-opacity=".25"/>
+<text x="695.6" y="680" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#581C87"><tspan font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" letter-spacing=".12em">IN THIS KIT</tspan><tspan fill-opacity="0">: </tspan><tspan x="765.6" font-weight="600">Kanban Cadences</tspan></text>
+<rect x="1010.4" y="430" width="316.8" height="268" rx="10" fill="#DBEAFE" stroke="#1E3A8A" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/>
+<path d="M1010.4000000000001,474 V440 A10,10 0 0 1 1020.4000000000001,430 H1317.2 A10,10 0 0 1 1327.2,440 V474 Z" fill="#1E3A8A"/>
+<text x="1026.4" y="458" font-family="'Geist',Inter,system-ui,sans-serif" font-size="15" font-weight="600" fill="white">Burn-up and burndown</text>
+<text x="1024.4" y="498" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#1E3A8A" letter-spacing=".12em">MEASURES</text>
+<text x="1024.4" y="516" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">Work done, and total scope, over time.</text>
+<text x="1024.4" y="542" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#1E3A8A" letter-spacing=".12em">ASKS</text>
+<text x="1024.4" y="562" font-family="'Instrument Serif',Georgia,serif" font-size="13.5" font-style="italic" fill="#1E3A8A">“Will we finish by the date?”</text>
+<text x="1024.4" y="588" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#991B1B" letter-spacing=".12em">MISUSED WHEN</text>
+<text x="1024.4" y="606" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">A burndown hides added scope.</text>
+<line x1="1024.4" y1="658" x2="1313.2" y2="658" stroke="#1E3A8A" stroke-width="1" stroke-opacity=".25"/>
+<text x="1024.4" y="680" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#1E3A8A"><tspan font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" letter-spacing=".12em">IN THIS KIT</tspan><tspan fill-opacity="0">: </tspan><tspan x="1094.4" font-weight="600">Release Forecast &amp; Burn-up</tspan></text>
+<rect x="1339.2" y="430" width="316.8" height="268" rx="10" fill="#FEF3C7" stroke="#92400E" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/>
+<path d="M1339.2,474 V440 A10,10 0 0 1 1349.2,430 H1646.0 A10,10 0 0 1 1656.0,440 V474 Z" fill="#92400E"/>
+<text x="1355.2" y="458" font-family="'Geist',Inter,system-ui,sans-serif" font-size="15" font-weight="600" fill="white">DORA four</text>
+<text x="1353.2" y="498" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#92400E" letter-spacing=".12em">MEASURES</text>
+<text x="1353.2" y="516" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">Deploy frequency, lead time for changes, failure</text><text x="1353.2" y="532" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">rate, time to restore.</text>
+<text x="1353.2" y="558" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#92400E" letter-spacing=".12em">ASKS</text>
+<text x="1353.2" y="578" font-family="'Instrument Serif',Georgia,serif" font-size="13.5" font-style="italic" fill="#92400E">“Are we delivering faster and more</text><text x="1353.2" y="596" font-family="'Instrument Serif',Georgia,serif" font-size="13.5" font-style="italic" fill="#92400E">safely?”</text>
+<text x="1353.2" y="622" font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" fill="#991B1B" letter-spacing=".12em">MISUSED WHEN</text>
+<text x="1353.2" y="640" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">Chasing speed and ignoring stability.</text>
+<line x1="1353.2" y1="658" x2="1642" y2="658" stroke="#92400E" stroke-width="1" stroke-opacity=".25"/>
+<text x="1353.2" y="680" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10.5" fill="#92400E"><tspan font-family="'Geist Mono',Consolas,monospace" font-size="8" font-weight="600" letter-spacing=".12em">IN THIS KIT</tspan><tspan fill-opacity="0">: </tspan><tspan x="1423.2" font-weight="600">Delivery Metrics &amp; Tech Debt</tspan></text>
+<rect x="24" y="716" width="534.667" height="344" rx="10" fill="#E0F2FE" stroke="#0C4A6E" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M24,768 V726 A10,10 0 0 1 34,716 H548.6666666666666 A10,10 0 0 1 558.6666666666666,726 V768 Z" fill="#0C4A6E"/><text x="45" y="748" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Little's Law</text><text x="542.667" y="747" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".88" letter-spacing=".10em">WHY LIMITING WIP SPEEDS THINGS UP</text>
+<text x="291.333" y="820" text-anchor="middle" font-family="'Instrument Serif',Georgia,serif" font-size="22" fill="#0C4A6E">Cycle time = WIP / Throughput</text>
+<text x="291.333" y="844" text-anchor="middle" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" fill="#566578">(average items in progress / average items finished per week)</text>
+<text x="42" y="884" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" fill="#1E293B">20 items in progress / 5 finished a week</text><text x="42" y="902" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" fill="#1E293B">= about 4 weeks for each item.</text>
+<text x="42" y="938" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" font-weight="600" fill="#0C4A6E">Halve the work in progress to 10, at the same</text><text x="42" y="956" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" font-weight="600" fill="#0C4A6E">throughput, and items take about 2 weeks.</text>
+<text x="42" y="1038" font-family="'Geist',Inter,system-ui,sans-serif" font-size="10" font-style="italic" fill="#0C4A6E" fill-opacity=".88">Holds for averages over a stable period. From queueing theory (John Little, 1961).</text>
+<rect x="572.667" y="716" width="534.667" height="344" rx="10" fill="#DCFCE7" stroke="#14532D" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M572.6666666666666,768 V726 A10,10 0 0 1 582.6666666666666,716 H1097.3333333333333 A10,10 0 0 1 1107.3333333333333,726 V768 Z" fill="#14532D"/><text x="593.667" y="748" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Which Metric for Which Question?</text><text x="1091.33" y="747" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".88" letter-spacing=".10em">START WITH THE QUESTION</text>
+<text x="590.667" y="802" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" fill="#14532D"><tspan font-weight="600">When will it be done?</tspan><tspan fill-opacity="0">: </tspan><tspan x="778.667" fill="#1E293B" font-size="11.5">throughput, as a forecast range</tspan></text>
+<text x="590.667" y="840" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" fill="#14532D"><tspan font-weight="600">What&#x27;s stuck right now?</tspan><tspan fill-opacity="0">: </tspan><tspan x="778.667" fill="#1E293B" font-size="11.5">work item age</tspan></text>
+<text x="590.667" y="878" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" fill="#14532D"><tspan font-weight="600">Why is it slow?</tspan><tspan fill-opacity="0">: </tspan><tspan x="778.667" fill="#1E293B" font-size="11.5">flow efficiency, cumulative flow</tspan></text>
+<text x="590.667" y="916" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" fill="#14532D"><tspan font-weight="600">What can we promise?</tspan><tspan fill-opacity="0">: </tspan><tspan x="778.667" fill="#1E293B" font-size="11.5">85th percentile cycle time</tspan></text>
+<text x="590.667" y="954" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" fill="#14532D"><tspan font-weight="600">How much fits next?</tspan><tspan fill-opacity="0">: </tspan><tspan x="778.667" fill="#1E293B" font-size="11.5">velocity or throughput</tspan></text>
+<text x="590.667" y="992" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12" fill="#14532D"><tspan font-weight="600">Are releases safe?</tspan><tspan fill-opacity="0">: </tspan><tspan x="778.667" fill="#1E293B" font-size="11.5">change failure rate, time to restore</tspan></text>
+<rect x="1121.33" y="716" width="534.667" height="344" rx="10" fill="#FEE2E2" stroke="#991B1B" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"/><path d="M1121.3333333333333,768 V726 A10,10 0 0 1 1131.3333333333333,716 H1646.0 A10,10 0 0 1 1656.0,726 V768 Z" fill="#991B1B"/><text x="1142.33" y="748" font-family="'Geist',Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="white">Use Metrics Well</text><text x="1640" y="747" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8.5" fill="white" fill-opacity=".88" letter-spacing=".10em">GOODHART'S LAW APPLIES</text>
+<text x="1139.33" y="802" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#991B1B">Teams, never individuals</text>
+<text x="1139.33" y="820" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">Personal metrics get gamed and hurt teamwork.</text>
+<text x="1139.33" y="848" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#991B1B">Ranges, not single numbers</text>
+<text x="1139.33" y="866" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">“13–20 June” is honest; “15 June” isn't.</text>
+<text x="1139.33" y="894" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#991B1B">Trends, not snapshots</text>
+<text x="1139.33" y="912" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">One iteration tells you little; six tell a story.</text>
+<text x="1139.33" y="940" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#991B1B">Speed with quality</text>
+<text x="1139.33" y="958" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">Pair every speed measure with a quality one.</text>
+<text x="1139.33" y="986" font-family="'Geist',Inter,system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#991B1B">Questions, not targets</text>
+<text x="1139.33" y="1004" font-family="'Geist',Inter,system-ui,sans-serif" font-size="11" fill="#1E293B">When a measure becomes a target, it stops measuring.</text>
+<line x1="24" y1="1070" x2="1656" y2="1070" stroke="#E2E8F0" stroke-width="1"/><text x="24" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“Which metric would tell us most about our biggest problem right now?”</text><line x1="832" y1="1078" x2="832" y2="1128" stroke="#E2E8F0" stroke-width="1"/><text x="848" y="1106" font-family="'Instrument Serif',Georgia,serif" font-size="15" font-style="italic" fill="#1E293B">“Which of our measures has quietly become a target?”</text><text x="1656" y="1138" text-anchor="end" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#5B6B82" letter-spacing=".08em">Manage Flow · Stop Starting, Start Finishing</text><text x="24" y="1138" font-family="'Geist Mono',Consolas,monospace" font-size="8" fill="#5B6B82" letter-spacing=".06em">© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</text>
+</svg>
+<p class="phone"><b>This is an A3 board, made for printing or a big screen.</b>Pinch to zoom, turn your phone sideways, or <a href="metrics-at-a-glance-poster.svg">open the SVG</a> to zoom in. The <a href="../guides/facilitator-guide-metrics-at-a-glance.html">facilitator guide</a> is easy to read on a phone.</p>
+</body>
+</html>

@@ -19,6 +19,21 @@ from brand import ACCENT, NAVY, CREDIT  # noqa: E402
 OUT = Path(__file__).resolve().parent.parent
 
 TERMS = [
+    ("Burndown chart", "A chart of the work remaining over time, usually within an iteration. It falls as work finishes, but "
+     "hides scope that's added along the way; a burn-up chart shows both.", None, ["metrics", "forecast"]),
+    ("Cumulative flow diagram (CFD)", "A chart of how many items are in each state over time, drawn as stacked bands. A band "
+     "that widens shows work piling up in that state.", None, ["metrics", "cadences"]),
+    ("Little's Law", "Average cycle time equals average work in progress divided by average throughput. It's why limiting "
+     "work in progress makes items finish sooner.", "From queueing theory: John Little, 1961.", ["metrics", "kanban"]),
+    ("Monte Carlo forecasting", "Forecasting a finish date or amount of work by replaying past throughput thousands of times "
+     "at random, giving a range with likelihoods, such as \"85% likely by 20 June\".", None, ["forecast", "metrics"]),
+    ("Percentile", "The value a given share of items fall within: \"85% of items finish within 9 days\" is the 85th "
+     "percentile cycle time. More useful than an average, which hides the slow items.", None, ["ageing", "metrics"]),
+    ("Escaped defects", "Bugs found after release, by users or in production, rather than by the team before it. A falling "
+     "number suggests quality is being built in.", None, ["testing", "delivery-metrics"]),
+    ("Flow metrics", "Measures of how work moves: throughput, cycle time, work item age and work in progress. Mik Kersten's "
+     "Flow Framework uses a related set (flow velocity, time, load, efficiency and distribution) across a value stream.",
+     "Flow Framework: from Project to Product (Mik Kersten).", ["metrics", "ageing", "vsm"]),
     ("Product operating model", "A way of running an organisation around long-lived products and the outcomes they create, "
      "instead of temporary projects: stable, empowered teams, funding for products rather than projects, discovery before "
      "building, and success judged by results.", "Set out by Marty Cagan and SVPG in Transformed; sometimes shortened to POM.",

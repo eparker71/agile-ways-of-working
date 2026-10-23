@@ -6580,6 +6580,110 @@ def build_product_operating_model():
                 "building cheaper, and signs the change is only a rename.", "\n".join(b))
 
 
+# ---------------------------------------------------------------- delivery metrics at a glance
+
+METRICS = [  # (name, colour, what it measures, the question it answers, how it's misused, tool in this kit)
+    ("Velocity", BLUE, "Story points a team finishes in an iteration.",
+     "How much can we plan into the next iteration?", "Set as a target, or compared across teams.", "Estimation"),
+    ("Throughput", BLUE, "Items finished per week or iteration, counted.",
+     "How many items can we expect next month?", "Counting items of very different sizes.", "Release Forecast & Burn-up"),
+    ("Cycle time", EMERALD, "Time from starting an item to finishing it.",
+     "Once we start, how long does it take?", "Averages hide the slow ones: use percentiles.", "Ageing WIP & SLE"),
+    ("Lead time", EMERALD, "Time from request to delivery to the customer.",
+     "How long does the customer wait?", "Not saying where the clock starts.", "Value Stream Map"),
+    ("Work item age", EMERALD, "How long an unfinished item has been in progress.",
+     "Which items are stuck right now?", "Only looking once items finish.", "Ageing WIP & SLE"),
+    ("Work in progress", PURPLE, "Items started but not yet finished.",
+     "Are we starting more than we finish?", "Raising the limit whenever it's hit.", "Kanban Board Design"),
+    ("Flow efficiency", PURPLE, "Share of lead time spent working, not waiting.",
+     "How much of the time is waiting?", "Making people busier, not cutting waits.", "Value Stream Map"),
+    ("Cumulative flow", PURPLE, "Items in each state over time, as bands.",
+     "Where is work piling up?", "A widening band is a queue: act on it.", "Kanban Cadences"),
+    ("Burn-up and burndown", BLUE, "Work done, and total scope, over time.",
+     "Will we finish by the date?", "A burndown hides added scope.", "Release Forecast & Burn-up"),
+    ("DORA four", AMBER, "Deploy frequency, lead time for changes, failure rate, time to restore.",
+     "Are we delivering faster and more safely?", "Chasing speed and ignoring stability.", "Delivery Metrics & Tech Debt"),
+]
+
+
+def build_metrics_at_a_glance():
+    b = [header("Delivery Metrics at a Glance",
+                "What each delivery metric measures, the question it answers, and how it gets misused.",
+                "Manage Flow · Draws on Kanban flow metrics (Daniel Vacanti), the DORA research and Little's Law",
+                header_fields(["Team", "Date"]))]
+    gap = 12
+    cw, ch = (1632 - 4 * gap) / 5, 268
+    for i, (name, (dk, lt), what, ask, misuse, tool) in enumerate(METRICS):
+        cx, cy = 24 + (i % 5) * (cw + gap), 148 + (i // 5) * (ch + 14)
+        b.append(R(cx, cy, cw, ch, lt, 10, f' stroke="{dk}" stroke-opacity=".18" stroke-width="1.5" filter="url(#fc)"'))
+        b.append(top_round(cx, cy, cw, 44, 10, dk))
+        b.append(T(cx + 16, cy + 28, name, 15, "white", weight=600))
+        ty = cy + 68
+        b.append(T(cx + 14, ty, "MEASURES", 8, dk, MONO, weight=600, ls=".12em"))
+        wl = _wrap(what, cw - 28, 11)
+        b.append(para(cx + 14, ty + 18, wl, 11, INK, 16))
+        ty += 18 + len(wl) * 16 + 10
+        b.append(T(cx + 14, ty, "ASKS", 8, dk, MONO, weight=600, ls=".12em"))
+        ql = _wrap(f"“{ask}”", cw - 28, 13.5)
+        b.append(para(cx + 14, ty + 20, ql, 13.5, dk, 18, font=SERIF, italic=True))
+        ty += 20 + len(ql) * 18 + 8
+        b.append(T(cx + 14, ty, "MISUSED WHEN", 8, RED[0], MONO, weight=600, ls=".12em"))
+        ml = _wrap(misuse, cw - 28, 11)
+        b.append(para(cx + 14, ty + 18, ml, 11, INK, 16))
+        b.append(L(cx + 14, cy + ch - 40, cx + cw - 14, cy + ch - 40, dk, 1, ' stroke-opacity=".25"'))
+        b.append(f'<text x="{cx + 14:g}" y="{cy + ch - 18}" font-family="{SANS}" font-size="10.5" fill="{dk}">'
+                 f'<tspan font-family="{MONO}" font-size="8" font-weight="600" letter-spacing=".12em">IN THIS KIT</tspan>'
+                 f'<tspan fill-opacity="0">: </tspan><tspan x="{cx + 84:g}" font-weight="600">{escape(tool)}</tspan></text>')
+
+    y, h = 716, 344
+    w3 = (1632 - 28) / 3
+    x = 24
+    d = SKY[0]
+    b.append(panel(x, y, w3, h, None, "Little's Law", SKY, "WHY LIMITING WIP SPEEDS THINGS UP"))
+    b.append(T(x + w3 / 2, y + 104, "Cycle time = WIP / Throughput", 22, d, SERIF, anchor="middle"))
+    b.append(T(x + w3 / 2, y + 128, "(average items in progress / average items finished per week)", 10, MUTED, anchor="middle"))
+    b.append(para(x + 18, y + 168, ["20 items in progress / 5 finished a week", "= about 4 weeks for each item."], 12, INK, 18))
+    b.append(para(x + 18, y + 222, ["Halve the work in progress to 10, at the same", "throughput, and items take about 2 weeks."], 12, d, 18, weight=600))
+    b.append(T(x + 18, y + h - 22, "Holds for averages over a stable period. From queueing theory (John Little, 1961).",
+               10, d, italic=True, op=".88"))
+
+    x = 24 + w3 + 14
+    d = FOREST[0]
+    b.append(panel(x, y, w3, h, None, "Which Metric for Which Question?", FOREST, "START WITH THE QUESTION"))
+    qs = [("When will it be done?", "throughput, as a forecast range"),
+          ("What's stuck right now?", "work item age"),
+          ("Why is it slow?", "flow efficiency, cumulative flow"),
+          ("What can we promise?", "85th percentile cycle time"),
+          ("How much fits next?", "velocity or throughput"),
+          ("Are releases safe?", "change failure rate, time to restore")]
+    for i, (q, m) in enumerate(qs):
+        ty = y + 86 + i * 38
+        b.append(f'<text x="{x + 18:g}" y="{ty}" font-family="{SANS}" font-size="12" fill="{d}">'
+                 f'<tspan font-weight="600">{escape(q)}</tspan><tspan fill-opacity="0">: </tspan>'
+                 f'<tspan x="{x + 206:g}" fill="{INK}" font-size="11.5">{escape(m)}</tspan></text>')
+
+    x = 24 + 2 * (w3 + 14)
+    d = RED[0]
+    b.append(panel(x, y, w3, h, None, "Use Metrics Well", RED, "GOODHART'S LAW APPLIES"))
+    rules = [("Teams, never individuals", "Personal metrics get gamed and hurt teamwork."),
+             ("Ranges, not single numbers", "“13–20 June” is honest; “15 June” isn't."),
+             ("Trends, not snapshots", "One iteration tells you little; six tell a story."),
+             ("Speed with quality", "Pair every speed measure with a quality one."),
+             ("Questions, not targets", "When a measure becomes a target, it stops measuring.")]
+    for i, (name, line) in enumerate(rules):
+        ty = y + 86 + i * 46
+        b.append(T(x + 18, ty, name, 12.5, d, weight=600))
+        b.append(T(x + 18, ty + 18, line, 11, INK))
+
+    b.append(footer("Which metric would tell us most about our biggest problem right now?",
+                    "Which of our measures has quietly become a target?", FLOW_TAG))
+    write_board("metrics-at-a-glance-poster", "Delivery Metrics at a Glance",
+                "A3 landscape reference poster of delivery metrics: velocity, throughput, cycle time, lead time, work item "
+                "age, work in progress, flow efficiency, cumulative flow, burn-up and burndown, and the DORA four, each with "
+                "what it measures, the question it answers and how it's misused; Little's Law; which metric answers which "
+                "question; and rules for using metrics well.", "\n".join(b))
+
+
 # ---------------------------------------------------------------- waste walk
 
 def build_waste_walk():
@@ -9164,5 +9268,6 @@ if __name__ == "__main__":
     build_devops_principles()
     build_slo_error_budget()
     build_product_operating_model()
+    build_metrics_at_a_glance()
     for make in EXAMPLES.values():   # worked examples read the blank boards, so they run last
         make()

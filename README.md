@@ -109,6 +109,7 @@ Board files are in `boards/` (an `.html` page and an `.svg`), guides in `guides/
 | Buffering & Swarming | `buffering-swarming-board` | `facilitator-guide-buffering-swarming.html` |
 | Kanban Board Design | `kanban-board-design` | `facilitator-guide-kanban-board-design.html` |
 | Ageing WIP & SLE | `ageing-wip-board` | `facilitator-guide-ageing-wip.html` |
+| Delivery Metrics at a Glance poster | `metrics-at-a-glance-poster` | `facilitator-guide-metrics-at-a-glance.html` |
 | Blocker Clustering | `blocker-clustering-board` | `facilitator-guide-blocker-clustering.html` |
 | Skills Matrix | `skills-matrix-board` | `facilitator-guide-skills-matrix.html` |
 | Impediments Board | `impediments-board` | `facilitator-guide-impediments.html` |
@@ -129,7 +130,7 @@ The home page groups tools by what you're trying to do. No one framework is assu
 | Decide what to build | Product Vision Board, Persona & Journey Map, Opportunity Solution Tree, Impact Map, Prioritisation Board, Now · Next · Later Roadmap, Product Bet Canvas, Design Sprint |
 | Break down work | Epic Breakdown Canvas, User Story Map, Story Splitting, Example Mapping, Backlog Item Anatomy, Estimation |
 | Run events & iterations | Events & Cadences poster, Sprint Planning, Daily Sync, Backlog Refinement, Sprint Review |
-| Manage flow | Lean Principles, Waste Walk, Kanban Board Design, Kanban Cadences, Ageing WIP & SLE, Buffering & Swarming, Blocker Clustering, Impediments Board, Value Stream Map |
+| Manage flow | Lean Principles, Waste Walk, Kanban Board Design, Kanban Cadences, Ageing WIP & SLE, Delivery Metrics at a Glance, Buffering & Swarming, Blocker Clustering, Impediments Board, Value Stream Map |
 | Engineering practices | SDLC at a Glance, Delivery Pipeline Canvas, Test Strategy, Release Readiness & Strategy, Continuous Delivery Health Check, DevOps Principles, SLOs & Error Budgets, Pairing & Mobbing, Delivery Metrics & Tech Debt, Architecture Decision Record, Event Storming, Blameless Incident Review |
 | Reflect & improve | Retrospective Kit, Team Health Check, Psychological Safety Check, Anti-Pattern Spotter, Marginal Gains Workshop, 1% Experiment Canvas, Root Cause Analysis, A3 Problem-Solving |
 | Run a project | Right-Size Your Structure, Project Kickoff, Delivery Approach, Stakeholder Map, Pre-mortem, RAID Log, RACI & Decision Log, Release Forecast & Burn-up, Outcome Status Report, Project Close-out |
