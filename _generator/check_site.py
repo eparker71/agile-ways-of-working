@@ -207,7 +207,7 @@ def check_cheat_sheets():
 
 CONTRAST_PAGES = ["index.html", "boards/sprint-planning-board.html", "guides/facilitator-guide-sprint-planning.html",
                   "guides/facilitator-guide-marginal-gains.html", "examples/worked-example-adr-board.html", "scrum-master-agile-coach-cheat-sheet.html", "jira-cheat-sheet.html", "azure-devops-cheat-sheet.html",
-                  "glossary.html", "start-here-by-role.html", "scenarios.html", "anti-patterns.html", "workshop-recipes.html",
+                  "glossary.html", "start-here-by-role.html", "scenarios.html", "anti-patterns.html", "workshop-recipes.html", "reports-by-role.html",
                   "print-pack.html", "about.html", "make-it-yours.html", "404.html"]
 
 CONTRAST_JS = r"""<!doctype html><html><head><meta charset="utf-8"></head><body><iframe id="f" style="width:1300px;height:900px;border:0"></iframe><script>

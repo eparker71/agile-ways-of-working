@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reports by Role</title>
+<!-- meta -->
+<meta name="description" content="One report for each role in the role guide : the question it answers, who it&#x27;s for, what goes in it, an example filled in for the fictional Basket team , and an AI prompt to build it from your…">
+<link rel="canonical" href="https://eparker71.github.io/agile-ways-of-working/reports-by-role.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agile Ways of Working Toolkit">
+<meta property="og:title" content="Reports by Role · Agile Ways of Working Toolkit">
+<meta property="og:description" content="One report for each role in the role guide : the question it answers, who it&#x27;s for, what goes in it, an example filled in for the fictional Basket team , and an AI prompt to build it from your…">
+<meta property="og:url" content="https://eparker71.github.io/agile-ways-of-working/reports-by-role.html">
+<meta property="og:image" content="https://eparker71.github.io/agile-ways-of-working/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script data-goatcounter="https://eparker71.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- /meta -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{--accent:#eb6c36;--navy:#0C1A2E;--ink:#1E293B;--muted:#5B6B82;--rule:#E2E8F0;}
+*{box-sizing:border-box;}
+html,body{margin:0;background:#F1F5F9;}
+body{font-family:'Geist',Inter,system-ui,sans-serif;color:var(--ink);font-size:14px;line-height:1.55;}
+header{background:var(--navy);border-top:4px solid var(--accent);color:#fff;padding:36px 16px 26px;}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px;}
+h1{font:400 44px/1.05 'Instrument Serif',Georgia,serif;margin:0 0 8px;}
+header p{color:#94A3B8;margin:0 0 12px;max-width:780px;}
+header p a{color:#FDBA74;}
+header a.back{color:#94A3B8;font:500 11px 'Geist Mono',monospace;letter-spacing:.06em;}
+nav.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+nav.chips a{color:#fff;text-decoration:none;font-size:12.5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:4px 11px;}
+nav.chips a:hover{background:#C2410C;}
+main{padding:20px 0 48px;}
+.rules{background:#FFF7ED;border:1px solid #FED7AA;border-radius:10px;padding:14px 20px;margin:0 0 16px;}
+.rules h2{font:600 13px 'Geist',sans-serif;margin:0 0 6px;color:#9A3412;}
+.rules ul{margin:0;padding-left:18px;}
+.rules li{margin:2px 0;}
+.rp{background:#fff;border:1px solid var(--rule);border-left:4px solid #0C4A6E;border-radius:10px;padding:18px 22px;margin:0 0 14px;scroll-margin-top:12px;}
+.rp .role{font:600 9.5px 'Geist Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#0C4A6E;margin:0;}
+.rp h2{font:400 26px/1.15 'Instrument Serif',Georgia,serif;margin:2px 0 2px;}
+.rp .q{font:italic 17px/1.35 'Instrument Serif',Georgia,serif;color:#0C4A6E;margin:0 0 10px;}
+.cols{display:grid;grid-template-columns:5fr 6fr;gap:6px 26px;}
+.cols p{margin:0;}
+.cols ul{margin:0;padding-left:18px;}
+.lbl{font:600 9.5px 'Geist Mono',monospace !important;letter-spacing:.12em;text-transform:uppercase;color:#9A3412;margin:10px 0 3px !important;}
+.tools a{color:var(--ink);font-weight:500;}
+.ex{margin:8px 0 0;background:#F8FAFC;border:1px solid var(--rule);border-radius:8px;padding:12px 14px;align-self:start;}
+.ex .tag{font:600 9px 'Geist Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 6px;}
+.ex .eh{font-weight:600;font-size:13px;margin:0;}
+.ex .hl{font:italic 15.5px/1.35 'Instrument Serif',Georgia,serif;margin:4px 0 8px;}
+.ex table{width:100%;border-collapse:collapse;font-size:12.5px;}
+.ex th,.ex td{text-align:left;vertical-align:top;padding:5px 6px;border-top:1px solid var(--rule);}
+.ex th{font-weight:500;width:36%;}
+.ex td:last-child{color:var(--muted);}
+@media (min-width:761px){.ex td:nth-child(2){white-space:nowrap;}}
+.ex .nx{font-size:12.5px;margin:8px 0 0;padding-top:8px;border-top:1px solid var(--rule);}
+.pr{margin-top:6px;}
+.pr pre{white-space:pre-wrap;font:12.5px/1.5 'Geist Mono',monospace;background:#F8FAFC;border:1px solid var(--rule);border-radius:6px;padding:10px 12px;margin:0 0 8px;}
+button{font:500 12.5px 'Geist',system-ui,sans-serif;color:#fff;background:#0C1A2E;border:0;border-radius:999px;padding:6px 13px;cursor:pointer;}
+button:hover{background:#C2410C;}
+.watch{margin:10px 0 4px;font-size:13px;}
+.watch b{color:#9A3412;}
+.more{margin:0;font-size:13px;}
+.more a{color:#9A3412;}
+.note{background:#fff;border:1px solid var(--rule);border-radius:8px;padding:14px 18px;margin-top:22px;font-size:13px;}
+.note a{color:#9A3412;}
+footer{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-align:center;padding:0 16px 32px;}
+@media (max-width:760px){.cols{grid-template-columns:1fr;} .ex th{width:auto;}}
+@media print{header{padding:16px;} nav.chips,button{display:none;} .rp{break-inside:avoid;}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="back" href="index.html">← All tools</a>
+  <h1>Reports by Role</h1>
+  <p>One report for each role in the <a href="start-here-by-role.html">role guide</a>: the question it answers, who it's for, what goes in it, an example filled in for the fictional <a href="basket-team-story.html">Basket team</a>, and an AI prompt to build it from your Jira, Azure DevOps or Confluence data with Atlassian Rovo, Microsoft Copilot or a similar assistant. More everyday prompts are in the <a href="prompt-library.html">Prompt Library</a>.</p>
+  <nav class="chips" aria-label="Roles"><a href="#sm">Scrum Master</a><a href="#coach">Agile Coach</a><a href="#po">Product Owner</a><a href="#product">Product Manager</a><a href="#pm">Project Manager</a><a href="#program">Program Manager</a><a href="#rte">Release Train Engineer</a><a href="#portfolio">Portfolio Manager</a><a href="#leader">Executive</a><a href="#eng">Engineering Manager</a><a href="#ux">Designer</a><a href="#team">Team Member</a></nav>
+</div></header>
+<main><div class="wrap">
+<div class="rules">
+  <h2>Before you send an AI-drafted report</h2>
+  <ul>
+    <li><b>Check the numbers.</b> AI assistants can miscount or misread fields. Every prompt asks for the query and the counts behind each figure, so check them.</li>
+    <li><b>Keep it to teams.</b> Report on teams and outcomes, never individuals, and don't compare teams' velocity.</li>
+    <li><b>Use approved tools.</b> Only share work data with AI tools your organisation allows. Assistants built into your tools, such as Rovo in Jira and Confluence or Copilot in Azure DevOps and Microsoft 365, can read the data where it lives; otherwise, export what you need and paste it in.</li>
+    <li><b>Make it yours.</b> The AI drafts; you decide what it says. Read it as your audience would before it goes out.</li>
+  </ul>
+</div>
+<section class="rp" id="sm">
+  <p class="role">Scrum Master / Delivery Lead</p>
+  <h2>Iteration report</h2>
+  <p class="q">“Did we meet the iteration goal, and what got in the way?”</p>
+  <div class="cols">
+    <div>
+      <p class="lbl">Who it's for</p><p>The team, the product owner and interested stakeholders</p>
+      <p class="lbl">How often</p><p>At the end of each iteration, before the retro</p>
+      <p class="lbl">What goes in it</p><ul><li>The goal, and whether it was met</li><li>Items finished, carried over and added mid-iteration</li><li>Blocked time, and what caused it</li><li>Progress on the last retro&#x27;s actions</li></ul>
+      <p class="lbl">Draws on</p><p class="tools"><a href="boards/sprint-review-board.html">Sprint Review</a> · <a href="boards/blocker-clustering-board.html">Blocker Clustering</a> · <a href="boards/retro-board-start-stop-continue.html">Retrospective Kit</a> · <a href="boards/ageing-wip-board.html">Ageing WIP &amp; SLE</a></p>
+    </div>
+    <figure class="ex" aria-label="Example: Iteration report for the Basket team">
+      <p class="tag">Example · fictional Basket team</p>
+      <p class="eh">Basket team · Sprint 18 · 28 April – 9 May</p>
+      <p class="hl">Goal partly met: one-tap reorder and flagging shipped; substitutes wait on the Stock API.</p>
+      <table><tr><th scope="row">Items finished</th><td><b>6 of 8 planned</b></td><td>plus 1 added mid-iteration</td></tr><tr><th scope="row">Carried over</th><td><b>2</b></td><td>substitutes, split into two stories</td></tr><tr><th scope="row">Blocked days</th><td><b>11</b></td><td>8 of them waiting on the Stock API</td></tr><tr><th scope="row">Oldest item in progress</th><td><b>12 days</b></td><td>out-of-stock rules; our SLE is 9 days</td></tr><tr><th scope="row">Last retro&#x27;s actions</th><td><b>2 of 3 done</b></td><td>silent writing still to try</td></tr></table>
+      <p class="nx">Next: swarm on the Stock API work, and Example Mapping before Sprint 19 planning.</p>
+    </figure>
+  </div>
+  <div class="pr">
+    <p class="lbl">Prompt to build it</p>
+    <pre>Using the Jira or Azure DevOps project [KEY] and the iteration [name or dates], draft an iteration report for the team and stakeholders. Include: the iteration goal and whether it was met, saying how you judged it; items planned, finished, carried over and added mid-iteration; days items spent blocked or flagged, grouped by cause; the oldest item still in progress and its age; and the status of the last retrospective&#x27;s actions: [paste or link]. Keep it to one page, at team level, in plain language. Show the query or filter you used (for example, the JQL) and the count behind each figure, so I can check them. List any assumptions you made, and ask me questions if anything is unclear.</pre>
+    <button type="button" onclick="(function(b){var t=b.parentNode.querySelector(&#x27;pre&#x27;).textContent;navigator.clipboard.writeText(t).then(function(){var o=b.textContent;b.textContent=&#x27;Copied ✓&#x27;;setTimeout(function(){b.textContent=o},2000)})})(this)">Copy prompt</button>
+    <p class="watch"><b>Watch out:</b> Don&#x27;t report velocity as a score. Carry-over is information for planning, not a failure to explain away.</p>
+    <p class="more"><a href="start-here-by-role.html#sm">More tools for this role →</a></p>
+  </div>
+</section>
+<section class="rp" id="coach">
+  <p class="role">Agile Coach</p>
+  <h2>Team health trends</h2>
+  <p class="q">“Is the team getting healthier, and are our experiments working?”</p>
+  <div class="cols">
+    <div>
+      <p class="lbl">Who it's for</p><p>The team, and their manager if the team agrees</p>
+      <p class="lbl">How often</p><p>Each quarter, after the health check</p>
+      <p class="lbl">What goes in it</p><ul><li>Each health check area, with its trend since last time</li><li>Signs of psychological safety</li><li>Experiments tried, and what they showed</li><li>One or two areas to focus on next</li></ul>
+      <p class="lbl">Draws on</p><p class="tools"><a href="boards/team-health-check-board.html">Team Health Check</a> · <a href="boards/psych-safety-board.html">Psychological Safety Check</a> · <a href="boards/experiment-canvas.html">1% Experiment Canvas</a> · <a href="boards/marginal-gains-workshop-board.html">Marginal Gains Workshop</a></p>
+    </div>
+    <figure class="ex" aria-label="Example: Team health trends for the Basket team">
+      <p class="tag">Example · fictional Basket team</p>
+      <p class="eh">Basket team · Q2 so far · 9 May</p>
+      <p class="hl">Delivery is improving; waiting on other teams and quiet voices in meetings are the things to work on.</p>
+      <table><tr><th scope="row">Releases</th><td><b>improving</b></td><td>self-service deploys since April</td></tr><tr><th scope="row">Waiting on other teams</th><td><b>still a problem</b></td><td>3 items blocked on Platform and Payments</td></tr><tr><th scope="row">Speaking up</th><td><b>mixed</b></td><td>problems raised one to one, not in the room</td></tr><tr><th scope="row">Example Mapping</th><td><b>kept</b></td><td>rework fell from 4 in 9 stories to 1 in 10</td></tr><tr><th scope="row">Counting items</th><td><b>running</b></td><td>a two-iteration trial instead of story points</td></tr></table>
+      <p class="nx">Focus next: dependency waits, through the cross-team sync, and silent writing in retros.</p>
+    </figure>
+  </div>
+  <div class="pr">
+    <p class="lbl">Prompt to build it</p>
+    <pre>Here are our team health check results for the last [two or three] rounds: [paste results or link the Confluence page], and notes from our experiments: [paste]. Summarise how each area has moved and why, what each experiment showed against its measure, and suggest one or two areas to focus on next, with a small experiment for each. Quote the team&#x27;s own words where they help, without identifying anyone. Show the query or filter you used (for example, the JQL) and the count behind each figure, so I can check them. List any assumptions you made, and ask me questions if anything is unclear.</pre>
+    <button type="button" onclick="(function(b){var t=b.parentNode.querySelector(&#x27;pre&#x27;).textContent;navigator.clipboard.writeText(t).then(function(){var o=b.textContent;b.textContent=&#x27;Copied ✓&#x27;;setTimeout(function(){b.textContent=o},2000)})})(this)">Copy prompt</button>
+    <p class="watch"><b>Watch out:</b> Health checks are the team&#x27;s data. Share the trends only with the team&#x27;s agreement, and never turn the scores into a target.</p>
+    <p class="more"><a href="start-here-by-role.html#coach">More tools for this role →</a></p>
+  </div>
+</section>
+<section class="rp" id="po">
+  <p class="role">Product Owner</p>
+  <h2>Outcome and backlog report</h2>
+  <p class="q">“Are we moving the outcome, and is the backlog ready for what&#x27;s next?”</p>
+  <div class="cols">
+    <div>
+      <p class="lbl">Who it's for</p><p>Stakeholders and the team</p>
+      <p class="lbl">How often</p><p>Each iteration, at the review</p>
+      <p class="lbl">What goes in it</p><ul><li>The outcome measures against their targets</li><li>What shipped, and what we learned from users</li><li>How much of the backlog is ready, and how old it is</li><li>What&#x27;s coming next, and why</li></ul>
+      <p class="lbl">Draws on</p><p class="tools"><a href="boards/sprint-review-board.html">Sprint Review</a> · <a href="boards/backlog-refinement-board.html">Backlog Refinement</a> · <a href="boards/backlog-anatomy-poster.html">Backlog Item Anatomy</a> · <a href="boards/value-metrics-board.html">Value Metrics</a></p>
+    </div>
+    <figure class="ex" aria-label="Example: Outcome and backlog report for the Basket team">
+      <p class="tag">Example · fictional Basket team</p>
+      <p class="eh">Reorder made easy · 9 May</p>
+      <p class="hl">Repeat orders are up from 22% to 25%; the next two iterations are ready, with substitutes first.</p>
+      <table><tr><th scope="row">Weekly repeat orders</th><td><b>25%</b></td><td>from 22%; target 30% by the end of June</td></tr><tr><th scope="row">Median basket time</th><td><b>21 min</b></td><td>from 38; target 10</td></tr><tr><th scope="row">Ready for the next two iterations</th><td><b>9 items</b></td><td>refined, with acceptance criteria</td></tr><tr><th scope="row">Backlog items over 6 months old</th><td><b>14</b></td><td>to review at the next refinement</td></tr><tr><th scope="row">Stakeholder requests</th><td><b>4</b></td><td>a margin check for substitutes added</td></tr></table>
+      <p class="nx">Next: substitutes, once the Stock API arrives, then order history in a smaller first slice.</p>
+    </figure>
+  </div>
+  <div class="pr">
+    <p class="lbl">Prompt to build it</p>
+    <pre>Using the Jira or Azure DevOps project [KEY], draft a product owner&#x27;s report for this iteration&#x27;s review. Include: our outcome measures [list them with baselines and targets, or paste the latest figures]; the items finished this iteration and what each was for; how many backlog items meet our Definition of Ready [paste it] for the next two iterations; how many backlog items are more than six months old; and the next five items in order, with a line on why each. End with any decisions I need from stakeholders. Show the query or filter you used (for example, the JQL) and the count behind each figure, so I can check them. List any assumptions you made, and ask me questions if anything is unclear.</pre>
+    <button type="button" onclick="(function(b){var t=b.parentNode.querySelector(&#x27;pre&#x27;).textContent;navigator.clipboard.writeText(t).then(function(){var o=b.textContent;b.textContent=&#x27;Copied ✓&#x27;;setTimeout(function(){b.textContent=o},2000)})})(this)">Copy prompt</button>
+    <p class="watch"><b>Watch out:</b> Outcomes first, output second. A long list of finished items says little about whether customers are better off.</p>
+    <p class="more"><a href="start-here-by-role.html#po">More tools for this role →</a></p>
+  </div>
+</section>
+<section class="rp" id="product">
+  <p class="role">Product Manager</p>
+  <h2>Bet review</h2>
+  <p class="q">“Did the bet pay off, and should we continue, change course or stop?”</p>
+  <div class="cols">
+    <div>
+      <p class="lbl">Who it's for</p><p>Product leadership and sponsors</p>
+      <p class="lbl">How often</p><p>At each bet&#x27;s checkpoint</p>
+      <p class="lbl">What goes in it</p><ul><li>The hypothesis, and the go or stop rule agreed up front</li><li>What the test showed, against the rule</li><li>What we learned that we didn&#x27;t expect</li><li>The decision, and the next step</li></ul>
+      <p class="lbl">Draws on</p><p class="tools"><a href="boards/product-bet-canvas.html">Product Bet Canvas</a> · <a href="boards/opportunity-solution-tree-board.html">Opportunity Solution Tree</a> · <a href="boards/design-sprint-board.html">Design Sprint</a> · <a href="boards/roadmap-board.html">Now · Next · Later Roadmap</a></p>
+    </div>
+    <figure class="ex" aria-label="Example: Bet review for the Basket team">
+      <p class="tag">Example · fictional Basket team</p>
+      <p class="eh">Staples subscription · 16 June</p>
+      <p class="hl">Continue to a pilot: 37 of 50 customers (74%) kept the manual subscription for four weeks, above the 70% go rule.</p>
+      <table><tr><th scope="row">Go rule</th><td><b>70% keep it for 4 weeks</b></td><td>agreed on 14 April</td></tr><tr><th scope="row">Manual test</th><td><b>74% kept it</b></td><td>37 of 50 customers</td></tr><tr><th scope="row">Design sprint</th><td><b>4 of 5 set it up</b></td><td>but skipping a week was hard</td></tr><tr><th scope="row">Surprise</th><td><b>skipping matters</b></td><td>holidays and big shops break the routine</td></tr><tr><th scope="row">Decision</th><td><b>pilot in Q3</b></td><td>with skip-a-week; aim for 5,000 subscriptions</td></tr></table>
+      <p class="nx">Still to check: the £40k–£70k build cost against margins, with Finance.</p>
+    </figure>
+  </div>
+  <div class="pr">
+    <p class="lbl">Prompt to build it</p>
+    <pre>Here is our product bet: [paste the hypothesis, the test and the go or stop rule], and the results: [paste figures, or link the Confluence page or dashboard]. Write a one-page bet review: the hypothesis, what we tested and with whom, the results against the rule we agreed up front, anything surprising, and a recommendation to continue, change course or stop, with the next step and its cost. Flag where the evidence is thin. Show the query or filter you used (for example, the JQL) and the count behind each figure, so I can check them. List any assumptions you made, and ask me questions if anything is unclear.</pre>
+    <button type="button" onclick="(function(b){var t=b.parentNode.querySelector(&#x27;pre&#x27;).textContent;navigator.clipboard.writeText(t).then(function(){var o=b.textContent;b.textContent=&#x27;Copied ✓&#x27;;setTimeout(function(){b.textContent=o},2000)})})(this)">Copy prompt</button>
+    <p class="watch"><b>Watch out:</b> Judge the result against the rule you set before the test, not one invented afterwards. Moving the goalposts turns a bet into a plan.</p>
+    <p class="more"><a href="start-here-by-role.html#product">More tools for this role →</a></p>
+  </div>
+</section>
+<section class="rp" id="pm">
+  <p class="role">Project Manager</p>
+  <h2>Outcome status report</h2>
+  <p class="q">“Are we on track, and what do we need from our sponsors?”</p>
+  <div class="cols">
+    <div>
+      <p class="lbl">Who it's for</p><p>Sponsors and the steering group</p>
+      <p class="lbl">How often</p><p>Every two weeks, or monthly</p>
+      <p class="lbl">What goes in it</p><ul><li>A one-line headline and an honest status</li><li>Outcomes against their measures</li><li>A forecast as a range, with its assumptions</li><li>Top risks, and the decisions needed</li></ul>
+      <p class="lbl">Draws on</p><p class="tools"><a href="boards/status-report-board.html">Outcome Status Report</a> · <a href="boards/release-forecast-board.html">Release Forecast &amp; Burn-up</a> · <a href="boards/raid-log-board.html">RAID Log</a> · <a href="boards/stakeholder-map-board.html">Stakeholder Map</a></p>
+    </div>
+    <figure class="ex" aria-label="Example: Outcome status report for the Basket team">
+      <p class="tag">Example · fictional Basket team</p>
+      <p class="eh">Reorder made easy · 9 May · Amber</p>
+      <p class="hl">Reorder is live and repeat orders are up; substitutes are one iteration late.</p>
+      <table><tr><th scope="row">Weekly repeat orders</th><td><b>25%</b></td><td>from 22%; target 30%</td></tr><tr><th scope="row">Forecast</th><td><b>13–20 June</b></td><td>29 done, 14 left, scope still growing</td></tr><tr><th scope="row">Campaign date</th><td><b>30 June</b></td><td>fixed</td></tr><tr><th scope="row">Top risk</th><td><b>repeat billing</b></td><td>in the subscriptions pilot; owned by Payments</td></tr><tr><th scope="row">Dependency at risk</th><td><b>Stock API</b></td><td>two weeks late; substitutes wait on it</td></tr></table>
+      <p class="nx">Decision needed: the Stock API&#x27;s priority, agreed with Store Platform (Head of Digital, by 16 May).</p>
+    </figure>
+  </div>
+  <div class="pr">
+    <p class="lbl">Prompt to build it</p>
+    <pre>Using the Jira or Azure DevOps project [KEY], the RAID log at [link] and these notes: [paste], draft a one-page status report for the steering group. Include: a one-line headline and a status (green, amber or red) with the reason; our outcome measures against their targets; a delivery forecast as a range based on recent throughput, with its assumptions; what was delivered; the top three risks or issues with owners; and the decisions we need, from whom, by when. Show the query or filter you used (for example, the JQL) and the count behind each figure, so I can check them. List any assumptions you made, and ask me questions if anything is unclear.</pre>
+    <button type="button" onclick="(function(b){var t=b.parentNode.querySelector(&#x27;pre&#x27;).textContent;navigator.clipboard.writeText(t).then(function(){var o=b.textContent;b.textContent=&#x27;Copied ✓&#x27;;setTimeout(function(){b.textContent=o},2000)})})(this)">Copy prompt</button>
+    <p class="watch"><b>Watch out:</b> Don&#x27;t let the AI soften the message. If it&#x27;s amber, say so, and say what would make it green.</p>
+    <p class="more"><a href="start-here-by-role.html#pm">More tools for this role →</a></p>
+  </div>
+</section>
+<section class="rp" id="program">
+  <p class="role">Program Manager</p>
+  <h2>Programme roll-up</h2>
+  <p class="q">“Are the teams together moving our shared objectives, and where are they stuck?”</p>
+  <div class="cols">
+    <div>
+      <p class="lbl">Who it's for</p><p>Programme sponsors and team leads</p>
+      <p class="lbl">How often</p><p>Monthly</p>
+      <p class="lbl">What goes in it</p><ul><li>Each shared objective, with its key results</li><li>Progress and confidence for each objective</li><li>Cross-team dependencies and risks</li><li>Decisions and escalations</li></ul>
+      <p class="lbl">Draws on</p><p class="tools"><a href="boards/okr-board.html">Objectives &amp; Key Results</a> · <a href="boards/dependency-map-board.html">Dependency Map</a> · <a href="boards/cross-team-sync-board.html">Cross-Team Sync</a> · <a href="boards/raid-log-board.html">RAID Log</a></p>
+    </div>
+    <figure class="ex" aria-label="Example: Programme roll-up for the Basket team">
+      <p class="tag">Example · fictional Basket team</p>
+      <p class="eh">Basket group · Q2 · 9 May</p>
+      <p class="hl">Two of three objectives are on track; checkout is behind after the April outage.</p>
+      <table><tr><th scope="row">Effortless weekly shop</th><td><b>on track</b></td><td>repeat orders 25%, target 30%</td></tr><tr><th scope="row">Nobody forgets an item</th><td><b>at risk</b></td><td>substitutes wait on the Stock API</td></tr><tr><th scope="row">Quick, trustworthy checkout</th><td><b>behind</b></td><td>drop-off 17%, target 12%</td></tr><tr><th scope="row">Dependencies</th><td><b>5 across 6 teams</b></td><td>1 at risk: the Stock API</td></tr><tr><th scope="row">Escalations</th><td><b>1</b></td><td>the Stock API, raised at the sync on 6 May</td></tr></table>
+      <p class="nx">Ask: agree the Stock API&#x27;s priority with Store Platform&#x27;s manager this week.</p>
+    </figure>
+  </div>
+  <div class="pr">
+    <p class="lbl">Prompt to build it</p>
+    <pre>Using the Jira or Azure DevOps projects [KEYS] and our objectives and key results [paste or link], draft a monthly programme roll-up. For each objective: the latest key result figures against target, the teams contributing, and an on track, at risk or behind rating with the reason. Then list the cross-team dependencies that are late or at risk [from our dependency board or issue links], the top cross-team risks, and the decisions or escalations needed, with owners. Show the query or filter you used (for example, the JQL) and the count behind each figure, so I can check them. List any assumptions you made, and ask me questions if anything is unclear.</pre>
+    <button type="button" onclick="(function(b){var t=b.parentNode.querySelector(&#x27;pre&#x27;).textContent;navigator.clipboard.writeText(t).then(function(){var o=b.textContent;b.textContent=&#x27;Copied ✓&#x27;;setTimeout(function(){b.textContent=o},2000)})})(this)">Copy prompt</button>
+    <p class="watch"><b>Watch out:</b> Roll up outcomes, not activity. Don&#x27;t compare teams&#x27; throughput or velocity: their work isn&#x27;t the same size.</p>
+    <p class="more"><a href="start-here-by-role.html#program">More tools for this role →</a></p>
+  </div>
+</section>
+<section class="rp" id="rte">
+  <p class="role">Release Train Engineer / Chief Scrum Master</p>
+  <h2>Planning-period progress</h2>
+  <p class="q">“Midway through the planning period, will we meet the objectives we committed to?”</p>
+  <div class="cols">
+    <div>
+      <p class="lbl">Who it's for</p><p>The teams, product management and business owners</p>
+      <p class="lbl">How often</p><p>Every two weeks in the planning period</p>
+      <p class="lbl">What goes in it</p><ul><li>Each team&#x27;s objectives, and confidence now against confidence at planning</li><li>Dependencies done, due and late</li><li>Risks raised at planning, and their status</li><li>What needs to change before the next sync</li></ul>
+      <p class="lbl">Draws on</p><p class="tools"><a href="boards/cross-team-planning-board.html">Cross-Team Planning</a> · <a href="boards/cross-team-sync-board.html">Cross-Team Sync</a> · <a href="boards/dependency-map-board.html">Dependency Map</a> · <a href="boards/cross-team-retro-board.html">Cross-Team Retro</a></p>
+    </div>
+    <figure class="ex" aria-label="Example: Planning-period progress for the Basket team">
+      <p class="tag">Example · fictional Basket team</p>
+      <p class="eh">Five teams · Q2 · 16 May</p>
+      <p class="hl">Confidence has dropped from 4 to 3: one late dependency, the Stock API, is holding up two teams.</p>
+      <table><tr><th scope="row">Confidence vote</th><td><b>3 out of 5</b></td><td>it was 4 at planning on 1 April</td></tr><tr><th scope="row">Team objectives</th><td><b>11 of 14 on track</b></td><td>3 at risk, 2 of them waiting on stock data</td></tr><tr><th scope="row">Dependencies</th><td><b>3 done, 1 due, 1 late</b></td><td>late: the Stock API, by two weeks</td></tr><tr><th scope="row">Risks from planning</th><td><b>4 resolved, 2 open</b></td><td>repeat billing is still open</td></tr><tr><th scope="row">Release checks</th><td><b>agreed</b></td><td>at the sync on 6 May</td></tr></table>
+      <p class="nx">Before the next sync: Store Platform confirms a Stock API date; Basket keeps the replica fallback ready (ADR 007).</p>
+    </figure>
+  </div>
+  <div class="pr">
+    <p class="lbl">Prompt to build it</p>
+    <pre>Using the Jira or Azure DevOps projects [KEYS] for the teams in our planning period [dates], and the objectives each team committed to [paste or link], draft a progress report for the next cross-team sync. Include: each team&#x27;s objectives with a status; the confidence vote now and at planning [paste both]; cross-team dependencies that are done, due or late; the risks raised at planning and their status; and the two or three things that need to change before the next sync, with owners. Show the query or filter you used (for example, the JQL) and the count behind each figure, so I can check them. List any assumptions you made, and ask me questions if anything is unclear.</pre>
+    <button type="button" onclick="(function(b){var t=b.parentNode.querySelector(&#x27;pre&#x27;).textContent;navigator.clipboard.writeText(t).then(function(){var o=b.textContent;b.textContent=&#x27;Copied ✓&#x27;;setTimeout(function(){b.textContent=o},2000)})})(this)">Copy prompt</button>
+    <p class="watch"><b>Watch out:</b> Confidence is the teams&#x27; call, not the AI&#x27;s. Ask the teams to vote, and don&#x27;t let a report guess it from ticket counts.</p>
+    <p class="more"><a href="start-here-by-role.html#rte">More tools for this role →</a></p>
+  </div>
+</section>
+<section class="rp" id="portfolio">
+  <p class="role">Portfolio Manager / PMO</p>
+  <h2>Portfolio view</h2>
+  <p class="q">“Are we working on the right things, and not too many at once?”</p>
+  <div class="cols">
+    <div>
+      <p class="lbl">Who it's for</p><p>The portfolio board and investment owners</p>
+      <p class="lbl">How often</p><p>Monthly or quarterly</p>
+      <p class="lbl">What goes in it</p><ul><li>Initiatives by stage, against the WIP limits</li><li>The investment mix: agreed against actual</li><li>Value delivered against the expected outcomes</li><li>Proposals to start, stop or change</li></ul>
+      <p class="lbl">Draws on</p><p class="tools"><a href="boards/portfolio-kanban-board.html">Portfolio Kanban &amp; Investment Mix</a> · <a href="boards/value-metrics-board.html">Value Metrics</a> · <a href="boards/okr-board.html">Objectives &amp; Key Results</a> · <a href="boards/right-size-poster.html">Right-Size Your Structure</a></p>
+    </div>
+    <figure class="ex" aria-label="Example: Portfolio view for the Basket team">
+      <p class="tag">Example · fictional Basket team</p>
+      <p class="eh">Online grocery · 6 May</p>
+      <p class="hl">Twelve initiatives on the board, and the investment mix has drifted away from new bets and tech debt.</p>
+      <table><tr><th scope="row">New bets</th><td><b>10%</b></td><td>agreed 15%</td></tr><tr><th scope="row">Technical debt</th><td><b>10%</b></td><td>agreed 15%</td></tr><tr><th scope="row">Growing what we have</th><td><b>55%</b></td><td>agreed 45%</td></tr><tr><th scope="row">Reorder made easy</th><td><b>on track</b></td><td>repeat orders 25% of a 30% target</td></tr><tr><th scope="row">Staples subscriptions</th><td><b>ready to start</b></td><td>lean case approved; waiting for a team</td></tr></table>
+      <p class="nx">Decision: finish or pause one initiative in delivery before starting subscriptions.</p>
+    </figure>
+  </div>
+  <div class="pr">
+    <p class="lbl">Prompt to build it</p>
+    <pre>Using our portfolio board [link] and the investment mix we agreed [paste], draft a portfolio report. Show: the number of initiatives at each stage against its WIP limit; the investment mix agreed against actual [from effort, cost or team allocation: say which]; expected against actual outcomes for initiatives in delivery or recently finished; and proposals to start, stop or change, with the reasoning for each. Show the query or filter you used (for example, the JQL) and the count behind each figure, so I can check them. List any assumptions you made, and ask me questions if anything is unclear.</pre>
+    <button type="button" onclick="(function(b){var t=b.parentNode.querySelector(&#x27;pre&#x27;).textContent;navigator.clipboard.writeText(t).then(function(){var o=b.textContent;b.textContent=&#x27;Copied ✓&#x27;;setTimeout(function(){b.textContent=o},2000)})})(this)">Copy prompt</button>
+    <p class="watch"><b>Watch out:</b> Count started work honestly. Starting more initiatives rarely makes any of them finish sooner.</p>
+    <p class="more"><a href="start-here-by-role.html#portfolio">More tools for this role →</a></p>
+  </div>
+</section>
+<section class="rp" id="leader">
+  <p class="role">Executive / Sponsor</p>
+  <h2>One-page executive brief</h2>
+  <p class="q">“Is the work delivering the outcomes we&#x27;re paying for, and what do you need from me?”</p>
+  <div class="cols">
+    <div>
+      <p class="lbl">Who it's for</p><p>Executives and sponsors</p>
+      <p class="lbl">How often</p><p>Monthly</p>
+      <p class="lbl">What goes in it</p><ul><li>Outcomes against strategy, in three lines</li><li>The biggest risk, and what&#x27;s being done</li><li>What&#x27;s changed since last month</li><li>What we need from leadership</li></ul>
+      <p class="lbl">Draws on</p><p class="tools"><a href="boards/value-metrics-board.html">Value Metrics</a> · <a href="boards/status-report-board.html">Outcome Status Report</a> · <a href="boards/okr-board.html">Objectives &amp; Key Results</a> · <a href="boards/portfolio-kanban-board.html">Portfolio Kanban &amp; Investment Mix</a></p>
+    </div>
+    <figure class="ex" aria-label="Example: One-page executive brief for the Basket team">
+      <p class="tag">Example · fictional Basket team</p>
+      <p class="eh">Basket group · May</p>
+      <p class="hl">Repeat orders are up from 22% to 25% since reorder launched; we need help with one dependency.</p>
+      <table><tr><th scope="row">Repeat orders</th><td><b>25%</b></td><td>target 30% by the end of June</td></tr><tr><th scope="row">Lead time</th><td><b>12 days</b></td><td>target 7; releases wait for sign-off</td></tr><tr><th scope="row">Want subscriptions</th><td><b>31% of visitors</b></td><td>a need we don&#x27;t serve yet; being tested</td></tr><tr><th scope="row">Biggest risk</th><td><b>Stock API</b></td><td>two weeks late; substitutes depend on it</td></tr><tr><th scope="row">Ask</th><td><b>one decision</b></td><td>the Stock API&#x27;s priority, by 16 May</td></tr></table>
+      <p class="nx">Also watch: Finance&#x27;s concern about substitute margins; a margin check is in the backlog.</p>
+    </figure>
+  </div>
+  <div class="pr">
+    <p class="lbl">Prompt to build it</p>
+    <pre>Using these sources [our status reports, OKR updates and value metrics: links or paste], write a one-page brief for the executive team. Start with a two-sentence summary. Then: progress on our outcomes against strategy, in three lines at most; the single biggest risk and what&#x27;s being done about it; what&#x27;s changed since last month; and up to three specific asks of leadership, each with a deadline. No jargon, and no ticket-level detail. Show the query or filter you used (for example, the JQL) and the count behind each figure, so I can check them. List any assumptions you made, and ask me questions if anything is unclear.</pre>
+    <button type="button" onclick="(function(b){var t=b.parentNode.querySelector(&#x27;pre&#x27;).textContent;navigator.clipboard.writeText(t).then(function(){var o=b.textContent;b.textContent=&#x27;Copied ✓&#x27;;setTimeout(function(){b.textContent=o},2000)})})(this)">Copy prompt</button>
+    <p class="watch"><b>Watch out:</b> The asks matter most. If there are none, say so, rather than inventing work for leaders.</p>
+    <p class="more"><a href="start-here-by-role.html#leader">More tools for this role →</a></p>
+  </div>
+</section>
+<section class="rp" id="eng">
+  <p class="role">Engineering Manager / Tech Lead</p>
+  <h2>Delivery and quality report</h2>
+  <p class="q">“Are we delivering faster and more safely, and where is quality slipping?”</p>
+  <div class="cols">
+    <div>
+      <p class="lbl">Who it's for</p><p>Engineering leads and the team</p>
+      <p class="lbl">How often</p><p>Monthly</p>
+      <p class="lbl">What goes in it</p><ul><li>The four key metrics, with their trends</li><li>Incidents, and reliability against SLOs</li><li>Pipeline waits and flaky tests</li><li>Technical debt: what&#x27;s growing, and what&#x27;s being paid down</li></ul>
+      <p class="lbl">Draws on</p><p class="tools"><a href="boards/delivery-metrics-board.html">Delivery Metrics &amp; Tech Debt</a> · <a href="boards/cd-health-check-board.html">Continuous Delivery Health Check</a> · <a href="boards/slo-error-budget-board.html">SLOs &amp; Error Budgets</a> · <a href="boards/incident-review-board.html">Blameless Incident Review</a></p>
+    </div>
+    <figure class="ex" aria-label="Example: Delivery and quality report for the Basket team">
+      <p class="tag">Example · fictional Basket team</p>
+      <p class="eh">Checkout and Basket · 14 May</p>
+      <p class="hl">Faster and more stable since self-service deploys; flaky tests and monitoring are the gaps.</p>
+      <table><tr><th scope="row">Deployment frequency</th><td><b>3 a week</b></td><td>from 2; aiming for daily</td></tr><tr><th scope="row">Lead time for changes</th><td><b>7 days</b></td><td>from 12; aiming for under 2</td></tr><tr><th scope="row">Change failure rate</th><td><b>12%</b></td><td>from 18%; aiming for under 10%</td></tr><tr><th scope="row">Time to restore</th><td><b>4 hours</b></td><td>from 6; aiming for under 1</td></tr><tr><th scope="row">CD health check</th><td><b>39 out of 60</b></td><td>up from 33 in February</td></tr></table>
+      <p class="nx">Pay down first: the 6 flaky reorder tests (Ravi, end of Sprint 19) and alerts on payment errors (Platform).</p>
+    </figure>
+  </div>
+  <div class="pr">
+    <p class="lbl">Prompt to build it</p>
+    <pre>Using our deployment pipeline [name it], incident tickets in [project KEY] and our SLO dashboard [link], draft a monthly delivery and quality report for the team. Include: the four key metrics (deployment frequency, lead time for changes, change failure rate and time to restore) for this month and the last three; incidents, and the error budget used; where changes wait longest in the pipeline; flaky or slow tests; and the technical debt that grew or was paid down. Say how each figure was calculated. Show the query or filter you used (for example, the JQL) and the count behind each figure, so I can check them. List any assumptions you made, and ask me questions if anything is unclear.</pre>
+    <button type="button" onclick="(function(b){var t=b.parentNode.querySelector(&#x27;pre&#x27;).textContent;navigator.clipboard.writeText(t).then(function(){var o=b.textContent;b.textContent=&#x27;Copied ✓&#x27;;setTimeout(function(){b.textContent=o},2000)})})(this)">Copy prompt</button>
+    <p class="watch"><b>Watch out:</b> These are team and system measures. Never break them down by person, or people will start gaming them.</p>
+    <p class="more"><a href="start-here-by-role.html#eng">More tools for this role →</a></p>
+  </div>
+</section>
+<section class="rp" id="ux">
+  <p class="role">Designer / Business Analyst</p>
+  <h2>Discovery summary</h2>
+  <p class="q">“What have we learned about users, and what does it change?”</p>
+  <div class="cols">
+    <div>
+      <p class="lbl">Who it's for</p><p>The product trio, the team and stakeholders</p>
+      <p class="lbl">How often</p><p>After each round of research or testing</p>
+      <p class="lbl">What goes in it</p><ul><li>What we set out to learn</li><li>What we did, and with whom</li><li>What we found, with the evidence</li><li>What changes in the backlog or design</li></ul>
+      <p class="lbl">Draws on</p><p class="tools"><a href="boards/persona-journey-board.html">Persona &amp; Journey Map</a> · <a href="boards/opportunity-solution-tree-board.html">Opportunity Solution Tree</a> · <a href="boards/cynefin-board.html">Cynefin® Sense-Making</a> · <a href="boards/design-sprint-board.html">Design Sprint</a></p>
+    </div>
+    <figure class="ex" aria-label="Example: Discovery summary for the Basket team">
+      <p class="tag">Example · fictional Basket team</p>
+      <p class="eh">Substitutes · 12 May</p>
+      <p class="hl">Customers want substitutes they can trust; three small experiments will show what trust means to them.</p>
+      <table><tr><th scope="row">Interviews</th><td><b>12</b></td><td>weekly shoppers; Sarah, 38, is our persona</td></tr><tr><th scope="row">Wanted one-tap reorder</th><td><b>31%</b></td><td>from a fake-door test in February</td></tr><tr><th scope="row">Biggest unknown</th><td><b>accepting substitutes</b></td><td>complex, so we&#x27;ll try things, not plan them</td></tr><tr><th scope="row">Experiments</th><td><b>3, safe to fail</b></td><td>same brand, cheaper option, ask first</td></tr><tr><th scope="row">Changes</th><td><b>2 new stories</b></td><td>an approve-substitutes step; a margin check</td></tr></table>
+      <p class="nx">Next readout: 26 May, after two weeks of the experiments.</p>
+    </figure>
+  </div>
+  <div class="pr">
+    <p class="lbl">Prompt to build it</p>
+    <pre>Here are my research notes and test results: [paste interview notes, survey results or test data, or link the Confluence pages]. Write a one-page discovery summary: what we set out to learn; what we did and with whom; the main findings with the evidence for each, quoting users without names where it helps; how confident we are; and what this changes in the backlog, design or roadmap. Keep what users did separate from what they said. Show the query or filter you used (for example, the JQL) and the count behind each figure, so I can check them. List any assumptions you made, and ask me questions if anything is unclear.</pre>
+    <button type="button" onclick="(function(b){var t=b.parentNode.querySelector(&#x27;pre&#x27;).textContent;navigator.clipboard.writeText(t).then(function(){var o=b.textContent;b.textContent=&#x27;Copied ✓&#x27;;setTimeout(function(){b.textContent=o},2000)})})(this)">Copy prompt</button>
+    <p class="watch"><b>Watch out:</b> The AI will find patterns in anything. Check each finding against the raw notes, and keep “one person said” apart from “most people did”.</p>
+    <p class="more"><a href="start-here-by-role.html#ux">More tools for this role →</a></p>
+  </div>
+</section>
+<section class="rp" id="team">
+  <p class="role">Team Member</p>
+  <h2>Weekly flow snapshot</h2>
+  <p class="q">“How is our work flowing this week, and what should we swarm on?”</p>
+  <div class="cols">
+    <div>
+      <p class="lbl">Who it's for</p><p>The team, for themselves</p>
+      <p class="lbl">How often</p><p>Weekly, before a daily sync</p>
+      <p class="lbl">What goes in it</p><ul><li>Items finished this week</li><li>Work in progress against our limits</li><li>The oldest items, and any past our SLE</li><li>Blockers, and how long they&#x27;ve waited</li></ul>
+      <p class="lbl">Draws on</p><p class="tools"><a href="boards/daily-sync-board.html">Daily Sync</a> · <a href="boards/ageing-wip-board.html">Ageing WIP &amp; SLE</a> · <a href="boards/kanban-board-design.html">Kanban Board Design</a> · <a href="boards/blocker-clustering-board.html">Blocker Clustering</a></p>
+    </div>
+    <figure class="ex" aria-label="Example: Weekly flow snapshot for the Basket team">
+      <p class="tag">Example · fictional Basket team</p>
+      <p class="eh">Basket team · week of 5 May</p>
+      <p class="hl">Five items finished; three are past our 9-day SLE, so we swarm on the oldest first.</p>
+      <table><tr><th scope="row">Finished this week</th><td><b>5</b></td><td>including one-tap reorder</td></tr><tr><th scope="row">In progress</th><td><b>7</b></td><td>WIP limit 8</td></tr><tr><th scope="row">Past the 9-day SLE</th><td><b>3</b></td><td>oldest: out-of-stock rules, at 12 days</td></tr><tr><th scope="row">Blocked</th><td><b>2</b></td><td>Stock API (9 days), Payments sign-off (3 days)</td></tr><tr><th scope="row">Unplanned work</th><td><b>1 item</b></td><td>within our 20% buffer</td></tr></table>
+      <p class="nx">Swarm today on the out-of-stock rules, and escalate the Stock API at the sync.</p>
+    </figure>
+  </div>
+  <div class="pr">
+    <p class="lbl">Prompt to build it</p>
+    <pre>Using our board in Jira or Azure DevOps [project KEY and board name], give the team a short flow snapshot for this week: items finished; work in progress in each column against our WIP limits [paste them]; the five oldest items in progress with their age in days; any items older than our service level expectation of [N] days; and blocked or flagged items, with how long each has been blocked. Suggest which item to swarm on first, and why. Show the query or filter you used (for example, the JQL) and the count behind each figure, so I can check them. List any assumptions you made, and ask me questions if anything is unclear.</pre>
+    <button type="button" onclick="(function(b){var t=b.parentNode.querySelector(&#x27;pre&#x27;).textContent;navigator.clipboard.writeText(t).then(function(){var o=b.textContent;b.textContent=&#x27;Copied ✓&#x27;;setTimeout(function(){b.textContent=o},2000)})})(this)">Copy prompt</button>
+    <p class="watch"><b>Watch out:</b> This is for the team, not a manager&#x27;s dashboard. If it&#x27;s used to judge people, it stops being honest.</p>
+    <p class="more"><a href="start-here-by-role.html#team">More tools for this role →</a></p>
+  </div>
+</section>
+<div class="note"><p>Every figure in the examples comes from the <a href="basket-team-story.html">Basket team's story</a> and its worked examples. Atlassian Rovo, Jira and Confluence are trademarks of Atlassian; Microsoft Copilot and Azure DevOps are trademarks of Microsoft. They're named as examples only. See also the <a href="good-practices.html">Good Practices</a> on measuring teams, not individuals.</p></div>
+</div></main>
+<footer>© 2026 Eric Parker · CC BY 4.0 · eparker71.github.io/agile-ways-of-working</footer>
+</body>
+</html>

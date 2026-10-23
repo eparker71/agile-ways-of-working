@@ -233,6 +233,7 @@ header{{background:var(--navy);border-top:4px solid var(--accent);color:#fff;pad
 .wrap{{max-width:1040px;margin:0 auto;padding:0 16px;}}
 h1{{font:400 44px/1.05 'Instrument Serif',Georgia,serif;margin:0 0 8px;}}
 header p{{color:#94A3B8;margin:0 0 18px;max-width:680px;}}
+header p a{{color:#FDBA74;}}
 header a.back{{color:#94A3B8;font:500 11px 'Geist Mono',monospace;letter-spacing:.06em;}}
 nav{{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}}
 nav a{{font:500 11px 'Geist Mono',monospace;letter-spacing:.04em;color:#fff;text-decoration:none;border:1px solid #334155;border-radius:14px;padding:5px 11px;}}
@@ -261,7 +262,7 @@ footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-
 <header><div class="wrap">
   <a class="back" href="index.html">← All tools</a>
   <h1>Start Here by Role</h1>
-  <p>Find the tools that fit your role. Each role has three to start with, then others worth knowing. Roles overlap, so use whichever lists help.</p>
+  <p>Find the tools that fit your role. Each role has three to start with, then others worth knowing. Roles overlap, so use whichever lists help. To see how things are going, each role also has a report in <a href="reports-by-role.html">Reports by Role</a>.</p>
   <nav>{nav}</nav>
 </div></header>
 <main><div class="wrap">

@@ -403,7 +403,7 @@ footer{{font:9px 'Geist Mono',monospace;letter-spacing:.08em;color:#5B6B82;text-
 <header><div class="wrap">
   <a class="back" href="index.html">← All tools</a>
   <h1>Prompt Library</h1>
-  <p>{len(PROMPTS)} prompts for everyday agile work, grouped like the toolkit, each paired with the board it supports. They work with any AI assistant, such as ChatGPT, Claude, Copilot or Atlassian Rovo: copy one, fill in the [square brackets], and paste it in. Further down, every board's whiteboard prompt is in one place.</p>
+  <p>{len(PROMPTS)} prompts for everyday agile work, grouped like the toolkit, each paired with the board it supports. They work with any AI assistant, such as ChatGPT, Claude, Copilot or Atlassian Rovo: copy one, fill in the [square brackets], and paste it in. Further down, every board's whiteboard prompt is in one place. For reports, such as an iteration report or an executive brief, see <a href=\"reports-by-role.html\">Reports by Role</a>.</p>
   <input type="search" placeholder="Search prompts, e.g. “retro” or “story”…" aria-label="Search prompts">
   <nav class="chips" aria-label="Sections">{chips}</nav>
 </div></header>
